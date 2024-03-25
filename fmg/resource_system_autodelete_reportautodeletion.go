@@ -127,26 +127,26 @@ func resourceSystemAutoDeleteReportAutoDeletionRead(d *schema.ResourceData, m in
 	return nil
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionRetention2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionRunat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("retention", flattenSystemAutoDeleteReportAutoDeletionRetention(o["retention"], d, "retention")); err != nil {
+	if err = d.Set("retention", flattenSystemAutoDeleteReportAutoDeletionRetention2edl(o["retention"], d, "retention")); err != nil {
 		if vv, ok := fortiAPIPatch(o["retention"], "SystemAutoDeleteReportAutoDeletion-Retention"); ok {
 			if err = d.Set("retention", vv); err != nil {
 				return fmt.Errorf("Error reading retention: %v", err)
@@ -156,7 +156,7 @@ func refreshObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("runat", flattenSystemAutoDeleteReportAutoDeletionRunat(o["runat"], d, "runat")); err != nil {
+	if err = d.Set("runat", flattenSystemAutoDeleteReportAutoDeletionRunat2edl(o["runat"], d, "runat")); err != nil {
 		if vv, ok := fortiAPIPatch(o["runat"], "SystemAutoDeleteReportAutoDeletion-Runat"); ok {
 			if err = d.Set("runat", vv); err != nil {
 				return fmt.Errorf("Error reading runat: %v", err)
@@ -166,7 +166,7 @@ func refreshObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("status", flattenSystemAutoDeleteReportAutoDeletionStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemAutoDeleteReportAutoDeletionStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemAutoDeleteReportAutoDeletion-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -176,7 +176,7 @@ func refreshObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("value", flattenSystemAutoDeleteReportAutoDeletionValue(o["value"], d, "value")); err != nil {
+	if err = d.Set("value", flattenSystemAutoDeleteReportAutoDeletionValue2edl(o["value"], d, "value")); err != nil {
 		if vv, ok := fortiAPIPatch(o["value"], "SystemAutoDeleteReportAutoDeletion-Value"); ok {
 			if err = d.Set("value", vv); err != nil {
 				return fmt.Errorf("Error reading value: %v", err)
@@ -195,19 +195,19 @@ func flattenSystemAutoDeleteReportAutoDeletionFortiTestDebug(d *schema.ResourceD
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemAutoDeleteReportAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionRetention2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionRunat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -215,7 +215,7 @@ func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData) (*map[s
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {
-		t, err := expandSystemAutoDeleteReportAutoDeletionRetention(d, v, "retention")
+		t, err := expandSystemAutoDeleteReportAutoDeletionRetention2edl(d, v, "retention")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -224,7 +224,7 @@ func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("runat"); ok || d.HasChange("runat") {
-		t, err := expandSystemAutoDeleteReportAutoDeletionRunat(d, v, "runat")
+		t, err := expandSystemAutoDeleteReportAutoDeletionRunat2edl(d, v, "runat")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemAutoDeleteReportAutoDeletionStatus(d, v, "status")
+		t, err := expandSystemAutoDeleteReportAutoDeletionStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
-		t, err := expandSystemAutoDeleteReportAutoDeletionValue(d, v, "value")
+		t, err := expandSystemAutoDeleteReportAutoDeletionValue2edl(d, v, "value")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

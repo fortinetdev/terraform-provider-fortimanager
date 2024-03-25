@@ -10,15 +10,15 @@ description: |-
 Configure connection to SDN Connector.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`compartment_list`: `fortimanager_object_system_sdnconnector_compartmentlist`
-`external_account_list`: `fortimanager_object_system_sdnconnector_externalaccountlist`
-`external_ip`: `fortimanager_object_system_sdnconnector_externalip`
-`forwarding_rule`: `fortimanager_object_system_sdnconnector_forwardingrule`
-`gcp_project_list`: `fortimanager_object_system_sdnconnector_gcpprojectlist`
-`nic`: `fortimanager_object_system_sdnconnector_nic`
-`oci_region_list`: `fortimanager_object_system_sdnconnector_ociregionlist`
-`route`: `fortimanager_object_system_sdnconnector_route`
-`route_table`: `fortimanager_object_system_sdnconnector_routetable`
+>- `compartment_list`: `fortimanager_object_system_sdnconnector_compartmentlist`
+>- `external_account_list`: `fortimanager_object_system_sdnconnector_externalaccountlist`
+>- `external_ip`: `fortimanager_object_system_sdnconnector_externalip`
+>- `forwarding_rule`: `fortimanager_object_system_sdnconnector_forwardingrule`
+>- `gcp_project_list`: `fortimanager_object_system_sdnconnector_gcpprojectlist`
+>- `nic`: `fortimanager_object_system_sdnconnector_nic`
+>- `oci_region_list`: `fortimanager_object_system_sdnconnector_ociregionlist`
+>- `route`: `fortimanager_object_system_sdnconnector_route`
+>- `route_table`: `fortimanager_object_system_sdnconnector_routetable`
 
 
 

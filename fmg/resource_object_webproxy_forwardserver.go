@@ -73,6 +73,11 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"masquerade": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"monitor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -246,6 +251,10 @@ func flattenObjectWebProxyForwardServerIpv6(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectWebProxyForwardServerMasquerade(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -337,6 +346,16 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("masquerade", flattenObjectWebProxyForwardServerMasquerade(o["masquerade"], d, "masquerade")); err != nil {
+		if vv, ok := fortiAPIPatch(o["masquerade"], "ObjectWebProxyForwardServer-Masquerade"); ok {
+			if err = d.Set("masquerade", vv); err != nil {
+				return fmt.Errorf("Error reading masquerade: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading masquerade: %v", err)
+		}
+	}
+
 	if err = d.Set("monitor", flattenObjectWebProxyForwardServerMonitor(o["monitor"], d, "monitor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["monitor"], "ObjectWebProxyForwardServer-Monitor"); ok {
 			if err = d.Set("monitor", vv); err != nil {
@@ -420,6 +439,10 @@ func expandObjectWebProxyForwardServerIpv6(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectWebProxyForwardServerMasquerade(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebProxyForwardServerMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -498,6 +521,15 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ipv6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("masquerade"); ok || d.HasChange("masquerade") {
+		t, err := expandObjectWebProxyForwardServerMasquerade(d, v, "masquerade")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["masquerade"] = t
 		}
 	}
 

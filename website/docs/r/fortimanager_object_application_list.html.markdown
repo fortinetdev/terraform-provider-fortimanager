@@ -10,8 +10,8 @@ description: |-
 Configure application control lists.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`default_network_services`: `fortimanager_object_application_list_defaultnetworkservices`
-`entries`: `fortimanager_object_application_list_entries`
+>- `default_network_services`: `fortimanager_object_application_list_defaultnetworkservices`
+>- `entries`: `fortimanager_object_application_list_entries`
 
 
 

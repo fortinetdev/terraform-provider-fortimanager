@@ -10,7 +10,7 @@ description: |-
 Configure URL filter lists.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_webfilter_urlfilter_entries`
+>- `entries`: `fortimanager_object_webfilter_urlfilter_entries`
 
 
 

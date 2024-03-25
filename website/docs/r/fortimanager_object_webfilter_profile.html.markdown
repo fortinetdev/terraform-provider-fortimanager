@@ -10,13 +10,13 @@ description: |-
 Configure Web filter profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`antiphish`: `fortimanager_object_webfilter_profile_antiphish`
-`file_filter`: `fortimanager_object_webfilter_profile_filefilter`
-`ftgd_wf`: `fortimanager_object_webfilter_profile_ftgdwf`
-`override`: `fortimanager_object_webfilter_profile_override`
-`url_extraction`: `fortimanager_object_webfilter_profile_urlextraction`
-`web`: `fortimanager_object_webfilter_profile_web`
-`youtube_channel_filter`: `fortimanager_object_webfilter_profile_youtubechannelfilter`
+>- `antiphish`: `fortimanager_object_webfilter_profile_antiphish`
+>- `file_filter`: `fortimanager_object_webfilter_profile_filefilter`
+>- `ftgd_wf`: `fortimanager_object_webfilter_profile_ftgdwf`
+>- `override`: `fortimanager_object_webfilter_profile_override`
+>- `url_extraction`: `fortimanager_object_webfilter_profile_urlextraction`
+>- `web`: `fortimanager_object_webfilter_profile_web`
+>- `youtube_channel_filter`: `fortimanager_object_webfilter_profile_youtubechannelfilter`
 
 
 
@@ -104,6 +104,8 @@ The following arguments are supported:
 * `web_filter_unknown_log` - Enable/disable logging unknown scripts. Valid values: `disable`, `enable`.
 
 * `web_filter_vbs_log` - Enable/disable logging VBS scripts. Valid values: `disable`, `enable`.
+
+* `web_flow_log_encoding` - Log encoding in flow mode. Valid values: `utf-8`, `punycode`.
 
 * `web_ftgd_err_log` - Enable/disable logging rating errors. Valid values: `disable`, `enable`.
 

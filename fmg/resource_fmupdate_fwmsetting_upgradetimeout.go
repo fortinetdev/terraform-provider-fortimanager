@@ -49,6 +49,11 @@ func resourceFmupdateFwmSettingUpgradeTimeout() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"health_check_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"license_check_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -172,62 +177,66 @@ func resourceFmupdateFwmSettingUpgradeTimeoutRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutHealthCheckTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutPutImageTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutPutImageTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutRpcTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFwmSettingUpgradeTimeoutTotalTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFwmSettingUpgradeTimeoutRpcTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateFwmSettingUpgradeTimeoutTotalTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("check_status_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout(o["check-status-timeout"], d, "check_status_timeout")); err != nil {
+	if err = d.Set("check_status_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout2edl(o["check-status-timeout"], d, "check_status_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["check-status-timeout"], "FmupdateFwmSettingUpgradeTimeout-CheckStatusTimeout"); ok {
 			if err = d.Set("check_status_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading check_status_timeout: %v", err)
@@ -237,7 +246,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("ctrl_check_status_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout(o["ctrl-check-status-timeout"], d, "ctrl_check_status_timeout")); err != nil {
+	if err = d.Set("ctrl_check_status_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout2edl(o["ctrl-check-status-timeout"], d, "ctrl_check_status_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ctrl-check-status-timeout"], "FmupdateFwmSettingUpgradeTimeout-CtrlCheckStatusTimeout"); ok {
 			if err = d.Set("ctrl_check_status_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading ctrl_check_status_timeout: %v", err)
@@ -247,7 +256,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("ctrl_put_image_by_fds_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout(o["ctrl-put-image-by-fds-timeout"], d, "ctrl_put_image_by_fds_timeout")); err != nil {
+	if err = d.Set("ctrl_put_image_by_fds_timeout", flattenFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout2edl(o["ctrl-put-image-by-fds-timeout"], d, "ctrl_put_image_by_fds_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ctrl-put-image-by-fds-timeout"], "FmupdateFwmSettingUpgradeTimeout-CtrlPutImageByFdsTimeout"); ok {
 			if err = d.Set("ctrl_put_image_by_fds_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading ctrl_put_image_by_fds_timeout: %v", err)
@@ -257,7 +266,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("ha_sync_timeout", flattenFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout(o["ha-sync-timeout"], d, "ha_sync_timeout")); err != nil {
+	if err = d.Set("ha_sync_timeout", flattenFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout2edl(o["ha-sync-timeout"], d, "ha_sync_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ha-sync-timeout"], "FmupdateFwmSettingUpgradeTimeout-HaSyncTimeout"); ok {
 			if err = d.Set("ha_sync_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading ha_sync_timeout: %v", err)
@@ -267,7 +276,17 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("license_check_timeout", flattenFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout(o["license-check-timeout"], d, "license_check_timeout")); err != nil {
+	if err = d.Set("health_check_timeout", flattenFmupdateFwmSettingUpgradeTimeoutHealthCheckTimeout2edl(o["health-check-timeout"], d, "health_check_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-timeout"], "FmupdateFwmSettingUpgradeTimeout-HealthCheckTimeout"); ok {
+			if err = d.Set("health_check_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("license_check_timeout", flattenFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout2edl(o["license-check-timeout"], d, "license_check_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["license-check-timeout"], "FmupdateFwmSettingUpgradeTimeout-LicenseCheckTimeout"); ok {
 			if err = d.Set("license_check_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading license_check_timeout: %v", err)
@@ -277,7 +296,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("prepare_image_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout(o["prepare-image-timeout"], d, "prepare_image_timeout")); err != nil {
+	if err = d.Set("prepare_image_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout2edl(o["prepare-image-timeout"], d, "prepare_image_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["prepare-image-timeout"], "FmupdateFwmSettingUpgradeTimeout-PrepareImageTimeout"); ok {
 			if err = d.Set("prepare_image_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading prepare_image_timeout: %v", err)
@@ -287,7 +306,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("put_image_by_fds_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout(o["put-image-by-fds-timeout"], d, "put_image_by_fds_timeout")); err != nil {
+	if err = d.Set("put_image_by_fds_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout2edl(o["put-image-by-fds-timeout"], d, "put_image_by_fds_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["put-image-by-fds-timeout"], "FmupdateFwmSettingUpgradeTimeout-PutImageByFdsTimeout"); ok {
 			if err = d.Set("put_image_by_fds_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading put_image_by_fds_timeout: %v", err)
@@ -297,7 +316,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("put_image_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPutImageTimeout(o["put-image-timeout"], d, "put_image_timeout")); err != nil {
+	if err = d.Set("put_image_timeout", flattenFmupdateFwmSettingUpgradeTimeoutPutImageTimeout2edl(o["put-image-timeout"], d, "put_image_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["put-image-timeout"], "FmupdateFwmSettingUpgradeTimeout-PutImageTimeout"); ok {
 			if err = d.Set("put_image_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading put_image_timeout: %v", err)
@@ -307,7 +326,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("reboot_of_fsck_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout(o["reboot-of-fsck-timeout"], d, "reboot_of_fsck_timeout")); err != nil {
+	if err = d.Set("reboot_of_fsck_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout2edl(o["reboot-of-fsck-timeout"], d, "reboot_of_fsck_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reboot-of-fsck-timeout"], "FmupdateFwmSettingUpgradeTimeout-RebootOfFsckTimeout"); ok {
 			if err = d.Set("reboot_of_fsck_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading reboot_of_fsck_timeout: %v", err)
@@ -317,7 +336,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("reboot_of_upgrade_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout(o["reboot-of-upgrade-timeout"], d, "reboot_of_upgrade_timeout")); err != nil {
+	if err = d.Set("reboot_of_upgrade_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout2edl(o["reboot-of-upgrade-timeout"], d, "reboot_of_upgrade_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reboot-of-upgrade-timeout"], "FmupdateFwmSettingUpgradeTimeout-RebootOfUpgradeTimeout"); ok {
 			if err = d.Set("reboot_of_upgrade_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading reboot_of_upgrade_timeout: %v", err)
@@ -327,7 +346,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("retrieve_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout(o["retrieve-timeout"], d, "retrieve_timeout")); err != nil {
+	if err = d.Set("retrieve_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout2edl(o["retrieve-timeout"], d, "retrieve_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["retrieve-timeout"], "FmupdateFwmSettingUpgradeTimeout-RetrieveTimeout"); ok {
 			if err = d.Set("retrieve_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading retrieve_timeout: %v", err)
@@ -337,7 +356,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("rpc_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRpcTimeout(o["rpc-timeout"], d, "rpc_timeout")); err != nil {
+	if err = d.Set("rpc_timeout", flattenFmupdateFwmSettingUpgradeTimeoutRpcTimeout2edl(o["rpc-timeout"], d, "rpc_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rpc-timeout"], "FmupdateFwmSettingUpgradeTimeout-RpcTimeout"); ok {
 			if err = d.Set("rpc_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading rpc_timeout: %v", err)
@@ -347,7 +366,7 @@ func refreshObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("total_timeout", flattenFmupdateFwmSettingUpgradeTimeoutTotalTimeout(o["total-timeout"], d, "total_timeout")); err != nil {
+	if err = d.Set("total_timeout", flattenFmupdateFwmSettingUpgradeTimeoutTotalTimeout2edl(o["total-timeout"], d, "total_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["total-timeout"], "FmupdateFwmSettingUpgradeTimeout-TotalTimeout"); ok {
 			if err = d.Set("total_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading total_timeout: %v", err)
@@ -366,55 +385,59 @@ func flattenFmupdateFwmSettingUpgradeTimeoutFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutHealthCheckTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutPutImageTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutPutImageTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutRpcTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFwmSettingUpgradeTimeoutRpcTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -422,7 +445,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("check_status_timeout"); ok || d.HasChange("check_status_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout(d, v, "check_status_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutCheckStatusTimeout2edl(d, v, "check_status_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -431,7 +454,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("ctrl_check_status_timeout"); ok || d.HasChange("ctrl_check_status_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout(d, v, "ctrl_check_status_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutCtrlCheckStatusTimeout2edl(d, v, "ctrl_check_status_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -440,7 +463,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("ctrl_put_image_by_fds_timeout"); ok || d.HasChange("ctrl_put_image_by_fds_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout(d, v, "ctrl_put_image_by_fds_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutCtrlPutImageByFdsTimeout2edl(d, v, "ctrl_put_image_by_fds_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -449,7 +472,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("ha_sync_timeout"); ok || d.HasChange("ha_sync_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout(d, v, "ha_sync_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutHaSyncTimeout2edl(d, v, "ha_sync_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -457,8 +480,17 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 		}
 	}
 
+	if v, ok := d.GetOk("health_check_timeout"); ok || d.HasChange("health_check_timeout") {
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutHealthCheckTimeout2edl(d, v, "health_check_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-timeout"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("license_check_timeout"); ok || d.HasChange("license_check_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout(d, v, "license_check_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutLicenseCheckTimeout2edl(d, v, "license_check_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -467,7 +499,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("prepare_image_timeout"); ok || d.HasChange("prepare_image_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout(d, v, "prepare_image_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutPrepareImageTimeout2edl(d, v, "prepare_image_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -476,7 +508,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("put_image_by_fds_timeout"); ok || d.HasChange("put_image_by_fds_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout(d, v, "put_image_by_fds_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutPutImageByFdsTimeout2edl(d, v, "put_image_by_fds_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -485,7 +517,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("put_image_timeout"); ok || d.HasChange("put_image_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutPutImageTimeout(d, v, "put_image_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutPutImageTimeout2edl(d, v, "put_image_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -494,7 +526,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("reboot_of_fsck_timeout"); ok || d.HasChange("reboot_of_fsck_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout(d, v, "reboot_of_fsck_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutRebootOfFsckTimeout2edl(d, v, "reboot_of_fsck_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -503,7 +535,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("reboot_of_upgrade_timeout"); ok || d.HasChange("reboot_of_upgrade_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout(d, v, "reboot_of_upgrade_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutRebootOfUpgradeTimeout2edl(d, v, "reboot_of_upgrade_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -512,7 +544,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("retrieve_timeout"); ok || d.HasChange("retrieve_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout(d, v, "retrieve_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutRetrieveTimeout2edl(d, v, "retrieve_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -521,7 +553,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("rpc_timeout"); ok || d.HasChange("rpc_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutRpcTimeout(d, v, "rpc_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutRpcTimeout2edl(d, v, "rpc_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -530,7 +562,7 @@ func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("total_timeout"); ok || d.HasChange("total_timeout") {
-		t, err := expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout(d, v, "total_timeout")
+		t, err := expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout2edl(d, v, "total_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

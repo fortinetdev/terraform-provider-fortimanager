@@ -144,22 +144,22 @@ func resourceSystemHaMonitoredIpsRead(d *schema.ResourceData, m interface{}) err
 	return nil
 }
 
-func flattenSystemHaMonitoredIpsId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaMonitoredIpsId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaMonitoredIpsInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaMonitoredIpsInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaMonitoredIpsIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaMonitoredIpsIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemHaMonitoredIps(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("fosid", flattenSystemHaMonitoredIpsId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenSystemHaMonitoredIpsId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemHaMonitoredIps-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -169,7 +169,7 @@ func refreshObjectSystemHaMonitoredIps(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("interface", flattenSystemHaMonitoredIpsInterface(o["interface"], d, "interface")); err != nil {
+	if err = d.Set("interface", flattenSystemHaMonitoredIpsInterface2edl(o["interface"], d, "interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interface"], "SystemHaMonitoredIps-Interface"); ok {
 			if err = d.Set("interface", vv); err != nil {
 				return fmt.Errorf("Error reading interface: %v", err)
@@ -179,7 +179,7 @@ func refreshObjectSystemHaMonitoredIps(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("ip", flattenSystemHaMonitoredIpsIp(o["ip"], d, "ip")); err != nil {
+	if err = d.Set("ip", flattenSystemHaMonitoredIpsIp2edl(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "SystemHaMonitoredIps-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {
 				return fmt.Errorf("Error reading ip: %v", err)
@@ -198,15 +198,15 @@ func flattenSystemHaMonitoredIpsFortiTestDebug(d *schema.ResourceData, fosdebugs
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemHaMonitoredIpsId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaMonitoredIpsId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaMonitoredIpsInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaMonitoredIpsInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaMonitoredIpsIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaMonitoredIpsIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -214,7 +214,7 @@ func getObjectSystemHaMonitoredIps(d *schema.ResourceData) (*map[string]interfac
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandSystemHaMonitoredIpsId(d, v, "fosid")
+		t, err := expandSystemHaMonitoredIpsId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -223,7 +223,7 @@ func getObjectSystemHaMonitoredIps(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
-		t, err := expandSystemHaMonitoredIpsInterface(d, v, "interface")
+		t, err := expandSystemHaMonitoredIpsInterface2edl(d, v, "interface")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -232,7 +232,7 @@ func getObjectSystemHaMonitoredIps(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
-		t, err := expandSystemHaMonitoredIpsIp(d, v, "ip")
+		t, err := expandSystemHaMonitoredIpsIp2edl(d, v, "ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

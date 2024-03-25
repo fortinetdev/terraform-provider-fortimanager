@@ -186,23 +186,23 @@ func resourceObjectSystemNpuDswQueueDtsProfileRead(d *schema.ResourceData, m int
 	return nil
 }
 
-func flattenObjectSystemNpuDswQueueDtsProfileIport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDswQueueDtsProfileIport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDswQueueDtsProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDswQueueDtsProfileName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDswQueueDtsProfileOport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDswQueueDtsProfileOport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDswQueueDtsProfileProfileId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDswQueueDtsProfileProfileId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDswQueueDtsProfileQueueSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDswQueueDtsProfileQueueSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -213,7 +213,7 @@ func refreshObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData, o ma
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("iport", flattenObjectSystemNpuDswQueueDtsProfileIport(o["iport"], d, "iport")); err != nil {
+	if err = d.Set("iport", flattenObjectSystemNpuDswQueueDtsProfileIport2edl(o["iport"], d, "iport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iport"], "ObjectSystemNpuDswQueueDtsProfile-Iport"); ok {
 			if err = d.Set("iport", vv); err != nil {
 				return fmt.Errorf("Error reading iport: %v", err)
@@ -223,7 +223,7 @@ func refreshObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("name", flattenObjectSystemNpuDswQueueDtsProfileName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectSystemNpuDswQueueDtsProfileName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSystemNpuDswQueueDtsProfile-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -233,7 +233,7 @@ func refreshObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("oport", flattenObjectSystemNpuDswQueueDtsProfileOport(o["oport"], d, "oport")); err != nil {
+	if err = d.Set("oport", flattenObjectSystemNpuDswQueueDtsProfileOport2edl(o["oport"], d, "oport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["oport"], "ObjectSystemNpuDswQueueDtsProfile-Oport"); ok {
 			if err = d.Set("oport", vv); err != nil {
 				return fmt.Errorf("Error reading oport: %v", err)
@@ -243,7 +243,7 @@ func refreshObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("profile_id", flattenObjectSystemNpuDswQueueDtsProfileProfileId(o["profile-id"], d, "profile_id")); err != nil {
+	if err = d.Set("profile_id", flattenObjectSystemNpuDswQueueDtsProfileProfileId2edl(o["profile-id"], d, "profile_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-id"], "ObjectSystemNpuDswQueueDtsProfile-ProfileId"); ok {
 			if err = d.Set("profile_id", vv); err != nil {
 				return fmt.Errorf("Error reading profile_id: %v", err)
@@ -253,7 +253,7 @@ func refreshObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("queue_select", flattenObjectSystemNpuDswQueueDtsProfileQueueSelect(o["queue-select"], d, "queue_select")); err != nil {
+	if err = d.Set("queue_select", flattenObjectSystemNpuDswQueueDtsProfileQueueSelect2edl(o["queue-select"], d, "queue_select")); err != nil {
 		if vv, ok := fortiAPIPatch(o["queue-select"], "ObjectSystemNpuDswQueueDtsProfile-QueueSelect"); ok {
 			if err = d.Set("queue_select", vv); err != nil {
 				return fmt.Errorf("Error reading queue_select: %v", err)
@@ -272,23 +272,23 @@ func flattenObjectSystemNpuDswQueueDtsProfileFortiTestDebug(d *schema.ResourceDa
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuDswQueueDtsProfileIport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDswQueueDtsProfileIport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDswQueueDtsProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDswQueueDtsProfileName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDswQueueDtsProfileOport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDswQueueDtsProfileOport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDswQueueDtsProfileProfileId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDswQueueDtsProfileProfileId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDswQueueDtsProfileQueueSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDswQueueDtsProfileQueueSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -296,7 +296,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("iport"); ok || d.HasChange("iport") {
-		t, err := expandObjectSystemNpuDswQueueDtsProfileIport(d, v, "iport")
+		t, err := expandObjectSystemNpuDswQueueDtsProfileIport2edl(d, v, "iport")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -305,7 +305,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectSystemNpuDswQueueDtsProfileName(d, v, "name")
+		t, err := expandObjectSystemNpuDswQueueDtsProfileName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -314,7 +314,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("oport"); ok || d.HasChange("oport") {
-		t, err := expandObjectSystemNpuDswQueueDtsProfileOport(d, v, "oport")
+		t, err := expandObjectSystemNpuDswQueueDtsProfileOport2edl(d, v, "oport")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -323,7 +323,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("profile_id"); ok || d.HasChange("profile_id") {
-		t, err := expandObjectSystemNpuDswQueueDtsProfileProfileId(d, v, "profile_id")
+		t, err := expandObjectSystemNpuDswQueueDtsProfileProfileId2edl(d, v, "profile_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -332,7 +332,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("queue_select"); ok || d.HasChange("queue_select") {
-		t, err := expandObjectSystemNpuDswQueueDtsProfileQueueSelect(d, v, "queue_select")
+		t, err := expandObjectSystemNpuDswQueueDtsProfileQueueSelect2edl(d, v, "queue_select")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

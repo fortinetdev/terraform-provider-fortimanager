@@ -58,6 +58,10 @@ func resourceObjectCliTemplate() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"position": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"provision": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -206,6 +210,10 @@ func flattenObjectCliTemplateName(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenObjectCliTemplatePosition(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCliTemplateProvision(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -256,6 +264,16 @@ func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("position", flattenObjectCliTemplatePosition(o["position"], d, "position")); err != nil {
+		if vv, ok := fortiAPIPatch(o["position"], "ObjectCliTemplate-Position"); ok {
+			if err = d.Set("position", vv); err != nil {
+				return fmt.Errorf("Error reading position: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading position: %v", err)
 		}
 	}
 
@@ -320,6 +338,10 @@ func expandObjectCliTemplateName(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandObjectCliTemplatePosition(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCliTemplateProvision(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -363,6 +385,15 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("position"); ok || d.HasChange("position") {
+		t, err := expandObjectCliTemplatePosition(d, v, "position")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["position"] = t
 		}
 	}
 

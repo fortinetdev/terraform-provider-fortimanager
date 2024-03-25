@@ -86,6 +86,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"dirty_reason": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ems_id": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -118,6 +119,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"out_of_sync_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"serial_number": &schema.Schema{
 				Type:     schema.TypeString,
@@ -153,6 +155,11 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"send_tags_to_all_vdoms": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -165,8 +172,18 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"trust_ca_cn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"verified_cn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"verifying_ca": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -394,6 +411,10 @@ func flattenObjectEndpointControlFctemsPullVulnerabilities(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectEndpointControlFctemsSendTagsToAllVdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectEndpointControlFctemsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -407,6 +428,14 @@ func flattenObjectEndpointControlFctemsStatus(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectEndpointControlFctemsTrustCaCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsVerifiedCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsVerifyingCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -659,6 +688,16 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("send_tags_to_all_vdoms", flattenObjectEndpointControlFctemsSendTagsToAllVdoms(o["send-tags-to-all-vdoms"], d, "send_tags_to_all_vdoms")); err != nil {
+		if vv, ok := fortiAPIPatch(o["send-tags-to-all-vdoms"], "ObjectEndpointControlFctems-SendTagsToAllVdoms"); ok {
+			if err = d.Set("send_tags_to_all_vdoms", vv); err != nil {
+				return fmt.Errorf("Error reading send_tags_to_all_vdoms: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading send_tags_to_all_vdoms: %v", err)
+		}
+	}
+
 	if err = d.Set("server", flattenObjectEndpointControlFctemsServer(o["server"], d, "server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server"], "ObjectEndpointControlFctems-Server"); ok {
 			if err = d.Set("server", vv); err != nil {
@@ -696,6 +735,26 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading trust_ca_cn: %v", err)
+		}
+	}
+
+	if err = d.Set("verified_cn", flattenObjectEndpointControlFctemsVerifiedCn(o["verified-cn"], d, "verified_cn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["verified-cn"], "ObjectEndpointControlFctems-VerifiedCn"); ok {
+			if err = d.Set("verified_cn", vv); err != nil {
+				return fmt.Errorf("Error reading verified_cn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading verified_cn: %v", err)
+		}
+	}
+
+	if err = d.Set("verifying_ca", flattenObjectEndpointControlFctemsVerifyingCa(o["verifying-ca"], d, "verifying_ca")); err != nil {
+		if vv, ok := fortiAPIPatch(o["verifying-ca"], "ObjectEndpointControlFctems-VerifyingCa"); ok {
+			if err = d.Set("verifying_ca", vv); err != nil {
+				return fmt.Errorf("Error reading verifying_ca: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading verifying_ca: %v", err)
 		}
 	}
 
@@ -830,6 +889,10 @@ func expandObjectEndpointControlFctemsPullVulnerabilities(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectEndpointControlFctemsSendTagsToAllVdoms(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectEndpointControlFctemsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -843,6 +906,14 @@ func expandObjectEndpointControlFctemsStatus(d *schema.ResourceData, v interface
 }
 
 func expandObjectEndpointControlFctemsTrustCaCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsVerifiedCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsVerifyingCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1068,6 +1139,15 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("send_tags_to_all_vdoms"); ok || d.HasChange("send_tags_to_all_vdoms") {
+		t, err := expandObjectEndpointControlFctemsSendTagsToAllVdoms(d, v, "send_tags_to_all_vdoms")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["send-tags-to-all-vdoms"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectEndpointControlFctemsServer(d, v, "server")
 		if err != nil {
@@ -1101,6 +1181,24 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["trust-ca-cn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("verified_cn"); ok || d.HasChange("verified_cn") {
+		t, err := expandObjectEndpointControlFctemsVerifiedCn(d, v, "verified_cn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["verified-cn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("verifying_ca"); ok || d.HasChange("verifying_ca") {
+		t, err := expandObjectEndpointControlFctemsVerifyingCa(d, v, "verifying_ca")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["verifying-ca"] = t
 		}
 	}
 

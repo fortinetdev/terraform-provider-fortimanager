@@ -1002,7 +1002,7 @@ func flattenObjectUserLdapDynamicMappingCaCert(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserLdapDynamicMappingClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapDynamicMappingClientCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1046,7 +1046,7 @@ func flattenObjectUserLdapDynamicMappingGroupSearchBase(v interface{}, d *schema
 }
 
 func flattenObjectUserLdapDynamicMappingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1146,7 +1146,7 @@ func flattenObjectUserLdapDynamicMappingType(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectUserLdapDynamicMappingUserInfoExchangeServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapDynamicMappingUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2121,7 +2121,7 @@ func expandObjectUserLdapDynamicMappingGroupSearchBase(d *schema.ResourceData, v
 }
 
 func expandObjectUserLdapDynamicMappingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2221,7 +2221,7 @@ func expandObjectUserLdapDynamicMappingType(d *schema.ResourceData, v interface{
 }
 
 func expandObjectUserLdapDynamicMappingUserInfoExchangeServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapDynamicMappingUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

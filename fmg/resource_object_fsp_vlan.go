@@ -1284,6 +1284,10 @@ func resourceObjectFspVlan() *schema.Resource {
 																Type:     schema.TypeInt,
 																Optional: true,
 															},
+															"ignore_default_route": &schema.Schema{
+																Type:     schema.TypeString,
+																Optional: true,
+															},
 															"preempt": &schema.Schema{
 																Type:     schema.TypeString,
 																Optional: true,
@@ -2384,6 +2388,11 @@ func resourceObjectFspVlan() *schema.Resource {
 													Optional: true,
 													Computed: true,
 												},
+												"ignore_default_route": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+													Computed: true,
+												},
 												"preempt": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
@@ -2493,6 +2502,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"macaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"managed_subnetwork_size": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2537,6 +2547,14 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"mirroring_direction": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"mirroring_port": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2629,6 +2647,11 @@ func resourceObjectFspVlan() *schema.Resource {
 						},
 						"polling_interval": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"port_mirroring": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -2839,6 +2862,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"security_8021x_member_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"security_8021x_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2927,6 +2955,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"stp": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"stp_edge": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -3868,7 +3901,7 @@ func flattenObjectFspVlanDhcpServerDdnsAuth(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanDhcpServerDdnsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanDhcpServerDdnsKeyname(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4959,7 +4992,7 @@ func flattenObjectFspVlanDynamicMappingDhcpServerDdnsAuth(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDdnsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDdnsKeyname(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6423,6 +6456,12 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(v interface{}, d *sche
 			tmp["adv_interval"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Vrrp6-AdvInterval")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := i["ignore-default-route"]; ok {
+			v := flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6IgnoreDefaultRoute(i["ignore-default-route"], d, pre_append)
+			tmp["ignore_default_route"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Vrrp6-IgnoreDefaultRoute")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := i["preempt"]; ok {
 			v := flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Preempt(i["preempt"], d, pre_append)
@@ -6486,6 +6525,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AcceptMode(v interface{
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AdvInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6IgnoreDefaultRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7666,6 +7709,16 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["min_links_down"] = flattenObjectFspVlanInterfaceMinLinksDown(i["min-links-down"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "mirroring_direction"
+	if _, ok := i["mirroring-direction"]; ok {
+		result["mirroring_direction"] = flattenObjectFspVlanInterfaceMirroringDirection(i["mirroring-direction"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mirroring_port"
+	if _, ok := i["mirroring-port"]; ok {
+		result["mirroring_port"] = flattenObjectFspVlanInterfaceMirroringPort(i["mirroring-port"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "mode"
 	if _, ok := i["mode"]; ok {
 		result["mode"] = flattenObjectFspVlanInterfaceMode(i["mode"], d, pre_append)
@@ -7769,6 +7822,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "polling_interval"
 	if _, ok := i["polling-interval"]; ok {
 		result["polling_interval"] = flattenObjectFspVlanInterfacePollingInterval(i["polling-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "port_mirroring"
+	if _, ok := i["port-mirroring"]; ok {
+		result["port_mirroring"] = flattenObjectFspVlanInterfacePortMirroring(i["port-mirroring"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "pppoe_unnumbered_negotiate"
@@ -7951,6 +8009,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["security_8021x_master"] = flattenObjectFspVlanInterfaceSecurity8021XMaster(i["security-8021x-master"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "security_8021x_member_mode"
+	if _, ok := i["security-8021x-member-mode"]; ok {
+		result["security_8021x_member_mode"] = flattenObjectFspVlanInterfaceSecurity8021XMemberMode(i["security-8021x-member-mode"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "security_8021x_mode"
 	if _, ok := i["security-8021x-mode"]; ok {
 		result["security_8021x_mode"] = flattenObjectFspVlanInterfaceSecurity8021XMode(i["security-8021x-mode"], d, pre_append)
@@ -8049,6 +8112,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "stp"
 	if _, ok := i["stp"]; ok {
 		result["stp"] = flattenObjectFspVlanInterfaceStp(i["stp"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "stp_edge"
+	if _, ok := i["stp-edge"]; ok {
+		result["stp_edge"] = flattenObjectFspVlanInterfaceStpEdge(i["stp-edge"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "stp_ha_secondary"
@@ -8592,7 +8660,7 @@ func flattenObjectFspVlanInterfaceDdnsDomain(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanInterfaceDdnsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceDdnsKeyname(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8656,7 +8724,7 @@ func flattenObjectFspVlanInterfaceDetectserver(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFspVlanInterfaceDeviceAccessList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceDeviceIdentification(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8772,7 +8840,7 @@ func flattenObjectFspVlanInterfaceDropOverlappedFragment(v interface{}, d *schem
 }
 
 func flattenObjectFspVlanInterfaceEapCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceEapIdentity(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8792,7 +8860,7 @@ func flattenObjectFspVlanInterfaceEapSupplicant(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFspVlanInterfaceEapUserCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceEgressCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8836,7 +8904,7 @@ func flattenObjectFspVlanInterfaceFailActionOnExtender(v interface{}, d *schema.
 }
 
 func flattenObjectFspVlanInterfaceFailAlertInterfaces(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceFailAlertMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8948,7 +9016,7 @@ func flattenObjectFspVlanInterfaceIfMedia(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFspVlanInterfaceIkeSamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceInForceVlanCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -9706,6 +9774,12 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6(v interface{}, d *schema.ResourceDat
 			tmp["adv_interval"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-AdvInterval")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := i["ignore-default-route"]; ok {
+			v := flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute(i["ignore-default-route"], d, pre_append)
+			tmp["ignore_default_route"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-IgnoreDefaultRoute")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := i["preempt"]; ok {
 			v := flattenObjectFspVlanInterfaceIpv6Vrrp6Preempt(i["preempt"], d, pre_append)
@@ -9769,6 +9843,10 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6AcceptMode(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceIpv6Vrrp6AdvInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -9897,7 +9975,7 @@ func flattenObjectFspVlanInterfaceMediatype(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanInterfaceMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceMinLinks(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -9906,6 +9984,14 @@ func flattenObjectFspVlanInterfaceMinLinks(v interface{}, d *schema.ResourceData
 
 func flattenObjectFspVlanInterfaceMinLinksDown(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanInterfaceMirroringDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceMirroringPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -9973,7 +10059,7 @@ func flattenObjectFspVlanInterfacePassword(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfacePeerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfacePhyMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -9989,6 +10075,10 @@ func flattenObjectFspVlanInterfacePoe(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFspVlanInterfacePollingInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePortMirroring(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -10261,6 +10351,10 @@ func flattenObjectFspVlanInterfaceSecurity8021XMaster(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFspVlanInterfaceSecurity8021XMemberMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceSecurity8021XMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -10278,7 +10372,7 @@ func flattenObjectFspVlanInterfaceSecurityExternalWeb(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceSecurityGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFspVlanInterfaceSecurityMacAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -10338,6 +10432,10 @@ func flattenObjectFspVlanInterfaceStatus(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceStp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceStpEdge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -11332,7 +11430,7 @@ func expandObjectFspVlanDhcpServerDdnsAuth(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFspVlanDhcpServerDdnsKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanDhcpServerDdnsKeyname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -12330,7 +12428,7 @@ func expandObjectFspVlanDynamicMappingDhcpServerDdnsAuth(d *schema.ResourceData,
 }
 
 func expandObjectFspVlanDynamicMappingDhcpServerDdnsKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanDynamicMappingDhcpServerDdnsKeyname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -13679,6 +13777,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d *schema.ResourceData,
 			tmp["adv-interval"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AdvInterval(d, i["adv_interval"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ignore-default-route"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6IgnoreDefaultRoute(d, i["ignore_default_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Preempt(d, i["preempt"], pre_append)
@@ -13734,6 +13837,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AcceptMode(d *schema.Res
 }
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AdvInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6IgnoreDefaultRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14727,6 +14834,14 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["min-links-down"], _ = expandObjectFspVlanInterfaceMinLinksDown(d, i["min_links_down"], pre_append)
 	}
+	pre_append = pre + ".0." + "mirroring_direction"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mirroring-direction"], _ = expandObjectFspVlanInterfaceMirroringDirection(d, i["mirroring_direction"], pre_append)
+	}
+	pre_append = pre + ".0." + "mirroring_port"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mirroring-port"], _ = expandObjectFspVlanInterfaceMirroringPort(d, i["mirroring_port"], pre_append)
+	}
 	pre_append = pre + ".0." + "mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectFspVlanInterfaceMode(d, i["mode"], pre_append)
@@ -14810,6 +14925,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "polling_interval"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["polling-interval"], _ = expandObjectFspVlanInterfacePollingInterval(d, i["polling_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "port_mirroring"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["port-mirroring"], _ = expandObjectFspVlanInterfacePortMirroring(d, i["port_mirroring"], pre_append)
 	}
 	pre_append = pre + ".0." + "pppoe_unnumbered_negotiate"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14960,6 +15079,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-8021x-master"], _ = expandObjectFspVlanInterfaceSecurity8021XMaster(d, i["security_8021x_master"], pre_append)
 	}
+	pre_append = pre + ".0." + "security_8021x_member_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["security-8021x-member-mode"], _ = expandObjectFspVlanInterfaceSecurity8021XMemberMode(d, i["security_8021x_member_mode"], pre_append)
+	}
 	pre_append = pre + ".0." + "security_8021x_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-8021x-mode"], _ = expandObjectFspVlanInterfaceSecurity8021XMode(d, i["security_8021x_mode"], pre_append)
@@ -15039,6 +15162,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "stp"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stp"], _ = expandObjectFspVlanInterfaceStp(d, i["stp"], pre_append)
+	}
+	pre_append = pre + ".0." + "stp_edge"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["stp-edge"], _ = expandObjectFspVlanInterfaceStpEdge(d, i["stp_edge"], pre_append)
 	}
 	pre_append = pre + ".0." + "stp_ha_secondary"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -15430,7 +15557,7 @@ func expandObjectFspVlanInterfaceAtmProtocol(d *schema.ResourceData, v interface
 }
 
 func expandObjectFspVlanInterfaceAuthCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceAuthPortalAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -15498,7 +15625,7 @@ func expandObjectFspVlanInterfaceDdnsDomain(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFspVlanInterfaceDdnsKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceDdnsKeyname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -15562,7 +15689,7 @@ func expandObjectFspVlanInterfaceDetectserver(d *schema.ResourceData, v interfac
 }
 
 func expandObjectFspVlanInterfaceDeviceAccessList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceDeviceIdentification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -15606,7 +15733,7 @@ func expandObjectFspVlanInterfaceDhcpRelayCircuitId(d *schema.ResourceData, v in
 }
 
 func expandObjectFspVlanInterfaceDhcpRelayInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceDhcpRelayInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -15742,7 +15869,7 @@ func expandObjectFspVlanInterfaceFailActionOnExtender(d *schema.ResourceData, v 
 }
 
 func expandObjectFspVlanInterfaceFailAlertInterfaces(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceFailAlertMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -15870,7 +15997,7 @@ func expandObjectFspVlanInterfaceIngressCos(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFspVlanInterfaceIngressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceIngressSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -16547,6 +16674,11 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData, v interface{}
 			tmp["adv-interval"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval(d, i["adv_interval"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ignore-default-route"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute(d, i["ignore_default_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Preempt(d, i["preempt"], pre_append)
@@ -16602,6 +16734,10 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6AcceptMode(d *schema.ResourceData, v i
 }
 
 func expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -16682,7 +16818,7 @@ func expandObjectFspVlanInterfaceListenForticlientConnection(d *schema.ResourceD
 }
 
 func expandObjectFspVlanInterfaceLldpNetworkPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceLldpReception(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -16730,7 +16866,7 @@ func expandObjectFspVlanInterfaceMediatype(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFspVlanInterfaceMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceMinLinks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -16739,6 +16875,14 @@ func expandObjectFspVlanInterfaceMinLinks(d *schema.ResourceData, v interface{},
 
 func expandObjectFspVlanInterfaceMinLinksDown(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanInterfaceMirroringDirection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceMirroringPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -16806,7 +16950,7 @@ func expandObjectFspVlanInterfacePassword(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFspVlanInterfacePeerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfacePhyMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -16822,6 +16966,10 @@ func expandObjectFspVlanInterfacePoe(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectFspVlanInterfacePollingInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePortMirroring(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -17079,6 +17227,10 @@ func expandObjectFspVlanInterfaceSecurity8021XMaster(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceSecurity8021XMemberMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceSecurity8021XMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -17096,7 +17248,7 @@ func expandObjectFspVlanInterfaceSecurityExternalWeb(d *schema.ResourceData, v i
 }
 
 func expandObjectFspVlanInterfaceSecurityGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceSecurityMacAuthBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -17156,6 +17308,10 @@ func expandObjectFspVlanInterfaceStatus(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFspVlanInterfaceStp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceStpEdge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -17228,7 +17384,7 @@ func expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(d *schema
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerFeature(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -17260,7 +17416,7 @@ func expandObjectFspVlanInterfaceSwitchControllerMgmtVlan(d *schema.ResourceData
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerNac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerNetflowCollect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -17304,7 +17460,7 @@ func expandObjectFspVlanInterfaceSwitchControllerSourceIp(d *schema.ResourceData
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerTrafficPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFspVlanInterfaceSystemId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

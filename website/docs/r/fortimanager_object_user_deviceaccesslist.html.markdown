@@ -10,7 +10,7 @@ description: |-
 Configure device access control lists.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`device_list`: `fortimanager_object_user_deviceaccesslist_devicelist`
+>- `device_list`: `fortimanager_object_user_deviceaccesslist_devicelist`
 
 
 

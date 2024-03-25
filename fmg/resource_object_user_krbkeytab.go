@@ -50,7 +50,7 @@ func resourceObjectUserKrbKeytab() *schema.Resource {
 				Optional: true,
 			},
 			"ldap_server": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -298,7 +298,7 @@ func expandObjectUserKrbKeytabKeytab(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectUserKrbKeytabLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserKrbKeytabName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

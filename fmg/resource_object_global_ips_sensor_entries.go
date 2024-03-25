@@ -429,7 +429,7 @@ func flattenObjectGlobalIpsSensorEntriesId2edl(v interface{}, d *schema.Resource
 }
 
 func flattenObjectGlobalIpsSensorEntriesLastModified2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectGlobalIpsSensorEntriesLocation2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -888,7 +888,7 @@ func expandObjectGlobalIpsSensorEntriesId2edl(d *schema.ResourceData, v interfac
 }
 
 func expandObjectGlobalIpsSensorEntriesLastModified2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectGlobalIpsSensorEntriesLocation2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

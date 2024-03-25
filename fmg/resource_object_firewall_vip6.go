@@ -116,6 +116,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"h2_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"h3_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -516,6 +526,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"h2_support": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"h3_support": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"http_cookie_age": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -586,7 +606,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Computed: true,
 			},
 			"mappedip": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -649,6 +669,48 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"quic": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ack_delay_exponent": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"active_connection_id_limit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"active_migration": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"grease_quic_bit": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"max_ack_delay": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"max_datagram_frame_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"max_idle_timeout": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"max_udp_payload_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+					},
+				},
 			},
 			"realservers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1133,6 +1195,18 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["extport"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingExtport(i["extport"], d, pre_append)
 			tmp["extport"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Extport")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := i["h2-support"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingH2Support(i["h2-support"], d, pre_append)
+			tmp["h2_support"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-H2Support")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := i["h3-support"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingH3Support(i["h3-support"], d, pre_append)
+			tmp["h3_support"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-H3Support")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
@@ -1630,6 +1704,14 @@ func flattenObjectFirewallVip6DynamicMappingExtport(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingH2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingH3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingHttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1703,7 +1785,7 @@ func flattenObjectFirewallVip6DynamicMappingMaxEmbryonicConnections(v interface{
 }
 
 func flattenObjectFirewallVip6DynamicMappingMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6DynamicMappingNatSourceVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1868,7 +1950,7 @@ func flattenObjectFirewallVip6DynamicMappingRealserversMaxConnections(v interfac
 }
 
 func flattenObjectFirewallVip6DynamicMappingRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6DynamicMappingRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1904,7 +1986,7 @@ func flattenObjectFirewallVip6DynamicMappingSslAlgorithm(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2114,6 +2196,14 @@ func flattenObjectFirewallVip6Extport(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenObjectFirewallVip6H2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6H3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6HttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2187,7 +2277,7 @@ func flattenObjectFirewallVip6MaxEmbryonicConnections(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVip6Monitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2223,6 +2313,91 @@ func flattenObjectFirewallVip6Portforward(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallVip6Protocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6Quic(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := i["ack-delay-exponent"]; ok {
+		result["ack_delay_exponent"] = flattenObjectFirewallVip6QuicAckDelayExponent(i["ack-delay-exponent"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := i["active-connection-id-limit"]; ok {
+		result["active_connection_id_limit"] = flattenObjectFirewallVip6QuicActiveConnectionIdLimit(i["active-connection-id-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := i["active-migration"]; ok {
+		result["active_migration"] = flattenObjectFirewallVip6QuicActiveMigration(i["active-migration"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := i["grease-quic-bit"]; ok {
+		result["grease_quic_bit"] = flattenObjectFirewallVip6QuicGreaseQuicBit(i["grease-quic-bit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := i["max-ack-delay"]; ok {
+		result["max_ack_delay"] = flattenObjectFirewallVip6QuicMaxAckDelay(i["max-ack-delay"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := i["max-datagram-frame-size"]; ok {
+		result["max_datagram_frame_size"] = flattenObjectFirewallVip6QuicMaxDatagramFrameSize(i["max-datagram-frame-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := i["max-idle-timeout"]; ok {
+		result["max_idle_timeout"] = flattenObjectFirewallVip6QuicMaxIdleTimeout(i["max-idle-timeout"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := i["max-udp-payload-size"]; ok {
+		result["max_udp_payload_size"] = flattenObjectFirewallVip6QuicMaxUdpPayloadSize(i["max-udp-payload-size"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallVip6QuicAckDelayExponent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicActiveConnectionIdLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicActiveMigration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicGreaseQuicBit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicMaxAckDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicMaxDatagramFrameSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicMaxIdleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6QuicMaxUdpPayloadSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2356,7 +2531,7 @@ func flattenObjectFirewallVip6RealserversMaxConnections(v interface{}, d *schema
 }
 
 func flattenObjectFirewallVip6RealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6RealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2392,7 +2567,7 @@ func flattenObjectFirewallVip6SslAlgorithm(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallVip6SslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6SslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2754,6 +2929,26 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("h2_support", flattenObjectFirewallVip6H2Support(o["h2-support"], d, "h2_support")); err != nil {
+		if vv, ok := fortiAPIPatch(o["h2-support"], "ObjectFirewallVip6-H2Support"); ok {
+			if err = d.Set("h2_support", vv); err != nil {
+				return fmt.Errorf("Error reading h2_support: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading h2_support: %v", err)
+		}
+	}
+
+	if err = d.Set("h3_support", flattenObjectFirewallVip6H3Support(o["h3-support"], d, "h3_support")); err != nil {
+		if vv, ok := fortiAPIPatch(o["h3-support"], "ObjectFirewallVip6-H3Support"); ok {
+			if err = d.Set("h3_support", vv); err != nil {
+				return fmt.Errorf("Error reading h3_support: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading h3_support: %v", err)
+		}
+	}
+
 	if err = d.Set("http_cookie_age", flattenObjectFirewallVip6HttpCookieAge(o["http-cookie-age"], d, "http_cookie_age")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-cookie-age"], "ObjectFirewallVip6-HttpCookieAge"); ok {
 			if err = d.Set("http_cookie_age", vv); err != nil {
@@ -3031,6 +3226,30 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading protocol: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("quic", flattenObjectFirewallVip6Quic(o["quic"], d, "quic")); err != nil {
+			if vv, ok := fortiAPIPatch(o["quic"], "ObjectFirewallVip6-Quic"); ok {
+				if err = d.Set("quic", vv); err != nil {
+					return fmt.Errorf("Error reading quic: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading quic: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("quic"); ok {
+			if err = d.Set("quic", flattenObjectFirewallVip6Quic(o["quic"], d, "quic")); err != nil {
+				if vv, ok := fortiAPIPatch(o["quic"], "ObjectFirewallVip6-Quic"); ok {
+					if err = d.Set("quic", vv); err != nil {
+						return fmt.Errorf("Error reading quic: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading quic: %v", err)
+				}
+			}
 		}
 	}
 
@@ -3580,6 +3799,16 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["extport"], _ = expandObjectFirewallVip6DynamicMappingExtport(d, i["extport"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h2-support"], _ = expandObjectFirewallVip6DynamicMappingH2Support(d, i["h2_support"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h3-support"], _ = expandObjectFirewallVip6DynamicMappingH3Support(d, i["h3_support"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieAge(d, i["http_cookie_age"], pre_append)
@@ -4010,6 +4239,14 @@ func expandObjectFirewallVip6DynamicMappingExtport(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingH2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingH3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingHttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4083,7 +4320,7 @@ func expandObjectFirewallVip6DynamicMappingMaxEmbryonicConnections(d *schema.Res
 }
 
 func expandObjectFirewallVip6DynamicMappingMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingNatSourceVip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4231,7 +4468,7 @@ func expandObjectFirewallVip6DynamicMappingRealserversMaxConnections(d *schema.R
 }
 
 func expandObjectFirewallVip6DynamicMappingRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4267,7 +4504,7 @@ func expandObjectFirewallVip6DynamicMappingSslAlgorithm(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallVip6DynamicMappingSslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4469,6 +4706,14 @@ func expandObjectFirewallVip6Extport(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectFirewallVip6H2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6H3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6HttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4530,7 +4775,7 @@ func expandObjectFirewallVip6LdbMethod(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallVip6Mappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVip6Mappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4542,7 +4787,7 @@ func expandObjectFirewallVip6MaxEmbryonicConnections(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallVip6Monitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4578,6 +4823,84 @@ func expandObjectFirewallVip6Portforward(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVip6Protocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6Quic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ack-delay-exponent"], _ = expandObjectFirewallVip6QuicAckDelayExponent(d, i["ack_delay_exponent"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-connection-id-limit"], _ = expandObjectFirewallVip6QuicActiveConnectionIdLimit(d, i["active_connection_id_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-migration"], _ = expandObjectFirewallVip6QuicActiveMigration(d, i["active_migration"], pre_append)
+	}
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["grease-quic-bit"], _ = expandObjectFirewallVip6QuicGreaseQuicBit(d, i["grease_quic_bit"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-ack-delay"], _ = expandObjectFirewallVip6QuicMaxAckDelay(d, i["max_ack_delay"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-datagram-frame-size"], _ = expandObjectFirewallVip6QuicMaxDatagramFrameSize(d, i["max_datagram_frame_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-idle-timeout"], _ = expandObjectFirewallVip6QuicMaxIdleTimeout(d, i["max_idle_timeout"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-udp-payload-size"], _ = expandObjectFirewallVip6QuicMaxUdpPayloadSize(d, i["max_udp_payload_size"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallVip6QuicAckDelayExponent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicActiveConnectionIdLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicActiveMigration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicGreaseQuicBit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicMaxAckDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicMaxDatagramFrameSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicMaxIdleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6QuicMaxUdpPayloadSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4694,7 +5017,7 @@ func expandObjectFirewallVip6RealserversMaxConnections(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallVip6RealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6RealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4730,7 +5053,7 @@ func expandObjectFirewallVip6SslAlgorithm(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFirewallVip6SslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6SslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5046,6 +5369,24 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("h2_support"); ok || d.HasChange("h2_support") {
+		t, err := expandObjectFirewallVip6H2Support(d, v, "h2_support")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["h2-support"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("h3_support"); ok || d.HasChange("h3_support") {
+		t, err := expandObjectFirewallVip6H3Support(d, v, "h3_support")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["h3-support"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("http_cookie_age"); ok || d.HasChange("http_cookie_age") {
 		t, err := expandObjectFirewallVip6HttpCookieAge(d, v, "http_cookie_age")
 		if err != nil {
@@ -5295,6 +5636,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("quic"); ok || d.HasChange("quic") {
+		t, err := expandObjectFirewallVip6Quic(d, v, "quic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["quic"] = t
 		}
 	}
 

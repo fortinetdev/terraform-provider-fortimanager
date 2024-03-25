@@ -123,6 +123,10 @@ func resourceObjectCasbUserActivity() *schema.Resource {
 								},
 							},
 						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -208,6 +212,11 @@ func resourceObjectCasbUserActivity() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -385,6 +394,12 @@ func flattenObjectCasbUserActivityControlOptions(v interface{}, d *schema.Resour
 			tmp["operations"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivity-ControlOptions-Operations")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectCasbUserActivityControlOptionsStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivity-ControlOptions-Status")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -526,6 +541,10 @@ func flattenObjectCasbUserActivityControlOptionsOperationsValueFromInput(v inter
 
 func flattenObjectCasbUserActivityControlOptionsOperationsValues(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectCasbUserActivityControlOptionsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectCasbUserActivityDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -714,6 +733,10 @@ func flattenObjectCasbUserActivityName(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectCasbUserActivityStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbUserActivityType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -841,6 +864,16 @@ func refreshObjectObjectCasbUserActivity(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("status", flattenObjectCasbUserActivityStatus(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectCasbUserActivity-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectCasbUserActivityType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectCasbUserActivity-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -909,6 +942,11 @@ func expandObjectCasbUserActivityControlOptions(d *schema.ResourceData, v interf
 			} else if t != nil {
 				tmp["operations"] = t
 			}
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["status"], _ = expandObjectCasbUserActivityControlOptionsStatus(d, i["status"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1037,6 +1075,10 @@ func expandObjectCasbUserActivityControlOptionsOperationsValueFromInput(d *schem
 
 func expandObjectCasbUserActivityControlOptionsOperationsValues(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbUserActivityControlOptionsStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCasbUserActivityDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1208,6 +1250,10 @@ func expandObjectCasbUserActivityName(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectCasbUserActivityStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbUserActivityType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1288,6 +1334,15 @@ func getObjectObjectCasbUserActivity(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
+		t, err := expandObjectCasbUserActivityStatus(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
 		}
 	}
 

@@ -10,7 +10,7 @@ description: |-
 Configure integrated FortiLink settings for FortiSwitch.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`nac_ports`: `fortimanager_object_switchcontroller_fortilinksettings_nacports`
+>- `nac_ports`: `fortimanager_object_switchcontroller_fortilinksettings_nacports`
 
 
 

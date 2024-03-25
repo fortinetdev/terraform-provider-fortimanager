@@ -10,7 +10,7 @@ description: |-
 Configure IPv6 address templates.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`subnet_segment`: `fortimanager_object_firewall_address6template_subnetsegment`
+>- `subnet_segment`: `fortimanager_object_firewall_address6template_subnetsegment`
 
 
 

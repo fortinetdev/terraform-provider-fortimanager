@@ -10,9 +10,9 @@ description: |-
 ObjectFsp Vlan
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dhcp_server`: `fortimanager_object_fsp_vlan_dhcpserver`
-`dynamic_mapping`: `fortimanager_object_fsp_vlan_dynamic_mapping`
-`interface`: `fortimanager_object_fsp_vlan_interface`
+>- `dhcp_server`: `fortimanager_object_fsp_vlan_dhcpserver`
+>- `dynamic_mapping`: `fortimanager_object_fsp_vlan_dynamic_mapping`
+>- `interface`: `fortimanager_object_fsp_vlan_interface`
 
 
 
@@ -460,6 +460,8 @@ The `vrrp6` block supports:
 * `accept_mode` - Enable/disable accept mode. Valid values: `disable`, `enable`.
 
 * `adv_interval` - Advertisement interval (1 - 255 seconds).
+* `ignore_default_route` - Enable/disable ignoring of default route when checking destination. Valid values: `disable`, `enable`.
+
 * `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
 
 * `priority` - Priority of the virtual router (1 - 255).
@@ -758,6 +760,9 @@ The `interface` block supports:
 * `min_links` - Minimum number of aggregated ports that must be up.
 * `min_links_down` - Action to take when less than the configured minimum number of links are active. Valid values: `operational`, `administrative`.
 
+* `mirroring_direction` - Port mirroring direction. Valid values: `rx`, `tx`, `both`.
+
+* `mirroring_port` - Mirroring port.
 * `mode` - Addressing mode (static, DHCP, PPPoE). Valid values: `static`, `dhcp`, `pppoe`, `pppoa`, `ipoa`, `eoa`.
 
 * `monitor_bandwidth` - Enable monitoring bandwidth on this interface. Valid values: `disable`, `enable`.
@@ -790,6 +795,8 @@ The `interface` block supports:
 * `poe` - Enable/disable PoE status. Valid values: `disable`, `enable`.
 
 * `polling_interval` - sFlow polling interval (1 - 255 sec).
+* `port_mirroring` - Enable/disable NP port mirroring. Valid values: `disable`, `enable`.
+
 * `pppoe_unnumbered_negotiate` - Enable/disable PPPoE unnumbered negotiation. Valid values: `disable`, `enable`.
 
 * `pptp_auth_type` - PPTP authentication type. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
@@ -840,6 +847,8 @@ The `interface` block supports:
 * `secondaryip` - Secondaryip. The structure of `secondaryip` block is documented below.
 * `security_8021x_dynamic_vlan_id` - VLAN ID for virtual switch.
 * `security_8021x_master` - 802.1X master virtual-switch.
+* `security_8021x_member_mode` - 802.1X member mode. Valid values: `disable`, `switch`.
+
 * `security_8021x_mode` - 802.1X mode. Valid values: `default`, `dynamic-vlan`, `fallback`, `slave`.
 
 * `security_exempt_list` - Name of security-exempt-list.
@@ -871,6 +880,8 @@ The `interface` block supports:
 * `status` - Bring the interface up or shut the interface down. Valid values: `down`, `up`.
 
 * `stp` - Enable/disable STP. Valid values: `disable`, `enable`.
+
+* `stp_edge` - Enable/disable as STP edge port. Valid values: `disable`, `enable`.
 
 * `stp_ha_secondary` - Stp-Ha-Secondary. Valid values: `disable`, `enable`, `priority-adjust`.
 
@@ -1105,6 +1116,8 @@ The `vrrp6` block supports:
 * `accept_mode` - Enable/disable accept mode. Valid values: `disable`, `enable`.
 
 * `adv_interval` - Advertisement interval (1 - 255 seconds).
+* `ignore_default_route` - Enable/disable ignoring of default route when checking destination. Valid values: `disable`, `enable`.
+
 * `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
 
 * `priority` - Priority of the virtual router (1 - 255).

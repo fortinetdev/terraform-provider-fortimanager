@@ -10,7 +10,7 @@ description: |-
 Show Internet Service application.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entry`: `fortimanager_object_firewall_internetservice_entry`
+>- `entry`: `fortimanager_object_firewall_internetservice_entry`
 
 
 

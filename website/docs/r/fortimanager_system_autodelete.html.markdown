@@ -10,10 +10,10 @@ description: |-
 Automatic deletion policy for logs, reports, archived, and quarantined files.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dlp_files_auto_deletion`: `fortimanager_system_autodelete_dlpfilesautodeletion`
-`log_auto_deletion`: `fortimanager_system_autodelete_logautodeletion`
-`quarantine_files_auto_deletion`: `fortimanager_system_autodelete_quarantinefilesautodeletion`
-`report_auto_deletion`: `fortimanager_system_autodelete_reportautodeletion`
+>- `dlp_files_auto_deletion`: `fortimanager_system_autodelete_dlpfilesautodeletion`
+>- `log_auto_deletion`: `fortimanager_system_autodelete_logautodeletion`
+>- `quarantine_files_auto_deletion`: `fortimanager_system_autodelete_quarantinefilesautodeletion`
+>- `report_auto_deletion`: `fortimanager_system_autodelete_reportautodeletion`
 
 
 

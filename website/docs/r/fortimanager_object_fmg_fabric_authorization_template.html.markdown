@@ -10,7 +10,7 @@ description: |-
 ObjectFmg FabricAuthorizationTemplate
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`platforms`: `fortimanager_object_fmg_fabric_authorization_template_platforms`
+>- `platforms`: `fortimanager_object_fmg_fabric_authorization_template_platforms`
 
 
 

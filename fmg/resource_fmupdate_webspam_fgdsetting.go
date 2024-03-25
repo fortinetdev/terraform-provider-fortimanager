@@ -204,6 +204,7 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 									"service_type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -344,127 +345,127 @@ func resourceFmupdateWebSpamFgdSettingRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
-func flattenFmupdateWebSpamFgdSettingAsCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAsCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAsLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAsPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAsPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAvCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAvCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAvLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAvLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAvPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAvPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAv2CacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAv2Cache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAv2LogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAv2Log(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingAv2PreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingAv2Preload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingEventlogQueryFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingEventlogQuery(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingFgdPullIntervalFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingFgdPullInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingFqCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingFqCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingFqLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingFqLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingFqPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingFqPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingIotCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingIotCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingIotLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingIotLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingIotPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingIotPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingIotvPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingIotvPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingLinkdLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingMaxClientWorkerFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingMaxClientWorker(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingMaxLogQuotaFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingMaxLogQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingMaxUnratedSiteFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingMaxUnratedSite(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictAs1DbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictAs1Dbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictAs2DbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictAs2Dbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictAs4DbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictAs4Dbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictAvDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictAvDbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictAv2Dbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictFqDbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictIotsDbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingRestrictWfDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingRestrictWfDbver(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideFwfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverride(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -475,19 +476,19 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideFwfa(v interface{}, d *schema
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := i["servlist"]; ok {
-		result["servlist"] = flattenFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(i["servlist"], d, pre_append)
+		result["servlist"] = flattenFmupdateWebSpamFgdSettingServerOverrideServlist(i["servlist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(i["status"], d, pre_append)
+		result["status"] = flattenFmupdateWebSpamFgdSettingServerOverrideStatus(i["status"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlist(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -508,31 +509,31 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(v interface{}, d
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistIdFwfa(i["id"], d, pre_append)
+			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistIpFwfa(i["ip"], d, pre_append)
+			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := i["ip6"]; ok {
-			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp6Fwfa(i["ip6"], d, pre_append)
+			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp6(i["ip6"], d, pre_append)
 			tmp["ip6"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-Ip6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistPortFwfa(i["port"], d, pre_append)
+			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistPort(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-Port")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := i["service-type"]; ok {
-			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(i["service-type"], d, pre_append)
+			v := flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(i["service-type"], d, pre_append)
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-ServiceType")
 		}
 
@@ -546,74 +547,74 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(v interface{}, d
 	return result
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistIdFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlistId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistIpFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp6Fwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlistIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistPortFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlistPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingServerOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingStatLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingStatLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingStatLogIntervalFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingStatLogInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingStatSyncIntervalFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingStatSyncInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingUpdateIntervalFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingUpdateInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingUpdateLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingUpdateLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingWfCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingWfCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingWfDnCacheExpireTimeFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingWfDnCacheExpireTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingWfDnCacheMaxNumberFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingWfDnCacheMaxNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingWfLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingWfLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateWebSpamFgdSettingWfPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateWebSpamFgdSettingWfPreload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("as_cache", flattenFmupdateWebSpamFgdSettingAsCacheFwfa(o["as-cache"], d, "as_cache")); err != nil {
+	if err = d.Set("as_cache", flattenFmupdateWebSpamFgdSettingAsCache(o["as-cache"], d, "as_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["as-cache"], "FmupdateWebSpamFgdSetting-AsCache"); ok {
 			if err = d.Set("as_cache", vv); err != nil {
 				return fmt.Errorf("Error reading as_cache: %v", err)
@@ -623,7 +624,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("as_log", flattenFmupdateWebSpamFgdSettingAsLogFwfa(o["as-log"], d, "as_log")); err != nil {
+	if err = d.Set("as_log", flattenFmupdateWebSpamFgdSettingAsLog(o["as-log"], d, "as_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["as-log"], "FmupdateWebSpamFgdSetting-AsLog"); ok {
 			if err = d.Set("as_log", vv); err != nil {
 				return fmt.Errorf("Error reading as_log: %v", err)
@@ -633,7 +634,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("as_preload", flattenFmupdateWebSpamFgdSettingAsPreloadFwfa(o["as-preload"], d, "as_preload")); err != nil {
+	if err = d.Set("as_preload", flattenFmupdateWebSpamFgdSettingAsPreload(o["as-preload"], d, "as_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["as-preload"], "FmupdateWebSpamFgdSetting-AsPreload"); ok {
 			if err = d.Set("as_preload", vv); err != nil {
 				return fmt.Errorf("Error reading as_preload: %v", err)
@@ -643,7 +644,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av_cache", flattenFmupdateWebSpamFgdSettingAvCacheFwfa(o["av-cache"], d, "av_cache")); err != nil {
+	if err = d.Set("av_cache", flattenFmupdateWebSpamFgdSettingAvCache(o["av-cache"], d, "av_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av-cache"], "FmupdateWebSpamFgdSetting-AvCache"); ok {
 			if err = d.Set("av_cache", vv); err != nil {
 				return fmt.Errorf("Error reading av_cache: %v", err)
@@ -653,7 +654,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av_log", flattenFmupdateWebSpamFgdSettingAvLogFwfa(o["av-log"], d, "av_log")); err != nil {
+	if err = d.Set("av_log", flattenFmupdateWebSpamFgdSettingAvLog(o["av-log"], d, "av_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av-log"], "FmupdateWebSpamFgdSetting-AvLog"); ok {
 			if err = d.Set("av_log", vv); err != nil {
 				return fmt.Errorf("Error reading av_log: %v", err)
@@ -663,7 +664,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av_preload", flattenFmupdateWebSpamFgdSettingAvPreloadFwfa(o["av-preload"], d, "av_preload")); err != nil {
+	if err = d.Set("av_preload", flattenFmupdateWebSpamFgdSettingAvPreload(o["av-preload"], d, "av_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av-preload"], "FmupdateWebSpamFgdSetting-AvPreload"); ok {
 			if err = d.Set("av_preload", vv); err != nil {
 				return fmt.Errorf("Error reading av_preload: %v", err)
@@ -673,7 +674,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av2_cache", flattenFmupdateWebSpamFgdSettingAv2CacheFwfa(o["av2-cache"], d, "av2_cache")); err != nil {
+	if err = d.Set("av2_cache", flattenFmupdateWebSpamFgdSettingAv2Cache(o["av2-cache"], d, "av2_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av2-cache"], "FmupdateWebSpamFgdSetting-Av2Cache"); ok {
 			if err = d.Set("av2_cache", vv); err != nil {
 				return fmt.Errorf("Error reading av2_cache: %v", err)
@@ -683,7 +684,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av2_log", flattenFmupdateWebSpamFgdSettingAv2LogFwfa(o["av2-log"], d, "av2_log")); err != nil {
+	if err = d.Set("av2_log", flattenFmupdateWebSpamFgdSettingAv2Log(o["av2-log"], d, "av2_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av2-log"], "FmupdateWebSpamFgdSetting-Av2Log"); ok {
 			if err = d.Set("av2_log", vv); err != nil {
 				return fmt.Errorf("Error reading av2_log: %v", err)
@@ -693,7 +694,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("av2_preload", flattenFmupdateWebSpamFgdSettingAv2PreloadFwfa(o["av2-preload"], d, "av2_preload")); err != nil {
+	if err = d.Set("av2_preload", flattenFmupdateWebSpamFgdSettingAv2Preload(o["av2-preload"], d, "av2_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av2-preload"], "FmupdateWebSpamFgdSetting-Av2Preload"); ok {
 			if err = d.Set("av2_preload", vv); err != nil {
 				return fmt.Errorf("Error reading av2_preload: %v", err)
@@ -703,7 +704,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("eventlog_query", flattenFmupdateWebSpamFgdSettingEventlogQueryFwfa(o["eventlog-query"], d, "eventlog_query")); err != nil {
+	if err = d.Set("eventlog_query", flattenFmupdateWebSpamFgdSettingEventlogQuery(o["eventlog-query"], d, "eventlog_query")); err != nil {
 		if vv, ok := fortiAPIPatch(o["eventlog-query"], "FmupdateWebSpamFgdSetting-EventlogQuery"); ok {
 			if err = d.Set("eventlog_query", vv); err != nil {
 				return fmt.Errorf("Error reading eventlog_query: %v", err)
@@ -713,7 +714,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("fgd_pull_interval", flattenFmupdateWebSpamFgdSettingFgdPullIntervalFwfa(o["fgd-pull-interval"], d, "fgd_pull_interval")); err != nil {
+	if err = d.Set("fgd_pull_interval", flattenFmupdateWebSpamFgdSettingFgdPullInterval(o["fgd-pull-interval"], d, "fgd_pull_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgd-pull-interval"], "FmupdateWebSpamFgdSetting-FgdPullInterval"); ok {
 			if err = d.Set("fgd_pull_interval", vv); err != nil {
 				return fmt.Errorf("Error reading fgd_pull_interval: %v", err)
@@ -723,7 +724,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("fq_cache", flattenFmupdateWebSpamFgdSettingFqCacheFwfa(o["fq-cache"], d, "fq_cache")); err != nil {
+	if err = d.Set("fq_cache", flattenFmupdateWebSpamFgdSettingFqCache(o["fq-cache"], d, "fq_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fq-cache"], "FmupdateWebSpamFgdSetting-FqCache"); ok {
 			if err = d.Set("fq_cache", vv); err != nil {
 				return fmt.Errorf("Error reading fq_cache: %v", err)
@@ -733,7 +734,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("fq_log", flattenFmupdateWebSpamFgdSettingFqLogFwfa(o["fq-log"], d, "fq_log")); err != nil {
+	if err = d.Set("fq_log", flattenFmupdateWebSpamFgdSettingFqLog(o["fq-log"], d, "fq_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fq-log"], "FmupdateWebSpamFgdSetting-FqLog"); ok {
 			if err = d.Set("fq_log", vv); err != nil {
 				return fmt.Errorf("Error reading fq_log: %v", err)
@@ -743,7 +744,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("fq_preload", flattenFmupdateWebSpamFgdSettingFqPreloadFwfa(o["fq-preload"], d, "fq_preload")); err != nil {
+	if err = d.Set("fq_preload", flattenFmupdateWebSpamFgdSettingFqPreload(o["fq-preload"], d, "fq_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fq-preload"], "FmupdateWebSpamFgdSetting-FqPreload"); ok {
 			if err = d.Set("fq_preload", vv); err != nil {
 				return fmt.Errorf("Error reading fq_preload: %v", err)
@@ -753,7 +754,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("iot_cache", flattenFmupdateWebSpamFgdSettingIotCacheFwfa(o["iot-cache"], d, "iot_cache")); err != nil {
+	if err = d.Set("iot_cache", flattenFmupdateWebSpamFgdSettingIotCache(o["iot-cache"], d, "iot_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iot-cache"], "FmupdateWebSpamFgdSetting-IotCache"); ok {
 			if err = d.Set("iot_cache", vv); err != nil {
 				return fmt.Errorf("Error reading iot_cache: %v", err)
@@ -763,7 +764,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("iot_log", flattenFmupdateWebSpamFgdSettingIotLogFwfa(o["iot-log"], d, "iot_log")); err != nil {
+	if err = d.Set("iot_log", flattenFmupdateWebSpamFgdSettingIotLog(o["iot-log"], d, "iot_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iot-log"], "FmupdateWebSpamFgdSetting-IotLog"); ok {
 			if err = d.Set("iot_log", vv); err != nil {
 				return fmt.Errorf("Error reading iot_log: %v", err)
@@ -773,7 +774,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("iot_preload", flattenFmupdateWebSpamFgdSettingIotPreloadFwfa(o["iot-preload"], d, "iot_preload")); err != nil {
+	if err = d.Set("iot_preload", flattenFmupdateWebSpamFgdSettingIotPreload(o["iot-preload"], d, "iot_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iot-preload"], "FmupdateWebSpamFgdSetting-IotPreload"); ok {
 			if err = d.Set("iot_preload", vv); err != nil {
 				return fmt.Errorf("Error reading iot_preload: %v", err)
@@ -783,7 +784,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("iotv_preload", flattenFmupdateWebSpamFgdSettingIotvPreloadFwfa(o["iotv-preload"], d, "iotv_preload")); err != nil {
+	if err = d.Set("iotv_preload", flattenFmupdateWebSpamFgdSettingIotvPreload(o["iotv-preload"], d, "iotv_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iotv-preload"], "FmupdateWebSpamFgdSetting-IotvPreload"); ok {
 			if err = d.Set("iotv_preload", vv); err != nil {
 				return fmt.Errorf("Error reading iotv_preload: %v", err)
@@ -793,7 +794,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("linkd_log", flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(o["linkd-log"], d, "linkd_log")); err != nil {
+	if err = d.Set("linkd_log", flattenFmupdateWebSpamFgdSettingLinkdLog(o["linkd-log"], d, "linkd_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["linkd-log"], "FmupdateWebSpamFgdSetting-LinkdLog"); ok {
 			if err = d.Set("linkd_log", vv); err != nil {
 				return fmt.Errorf("Error reading linkd_log: %v", err)
@@ -803,7 +804,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("max_client_worker", flattenFmupdateWebSpamFgdSettingMaxClientWorkerFwfa(o["max-client-worker"], d, "max_client_worker")); err != nil {
+	if err = d.Set("max_client_worker", flattenFmupdateWebSpamFgdSettingMaxClientWorker(o["max-client-worker"], d, "max_client_worker")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-client-worker"], "FmupdateWebSpamFgdSetting-MaxClientWorker"); ok {
 			if err = d.Set("max_client_worker", vv); err != nil {
 				return fmt.Errorf("Error reading max_client_worker: %v", err)
@@ -813,7 +814,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("max_log_quota", flattenFmupdateWebSpamFgdSettingMaxLogQuotaFwfa(o["max-log-quota"], d, "max_log_quota")); err != nil {
+	if err = d.Set("max_log_quota", flattenFmupdateWebSpamFgdSettingMaxLogQuota(o["max-log-quota"], d, "max_log_quota")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-log-quota"], "FmupdateWebSpamFgdSetting-MaxLogQuota"); ok {
 			if err = d.Set("max_log_quota", vv); err != nil {
 				return fmt.Errorf("Error reading max_log_quota: %v", err)
@@ -823,7 +824,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("max_unrated_site", flattenFmupdateWebSpamFgdSettingMaxUnratedSiteFwfa(o["max-unrated-site"], d, "max_unrated_site")); err != nil {
+	if err = d.Set("max_unrated_site", flattenFmupdateWebSpamFgdSettingMaxUnratedSite(o["max-unrated-site"], d, "max_unrated_site")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-unrated-site"], "FmupdateWebSpamFgdSetting-MaxUnratedSite"); ok {
 			if err = d.Set("max_unrated_site", vv); err != nil {
 				return fmt.Errorf("Error reading max_unrated_site: %v", err)
@@ -833,7 +834,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_as1_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs1DbverFwfa(o["restrict-as1-dbver"], d, "restrict_as1_dbver")); err != nil {
+	if err = d.Set("restrict_as1_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs1Dbver(o["restrict-as1-dbver"], d, "restrict_as1_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-as1-dbver"], "FmupdateWebSpamFgdSetting-RestrictAs1Dbver"); ok {
 			if err = d.Set("restrict_as1_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_as1_dbver: %v", err)
@@ -843,7 +844,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_as2_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs2DbverFwfa(o["restrict-as2-dbver"], d, "restrict_as2_dbver")); err != nil {
+	if err = d.Set("restrict_as2_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs2Dbver(o["restrict-as2-dbver"], d, "restrict_as2_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-as2-dbver"], "FmupdateWebSpamFgdSetting-RestrictAs2Dbver"); ok {
 			if err = d.Set("restrict_as2_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_as2_dbver: %v", err)
@@ -853,7 +854,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_as4_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs4DbverFwfa(o["restrict-as4-dbver"], d, "restrict_as4_dbver")); err != nil {
+	if err = d.Set("restrict_as4_dbver", flattenFmupdateWebSpamFgdSettingRestrictAs4Dbver(o["restrict-as4-dbver"], d, "restrict_as4_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-as4-dbver"], "FmupdateWebSpamFgdSetting-RestrictAs4Dbver"); ok {
 			if err = d.Set("restrict_as4_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_as4_dbver: %v", err)
@@ -863,7 +864,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_av_dbver", flattenFmupdateWebSpamFgdSettingRestrictAvDbverFwfa(o["restrict-av-dbver"], d, "restrict_av_dbver")); err != nil {
+	if err = d.Set("restrict_av_dbver", flattenFmupdateWebSpamFgdSettingRestrictAvDbver(o["restrict-av-dbver"], d, "restrict_av_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-av-dbver"], "FmupdateWebSpamFgdSetting-RestrictAvDbver"); ok {
 			if err = d.Set("restrict_av_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_av_dbver: %v", err)
@@ -873,7 +874,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_av2_dbver", flattenFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(o["restrict-av2-dbver"], d, "restrict_av2_dbver")); err != nil {
+	if err = d.Set("restrict_av2_dbver", flattenFmupdateWebSpamFgdSettingRestrictAv2Dbver(o["restrict-av2-dbver"], d, "restrict_av2_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-av2-dbver"], "FmupdateWebSpamFgdSetting-RestrictAv2Dbver"); ok {
 			if err = d.Set("restrict_av2_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_av2_dbver: %v", err)
@@ -883,7 +884,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_fq_dbver", flattenFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(o["restrict-fq-dbver"], d, "restrict_fq_dbver")); err != nil {
+	if err = d.Set("restrict_fq_dbver", flattenFmupdateWebSpamFgdSettingRestrictFqDbver(o["restrict-fq-dbver"], d, "restrict_fq_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-fq-dbver"], "FmupdateWebSpamFgdSetting-RestrictFqDbver"); ok {
 			if err = d.Set("restrict_fq_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_fq_dbver: %v", err)
@@ -893,7 +894,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_iots_dbver", flattenFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(o["restrict-iots-dbver"], d, "restrict_iots_dbver")); err != nil {
+	if err = d.Set("restrict_iots_dbver", flattenFmupdateWebSpamFgdSettingRestrictIotsDbver(o["restrict-iots-dbver"], d, "restrict_iots_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-iots-dbver"], "FmupdateWebSpamFgdSetting-RestrictIotsDbver"); ok {
 			if err = d.Set("restrict_iots_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_iots_dbver: %v", err)
@@ -903,7 +904,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("restrict_wf_dbver", flattenFmupdateWebSpamFgdSettingRestrictWfDbverFwfa(o["restrict-wf-dbver"], d, "restrict_wf_dbver")); err != nil {
+	if err = d.Set("restrict_wf_dbver", flattenFmupdateWebSpamFgdSettingRestrictWfDbver(o["restrict-wf-dbver"], d, "restrict_wf_dbver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restrict-wf-dbver"], "FmupdateWebSpamFgdSetting-RestrictWfDbver"); ok {
 			if err = d.Set("restrict_wf_dbver", vv); err != nil {
 				return fmt.Errorf("Error reading restrict_wf_dbver: %v", err)
@@ -914,7 +915,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 	}
 
 	if isImportTable() {
-		if err = d.Set("server_override", flattenFmupdateWebSpamFgdSettingServerOverrideFwfa(o["server-override"], d, "server_override")); err != nil {
+		if err = d.Set("server_override", flattenFmupdateWebSpamFgdSettingServerOverride(o["server-override"], d, "server_override")); err != nil {
 			if vv, ok := fortiAPIPatch(o["server-override"], "FmupdateWebSpamFgdSetting-ServerOverride"); ok {
 				if err = d.Set("server_override", vv); err != nil {
 					return fmt.Errorf("Error reading server_override: %v", err)
@@ -925,7 +926,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	} else {
 		if _, ok := d.GetOk("server_override"); ok {
-			if err = d.Set("server_override", flattenFmupdateWebSpamFgdSettingServerOverrideFwfa(o["server-override"], d, "server_override")); err != nil {
+			if err = d.Set("server_override", flattenFmupdateWebSpamFgdSettingServerOverride(o["server-override"], d, "server_override")); err != nil {
 				if vv, ok := fortiAPIPatch(o["server-override"], "FmupdateWebSpamFgdSetting-ServerOverride"); ok {
 					if err = d.Set("server_override", vv); err != nil {
 						return fmt.Errorf("Error reading server_override: %v", err)
@@ -937,7 +938,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("stat_log", flattenFmupdateWebSpamFgdSettingStatLogFwfa(o["stat-log"], d, "stat_log")); err != nil {
+	if err = d.Set("stat_log", flattenFmupdateWebSpamFgdSettingStatLog(o["stat-log"], d, "stat_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stat-log"], "FmupdateWebSpamFgdSetting-StatLog"); ok {
 			if err = d.Set("stat_log", vv); err != nil {
 				return fmt.Errorf("Error reading stat_log: %v", err)
@@ -947,7 +948,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("stat_log_interval", flattenFmupdateWebSpamFgdSettingStatLogIntervalFwfa(o["stat-log-interval"], d, "stat_log_interval")); err != nil {
+	if err = d.Set("stat_log_interval", flattenFmupdateWebSpamFgdSettingStatLogInterval(o["stat-log-interval"], d, "stat_log_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stat-log-interval"], "FmupdateWebSpamFgdSetting-StatLogInterval"); ok {
 			if err = d.Set("stat_log_interval", vv); err != nil {
 				return fmt.Errorf("Error reading stat_log_interval: %v", err)
@@ -957,7 +958,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("stat_sync_interval", flattenFmupdateWebSpamFgdSettingStatSyncIntervalFwfa(o["stat-sync-interval"], d, "stat_sync_interval")); err != nil {
+	if err = d.Set("stat_sync_interval", flattenFmupdateWebSpamFgdSettingStatSyncInterval(o["stat-sync-interval"], d, "stat_sync_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stat-sync-interval"], "FmupdateWebSpamFgdSetting-StatSyncInterval"); ok {
 			if err = d.Set("stat_sync_interval", vv); err != nil {
 				return fmt.Errorf("Error reading stat_sync_interval: %v", err)
@@ -967,7 +968,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("update_interval", flattenFmupdateWebSpamFgdSettingUpdateIntervalFwfa(o["update-interval"], d, "update_interval")); err != nil {
+	if err = d.Set("update_interval", flattenFmupdateWebSpamFgdSettingUpdateInterval(o["update-interval"], d, "update_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-interval"], "FmupdateWebSpamFgdSetting-UpdateInterval"); ok {
 			if err = d.Set("update_interval", vv); err != nil {
 				return fmt.Errorf("Error reading update_interval: %v", err)
@@ -977,7 +978,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("update_log", flattenFmupdateWebSpamFgdSettingUpdateLogFwfa(o["update-log"], d, "update_log")); err != nil {
+	if err = d.Set("update_log", flattenFmupdateWebSpamFgdSettingUpdateLog(o["update-log"], d, "update_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-log"], "FmupdateWebSpamFgdSetting-UpdateLog"); ok {
 			if err = d.Set("update_log", vv); err != nil {
 				return fmt.Errorf("Error reading update_log: %v", err)
@@ -987,7 +988,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("wf_cache", flattenFmupdateWebSpamFgdSettingWfCacheFwfa(o["wf-cache"], d, "wf_cache")); err != nil {
+	if err = d.Set("wf_cache", flattenFmupdateWebSpamFgdSettingWfCache(o["wf-cache"], d, "wf_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wf-cache"], "FmupdateWebSpamFgdSetting-WfCache"); ok {
 			if err = d.Set("wf_cache", vv); err != nil {
 				return fmt.Errorf("Error reading wf_cache: %v", err)
@@ -997,7 +998,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("wf_dn_cache_expire_time", flattenFmupdateWebSpamFgdSettingWfDnCacheExpireTimeFwfa(o["wf-dn-cache-expire-time"], d, "wf_dn_cache_expire_time")); err != nil {
+	if err = d.Set("wf_dn_cache_expire_time", flattenFmupdateWebSpamFgdSettingWfDnCacheExpireTime(o["wf-dn-cache-expire-time"], d, "wf_dn_cache_expire_time")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wf-dn-cache-expire-time"], "FmupdateWebSpamFgdSetting-WfDnCacheExpireTime"); ok {
 			if err = d.Set("wf_dn_cache_expire_time", vv); err != nil {
 				return fmt.Errorf("Error reading wf_dn_cache_expire_time: %v", err)
@@ -1007,7 +1008,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("wf_dn_cache_max_number", flattenFmupdateWebSpamFgdSettingWfDnCacheMaxNumberFwfa(o["wf-dn-cache-max-number"], d, "wf_dn_cache_max_number")); err != nil {
+	if err = d.Set("wf_dn_cache_max_number", flattenFmupdateWebSpamFgdSettingWfDnCacheMaxNumber(o["wf-dn-cache-max-number"], d, "wf_dn_cache_max_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wf-dn-cache-max-number"], "FmupdateWebSpamFgdSetting-WfDnCacheMaxNumber"); ok {
 			if err = d.Set("wf_dn_cache_max_number", vv); err != nil {
 				return fmt.Errorf("Error reading wf_dn_cache_max_number: %v", err)
@@ -1017,7 +1018,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("wf_log", flattenFmupdateWebSpamFgdSettingWfLogFwfa(o["wf-log"], d, "wf_log")); err != nil {
+	if err = d.Set("wf_log", flattenFmupdateWebSpamFgdSettingWfLog(o["wf-log"], d, "wf_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wf-log"], "FmupdateWebSpamFgdSetting-WfLog"); ok {
 			if err = d.Set("wf_log", vv); err != nil {
 				return fmt.Errorf("Error reading wf_log: %v", err)
@@ -1027,7 +1028,7 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("wf_preload", flattenFmupdateWebSpamFgdSettingWfPreloadFwfa(o["wf-preload"], d, "wf_preload")); err != nil {
+	if err = d.Set("wf_preload", flattenFmupdateWebSpamFgdSettingWfPreload(o["wf-preload"], d, "wf_preload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wf-preload"], "FmupdateWebSpamFgdSetting-WfPreload"); ok {
 			if err = d.Set("wf_preload", vv); err != nil {
 				return fmt.Errorf("Error reading wf_preload: %v", err)
@@ -1046,127 +1047,127 @@ func flattenFmupdateWebSpamFgdSettingFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateWebSpamFgdSettingAsCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAsCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAsLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAsLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAsPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAsPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAvCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAvCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAvLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAvLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAvPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAvPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAv2CacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAv2Cache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAv2LogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAv2Log(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingAv2PreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingAv2Preload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingEventlogQueryFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingEventlogQuery(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingFgdPullIntervalFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingFgdPullInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingFqCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingFqCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingFqLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingFqLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingFqPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingFqPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingIotCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingIotCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingIotLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingIotLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingIotPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingIotPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingIotvPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingIotvPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingLinkdLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingLinkdLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingMaxClientWorkerFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingMaxClientWorker(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingMaxLogQuotaFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingMaxLogQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingMaxUnratedSiteFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingMaxUnratedSite(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictAs1DbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictAs1Dbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictAs2DbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictAs2Dbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictAs4DbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictAs4Dbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictAvDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictAvDbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictAv2Dbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictFqDbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictIotsDbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingRestrictWfDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingRestrictWfDbver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -1178,7 +1179,7 @@ func expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d *schema.ResourceData, v
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		t, err := expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d, i["servlist"], pre_append)
+		t, err := expandFmupdateWebSpamFgdSettingServerOverrideServlist(d, i["servlist"], pre_append)
 		if err != nil {
 			return result, err
 		} else if t != nil {
@@ -1187,13 +1188,13 @@ func expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d *schema.ResourceData, v
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(d, i["status"], pre_append)
+		result["status"], _ = expandFmupdateWebSpamFgdSettingServerOverrideStatus(d, i["status"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -1209,27 +1210,27 @@ func expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d *schema.Resourc
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistIdFwfa(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistIpFwfa(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip6"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistIp6Fwfa(d, i["ip6"], pre_append)
+			tmp["ip6"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistIp6(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistPortFwfa(d, i["port"], pre_append)
+			tmp["port"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["service-type"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(d, i["service_type"], pre_append)
+			tmp["service-type"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(d, i["service_type"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1242,67 +1243,67 @@ func expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d *schema.Resourc
 	return result, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistIdFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlistId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistIpFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlistIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistIp6Fwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlistIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistPortFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlistPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingServerOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingStatLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingStatLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingStatLogIntervalFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingStatLogInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingStatSyncIntervalFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingStatSyncInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingUpdateIntervalFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingUpdateInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingUpdateLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingUpdateLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingWfCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingWfCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingWfDnCacheExpireTimeFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingWfDnCacheExpireTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingWfDnCacheMaxNumberFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingWfDnCacheMaxNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingWfLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingWfLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateWebSpamFgdSettingWfPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateWebSpamFgdSettingWfPreload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1310,7 +1311,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("as_cache"); ok || d.HasChange("as_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingAsCacheFwfa(d, v, "as_cache")
+		t, err := expandFmupdateWebSpamFgdSettingAsCache(d, v, "as_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1319,7 +1320,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("as_log"); ok || d.HasChange("as_log") {
-		t, err := expandFmupdateWebSpamFgdSettingAsLogFwfa(d, v, "as_log")
+		t, err := expandFmupdateWebSpamFgdSettingAsLog(d, v, "as_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1328,7 +1329,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("as_preload"); ok || d.HasChange("as_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingAsPreloadFwfa(d, v, "as_preload")
+		t, err := expandFmupdateWebSpamFgdSettingAsPreload(d, v, "as_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1337,7 +1338,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av_cache"); ok || d.HasChange("av_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingAvCacheFwfa(d, v, "av_cache")
+		t, err := expandFmupdateWebSpamFgdSettingAvCache(d, v, "av_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1346,7 +1347,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av_log"); ok || d.HasChange("av_log") {
-		t, err := expandFmupdateWebSpamFgdSettingAvLogFwfa(d, v, "av_log")
+		t, err := expandFmupdateWebSpamFgdSettingAvLog(d, v, "av_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1355,7 +1356,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av_preload"); ok || d.HasChange("av_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingAvPreloadFwfa(d, v, "av_preload")
+		t, err := expandFmupdateWebSpamFgdSettingAvPreload(d, v, "av_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1364,7 +1365,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av2_cache"); ok || d.HasChange("av2_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingAv2CacheFwfa(d, v, "av2_cache")
+		t, err := expandFmupdateWebSpamFgdSettingAv2Cache(d, v, "av2_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1373,7 +1374,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av2_log"); ok || d.HasChange("av2_log") {
-		t, err := expandFmupdateWebSpamFgdSettingAv2LogFwfa(d, v, "av2_log")
+		t, err := expandFmupdateWebSpamFgdSettingAv2Log(d, v, "av2_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1382,7 +1383,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("av2_preload"); ok || d.HasChange("av2_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingAv2PreloadFwfa(d, v, "av2_preload")
+		t, err := expandFmupdateWebSpamFgdSettingAv2Preload(d, v, "av2_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1391,7 +1392,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("eventlog_query"); ok || d.HasChange("eventlog_query") {
-		t, err := expandFmupdateWebSpamFgdSettingEventlogQueryFwfa(d, v, "eventlog_query")
+		t, err := expandFmupdateWebSpamFgdSettingEventlogQuery(d, v, "eventlog_query")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1400,7 +1401,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("fgd_pull_interval"); ok || d.HasChange("fgd_pull_interval") {
-		t, err := expandFmupdateWebSpamFgdSettingFgdPullIntervalFwfa(d, v, "fgd_pull_interval")
+		t, err := expandFmupdateWebSpamFgdSettingFgdPullInterval(d, v, "fgd_pull_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1409,7 +1410,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("fq_cache"); ok || d.HasChange("fq_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingFqCacheFwfa(d, v, "fq_cache")
+		t, err := expandFmupdateWebSpamFgdSettingFqCache(d, v, "fq_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1418,7 +1419,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("fq_log"); ok || d.HasChange("fq_log") {
-		t, err := expandFmupdateWebSpamFgdSettingFqLogFwfa(d, v, "fq_log")
+		t, err := expandFmupdateWebSpamFgdSettingFqLog(d, v, "fq_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1427,7 +1428,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("fq_preload"); ok || d.HasChange("fq_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingFqPreloadFwfa(d, v, "fq_preload")
+		t, err := expandFmupdateWebSpamFgdSettingFqPreload(d, v, "fq_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1436,7 +1437,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("iot_cache"); ok || d.HasChange("iot_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingIotCacheFwfa(d, v, "iot_cache")
+		t, err := expandFmupdateWebSpamFgdSettingIotCache(d, v, "iot_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1445,7 +1446,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("iot_log"); ok || d.HasChange("iot_log") {
-		t, err := expandFmupdateWebSpamFgdSettingIotLogFwfa(d, v, "iot_log")
+		t, err := expandFmupdateWebSpamFgdSettingIotLog(d, v, "iot_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1454,7 +1455,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("iot_preload"); ok || d.HasChange("iot_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingIotPreloadFwfa(d, v, "iot_preload")
+		t, err := expandFmupdateWebSpamFgdSettingIotPreload(d, v, "iot_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1463,7 +1464,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("iotv_preload"); ok || d.HasChange("iotv_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingIotvPreloadFwfa(d, v, "iotv_preload")
+		t, err := expandFmupdateWebSpamFgdSettingIotvPreload(d, v, "iotv_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1472,7 +1473,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("linkd_log"); ok || d.HasChange("linkd_log") {
-		t, err := expandFmupdateWebSpamFgdSettingLinkdLogFwfa(d, v, "linkd_log")
+		t, err := expandFmupdateWebSpamFgdSettingLinkdLog(d, v, "linkd_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1481,7 +1482,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("max_client_worker"); ok || d.HasChange("max_client_worker") {
-		t, err := expandFmupdateWebSpamFgdSettingMaxClientWorkerFwfa(d, v, "max_client_worker")
+		t, err := expandFmupdateWebSpamFgdSettingMaxClientWorker(d, v, "max_client_worker")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1490,7 +1491,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("max_log_quota"); ok || d.HasChange("max_log_quota") {
-		t, err := expandFmupdateWebSpamFgdSettingMaxLogQuotaFwfa(d, v, "max_log_quota")
+		t, err := expandFmupdateWebSpamFgdSettingMaxLogQuota(d, v, "max_log_quota")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1499,7 +1500,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("max_unrated_site"); ok || d.HasChange("max_unrated_site") {
-		t, err := expandFmupdateWebSpamFgdSettingMaxUnratedSiteFwfa(d, v, "max_unrated_site")
+		t, err := expandFmupdateWebSpamFgdSettingMaxUnratedSite(d, v, "max_unrated_site")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1508,7 +1509,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_as1_dbver"); ok || d.HasChange("restrict_as1_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictAs1DbverFwfa(d, v, "restrict_as1_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictAs1Dbver(d, v, "restrict_as1_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1517,7 +1518,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_as2_dbver"); ok || d.HasChange("restrict_as2_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictAs2DbverFwfa(d, v, "restrict_as2_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictAs2Dbver(d, v, "restrict_as2_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1526,7 +1527,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_as4_dbver"); ok || d.HasChange("restrict_as4_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictAs4DbverFwfa(d, v, "restrict_as4_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictAs4Dbver(d, v, "restrict_as4_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1535,7 +1536,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_av_dbver"); ok || d.HasChange("restrict_av_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictAvDbverFwfa(d, v, "restrict_av_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictAvDbver(d, v, "restrict_av_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1544,7 +1545,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_av2_dbver"); ok || d.HasChange("restrict_av2_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(d, v, "restrict_av2_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictAv2Dbver(d, v, "restrict_av2_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1553,7 +1554,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_fq_dbver"); ok || d.HasChange("restrict_fq_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(d, v, "restrict_fq_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictFqDbver(d, v, "restrict_fq_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1562,7 +1563,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_iots_dbver"); ok || d.HasChange("restrict_iots_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(d, v, "restrict_iots_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictIotsDbver(d, v, "restrict_iots_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1571,7 +1572,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("restrict_wf_dbver"); ok || d.HasChange("restrict_wf_dbver") {
-		t, err := expandFmupdateWebSpamFgdSettingRestrictWfDbverFwfa(d, v, "restrict_wf_dbver")
+		t, err := expandFmupdateWebSpamFgdSettingRestrictWfDbver(d, v, "restrict_wf_dbver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1580,7 +1581,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("server_override"); ok || d.HasChange("server_override") {
-		t, err := expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d, v, "server_override")
+		t, err := expandFmupdateWebSpamFgdSettingServerOverride(d, v, "server_override")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1589,7 +1590,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("stat_log"); ok || d.HasChange("stat_log") {
-		t, err := expandFmupdateWebSpamFgdSettingStatLogFwfa(d, v, "stat_log")
+		t, err := expandFmupdateWebSpamFgdSettingStatLog(d, v, "stat_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1598,7 +1599,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("stat_log_interval"); ok || d.HasChange("stat_log_interval") {
-		t, err := expandFmupdateWebSpamFgdSettingStatLogIntervalFwfa(d, v, "stat_log_interval")
+		t, err := expandFmupdateWebSpamFgdSettingStatLogInterval(d, v, "stat_log_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1607,7 +1608,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("stat_sync_interval"); ok || d.HasChange("stat_sync_interval") {
-		t, err := expandFmupdateWebSpamFgdSettingStatSyncIntervalFwfa(d, v, "stat_sync_interval")
+		t, err := expandFmupdateWebSpamFgdSettingStatSyncInterval(d, v, "stat_sync_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1616,7 +1617,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("update_interval"); ok || d.HasChange("update_interval") {
-		t, err := expandFmupdateWebSpamFgdSettingUpdateIntervalFwfa(d, v, "update_interval")
+		t, err := expandFmupdateWebSpamFgdSettingUpdateInterval(d, v, "update_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1625,7 +1626,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("update_log"); ok || d.HasChange("update_log") {
-		t, err := expandFmupdateWebSpamFgdSettingUpdateLogFwfa(d, v, "update_log")
+		t, err := expandFmupdateWebSpamFgdSettingUpdateLog(d, v, "update_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1634,7 +1635,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("wf_cache"); ok || d.HasChange("wf_cache") {
-		t, err := expandFmupdateWebSpamFgdSettingWfCacheFwfa(d, v, "wf_cache")
+		t, err := expandFmupdateWebSpamFgdSettingWfCache(d, v, "wf_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1643,7 +1644,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("wf_dn_cache_expire_time"); ok || d.HasChange("wf_dn_cache_expire_time") {
-		t, err := expandFmupdateWebSpamFgdSettingWfDnCacheExpireTimeFwfa(d, v, "wf_dn_cache_expire_time")
+		t, err := expandFmupdateWebSpamFgdSettingWfDnCacheExpireTime(d, v, "wf_dn_cache_expire_time")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1652,7 +1653,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("wf_dn_cache_max_number"); ok || d.HasChange("wf_dn_cache_max_number") {
-		t, err := expandFmupdateWebSpamFgdSettingWfDnCacheMaxNumberFwfa(d, v, "wf_dn_cache_max_number")
+		t, err := expandFmupdateWebSpamFgdSettingWfDnCacheMaxNumber(d, v, "wf_dn_cache_max_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1661,7 +1662,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("wf_log"); ok || d.HasChange("wf_log") {
-		t, err := expandFmupdateWebSpamFgdSettingWfLogFwfa(d, v, "wf_log")
+		t, err := expandFmupdateWebSpamFgdSettingWfLog(d, v, "wf_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1670,7 +1671,7 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("wf_preload"); ok || d.HasChange("wf_preload") {
-		t, err := expandFmupdateWebSpamFgdSettingWfPreloadFwfa(d, v, "wf_preload")
+		t, err := expandFmupdateWebSpamFgdSettingWfPreload(d, v, "wf_preload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

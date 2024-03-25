@@ -278,27 +278,27 @@ func resourceSystemSamlRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func flattenSystemSamlAcsUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlAcsUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlAuthRequestSignedSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlAuthRequestSigned(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlCertSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlDefaultProfileSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlDefaultProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpSSa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemSamlFabricIdp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -319,37 +319,37 @@ func flattenSystemSamlFabricIdpSSa(v interface{}, d *schema.ResourceData, pre st
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dev_id"
 		if _, ok := i["dev-id"]; ok {
-			v := flattenSystemSamlFabricIdpDevIdSSa(i["dev-id"], d, pre_append)
+			v := flattenSystemSamlFabricIdpDevId(i["dev-id"], d, pre_append)
 			tmp["dev_id"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-DevId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_cert"
 		if _, ok := i["idp-cert"]; ok {
-			v := flattenSystemSamlFabricIdpIdpCertSSa(i["idp-cert"], d, pre_append)
+			v := flattenSystemSamlFabricIdpIdpCert(i["idp-cert"], d, pre_append)
 			tmp["idp_cert"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpCert")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
 		if _, ok := i["idp-entity-id"]; ok {
-			v := flattenSystemSamlFabricIdpIdpEntityIdSSa(i["idp-entity-id"], d, pre_append)
+			v := flattenSystemSamlFabricIdpIdpEntityId(i["idp-entity-id"], d, pre_append)
 			tmp["idp_entity_id"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpEntityId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
 		if _, ok := i["idp-single-logout-url"]; ok {
-			v := flattenSystemSamlFabricIdpIdpSingleLogoutUrlSSa(i["idp-single-logout-url"], d, pre_append)
+			v := flattenSystemSamlFabricIdpIdpSingleLogoutUrl(i["idp-single-logout-url"], d, pre_append)
 			tmp["idp_single_logout_url"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpSingleLogoutUrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
 		if _, ok := i["idp-single-sign-on-url"]; ok {
-			v := flattenSystemSamlFabricIdpIdpSingleSignOnUrlSSa(i["idp-single-sign-on-url"], d, pre_append)
+			v := flattenSystemSamlFabricIdpIdpSingleSignOnUrl(i["idp-single-sign-on-url"], d, pre_append)
 			tmp["idp_single_sign_on_url"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpSingleSignOnUrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_status"
 		if _, ok := i["idp-status"]; ok {
-			v := flattenSystemSamlFabricIdpIdpStatusSSa(i["idp-status"], d, pre_append)
+			v := flattenSystemSamlFabricIdpIdpStatus(i["idp-status"], d, pre_append)
 			tmp["idp_status"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpStatus")
 		}
 
@@ -363,63 +363,63 @@ func flattenSystemSamlFabricIdpSSa(v interface{}, d *schema.ResourceData, pre st
 	return result
 }
 
-func flattenSystemSamlFabricIdpDevIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpDevId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpCertSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpSingleLogoutUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpSingleSignOnUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpStatusSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlForticloudSsoSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlForticloudSso(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlIdpCertSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlIdpEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlIdpSingleLogoutUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlIdpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlIdpSingleSignOnUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlIdpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlLoginAutoRedirectSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlLoginAutoRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlRoleSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServerAddressSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServerAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemSamlServiceProviders(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -440,67 +440,67 @@ func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData,
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
 		if _, ok := i["idp-entity-id"]; ok {
-			v := flattenSystemSamlServiceProvidersIdpEntityIdSSa(i["idp-entity-id"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersIdpEntityId(i["idp-entity-id"], d, pre_append)
 			tmp["idp_entity_id"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-IdpEntityId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
 		if _, ok := i["idp-single-logout-url"]; ok {
-			v := flattenSystemSamlServiceProvidersIdpSingleLogoutUrlSSa(i["idp-single-logout-url"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersIdpSingleLogoutUrl(i["idp-single-logout-url"], d, pre_append)
 			tmp["idp_single_logout_url"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-IdpSingleLogoutUrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
 		if _, ok := i["idp-single-sign-on-url"]; ok {
-			v := flattenSystemSamlServiceProvidersIdpSingleSignOnUrlSSa(i["idp-single-sign-on-url"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersIdpSingleSignOnUrl(i["idp-single-sign-on-url"], d, pre_append)
 			tmp["idp_single_sign_on_url"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-IdpSingleSignOnUrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
-			v := flattenSystemSamlServiceProvidersNameSSa(i["name"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersName(i["name"], d, pre_append)
 			tmp["name"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-Name")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
 		if _, ok := i["prefix"]; ok {
-			v := flattenSystemSamlServiceProvidersPrefixSSa(i["prefix"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersPrefix(i["prefix"], d, pre_append)
 			tmp["prefix"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-Prefix")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_adom"
 		if _, ok := i["sp-adom"]; ok {
-			v := flattenSystemSamlServiceProvidersSpAdomSSa(i["sp-adom"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpAdom(i["sp-adom"], d, pre_append)
 			tmp["sp_adom"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpAdom")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_cert"
 		if _, ok := i["sp-cert"]; ok {
-			v := flattenSystemSamlServiceProvidersSpCertSSa(i["sp-cert"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpCert(i["sp-cert"], d, pre_append)
 			tmp["sp_cert"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpCert")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_entity_id"
 		if _, ok := i["sp-entity-id"]; ok {
-			v := flattenSystemSamlServiceProvidersSpEntityIdSSa(i["sp-entity-id"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpEntityId(i["sp-entity-id"], d, pre_append)
 			tmp["sp_entity_id"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpEntityId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_profile"
 		if _, ok := i["sp-profile"]; ok {
-			v := flattenSystemSamlServiceProvidersSpProfileSSa(i["sp-profile"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpProfile(i["sp-profile"], d, pre_append)
 			tmp["sp_profile"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpProfile")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_logout_url"
 		if _, ok := i["sp-single-logout-url"]; ok {
-			v := flattenSystemSamlServiceProvidersSpSingleLogoutUrlSSa(i["sp-single-logout-url"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpSingleLogoutUrl(i["sp-single-logout-url"], d, pre_append)
 			tmp["sp_single_logout_url"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpSingleLogoutUrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_sign_on_url"
 		if _, ok := i["sp-single-sign-on-url"]; ok {
-			v := flattenSystemSamlServiceProvidersSpSingleSignOnUrlSSa(i["sp-single-sign-on-url"], d, pre_append)
+			v := flattenSystemSamlServiceProvidersSpSingleSignOnUrl(i["sp-single-sign-on-url"], d, pre_append)
 			tmp["sp_single_sign_on_url"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpSingleSignOnUrl")
 		}
 
@@ -514,63 +514,63 @@ func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData,
 	return result
 }
 
-func flattenSystemSamlServiceProvidersIdpEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersIdpSingleLogoutUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersIdpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersIdpSingleSignOnUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersIdpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersNameSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersPrefixSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpAdomSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpCertSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpProfileSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpSingleLogoutUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlServiceProvidersSpSingleSignOnUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlServiceProvidersSpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlSlsUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlSlsUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlStatusSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlUserAutoCreateSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlUserAutoCreate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlWantAssertionsSignedSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlWantAssertionsSigned(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -581,7 +581,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("acs_url", flattenSystemSamlAcsUrlSSa(o["acs-url"], d, "acs_url")); err != nil {
+	if err = d.Set("acs_url", flattenSystemSamlAcsUrl(o["acs-url"], d, "acs_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["acs-url"], "SystemSaml-AcsUrl"); ok {
 			if err = d.Set("acs_url", vv); err != nil {
 				return fmt.Errorf("Error reading acs_url: %v", err)
@@ -591,7 +591,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("auth_request_signed", flattenSystemSamlAuthRequestSignedSSa(o["auth-request-signed"], d, "auth_request_signed")); err != nil {
+	if err = d.Set("auth_request_signed", flattenSystemSamlAuthRequestSigned(o["auth-request-signed"], d, "auth_request_signed")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-request-signed"], "SystemSaml-AuthRequestSigned"); ok {
 			if err = d.Set("auth_request_signed", vv); err != nil {
 				return fmt.Errorf("Error reading auth_request_signed: %v", err)
@@ -601,7 +601,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("cert", flattenSystemSamlCertSSa(o["cert"], d, "cert")); err != nil {
+	if err = d.Set("cert", flattenSystemSamlCert(o["cert"], d, "cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cert"], "SystemSaml-Cert"); ok {
 			if err = d.Set("cert", vv); err != nil {
 				return fmt.Errorf("Error reading cert: %v", err)
@@ -611,7 +611,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("default_profile", flattenSystemSamlDefaultProfileSSa(o["default-profile"], d, "default_profile")); err != nil {
+	if err = d.Set("default_profile", flattenSystemSamlDefaultProfile(o["default-profile"], d, "default_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["default-profile"], "SystemSaml-DefaultProfile"); ok {
 			if err = d.Set("default_profile", vv); err != nil {
 				return fmt.Errorf("Error reading default_profile: %v", err)
@@ -621,7 +621,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("entity_id", flattenSystemSamlEntityIdSSa(o["entity-id"], d, "entity_id")); err != nil {
+	if err = d.Set("entity_id", flattenSystemSamlEntityId(o["entity-id"], d, "entity_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["entity-id"], "SystemSaml-EntityId"); ok {
 			if err = d.Set("entity_id", vv); err != nil {
 				return fmt.Errorf("Error reading entity_id: %v", err)
@@ -632,7 +632,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 	}
 
 	if isImportTable() {
-		if err = d.Set("fabric_idp", flattenSystemSamlFabricIdpSSa(o["fabric-idp"], d, "fabric_idp")); err != nil {
+		if err = d.Set("fabric_idp", flattenSystemSamlFabricIdp(o["fabric-idp"], d, "fabric_idp")); err != nil {
 			if vv, ok := fortiAPIPatch(o["fabric-idp"], "SystemSaml-FabricIdp"); ok {
 				if err = d.Set("fabric_idp", vv); err != nil {
 					return fmt.Errorf("Error reading fabric_idp: %v", err)
@@ -643,7 +643,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	} else {
 		if _, ok := d.GetOk("fabric_idp"); ok {
-			if err = d.Set("fabric_idp", flattenSystemSamlFabricIdpSSa(o["fabric-idp"], d, "fabric_idp")); err != nil {
+			if err = d.Set("fabric_idp", flattenSystemSamlFabricIdp(o["fabric-idp"], d, "fabric_idp")); err != nil {
 				if vv, ok := fortiAPIPatch(o["fabric-idp"], "SystemSaml-FabricIdp"); ok {
 					if err = d.Set("fabric_idp", vv); err != nil {
 						return fmt.Errorf("Error reading fabric_idp: %v", err)
@@ -655,7 +655,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("forticloud_sso", flattenSystemSamlForticloudSsoSSa(o["forticloud-sso"], d, "forticloud_sso")); err != nil {
+	if err = d.Set("forticloud_sso", flattenSystemSamlForticloudSso(o["forticloud-sso"], d, "forticloud_sso")); err != nil {
 		if vv, ok := fortiAPIPatch(o["forticloud-sso"], "SystemSaml-ForticloudSso"); ok {
 			if err = d.Set("forticloud_sso", vv); err != nil {
 				return fmt.Errorf("Error reading forticloud_sso: %v", err)
@@ -665,7 +665,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("idp_cert", flattenSystemSamlIdpCertSSa(o["idp-cert"], d, "idp_cert")); err != nil {
+	if err = d.Set("idp_cert", flattenSystemSamlIdpCert(o["idp-cert"], d, "idp_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-cert"], "SystemSaml-IdpCert"); ok {
 			if err = d.Set("idp_cert", vv); err != nil {
 				return fmt.Errorf("Error reading idp_cert: %v", err)
@@ -675,7 +675,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("idp_entity_id", flattenSystemSamlIdpEntityIdSSa(o["idp-entity-id"], d, "idp_entity_id")); err != nil {
+	if err = d.Set("idp_entity_id", flattenSystemSamlIdpEntityId(o["idp-entity-id"], d, "idp_entity_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-entity-id"], "SystemSaml-IdpEntityId"); ok {
 			if err = d.Set("idp_entity_id", vv); err != nil {
 				return fmt.Errorf("Error reading idp_entity_id: %v", err)
@@ -685,7 +685,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("idp_single_logout_url", flattenSystemSamlIdpSingleLogoutUrlSSa(o["idp-single-logout-url"], d, "idp_single_logout_url")); err != nil {
+	if err = d.Set("idp_single_logout_url", flattenSystemSamlIdpSingleLogoutUrl(o["idp-single-logout-url"], d, "idp_single_logout_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-single-logout-url"], "SystemSaml-IdpSingleLogoutUrl"); ok {
 			if err = d.Set("idp_single_logout_url", vv); err != nil {
 				return fmt.Errorf("Error reading idp_single_logout_url: %v", err)
@@ -695,7 +695,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("idp_single_sign_on_url", flattenSystemSamlIdpSingleSignOnUrlSSa(o["idp-single-sign-on-url"], d, "idp_single_sign_on_url")); err != nil {
+	if err = d.Set("idp_single_sign_on_url", flattenSystemSamlIdpSingleSignOnUrl(o["idp-single-sign-on-url"], d, "idp_single_sign_on_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-single-sign-on-url"], "SystemSaml-IdpSingleSignOnUrl"); ok {
 			if err = d.Set("idp_single_sign_on_url", vv); err != nil {
 				return fmt.Errorf("Error reading idp_single_sign_on_url: %v", err)
@@ -705,7 +705,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("login_auto_redirect", flattenSystemSamlLoginAutoRedirectSSa(o["login-auto-redirect"], d, "login_auto_redirect")); err != nil {
+	if err = d.Set("login_auto_redirect", flattenSystemSamlLoginAutoRedirect(o["login-auto-redirect"], d, "login_auto_redirect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["login-auto-redirect"], "SystemSaml-LoginAutoRedirect"); ok {
 			if err = d.Set("login_auto_redirect", vv); err != nil {
 				return fmt.Errorf("Error reading login_auto_redirect: %v", err)
@@ -715,7 +715,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("role", flattenSystemSamlRoleSSa(o["role"], d, "role")); err != nil {
+	if err = d.Set("role", flattenSystemSamlRole(o["role"], d, "role")); err != nil {
 		if vv, ok := fortiAPIPatch(o["role"], "SystemSaml-Role"); ok {
 			if err = d.Set("role", vv); err != nil {
 				return fmt.Errorf("Error reading role: %v", err)
@@ -725,7 +725,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("server_address", flattenSystemSamlServerAddressSSa(o["server-address"], d, "server_address")); err != nil {
+	if err = d.Set("server_address", flattenSystemSamlServerAddress(o["server-address"], d, "server_address")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-address"], "SystemSaml-ServerAddress"); ok {
 			if err = d.Set("server_address", vv); err != nil {
 				return fmt.Errorf("Error reading server_address: %v", err)
@@ -736,7 +736,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 	}
 
 	if isImportTable() {
-		if err = d.Set("service_providers", flattenSystemSamlServiceProvidersSSa(o["service-providers"], d, "service_providers")); err != nil {
+		if err = d.Set("service_providers", flattenSystemSamlServiceProviders(o["service-providers"], d, "service_providers")); err != nil {
 			if vv, ok := fortiAPIPatch(o["service-providers"], "SystemSaml-ServiceProviders"); ok {
 				if err = d.Set("service_providers", vv); err != nil {
 					return fmt.Errorf("Error reading service_providers: %v", err)
@@ -747,7 +747,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	} else {
 		if _, ok := d.GetOk("service_providers"); ok {
-			if err = d.Set("service_providers", flattenSystemSamlServiceProvidersSSa(o["service-providers"], d, "service_providers")); err != nil {
+			if err = d.Set("service_providers", flattenSystemSamlServiceProviders(o["service-providers"], d, "service_providers")); err != nil {
 				if vv, ok := fortiAPIPatch(o["service-providers"], "SystemSaml-ServiceProviders"); ok {
 					if err = d.Set("service_providers", vv); err != nil {
 						return fmt.Errorf("Error reading service_providers: %v", err)
@@ -759,7 +759,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("sls_url", flattenSystemSamlSlsUrlSSa(o["sls-url"], d, "sls_url")); err != nil {
+	if err = d.Set("sls_url", flattenSystemSamlSlsUrl(o["sls-url"], d, "sls_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sls-url"], "SystemSaml-SlsUrl"); ok {
 			if err = d.Set("sls_url", vv); err != nil {
 				return fmt.Errorf("Error reading sls_url: %v", err)
@@ -769,7 +769,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("status", flattenSystemSamlStatusSSa(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemSamlStatus(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemSaml-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -779,7 +779,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("user_auto_create", flattenSystemSamlUserAutoCreateSSa(o["user-auto-create"], d, "user_auto_create")); err != nil {
+	if err = d.Set("user_auto_create", flattenSystemSamlUserAutoCreate(o["user-auto-create"], d, "user_auto_create")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user-auto-create"], "SystemSaml-UserAutoCreate"); ok {
 			if err = d.Set("user_auto_create", vv); err != nil {
 				return fmt.Errorf("Error reading user_auto_create: %v", err)
@@ -789,7 +789,7 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
-	if err = d.Set("want_assertions_signed", flattenSystemSamlWantAssertionsSignedSSa(o["want-assertions-signed"], d, "want_assertions_signed")); err != nil {
+	if err = d.Set("want_assertions_signed", flattenSystemSamlWantAssertionsSigned(o["want-assertions-signed"], d, "want_assertions_signed")); err != nil {
 		if vv, ok := fortiAPIPatch(o["want-assertions-signed"], "SystemSaml-WantAssertionsSigned"); ok {
 			if err = d.Set("want_assertions_signed", vv); err != nil {
 				return fmt.Errorf("Error reading want_assertions_signed: %v", err)
@@ -808,27 +808,27 @@ func flattenSystemSamlFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fos
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemSamlAcsUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlAcsUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlAuthRequestSignedSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlAuthRequestSigned(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlCertSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlDefaultProfileSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlDefaultProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -844,32 +844,32 @@ func expandSystemSamlFabricIdpSSa(d *schema.ResourceData, v interface{}, pre str
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dev_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dev-id"], _ = expandSystemSamlFabricIdpDevIdSSa(d, i["dev_id"], pre_append)
+			tmp["dev-id"], _ = expandSystemSamlFabricIdpDevId(d, i["dev_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_cert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-cert"], _ = expandSystemSamlFabricIdpIdpCertSSa(d, i["idp_cert"], pre_append)
+			tmp["idp-cert"], _ = expandSystemSamlFabricIdpIdpCert(d, i["idp_cert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-entity-id"], _ = expandSystemSamlFabricIdpIdpEntityIdSSa(d, i["idp_entity_id"], pre_append)
+			tmp["idp-entity-id"], _ = expandSystemSamlFabricIdpIdpEntityId(d, i["idp_entity_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-single-logout-url"], _ = expandSystemSamlFabricIdpIdpSingleLogoutUrlSSa(d, i["idp_single_logout_url"], pre_append)
+			tmp["idp-single-logout-url"], _ = expandSystemSamlFabricIdpIdpSingleLogoutUrl(d, i["idp_single_logout_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-single-sign-on-url"], _ = expandSystemSamlFabricIdpIdpSingleSignOnUrlSSa(d, i["idp_single_sign_on_url"], pre_append)
+			tmp["idp-single-sign-on-url"], _ = expandSystemSamlFabricIdpIdpSingleSignOnUrl(d, i["idp_single_sign_on_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_status"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-status"], _ = expandSystemSamlFabricIdpIdpStatusSSa(d, i["idp_status"], pre_append)
+			tmp["idp-status"], _ = expandSystemSamlFabricIdpIdpStatus(d, i["idp_status"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -882,63 +882,63 @@ func expandSystemSamlFabricIdpSSa(d *schema.ResourceData, v interface{}, pre str
 	return result, nil
 }
 
-func expandSystemSamlFabricIdpDevIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpDevId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpCertSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpSingleLogoutUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpSingleSignOnUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpStatusSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlForticloudSsoSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlForticloudSso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlIdpCertSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlIdpEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlIdpSingleLogoutUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlIdpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlIdpSingleSignOnUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlIdpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlLoginAutoRedirectSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlLoginAutoRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlRoleSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServerAddressSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServerAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProviders(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -954,57 +954,57 @@ func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-entity-id"], _ = expandSystemSamlServiceProvidersIdpEntityIdSSa(d, i["idp_entity_id"], pre_append)
+			tmp["idp-entity-id"], _ = expandSystemSamlServiceProvidersIdpEntityId(d, i["idp_entity_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-single-logout-url"], _ = expandSystemSamlServiceProvidersIdpSingleLogoutUrlSSa(d, i["idp_single_logout_url"], pre_append)
+			tmp["idp-single-logout-url"], _ = expandSystemSamlServiceProvidersIdpSingleLogoutUrl(d, i["idp_single_logout_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["idp-single-sign-on-url"], _ = expandSystemSamlServiceProvidersIdpSingleSignOnUrlSSa(d, i["idp_single_sign_on_url"], pre_append)
+			tmp["idp-single-sign-on-url"], _ = expandSystemSamlServiceProvidersIdpSingleSignOnUrl(d, i["idp_single_sign_on_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["name"], _ = expandSystemSamlServiceProvidersNameSSa(d, i["name"], pre_append)
+			tmp["name"], _ = expandSystemSamlServiceProvidersName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["prefix"], _ = expandSystemSamlServiceProvidersPrefixSSa(d, i["prefix"], pre_append)
+			tmp["prefix"], _ = expandSystemSamlServiceProvidersPrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_adom"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-adom"], _ = expandSystemSamlServiceProvidersSpAdomSSa(d, i["sp_adom"], pre_append)
+			tmp["sp-adom"], _ = expandSystemSamlServiceProvidersSpAdom(d, i["sp_adom"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_cert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-cert"], _ = expandSystemSamlServiceProvidersSpCertSSa(d, i["sp_cert"], pre_append)
+			tmp["sp-cert"], _ = expandSystemSamlServiceProvidersSpCert(d, i["sp_cert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_entity_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-entity-id"], _ = expandSystemSamlServiceProvidersSpEntityIdSSa(d, i["sp_entity_id"], pre_append)
+			tmp["sp-entity-id"], _ = expandSystemSamlServiceProvidersSpEntityId(d, i["sp_entity_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_profile"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-profile"], _ = expandSystemSamlServiceProvidersSpProfileSSa(d, i["sp_profile"], pre_append)
+			tmp["sp-profile"], _ = expandSystemSamlServiceProvidersSpProfile(d, i["sp_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_logout_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-single-logout-url"], _ = expandSystemSamlServiceProvidersSpSingleLogoutUrlSSa(d, i["sp_single_logout_url"], pre_append)
+			tmp["sp-single-logout-url"], _ = expandSystemSamlServiceProvidersSpSingleLogoutUrl(d, i["sp_single_logout_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_sign_on_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sp-single-sign-on-url"], _ = expandSystemSamlServiceProvidersSpSingleSignOnUrlSSa(d, i["sp_single_sign_on_url"], pre_append)
+			tmp["sp-single-sign-on-url"], _ = expandSystemSamlServiceProvidersSpSingleSignOnUrl(d, i["sp_single_sign_on_url"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1017,63 +1017,63 @@ func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, 
 	return result, nil
 }
 
-func expandSystemSamlServiceProvidersIdpEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersIdpSingleLogoutUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersIdpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersIdpSingleSignOnUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersIdpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersNameSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersPrefixSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersPrefix(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpAdomSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpCertSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpProfileSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpSingleLogoutUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlServiceProvidersSpSingleSignOnUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlServiceProvidersSpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlSlsUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlSlsUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlStatusSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlUserAutoCreateSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlUserAutoCreate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlWantAssertionsSignedSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlWantAssertionsSigned(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1081,7 +1081,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("acs_url"); ok || d.HasChange("acs_url") {
-		t, err := expandSystemSamlAcsUrlSSa(d, v, "acs_url")
+		t, err := expandSystemSamlAcsUrl(d, v, "acs_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1090,7 +1090,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("auth_request_signed"); ok || d.HasChange("auth_request_signed") {
-		t, err := expandSystemSamlAuthRequestSignedSSa(d, v, "auth_request_signed")
+		t, err := expandSystemSamlAuthRequestSigned(d, v, "auth_request_signed")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1099,7 +1099,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {
-		t, err := expandSystemSamlCertSSa(d, v, "cert")
+		t, err := expandSystemSamlCert(d, v, "cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1108,7 +1108,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("default_profile"); ok || d.HasChange("default_profile") {
-		t, err := expandSystemSamlDefaultProfileSSa(d, v, "default_profile")
+		t, err := expandSystemSamlDefaultProfile(d, v, "default_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1117,7 +1117,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("entity_id"); ok || d.HasChange("entity_id") {
-		t, err := expandSystemSamlEntityIdSSa(d, v, "entity_id")
+		t, err := expandSystemSamlEntityId(d, v, "entity_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1129,7 +1129,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 		obj["fabric-idp"] = make([]struct{}, 0)
 	} else {
 		if v, ok := d.GetOk("fabric_idp"); ok || d.HasChange("fabric_idp") {
-			t, err := expandSystemSamlFabricIdpSSa(d, v, "fabric_idp")
+			t, err := expandSystemSamlFabricIdp(d, v, "fabric_idp")
 			if err != nil {
 				return &obj, err
 			} else if t != nil {
@@ -1139,7 +1139,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("forticloud_sso"); ok || d.HasChange("forticloud_sso") {
-		t, err := expandSystemSamlForticloudSsoSSa(d, v, "forticloud_sso")
+		t, err := expandSystemSamlForticloudSso(d, v, "forticloud_sso")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1148,7 +1148,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("idp_cert"); ok || d.HasChange("idp_cert") {
-		t, err := expandSystemSamlIdpCertSSa(d, v, "idp_cert")
+		t, err := expandSystemSamlIdpCert(d, v, "idp_cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1157,7 +1157,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("idp_entity_id"); ok || d.HasChange("idp_entity_id") {
-		t, err := expandSystemSamlIdpEntityIdSSa(d, v, "idp_entity_id")
+		t, err := expandSystemSamlIdpEntityId(d, v, "idp_entity_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1166,7 +1166,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("idp_single_logout_url"); ok || d.HasChange("idp_single_logout_url") {
-		t, err := expandSystemSamlIdpSingleLogoutUrlSSa(d, v, "idp_single_logout_url")
+		t, err := expandSystemSamlIdpSingleLogoutUrl(d, v, "idp_single_logout_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1175,7 +1175,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("idp_single_sign_on_url"); ok || d.HasChange("idp_single_sign_on_url") {
-		t, err := expandSystemSamlIdpSingleSignOnUrlSSa(d, v, "idp_single_sign_on_url")
+		t, err := expandSystemSamlIdpSingleSignOnUrl(d, v, "idp_single_sign_on_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1184,7 +1184,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("login_auto_redirect"); ok || d.HasChange("login_auto_redirect") {
-		t, err := expandSystemSamlLoginAutoRedirectSSa(d, v, "login_auto_redirect")
+		t, err := expandSystemSamlLoginAutoRedirect(d, v, "login_auto_redirect")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1193,7 +1193,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
-		t, err := expandSystemSamlRoleSSa(d, v, "role")
+		t, err := expandSystemSamlRole(d, v, "role")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1202,7 +1202,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("server_address"); ok || d.HasChange("server_address") {
-		t, err := expandSystemSamlServerAddressSSa(d, v, "server_address")
+		t, err := expandSystemSamlServerAddress(d, v, "server_address")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1214,7 +1214,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 		obj["service-providers"] = make([]struct{}, 0)
 	} else {
 		if v, ok := d.GetOk("service_providers"); ok || d.HasChange("service_providers") {
-			t, err := expandSystemSamlServiceProvidersSSa(d, v, "service_providers")
+			t, err := expandSystemSamlServiceProviders(d, v, "service_providers")
 			if err != nil {
 				return &obj, err
 			} else if t != nil {
@@ -1224,7 +1224,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("sls_url"); ok || d.HasChange("sls_url") {
-		t, err := expandSystemSamlSlsUrlSSa(d, v, "sls_url")
+		t, err := expandSystemSamlSlsUrl(d, v, "sls_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1233,7 +1233,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemSamlStatusSSa(d, v, "status")
+		t, err := expandSystemSamlStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1242,7 +1242,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("user_auto_create"); ok || d.HasChange("user_auto_create") {
-		t, err := expandSystemSamlUserAutoCreateSSa(d, v, "user_auto_create")
+		t, err := expandSystemSamlUserAutoCreate(d, v, "user_auto_create")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1251,7 +1251,7 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 	}
 
 	if v, ok := d.GetOk("want_assertions_signed"); ok || d.HasChange("want_assertions_signed") {
-		t, err := expandSystemSamlWantAssertionsSignedSSa(d, v, "want_assertions_signed")
+		t, err := expandSystemSamlWantAssertionsSigned(d, v, "want_assertions_signed")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

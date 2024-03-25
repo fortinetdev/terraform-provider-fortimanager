@@ -21,6 +21,8 @@ The following arguments are supported:
 * `cliprofs` - Cliprofs.
 * `description` - Description.
 * `dev_group` - Dev-Group.
+* `enforce_device_config` - Enforce-Device-Config. Valid values: `disable`, `enable`.
+
 * `folder` - Folder.
 * `ha_config` - Ha-Config. Valid values: `disable`, `enable`.
 

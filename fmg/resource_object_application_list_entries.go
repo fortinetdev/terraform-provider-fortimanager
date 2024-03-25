@@ -371,7 +371,7 @@ func flattenObjectApplicationListEntriesBehavior2edl(v interface{}, d *schema.Re
 }
 
 func flattenObjectApplicationListEntriesCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesExclusion2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -879,7 +879,7 @@ func expandObjectApplicationListEntriesBehavior2edl(d *schema.ResourceData, v in
 }
 
 func expandObjectApplicationListEntriesCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesExclusion2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

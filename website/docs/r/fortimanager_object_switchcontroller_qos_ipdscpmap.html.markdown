@@ -10,7 +10,7 @@ description: |-
 Configure FortiSwitch QoS IP precedence/DSCP.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`map`: `fortimanager_object_switchcontroller_qos_ipdscpmap_map`
+>- `map`: `fortimanager_object_switchcontroller_qos_ipdscpmap_map`
 
 
 

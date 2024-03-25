@@ -310,7 +310,7 @@ func flattenPackagesFirewallHyperscalePolicy6Comments(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy6DstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -318,7 +318,7 @@ func flattenPackagesFirewallHyperscalePolicy6DstaddrNegate(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -334,7 +334,7 @@ func flattenPackagesFirewallHyperscalePolicy6Policyid(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy6ServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -342,7 +342,7 @@ func flattenPackagesFirewallHyperscalePolicy6ServiceNegate(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy6SrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -350,7 +350,7 @@ func flattenPackagesFirewallHyperscalePolicy6SrcaddrNegate(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -620,7 +620,7 @@ func expandPackagesFirewallHyperscalePolicy6Comments(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallHyperscalePolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy6DstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -628,7 +628,7 @@ func expandPackagesFirewallHyperscalePolicy6DstaddrNegate(d *schema.ResourceData
 }
 
 func expandPackagesFirewallHyperscalePolicy6Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -644,7 +644,7 @@ func expandPackagesFirewallHyperscalePolicy6Policyid(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallHyperscalePolicy6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy6ServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -652,7 +652,7 @@ func expandPackagesFirewallHyperscalePolicy6ServiceNegate(d *schema.ResourceData
 }
 
 func expandPackagesFirewallHyperscalePolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy6SrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -660,7 +660,7 @@ func expandPackagesFirewallHyperscalePolicy6SrcaddrNegate(d *schema.ResourceData
 }
 
 func expandPackagesFirewallHyperscalePolicy6Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy6Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

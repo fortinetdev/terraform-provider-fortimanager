@@ -149,15 +149,15 @@ func resourceObjectSystemNpuSseHaScanRead(d *schema.ResourceData, m interface{})
 	return nil
 }
 
-func flattenObjectSystemNpuSseHaScanGap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSseHaScanGap2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSseHaScanMaxSessionCnt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSseHaScanMaxSessionCnt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSseHaScanMinDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSseHaScanMinDuration2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -168,7 +168,7 @@ func refreshObjectObjectSystemNpuSseHaScan(d *schema.ResourceData, o map[string]
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("gap", flattenObjectSystemNpuSseHaScanGap(o["gap"], d, "gap")); err != nil {
+	if err = d.Set("gap", flattenObjectSystemNpuSseHaScanGap2edl(o["gap"], d, "gap")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gap"], "ObjectSystemNpuSseHaScan-Gap"); ok {
 			if err = d.Set("gap", vv); err != nil {
 				return fmt.Errorf("Error reading gap: %v", err)
@@ -178,7 +178,7 @@ func refreshObjectObjectSystemNpuSseHaScan(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("max_session_cnt", flattenObjectSystemNpuSseHaScanMaxSessionCnt(o["max-session-cnt"], d, "max_session_cnt")); err != nil {
+	if err = d.Set("max_session_cnt", flattenObjectSystemNpuSseHaScanMaxSessionCnt2edl(o["max-session-cnt"], d, "max_session_cnt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-session-cnt"], "ObjectSystemNpuSseHaScan-MaxSessionCnt"); ok {
 			if err = d.Set("max_session_cnt", vv); err != nil {
 				return fmt.Errorf("Error reading max_session_cnt: %v", err)
@@ -188,7 +188,7 @@ func refreshObjectObjectSystemNpuSseHaScan(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("min_duration", flattenObjectSystemNpuSseHaScanMinDuration(o["min-duration"], d, "min_duration")); err != nil {
+	if err = d.Set("min_duration", flattenObjectSystemNpuSseHaScanMinDuration2edl(o["min-duration"], d, "min_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["min-duration"], "ObjectSystemNpuSseHaScan-MinDuration"); ok {
 			if err = d.Set("min_duration", vv); err != nil {
 				return fmt.Errorf("Error reading min_duration: %v", err)
@@ -207,15 +207,15 @@ func flattenObjectSystemNpuSseHaScanFortiTestDebug(d *schema.ResourceData, fosde
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuSseHaScanGap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSseHaScanGap2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSseHaScanMaxSessionCnt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSseHaScanMaxSessionCnt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSseHaScanMinDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSseHaScanMinDuration2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -223,7 +223,7 @@ func getObjectObjectSystemNpuSseHaScan(d *schema.ResourceData) (*map[string]inte
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("gap"); ok || d.HasChange("gap") {
-		t, err := expandObjectSystemNpuSseHaScanGap(d, v, "gap")
+		t, err := expandObjectSystemNpuSseHaScanGap2edl(d, v, "gap")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -232,7 +232,7 @@ func getObjectObjectSystemNpuSseHaScan(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("max_session_cnt"); ok || d.HasChange("max_session_cnt") {
-		t, err := expandObjectSystemNpuSseHaScanMaxSessionCnt(d, v, "max_session_cnt")
+		t, err := expandObjectSystemNpuSseHaScanMaxSessionCnt2edl(d, v, "max_session_cnt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -241,7 +241,7 @@ func getObjectObjectSystemNpuSseHaScan(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("min_duration"); ok || d.HasChange("min_duration") {
-		t, err := expandObjectSystemNpuSseHaScanMinDuration(d, v, "min_duration")
+		t, err := expandObjectSystemNpuSseHaScanMinDuration2edl(d, v, "min_duration")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

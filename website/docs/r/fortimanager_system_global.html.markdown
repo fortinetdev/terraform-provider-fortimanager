@@ -10,8 +10,8 @@ description: |-
 Global range attributes.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`mc_policy_disabled_adoms`: `fortimanager_system_global_mcpolicydisabledadoms`
-`ssl_cipher_suites`: `fortimanager_system_global_sslciphersuites`
+>- `mc_policy_disabled_adoms`: `fortimanager_system_global_mcpolicydisabledadoms`
+>- `ssl_cipher_suites`: `fortimanager_system_global_sslciphersuites`
 
 
 
@@ -46,6 +46,8 @@ The following arguments are supported:
 * `adom_status` - ADOM status. disable - Disable ADOM mode. enable - Enable ADOM mode. Valid values: `disable`, `enable`.
 
 * `apache_mode` - Set apache mode. event - Apache event mode. prefork - Apache prefork mode. Valid values: `event`, `prefork`.
+
+* `api_ip_binding` - Enable/disable source IP check for JSON API request. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `clone_name_option` - set the clone object names option. default - Add a prefix of 'Clone of' to the clone name. keep - Keep the original name for user to edit. Valid values: `default`, `keep`.
 
@@ -144,6 +146,16 @@ The following arguments are supported:
 * `save_last_hit_in_adomdb` - Enable/Disable save last-hit value in adomdb. disable - Disable save last-hit value in adomdb. enable - Enable save last-hit value in adomdb. Valid values: `disable`, `enable`.
 
 * `search_all_adoms` - Enable/Disable Search all ADOMs for where-used query. disable - Disable search all ADOMs for where-used queries. enable - Enable search all ADOMs for where-used queries. Valid values: `disable`, `enable`.
+
+* `ssh_enc_algo` - Select one or more SSH ciphers. chacha20-poly1305@openssh.com -  aes128-ctr -  aes192-ctr -  aes256-ctr -  arcfour256 -  arcfour128 -  aes128-cbc -  3des-cbc -  blowfish-cbc -  cast128-cbc -  aes192-cbc -  aes256-cbc -  arcfour -  rijndael-cbc@lysator.liu.se -  aes128-gcm@openssh.com -  aes256-gcm@openssh.com -  Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+
+* `ssh_hostkey_algo` - Select one or more SSH hostkey algorithms. ssh-rsa -  ecdsa-sha2-nistp521 -  rsa-sha2-256 -  rsa-sha2-512 -  ssh-ed25519 -  Valid values: `ssh-rsa`, `ecdsa-sha2-nistp521`, `rsa-sha2-256`, `rsa-sha2-512`, `ssh-ed25519`.
+
+* `ssh_kex_algo` - Select one or more SSH kex algorithms. diffie-hellman-group1-sha1 -  diffie-hellman-group14-sha1 -  diffie-hellman-group14-sha256 -  diffie-hellman-group16-sha512 -  diffie-hellman-group18-sha512 -  diffie-hellman-group-exchange-sha1 -  diffie-hellman-group-exchange-sha256 -  curve25519-sha256@libssh.org -  ecdh-sha2-nistp256 -  ecdh-sha2-nistp384 -  ecdh-sha2-nistp521 -  Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group14-sha256`, `diffie-hellman-group16-sha512`, `diffie-hellman-group18-sha512`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+
+* `ssh_mac_algo` - Select one or more SSH MAC algorithms. hmac-md5 -  hmac-md5-etm@openssh.com -  hmac-md5-96 -  hmac-md5-96-etm@openssh.com -  hmac-sha1 -  hmac-sha1-etm@openssh.com -  hmac-sha2-256 -  hmac-sha2-256-etm@openssh.com -  hmac-sha2-512 -  hmac-sha2-512-etm@openssh.com -  hmac-ripemd160 -  hmac-ripemd160@openssh.com -  hmac-ripemd160-etm@openssh.com -  umac-64@openssh.com -  umac-128@openssh.com -  umac-64-etm@openssh.com -  umac-128-etm@openssh.com -  Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+
+* `ssh_strong_crypto` - Only allow strong ciphers for SSH when enabled. disable - Disable strong crypto for SSH. enable - Enable strong crypto for SSH. Valid values: `disable`, `enable`.
 
 * `ssl_cipher_suites` - Ssl-Cipher-Suites. The structure of `ssl_cipher_suites` block is documented below.
 * `ssl_low_encryption` - SSL low-grade encryption. disable - Disable SSL low-grade encryption. enable - Enable SSL low-grade encryption. Valid values: `disable`, `enable`.

@@ -10,7 +10,7 @@ description: |-
 ObjectSystem Meta
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`sys_meta_fields`: `fortimanager_object_system_meta_sys_meta_fields`
+>- `sys_meta_fields`: `fortimanager_object_system_meta_sys_meta_fields`
 
 
 

@@ -83,6 +83,7 @@ func resourceObjectFirewallAccessProxyApiGateway6() *schema.Resource {
 			"http_cookie_generation": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"http_cookie_path": &schema.Schema{
 				Type:     schema.TypeString,
@@ -102,6 +103,7 @@ func resourceObjectFirewallAccessProxyApiGateway6() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
@@ -824,7 +826,7 @@ func flattenObjectFirewallAccessProxyApiGateway6RealserversIp2edl(v interface{},
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversMappedport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -836,7 +838,7 @@ func flattenObjectFirewallAccessProxyApiGateway6RealserversSshClientCert2edl(v i
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversSshHostKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversSshHostKeyValidation2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1607,7 +1609,7 @@ func expandObjectFirewallAccessProxyApiGateway6RealserversIp2edl(d *schema.Resou
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversMappedport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1619,7 +1621,7 @@ func expandObjectFirewallAccessProxyApiGateway6RealserversSshClientCert2edl(d *s
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversSshHostKey2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversSshHostKeyValidation2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

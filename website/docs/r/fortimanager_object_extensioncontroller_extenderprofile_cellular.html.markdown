@@ -11,10 +11,10 @@ FortiExtender cellular configuration.
 
 ~> This resource is a sub resource for variable `cellular` of resource `fortimanager_object_extensioncontroller_extenderprofile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`controller_report`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_controllerreport`
-`modem1`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem1`
-`modem2`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem2`
-`sms_notification`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification`
+>- `controller_report`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_controllerreport`
+>- `modem1`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem1`
+>- `modem2`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem2`
+>- `sms_notification`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification`
 
 
 

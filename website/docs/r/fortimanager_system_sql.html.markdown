@@ -10,9 +10,9 @@ description: |-
 SQL settings.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_index`: `fortimanager_system_sql_customindex`
-`custom_skipidx`: `fortimanager_system_sql_customskipidx`
-`ts_index_field`: `fortimanager_system_sql_tsindexfield`
+>- `custom_index`: `fortimanager_system_sql_customindex`
+>- `custom_skipidx`: `fortimanager_system_sql_customskipidx`
+>- `ts_index_field`: `fortimanager_system_sql_tsindexfield`
 
 
 

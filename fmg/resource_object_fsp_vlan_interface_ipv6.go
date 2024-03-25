@@ -367,6 +367,11 @@ func resourceObjectFspVlanInterfaceIpv6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ignore_default_route": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"preempt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -974,6 +979,12 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp63rdl(v interface{}, d *schema.Resourc
 			tmp["adv_interval"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-AdvInterval")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := i["ignore-default-route"]; ok {
+			v := flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute3rdl(i["ignore-default-route"], d, pre_append)
+			tmp["ignore_default_route"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-IgnoreDefaultRoute")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := i["preempt"]; ok {
 			v := flattenObjectFspVlanInterfaceIpv6Vrrp6Preempt3rdl(i["preempt"], d, pre_append)
@@ -1037,6 +1048,10 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6AcceptMode3rdl(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanInterfaceIpv6Vrrp6AdvInterval3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2044,6 +2059,11 @@ func expandObjectFspVlanInterfaceIpv6Vrrp63rdl(d *schema.ResourceData, v interfa
 			tmp["adv-interval"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval3rdl(d, i["adv_interval"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ignore-default-route"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute3rdl(d, i["ignore_default_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Preempt3rdl(d, i["preempt"], pre_append)
@@ -2099,6 +2119,10 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6AcceptMode3rdl(d *schema.ResourceData,
 }
 
 func expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

@@ -268,6 +268,14 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"set_vpnv6_nexthop": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"set_vpnv6_nexthop_local": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"set_weight": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -707,6 +715,18 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["set_vpnv4_nexthop"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetVpnv4Nexthop")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv6_nexthop"
+		if _, ok := i["set-vpnv6-nexthop"]; ok {
+			v := flattenObjectRouterRouteMapRuleSetVpnv6Nexthop(i["set-vpnv6-nexthop"], d, pre_append)
+			tmp["set_vpnv6_nexthop"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetVpnv6Nexthop")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv6_nexthop_local"
+		if _, ok := i["set-vpnv6-nexthop-local"]; ok {
+			v := flattenObjectRouterRouteMapRuleSetVpnv6NexthopLocal(i["set-vpnv6-nexthop-local"], d, pre_append)
+			tmp["set_vpnv6_nexthop_local"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetVpnv6NexthopLocal")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_weight"
 		if _, ok := i["set-weight"]; ok {
 			v := flattenObjectRouterRouteMapRuleSetWeight(i["set-weight"], d, pre_append)
@@ -908,6 +928,14 @@ func flattenObjectRouterRouteMapRuleSetTag(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectRouterRouteMapRuleSetVpnv4Nexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetVpnv6Nexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetVpnv6NexthopLocal(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1236,6 +1264,16 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["set-vpnv4-nexthop"], _ = expandObjectRouterRouteMapRuleSetVpnv4Nexthop(d, i["set_vpnv4_nexthop"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv6_nexthop"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["set-vpnv6-nexthop"], _ = expandObjectRouterRouteMapRuleSetVpnv6Nexthop(d, i["set_vpnv6_nexthop"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv6_nexthop_local"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["set-vpnv6-nexthop-local"], _ = expandObjectRouterRouteMapRuleSetVpnv6NexthopLocal(d, i["set_vpnv6_nexthop_local"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-weight"], _ = expandObjectRouterRouteMapRuleSetWeight(d, i["set_weight"], pre_append)
@@ -1436,6 +1474,14 @@ func expandObjectRouterRouteMapRuleSetTag(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectRouterRouteMapRuleSetVpnv4Nexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetVpnv6Nexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetVpnv6NexthopLocal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

@@ -130,6 +130,7 @@ func resourceDvmdbAdom() *schema.Resource {
 			"workspace_mode": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -298,7 +299,7 @@ func flattenDvmdbAdomOsVer(v interface{}, d *schema.ResourceData, pre string) in
 }
 
 func flattenDvmdbAdomRestrictedPrds(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenDvmdbAdomState(v interface{}, d *schema.ResourceData, pre string) interface{} {

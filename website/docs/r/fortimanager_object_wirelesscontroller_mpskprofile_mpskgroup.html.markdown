@@ -11,7 +11,7 @@ List of multiple PSK groups.
 
 ~> This resource is a sub resource for variable `mpsk_group` of resource `fortimanager_object_wirelesscontroller_mpskprofile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`mpsk_key`: `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey`
+>- `mpsk_key`: `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey`
 
 
 

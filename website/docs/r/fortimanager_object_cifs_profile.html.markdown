@@ -10,8 +10,8 @@ description: |-
 Configure CIFS profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`file_filter`: `fortimanager_object_cifs_profile_filefilter`
-`server_keytab`: `fortimanager_object_cifs_profile_serverkeytab`
+>- `file_filter`: `fortimanager_object_cifs_profile_filefilter`
+>- `server_keytab`: `fortimanager_object_cifs_profile_serverkeytab`
 
 
 

@@ -10,7 +10,7 @@ description: |-
 Configure online sign up (OSU) provider NAI list.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`nai_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai_nailist`
+>- `nai_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai_nailist`
 
 
 

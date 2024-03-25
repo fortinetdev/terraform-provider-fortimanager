@@ -69,6 +69,11 @@ func resourceObjectLogNpuServerServerInfo() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log_transport": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"source_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -200,35 +205,39 @@ func resourceObjectLogNpuServerServerInfoRead(d *schema.ResourceData, m interfac
 	return nil
 }
 
-func flattenObjectLogNpuServerServerInfoDestPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoDestPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpFamily(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpFamily2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpv4Server(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpv4Server2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpv6Server(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpv6Server2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoLogTransport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoTemplateTxTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoSourcePort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoTemplateTxTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectLogNpuServerServerInfoVdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -239,7 +248,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("dest_port", flattenObjectLogNpuServerServerInfoDestPort(o["dest-port"], d, "dest_port")); err != nil {
+	if err = d.Set("dest_port", flattenObjectLogNpuServerServerInfoDestPort2edl(o["dest-port"], d, "dest_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dest-port"], "ObjectLogNpuServerServerInfo-DestPort"); ok {
 			if err = d.Set("dest_port", vv); err != nil {
 				return fmt.Errorf("Error reading dest_port: %v", err)
@@ -249,7 +258,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("fosid", flattenObjectLogNpuServerServerInfoId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectLogNpuServerServerInfoId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectLogNpuServerServerInfo-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -259,7 +268,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("ip_family", flattenObjectLogNpuServerServerInfoIpFamily(o["ip-family"], d, "ip_family")); err != nil {
+	if err = d.Set("ip_family", flattenObjectLogNpuServerServerInfoIpFamily2edl(o["ip-family"], d, "ip_family")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-family"], "ObjectLogNpuServerServerInfo-IpFamily"); ok {
 			if err = d.Set("ip_family", vv); err != nil {
 				return fmt.Errorf("Error reading ip_family: %v", err)
@@ -269,7 +278,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("ipv4_server", flattenObjectLogNpuServerServerInfoIpv4Server(o["ipv4-server"], d, "ipv4_server")); err != nil {
+	if err = d.Set("ipv4_server", flattenObjectLogNpuServerServerInfoIpv4Server2edl(o["ipv4-server"], d, "ipv4_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-server"], "ObjectLogNpuServerServerInfo-Ipv4Server"); ok {
 			if err = d.Set("ipv4_server", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_server: %v", err)
@@ -279,7 +288,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("ipv6_server", flattenObjectLogNpuServerServerInfoIpv6Server(o["ipv6-server"], d, "ipv6_server")); err != nil {
+	if err = d.Set("ipv6_server", flattenObjectLogNpuServerServerInfoIpv6Server2edl(o["ipv6-server"], d, "ipv6_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-server"], "ObjectLogNpuServerServerInfo-Ipv6Server"); ok {
 			if err = d.Set("ipv6_server", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_server: %v", err)
@@ -289,7 +298,17 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("source_port", flattenObjectLogNpuServerServerInfoSourcePort(o["source-port"], d, "source_port")); err != nil {
+	if err = d.Set("log_transport", flattenObjectLogNpuServerServerInfoLogTransport2edl(o["log-transport"], d, "log_transport")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-transport"], "ObjectLogNpuServerServerInfo-LogTransport"); ok {
+			if err = d.Set("log_transport", vv); err != nil {
+				return fmt.Errorf("Error reading log_transport: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_transport: %v", err)
+		}
+	}
+
+	if err = d.Set("source_port", flattenObjectLogNpuServerServerInfoSourcePort2edl(o["source-port"], d, "source_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-port"], "ObjectLogNpuServerServerInfo-SourcePort"); ok {
 			if err = d.Set("source_port", vv); err != nil {
 				return fmt.Errorf("Error reading source_port: %v", err)
@@ -299,7 +318,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("template_tx_timeout", flattenObjectLogNpuServerServerInfoTemplateTxTimeout(o["template-tx-timeout"], d, "template_tx_timeout")); err != nil {
+	if err = d.Set("template_tx_timeout", flattenObjectLogNpuServerServerInfoTemplateTxTimeout2edl(o["template-tx-timeout"], d, "template_tx_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["template-tx-timeout"], "ObjectLogNpuServerServerInfo-TemplateTxTimeout"); ok {
 			if err = d.Set("template_tx_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading template_tx_timeout: %v", err)
@@ -309,7 +328,7 @@ func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("vdom", flattenObjectLogNpuServerServerInfoVdom(o["vdom"], d, "vdom")); err != nil {
+	if err = d.Set("vdom", flattenObjectLogNpuServerServerInfoVdom2edl(o["vdom"], d, "vdom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vdom"], "ObjectLogNpuServerServerInfo-Vdom"); ok {
 			if err = d.Set("vdom", vv); err != nil {
 				return fmt.Errorf("Error reading vdom: %v", err)
@@ -328,35 +347,39 @@ func flattenObjectLogNpuServerServerInfoFortiTestDebug(d *schema.ResourceData, f
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectLogNpuServerServerInfoDestPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoDestPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpFamily(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpFamily2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpv4Server(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpv4Server2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpv6Server(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpv6Server2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoLogTransport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoTemplateTxTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoSourcePort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoTemplateTxTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectLogNpuServerServerInfoVdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -364,7 +387,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dest_port"); ok || d.HasChange("dest_port") {
-		t, err := expandObjectLogNpuServerServerInfoDestPort(d, v, "dest_port")
+		t, err := expandObjectLogNpuServerServerInfoDestPort2edl(d, v, "dest_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -373,7 +396,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandObjectLogNpuServerServerInfoId(d, v, "fosid")
+		t, err := expandObjectLogNpuServerServerInfoId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -382,7 +405,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("ip_family"); ok || d.HasChange("ip_family") {
-		t, err := expandObjectLogNpuServerServerInfoIpFamily(d, v, "ip_family")
+		t, err := expandObjectLogNpuServerServerInfoIpFamily2edl(d, v, "ip_family")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -391,7 +414,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("ipv4_server"); ok || d.HasChange("ipv4_server") {
-		t, err := expandObjectLogNpuServerServerInfoIpv4Server(d, v, "ipv4_server")
+		t, err := expandObjectLogNpuServerServerInfoIpv4Server2edl(d, v, "ipv4_server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -400,7 +423,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("ipv6_server"); ok || d.HasChange("ipv6_server") {
-		t, err := expandObjectLogNpuServerServerInfoIpv6Server(d, v, "ipv6_server")
+		t, err := expandObjectLogNpuServerServerInfoIpv6Server2edl(d, v, "ipv6_server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -408,8 +431,17 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("log_transport"); ok || d.HasChange("log_transport") {
+		t, err := expandObjectLogNpuServerServerInfoLogTransport2edl(d, v, "log_transport")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-transport"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
-		t, err := expandObjectLogNpuServerServerInfoSourcePort(d, v, "source_port")
+		t, err := expandObjectLogNpuServerServerInfoSourcePort2edl(d, v, "source_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -418,7 +450,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("template_tx_timeout"); ok || d.HasChange("template_tx_timeout") {
-		t, err := expandObjectLogNpuServerServerInfoTemplateTxTimeout(d, v, "template_tx_timeout")
+		t, err := expandObjectLogNpuServerServerInfoTemplateTxTimeout2edl(d, v, "template_tx_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -427,7 +459,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("vdom"); ok || d.HasChange("vdom") {
-		t, err := expandObjectLogNpuServerServerInfoVdom(d, v, "vdom")
+		t, err := expandObjectLogNpuServerServerInfoVdom2edl(d, v, "vdom")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

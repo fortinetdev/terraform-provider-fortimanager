@@ -10,9 +10,9 @@ description: |-
 HA configuration.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`monitored_interfaces`: `fortimanager_system_ha_monitoredinterfaces`
-`monitored_ips`: `fortimanager_system_ha_monitoredips`
-`peer`: `fortimanager_system_ha_peer`
+>- `monitored_interfaces`: `fortimanager_system_ha_monitoredinterfaces`
+>- `monitored_ips`: `fortimanager_system_ha_monitoredips`
+>- `peer`: `fortimanager_system_ha_peer`
 
 
 

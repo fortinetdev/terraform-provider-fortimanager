@@ -189,27 +189,27 @@ func resourceObjectSystemNpuNpQueuesIpServiceRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceDport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceDport3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceProtocol3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceQueue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceQueue3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceSport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceSport3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpServiceWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpServiceWeight3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -220,7 +220,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("dport", flattenObjectSystemNpuNpQueuesIpServiceDport(o["dport"], d, "dport")); err != nil {
+	if err = d.Set("dport", flattenObjectSystemNpuNpQueuesIpServiceDport3rdl(o["dport"], d, "dport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dport"], "ObjectSystemNpuNpQueuesIpService-Dport"); ok {
 			if err = d.Set("dport", vv); err != nil {
 				return fmt.Errorf("Error reading dport: %v", err)
@@ -230,7 +230,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("name", flattenObjectSystemNpuNpQueuesIpServiceName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectSystemNpuNpQueuesIpServiceName3rdl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSystemNpuNpQueuesIpService-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -240,7 +240,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("protocol", flattenObjectSystemNpuNpQueuesIpServiceProtocol(o["protocol"], d, "protocol")); err != nil {
+	if err = d.Set("protocol", flattenObjectSystemNpuNpQueuesIpServiceProtocol3rdl(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "ObjectSystemNpuNpQueuesIpService-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
 				return fmt.Errorf("Error reading protocol: %v", err)
@@ -250,7 +250,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesIpServiceQueue(o["queue"], d, "queue")); err != nil {
+	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesIpServiceQueue3rdl(o["queue"], d, "queue")); err != nil {
 		if vv, ok := fortiAPIPatch(o["queue"], "ObjectSystemNpuNpQueuesIpService-Queue"); ok {
 			if err = d.Set("queue", vv); err != nil {
 				return fmt.Errorf("Error reading queue: %v", err)
@@ -260,7 +260,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("sport", flattenObjectSystemNpuNpQueuesIpServiceSport(o["sport"], d, "sport")); err != nil {
+	if err = d.Set("sport", flattenObjectSystemNpuNpQueuesIpServiceSport3rdl(o["sport"], d, "sport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sport"], "ObjectSystemNpuNpQueuesIpService-Sport"); ok {
 			if err = d.Set("sport", vv); err != nil {
 				return fmt.Errorf("Error reading sport: %v", err)
@@ -270,7 +270,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesIpServiceWeight(o["weight"], d, "weight")); err != nil {
+	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesIpServiceWeight3rdl(o["weight"], d, "weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weight"], "ObjectSystemNpuNpQueuesIpService-Weight"); ok {
 			if err = d.Set("weight", vv); err != nil {
 				return fmt.Errorf("Error reading weight: %v", err)
@@ -289,27 +289,27 @@ func flattenObjectSystemNpuNpQueuesIpServiceFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceDport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceDport3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceProtocol3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceQueue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceQueue3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceSport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceSport3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpServiceWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpServiceWeight3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -317,7 +317,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dport"); ok || d.HasChange("dport") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceDport(d, v, "dport")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceDport3rdl(d, v, "dport")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -326,7 +326,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceName(d, v, "name")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceName3rdl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -335,7 +335,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceProtocol(d, v, "protocol")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceProtocol3rdl(d, v, "protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -344,7 +344,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceQueue(d, v, "queue")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceQueue3rdl(d, v, "queue")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -353,7 +353,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("sport"); ok || d.HasChange("sport") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceSport(d, v, "sport")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceSport3rdl(d, v, "sport")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -362,7 +362,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
-		t, err := expandObjectSystemNpuNpQueuesIpServiceWeight(d, v, "weight")
+		t, err := expandObjectSystemNpuNpQueuesIpServiceWeight3rdl(d, v, "weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

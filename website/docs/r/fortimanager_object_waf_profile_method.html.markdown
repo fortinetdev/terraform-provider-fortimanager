@@ -11,7 +11,7 @@ Method restriction.
 
 ~> This resource is a sub resource for variable `method` of resource `fortimanager_object_waf_profile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`method_policy`: `fortimanager_object_waf_profile_method_methodpolicy`
+>- `method_policy`: `fortimanager_object_waf_profile_method_methodpolicy`
 
 
 

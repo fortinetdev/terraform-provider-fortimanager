@@ -10,7 +10,7 @@ description: |-
 Configure YouTube channel filter.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_videofilter_youtubechannelfilter_entries`
+>- `entries`: `fortimanager_object_videofilter_youtubechannelfilter_entries`
 
 
 

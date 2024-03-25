@@ -10,8 +10,8 @@ description: |-
 Configure CASB user activity.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`control_options`: `fortimanager_object_casb_useractivity_controloptions`
-`match`: `fortimanager_object_casb_useractivity_match`
+>- `control_options`: `fortimanager_object_casb_useractivity_controloptions`
+>- `match`: `fortimanager_object_casb_useractivity_match`
 
 
 
@@ -33,6 +33,8 @@ The following arguments are supported:
 * `match_strategy` - CASB user activity match strategy. Valid values: `or`, `and`.
 
 * `name` - CASB user activity name.
+* `status` - CASB user activity status. Valid values: `disable`, `enable`.
+
 * `type` - CASB user activity type. Valid values: `built-in`, `customized`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -42,6 +44,8 @@ The `control_options` block supports:
 
 * `name` - CASB control option name.
 * `operations` - Operations. The structure of `operations` block is documented below.
+* `status` - CASB control option status. Valid values: `disable`, `enable`.
+
 
 The `operations` block supports:
 

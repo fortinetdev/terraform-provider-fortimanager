@@ -10,7 +10,7 @@ description: |-
 workflow approval matrix.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`approver`: `fortimanager_system_workflow_approvalmatrix_approver`
+>- `approver`: `fortimanager_system_workflow_approvalmatrix_approver`
 
 
 

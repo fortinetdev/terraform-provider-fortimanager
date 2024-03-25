@@ -163,35 +163,35 @@ func resourceSystemSocFabricRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func flattenSystemSocFabricNameSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricPortSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricPskSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricPsk(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenSystemSocFabricRoleSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricSecureConnectionSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricStatusSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricSupervisorSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricSupervisor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricTrustedListSsa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemSocFabricTrustedList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -212,13 +212,13 @@ func flattenSystemSocFabricTrustedListSsa(v interface{}, d *schema.ResourceData,
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenSystemSocFabricTrustedListIdSsa(i["id"], d, pre_append)
+			v := flattenSystemSocFabricTrustedListId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "SystemSocFabric-TrustedList-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "serial"
 		if _, ok := i["serial"]; ok {
-			v := flattenSystemSocFabricTrustedListSerialSsa(i["serial"], d, pre_append)
+			v := flattenSystemSocFabricTrustedListSerial(i["serial"], d, pre_append)
 			tmp["serial"] = fortiAPISubPartPatch(v, "SystemSocFabric-TrustedList-Serial")
 		}
 
@@ -232,11 +232,11 @@ func flattenSystemSocFabricTrustedListSsa(v interface{}, d *schema.ResourceData,
 	return result
 }
 
-func flattenSystemSocFabricTrustedListIdSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricTrustedListId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSocFabricTrustedListSerialSsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSocFabricTrustedListSerial(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -247,7 +247,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("name", flattenSystemSocFabricNameSsa(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenSystemSocFabricName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "SystemSocFabric-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -257,7 +257,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("port", flattenSystemSocFabricPortSsa(o["port"], d, "port")); err != nil {
+	if err = d.Set("port", flattenSystemSocFabricPort(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "SystemSocFabric-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
 				return fmt.Errorf("Error reading port: %v", err)
@@ -267,7 +267,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("role", flattenSystemSocFabricRoleSsa(o["role"], d, "role")); err != nil {
+	if err = d.Set("role", flattenSystemSocFabricRole(o["role"], d, "role")); err != nil {
 		if vv, ok := fortiAPIPatch(o["role"], "SystemSocFabric-Role"); ok {
 			if err = d.Set("role", vv); err != nil {
 				return fmt.Errorf("Error reading role: %v", err)
@@ -277,7 +277,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("secure_connection", flattenSystemSocFabricSecureConnectionSsa(o["secure-connection"], d, "secure_connection")); err != nil {
+	if err = d.Set("secure_connection", flattenSystemSocFabricSecureConnection(o["secure-connection"], d, "secure_connection")); err != nil {
 		if vv, ok := fortiAPIPatch(o["secure-connection"], "SystemSocFabric-SecureConnection"); ok {
 			if err = d.Set("secure_connection", vv); err != nil {
 				return fmt.Errorf("Error reading secure_connection: %v", err)
@@ -287,7 +287,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("status", flattenSystemSocFabricStatusSsa(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemSocFabricStatus(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemSocFabric-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -297,7 +297,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("supervisor", flattenSystemSocFabricSupervisorSsa(o["supervisor"], d, "supervisor")); err != nil {
+	if err = d.Set("supervisor", flattenSystemSocFabricSupervisor(o["supervisor"], d, "supervisor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["supervisor"], "SystemSocFabric-Supervisor"); ok {
 			if err = d.Set("supervisor", vv); err != nil {
 				return fmt.Errorf("Error reading supervisor: %v", err)
@@ -308,7 +308,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 	}
 
 	if isImportTable() {
-		if err = d.Set("trusted_list", flattenSystemSocFabricTrustedListSsa(o["trusted-list"], d, "trusted_list")); err != nil {
+		if err = d.Set("trusted_list", flattenSystemSocFabricTrustedList(o["trusted-list"], d, "trusted_list")); err != nil {
 			if vv, ok := fortiAPIPatch(o["trusted-list"], "SystemSocFabric-TrustedList"); ok {
 				if err = d.Set("trusted_list", vv); err != nil {
 					return fmt.Errorf("Error reading trusted_list: %v", err)
@@ -319,7 +319,7 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 		}
 	} else {
 		if _, ok := d.GetOk("trusted_list"); ok {
-			if err = d.Set("trusted_list", flattenSystemSocFabricTrustedListSsa(o["trusted-list"], d, "trusted_list")); err != nil {
+			if err = d.Set("trusted_list", flattenSystemSocFabricTrustedList(o["trusted-list"], d, "trusted_list")); err != nil {
 				if vv, ok := fortiAPIPatch(o["trusted-list"], "SystemSocFabric-TrustedList"); ok {
 					if err = d.Set("trusted_list", vv); err != nil {
 						return fmt.Errorf("Error reading trusted_list: %v", err)
@@ -340,35 +340,35 @@ func flattenSystemSocFabricFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemSocFabricNameSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricPortSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricPskSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricPsk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandSystemSocFabricRoleSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricSecureConnectionSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricSecureConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricStatusSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricSupervisorSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricSupervisor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricTrustedListSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricTrustedList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -384,12 +384,12 @@ func expandSystemSocFabricTrustedListSsa(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandSystemSocFabricTrustedListIdSsa(d, i["id"], pre_append)
+			tmp["id"], _ = expandSystemSocFabricTrustedListId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "serial"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["serial"], _ = expandSystemSocFabricTrustedListSerialSsa(d, i["serial"], pre_append)
+			tmp["serial"], _ = expandSystemSocFabricTrustedListSerial(d, i["serial"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -402,11 +402,11 @@ func expandSystemSocFabricTrustedListSsa(d *schema.ResourceData, v interface{}, 
 	return result, nil
 }
 
-func expandSystemSocFabricTrustedListIdSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricTrustedListId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSocFabricTrustedListSerialSsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSocFabricTrustedListSerial(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -414,7 +414,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandSystemSocFabricNameSsa(d, v, "name")
+		t, err := expandSystemSocFabricName(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -423,7 +423,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
-		t, err := expandSystemSocFabricPortSsa(d, v, "port")
+		t, err := expandSystemSocFabricPort(d, v, "port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -432,7 +432,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("psk"); ok || d.HasChange("psk") {
-		t, err := expandSystemSocFabricPskSsa(d, v, "psk")
+		t, err := expandSystemSocFabricPsk(d, v, "psk")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -441,7 +441,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
-		t, err := expandSystemSocFabricRoleSsa(d, v, "role")
+		t, err := expandSystemSocFabricRole(d, v, "role")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -450,7 +450,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("secure_connection"); ok || d.HasChange("secure_connection") {
-		t, err := expandSystemSocFabricSecureConnectionSsa(d, v, "secure_connection")
+		t, err := expandSystemSocFabricSecureConnection(d, v, "secure_connection")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -459,7 +459,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemSocFabricStatusSsa(d, v, "status")
+		t, err := expandSystemSocFabricStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -468,7 +468,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("supervisor"); ok || d.HasChange("supervisor") {
-		t, err := expandSystemSocFabricSupervisorSsa(d, v, "supervisor")
+		t, err := expandSystemSocFabricSupervisor(d, v, "supervisor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -477,7 +477,7 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("trusted_list"); ok || d.HasChange("trusted_list") {
-		t, err := expandSystemSocFabricTrustedListSsa(d, v, "trusted_list")
+		t, err := expandSystemSocFabricTrustedList(d, v, "trusted_list")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -10,7 +10,7 @@ description: |-
 Configure FortiSwitch QoS egress queue policy.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`cos_queue`: `fortimanager_object_switchcontroller_qos_queuepolicy_cosqueue`
+>- `cos_queue`: `fortimanager_object_switchcontroller_qos_queuepolicy_cosqueue`
 
 
 

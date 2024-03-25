@@ -224,6 +224,10 @@ func resourceObjectWirelessControllerWtpProfileRadio3() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"optional_antenna_gain": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"power_level": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -258,7 +262,15 @@ func resourceObjectWirelessControllerWtpProfileRadio3() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sam_ca_certificate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"sam_captive_portal": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"sam_client_certificate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -288,7 +300,21 @@ func resourceObjectWirelessControllerWtpProfileRadio3() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sam_eap_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"sam_password": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"sam_private_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"sam_private_key_password": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -672,6 +698,10 @@ func flattenObjectWirelessControllerWtpProfileRadio3OptionalAntenna2edl(v interf
 	return v
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio3OptionalAntennaGain2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio3PowerLevel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -704,7 +734,15 @@ func flattenObjectWirelessControllerWtpProfileRadio3SamBssid2edl(v interface{}, 
 	return v
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio3SamCaCertificate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio3SamCaptivePortal2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio3SamClientCertificate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -732,7 +770,19 @@ func flattenObjectWirelessControllerWtpProfileRadio3SamCwpUsername2edl(v interfa
 	return v
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio3SamEapMethod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio3SamPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -821,7 +871,7 @@ func flattenObjectWirelessControllerWtpProfileRadio3Vap82edl(v interface{}, d *s
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3Vaps2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3WidsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1269,6 +1319,16 @@ func refreshObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("optional_antenna_gain", flattenObjectWirelessControllerWtpProfileRadio3OptionalAntennaGain2edl(o["optional-antenna-gain"], d, "optional_antenna_gain")); err != nil {
+		if vv, ok := fortiAPIPatch(o["optional-antenna-gain"], "ObjectWirelessControllerWtpProfileRadio3-OptionalAntennaGain"); ok {
+			if err = d.Set("optional_antenna_gain", vv); err != nil {
+				return fmt.Errorf("Error reading optional_antenna_gain: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading optional_antenna_gain: %v", err)
+		}
+	}
+
 	if err = d.Set("power_level", flattenObjectWirelessControllerWtpProfileRadio3PowerLevel2edl(o["power-level"], d, "power_level")); err != nil {
 		if vv, ok := fortiAPIPatch(o["power-level"], "ObjectWirelessControllerWtpProfileRadio3-PowerLevel"); ok {
 			if err = d.Set("power_level", vv); err != nil {
@@ -1349,6 +1409,16 @@ func refreshObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("sam_ca_certificate", flattenObjectWirelessControllerWtpProfileRadio3SamCaCertificate2edl(o["sam-ca-certificate"], d, "sam_ca_certificate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sam-ca-certificate"], "ObjectWirelessControllerWtpProfileRadio3-SamCaCertificate"); ok {
+			if err = d.Set("sam_ca_certificate", vv); err != nil {
+				return fmt.Errorf("Error reading sam_ca_certificate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sam_ca_certificate: %v", err)
+		}
+	}
+
 	if err = d.Set("sam_captive_portal", flattenObjectWirelessControllerWtpProfileRadio3SamCaptivePortal2edl(o["sam-captive-portal"], d, "sam_captive_portal")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sam-captive-portal"], "ObjectWirelessControllerWtpProfileRadio3-SamCaptivePortal"); ok {
 			if err = d.Set("sam_captive_portal", vv); err != nil {
@@ -1356,6 +1426,16 @@ func refreshObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceDat
 			}
 		} else {
 			return fmt.Errorf("Error reading sam_captive_portal: %v", err)
+		}
+	}
+
+	if err = d.Set("sam_client_certificate", flattenObjectWirelessControllerWtpProfileRadio3SamClientCertificate2edl(o["sam-client-certificate"], d, "sam_client_certificate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sam-client-certificate"], "ObjectWirelessControllerWtpProfileRadio3-SamClientCertificate"); ok {
+			if err = d.Set("sam_client_certificate", vv); err != nil {
+				return fmt.Errorf("Error reading sam_client_certificate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sam_client_certificate: %v", err)
 		}
 	}
 
@@ -1419,6 +1499,16 @@ func refreshObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("sam_eap_method", flattenObjectWirelessControllerWtpProfileRadio3SamEapMethod2edl(o["sam-eap-method"], d, "sam_eap_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sam-eap-method"], "ObjectWirelessControllerWtpProfileRadio3-SamEapMethod"); ok {
+			if err = d.Set("sam_eap_method", vv); err != nil {
+				return fmt.Errorf("Error reading sam_eap_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sam_eap_method: %v", err)
+		}
+	}
+
 	if err = d.Set("sam_password", flattenObjectWirelessControllerWtpProfileRadio3SamPassword2edl(o["sam-password"], d, "sam_password")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sam-password"], "ObjectWirelessControllerWtpProfileRadio3-SamPassword"); ok {
 			if err = d.Set("sam_password", vv); err != nil {
@@ -1426,6 +1516,26 @@ func refreshObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceDat
 			}
 		} else {
 			return fmt.Errorf("Error reading sam_password: %v", err)
+		}
+	}
+
+	if err = d.Set("sam_private_key", flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKey2edl(o["sam-private-key"], d, "sam_private_key")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sam-private-key"], "ObjectWirelessControllerWtpProfileRadio3-SamPrivateKey"); ok {
+			if err = d.Set("sam_private_key", vv); err != nil {
+				return fmt.Errorf("Error reading sam_private_key: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sam_private_key: %v", err)
+		}
+	}
+
+	if err = d.Set("sam_private_key_password", flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword2edl(o["sam-private-key-password"], d, "sam_private_key_password")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sam-private-key-password"], "ObjectWirelessControllerWtpProfileRadio3-SamPrivateKeyPassword"); ok {
+			if err = d.Set("sam_private_key_password", vv); err != nil {
+				return fmt.Errorf("Error reading sam_private_key_password: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sam_private_key_password: %v", err)
 		}
 	}
 
@@ -1850,6 +1960,10 @@ func expandObjectWirelessControllerWtpProfileRadio3OptionalAntenna2edl(d *schema
 	return v, nil
 }
 
+func expandObjectWirelessControllerWtpProfileRadio3OptionalAntennaGain2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWtpProfileRadio3PowerLevel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1882,7 +1996,15 @@ func expandObjectWirelessControllerWtpProfileRadio3SamBssid2edl(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectWirelessControllerWtpProfileRadio3SamCaCertificate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWtpProfileRadio3SamCaptivePortal2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio3SamClientCertificate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1910,7 +2032,19 @@ func expandObjectWirelessControllerWtpProfileRadio3SamCwpUsername2edl(d *schema.
 	return v, nil
 }
 
+func expandObjectWirelessControllerWtpProfileRadio3SamEapMethod2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWtpProfileRadio3SamPassword2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio3SamPrivateKey2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -1999,7 +2133,7 @@ func expandObjectWirelessControllerWtpProfileRadio3Vap82edl(d *schema.ResourceDa
 }
 
 func expandObjectWirelessControllerWtpProfileRadio3Vaps2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWirelessControllerWtpProfileRadio3WidsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2400,6 +2534,15 @@ func getObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData) (
 		}
 	}
 
+	if v, ok := d.GetOk("optional_antenna_gain"); ok || d.HasChange("optional_antenna_gain") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3OptionalAntennaGain2edl(d, v, "optional_antenna_gain")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["optional-antenna-gain"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("power_level"); ok || d.HasChange("power_level") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio3PowerLevel2edl(d, v, "power_level")
 		if err != nil {
@@ -2472,12 +2615,30 @@ func getObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData) (
 		}
 	}
 
+	if v, ok := d.GetOk("sam_ca_certificate"); ok || d.HasChange("sam_ca_certificate") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3SamCaCertificate2edl(d, v, "sam_ca_certificate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sam-ca-certificate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("sam_captive_portal"); ok || d.HasChange("sam_captive_portal") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio3SamCaptivePortal2edl(d, v, "sam_captive_portal")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["sam-captive-portal"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sam_client_certificate"); ok || d.HasChange("sam_client_certificate") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3SamClientCertificate2edl(d, v, "sam_client_certificate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sam-client-certificate"] = t
 		}
 	}
 
@@ -2535,12 +2696,39 @@ func getObjectObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData) (
 		}
 	}
 
+	if v, ok := d.GetOk("sam_eap_method"); ok || d.HasChange("sam_eap_method") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3SamEapMethod2edl(d, v, "sam_eap_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sam-eap-method"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("sam_password"); ok || d.HasChange("sam_password") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio3SamPassword2edl(d, v, "sam_password")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["sam-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sam_private_key"); ok || d.HasChange("sam_private_key") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3SamPrivateKey2edl(d, v, "sam_private_key")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sam-private-key"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sam_private_key_password"); ok || d.HasChange("sam_private_key_password") {
+		t, err := expandObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword2edl(d, v, "sam_private_key_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sam-private-key-password"] = t
 		}
 	}
 

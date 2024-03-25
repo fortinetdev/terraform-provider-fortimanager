@@ -9,12 +9,6 @@ description: |-
 # fortimanager_dvmdb_script
 Script table.
 
-~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`execute`: `fortimanager_dvmdb_script_execute`
-`script_schedule`: `fortimanager_dvmdb_script_script_schedule`
-
-
-
 ## Example Usage
 
 ```hcl

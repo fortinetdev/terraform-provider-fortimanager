@@ -10,7 +10,7 @@ description: |-
 Configure central management.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`server_list`: `fortimanager_systemp_system_centralmanagement_serverlist`
+>- `server_list`: `fortimanager_systemp_system_centralmanagement_serverlist`
 
 
 

@@ -620,7 +620,7 @@ func flattenObjectSystemDhcpServerDdnsAuth(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemDhcpServerDdnsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemDhcpServerDdnsKeyname(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1874,7 +1874,7 @@ func expandObjectSystemDhcpServerDdnsAuth(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectSystemDhcpServerDdnsKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemDhcpServerDdnsKeyname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

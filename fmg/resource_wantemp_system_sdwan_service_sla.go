@@ -220,11 +220,11 @@ func resourceWantempSystemSdwanServiceSlaRead(d *schema.ResourceData, m interfac
 	return nil
 }
 
-func flattenWantempSystemSdwanServiceSlaHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaHealthCheck3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -235,7 +235,7 @@ func refreshObjectWantempSystemSdwanServiceSla(d *schema.ResourceData, o map[str
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("health_check", flattenWantempSystemSdwanServiceSlaHealthCheck(o["health-check"], d, "health_check")); err != nil {
+	if err = d.Set("health_check", flattenWantempSystemSdwanServiceSlaHealthCheck3rdl(o["health-check"], d, "health_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemSdwanServiceSla-HealthCheck"); ok {
 			if err = d.Set("health_check", vv); err != nil {
 				return fmt.Errorf("Error reading health_check: %v", err)
@@ -245,7 +245,7 @@ func refreshObjectWantempSystemSdwanServiceSla(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemSdwanServiceSlaId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemSdwanServiceSlaId3rdl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemSdwanServiceSla-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -264,11 +264,11 @@ func flattenWantempSystemSdwanServiceSlaFortiTestDebug(d *schema.ResourceData, f
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanServiceSlaHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaHealthCheck3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -276,7 +276,7 @@ func getObjectWantempSystemSdwanServiceSla(d *schema.ResourceData) (*map[string]
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemSdwanServiceSlaHealthCheck(d, v, "health_check")
+		t, err := expandWantempSystemSdwanServiceSlaHealthCheck3rdl(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -285,7 +285,7 @@ func getObjectWantempSystemSdwanServiceSla(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemSdwanServiceSlaId(d, v, "fosid")
+		t, err := expandWantempSystemSdwanServiceSlaId3rdl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

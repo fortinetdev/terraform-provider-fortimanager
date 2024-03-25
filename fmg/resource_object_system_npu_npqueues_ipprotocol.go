@@ -181,19 +181,19 @@ func resourceObjectSystemNpuNpQueuesIpProtocolRead(d *schema.ResourceData, m int
 	return nil
 }
 
-func flattenObjectSystemNpuNpQueuesIpProtocolName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpProtocolName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpProtocolProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpProtocolProtocol3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpProtocolQueue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpProtocolQueue3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesIpProtocolWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesIpProtocolWeight3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -204,7 +204,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData, o ma
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("name", flattenObjectSystemNpuNpQueuesIpProtocolName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectSystemNpuNpQueuesIpProtocolName3rdl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSystemNpuNpQueuesIpProtocol-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -214,7 +214,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("protocol", flattenObjectSystemNpuNpQueuesIpProtocolProtocol(o["protocol"], d, "protocol")); err != nil {
+	if err = d.Set("protocol", flattenObjectSystemNpuNpQueuesIpProtocolProtocol3rdl(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "ObjectSystemNpuNpQueuesIpProtocol-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
 				return fmt.Errorf("Error reading protocol: %v", err)
@@ -224,7 +224,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesIpProtocolQueue(o["queue"], d, "queue")); err != nil {
+	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesIpProtocolQueue3rdl(o["queue"], d, "queue")); err != nil {
 		if vv, ok := fortiAPIPatch(o["queue"], "ObjectSystemNpuNpQueuesIpProtocol-Queue"); ok {
 			if err = d.Set("queue", vv); err != nil {
 				return fmt.Errorf("Error reading queue: %v", err)
@@ -234,7 +234,7 @@ func refreshObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData, o ma
 		}
 	}
 
-	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesIpProtocolWeight(o["weight"], d, "weight")); err != nil {
+	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesIpProtocolWeight3rdl(o["weight"], d, "weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weight"], "ObjectSystemNpuNpQueuesIpProtocol-Weight"); ok {
 			if err = d.Set("weight", vv); err != nil {
 				return fmt.Errorf("Error reading weight: %v", err)
@@ -253,19 +253,19 @@ func flattenObjectSystemNpuNpQueuesIpProtocolFortiTestDebug(d *schema.ResourceDa
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuNpQueuesIpProtocolName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpProtocolName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpProtocolProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpProtocolProtocol3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpProtocolQueue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpProtocolQueue3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesIpProtocolWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesIpProtocolWeight3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -273,7 +273,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectSystemNpuNpQueuesIpProtocolName(d, v, "name")
+		t, err := expandObjectSystemNpuNpQueuesIpProtocolName3rdl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -282,7 +282,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
-		t, err := expandObjectSystemNpuNpQueuesIpProtocolProtocol(d, v, "protocol")
+		t, err := expandObjectSystemNpuNpQueuesIpProtocolProtocol3rdl(d, v, "protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -291,7 +291,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
-		t, err := expandObjectSystemNpuNpQueuesIpProtocolQueue(d, v, "queue")
+		t, err := expandObjectSystemNpuNpQueuesIpProtocolQueue3rdl(d, v, "queue")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -300,7 +300,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 	}
 
 	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
-		t, err := expandObjectSystemNpuNpQueuesIpProtocolWeight(d, v, "weight")
+		t, err := expandObjectSystemNpuNpQueuesIpProtocolWeight3rdl(d, v, "weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

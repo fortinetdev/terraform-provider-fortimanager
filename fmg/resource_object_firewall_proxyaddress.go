@@ -322,7 +322,7 @@ func flattenObjectFirewallProxyAddressCaseSensitivity(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallProxyAddressCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallProxyAddressColor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -812,7 +812,7 @@ func expandObjectFirewallProxyAddressCaseSensitivity(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallProxyAddressCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProxyAddressColor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

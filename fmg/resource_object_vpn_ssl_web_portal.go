@@ -370,7 +370,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 			},
 			"ipv6_split_tunneling_routing_address": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -619,7 +619,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 			},
 			"split_tunneling_routing_address": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -1343,7 +1343,7 @@ func flattenObjectVpnSslWebPortalHostCheckInterval(v interface{}, d *schema.Reso
 }
 
 func flattenObjectVpnSslWebPortalHostCheckPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnSslWebPortalIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1351,7 +1351,7 @@ func flattenObjectVpnSslWebPortalIpMode(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectVpnSslWebPortalIpPools(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnSslWebPortalIpv6DnsServer1(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1367,7 +1367,7 @@ func flattenObjectVpnSslWebPortalIpv6ExclusiveRouting(v interface{}, d *schema.R
 }
 
 func flattenObjectVpnSslWebPortalIpv6Pools(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnSslWebPortalIpv6ServiceRestriction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3235,7 +3235,7 @@ func expandObjectVpnSslWebPortalHostCheckInterval(d *schema.ResourceData, v inte
 }
 
 func expandObjectVpnSslWebPortalHostCheckPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnSslWebPortalIpMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3243,7 +3243,7 @@ func expandObjectVpnSslWebPortalIpMode(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectVpnSslWebPortalIpPools(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnSslWebPortalIpv6DnsServer1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3259,7 +3259,7 @@ func expandObjectVpnSslWebPortalIpv6ExclusiveRouting(d *schema.ResourceData, v i
 }
 
 func expandObjectVpnSslWebPortalIpv6Pools(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnSslWebPortalIpv6ServiceRestriction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3271,7 +3271,7 @@ func expandObjectVpnSslWebPortalIpv6SplitTunneling(d *schema.ResourceData, v int
 }
 
 func expandObjectVpnSslWebPortalIpv6SplitTunnelingRoutingAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnSslWebPortalIpv6SplitTunnelingRoutingNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3663,7 +3663,7 @@ func expandObjectVpnSslWebPortalSplitTunneling(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVpnSslWebPortalSplitTunnelingRoutingAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnSslWebPortalSplitTunnelingRoutingNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

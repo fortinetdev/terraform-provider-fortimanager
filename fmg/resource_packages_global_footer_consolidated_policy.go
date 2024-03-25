@@ -610,11 +610,11 @@ func flattenPackagesGlobalFooterConsolidatedPolicyAction(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyAppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyAppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -622,7 +622,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyApplication(v interface{}, d *
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyAutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -630,7 +630,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyAutoAsicOffload(v interface{},
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyAvProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyCaptivePortalExempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -638,7 +638,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyCaptivePortalExempt(v interfac
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -662,11 +662,11 @@ func flattenPackagesGlobalFooterConsolidatedPolicyDiffservcodeRev(v interface{},
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDnsfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -674,23 +674,23 @@ func flattenPackagesGlobalFooterConsolidatedPolicyDstaddrNegate(v interface{}, d
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDstaddr4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyEmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyFileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyFixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -698,7 +698,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyFixedport(v interface{}, d *sc
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyFssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyGlobalLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -706,7 +706,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyGlobalLabel(v interface{}, d *
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyHttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -714,7 +714,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyHttpPolicyRedirect(v interface
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyIcapProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -730,23 +730,23 @@ func flattenPackagesGlobalFooterConsolidatedPolicyInternetService(v interface{},
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -758,23 +758,23 @@ func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrc(v interface
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -786,7 +786,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyIppool(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyIpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -798,7 +798,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyLogtrafficStart(v interface{},
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -814,7 +814,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyOutbound(v interface{}, d *sch
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyPolicyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -822,19 +822,19 @@ func flattenPackagesGlobalFooterConsolidatedPolicyPolicyid(v interface{}, d *sch
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyPoolname4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyPoolname6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyProfileProtocolOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -842,7 +842,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyProfileType(v interface{}, d *
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyScheduleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -850,7 +850,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicyScheduleTimeout(v interface{},
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -862,7 +862,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicySessionTtl(v interface{}, d *s
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -870,19 +870,19 @@ func flattenPackagesGlobalFooterConsolidatedPolicySrcaddrNegate(v interface{}, d
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySrcaddr4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySshPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -890,7 +890,7 @@ func flattenPackagesGlobalFooterConsolidatedPolicySshPolicyRedirect(v interface{
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicySslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -906,19 +906,19 @@ func flattenPackagesGlobalFooterConsolidatedPolicyTcpMssSender(v interface{}, d 
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyUtmInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -934,15 +934,15 @@ func flattenPackagesGlobalFooterConsolidatedPolicyUuid(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyVoipProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyVpntunnel(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWafProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWanopt(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -958,11 +958,11 @@ func flattenPackagesGlobalFooterConsolidatedPolicyWanoptPassiveOpt(v interface{}
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWanoptPeer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWanoptProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWebcache(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -974,15 +974,15 @@ func flattenPackagesGlobalFooterConsolidatedPolicyWebcacheHttps(v interface{}, d
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWebfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWebproxyForwardServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterConsolidatedPolicyWebproxyProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectPackagesGlobalFooterConsolidatedPolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1966,11 +1966,11 @@ func expandPackagesGlobalFooterConsolidatedPolicyAction(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyAppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyAppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1978,7 +1978,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyApplication(d *schema.ResourceD
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyAutoAsicOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1986,7 +1986,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyAutoAsicOffload(d *schema.Resou
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyAvProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyCaptivePortalExempt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1994,7 +1994,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyCaptivePortalExempt(d *schema.R
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2018,11 +2018,11 @@ func expandPackagesGlobalFooterConsolidatedPolicyDiffservcodeRev(d *schema.Resou
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDnsfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2030,23 +2030,23 @@ func expandPackagesGlobalFooterConsolidatedPolicyDstaddrNegate(d *schema.Resourc
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDstaddr4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyFileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyFixedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2054,7 +2054,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyFixedport(d *schema.ResourceDat
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyFssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyGlobalLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2062,7 +2062,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyGlobalLabel(d *schema.ResourceD
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyHttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2070,7 +2070,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyHttpPolicyRedirect(d *schema.Re
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyIcapProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2086,23 +2086,23 @@ func expandPackagesGlobalFooterConsolidatedPolicyInternetService(d *schema.Resou
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2114,23 +2114,23 @@ func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrc(d *schema.Re
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyInternetServiceSrcNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2142,7 +2142,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyIppool(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyIpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2154,7 +2154,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyLogtrafficStart(d *schema.Resou
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2170,7 +2170,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyOutbound(d *schema.ResourceData
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2178,19 +2178,19 @@ func expandPackagesGlobalFooterConsolidatedPolicyPolicyid(d *schema.ResourceData
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyPoolname4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyPoolname6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyProfileProtocolOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2198,7 +2198,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyProfileType(d *schema.ResourceD
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyScheduleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2206,7 +2206,7 @@ func expandPackagesGlobalFooterConsolidatedPolicyScheduleTimeout(d *schema.Resou
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2218,7 +2218,7 @@ func expandPackagesGlobalFooterConsolidatedPolicySessionTtl(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2226,19 +2226,19 @@ func expandPackagesGlobalFooterConsolidatedPolicySrcaddrNegate(d *schema.Resourc
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySrcaddr4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySshPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2246,7 +2246,7 @@ func expandPackagesGlobalFooterConsolidatedPolicySshPolicyRedirect(d *schema.Res
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicySslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2262,19 +2262,19 @@ func expandPackagesGlobalFooterConsolidatedPolicyTcpMssSender(d *schema.Resource
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyUtmInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2290,15 +2290,15 @@ func expandPackagesGlobalFooterConsolidatedPolicyUuid(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyVoipProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyVpntunnel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWafProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWanopt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2314,11 +2314,11 @@ func expandPackagesGlobalFooterConsolidatedPolicyWanoptPassiveOpt(d *schema.Reso
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWanoptPeer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWanoptProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWebcache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2330,15 +2330,15 @@ func expandPackagesGlobalFooterConsolidatedPolicyWebcacheHttps(d *schema.Resourc
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWebfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWebproxyForwardServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterConsolidatedPolicyWebproxyProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectPackagesGlobalFooterConsolidatedPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -57,6 +57,7 @@ The following arguments are supported:
 * `spillover_threshold` - Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
 * `status` - Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 
+* `transport_group` - Measured transport group (0 - 255).
 * `volume_ratio` - Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
 * `weight` - Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.
 * `zone` - Zone name.

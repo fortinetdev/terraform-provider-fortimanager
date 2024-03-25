@@ -713,11 +713,11 @@ func flattenPackagesGlobalFooterPolicy6AntiReplay(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicy6AppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6AppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Application(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -729,7 +729,7 @@ func flattenPackagesGlobalFooterPolicy6ApplicationCharts(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterPolicy6ApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6AutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -737,11 +737,11 @@ func flattenPackagesGlobalFooterPolicy6AutoAsicOffload(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicy6AvProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6CasiProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6CgnLogServerGrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -749,7 +749,7 @@ func flattenPackagesGlobalFooterPolicy6CgnLogServerGrp(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicy6CifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Comments(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -757,15 +757,15 @@ func flattenPackagesGlobalFooterPolicy6Comments(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicy6CustomLogFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DecryptedTrafficMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DeepInspectionOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DeviceDetectionPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -773,7 +773,7 @@ func flattenPackagesGlobalFooterPolicy6DeviceDetectionPortal(v interface{}, d *s
 }
 
 func flattenPackagesGlobalFooterPolicy6Devices(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -793,11 +793,11 @@ func flattenPackagesGlobalFooterPolicy6DiffservcodeRev(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicy6DlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DnsfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DscpMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -817,7 +817,7 @@ func flattenPackagesGlobalFooterPolicy6Dsri(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -825,7 +825,7 @@ func flattenPackagesGlobalFooterPolicy6DstaddrNegate(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterPolicy6Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6DynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -837,7 +837,7 @@ func flattenPackagesGlobalFooterPolicy6DynamicProfileAccess(v interface{}, d *sc
 }
 
 func flattenPackagesGlobalFooterPolicy6DynamicProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6EmailCollectionPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -845,11 +845,11 @@ func flattenPackagesGlobalFooterPolicy6EmailCollectionPortal(v interface{}, d *s
 }
 
 func flattenPackagesGlobalFooterPolicy6EmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6FileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6FirewallSessionDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -865,7 +865,7 @@ func flattenPackagesGlobalFooterPolicy6Fsae(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicy6FssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6GlobalLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -873,7 +873,7 @@ func flattenPackagesGlobalFooterPolicy6GlobalLabel(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalFooterPolicy6Groups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6HttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -881,7 +881,7 @@ func flattenPackagesGlobalFooterPolicy6HttpPolicyRedirect(v interface{}, d *sche
 }
 
 func flattenPackagesGlobalFooterPolicy6IcapProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6IdentityBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -905,7 +905,7 @@ func flattenPackagesGlobalFooterPolicy6Ippool(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicy6IpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Label(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -921,7 +921,7 @@ func flattenPackagesGlobalFooterPolicy6LogtrafficStart(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicy6MmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -953,7 +953,7 @@ func flattenPackagesGlobalFooterPolicy6Outbound(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicy6PerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6PolicyOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -965,15 +965,15 @@ func flattenPackagesGlobalFooterPolicy6Policyid(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicy6Poolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6ProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6ProfileProtocolOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6ProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -981,11 +981,11 @@ func flattenPackagesGlobalFooterPolicy6ProfileType(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalFooterPolicy6ReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6ReplacemsgOverrideGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Rsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -993,7 +993,7 @@ func flattenPackagesGlobalFooterPolicy6Rsso(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicy6Schedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SendDenyPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1001,7 +1001,7 @@ func flattenPackagesGlobalFooterPolicy6SendDenyPacket(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalFooterPolicy6Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6ServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1013,11 +1013,11 @@ func flattenPackagesGlobalFooterPolicy6SessionTtl(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicy6SpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1025,11 +1025,11 @@ func flattenPackagesGlobalFooterPolicy6SrcaddrNegate(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterPolicy6Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SshPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1041,11 +1041,11 @@ func flattenPackagesGlobalFooterPolicy6SslMirror(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicy6SslMirrorIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6SslvpnAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1065,7 +1065,7 @@ func flattenPackagesGlobalFooterPolicy6Status(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicy6Tags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6TcpMssReceiver(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1097,19 +1097,19 @@ func flattenPackagesGlobalFooterPolicy6TosNegate(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicy6TrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6TrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6UrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Users(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6UtmInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1137,15 +1137,15 @@ func flattenPackagesGlobalFooterPolicy6VlanFilter(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicy6VoipProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Vpntunnel(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6WafProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6Webcache(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1157,15 +1157,15 @@ func flattenPackagesGlobalFooterPolicy6WebcacheHttps(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterPolicy6WebfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6WebproxyForwardServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterPolicy6WebproxyProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectPackagesGlobalFooterPolicy6(d *schema.ResourceData, o map[string]interface{}) error {
@@ -2363,11 +2363,11 @@ func expandPackagesGlobalFooterPolicy6AntiReplay(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterPolicy6AppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6AppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Application(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2379,7 +2379,7 @@ func expandPackagesGlobalFooterPolicy6ApplicationCharts(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalFooterPolicy6ApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6AutoAsicOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2387,11 +2387,11 @@ func expandPackagesGlobalFooterPolicy6AutoAsicOffload(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicy6AvProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6CasiProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6CgnLogServerGrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2399,7 +2399,7 @@ func expandPackagesGlobalFooterPolicy6CgnLogServerGrp(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicy6CifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Comments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2407,15 +2407,15 @@ func expandPackagesGlobalFooterPolicy6Comments(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesGlobalFooterPolicy6CustomLogFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DecryptedTrafficMirror(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DeepInspectionOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DeviceDetectionPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2423,7 +2423,7 @@ func expandPackagesGlobalFooterPolicy6DeviceDetectionPortal(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalFooterPolicy6Devices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DiffservForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2443,11 +2443,11 @@ func expandPackagesGlobalFooterPolicy6DiffservcodeRev(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicy6DlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DnsfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DscpMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2467,7 +2467,7 @@ func expandPackagesGlobalFooterPolicy6Dsri(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesGlobalFooterPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2475,7 +2475,7 @@ func expandPackagesGlobalFooterPolicy6DstaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesGlobalFooterPolicy6Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6DynamicProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2487,7 +2487,7 @@ func expandPackagesGlobalFooterPolicy6DynamicProfileAccess(d *schema.ResourceDat
 }
 
 func expandPackagesGlobalFooterPolicy6DynamicProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6EmailCollectionPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2495,11 +2495,11 @@ func expandPackagesGlobalFooterPolicy6EmailCollectionPortal(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalFooterPolicy6EmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6FileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6FirewallSessionDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2515,7 +2515,7 @@ func expandPackagesGlobalFooterPolicy6Fsae(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesGlobalFooterPolicy6FssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6GlobalLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2523,7 +2523,7 @@ func expandPackagesGlobalFooterPolicy6GlobalLabel(d *schema.ResourceData, v inte
 }
 
 func expandPackagesGlobalFooterPolicy6Groups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6HttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2531,7 +2531,7 @@ func expandPackagesGlobalFooterPolicy6HttpPolicyRedirect(d *schema.ResourceData,
 }
 
 func expandPackagesGlobalFooterPolicy6IcapProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6IdentityBased(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2555,7 +2555,7 @@ func expandPackagesGlobalFooterPolicy6Ippool(d *schema.ResourceData, v interface
 }
 
 func expandPackagesGlobalFooterPolicy6IpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Label(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2571,7 +2571,7 @@ func expandPackagesGlobalFooterPolicy6LogtrafficStart(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicy6MmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2603,7 +2603,7 @@ func expandPackagesGlobalFooterPolicy6Outbound(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesGlobalFooterPolicy6PerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6PolicyOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2615,15 +2615,15 @@ func expandPackagesGlobalFooterPolicy6Policyid(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesGlobalFooterPolicy6Poolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6ProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6ProfileProtocolOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6ProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2631,11 +2631,11 @@ func expandPackagesGlobalFooterPolicy6ProfileType(d *schema.ResourceData, v inte
 }
 
 func expandPackagesGlobalFooterPolicy6ReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6ReplacemsgOverrideGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Rsso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2643,7 +2643,7 @@ func expandPackagesGlobalFooterPolicy6Rsso(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesGlobalFooterPolicy6Schedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SendDenyPacket(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2651,7 +2651,7 @@ func expandPackagesGlobalFooterPolicy6SendDenyPacket(d *schema.ResourceData, v i
 }
 
 func expandPackagesGlobalFooterPolicy6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6ServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2663,11 +2663,11 @@ func expandPackagesGlobalFooterPolicy6SessionTtl(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterPolicy6SpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2675,11 +2675,11 @@ func expandPackagesGlobalFooterPolicy6SrcaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesGlobalFooterPolicy6Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SshPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2691,11 +2691,11 @@ func expandPackagesGlobalFooterPolicy6SslMirror(d *schema.ResourceData, v interf
 }
 
 func expandPackagesGlobalFooterPolicy6SslMirrorIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6SslvpnAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2715,7 +2715,7 @@ func expandPackagesGlobalFooterPolicy6Status(d *schema.ResourceData, v interface
 }
 
 func expandPackagesGlobalFooterPolicy6Tags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6TcpMssReceiver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2747,19 +2747,19 @@ func expandPackagesGlobalFooterPolicy6TosNegate(d *schema.ResourceData, v interf
 }
 
 func expandPackagesGlobalFooterPolicy6TrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6TrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6UrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Users(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6UtmInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2787,15 +2787,15 @@ func expandPackagesGlobalFooterPolicy6VlanFilter(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterPolicy6VoipProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Vpntunnel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6WafProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6Webcache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2807,15 +2807,15 @@ func expandPackagesGlobalFooterPolicy6WebcacheHttps(d *schema.ResourceData, v in
 }
 
 func expandPackagesGlobalFooterPolicy6WebfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6WebproxyForwardServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterPolicy6WebproxyProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectPackagesGlobalFooterPolicy6(d *schema.ResourceData) (*map[string]interface{}, error) {

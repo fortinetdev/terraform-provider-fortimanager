@@ -10,7 +10,7 @@ description: |-
 NTP settings.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`ntpserver`: `fortimanager_system_ntp_ntpserver`
+>- `ntpserver`: `fortimanager_system_ntp_ntpserver`
 
 
 

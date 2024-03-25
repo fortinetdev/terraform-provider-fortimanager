@@ -10,10 +10,10 @@ description: |-
 Packages Pblock
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`firewall_consolidated_policy`: `fortimanager_packages_pblock_firewall_consolidated_policy`
-`firewall_policy`: `fortimanager_packages_pblock_firewall_policy`
-`firewall_policy6`: `fortimanager_packages_pblock_firewall_policy6`
-`firewall_security_policy`: `fortimanager_packages_pblock_firewall_securitypolicy`
+>- `firewall_consolidated_policy`: `fortimanager_packages_pblock_firewall_consolidated_policy`
+>- `firewall_policy`: `fortimanager_packages_pblock_firewall_policy`
+>- `firewall_policy6`: `fortimanager_packages_pblock_firewall_policy6`
+>- `firewall_security_policy`: `fortimanager_packages_pblock_firewall_securitypolicy`
 
 
 

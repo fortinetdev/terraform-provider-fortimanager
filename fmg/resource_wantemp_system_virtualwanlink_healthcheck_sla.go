@@ -234,23 +234,23 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaRead(d *schema.ResourceDat
 	return nil
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -261,7 +261,7 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceDa
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemVirtualWanLinkHealthCheckSlaId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemVirtualWanLinkHealthCheckSlaId3rdl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemVirtualWanLinkHealthCheckSla-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -271,7 +271,7 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceDa
 		}
 	}
 
-	if err = d.Set("jitter_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
+	if err = d.Set("jitter_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold3rdl(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["jitter-threshold"], "WantempSystemVirtualWanLinkHealthCheckSla-JitterThreshold"); ok {
 			if err = d.Set("jitter_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading jitter_threshold: %v", err)
@@ -281,7 +281,7 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceDa
 		}
 	}
 
-	if err = d.Set("latency_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(o["latency-threshold"], d, "latency_threshold")); err != nil {
+	if err = d.Set("latency_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold3rdl(o["latency-threshold"], d, "latency_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["latency-threshold"], "WantempSystemVirtualWanLinkHealthCheckSla-LatencyThreshold"); ok {
 			if err = d.Set("latency_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading latency_threshold: %v", err)
@@ -291,7 +291,7 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceDa
 		}
 	}
 
-	if err = d.Set("link_cost_factor", flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
+	if err = d.Set("link_cost_factor", flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor3rdl(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["link-cost-factor"], "WantempSystemVirtualWanLinkHealthCheckSla-LinkCostFactor"); ok {
 			if err = d.Set("link_cost_factor", vv); err != nil {
 				return fmt.Errorf("Error reading link_cost_factor: %v", err)
@@ -301,7 +301,7 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceDa
 		}
 	}
 
-	if err = d.Set("packetloss_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
+	if err = d.Set("packetloss_threshold", flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold3rdl(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packetloss-threshold"], "WantempSystemVirtualWanLinkHealthCheckSla-PacketlossThreshold"); ok {
 			if err = d.Set("packetloss_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading packetloss_threshold: %v", err)
@@ -320,23 +320,23 @@ func flattenWantempSystemVirtualWanLinkHealthCheckSlaFortiTestDebug(d *schema.Re
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -344,7 +344,7 @@ func getObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData) 
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaId(d, v, "fosid")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaId3rdl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -353,7 +353,7 @@ func getObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData) 
 	}
 
 	if v, ok := d.GetOk("jitter_threshold"); ok || d.HasChange("jitter_threshold") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(d, v, "jitter_threshold")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold3rdl(d, v, "jitter_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -362,7 +362,7 @@ func getObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData) 
 	}
 
 	if v, ok := d.GetOk("latency_threshold"); ok || d.HasChange("latency_threshold") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(d, v, "latency_threshold")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold3rdl(d, v, "latency_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -371,7 +371,7 @@ func getObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData) 
 	}
 
 	if v, ok := d.GetOk("link_cost_factor"); ok || d.HasChange("link_cost_factor") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(d, v, "link_cost_factor")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor3rdl(d, v, "link_cost_factor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -380,7 +380,7 @@ func getObjectWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData) 
 	}
 
 	if v, ok := d.GetOk("packetloss_threshold"); ok || d.HasChange("packetloss_threshold") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(d, v, "packetloss_threshold")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold3rdl(d, v, "packetloss_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

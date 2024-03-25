@@ -10,7 +10,7 @@ description: |-
 Configure domain controller entries.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`extra_server`: `fortimanager_object_user_domaincontroller_extraserver`
+>- `extra_server`: `fortimanager_object_user_domaincontroller_extraserver`
 
 
 

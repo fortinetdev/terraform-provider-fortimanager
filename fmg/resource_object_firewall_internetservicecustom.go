@@ -483,7 +483,7 @@ func flattenObjectFirewallInternetServiceCustomEntryAddrMode(v interface{}, d *s
 }
 
 func flattenObjectFirewallInternetServiceCustomEntryDst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallInternetServiceCustomEntryDst6(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -871,7 +871,7 @@ func expandObjectFirewallInternetServiceCustomEntryAddrMode(d *schema.ResourceDa
 }
 
 func expandObjectFirewallInternetServiceCustomEntryDst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallInternetServiceCustomEntryDst6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

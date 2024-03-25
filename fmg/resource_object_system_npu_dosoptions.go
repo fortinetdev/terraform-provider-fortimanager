@@ -150,15 +150,15 @@ func resourceObjectSystemNpuDosOptionsRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
-func flattenObjectSystemNpuDosOptionsNpuDosMeterMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDosOptionsNpuDosMeterMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDosOptionsNpuDosSynproxyMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDosOptionsNpuDosSynproxyMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuDosOptionsNpuDosTpeMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuDosOptionsNpuDosTpeMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -169,7 +169,7 @@ func refreshObjectObjectSystemNpuDosOptions(d *schema.ResourceData, o map[string
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("npu_dos_meter_mode", flattenObjectSystemNpuDosOptionsNpuDosMeterMode(o["npu-dos-meter-mode"], d, "npu_dos_meter_mode")); err != nil {
+	if err = d.Set("npu_dos_meter_mode", flattenObjectSystemNpuDosOptionsNpuDosMeterMode2edl(o["npu-dos-meter-mode"], d, "npu_dos_meter_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["npu-dos-meter-mode"], "ObjectSystemNpuDosOptions-NpuDosMeterMode"); ok {
 			if err = d.Set("npu_dos_meter_mode", vv); err != nil {
 				return fmt.Errorf("Error reading npu_dos_meter_mode: %v", err)
@@ -179,7 +179,7 @@ func refreshObjectObjectSystemNpuDosOptions(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("npu_dos_synproxy_mode", flattenObjectSystemNpuDosOptionsNpuDosSynproxyMode(o["npu-dos-synproxy-mode"], d, "npu_dos_synproxy_mode")); err != nil {
+	if err = d.Set("npu_dos_synproxy_mode", flattenObjectSystemNpuDosOptionsNpuDosSynproxyMode2edl(o["npu-dos-synproxy-mode"], d, "npu_dos_synproxy_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["npu-dos-synproxy-mode"], "ObjectSystemNpuDosOptions-NpuDosSynproxyMode"); ok {
 			if err = d.Set("npu_dos_synproxy_mode", vv); err != nil {
 				return fmt.Errorf("Error reading npu_dos_synproxy_mode: %v", err)
@@ -189,7 +189,7 @@ func refreshObjectObjectSystemNpuDosOptions(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("npu_dos_tpe_mode", flattenObjectSystemNpuDosOptionsNpuDosTpeMode(o["npu-dos-tpe-mode"], d, "npu_dos_tpe_mode")); err != nil {
+	if err = d.Set("npu_dos_tpe_mode", flattenObjectSystemNpuDosOptionsNpuDosTpeMode2edl(o["npu-dos-tpe-mode"], d, "npu_dos_tpe_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["npu-dos-tpe-mode"], "ObjectSystemNpuDosOptions-NpuDosTpeMode"); ok {
 			if err = d.Set("npu_dos_tpe_mode", vv); err != nil {
 				return fmt.Errorf("Error reading npu_dos_tpe_mode: %v", err)
@@ -208,15 +208,15 @@ func flattenObjectSystemNpuDosOptionsFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuDosOptionsNpuDosMeterMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDosOptionsNpuDosMeterMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDosOptionsNpuDosSynproxyMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDosOptionsNpuDosSynproxyMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuDosOptionsNpuDosTpeMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuDosOptionsNpuDosTpeMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -224,7 +224,7 @@ func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]int
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("npu_dos_meter_mode"); ok || d.HasChange("npu_dos_meter_mode") {
-		t, err := expandObjectSystemNpuDosOptionsNpuDosMeterMode(d, v, "npu_dos_meter_mode")
+		t, err := expandObjectSystemNpuDosOptionsNpuDosMeterMode2edl(d, v, "npu_dos_meter_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("npu_dos_synproxy_mode"); ok || d.HasChange("npu_dos_synproxy_mode") {
-		t, err := expandObjectSystemNpuDosOptionsNpuDosSynproxyMode(d, v, "npu_dos_synproxy_mode")
+		t, err := expandObjectSystemNpuDosOptionsNpuDosSynproxyMode2edl(d, v, "npu_dos_synproxy_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("npu_dos_tpe_mode"); ok || d.HasChange("npu_dos_tpe_mode") {
-		t, err := expandObjectSystemNpuDosOptionsNpuDosTpeMode(d, v, "npu_dos_tpe_mode")
+		t, err := expandObjectSystemNpuDosOptionsNpuDosTpeMode2edl(d, v, "npu_dos_tpe_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -11,7 +11,7 @@ EAP Methods.
 
 ~> This resource is a sub resource for variable `eap_method` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`auth_param`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod_authparam`
+>- `auth_param`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod_authparam`
 
 
 

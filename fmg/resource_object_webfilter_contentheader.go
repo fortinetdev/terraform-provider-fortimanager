@@ -258,7 +258,7 @@ func flattenObjectWebfilterContentHeaderEntriesAction(v interface{}, d *schema.R
 }
 
 func flattenObjectWebfilterContentHeaderEntriesCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterContentHeaderEntriesPattern(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -395,7 +395,7 @@ func expandObjectWebfilterContentHeaderEntriesAction(d *schema.ResourceData, v i
 }
 
 func expandObjectWebfilterContentHeaderEntriesCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterContentHeaderEntriesPattern(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

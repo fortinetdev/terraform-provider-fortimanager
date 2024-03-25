@@ -10,7 +10,7 @@ description: |-
 Configure IPS sensor.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_ips_sensor_entries`
+>- `entries`: `fortimanager_object_ips_sensor_entries`
 
 
 

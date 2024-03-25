@@ -10,7 +10,7 @@ description: |-
 Configure web proxy profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`headers`: `fortimanager_object_webproxy_profile_headers`
+>- `headers`: `fortimanager_object_webproxy_profile_headers`
 
 
 

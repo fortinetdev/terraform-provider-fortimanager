@@ -10,8 +10,8 @@ description: |-
 Configure IPv6 address groups.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_firewall_addrgrp6_dynamic_mapping`
-`tagging`: `fortimanager_object_firewall_addrgrp6_tagging`
+>- `dynamic_mapping`: `fortimanager_object_firewall_addrgrp6_dynamic_mapping`
+>- `tagging`: `fortimanager_object_firewall_addrgrp6_tagging`
 
 
 

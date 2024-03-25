@@ -10,7 +10,7 @@ description: |-
 Configure Web filter banned word table.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_webfilter_content_entries`
+>- `entries`: `fortimanager_object_webfilter_content_entries`
 
 
 

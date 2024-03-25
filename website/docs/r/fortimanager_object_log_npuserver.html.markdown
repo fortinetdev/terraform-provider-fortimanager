@@ -10,8 +10,8 @@ description: |-
 Configure all the log servers and create the server groups.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`server_group`: `fortimanager_object_log_npuserver_servergroup`
-`server_info`: `fortimanager_object_log_npuserver_serverinfo`
+>- `server_group`: `fortimanager_object_log_npuserver_servergroup`
+>- `server_info`: `fortimanager_object_log_npuserver_serverinfo`
 
 
 
@@ -36,6 +36,8 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+
+* `enforce_seq_order` - sw session netflow logs will be delivered in strict order if the option is enabled. Please do not switch the option while sw traffic is passing through. Valid values: `disable`, `enable`.
 
 * `log_processing` - configure log processed by host to drop or no drop. Valid values: `may-drop`, `no-drop`.
 
@@ -75,6 +77,8 @@ The `server_info` block supports:
 
 * `ipv4_server` - set the IPv4 address for the log server
 * `ipv6_server` - set the IPv6 address for the log server
+* `log_transport` - set transport protocol Valid values: `udp`, `tcp`.
+
 * `source_port` - set the source port for the log packet
 * `template_tx_timeout` - set the template tx timeout
 * `vdom` - Interface connected to the log server is in this virtual domain (VDOM).

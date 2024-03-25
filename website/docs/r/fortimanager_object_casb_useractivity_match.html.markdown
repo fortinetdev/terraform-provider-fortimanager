@@ -11,7 +11,7 @@ CASB user activity match rules.
 
 ~> This resource is a sub resource for variable `match` of resource `fortimanager_object_casb_useractivity`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rules`: `fortimanager_object_casb_useractivity_match_rules`
+>- `rules`: `fortimanager_object_casb_useractivity_match_rules`
 
 
 

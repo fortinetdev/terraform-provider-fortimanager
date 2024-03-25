@@ -260,7 +260,7 @@ func flattenObjectFirewallVip64RealserversMaxConnections2edl(v interface{}, d *s
 }
 
 func flattenObjectFirewallVip64RealserversMonitor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64RealserversPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -416,7 +416,7 @@ func expandObjectFirewallVip64RealserversMaxConnections2edl(d *schema.ResourceDa
 }
 
 func expandObjectFirewallVip64RealserversMonitor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64RealserversPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

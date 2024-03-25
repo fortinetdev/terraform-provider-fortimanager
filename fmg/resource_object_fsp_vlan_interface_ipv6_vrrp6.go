@@ -60,6 +60,11 @@ func resourceObjectFspVlanInterfaceIpv6Vrrp6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ignore_default_route": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"preempt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -245,6 +250,10 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6AdvInterval4thl(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute4thl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceIpv6Vrrp6Preempt4thl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -301,6 +310,16 @@ func refreshObjectObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading adv_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("ignore_default_route", flattenObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute4thl(o["ignore-default-route"], d, "ignore_default_route")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ignore-default-route"], "ObjectFspVlanInterfaceIpv6Vrrp6-IgnoreDefaultRoute"); ok {
+			if err = d.Set("ignore_default_route", vv); err != nil {
+				return fmt.Errorf("Error reading ignore_default_route: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ignore_default_route: %v", err)
 		}
 	}
 
@@ -401,6 +420,10 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval4thl(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute4thl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceIpv6Vrrp6Preempt4thl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -451,6 +474,15 @@ func getObjectObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["adv-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ignore_default_route"); ok || d.HasChange("ignore_default_route") {
+		t, err := expandObjectFspVlanInterfaceIpv6Vrrp6IgnoreDefaultRoute4thl(d, v, "ignore_default_route")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ignore-default-route"] = t
 		}
 	}
 

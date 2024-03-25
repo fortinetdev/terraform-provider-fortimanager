@@ -11,7 +11,7 @@ CASB profile custom control.
 
 ~> This resource is a sub resource for variable `custom_control` of resource `fortimanager_object_casb_profile_saasapplication`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`option`: `fortimanager_object_casb_profile_saasapplication_customcontrol_option`
+>- `option`: `fortimanager_object_casb_profile_saasapplication_customcontrol_option`
 
 
 

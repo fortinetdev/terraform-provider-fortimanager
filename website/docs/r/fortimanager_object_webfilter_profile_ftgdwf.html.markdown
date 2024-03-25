@@ -11,8 +11,8 @@ FortiGuard Web Filter settings.
 
 ~> This resource is a sub resource for variable `ftgd_wf` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`filters`: `fortimanager_object_webfilter_profile_ftgdwf_filters`
-`quota`: `fortimanager_object_webfilter_profile_ftgdwf_quota`
+>- `filters`: `fortimanager_object_webfilter_profile_ftgdwf_filters`
+>- `quota`: `fortimanager_object_webfilter_profile_ftgdwf_quota`
 
 
 

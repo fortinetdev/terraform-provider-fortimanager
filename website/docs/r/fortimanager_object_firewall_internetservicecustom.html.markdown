@@ -10,8 +10,8 @@ description: |-
 Configure custom Internet Services.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`disable_entry`: `fortimanager_object_firewall_internetservicecustom_disableentry`
-`entry`: `fortimanager_object_firewall_internetservicecustom_entry`
+>- `disable_entry`: `fortimanager_object_firewall_internetservicecustom_disableentry`
+>- `entry`: `fortimanager_object_firewall_internetservicecustom_entry`
 
 
 

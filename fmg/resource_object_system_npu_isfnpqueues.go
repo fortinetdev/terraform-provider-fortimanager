@@ -167,35 +167,35 @@ func resourceObjectSystemNpuIsfNpQueuesRead(d *schema.ResourceData, m interface{
 	return nil
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos0(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos02edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos12edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos22edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos32edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos42edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos52edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenObjectSystemNpuIsfNpQueuesCos7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIsfNpQueuesCos72edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
@@ -206,7 +206,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("cos0", flattenObjectSystemNpuIsfNpQueuesCos0(o["cos0"], d, "cos0")); err != nil {
+	if err = d.Set("cos0", flattenObjectSystemNpuIsfNpQueuesCos02edl(o["cos0"], d, "cos0")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos0"], "ObjectSystemNpuIsfNpQueues-Cos0"); ok {
 			if err = d.Set("cos0", vv); err != nil {
 				return fmt.Errorf("Error reading cos0: %v", err)
@@ -216,7 +216,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos1", flattenObjectSystemNpuIsfNpQueuesCos1(o["cos1"], d, "cos1")); err != nil {
+	if err = d.Set("cos1", flattenObjectSystemNpuIsfNpQueuesCos12edl(o["cos1"], d, "cos1")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos1"], "ObjectSystemNpuIsfNpQueues-Cos1"); ok {
 			if err = d.Set("cos1", vv); err != nil {
 				return fmt.Errorf("Error reading cos1: %v", err)
@@ -226,7 +226,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos2", flattenObjectSystemNpuIsfNpQueuesCos2(o["cos2"], d, "cos2")); err != nil {
+	if err = d.Set("cos2", flattenObjectSystemNpuIsfNpQueuesCos22edl(o["cos2"], d, "cos2")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos2"], "ObjectSystemNpuIsfNpQueues-Cos2"); ok {
 			if err = d.Set("cos2", vv); err != nil {
 				return fmt.Errorf("Error reading cos2: %v", err)
@@ -236,7 +236,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos3", flattenObjectSystemNpuIsfNpQueuesCos3(o["cos3"], d, "cos3")); err != nil {
+	if err = d.Set("cos3", flattenObjectSystemNpuIsfNpQueuesCos32edl(o["cos3"], d, "cos3")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos3"], "ObjectSystemNpuIsfNpQueues-Cos3"); ok {
 			if err = d.Set("cos3", vv); err != nil {
 				return fmt.Errorf("Error reading cos3: %v", err)
@@ -246,7 +246,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos4", flattenObjectSystemNpuIsfNpQueuesCos4(o["cos4"], d, "cos4")); err != nil {
+	if err = d.Set("cos4", flattenObjectSystemNpuIsfNpQueuesCos42edl(o["cos4"], d, "cos4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos4"], "ObjectSystemNpuIsfNpQueues-Cos4"); ok {
 			if err = d.Set("cos4", vv); err != nil {
 				return fmt.Errorf("Error reading cos4: %v", err)
@@ -256,7 +256,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos5", flattenObjectSystemNpuIsfNpQueuesCos5(o["cos5"], d, "cos5")); err != nil {
+	if err = d.Set("cos5", flattenObjectSystemNpuIsfNpQueuesCos52edl(o["cos5"], d, "cos5")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos5"], "ObjectSystemNpuIsfNpQueues-Cos5"); ok {
 			if err = d.Set("cos5", vv); err != nil {
 				return fmt.Errorf("Error reading cos5: %v", err)
@@ -266,7 +266,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos6", flattenObjectSystemNpuIsfNpQueuesCos6(o["cos6"], d, "cos6")); err != nil {
+	if err = d.Set("cos6", flattenObjectSystemNpuIsfNpQueuesCos62edl(o["cos6"], d, "cos6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos6"], "ObjectSystemNpuIsfNpQueues-Cos6"); ok {
 			if err = d.Set("cos6", vv); err != nil {
 				return fmt.Errorf("Error reading cos6: %v", err)
@@ -276,7 +276,7 @@ func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("cos7", flattenObjectSystemNpuIsfNpQueuesCos7(o["cos7"], d, "cos7")); err != nil {
+	if err = d.Set("cos7", flattenObjectSystemNpuIsfNpQueuesCos72edl(o["cos7"], d, "cos7")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos7"], "ObjectSystemNpuIsfNpQueues-Cos7"); ok {
 			if err = d.Set("cos7", vv); err != nil {
 				return fmt.Errorf("Error reading cos7: %v", err)
@@ -295,35 +295,35 @@ func flattenObjectSystemNpuIsfNpQueuesFortiTestDebug(d *schema.ResourceData, fos
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos02edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos12edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos22edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos32edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos42edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos52edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIsfNpQueuesCos7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIsfNpQueuesCos72edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -331,7 +331,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cos0"); ok || d.HasChange("cos0") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos0(d, v, "cos0")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos02edl(d, v, "cos0")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -340,7 +340,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos1"); ok || d.HasChange("cos1") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos1(d, v, "cos1")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos12edl(d, v, "cos1")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -349,7 +349,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos2"); ok || d.HasChange("cos2") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos2(d, v, "cos2")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos22edl(d, v, "cos2")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -358,7 +358,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos3"); ok || d.HasChange("cos3") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos3(d, v, "cos3")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos32edl(d, v, "cos3")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -367,7 +367,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos4"); ok || d.HasChange("cos4") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos4(d, v, "cos4")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos42edl(d, v, "cos4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -376,7 +376,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos5"); ok || d.HasChange("cos5") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos5(d, v, "cos5")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos52edl(d, v, "cos5")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -385,7 +385,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos6"); ok || d.HasChange("cos6") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos6(d, v, "cos6")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos62edl(d, v, "cos6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -394,7 +394,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("cos7"); ok || d.HasChange("cos7") {
-		t, err := expandObjectSystemNpuIsfNpQueuesCos7(d, v, "cos7")
+		t, err := expandObjectSystemNpuIsfNpQueuesCos72edl(d, v, "cos7")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -192,31 +192,31 @@ func resourceObjectSystemNpuTcpTimeoutProfileRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileCloseWait(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileCloseWait2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileFinWait(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileFinWait2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileSynSent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileSynSent2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileSynWait(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileSynWait2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileTcpIdle(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileTcpIdle2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuTcpTimeoutProfileTimeWait(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuTcpTimeoutProfileTimeWait2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -227,7 +227,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("close_wait", flattenObjectSystemNpuTcpTimeoutProfileCloseWait(o["close-wait"], d, "close_wait")); err != nil {
+	if err = d.Set("close_wait", flattenObjectSystemNpuTcpTimeoutProfileCloseWait2edl(o["close-wait"], d, "close_wait")); err != nil {
 		if vv, ok := fortiAPIPatch(o["close-wait"], "ObjectSystemNpuTcpTimeoutProfile-CloseWait"); ok {
 			if err = d.Set("close_wait", vv); err != nil {
 				return fmt.Errorf("Error reading close_wait: %v", err)
@@ -237,7 +237,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("fin_wait", flattenObjectSystemNpuTcpTimeoutProfileFinWait(o["fin-wait"], d, "fin_wait")); err != nil {
+	if err = d.Set("fin_wait", flattenObjectSystemNpuTcpTimeoutProfileFinWait2edl(o["fin-wait"], d, "fin_wait")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fin-wait"], "ObjectSystemNpuTcpTimeoutProfile-FinWait"); ok {
 			if err = d.Set("fin_wait", vv); err != nil {
 				return fmt.Errorf("Error reading fin_wait: %v", err)
@@ -247,7 +247,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("fosid", flattenObjectSystemNpuTcpTimeoutProfileId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectSystemNpuTcpTimeoutProfileId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectSystemNpuTcpTimeoutProfile-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -257,7 +257,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("syn_sent", flattenObjectSystemNpuTcpTimeoutProfileSynSent(o["syn-sent"], d, "syn_sent")); err != nil {
+	if err = d.Set("syn_sent", flattenObjectSystemNpuTcpTimeoutProfileSynSent2edl(o["syn-sent"], d, "syn_sent")); err != nil {
 		if vv, ok := fortiAPIPatch(o["syn-sent"], "ObjectSystemNpuTcpTimeoutProfile-SynSent"); ok {
 			if err = d.Set("syn_sent", vv); err != nil {
 				return fmt.Errorf("Error reading syn_sent: %v", err)
@@ -267,7 +267,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("syn_wait", flattenObjectSystemNpuTcpTimeoutProfileSynWait(o["syn-wait"], d, "syn_wait")); err != nil {
+	if err = d.Set("syn_wait", flattenObjectSystemNpuTcpTimeoutProfileSynWait2edl(o["syn-wait"], d, "syn_wait")); err != nil {
 		if vv, ok := fortiAPIPatch(o["syn-wait"], "ObjectSystemNpuTcpTimeoutProfile-SynWait"); ok {
 			if err = d.Set("syn_wait", vv); err != nil {
 				return fmt.Errorf("Error reading syn_wait: %v", err)
@@ -277,7 +277,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("tcp_idle", flattenObjectSystemNpuTcpTimeoutProfileTcpIdle(o["tcp-idle"], d, "tcp_idle")); err != nil {
+	if err = d.Set("tcp_idle", flattenObjectSystemNpuTcpTimeoutProfileTcpIdle2edl(o["tcp-idle"], d, "tcp_idle")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-idle"], "ObjectSystemNpuTcpTimeoutProfile-TcpIdle"); ok {
 			if err = d.Set("tcp_idle", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_idle: %v", err)
@@ -287,7 +287,7 @@ func refreshObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("time_wait", flattenObjectSystemNpuTcpTimeoutProfileTimeWait(o["time-wait"], d, "time_wait")); err != nil {
+	if err = d.Set("time_wait", flattenObjectSystemNpuTcpTimeoutProfileTimeWait2edl(o["time-wait"], d, "time_wait")); err != nil {
 		if vv, ok := fortiAPIPatch(o["time-wait"], "ObjectSystemNpuTcpTimeoutProfile-TimeWait"); ok {
 			if err = d.Set("time_wait", vv); err != nil {
 				return fmt.Errorf("Error reading time_wait: %v", err)
@@ -306,31 +306,31 @@ func flattenObjectSystemNpuTcpTimeoutProfileFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileCloseWait(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileCloseWait2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileFinWait(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileFinWait2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileSynSent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileSynSent2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileSynWait(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileSynWait2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileTcpIdle(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileTcpIdle2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuTcpTimeoutProfileTimeWait(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuTcpTimeoutProfileTimeWait2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -338,7 +338,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("close_wait"); ok || d.HasChange("close_wait") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileCloseWait(d, v, "close_wait")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileCloseWait2edl(d, v, "close_wait")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -347,7 +347,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("fin_wait"); ok || d.HasChange("fin_wait") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileFinWait(d, v, "fin_wait")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileFinWait2edl(d, v, "fin_wait")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -356,7 +356,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileId(d, v, "fosid")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -365,7 +365,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("syn_sent"); ok || d.HasChange("syn_sent") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileSynSent(d, v, "syn_sent")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileSynSent2edl(d, v, "syn_sent")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -374,7 +374,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("syn_wait"); ok || d.HasChange("syn_wait") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileSynWait(d, v, "syn_wait")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileSynWait2edl(d, v, "syn_wait")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -383,7 +383,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("tcp_idle"); ok || d.HasChange("tcp_idle") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileTcpIdle(d, v, "tcp_idle")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileTcpIdle2edl(d, v, "tcp_idle")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -392,7 +392,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("time_wait"); ok || d.HasChange("time_wait") {
-		t, err := expandObjectSystemNpuTcpTimeoutProfileTimeWait(d, v, "time_wait")
+		t, err := expandObjectSystemNpuTcpTimeoutProfileTimeWait2edl(d, v, "time_wait")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

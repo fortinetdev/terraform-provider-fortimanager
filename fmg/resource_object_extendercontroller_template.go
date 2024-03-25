@@ -193,7 +193,7 @@ func resourceObjectExtenderControllerTemplateRead(d *schema.ResourceData, m inte
 }
 
 func flattenObjectExtenderControllerTemplateDataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerTemplateDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -201,19 +201,19 @@ func flattenObjectExtenderControllerTemplateDescription(v interface{}, d *schema
 }
 
 func flattenObjectExtenderControllerTemplateModem1Ifname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerTemplateModem1SimProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerTemplateModem2Ifname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerTemplateModem2SimProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerTemplateName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -307,7 +307,7 @@ func flattenObjectExtenderControllerTemplateFortiTestDebug(d *schema.ResourceDat
 }
 
 func expandObjectExtenderControllerTemplateDataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerTemplateDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -315,19 +315,19 @@ func expandObjectExtenderControllerTemplateDescription(d *schema.ResourceData, v
 }
 
 func expandObjectExtenderControllerTemplateModem1Ifname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerTemplateModem1SimProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerTemplateModem2Ifname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerTemplateModem2SimProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerTemplateName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

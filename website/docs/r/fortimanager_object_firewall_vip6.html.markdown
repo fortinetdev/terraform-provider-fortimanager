@@ -10,10 +10,11 @@ description: |-
 Configure virtual IP for IPv6.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_firewall_vip6_dynamic_mapping`
-`realservers`: `fortimanager_object_firewall_vip6_realservers`
-`ssl_cipher_suites`: `fortimanager_object_firewall_vip6_sslciphersuites`
-`ssl_server_cipher_suites`: `fortimanager_object_firewall_vip6_sslserverciphersuites`
+>- `dynamic_mapping`: `fortimanager_object_firewall_vip6_dynamic_mapping`
+>- `quic`: `fortimanager_object_firewall_vip6_quic`
+>- `realservers`: `fortimanager_object_firewall_vip6_realservers`
+>- `ssl_cipher_suites`: `fortimanager_object_firewall_vip6_sslciphersuites`
+>- `ssl_server_cipher_suites`: `fortimanager_object_firewall_vip6_sslserverciphersuites`
 
 
 
@@ -77,6 +78,10 @@ The following arguments are supported:
 
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
+* `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
+
+* `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -120,6 +125,7 @@ The following arguments are supported:
 
 * `protocol` - Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 
+* `quic` - Quic. The structure of `quic` block is documented below.
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `server_type` - Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `ssl`, `tcp`, `udp`, `ip`, `imaps`, `pop3s`, `smtps`.
 
@@ -203,6 +209,10 @@ The `dynamic_mapping` block supports:
 
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
+* `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
+
+* `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -343,6 +353,19 @@ The `ssl_cipher_suites` block supports:
 * `priority` - SSL/TLS cipher suites priority.
 * `versions` - SSL/TLS versions that the cipher suite can be used with. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+
+The `quic` block supports:
+
+* `ack_delay_exponent` - <i>Support meta variable</i> ACK delay exponent (1 - 20, default = 3).
+* `active_connection_id_limit` - <i>Support meta variable</i> Active connection ID limit (1 - 8, default = 2).
+* `active_migration` - Enable/disable active migration (default = disable). Valid values: `disable`, `enable`.
+
+* `grease_quic_bit` - Enable/disable grease QUIC bit (default = enable). Valid values: `disable`, `enable`.
+
+* `max_ack_delay` - <i>Support meta variable</i> Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+* `max_datagram_frame_size` - <i>Support meta variable</i> Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+* `max_idle_timeout` - <i>Support meta variable</i> Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+* `max_udp_payload_size` - <i>Support meta variable</i> Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
 
 The `realservers` block supports:
 

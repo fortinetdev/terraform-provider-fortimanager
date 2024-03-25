@@ -10,7 +10,7 @@ description: |-
 Configure AntiSpam DNSBL/ORBL.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_emailfilter_dnsbl_entries`
+>- `entries`: `fortimanager_object_emailfilter_dnsbl_entries`
 
 
 

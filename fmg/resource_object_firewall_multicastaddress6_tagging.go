@@ -203,7 +203,7 @@ func resourceObjectFirewallMulticastAddress6TaggingRead(d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallMulticastAddress6TaggingCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMulticastAddress6TaggingName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -211,7 +211,7 @@ func flattenObjectFirewallMulticastAddress6TaggingName2edl(v interface{}, d *sch
 }
 
 func flattenObjectFirewallMulticastAddress6TaggingTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallMulticastAddress6Tagging(d *schema.ResourceData, o map[string]interface{}) error {
@@ -261,7 +261,7 @@ func flattenObjectFirewallMulticastAddress6TaggingFortiTestDebug(d *schema.Resou
 }
 
 func expandObjectFirewallMulticastAddress6TaggingCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMulticastAddress6TaggingName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -269,7 +269,7 @@ func expandObjectFirewallMulticastAddress6TaggingName2edl(d *schema.ResourceData
 }
 
 func expandObjectFirewallMulticastAddress6TaggingTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallMulticastAddress6Tagging(d *schema.ResourceData) (*map[string]interface{}, error) {

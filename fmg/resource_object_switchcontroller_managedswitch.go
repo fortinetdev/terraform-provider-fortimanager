@@ -127,6 +127,10 @@ func resourceObjectSwitchControllerManagedSwitch() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mgmt_mode": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -573,6 +577,11 @@ func resourceObjectSwitchControllerManagedSwitch() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"purdue_level": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"qos_drop_policy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -580,6 +589,15 @@ func resourceObjectSwitchControllerManagedSwitch() *schema.Resource {
 			},
 			"qos_red_probability": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"radius_nas_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"radius_nas_ip_override": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -621,6 +639,26 @@ func resourceObjectSwitchControllerManagedSwitch() *schema.Resource {
 			"tdr_supported": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"tunnel_discovered": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"vlan": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"assignment_priority": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"vlan_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -902,6 +940,10 @@ func flattenObjectSwitchControllerManagedSwitchL3Discovered(v interface{}, d *sc
 }
 
 func flattenObjectSwitchControllerManagedSwitchMclagIgmpSnoopingAware(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchMgmtMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1481,7 +1523,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsAggregatorMode(v interface{}
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsAllowedVlans(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsAllowedVlansAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1636,7 +1678,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsIgmpsFloodTraffic(v interfac
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsInterfaceTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsIpSourceGuard(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1856,7 +1898,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsType(v interface{}, d *schem
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsUntaggedVlans(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1871,11 +1913,23 @@ func flattenObjectSwitchControllerManagedSwitchPtpStatus(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectSwitchControllerManagedSwitchPurdueLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSwitchControllerManagedSwitchQosDropPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSwitchControllerManagedSwitchQosRedProbability(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchRadiusNasIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchRadiusNasIpOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1945,6 +1999,59 @@ func flattenObjectSwitchControllerManagedSwitchSwitchId(v interface{}, d *schema
 }
 
 func flattenObjectSwitchControllerManagedSwitchTdrSupported(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchTunnelDiscovered(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchVlan(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "assignment_priority"
+		if _, ok := i["assignment-priority"]; ok {
+			v := flattenObjectSwitchControllerManagedSwitchVlanAssignmentPriority(i["assignment-priority"], d, pre_append)
+			tmp["assignment_priority"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-Vlan-AssignmentPriority")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_name"
+		if _, ok := i["vlan-name"]; ok {
+			v := flattenObjectSwitchControllerManagedSwitchVlanVlanName(i["vlan-name"], d, pre_append)
+			tmp["vlan_name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-Vlan-VlanName")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSwitchControllerManagedSwitchVlanAssignmentPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerManagedSwitchVlanVlanName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2087,6 +2194,16 @@ func refreshObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("mgmt_mode", flattenObjectSwitchControllerManagedSwitchMgmtMode(o["mgmt-mode"], d, "mgmt_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mgmt-mode"], "ObjectSwitchControllerManagedSwitch-MgmtMode"); ok {
+			if err = d.Set("mgmt_mode", vv); err != nil {
+				return fmt.Errorf("Error reading mgmt_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mgmt_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectSwitchControllerManagedSwitchName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSwitchControllerManagedSwitch-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -2191,6 +2308,16 @@ func refreshObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("purdue_level", flattenObjectSwitchControllerManagedSwitchPurdueLevel(o["purdue-level"], d, "purdue_level")); err != nil {
+		if vv, ok := fortiAPIPatch(o["purdue-level"], "ObjectSwitchControllerManagedSwitch-PurdueLevel"); ok {
+			if err = d.Set("purdue_level", vv); err != nil {
+				return fmt.Errorf("Error reading purdue_level: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading purdue_level: %v", err)
+		}
+	}
+
 	if err = d.Set("qos_drop_policy", flattenObjectSwitchControllerManagedSwitchQosDropPolicy(o["qos-drop-policy"], d, "qos_drop_policy")); err != nil {
 		if vv, ok := fortiAPIPatch(o["qos-drop-policy"], "ObjectSwitchControllerManagedSwitch-QosDropPolicy"); ok {
 			if err = d.Set("qos_drop_policy", vv); err != nil {
@@ -2208,6 +2335,26 @@ func refreshObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading qos_red_probability: %v", err)
+		}
+	}
+
+	if err = d.Set("radius_nas_ip", flattenObjectSwitchControllerManagedSwitchRadiusNasIp(o["radius-nas-ip"], d, "radius_nas_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["radius-nas-ip"], "ObjectSwitchControllerManagedSwitch-RadiusNasIp"); ok {
+			if err = d.Set("radius_nas_ip", vv); err != nil {
+				return fmt.Errorf("Error reading radius_nas_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading radius_nas_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("radius_nas_ip_override", flattenObjectSwitchControllerManagedSwitchRadiusNasIpOverride(o["radius-nas-ip-override"], d, "radius_nas_ip_override")); err != nil {
+		if vv, ok := fortiAPIPatch(o["radius-nas-ip-override"], "ObjectSwitchControllerManagedSwitch-RadiusNasIpOverride"); ok {
+			if err = d.Set("radius_nas_ip_override", vv); err != nil {
+				return fmt.Errorf("Error reading radius_nas_ip_override: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading radius_nas_ip_override: %v", err)
 		}
 	}
 
@@ -2282,6 +2429,40 @@ func refreshObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading tdr_supported: %v", err)
+		}
+	}
+
+	if err = d.Set("tunnel_discovered", flattenObjectSwitchControllerManagedSwitchTunnelDiscovered(o["tunnel-discovered"], d, "tunnel_discovered")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tunnel-discovered"], "ObjectSwitchControllerManagedSwitch-TunnelDiscovered"); ok {
+			if err = d.Set("tunnel_discovered", vv); err != nil {
+				return fmt.Errorf("Error reading tunnel_discovered: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tunnel_discovered: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("vlan", flattenObjectSwitchControllerManagedSwitchVlan(o["vlan"], d, "vlan")); err != nil {
+			if vv, ok := fortiAPIPatch(o["vlan"], "ObjectSwitchControllerManagedSwitch-Vlan"); ok {
+				if err = d.Set("vlan", vv); err != nil {
+					return fmt.Errorf("Error reading vlan: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading vlan: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("vlan"); ok {
+			if err = d.Set("vlan", flattenObjectSwitchControllerManagedSwitchVlan(o["vlan"], d, "vlan")); err != nil {
+				if vv, ok := fortiAPIPatch(o["vlan"], "ObjectSwitchControllerManagedSwitch-Vlan"); ok {
+					if err = d.Set("vlan", vv); err != nil {
+						return fmt.Errorf("Error reading vlan: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading vlan: %v", err)
+				}
+			}
 		}
 	}
 
@@ -2434,6 +2615,10 @@ func expandObjectSwitchControllerManagedSwitchL3Discovered(d *schema.ResourceDat
 }
 
 func expandObjectSwitchControllerManagedSwitchMclagIgmpSnoopingAware(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchMgmtMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2928,7 +3113,7 @@ func expandObjectSwitchControllerManagedSwitchPortsAggregatorMode(d *schema.Reso
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsAllowedVlans(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsAllowedVlansAll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3075,7 +3260,7 @@ func expandObjectSwitchControllerManagedSwitchPortsIgmpsFloodTraffic(d *schema.R
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsInterfaceTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsIpSourceGuard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3295,7 +3480,7 @@ func expandObjectSwitchControllerManagedSwitchPortsType(d *schema.ResourceData, 
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsUntaggedVlans(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsVlan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3310,11 +3495,23 @@ func expandObjectSwitchControllerManagedSwitchPtpStatus(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectSwitchControllerManagedSwitchPurdueLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSwitchControllerManagedSwitchQosDropPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectSwitchControllerManagedSwitchQosRedProbability(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchRadiusNasIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchRadiusNasIpOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3377,6 +3574,52 @@ func expandObjectSwitchControllerManagedSwitchSwitchId(d *schema.ResourceData, v
 }
 
 func expandObjectSwitchControllerManagedSwitchTdrSupported(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchTunnelDiscovered(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchVlan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "assignment_priority"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["assignment-priority"], _ = expandObjectSwitchControllerManagedSwitchVlanAssignmentPriority(d, i["assignment_priority"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vlan-name"], _ = expandObjectSwitchControllerManagedSwitchVlanVlanName(d, i["vlan_name"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchVlanAssignmentPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerManagedSwitchVlanVlanName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3473,6 +3716,15 @@ func getObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("mgmt_mode"); ok || d.HasChange("mgmt_mode") {
+		t, err := expandObjectSwitchControllerManagedSwitchMgmtMode(d, v, "mgmt_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mgmt-mode"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerManagedSwitchName(d, v, "name")
 		if err != nil {
@@ -3554,6 +3806,15 @@ func getObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("purdue_level"); ok || d.HasChange("purdue_level") {
+		t, err := expandObjectSwitchControllerManagedSwitchPurdueLevel(d, v, "purdue_level")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["purdue-level"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("qos_drop_policy"); ok || d.HasChange("qos_drop_policy") {
 		t, err := expandObjectSwitchControllerManagedSwitchQosDropPolicy(d, v, "qos_drop_policy")
 		if err != nil {
@@ -3569,6 +3830,24 @@ func getObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData) (*map[
 			return &obj, err
 		} else if t != nil {
 			obj["qos-red-probability"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("radius_nas_ip"); ok || d.HasChange("radius_nas_ip") {
+		t, err := expandObjectSwitchControllerManagedSwitchRadiusNasIp(d, v, "radius_nas_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["radius-nas-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("radius_nas_ip_override"); ok || d.HasChange("radius_nas_ip_override") {
+		t, err := expandObjectSwitchControllerManagedSwitchRadiusNasIpOverride(d, v, "radius_nas_ip_override")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["radius-nas-ip-override"] = t
 		}
 	}
 
@@ -3623,6 +3902,24 @@ func getObjectObjectSwitchControllerManagedSwitch(d *schema.ResourceData) (*map[
 			return &obj, err
 		} else if t != nil {
 			obj["tdr-supported"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tunnel_discovered"); ok || d.HasChange("tunnel_discovered") {
+		t, err := expandObjectSwitchControllerManagedSwitchTunnelDiscovered(d, v, "tunnel_discovered")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tunnel-discovered"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vlan"); ok || d.HasChange("vlan") {
+		t, err := expandObjectSwitchControllerManagedSwitchVlan(d, v, "vlan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vlan"] = t
 		}
 	}
 

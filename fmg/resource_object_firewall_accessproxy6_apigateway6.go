@@ -83,6 +83,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6() *schema.Resource {
 			"http_cookie_generation": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"http_cookie_path": &schema.Schema{
 				Type:     schema.TypeString,
@@ -102,6 +103,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
@@ -823,7 +825,7 @@ func flattenObjectFirewallAccessProxy6ApiGateway6RealserversIp2edl(v interface{}
 }
 
 func flattenObjectFirewallAccessProxy6ApiGateway6RealserversMappedport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGateway6RealserversPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1606,7 +1608,7 @@ func expandObjectFirewallAccessProxy6ApiGateway6RealserversIp2edl(d *schema.Reso
 }
 
 func expandObjectFirewallAccessProxy6ApiGateway6RealserversMappedport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGateway6RealserversPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

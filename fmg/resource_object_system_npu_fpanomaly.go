@@ -450,263 +450,263 @@ func resourceObjectSystemNpuFpAnomalyRead(d *schema.ResourceData, m interface{})
 	return nil
 }
 
-func flattenObjectSystemNpuFpAnomalyCapwapMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyCapwapMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyEspMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyEspMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyGreCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyGreCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyGtpuPlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyGtpuPlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIcmpCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIcmpCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIcmpFrag(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIcmpFrag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIcmpLand(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIcmpLand2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIcmpMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIcmpMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4CsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4CsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4IhlErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4IhlErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Land(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Land2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4LenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4LenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4OptErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4OptErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Optlsrr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Optlsrr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Optrr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Optrr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Optsecurity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Optsecurity2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Optssrr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Optssrr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Optstream(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Optstream2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Opttimestamp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Opttimestamp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4ProtoErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4ProtoErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4TtlzeroErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4TtlzeroErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4Unknopt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4Unknopt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv4VerErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv4VerErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6DaddrErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6DaddrErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6ExthdrLenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6ExthdrLenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6IhlErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6IhlErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Land(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Land2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Optendpid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Optendpid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Opthomeaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Opthomeaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Optinvld(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Optinvld2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Optjumbo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Optjumbo2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Optnsap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Optnsap2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Optralert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Optralert2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Opttunnel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Opttunnel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6PlenZero(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6PlenZero2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6ProtoErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6ProtoErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6SaddrErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6SaddrErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6Unknopt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6Unknopt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyIpv6VerErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyIpv6VerErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyNvgreMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyNvgreMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalySctpClenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalySctpClenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalySctpCrcErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalySctpCrcErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalySctpL4LenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalySctpL4LenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpFinNoack(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpFinNoack2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpFinOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpFinOnly2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpHlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpHlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpLand(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpLand2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpNoFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpNoFlag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpPlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpPlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpSynData(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpSynData2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpSynFin(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpSynFin2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyTcpWinnuke(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyTcpWinnuke2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpHlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpHlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpLand(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpLand2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpLenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpLenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpPlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpPlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpliteCoverErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpliteCoverErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUdpliteCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUdpliteCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUespMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUespMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyUnknprotoMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyUnknprotoMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuFpAnomalyVxlanMinlenErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuFpAnomalyVxlanMinlenErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -717,7 +717,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("capwap_minlen_err", flattenObjectSystemNpuFpAnomalyCapwapMinlenErr(o["capwap-minlen-err"], d, "capwap_minlen_err")); err != nil {
+	if err = d.Set("capwap_minlen_err", flattenObjectSystemNpuFpAnomalyCapwapMinlenErr2edl(o["capwap-minlen-err"], d, "capwap_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["capwap-minlen-err"], "ObjectSystemNpuFpAnomaly-CapwapMinlenErr"); ok {
 			if err = d.Set("capwap_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading capwap_minlen_err: %v", err)
@@ -727,7 +727,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("esp_minlen_err", flattenObjectSystemNpuFpAnomalyEspMinlenErr(o["esp-minlen-err"], d, "esp_minlen_err")); err != nil {
+	if err = d.Set("esp_minlen_err", flattenObjectSystemNpuFpAnomalyEspMinlenErr2edl(o["esp-minlen-err"], d, "esp_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["esp-minlen-err"], "ObjectSystemNpuFpAnomaly-EspMinlenErr"); ok {
 			if err = d.Set("esp_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading esp_minlen_err: %v", err)
@@ -737,7 +737,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("gre_csum_err", flattenObjectSystemNpuFpAnomalyGreCsumErr(o["gre-csum-err"], d, "gre_csum_err")); err != nil {
+	if err = d.Set("gre_csum_err", flattenObjectSystemNpuFpAnomalyGreCsumErr2edl(o["gre-csum-err"], d, "gre_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gre-csum-err"], "ObjectSystemNpuFpAnomaly-GreCsumErr"); ok {
 			if err = d.Set("gre_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading gre_csum_err: %v", err)
@@ -747,7 +747,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("gtpu_plen_err", flattenObjectSystemNpuFpAnomalyGtpuPlenErr(o["gtpu-plen-err"], d, "gtpu_plen_err")); err != nil {
+	if err = d.Set("gtpu_plen_err", flattenObjectSystemNpuFpAnomalyGtpuPlenErr2edl(o["gtpu-plen-err"], d, "gtpu_plen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gtpu-plen-err"], "ObjectSystemNpuFpAnomaly-GtpuPlenErr"); ok {
 			if err = d.Set("gtpu_plen_err", vv); err != nil {
 				return fmt.Errorf("Error reading gtpu_plen_err: %v", err)
@@ -757,7 +757,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("icmp_csum_err", flattenObjectSystemNpuFpAnomalyIcmpCsumErr(o["icmp-csum-err"], d, "icmp_csum_err")); err != nil {
+	if err = d.Set("icmp_csum_err", flattenObjectSystemNpuFpAnomalyIcmpCsumErr2edl(o["icmp-csum-err"], d, "icmp_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-csum-err"], "ObjectSystemNpuFpAnomaly-IcmpCsumErr"); ok {
 			if err = d.Set("icmp_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading icmp_csum_err: %v", err)
@@ -767,7 +767,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("icmp_frag", flattenObjectSystemNpuFpAnomalyIcmpFrag(o["icmp-frag"], d, "icmp_frag")); err != nil {
+	if err = d.Set("icmp_frag", flattenObjectSystemNpuFpAnomalyIcmpFrag2edl(o["icmp-frag"], d, "icmp_frag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-frag"], "ObjectSystemNpuFpAnomaly-IcmpFrag"); ok {
 			if err = d.Set("icmp_frag", vv); err != nil {
 				return fmt.Errorf("Error reading icmp_frag: %v", err)
@@ -777,7 +777,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("icmp_land", flattenObjectSystemNpuFpAnomalyIcmpLand(o["icmp-land"], d, "icmp_land")); err != nil {
+	if err = d.Set("icmp_land", flattenObjectSystemNpuFpAnomalyIcmpLand2edl(o["icmp-land"], d, "icmp_land")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-land"], "ObjectSystemNpuFpAnomaly-IcmpLand"); ok {
 			if err = d.Set("icmp_land", vv); err != nil {
 				return fmt.Errorf("Error reading icmp_land: %v", err)
@@ -787,7 +787,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("icmp_minlen_err", flattenObjectSystemNpuFpAnomalyIcmpMinlenErr(o["icmp-minlen-err"], d, "icmp_minlen_err")); err != nil {
+	if err = d.Set("icmp_minlen_err", flattenObjectSystemNpuFpAnomalyIcmpMinlenErr2edl(o["icmp-minlen-err"], d, "icmp_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-minlen-err"], "ObjectSystemNpuFpAnomaly-IcmpMinlenErr"); ok {
 			if err = d.Set("icmp_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading icmp_minlen_err: %v", err)
@@ -797,7 +797,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_csum_err", flattenObjectSystemNpuFpAnomalyIpv4CsumErr(o["ipv4-csum-err"], d, "ipv4_csum_err")); err != nil {
+	if err = d.Set("ipv4_csum_err", flattenObjectSystemNpuFpAnomalyIpv4CsumErr2edl(o["ipv4-csum-err"], d, "ipv4_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-csum-err"], "ObjectSystemNpuFpAnomaly-Ipv4CsumErr"); ok {
 			if err = d.Set("ipv4_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_csum_err: %v", err)
@@ -807,7 +807,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_ihl_err", flattenObjectSystemNpuFpAnomalyIpv4IhlErr(o["ipv4-ihl-err"], d, "ipv4_ihl_err")); err != nil {
+	if err = d.Set("ipv4_ihl_err", flattenObjectSystemNpuFpAnomalyIpv4IhlErr2edl(o["ipv4-ihl-err"], d, "ipv4_ihl_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-ihl-err"], "ObjectSystemNpuFpAnomaly-Ipv4IhlErr"); ok {
 			if err = d.Set("ipv4_ihl_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_ihl_err: %v", err)
@@ -817,7 +817,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_land", flattenObjectSystemNpuFpAnomalyIpv4Land(o["ipv4-land"], d, "ipv4_land")); err != nil {
+	if err = d.Set("ipv4_land", flattenObjectSystemNpuFpAnomalyIpv4Land2edl(o["ipv4-land"], d, "ipv4_land")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-land"], "ObjectSystemNpuFpAnomaly-Ipv4Land"); ok {
 			if err = d.Set("ipv4_land", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_land: %v", err)
@@ -827,7 +827,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_len_err", flattenObjectSystemNpuFpAnomalyIpv4LenErr(o["ipv4-len-err"], d, "ipv4_len_err")); err != nil {
+	if err = d.Set("ipv4_len_err", flattenObjectSystemNpuFpAnomalyIpv4LenErr2edl(o["ipv4-len-err"], d, "ipv4_len_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-len-err"], "ObjectSystemNpuFpAnomaly-Ipv4LenErr"); ok {
 			if err = d.Set("ipv4_len_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_len_err: %v", err)
@@ -837,7 +837,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_opt_err", flattenObjectSystemNpuFpAnomalyIpv4OptErr(o["ipv4-opt-err"], d, "ipv4_opt_err")); err != nil {
+	if err = d.Set("ipv4_opt_err", flattenObjectSystemNpuFpAnomalyIpv4OptErr2edl(o["ipv4-opt-err"], d, "ipv4_opt_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-opt-err"], "ObjectSystemNpuFpAnomaly-Ipv4OptErr"); ok {
 			if err = d.Set("ipv4_opt_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_opt_err: %v", err)
@@ -847,7 +847,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_optlsrr", flattenObjectSystemNpuFpAnomalyIpv4Optlsrr(o["ipv4-optlsrr"], d, "ipv4_optlsrr")); err != nil {
+	if err = d.Set("ipv4_optlsrr", flattenObjectSystemNpuFpAnomalyIpv4Optlsrr2edl(o["ipv4-optlsrr"], d, "ipv4_optlsrr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-optlsrr"], "ObjectSystemNpuFpAnomaly-Ipv4Optlsrr"); ok {
 			if err = d.Set("ipv4_optlsrr", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_optlsrr: %v", err)
@@ -857,7 +857,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_optrr", flattenObjectSystemNpuFpAnomalyIpv4Optrr(o["ipv4-optrr"], d, "ipv4_optrr")); err != nil {
+	if err = d.Set("ipv4_optrr", flattenObjectSystemNpuFpAnomalyIpv4Optrr2edl(o["ipv4-optrr"], d, "ipv4_optrr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-optrr"], "ObjectSystemNpuFpAnomaly-Ipv4Optrr"); ok {
 			if err = d.Set("ipv4_optrr", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_optrr: %v", err)
@@ -867,7 +867,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_optsecurity", flattenObjectSystemNpuFpAnomalyIpv4Optsecurity(o["ipv4-optsecurity"], d, "ipv4_optsecurity")); err != nil {
+	if err = d.Set("ipv4_optsecurity", flattenObjectSystemNpuFpAnomalyIpv4Optsecurity2edl(o["ipv4-optsecurity"], d, "ipv4_optsecurity")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-optsecurity"], "ObjectSystemNpuFpAnomaly-Ipv4Optsecurity"); ok {
 			if err = d.Set("ipv4_optsecurity", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_optsecurity: %v", err)
@@ -877,7 +877,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_optssrr", flattenObjectSystemNpuFpAnomalyIpv4Optssrr(o["ipv4-optssrr"], d, "ipv4_optssrr")); err != nil {
+	if err = d.Set("ipv4_optssrr", flattenObjectSystemNpuFpAnomalyIpv4Optssrr2edl(o["ipv4-optssrr"], d, "ipv4_optssrr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-optssrr"], "ObjectSystemNpuFpAnomaly-Ipv4Optssrr"); ok {
 			if err = d.Set("ipv4_optssrr", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_optssrr: %v", err)
@@ -887,7 +887,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_optstream", flattenObjectSystemNpuFpAnomalyIpv4Optstream(o["ipv4-optstream"], d, "ipv4_optstream")); err != nil {
+	if err = d.Set("ipv4_optstream", flattenObjectSystemNpuFpAnomalyIpv4Optstream2edl(o["ipv4-optstream"], d, "ipv4_optstream")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-optstream"], "ObjectSystemNpuFpAnomaly-Ipv4Optstream"); ok {
 			if err = d.Set("ipv4_optstream", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_optstream: %v", err)
@@ -897,7 +897,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_opttimestamp", flattenObjectSystemNpuFpAnomalyIpv4Opttimestamp(o["ipv4-opttimestamp"], d, "ipv4_opttimestamp")); err != nil {
+	if err = d.Set("ipv4_opttimestamp", flattenObjectSystemNpuFpAnomalyIpv4Opttimestamp2edl(o["ipv4-opttimestamp"], d, "ipv4_opttimestamp")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-opttimestamp"], "ObjectSystemNpuFpAnomaly-Ipv4Opttimestamp"); ok {
 			if err = d.Set("ipv4_opttimestamp", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_opttimestamp: %v", err)
@@ -907,7 +907,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_proto_err", flattenObjectSystemNpuFpAnomalyIpv4ProtoErr(o["ipv4-proto-err"], d, "ipv4_proto_err")); err != nil {
+	if err = d.Set("ipv4_proto_err", flattenObjectSystemNpuFpAnomalyIpv4ProtoErr2edl(o["ipv4-proto-err"], d, "ipv4_proto_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-proto-err"], "ObjectSystemNpuFpAnomaly-Ipv4ProtoErr"); ok {
 			if err = d.Set("ipv4_proto_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_proto_err: %v", err)
@@ -917,7 +917,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_ttlzero_err", flattenObjectSystemNpuFpAnomalyIpv4TtlzeroErr(o["ipv4-ttlzero-err"], d, "ipv4_ttlzero_err")); err != nil {
+	if err = d.Set("ipv4_ttlzero_err", flattenObjectSystemNpuFpAnomalyIpv4TtlzeroErr2edl(o["ipv4-ttlzero-err"], d, "ipv4_ttlzero_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-ttlzero-err"], "ObjectSystemNpuFpAnomaly-Ipv4TtlzeroErr"); ok {
 			if err = d.Set("ipv4_ttlzero_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_ttlzero_err: %v", err)
@@ -927,7 +927,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_unknopt", flattenObjectSystemNpuFpAnomalyIpv4Unknopt(o["ipv4-unknopt"], d, "ipv4_unknopt")); err != nil {
+	if err = d.Set("ipv4_unknopt", flattenObjectSystemNpuFpAnomalyIpv4Unknopt2edl(o["ipv4-unknopt"], d, "ipv4_unknopt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-unknopt"], "ObjectSystemNpuFpAnomaly-Ipv4Unknopt"); ok {
 			if err = d.Set("ipv4_unknopt", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_unknopt: %v", err)
@@ -937,7 +937,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv4_ver_err", flattenObjectSystemNpuFpAnomalyIpv4VerErr(o["ipv4-ver-err"], d, "ipv4_ver_err")); err != nil {
+	if err = d.Set("ipv4_ver_err", flattenObjectSystemNpuFpAnomalyIpv4VerErr2edl(o["ipv4-ver-err"], d, "ipv4_ver_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-ver-err"], "ObjectSystemNpuFpAnomaly-Ipv4VerErr"); ok {
 			if err = d.Set("ipv4_ver_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv4_ver_err: %v", err)
@@ -947,7 +947,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_daddr_err", flattenObjectSystemNpuFpAnomalyIpv6DaddrErr(o["ipv6-daddr-err"], d, "ipv6_daddr_err")); err != nil {
+	if err = d.Set("ipv6_daddr_err", flattenObjectSystemNpuFpAnomalyIpv6DaddrErr2edl(o["ipv6-daddr-err"], d, "ipv6_daddr_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-daddr-err"], "ObjectSystemNpuFpAnomaly-Ipv6DaddrErr"); ok {
 			if err = d.Set("ipv6_daddr_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_daddr_err: %v", err)
@@ -957,7 +957,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_exthdr_len_err", flattenObjectSystemNpuFpAnomalyIpv6ExthdrLenErr(o["ipv6-exthdr-len-err"], d, "ipv6_exthdr_len_err")); err != nil {
+	if err = d.Set("ipv6_exthdr_len_err", flattenObjectSystemNpuFpAnomalyIpv6ExthdrLenErr2edl(o["ipv6-exthdr-len-err"], d, "ipv6_exthdr_len_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-exthdr-len-err"], "ObjectSystemNpuFpAnomaly-Ipv6ExthdrLenErr"); ok {
 			if err = d.Set("ipv6_exthdr_len_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_exthdr_len_err: %v", err)
@@ -967,7 +967,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_exthdr_order_err", flattenObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr(o["ipv6-exthdr-order-err"], d, "ipv6_exthdr_order_err")); err != nil {
+	if err = d.Set("ipv6_exthdr_order_err", flattenObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr2edl(o["ipv6-exthdr-order-err"], d, "ipv6_exthdr_order_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-exthdr-order-err"], "ObjectSystemNpuFpAnomaly-Ipv6ExthdrOrderErr"); ok {
 			if err = d.Set("ipv6_exthdr_order_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_exthdr_order_err: %v", err)
@@ -977,7 +977,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_ihl_err", flattenObjectSystemNpuFpAnomalyIpv6IhlErr(o["ipv6-ihl-err"], d, "ipv6_ihl_err")); err != nil {
+	if err = d.Set("ipv6_ihl_err", flattenObjectSystemNpuFpAnomalyIpv6IhlErr2edl(o["ipv6-ihl-err"], d, "ipv6_ihl_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-ihl-err"], "ObjectSystemNpuFpAnomaly-Ipv6IhlErr"); ok {
 			if err = d.Set("ipv6_ihl_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_ihl_err: %v", err)
@@ -987,7 +987,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_land", flattenObjectSystemNpuFpAnomalyIpv6Land(o["ipv6-land"], d, "ipv6_land")); err != nil {
+	if err = d.Set("ipv6_land", flattenObjectSystemNpuFpAnomalyIpv6Land2edl(o["ipv6-land"], d, "ipv6_land")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-land"], "ObjectSystemNpuFpAnomaly-Ipv6Land"); ok {
 			if err = d.Set("ipv6_land", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_land: %v", err)
@@ -997,7 +997,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_optendpid", flattenObjectSystemNpuFpAnomalyIpv6Optendpid(o["ipv6-optendpid"], d, "ipv6_optendpid")); err != nil {
+	if err = d.Set("ipv6_optendpid", flattenObjectSystemNpuFpAnomalyIpv6Optendpid2edl(o["ipv6-optendpid"], d, "ipv6_optendpid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-optendpid"], "ObjectSystemNpuFpAnomaly-Ipv6Optendpid"); ok {
 			if err = d.Set("ipv6_optendpid", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_optendpid: %v", err)
@@ -1007,7 +1007,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_opthomeaddr", flattenObjectSystemNpuFpAnomalyIpv6Opthomeaddr(o["ipv6-opthomeaddr"], d, "ipv6_opthomeaddr")); err != nil {
+	if err = d.Set("ipv6_opthomeaddr", flattenObjectSystemNpuFpAnomalyIpv6Opthomeaddr2edl(o["ipv6-opthomeaddr"], d, "ipv6_opthomeaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-opthomeaddr"], "ObjectSystemNpuFpAnomaly-Ipv6Opthomeaddr"); ok {
 			if err = d.Set("ipv6_opthomeaddr", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_opthomeaddr: %v", err)
@@ -1017,7 +1017,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_optinvld", flattenObjectSystemNpuFpAnomalyIpv6Optinvld(o["ipv6-optinvld"], d, "ipv6_optinvld")); err != nil {
+	if err = d.Set("ipv6_optinvld", flattenObjectSystemNpuFpAnomalyIpv6Optinvld2edl(o["ipv6-optinvld"], d, "ipv6_optinvld")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-optinvld"], "ObjectSystemNpuFpAnomaly-Ipv6Optinvld"); ok {
 			if err = d.Set("ipv6_optinvld", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_optinvld: %v", err)
@@ -1027,7 +1027,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_optjumbo", flattenObjectSystemNpuFpAnomalyIpv6Optjumbo(o["ipv6-optjumbo"], d, "ipv6_optjumbo")); err != nil {
+	if err = d.Set("ipv6_optjumbo", flattenObjectSystemNpuFpAnomalyIpv6Optjumbo2edl(o["ipv6-optjumbo"], d, "ipv6_optjumbo")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-optjumbo"], "ObjectSystemNpuFpAnomaly-Ipv6Optjumbo"); ok {
 			if err = d.Set("ipv6_optjumbo", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_optjumbo: %v", err)
@@ -1037,7 +1037,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_optnsap", flattenObjectSystemNpuFpAnomalyIpv6Optnsap(o["ipv6-optnsap"], d, "ipv6_optnsap")); err != nil {
+	if err = d.Set("ipv6_optnsap", flattenObjectSystemNpuFpAnomalyIpv6Optnsap2edl(o["ipv6-optnsap"], d, "ipv6_optnsap")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-optnsap"], "ObjectSystemNpuFpAnomaly-Ipv6Optnsap"); ok {
 			if err = d.Set("ipv6_optnsap", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_optnsap: %v", err)
@@ -1047,7 +1047,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_optralert", flattenObjectSystemNpuFpAnomalyIpv6Optralert(o["ipv6-optralert"], d, "ipv6_optralert")); err != nil {
+	if err = d.Set("ipv6_optralert", flattenObjectSystemNpuFpAnomalyIpv6Optralert2edl(o["ipv6-optralert"], d, "ipv6_optralert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-optralert"], "ObjectSystemNpuFpAnomaly-Ipv6Optralert"); ok {
 			if err = d.Set("ipv6_optralert", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_optralert: %v", err)
@@ -1057,7 +1057,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_opttunnel", flattenObjectSystemNpuFpAnomalyIpv6Opttunnel(o["ipv6-opttunnel"], d, "ipv6_opttunnel")); err != nil {
+	if err = d.Set("ipv6_opttunnel", flattenObjectSystemNpuFpAnomalyIpv6Opttunnel2edl(o["ipv6-opttunnel"], d, "ipv6_opttunnel")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-opttunnel"], "ObjectSystemNpuFpAnomaly-Ipv6Opttunnel"); ok {
 			if err = d.Set("ipv6_opttunnel", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_opttunnel: %v", err)
@@ -1067,7 +1067,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_plen_zero", flattenObjectSystemNpuFpAnomalyIpv6PlenZero(o["ipv6-plen-zero"], d, "ipv6_plen_zero")); err != nil {
+	if err = d.Set("ipv6_plen_zero", flattenObjectSystemNpuFpAnomalyIpv6PlenZero2edl(o["ipv6-plen-zero"], d, "ipv6_plen_zero")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-plen-zero"], "ObjectSystemNpuFpAnomaly-Ipv6PlenZero"); ok {
 			if err = d.Set("ipv6_plen_zero", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_plen_zero: %v", err)
@@ -1077,7 +1077,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_proto_err", flattenObjectSystemNpuFpAnomalyIpv6ProtoErr(o["ipv6-proto-err"], d, "ipv6_proto_err")); err != nil {
+	if err = d.Set("ipv6_proto_err", flattenObjectSystemNpuFpAnomalyIpv6ProtoErr2edl(o["ipv6-proto-err"], d, "ipv6_proto_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-proto-err"], "ObjectSystemNpuFpAnomaly-Ipv6ProtoErr"); ok {
 			if err = d.Set("ipv6_proto_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_proto_err: %v", err)
@@ -1087,7 +1087,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_saddr_err", flattenObjectSystemNpuFpAnomalyIpv6SaddrErr(o["ipv6-saddr-err"], d, "ipv6_saddr_err")); err != nil {
+	if err = d.Set("ipv6_saddr_err", flattenObjectSystemNpuFpAnomalyIpv6SaddrErr2edl(o["ipv6-saddr-err"], d, "ipv6_saddr_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-saddr-err"], "ObjectSystemNpuFpAnomaly-Ipv6SaddrErr"); ok {
 			if err = d.Set("ipv6_saddr_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_saddr_err: %v", err)
@@ -1097,7 +1097,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_unknopt", flattenObjectSystemNpuFpAnomalyIpv6Unknopt(o["ipv6-unknopt"], d, "ipv6_unknopt")); err != nil {
+	if err = d.Set("ipv6_unknopt", flattenObjectSystemNpuFpAnomalyIpv6Unknopt2edl(o["ipv6-unknopt"], d, "ipv6_unknopt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-unknopt"], "ObjectSystemNpuFpAnomaly-Ipv6Unknopt"); ok {
 			if err = d.Set("ipv6_unknopt", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_unknopt: %v", err)
@@ -1107,7 +1107,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("ipv6_ver_err", flattenObjectSystemNpuFpAnomalyIpv6VerErr(o["ipv6-ver-err"], d, "ipv6_ver_err")); err != nil {
+	if err = d.Set("ipv6_ver_err", flattenObjectSystemNpuFpAnomalyIpv6VerErr2edl(o["ipv6-ver-err"], d, "ipv6_ver_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv6-ver-err"], "ObjectSystemNpuFpAnomaly-Ipv6VerErr"); ok {
 			if err = d.Set("ipv6_ver_err", vv); err != nil {
 				return fmt.Errorf("Error reading ipv6_ver_err: %v", err)
@@ -1117,7 +1117,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("nvgre_minlen_err", flattenObjectSystemNpuFpAnomalyNvgreMinlenErr(o["nvgre-minlen-err"], d, "nvgre_minlen_err")); err != nil {
+	if err = d.Set("nvgre_minlen_err", flattenObjectSystemNpuFpAnomalyNvgreMinlenErr2edl(o["nvgre-minlen-err"], d, "nvgre_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["nvgre-minlen-err"], "ObjectSystemNpuFpAnomaly-NvgreMinlenErr"); ok {
 			if err = d.Set("nvgre_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading nvgre_minlen_err: %v", err)
@@ -1127,7 +1127,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("sctp_clen_err", flattenObjectSystemNpuFpAnomalySctpClenErr(o["sctp-clen-err"], d, "sctp_clen_err")); err != nil {
+	if err = d.Set("sctp_clen_err", flattenObjectSystemNpuFpAnomalySctpClenErr2edl(o["sctp-clen-err"], d, "sctp_clen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sctp-clen-err"], "ObjectSystemNpuFpAnomaly-SctpClenErr"); ok {
 			if err = d.Set("sctp_clen_err", vv); err != nil {
 				return fmt.Errorf("Error reading sctp_clen_err: %v", err)
@@ -1137,7 +1137,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("sctp_crc_err", flattenObjectSystemNpuFpAnomalySctpCrcErr(o["sctp-crc-err"], d, "sctp_crc_err")); err != nil {
+	if err = d.Set("sctp_crc_err", flattenObjectSystemNpuFpAnomalySctpCrcErr2edl(o["sctp-crc-err"], d, "sctp_crc_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sctp-crc-err"], "ObjectSystemNpuFpAnomaly-SctpCrcErr"); ok {
 			if err = d.Set("sctp_crc_err", vv); err != nil {
 				return fmt.Errorf("Error reading sctp_crc_err: %v", err)
@@ -1147,7 +1147,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("sctp_l4len_err", flattenObjectSystemNpuFpAnomalySctpL4LenErr(o["sctp-l4len-err"], d, "sctp_l4len_err")); err != nil {
+	if err = d.Set("sctp_l4len_err", flattenObjectSystemNpuFpAnomalySctpL4LenErr2edl(o["sctp-l4len-err"], d, "sctp_l4len_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sctp-l4len-err"], "ObjectSystemNpuFpAnomaly-SctpL4LenErr"); ok {
 			if err = d.Set("sctp_l4len_err", vv); err != nil {
 				return fmt.Errorf("Error reading sctp_l4len_err: %v", err)
@@ -1157,7 +1157,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_csum_err", flattenObjectSystemNpuFpAnomalyTcpCsumErr(o["tcp-csum-err"], d, "tcp_csum_err")); err != nil {
+	if err = d.Set("tcp_csum_err", flattenObjectSystemNpuFpAnomalyTcpCsumErr2edl(o["tcp-csum-err"], d, "tcp_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-csum-err"], "ObjectSystemNpuFpAnomaly-TcpCsumErr"); ok {
 			if err = d.Set("tcp_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_csum_err: %v", err)
@@ -1167,7 +1167,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_fin_noack", flattenObjectSystemNpuFpAnomalyTcpFinNoack(o["tcp-fin-noack"], d, "tcp_fin_noack")); err != nil {
+	if err = d.Set("tcp_fin_noack", flattenObjectSystemNpuFpAnomalyTcpFinNoack2edl(o["tcp-fin-noack"], d, "tcp_fin_noack")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-fin-noack"], "ObjectSystemNpuFpAnomaly-TcpFinNoack"); ok {
 			if err = d.Set("tcp_fin_noack", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_fin_noack: %v", err)
@@ -1177,7 +1177,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_fin_only", flattenObjectSystemNpuFpAnomalyTcpFinOnly(o["tcp-fin-only"], d, "tcp_fin_only")); err != nil {
+	if err = d.Set("tcp_fin_only", flattenObjectSystemNpuFpAnomalyTcpFinOnly2edl(o["tcp-fin-only"], d, "tcp_fin_only")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-fin-only"], "ObjectSystemNpuFpAnomaly-TcpFinOnly"); ok {
 			if err = d.Set("tcp_fin_only", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_fin_only: %v", err)
@@ -1187,7 +1187,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_hlen_err", flattenObjectSystemNpuFpAnomalyTcpHlenErr(o["tcp-hlen-err"], d, "tcp_hlen_err")); err != nil {
+	if err = d.Set("tcp_hlen_err", flattenObjectSystemNpuFpAnomalyTcpHlenErr2edl(o["tcp-hlen-err"], d, "tcp_hlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-hlen-err"], "ObjectSystemNpuFpAnomaly-TcpHlenErr"); ok {
 			if err = d.Set("tcp_hlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_hlen_err: %v", err)
@@ -1197,7 +1197,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_hlenvsl4len_err", flattenObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr(o["tcp-hlenvsl4len-err"], d, "tcp_hlenvsl4len_err")); err != nil {
+	if err = d.Set("tcp_hlenvsl4len_err", flattenObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr2edl(o["tcp-hlenvsl4len-err"], d, "tcp_hlenvsl4len_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-hlenvsl4len-err"], "ObjectSystemNpuFpAnomaly-TcpHlenvsl4LenErr"); ok {
 			if err = d.Set("tcp_hlenvsl4len_err", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_hlenvsl4len_err: %v", err)
@@ -1207,7 +1207,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_land", flattenObjectSystemNpuFpAnomalyTcpLand(o["tcp-land"], d, "tcp_land")); err != nil {
+	if err = d.Set("tcp_land", flattenObjectSystemNpuFpAnomalyTcpLand2edl(o["tcp-land"], d, "tcp_land")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-land"], "ObjectSystemNpuFpAnomaly-TcpLand"); ok {
 			if err = d.Set("tcp_land", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_land: %v", err)
@@ -1217,7 +1217,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_no_flag", flattenObjectSystemNpuFpAnomalyTcpNoFlag(o["tcp-no-flag"], d, "tcp_no_flag")); err != nil {
+	if err = d.Set("tcp_no_flag", flattenObjectSystemNpuFpAnomalyTcpNoFlag2edl(o["tcp-no-flag"], d, "tcp_no_flag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-no-flag"], "ObjectSystemNpuFpAnomaly-TcpNoFlag"); ok {
 			if err = d.Set("tcp_no_flag", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_no_flag: %v", err)
@@ -1227,7 +1227,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_plen_err", flattenObjectSystemNpuFpAnomalyTcpPlenErr(o["tcp-plen-err"], d, "tcp_plen_err")); err != nil {
+	if err = d.Set("tcp_plen_err", flattenObjectSystemNpuFpAnomalyTcpPlenErr2edl(o["tcp-plen-err"], d, "tcp_plen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-plen-err"], "ObjectSystemNpuFpAnomaly-TcpPlenErr"); ok {
 			if err = d.Set("tcp_plen_err", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_plen_err: %v", err)
@@ -1237,7 +1237,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_syn_data", flattenObjectSystemNpuFpAnomalyTcpSynData(o["tcp-syn-data"], d, "tcp_syn_data")); err != nil {
+	if err = d.Set("tcp_syn_data", flattenObjectSystemNpuFpAnomalyTcpSynData2edl(o["tcp-syn-data"], d, "tcp_syn_data")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-syn-data"], "ObjectSystemNpuFpAnomaly-TcpSynData"); ok {
 			if err = d.Set("tcp_syn_data", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_syn_data: %v", err)
@@ -1247,7 +1247,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_syn_fin", flattenObjectSystemNpuFpAnomalyTcpSynFin(o["tcp-syn-fin"], d, "tcp_syn_fin")); err != nil {
+	if err = d.Set("tcp_syn_fin", flattenObjectSystemNpuFpAnomalyTcpSynFin2edl(o["tcp-syn-fin"], d, "tcp_syn_fin")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-syn-fin"], "ObjectSystemNpuFpAnomaly-TcpSynFin"); ok {
 			if err = d.Set("tcp_syn_fin", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_syn_fin: %v", err)
@@ -1257,7 +1257,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("tcp_winnuke", flattenObjectSystemNpuFpAnomalyTcpWinnuke(o["tcp-winnuke"], d, "tcp_winnuke")); err != nil {
+	if err = d.Set("tcp_winnuke", flattenObjectSystemNpuFpAnomalyTcpWinnuke2edl(o["tcp-winnuke"], d, "tcp_winnuke")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-winnuke"], "ObjectSystemNpuFpAnomaly-TcpWinnuke"); ok {
 			if err = d.Set("tcp_winnuke", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_winnuke: %v", err)
@@ -1267,7 +1267,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udp_csum_err", flattenObjectSystemNpuFpAnomalyUdpCsumErr(o["udp-csum-err"], d, "udp_csum_err")); err != nil {
+	if err = d.Set("udp_csum_err", flattenObjectSystemNpuFpAnomalyUdpCsumErr2edl(o["udp-csum-err"], d, "udp_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-csum-err"], "ObjectSystemNpuFpAnomaly-UdpCsumErr"); ok {
 			if err = d.Set("udp_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading udp_csum_err: %v", err)
@@ -1277,7 +1277,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udp_hlen_err", flattenObjectSystemNpuFpAnomalyUdpHlenErr(o["udp-hlen-err"], d, "udp_hlen_err")); err != nil {
+	if err = d.Set("udp_hlen_err", flattenObjectSystemNpuFpAnomalyUdpHlenErr2edl(o["udp-hlen-err"], d, "udp_hlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-hlen-err"], "ObjectSystemNpuFpAnomaly-UdpHlenErr"); ok {
 			if err = d.Set("udp_hlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading udp_hlen_err: %v", err)
@@ -1287,7 +1287,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udp_land", flattenObjectSystemNpuFpAnomalyUdpLand(o["udp-land"], d, "udp_land")); err != nil {
+	if err = d.Set("udp_land", flattenObjectSystemNpuFpAnomalyUdpLand2edl(o["udp-land"], d, "udp_land")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-land"], "ObjectSystemNpuFpAnomaly-UdpLand"); ok {
 			if err = d.Set("udp_land", vv); err != nil {
 				return fmt.Errorf("Error reading udp_land: %v", err)
@@ -1297,7 +1297,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udp_len_err", flattenObjectSystemNpuFpAnomalyUdpLenErr(o["udp-len-err"], d, "udp_len_err")); err != nil {
+	if err = d.Set("udp_len_err", flattenObjectSystemNpuFpAnomalyUdpLenErr2edl(o["udp-len-err"], d, "udp_len_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-len-err"], "ObjectSystemNpuFpAnomaly-UdpLenErr"); ok {
 			if err = d.Set("udp_len_err", vv); err != nil {
 				return fmt.Errorf("Error reading udp_len_err: %v", err)
@@ -1307,7 +1307,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udp_plen_err", flattenObjectSystemNpuFpAnomalyUdpPlenErr(o["udp-plen-err"], d, "udp_plen_err")); err != nil {
+	if err = d.Set("udp_plen_err", flattenObjectSystemNpuFpAnomalyUdpPlenErr2edl(o["udp-plen-err"], d, "udp_plen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-plen-err"], "ObjectSystemNpuFpAnomaly-UdpPlenErr"); ok {
 			if err = d.Set("udp_plen_err", vv); err != nil {
 				return fmt.Errorf("Error reading udp_plen_err: %v", err)
@@ -1317,7 +1317,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udplite_cover_err", flattenObjectSystemNpuFpAnomalyUdpliteCoverErr(o["udplite-cover-err"], d, "udplite_cover_err")); err != nil {
+	if err = d.Set("udplite_cover_err", flattenObjectSystemNpuFpAnomalyUdpliteCoverErr2edl(o["udplite-cover-err"], d, "udplite_cover_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udplite-cover-err"], "ObjectSystemNpuFpAnomaly-UdpliteCoverErr"); ok {
 			if err = d.Set("udplite_cover_err", vv); err != nil {
 				return fmt.Errorf("Error reading udplite_cover_err: %v", err)
@@ -1327,7 +1327,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("udplite_csum_err", flattenObjectSystemNpuFpAnomalyUdpliteCsumErr(o["udplite-csum-err"], d, "udplite_csum_err")); err != nil {
+	if err = d.Set("udplite_csum_err", flattenObjectSystemNpuFpAnomalyUdpliteCsumErr2edl(o["udplite-csum-err"], d, "udplite_csum_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udplite-csum-err"], "ObjectSystemNpuFpAnomaly-UdpliteCsumErr"); ok {
 			if err = d.Set("udplite_csum_err", vv); err != nil {
 				return fmt.Errorf("Error reading udplite_csum_err: %v", err)
@@ -1337,7 +1337,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("uesp_minlen_err", flattenObjectSystemNpuFpAnomalyUespMinlenErr(o["uesp-minlen-err"], d, "uesp_minlen_err")); err != nil {
+	if err = d.Set("uesp_minlen_err", flattenObjectSystemNpuFpAnomalyUespMinlenErr2edl(o["uesp-minlen-err"], d, "uesp_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uesp-minlen-err"], "ObjectSystemNpuFpAnomaly-UespMinlenErr"); ok {
 			if err = d.Set("uesp_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading uesp_minlen_err: %v", err)
@@ -1347,7 +1347,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("unknproto_minlen_err", flattenObjectSystemNpuFpAnomalyUnknprotoMinlenErr(o["unknproto-minlen-err"], d, "unknproto_minlen_err")); err != nil {
+	if err = d.Set("unknproto_minlen_err", flattenObjectSystemNpuFpAnomalyUnknprotoMinlenErr2edl(o["unknproto-minlen-err"], d, "unknproto_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["unknproto-minlen-err"], "ObjectSystemNpuFpAnomaly-UnknprotoMinlenErr"); ok {
 			if err = d.Set("unknproto_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading unknproto_minlen_err: %v", err)
@@ -1357,7 +1357,7 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("vxlan_minlen_err", flattenObjectSystemNpuFpAnomalyVxlanMinlenErr(o["vxlan-minlen-err"], d, "vxlan_minlen_err")); err != nil {
+	if err = d.Set("vxlan_minlen_err", flattenObjectSystemNpuFpAnomalyVxlanMinlenErr2edl(o["vxlan-minlen-err"], d, "vxlan_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vxlan-minlen-err"], "ObjectSystemNpuFpAnomaly-VxlanMinlenErr"); ok {
 			if err = d.Set("vxlan_minlen_err", vv); err != nil {
 				return fmt.Errorf("Error reading vxlan_minlen_err: %v", err)
@@ -1376,263 +1376,263 @@ func flattenObjectSystemNpuFpAnomalyFortiTestDebug(d *schema.ResourceData, fosde
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuFpAnomalyCapwapMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyCapwapMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyEspMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyEspMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyGreCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyGreCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyGtpuPlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyGtpuPlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIcmpCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIcmpCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIcmpFrag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIcmpFrag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIcmpLand(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIcmpLand2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIcmpMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIcmpMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4CsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4CsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4IhlErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4IhlErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Land(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Land2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4LenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4LenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4OptErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4OptErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Optlsrr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Optlsrr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Optrr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Optrr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Optsecurity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Optsecurity2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Optssrr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Optssrr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Optstream(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Optstream2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Opttimestamp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Opttimestamp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4ProtoErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4ProtoErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4TtlzeroErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4TtlzeroErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4Unknopt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4Unknopt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv4VerErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv4VerErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6DaddrErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6DaddrErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6IhlErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6IhlErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Land(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Land2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Optendpid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Optendpid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Opthomeaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Opthomeaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Optinvld(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Optinvld2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Optjumbo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Optjumbo2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Optnsap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Optnsap2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Optralert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Optralert2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Opttunnel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Opttunnel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6PlenZero(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6PlenZero2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6ProtoErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6ProtoErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6SaddrErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6SaddrErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6Unknopt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6Unknopt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyIpv6VerErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyIpv6VerErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyNvgreMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyNvgreMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalySctpClenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalySctpClenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalySctpCrcErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalySctpCrcErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalySctpL4LenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalySctpL4LenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpFinNoack(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpFinNoack2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpFinOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpFinOnly2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpHlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpHlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpLand(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpLand2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpNoFlag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpNoFlag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpPlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpPlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpSynData(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpSynData2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpSynFin(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpSynFin2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyTcpWinnuke(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyTcpWinnuke2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpHlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpHlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpLand(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpLand2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpLenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpLenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpPlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpPlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpliteCoverErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpliteCoverErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUdpliteCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUdpliteCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUespMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUespMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyUnknprotoMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyUnknprotoMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuFpAnomalyVxlanMinlenErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuFpAnomalyVxlanMinlenErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1640,7 +1640,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("capwap_minlen_err"); ok || d.HasChange("capwap_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyCapwapMinlenErr(d, v, "capwap_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyCapwapMinlenErr2edl(d, v, "capwap_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1649,7 +1649,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("esp_minlen_err"); ok || d.HasChange("esp_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyEspMinlenErr(d, v, "esp_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyEspMinlenErr2edl(d, v, "esp_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1658,7 +1658,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("gre_csum_err"); ok || d.HasChange("gre_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyGreCsumErr(d, v, "gre_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyGreCsumErr2edl(d, v, "gre_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1667,7 +1667,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("gtpu_plen_err"); ok || d.HasChange("gtpu_plen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyGtpuPlenErr(d, v, "gtpu_plen_err")
+		t, err := expandObjectSystemNpuFpAnomalyGtpuPlenErr2edl(d, v, "gtpu_plen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1676,7 +1676,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("icmp_csum_err"); ok || d.HasChange("icmp_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIcmpCsumErr(d, v, "icmp_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyIcmpCsumErr2edl(d, v, "icmp_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1685,7 +1685,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("icmp_frag"); ok || d.HasChange("icmp_frag") {
-		t, err := expandObjectSystemNpuFpAnomalyIcmpFrag(d, v, "icmp_frag")
+		t, err := expandObjectSystemNpuFpAnomalyIcmpFrag2edl(d, v, "icmp_frag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1694,7 +1694,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("icmp_land"); ok || d.HasChange("icmp_land") {
-		t, err := expandObjectSystemNpuFpAnomalyIcmpLand(d, v, "icmp_land")
+		t, err := expandObjectSystemNpuFpAnomalyIcmpLand2edl(d, v, "icmp_land")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1703,7 +1703,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("icmp_minlen_err"); ok || d.HasChange("icmp_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIcmpMinlenErr(d, v, "icmp_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyIcmpMinlenErr2edl(d, v, "icmp_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1712,7 +1712,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_csum_err"); ok || d.HasChange("ipv4_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4CsumErr(d, v, "ipv4_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4CsumErr2edl(d, v, "ipv4_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1721,7 +1721,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_ihl_err"); ok || d.HasChange("ipv4_ihl_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4IhlErr(d, v, "ipv4_ihl_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4IhlErr2edl(d, v, "ipv4_ihl_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1730,7 +1730,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_land"); ok || d.HasChange("ipv4_land") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Land(d, v, "ipv4_land")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Land2edl(d, v, "ipv4_land")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1739,7 +1739,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_len_err"); ok || d.HasChange("ipv4_len_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4LenErr(d, v, "ipv4_len_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4LenErr2edl(d, v, "ipv4_len_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1748,7 +1748,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_opt_err"); ok || d.HasChange("ipv4_opt_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4OptErr(d, v, "ipv4_opt_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4OptErr2edl(d, v, "ipv4_opt_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1757,7 +1757,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_optlsrr"); ok || d.HasChange("ipv4_optlsrr") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Optlsrr(d, v, "ipv4_optlsrr")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Optlsrr2edl(d, v, "ipv4_optlsrr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1766,7 +1766,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_optrr"); ok || d.HasChange("ipv4_optrr") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Optrr(d, v, "ipv4_optrr")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Optrr2edl(d, v, "ipv4_optrr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1775,7 +1775,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_optsecurity"); ok || d.HasChange("ipv4_optsecurity") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Optsecurity(d, v, "ipv4_optsecurity")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Optsecurity2edl(d, v, "ipv4_optsecurity")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1784,7 +1784,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_optssrr"); ok || d.HasChange("ipv4_optssrr") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Optssrr(d, v, "ipv4_optssrr")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Optssrr2edl(d, v, "ipv4_optssrr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1793,7 +1793,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_optstream"); ok || d.HasChange("ipv4_optstream") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Optstream(d, v, "ipv4_optstream")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Optstream2edl(d, v, "ipv4_optstream")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1802,7 +1802,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_opttimestamp"); ok || d.HasChange("ipv4_opttimestamp") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Opttimestamp(d, v, "ipv4_opttimestamp")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Opttimestamp2edl(d, v, "ipv4_opttimestamp")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1811,7 +1811,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_proto_err"); ok || d.HasChange("ipv4_proto_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4ProtoErr(d, v, "ipv4_proto_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4ProtoErr2edl(d, v, "ipv4_proto_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1820,7 +1820,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_ttlzero_err"); ok || d.HasChange("ipv4_ttlzero_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4TtlzeroErr(d, v, "ipv4_ttlzero_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4TtlzeroErr2edl(d, v, "ipv4_ttlzero_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1829,7 +1829,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_unknopt"); ok || d.HasChange("ipv4_unknopt") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4Unknopt(d, v, "ipv4_unknopt")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4Unknopt2edl(d, v, "ipv4_unknopt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1838,7 +1838,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv4_ver_err"); ok || d.HasChange("ipv4_ver_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv4VerErr(d, v, "ipv4_ver_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv4VerErr2edl(d, v, "ipv4_ver_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1847,7 +1847,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_daddr_err"); ok || d.HasChange("ipv6_daddr_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6DaddrErr(d, v, "ipv6_daddr_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6DaddrErr2edl(d, v, "ipv6_daddr_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1856,7 +1856,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_exthdr_len_err"); ok || d.HasChange("ipv6_exthdr_len_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErr(d, v, "ipv6_exthdr_len_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErr2edl(d, v, "ipv6_exthdr_len_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1865,7 +1865,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_exthdr_order_err"); ok || d.HasChange("ipv6_exthdr_order_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr(d, v, "ipv6_exthdr_order_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr2edl(d, v, "ipv6_exthdr_order_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1874,7 +1874,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_ihl_err"); ok || d.HasChange("ipv6_ihl_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6IhlErr(d, v, "ipv6_ihl_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6IhlErr2edl(d, v, "ipv6_ihl_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1883,7 +1883,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_land"); ok || d.HasChange("ipv6_land") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Land(d, v, "ipv6_land")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Land2edl(d, v, "ipv6_land")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1892,7 +1892,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_optendpid"); ok || d.HasChange("ipv6_optendpid") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Optendpid(d, v, "ipv6_optendpid")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Optendpid2edl(d, v, "ipv6_optendpid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1901,7 +1901,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_opthomeaddr"); ok || d.HasChange("ipv6_opthomeaddr") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Opthomeaddr(d, v, "ipv6_opthomeaddr")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Opthomeaddr2edl(d, v, "ipv6_opthomeaddr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1910,7 +1910,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_optinvld"); ok || d.HasChange("ipv6_optinvld") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Optinvld(d, v, "ipv6_optinvld")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Optinvld2edl(d, v, "ipv6_optinvld")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1919,7 +1919,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_optjumbo"); ok || d.HasChange("ipv6_optjumbo") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Optjumbo(d, v, "ipv6_optjumbo")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Optjumbo2edl(d, v, "ipv6_optjumbo")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1928,7 +1928,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_optnsap"); ok || d.HasChange("ipv6_optnsap") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Optnsap(d, v, "ipv6_optnsap")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Optnsap2edl(d, v, "ipv6_optnsap")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1937,7 +1937,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_optralert"); ok || d.HasChange("ipv6_optralert") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Optralert(d, v, "ipv6_optralert")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Optralert2edl(d, v, "ipv6_optralert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1946,7 +1946,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_opttunnel"); ok || d.HasChange("ipv6_opttunnel") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Opttunnel(d, v, "ipv6_opttunnel")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Opttunnel2edl(d, v, "ipv6_opttunnel")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1955,7 +1955,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_plen_zero"); ok || d.HasChange("ipv6_plen_zero") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6PlenZero(d, v, "ipv6_plen_zero")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6PlenZero2edl(d, v, "ipv6_plen_zero")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1964,7 +1964,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_proto_err"); ok || d.HasChange("ipv6_proto_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6ProtoErr(d, v, "ipv6_proto_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6ProtoErr2edl(d, v, "ipv6_proto_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1973,7 +1973,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_saddr_err"); ok || d.HasChange("ipv6_saddr_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6SaddrErr(d, v, "ipv6_saddr_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6SaddrErr2edl(d, v, "ipv6_saddr_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1982,7 +1982,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_unknopt"); ok || d.HasChange("ipv6_unknopt") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6Unknopt(d, v, "ipv6_unknopt")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6Unknopt2edl(d, v, "ipv6_unknopt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1991,7 +1991,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("ipv6_ver_err"); ok || d.HasChange("ipv6_ver_err") {
-		t, err := expandObjectSystemNpuFpAnomalyIpv6VerErr(d, v, "ipv6_ver_err")
+		t, err := expandObjectSystemNpuFpAnomalyIpv6VerErr2edl(d, v, "ipv6_ver_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2000,7 +2000,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("nvgre_minlen_err"); ok || d.HasChange("nvgre_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyNvgreMinlenErr(d, v, "nvgre_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyNvgreMinlenErr2edl(d, v, "nvgre_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2009,7 +2009,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("sctp_clen_err"); ok || d.HasChange("sctp_clen_err") {
-		t, err := expandObjectSystemNpuFpAnomalySctpClenErr(d, v, "sctp_clen_err")
+		t, err := expandObjectSystemNpuFpAnomalySctpClenErr2edl(d, v, "sctp_clen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2018,7 +2018,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("sctp_crc_err"); ok || d.HasChange("sctp_crc_err") {
-		t, err := expandObjectSystemNpuFpAnomalySctpCrcErr(d, v, "sctp_crc_err")
+		t, err := expandObjectSystemNpuFpAnomalySctpCrcErr2edl(d, v, "sctp_crc_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2027,7 +2027,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("sctp_l4len_err"); ok || d.HasChange("sctp_l4len_err") {
-		t, err := expandObjectSystemNpuFpAnomalySctpL4LenErr(d, v, "sctp_l4len_err")
+		t, err := expandObjectSystemNpuFpAnomalySctpL4LenErr2edl(d, v, "sctp_l4len_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2036,7 +2036,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_csum_err"); ok || d.HasChange("tcp_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpCsumErr(d, v, "tcp_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyTcpCsumErr2edl(d, v, "tcp_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2045,7 +2045,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_fin_noack"); ok || d.HasChange("tcp_fin_noack") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpFinNoack(d, v, "tcp_fin_noack")
+		t, err := expandObjectSystemNpuFpAnomalyTcpFinNoack2edl(d, v, "tcp_fin_noack")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2054,7 +2054,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_fin_only"); ok || d.HasChange("tcp_fin_only") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpFinOnly(d, v, "tcp_fin_only")
+		t, err := expandObjectSystemNpuFpAnomalyTcpFinOnly2edl(d, v, "tcp_fin_only")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2063,7 +2063,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_hlen_err"); ok || d.HasChange("tcp_hlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpHlenErr(d, v, "tcp_hlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyTcpHlenErr2edl(d, v, "tcp_hlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2072,7 +2072,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_hlenvsl4len_err"); ok || d.HasChange("tcp_hlenvsl4len_err") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr(d, v, "tcp_hlenvsl4len_err")
+		t, err := expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr2edl(d, v, "tcp_hlenvsl4len_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2081,7 +2081,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_land"); ok || d.HasChange("tcp_land") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpLand(d, v, "tcp_land")
+		t, err := expandObjectSystemNpuFpAnomalyTcpLand2edl(d, v, "tcp_land")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2090,7 +2090,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_no_flag"); ok || d.HasChange("tcp_no_flag") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpNoFlag(d, v, "tcp_no_flag")
+		t, err := expandObjectSystemNpuFpAnomalyTcpNoFlag2edl(d, v, "tcp_no_flag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2099,7 +2099,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_plen_err"); ok || d.HasChange("tcp_plen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpPlenErr(d, v, "tcp_plen_err")
+		t, err := expandObjectSystemNpuFpAnomalyTcpPlenErr2edl(d, v, "tcp_plen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2108,7 +2108,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_syn_data"); ok || d.HasChange("tcp_syn_data") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpSynData(d, v, "tcp_syn_data")
+		t, err := expandObjectSystemNpuFpAnomalyTcpSynData2edl(d, v, "tcp_syn_data")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2117,7 +2117,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_syn_fin"); ok || d.HasChange("tcp_syn_fin") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpSynFin(d, v, "tcp_syn_fin")
+		t, err := expandObjectSystemNpuFpAnomalyTcpSynFin2edl(d, v, "tcp_syn_fin")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2126,7 +2126,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("tcp_winnuke"); ok || d.HasChange("tcp_winnuke") {
-		t, err := expandObjectSystemNpuFpAnomalyTcpWinnuke(d, v, "tcp_winnuke")
+		t, err := expandObjectSystemNpuFpAnomalyTcpWinnuke2edl(d, v, "tcp_winnuke")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2135,7 +2135,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udp_csum_err"); ok || d.HasChange("udp_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpCsumErr(d, v, "udp_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpCsumErr2edl(d, v, "udp_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2144,7 +2144,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udp_hlen_err"); ok || d.HasChange("udp_hlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpHlenErr(d, v, "udp_hlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpHlenErr2edl(d, v, "udp_hlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2153,7 +2153,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udp_land"); ok || d.HasChange("udp_land") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpLand(d, v, "udp_land")
+		t, err := expandObjectSystemNpuFpAnomalyUdpLand2edl(d, v, "udp_land")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2162,7 +2162,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udp_len_err"); ok || d.HasChange("udp_len_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpLenErr(d, v, "udp_len_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpLenErr2edl(d, v, "udp_len_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2171,7 +2171,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udp_plen_err"); ok || d.HasChange("udp_plen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpPlenErr(d, v, "udp_plen_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpPlenErr2edl(d, v, "udp_plen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2180,7 +2180,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udplite_cover_err"); ok || d.HasChange("udplite_cover_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpliteCoverErr(d, v, "udplite_cover_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpliteCoverErr2edl(d, v, "udplite_cover_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2189,7 +2189,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("udplite_csum_err"); ok || d.HasChange("udplite_csum_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUdpliteCsumErr(d, v, "udplite_csum_err")
+		t, err := expandObjectSystemNpuFpAnomalyUdpliteCsumErr2edl(d, v, "udplite_csum_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2198,7 +2198,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("uesp_minlen_err"); ok || d.HasChange("uesp_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUespMinlenErr(d, v, "uesp_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyUespMinlenErr2edl(d, v, "uesp_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2207,7 +2207,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("unknproto_minlen_err"); ok || d.HasChange("unknproto_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyUnknprotoMinlenErr(d, v, "unknproto_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyUnknprotoMinlenErr2edl(d, v, "unknproto_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2216,7 +2216,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 	}
 
 	if v, ok := d.GetOk("vxlan_minlen_err"); ok || d.HasChange("vxlan_minlen_err") {
-		t, err := expandObjectSystemNpuFpAnomalyVxlanMinlenErr(d, v, "vxlan_minlen_err")
+		t, err := expandObjectSystemNpuFpAnomalyVxlanMinlenErr2edl(d, v, "vxlan_minlen_err")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

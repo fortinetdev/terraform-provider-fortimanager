@@ -171,42 +171,42 @@ func resourceSystemNtpNtpserverRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
-func flattenSystemNtpNtpserverAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverAuthentication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverKeyId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverMaxpoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverMaxpoll2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverMinpoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverMinpoll2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverNtpv3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverNtpv32edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemNtpNtpserverServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemNtpNtpserverServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("authentication", flattenSystemNtpNtpserverAuthentication(o["authentication"], d, "authentication")); err != nil {
+	if err = d.Set("authentication", flattenSystemNtpNtpserverAuthentication2edl(o["authentication"], d, "authentication")); err != nil {
 		if vv, ok := fortiAPIPatch(o["authentication"], "SystemNtpNtpserver-Authentication"); ok {
 			if err = d.Set("authentication", vv); err != nil {
 				return fmt.Errorf("Error reading authentication: %v", err)
@@ -216,7 +216,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fosid", flattenSystemNtpNtpserverId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenSystemNtpNtpserverId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemNtpNtpserver-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -226,7 +226,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("key_id", flattenSystemNtpNtpserverKeyId(o["key-id"], d, "key_id")); err != nil {
+	if err = d.Set("key_id", flattenSystemNtpNtpserverKeyId2edl(o["key-id"], d, "key_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["key-id"], "SystemNtpNtpserver-KeyId"); ok {
 			if err = d.Set("key_id", vv); err != nil {
 				return fmt.Errorf("Error reading key_id: %v", err)
@@ -236,7 +236,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("maxpoll", flattenSystemNtpNtpserverMaxpoll(o["maxpoll"], d, "maxpoll")); err != nil {
+	if err = d.Set("maxpoll", flattenSystemNtpNtpserverMaxpoll2edl(o["maxpoll"], d, "maxpoll")); err != nil {
 		if vv, ok := fortiAPIPatch(o["maxpoll"], "SystemNtpNtpserver-Maxpoll"); ok {
 			if err = d.Set("maxpoll", vv); err != nil {
 				return fmt.Errorf("Error reading maxpoll: %v", err)
@@ -246,7 +246,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("minpoll", flattenSystemNtpNtpserverMinpoll(o["minpoll"], d, "minpoll")); err != nil {
+	if err = d.Set("minpoll", flattenSystemNtpNtpserverMinpoll2edl(o["minpoll"], d, "minpoll")); err != nil {
 		if vv, ok := fortiAPIPatch(o["minpoll"], "SystemNtpNtpserver-Minpoll"); ok {
 			if err = d.Set("minpoll", vv); err != nil {
 				return fmt.Errorf("Error reading minpoll: %v", err)
@@ -256,7 +256,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("ntpv3", flattenSystemNtpNtpserverNtpv3(o["ntpv3"], d, "ntpv3")); err != nil {
+	if err = d.Set("ntpv3", flattenSystemNtpNtpserverNtpv32edl(o["ntpv3"], d, "ntpv3")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ntpv3"], "SystemNtpNtpserver-Ntpv3"); ok {
 			if err = d.Set("ntpv3", vv); err != nil {
 				return fmt.Errorf("Error reading ntpv3: %v", err)
@@ -266,7 +266,7 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("server", flattenSystemNtpNtpserverServer(o["server"], d, "server")); err != nil {
+	if err = d.Set("server", flattenSystemNtpNtpserverServer2edl(o["server"], d, "server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server"], "SystemNtpNtpserver-Server"); ok {
 			if err = d.Set("server", vv); err != nil {
 				return fmt.Errorf("Error reading server: %v", err)
@@ -285,35 +285,35 @@ func flattenSystemNtpNtpserverFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemNtpNtpserverAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverAuthentication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverKey2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandSystemNtpNtpserverKeyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverKeyId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverMaxpoll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverMaxpoll2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverMinpoll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverMinpoll2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverNtpv3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverNtpv32edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemNtpNtpserverServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemNtpNtpserverServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -321,7 +321,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("authentication"); ok || d.HasChange("authentication") {
-		t, err := expandSystemNtpNtpserverAuthentication(d, v, "authentication")
+		t, err := expandSystemNtpNtpserverAuthentication2edl(d, v, "authentication")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -330,7 +330,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandSystemNtpNtpserverId(d, v, "fosid")
+		t, err := expandSystemNtpNtpserverId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -339,7 +339,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("key"); ok || d.HasChange("key") {
-		t, err := expandSystemNtpNtpserverKey(d, v, "key")
+		t, err := expandSystemNtpNtpserverKey2edl(d, v, "key")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -348,7 +348,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("key_id"); ok || d.HasChange("key_id") {
-		t, err := expandSystemNtpNtpserverKeyId(d, v, "key_id")
+		t, err := expandSystemNtpNtpserverKeyId2edl(d, v, "key_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -357,7 +357,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("maxpoll"); ok || d.HasChange("maxpoll") {
-		t, err := expandSystemNtpNtpserverMaxpoll(d, v, "maxpoll")
+		t, err := expandSystemNtpNtpserverMaxpoll2edl(d, v, "maxpoll")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -366,7 +366,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("minpoll"); ok || d.HasChange("minpoll") {
-		t, err := expandSystemNtpNtpserverMinpoll(d, v, "minpoll")
+		t, err := expandSystemNtpNtpserverMinpoll2edl(d, v, "minpoll")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -375,7 +375,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("ntpv3"); ok || d.HasChange("ntpv3") {
-		t, err := expandSystemNtpNtpserverNtpv3(d, v, "ntpv3")
+		t, err := expandSystemNtpNtpserverNtpv32edl(d, v, "ntpv3")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -384,7 +384,7 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
-		t, err := expandSystemNtpNtpserverServer(d, v, "server")
+		t, err := expandSystemNtpNtpserverServer2edl(d, v, "server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

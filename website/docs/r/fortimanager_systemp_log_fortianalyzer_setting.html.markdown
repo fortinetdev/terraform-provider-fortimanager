@@ -55,6 +55,7 @@ The following arguments are supported:
 
 * `reliable` - Enable/disable reliable logging to FortiAnalyzer. Valid values: `disable`, `enable`.
 
+* `server_cert_ca` - Mandatory CA on FortiGate in certificate chain of server.
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
 * `upload_day` - Day of week (month) to upload logs.

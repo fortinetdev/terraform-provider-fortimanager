@@ -258,6 +258,11 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"shortcut_priority": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"shortcut_stickiness": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -498,199 +503,203 @@ func resourceWantempSystemSdwanServiceRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
-func flattenWantempSystemSdwanServiceAddrModeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceAddrMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceAgentExclusiveWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceAgentExclusive2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceBandwidthWeightWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceBandwidthWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDefaultWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDefault2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDscpForwardWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDscpForward2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDscpForwardTagWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDscpForwardTag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDscpReverseWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDscpReverse2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDscpReverseTagWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDscpReverseTag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDstWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDst2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceDstNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDstNegateWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceDst62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceEndPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceDst6Wsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceEndSrcPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceEndPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceGateway2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceEndSrcPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceGroups2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceHashMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceGatewayWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceHoldDownTime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceGroupsWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceHashModeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInputDevice2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceInputDeviceNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceHealthCheckWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceHoldDownTimeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceIdWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceInputDeviceWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceInputDeviceNegateWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceInputZoneWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInputZone2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInternetService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceAppCtrlWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInternetServiceAppCtrl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceAppCtrlCategoryWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInternetServiceAppCtrlCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceAppCtrlGroupWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceInternetServiceAppCtrlGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceInternetServiceCustom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceInternetServiceCustomGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceInternetServiceGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceInternetServiceName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceJitterWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceCustomWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceLatencyWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceCustomGroupWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceLinkCostFactor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceGroupWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceLinkCostThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceInternetServiceNameWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceLoadBalance2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceJitterWeightWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceMinimumSlaMeetMembers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceLatencyWeightWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceLinkCostFactorWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceLinkCostThresholdWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServicePacketLossWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceLoadBalanceWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServicePassiveMeasurement2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServicePriorityMembers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServicePriorityZone2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceProtocol2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceModeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceQualityLink2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceNameWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceRole2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServicePacketLossWeightWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceShortcut2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServicePassiveMeasurementWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceShortcutPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServicePriorityMembersWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceShortcutStickiness2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServicePriorityZoneWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceRouteTag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceProtocolWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceQualityLinkWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceRoleWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceShortcutWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceShortcutStickinessWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceRouteTagWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceSlaWsssa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemSdwanServiceSla2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -711,13 +720,13 @@ func flattenWantempSystemSdwanServiceSlaWsssa(v interface{}, d *schema.ResourceD
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := i["health-check"]; ok {
-			v := flattenWantempSystemSdwanServiceSlaHealthCheckWsssa(i["health-check"], d, pre_append)
+			v := flattenWantempSystemSdwanServiceSlaHealthCheck2edl(i["health-check"], d, pre_append)
 			tmp["health_check"] = fortiAPISubPartPatch(v, "WantempSystemSdwanService-Sla-HealthCheck")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenWantempSystemSdwanServiceSlaIdWsssa(i["id"], d, pre_append)
+			v := flattenWantempSystemSdwanServiceSlaId2edl(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemSdwanService-Sla-Id")
 		}
 
@@ -731,71 +740,71 @@ func flattenWantempSystemSdwanServiceSlaWsssa(v interface{}, d *schema.ResourceD
 	return result
 }
 
-func flattenWantempSystemSdwanServiceSlaHealthCheckWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSlaIdWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSlaCompareMethodWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaCompareMethod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSlaStickinessWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSlaStickiness2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSrcWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSrc2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceSrcNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSrcNegateWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceSrc62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanServiceStandaloneAction2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceSrc6Wsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceStartPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceStandaloneActionWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceStartSrcPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceStartPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceStartSrcPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceTieBreak2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceStatusWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceTos2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceTieBreakWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceTosMask2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceTosWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceUseShortcutSla2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanServiceTosMaskWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemSdwanServiceUsers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
-func flattenWantempSystemSdwanServiceUseShortcutSlaWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceUsersWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanServiceZoneModeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanServiceZoneMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -810,7 +819,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("addr_mode", flattenWantempSystemSdwanServiceAddrModeWsssa(o["addr-mode"], d, "addr_mode")); err != nil {
+	if err = d.Set("addr_mode", flattenWantempSystemSdwanServiceAddrMode2edl(o["addr-mode"], d, "addr_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["addr-mode"], "WantempSystemSdwanService-AddrMode"); ok {
 			if err = d.Set("addr_mode", vv); err != nil {
 				return fmt.Errorf("Error reading addr_mode: %v", err)
@@ -820,7 +829,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("agent_exclusive", flattenWantempSystemSdwanServiceAgentExclusiveWsssa(o["agent-exclusive"], d, "agent_exclusive")); err != nil {
+	if err = d.Set("agent_exclusive", flattenWantempSystemSdwanServiceAgentExclusive2edl(o["agent-exclusive"], d, "agent_exclusive")); err != nil {
 		if vv, ok := fortiAPIPatch(o["agent-exclusive"], "WantempSystemSdwanService-AgentExclusive"); ok {
 			if err = d.Set("agent_exclusive", vv); err != nil {
 				return fmt.Errorf("Error reading agent_exclusive: %v", err)
@@ -830,7 +839,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("bandwidth_weight", flattenWantempSystemSdwanServiceBandwidthWeightWsssa(o["bandwidth-weight"], d, "bandwidth_weight")); err != nil {
+	if err = d.Set("bandwidth_weight", flattenWantempSystemSdwanServiceBandwidthWeight2edl(o["bandwidth-weight"], d, "bandwidth_weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bandwidth-weight"], "WantempSystemSdwanService-BandwidthWeight"); ok {
 			if err = d.Set("bandwidth_weight", vv); err != nil {
 				return fmt.Errorf("Error reading bandwidth_weight: %v", err)
@@ -840,7 +849,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("default", flattenWantempSystemSdwanServiceDefaultWsssa(o["default"], d, "default")); err != nil {
+	if err = d.Set("default", flattenWantempSystemSdwanServiceDefault2edl(o["default"], d, "default")); err != nil {
 		if vv, ok := fortiAPIPatch(o["default"], "WantempSystemSdwanService-Default"); ok {
 			if err = d.Set("default", vv); err != nil {
 				return fmt.Errorf("Error reading default: %v", err)
@@ -850,7 +859,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dscp_forward", flattenWantempSystemSdwanServiceDscpForwardWsssa(o["dscp-forward"], d, "dscp_forward")); err != nil {
+	if err = d.Set("dscp_forward", flattenWantempSystemSdwanServiceDscpForward2edl(o["dscp-forward"], d, "dscp_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp-forward"], "WantempSystemSdwanService-DscpForward"); ok {
 			if err = d.Set("dscp_forward", vv); err != nil {
 				return fmt.Errorf("Error reading dscp_forward: %v", err)
@@ -860,7 +869,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dscp_forward_tag", flattenWantempSystemSdwanServiceDscpForwardTagWsssa(o["dscp-forward-tag"], d, "dscp_forward_tag")); err != nil {
+	if err = d.Set("dscp_forward_tag", flattenWantempSystemSdwanServiceDscpForwardTag2edl(o["dscp-forward-tag"], d, "dscp_forward_tag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp-forward-tag"], "WantempSystemSdwanService-DscpForwardTag"); ok {
 			if err = d.Set("dscp_forward_tag", vv); err != nil {
 				return fmt.Errorf("Error reading dscp_forward_tag: %v", err)
@@ -870,7 +879,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dscp_reverse", flattenWantempSystemSdwanServiceDscpReverseWsssa(o["dscp-reverse"], d, "dscp_reverse")); err != nil {
+	if err = d.Set("dscp_reverse", flattenWantempSystemSdwanServiceDscpReverse2edl(o["dscp-reverse"], d, "dscp_reverse")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp-reverse"], "WantempSystemSdwanService-DscpReverse"); ok {
 			if err = d.Set("dscp_reverse", vv); err != nil {
 				return fmt.Errorf("Error reading dscp_reverse: %v", err)
@@ -880,7 +889,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dscp_reverse_tag", flattenWantempSystemSdwanServiceDscpReverseTagWsssa(o["dscp-reverse-tag"], d, "dscp_reverse_tag")); err != nil {
+	if err = d.Set("dscp_reverse_tag", flattenWantempSystemSdwanServiceDscpReverseTag2edl(o["dscp-reverse-tag"], d, "dscp_reverse_tag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp-reverse-tag"], "WantempSystemSdwanService-DscpReverseTag"); ok {
 			if err = d.Set("dscp_reverse_tag", vv); err != nil {
 				return fmt.Errorf("Error reading dscp_reverse_tag: %v", err)
@@ -890,7 +899,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dst", flattenWantempSystemSdwanServiceDstWsssa(o["dst"], d, "dst")); err != nil {
+	if err = d.Set("dst", flattenWantempSystemSdwanServiceDst2edl(o["dst"], d, "dst")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dst"], "WantempSystemSdwanService-Dst"); ok {
 			if err = d.Set("dst", vv); err != nil {
 				return fmt.Errorf("Error reading dst: %v", err)
@@ -900,7 +909,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dst_negate", flattenWantempSystemSdwanServiceDstNegateWsssa(o["dst-negate"], d, "dst_negate")); err != nil {
+	if err = d.Set("dst_negate", flattenWantempSystemSdwanServiceDstNegate2edl(o["dst-negate"], d, "dst_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dst-negate"], "WantempSystemSdwanService-DstNegate"); ok {
 			if err = d.Set("dst_negate", vv); err != nil {
 				return fmt.Errorf("Error reading dst_negate: %v", err)
@@ -910,7 +919,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("dst6", flattenWantempSystemSdwanServiceDst6Wsssa(o["dst6"], d, "dst6")); err != nil {
+	if err = d.Set("dst6", flattenWantempSystemSdwanServiceDst62edl(o["dst6"], d, "dst6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dst6"], "WantempSystemSdwanService-Dst6"); ok {
 			if err = d.Set("dst6", vv); err != nil {
 				return fmt.Errorf("Error reading dst6: %v", err)
@@ -920,7 +929,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("end_port", flattenWantempSystemSdwanServiceEndPortWsssa(o["end-port"], d, "end_port")); err != nil {
+	if err = d.Set("end_port", flattenWantempSystemSdwanServiceEndPort2edl(o["end-port"], d, "end_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["end-port"], "WantempSystemSdwanService-EndPort"); ok {
 			if err = d.Set("end_port", vv); err != nil {
 				return fmt.Errorf("Error reading end_port: %v", err)
@@ -930,7 +939,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("end_src_port", flattenWantempSystemSdwanServiceEndSrcPortWsssa(o["end-src-port"], d, "end_src_port")); err != nil {
+	if err = d.Set("end_src_port", flattenWantempSystemSdwanServiceEndSrcPort2edl(o["end-src-port"], d, "end_src_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["end-src-port"], "WantempSystemSdwanService-EndSrcPort"); ok {
 			if err = d.Set("end_src_port", vv); err != nil {
 				return fmt.Errorf("Error reading end_src_port: %v", err)
@@ -940,7 +949,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("gateway", flattenWantempSystemSdwanServiceGatewayWsssa(o["gateway"], d, "gateway")); err != nil {
+	if err = d.Set("gateway", flattenWantempSystemSdwanServiceGateway2edl(o["gateway"], d, "gateway")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gateway"], "WantempSystemSdwanService-Gateway"); ok {
 			if err = d.Set("gateway", vv); err != nil {
 				return fmt.Errorf("Error reading gateway: %v", err)
@@ -950,7 +959,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("groups", flattenWantempSystemSdwanServiceGroupsWsssa(o["groups"], d, "groups")); err != nil {
+	if err = d.Set("groups", flattenWantempSystemSdwanServiceGroups2edl(o["groups"], d, "groups")); err != nil {
 		if vv, ok := fortiAPIPatch(o["groups"], "WantempSystemSdwanService-Groups"); ok {
 			if err = d.Set("groups", vv); err != nil {
 				return fmt.Errorf("Error reading groups: %v", err)
@@ -960,7 +969,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("hash_mode", flattenWantempSystemSdwanServiceHashModeWsssa(o["hash-mode"], d, "hash_mode")); err != nil {
+	if err = d.Set("hash_mode", flattenWantempSystemSdwanServiceHashMode2edl(o["hash-mode"], d, "hash_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["hash-mode"], "WantempSystemSdwanService-HashMode"); ok {
 			if err = d.Set("hash_mode", vv); err != nil {
 				return fmt.Errorf("Error reading hash_mode: %v", err)
@@ -970,7 +979,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("health_check", flattenWantempSystemSdwanServiceHealthCheckWsssa(o["health-check"], d, "health_check")); err != nil {
+	if err = d.Set("health_check", flattenWantempSystemSdwanServiceHealthCheck2edl(o["health-check"], d, "health_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemSdwanService-HealthCheck"); ok {
 			if err = d.Set("health_check", vv); err != nil {
 				return fmt.Errorf("Error reading health_check: %v", err)
@@ -980,7 +989,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("hold_down_time", flattenWantempSystemSdwanServiceHoldDownTimeWsssa(o["hold-down-time"], d, "hold_down_time")); err != nil {
+	if err = d.Set("hold_down_time", flattenWantempSystemSdwanServiceHoldDownTime2edl(o["hold-down-time"], d, "hold_down_time")); err != nil {
 		if vv, ok := fortiAPIPatch(o["hold-down-time"], "WantempSystemSdwanService-HoldDownTime"); ok {
 			if err = d.Set("hold_down_time", vv); err != nil {
 				return fmt.Errorf("Error reading hold_down_time: %v", err)
@@ -990,7 +999,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemSdwanServiceIdWsssa(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemSdwanServiceId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemSdwanService-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -1000,7 +1009,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("input_device", flattenWantempSystemSdwanServiceInputDeviceWsssa(o["input-device"], d, "input_device")); err != nil {
+	if err = d.Set("input_device", flattenWantempSystemSdwanServiceInputDevice2edl(o["input-device"], d, "input_device")); err != nil {
 		if vv, ok := fortiAPIPatch(o["input-device"], "WantempSystemSdwanService-InputDevice"); ok {
 			if err = d.Set("input_device", vv); err != nil {
 				return fmt.Errorf("Error reading input_device: %v", err)
@@ -1010,7 +1019,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("input_device_negate", flattenWantempSystemSdwanServiceInputDeviceNegateWsssa(o["input-device-negate"], d, "input_device_negate")); err != nil {
+	if err = d.Set("input_device_negate", flattenWantempSystemSdwanServiceInputDeviceNegate2edl(o["input-device-negate"], d, "input_device_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["input-device-negate"], "WantempSystemSdwanService-InputDeviceNegate"); ok {
 			if err = d.Set("input_device_negate", vv); err != nil {
 				return fmt.Errorf("Error reading input_device_negate: %v", err)
@@ -1020,7 +1029,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("input_zone", flattenWantempSystemSdwanServiceInputZoneWsssa(o["input-zone"], d, "input_zone")); err != nil {
+	if err = d.Set("input_zone", flattenWantempSystemSdwanServiceInputZone2edl(o["input-zone"], d, "input_zone")); err != nil {
 		if vv, ok := fortiAPIPatch(o["input-zone"], "WantempSystemSdwanService-InputZone"); ok {
 			if err = d.Set("input_zone", vv); err != nil {
 				return fmt.Errorf("Error reading input_zone: %v", err)
@@ -1030,7 +1039,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service", flattenWantempSystemSdwanServiceInternetServiceWsssa(o["internet-service"], d, "internet_service")); err != nil {
+	if err = d.Set("internet_service", flattenWantempSystemSdwanServiceInternetService2edl(o["internet-service"], d, "internet_service")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service"], "WantempSystemSdwanService-InternetService"); ok {
 			if err = d.Set("internet_service", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service: %v", err)
@@ -1040,7 +1049,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_app_ctrl", flattenWantempSystemSdwanServiceInternetServiceAppCtrlWsssa(o["internet-service-app-ctrl"], d, "internet_service_app_ctrl")); err != nil {
+	if err = d.Set("internet_service_app_ctrl", flattenWantempSystemSdwanServiceInternetServiceAppCtrl2edl(o["internet-service-app-ctrl"], d, "internet_service_app_ctrl")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-app-ctrl"], "WantempSystemSdwanService-InternetServiceAppCtrl"); ok {
 			if err = d.Set("internet_service_app_ctrl", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_app_ctrl: %v", err)
@@ -1050,7 +1059,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_app_ctrl_category", flattenWantempSystemSdwanServiceInternetServiceAppCtrlCategoryWsssa(o["internet-service-app-ctrl-category"], d, "internet_service_app_ctrl_category")); err != nil {
+	if err = d.Set("internet_service_app_ctrl_category", flattenWantempSystemSdwanServiceInternetServiceAppCtrlCategory2edl(o["internet-service-app-ctrl-category"], d, "internet_service_app_ctrl_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-app-ctrl-category"], "WantempSystemSdwanService-InternetServiceAppCtrlCategory"); ok {
 			if err = d.Set("internet_service_app_ctrl_category", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_app_ctrl_category: %v", err)
@@ -1060,7 +1069,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_app_ctrl_group", flattenWantempSystemSdwanServiceInternetServiceAppCtrlGroupWsssa(o["internet-service-app-ctrl-group"], d, "internet_service_app_ctrl_group")); err != nil {
+	if err = d.Set("internet_service_app_ctrl_group", flattenWantempSystemSdwanServiceInternetServiceAppCtrlGroup2edl(o["internet-service-app-ctrl-group"], d, "internet_service_app_ctrl_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-app-ctrl-group"], "WantempSystemSdwanService-InternetServiceAppCtrlGroup"); ok {
 			if err = d.Set("internet_service_app_ctrl_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_app_ctrl_group: %v", err)
@@ -1070,7 +1079,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_custom", flattenWantempSystemSdwanServiceInternetServiceCustomWsssa(o["internet-service-custom"], d, "internet_service_custom")); err != nil {
+	if err = d.Set("internet_service_custom", flattenWantempSystemSdwanServiceInternetServiceCustom2edl(o["internet-service-custom"], d, "internet_service_custom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-custom"], "WantempSystemSdwanService-InternetServiceCustom"); ok {
 			if err = d.Set("internet_service_custom", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_custom: %v", err)
@@ -1080,7 +1089,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_custom_group", flattenWantempSystemSdwanServiceInternetServiceCustomGroupWsssa(o["internet-service-custom-group"], d, "internet_service_custom_group")); err != nil {
+	if err = d.Set("internet_service_custom_group", flattenWantempSystemSdwanServiceInternetServiceCustomGroup2edl(o["internet-service-custom-group"], d, "internet_service_custom_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-custom-group"], "WantempSystemSdwanService-InternetServiceCustomGroup"); ok {
 			if err = d.Set("internet_service_custom_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_custom_group: %v", err)
@@ -1090,7 +1099,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_group", flattenWantempSystemSdwanServiceInternetServiceGroupWsssa(o["internet-service-group"], d, "internet_service_group")); err != nil {
+	if err = d.Set("internet_service_group", flattenWantempSystemSdwanServiceInternetServiceGroup2edl(o["internet-service-group"], d, "internet_service_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-group"], "WantempSystemSdwanService-InternetServiceGroup"); ok {
 			if err = d.Set("internet_service_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_group: %v", err)
@@ -1100,7 +1109,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("internet_service_name", flattenWantempSystemSdwanServiceInternetServiceNameWsssa(o["internet-service-name"], d, "internet_service_name")); err != nil {
+	if err = d.Set("internet_service_name", flattenWantempSystemSdwanServiceInternetServiceName2edl(o["internet-service-name"], d, "internet_service_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-name"], "WantempSystemSdwanService-InternetServiceName"); ok {
 			if err = d.Set("internet_service_name", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_name: %v", err)
@@ -1110,7 +1119,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("jitter_weight", flattenWantempSystemSdwanServiceJitterWeightWsssa(o["jitter-weight"], d, "jitter_weight")); err != nil {
+	if err = d.Set("jitter_weight", flattenWantempSystemSdwanServiceJitterWeight2edl(o["jitter-weight"], d, "jitter_weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["jitter-weight"], "WantempSystemSdwanService-JitterWeight"); ok {
 			if err = d.Set("jitter_weight", vv); err != nil {
 				return fmt.Errorf("Error reading jitter_weight: %v", err)
@@ -1120,7 +1129,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("latency_weight", flattenWantempSystemSdwanServiceLatencyWeightWsssa(o["latency-weight"], d, "latency_weight")); err != nil {
+	if err = d.Set("latency_weight", flattenWantempSystemSdwanServiceLatencyWeight2edl(o["latency-weight"], d, "latency_weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["latency-weight"], "WantempSystemSdwanService-LatencyWeight"); ok {
 			if err = d.Set("latency_weight", vv); err != nil {
 				return fmt.Errorf("Error reading latency_weight: %v", err)
@@ -1130,7 +1139,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("link_cost_factor", flattenWantempSystemSdwanServiceLinkCostFactorWsssa(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
+	if err = d.Set("link_cost_factor", flattenWantempSystemSdwanServiceLinkCostFactor2edl(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["link-cost-factor"], "WantempSystemSdwanService-LinkCostFactor"); ok {
 			if err = d.Set("link_cost_factor", vv); err != nil {
 				return fmt.Errorf("Error reading link_cost_factor: %v", err)
@@ -1140,7 +1149,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("link_cost_threshold", flattenWantempSystemSdwanServiceLinkCostThresholdWsssa(o["link-cost-threshold"], d, "link_cost_threshold")); err != nil {
+	if err = d.Set("link_cost_threshold", flattenWantempSystemSdwanServiceLinkCostThreshold2edl(o["link-cost-threshold"], d, "link_cost_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["link-cost-threshold"], "WantempSystemSdwanService-LinkCostThreshold"); ok {
 			if err = d.Set("link_cost_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading link_cost_threshold: %v", err)
@@ -1150,7 +1159,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("load_balance", flattenWantempSystemSdwanServiceLoadBalanceWsssa(o["load-balance"], d, "load_balance")); err != nil {
+	if err = d.Set("load_balance", flattenWantempSystemSdwanServiceLoadBalance2edl(o["load-balance"], d, "load_balance")); err != nil {
 		if vv, ok := fortiAPIPatch(o["load-balance"], "WantempSystemSdwanService-LoadBalance"); ok {
 			if err = d.Set("load_balance", vv); err != nil {
 				return fmt.Errorf("Error reading load_balance: %v", err)
@@ -1160,7 +1169,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
+	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanServiceMinimumSlaMeetMembers2edl(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["minimum-sla-meet-members"], "WantempSystemSdwanService-MinimumSlaMeetMembers"); ok {
 			if err = d.Set("minimum_sla_meet_members", vv); err != nil {
 				return fmt.Errorf("Error reading minimum_sla_meet_members: %v", err)
@@ -1170,7 +1179,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("mode", flattenWantempSystemSdwanServiceModeWsssa(o["mode"], d, "mode")); err != nil {
+	if err = d.Set("mode", flattenWantempSystemSdwanServiceMode2edl(o["mode"], d, "mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mode"], "WantempSystemSdwanService-Mode"); ok {
 			if err = d.Set("mode", vv); err != nil {
 				return fmt.Errorf("Error reading mode: %v", err)
@@ -1180,7 +1189,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("name", flattenWantempSystemSdwanServiceNameWsssa(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenWantempSystemSdwanServiceName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "WantempSystemSdwanService-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -1190,7 +1199,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("packet_loss_weight", flattenWantempSystemSdwanServicePacketLossWeightWsssa(o["packet-loss-weight"], d, "packet_loss_weight")); err != nil {
+	if err = d.Set("packet_loss_weight", flattenWantempSystemSdwanServicePacketLossWeight2edl(o["packet-loss-weight"], d, "packet_loss_weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packet-loss-weight"], "WantempSystemSdwanService-PacketLossWeight"); ok {
 			if err = d.Set("packet_loss_weight", vv); err != nil {
 				return fmt.Errorf("Error reading packet_loss_weight: %v", err)
@@ -1200,7 +1209,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("passive_measurement", flattenWantempSystemSdwanServicePassiveMeasurementWsssa(o["passive-measurement"], d, "passive_measurement")); err != nil {
+	if err = d.Set("passive_measurement", flattenWantempSystemSdwanServicePassiveMeasurement2edl(o["passive-measurement"], d, "passive_measurement")); err != nil {
 		if vv, ok := fortiAPIPatch(o["passive-measurement"], "WantempSystemSdwanService-PassiveMeasurement"); ok {
 			if err = d.Set("passive_measurement", vv); err != nil {
 				return fmt.Errorf("Error reading passive_measurement: %v", err)
@@ -1210,7 +1219,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("priority_members", flattenWantempSystemSdwanServicePriorityMembersWsssa(o["priority-members"], d, "priority_members")); err != nil {
+	if err = d.Set("priority_members", flattenWantempSystemSdwanServicePriorityMembers2edl(o["priority-members"], d, "priority_members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority-members"], "WantempSystemSdwanService-PriorityMembers"); ok {
 			if err = d.Set("priority_members", vv); err != nil {
 				return fmt.Errorf("Error reading priority_members: %v", err)
@@ -1220,7 +1229,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("priority_zone", flattenWantempSystemSdwanServicePriorityZoneWsssa(o["priority-zone"], d, "priority_zone")); err != nil {
+	if err = d.Set("priority_zone", flattenWantempSystemSdwanServicePriorityZone2edl(o["priority-zone"], d, "priority_zone")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority-zone"], "WantempSystemSdwanService-PriorityZone"); ok {
 			if err = d.Set("priority_zone", vv); err != nil {
 				return fmt.Errorf("Error reading priority_zone: %v", err)
@@ -1230,7 +1239,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("protocol", flattenWantempSystemSdwanServiceProtocolWsssa(o["protocol"], d, "protocol")); err != nil {
+	if err = d.Set("protocol", flattenWantempSystemSdwanServiceProtocol2edl(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "WantempSystemSdwanService-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
 				return fmt.Errorf("Error reading protocol: %v", err)
@@ -1240,7 +1249,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("quality_link", flattenWantempSystemSdwanServiceQualityLinkWsssa(o["quality-link"], d, "quality_link")); err != nil {
+	if err = d.Set("quality_link", flattenWantempSystemSdwanServiceQualityLink2edl(o["quality-link"], d, "quality_link")); err != nil {
 		if vv, ok := fortiAPIPatch(o["quality-link"], "WantempSystemSdwanService-QualityLink"); ok {
 			if err = d.Set("quality_link", vv); err != nil {
 				return fmt.Errorf("Error reading quality_link: %v", err)
@@ -1250,7 +1259,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("role", flattenWantempSystemSdwanServiceRoleWsssa(o["role"], d, "role")); err != nil {
+	if err = d.Set("role", flattenWantempSystemSdwanServiceRole2edl(o["role"], d, "role")); err != nil {
 		if vv, ok := fortiAPIPatch(o["role"], "WantempSystemSdwanService-Role"); ok {
 			if err = d.Set("role", vv); err != nil {
 				return fmt.Errorf("Error reading role: %v", err)
@@ -1260,7 +1269,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("shortcut", flattenWantempSystemSdwanServiceShortcutWsssa(o["shortcut"], d, "shortcut")); err != nil {
+	if err = d.Set("shortcut", flattenWantempSystemSdwanServiceShortcut2edl(o["shortcut"], d, "shortcut")); err != nil {
 		if vv, ok := fortiAPIPatch(o["shortcut"], "WantempSystemSdwanService-Shortcut"); ok {
 			if err = d.Set("shortcut", vv); err != nil {
 				return fmt.Errorf("Error reading shortcut: %v", err)
@@ -1270,7 +1279,17 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("shortcut_stickiness", flattenWantempSystemSdwanServiceShortcutStickinessWsssa(o["shortcut-stickiness"], d, "shortcut_stickiness")); err != nil {
+	if err = d.Set("shortcut_priority", flattenWantempSystemSdwanServiceShortcutPriority2edl(o["shortcut-priority"], d, "shortcut_priority")); err != nil {
+		if vv, ok := fortiAPIPatch(o["shortcut-priority"], "WantempSystemSdwanService-ShortcutPriority"); ok {
+			if err = d.Set("shortcut_priority", vv); err != nil {
+				return fmt.Errorf("Error reading shortcut_priority: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading shortcut_priority: %v", err)
+		}
+	}
+
+	if err = d.Set("shortcut_stickiness", flattenWantempSystemSdwanServiceShortcutStickiness2edl(o["shortcut-stickiness"], d, "shortcut_stickiness")); err != nil {
 		if vv, ok := fortiAPIPatch(o["shortcut-stickiness"], "WantempSystemSdwanService-ShortcutStickiness"); ok {
 			if err = d.Set("shortcut_stickiness", vv); err != nil {
 				return fmt.Errorf("Error reading shortcut_stickiness: %v", err)
@@ -1280,7 +1299,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("route_tag", flattenWantempSystemSdwanServiceRouteTagWsssa(o["route-tag"], d, "route_tag")); err != nil {
+	if err = d.Set("route_tag", flattenWantempSystemSdwanServiceRouteTag2edl(o["route-tag"], d, "route_tag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["route-tag"], "WantempSystemSdwanService-RouteTag"); ok {
 			if err = d.Set("route_tag", vv); err != nil {
 				return fmt.Errorf("Error reading route_tag: %v", err)
@@ -1291,7 +1310,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 	}
 
 	if isImportTable() {
-		if err = d.Set("sla", flattenWantempSystemSdwanServiceSlaWsssa(o["sla"], d, "sla")); err != nil {
+		if err = d.Set("sla", flattenWantempSystemSdwanServiceSla2edl(o["sla"], d, "sla")); err != nil {
 			if vv, ok := fortiAPIPatch(o["sla"], "WantempSystemSdwanService-Sla"); ok {
 				if err = d.Set("sla", vv); err != nil {
 					return fmt.Errorf("Error reading sla: %v", err)
@@ -1302,7 +1321,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	} else {
 		if _, ok := d.GetOk("sla"); ok {
-			if err = d.Set("sla", flattenWantempSystemSdwanServiceSlaWsssa(o["sla"], d, "sla")); err != nil {
+			if err = d.Set("sla", flattenWantempSystemSdwanServiceSla2edl(o["sla"], d, "sla")); err != nil {
 				if vv, ok := fortiAPIPatch(o["sla"], "WantempSystemSdwanService-Sla"); ok {
 					if err = d.Set("sla", vv); err != nil {
 						return fmt.Errorf("Error reading sla: %v", err)
@@ -1314,7 +1333,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("sla_compare_method", flattenWantempSystemSdwanServiceSlaCompareMethodWsssa(o["sla-compare-method"], d, "sla_compare_method")); err != nil {
+	if err = d.Set("sla_compare_method", flattenWantempSystemSdwanServiceSlaCompareMethod2edl(o["sla-compare-method"], d, "sla_compare_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-compare-method"], "WantempSystemSdwanService-SlaCompareMethod"); ok {
 			if err = d.Set("sla_compare_method", vv); err != nil {
 				return fmt.Errorf("Error reading sla_compare_method: %v", err)
@@ -1324,7 +1343,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("sla_stickiness", flattenWantempSystemSdwanServiceSlaStickinessWsssa(o["sla-stickiness"], d, "sla_stickiness")); err != nil {
+	if err = d.Set("sla_stickiness", flattenWantempSystemSdwanServiceSlaStickiness2edl(o["sla-stickiness"], d, "sla_stickiness")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-stickiness"], "WantempSystemSdwanService-SlaStickiness"); ok {
 			if err = d.Set("sla_stickiness", vv); err != nil {
 				return fmt.Errorf("Error reading sla_stickiness: %v", err)
@@ -1334,7 +1353,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("src", flattenWantempSystemSdwanServiceSrcWsssa(o["src"], d, "src")); err != nil {
+	if err = d.Set("src", flattenWantempSystemSdwanServiceSrc2edl(o["src"], d, "src")); err != nil {
 		if vv, ok := fortiAPIPatch(o["src"], "WantempSystemSdwanService-Src"); ok {
 			if err = d.Set("src", vv); err != nil {
 				return fmt.Errorf("Error reading src: %v", err)
@@ -1344,7 +1363,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("src_negate", flattenWantempSystemSdwanServiceSrcNegateWsssa(o["src-negate"], d, "src_negate")); err != nil {
+	if err = d.Set("src_negate", flattenWantempSystemSdwanServiceSrcNegate2edl(o["src-negate"], d, "src_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["src-negate"], "WantempSystemSdwanService-SrcNegate"); ok {
 			if err = d.Set("src_negate", vv); err != nil {
 				return fmt.Errorf("Error reading src_negate: %v", err)
@@ -1354,7 +1373,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("src6", flattenWantempSystemSdwanServiceSrc6Wsssa(o["src6"], d, "src6")); err != nil {
+	if err = d.Set("src6", flattenWantempSystemSdwanServiceSrc62edl(o["src6"], d, "src6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["src6"], "WantempSystemSdwanService-Src6"); ok {
 			if err = d.Set("src6", vv); err != nil {
 				return fmt.Errorf("Error reading src6: %v", err)
@@ -1364,7 +1383,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("standalone_action", flattenWantempSystemSdwanServiceStandaloneActionWsssa(o["standalone-action"], d, "standalone_action")); err != nil {
+	if err = d.Set("standalone_action", flattenWantempSystemSdwanServiceStandaloneAction2edl(o["standalone-action"], d, "standalone_action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["standalone-action"], "WantempSystemSdwanService-StandaloneAction"); ok {
 			if err = d.Set("standalone_action", vv); err != nil {
 				return fmt.Errorf("Error reading standalone_action: %v", err)
@@ -1374,7 +1393,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("start_port", flattenWantempSystemSdwanServiceStartPortWsssa(o["start-port"], d, "start_port")); err != nil {
+	if err = d.Set("start_port", flattenWantempSystemSdwanServiceStartPort2edl(o["start-port"], d, "start_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["start-port"], "WantempSystemSdwanService-StartPort"); ok {
 			if err = d.Set("start_port", vv); err != nil {
 				return fmt.Errorf("Error reading start_port: %v", err)
@@ -1384,7 +1403,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("start_src_port", flattenWantempSystemSdwanServiceStartSrcPortWsssa(o["start-src-port"], d, "start_src_port")); err != nil {
+	if err = d.Set("start_src_port", flattenWantempSystemSdwanServiceStartSrcPort2edl(o["start-src-port"], d, "start_src_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["start-src-port"], "WantempSystemSdwanService-StartSrcPort"); ok {
 			if err = d.Set("start_src_port", vv); err != nil {
 				return fmt.Errorf("Error reading start_src_port: %v", err)
@@ -1394,7 +1413,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("status", flattenWantempSystemSdwanServiceStatusWsssa(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenWantempSystemSdwanServiceStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "WantempSystemSdwanService-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -1404,7 +1423,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("tie_break", flattenWantempSystemSdwanServiceTieBreakWsssa(o["tie-break"], d, "tie_break")); err != nil {
+	if err = d.Set("tie_break", flattenWantempSystemSdwanServiceTieBreak2edl(o["tie-break"], d, "tie_break")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tie-break"], "WantempSystemSdwanService-TieBreak"); ok {
 			if err = d.Set("tie_break", vv); err != nil {
 				return fmt.Errorf("Error reading tie_break: %v", err)
@@ -1414,7 +1433,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("tos", flattenWantempSystemSdwanServiceTosWsssa(o["tos"], d, "tos")); err != nil {
+	if err = d.Set("tos", flattenWantempSystemSdwanServiceTos2edl(o["tos"], d, "tos")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tos"], "WantempSystemSdwanService-Tos"); ok {
 			if err = d.Set("tos", vv); err != nil {
 				return fmt.Errorf("Error reading tos: %v", err)
@@ -1424,7 +1443,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("tos_mask", flattenWantempSystemSdwanServiceTosMaskWsssa(o["tos-mask"], d, "tos_mask")); err != nil {
+	if err = d.Set("tos_mask", flattenWantempSystemSdwanServiceTosMask2edl(o["tos-mask"], d, "tos_mask")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tos-mask"], "WantempSystemSdwanService-TosMask"); ok {
 			if err = d.Set("tos_mask", vv); err != nil {
 				return fmt.Errorf("Error reading tos_mask: %v", err)
@@ -1434,7 +1453,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("use_shortcut_sla", flattenWantempSystemSdwanServiceUseShortcutSlaWsssa(o["use-shortcut-sla"], d, "use_shortcut_sla")); err != nil {
+	if err = d.Set("use_shortcut_sla", flattenWantempSystemSdwanServiceUseShortcutSla2edl(o["use-shortcut-sla"], d, "use_shortcut_sla")); err != nil {
 		if vv, ok := fortiAPIPatch(o["use-shortcut-sla"], "WantempSystemSdwanService-UseShortcutSla"); ok {
 			if err = d.Set("use_shortcut_sla", vv); err != nil {
 				return fmt.Errorf("Error reading use_shortcut_sla: %v", err)
@@ -1444,7 +1463,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("users", flattenWantempSystemSdwanServiceUsersWsssa(o["users"], d, "users")); err != nil {
+	if err = d.Set("users", flattenWantempSystemSdwanServiceUsers2edl(o["users"], d, "users")); err != nil {
 		if vv, ok := fortiAPIPatch(o["users"], "WantempSystemSdwanService-Users"); ok {
 			if err = d.Set("users", vv); err != nil {
 				return fmt.Errorf("Error reading users: %v", err)
@@ -1454,7 +1473,7 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("zone_mode", flattenWantempSystemSdwanServiceZoneModeWsssa(o["zone-mode"], d, "zone_mode")); err != nil {
+	if err = d.Set("zone_mode", flattenWantempSystemSdwanServiceZoneMode2edl(o["zone-mode"], d, "zone_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["zone-mode"], "WantempSystemSdwanService-ZoneMode"); ok {
 			if err = d.Set("zone_mode", vv); err != nil {
 				return fmt.Errorf("Error reading zone_mode: %v", err)
@@ -1473,199 +1492,203 @@ func flattenWantempSystemSdwanServiceFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanServiceAddrModeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceAddrMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceAgentExclusiveWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceAgentExclusive2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceBandwidthWeightWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceBandwidthWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDefaultWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDefault2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDscpForwardWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDscpForward2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDscpForwardTagWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDscpForwardTag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDscpReverseWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDscpReverse2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDscpReverseTagWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDscpReverseTag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDstWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDst2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceDstNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDstNegateWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceDst62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceEndPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceDst6Wsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceEndSrcPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceEndPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceGateway2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceEndSrcPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceHashMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceGatewayWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceHoldDownTime2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceGroupsWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceHashModeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInputDevice2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceInputDeviceNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceHealthCheckWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceHoldDownTimeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceIdWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceInputDeviceWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceInputDeviceNegateWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceInputZoneWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInputZone2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInternetService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceAppCtrlWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInternetServiceAppCtrl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceAppCtrlCategoryWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInternetServiceAppCtrlCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceAppCtrlGroupWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceInternetServiceAppCtrlGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceInternetServiceCustom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceInternetServiceCustomGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceInternetServiceGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceInternetServiceName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceJitterWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceCustomWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceLatencyWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceCustomGroupWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceLinkCostFactor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceGroupWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceLinkCostThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceInternetServiceNameWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceLoadBalance2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceJitterWeightWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceMinimumSlaMeetMembers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceLatencyWeightWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceLinkCostFactorWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceLinkCostThresholdWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServicePacketLossWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceLoadBalanceWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServicePassiveMeasurement2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServicePriorityMembers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServicePriorityZone2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceProtocol2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceModeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceQualityLink2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceNameWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceRole2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServicePacketLossWeightWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceShortcut2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServicePassiveMeasurementWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceShortcutPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServicePriorityMembersWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceShortcutStickiness2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServicePriorityZoneWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceRouteTag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceProtocolWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceQualityLinkWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceRoleWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceShortcutWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceShortcutStickinessWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceRouteTagWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceSlaWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -1681,12 +1704,12 @@ func expandWantempSystemSdwanServiceSlaWsssa(d *schema.ResourceData, v interface
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["health-check"], _ = expandWantempSystemSdwanServiceSlaHealthCheckWsssa(d, i["health_check"], pre_append)
+			tmp["health-check"], _ = expandWantempSystemSdwanServiceSlaHealthCheck2edl(d, i["health_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandWantempSystemSdwanServiceSlaIdWsssa(d, i["id"], pre_append)
+			tmp["id"], _ = expandWantempSystemSdwanServiceSlaId2edl(d, i["id"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1699,71 +1722,71 @@ func expandWantempSystemSdwanServiceSlaWsssa(d *schema.ResourceData, v interface
 	return result, nil
 }
 
-func expandWantempSystemSdwanServiceSlaHealthCheckWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSlaIdWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSlaCompareMethodWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaCompareMethod2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSlaStickinessWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSlaStickiness2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSrcWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSrc2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceSrcNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSrcNegateWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceSrc62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanServiceStandaloneAction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceSrc6Wsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceStartPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceStandaloneActionWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceStartSrcPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceStartPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceStartSrcPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceTieBreak2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceStatusWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceTos2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceTieBreakWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceTosMask2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceTosWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceUseShortcutSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanServiceTosMaskWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemSdwanServiceUsers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
-func expandWantempSystemSdwanServiceUseShortcutSlaWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceUsersWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanServiceZoneModeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanServiceZoneMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1771,7 +1794,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("addr_mode"); ok || d.HasChange("addr_mode") {
-		t, err := expandWantempSystemSdwanServiceAddrModeWsssa(d, v, "addr_mode")
+		t, err := expandWantempSystemSdwanServiceAddrMode2edl(d, v, "addr_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1780,7 +1803,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("agent_exclusive"); ok || d.HasChange("agent_exclusive") {
-		t, err := expandWantempSystemSdwanServiceAgentExclusiveWsssa(d, v, "agent_exclusive")
+		t, err := expandWantempSystemSdwanServiceAgentExclusive2edl(d, v, "agent_exclusive")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1789,7 +1812,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("bandwidth_weight"); ok || d.HasChange("bandwidth_weight") {
-		t, err := expandWantempSystemSdwanServiceBandwidthWeightWsssa(d, v, "bandwidth_weight")
+		t, err := expandWantempSystemSdwanServiceBandwidthWeight2edl(d, v, "bandwidth_weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1798,7 +1821,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("default"); ok || d.HasChange("default") {
-		t, err := expandWantempSystemSdwanServiceDefaultWsssa(d, v, "default")
+		t, err := expandWantempSystemSdwanServiceDefault2edl(d, v, "default")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1807,7 +1830,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dscp_forward"); ok || d.HasChange("dscp_forward") {
-		t, err := expandWantempSystemSdwanServiceDscpForwardWsssa(d, v, "dscp_forward")
+		t, err := expandWantempSystemSdwanServiceDscpForward2edl(d, v, "dscp_forward")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1816,7 +1839,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dscp_forward_tag"); ok || d.HasChange("dscp_forward_tag") {
-		t, err := expandWantempSystemSdwanServiceDscpForwardTagWsssa(d, v, "dscp_forward_tag")
+		t, err := expandWantempSystemSdwanServiceDscpForwardTag2edl(d, v, "dscp_forward_tag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1825,7 +1848,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dscp_reverse"); ok || d.HasChange("dscp_reverse") {
-		t, err := expandWantempSystemSdwanServiceDscpReverseWsssa(d, v, "dscp_reverse")
+		t, err := expandWantempSystemSdwanServiceDscpReverse2edl(d, v, "dscp_reverse")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1834,7 +1857,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dscp_reverse_tag"); ok || d.HasChange("dscp_reverse_tag") {
-		t, err := expandWantempSystemSdwanServiceDscpReverseTagWsssa(d, v, "dscp_reverse_tag")
+		t, err := expandWantempSystemSdwanServiceDscpReverseTag2edl(d, v, "dscp_reverse_tag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1843,7 +1866,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dst"); ok || d.HasChange("dst") {
-		t, err := expandWantempSystemSdwanServiceDstWsssa(d, v, "dst")
+		t, err := expandWantempSystemSdwanServiceDst2edl(d, v, "dst")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1852,7 +1875,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dst_negate"); ok || d.HasChange("dst_negate") {
-		t, err := expandWantempSystemSdwanServiceDstNegateWsssa(d, v, "dst_negate")
+		t, err := expandWantempSystemSdwanServiceDstNegate2edl(d, v, "dst_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1861,7 +1884,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("dst6"); ok || d.HasChange("dst6") {
-		t, err := expandWantempSystemSdwanServiceDst6Wsssa(d, v, "dst6")
+		t, err := expandWantempSystemSdwanServiceDst62edl(d, v, "dst6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1870,7 +1893,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("end_port"); ok || d.HasChange("end_port") {
-		t, err := expandWantempSystemSdwanServiceEndPortWsssa(d, v, "end_port")
+		t, err := expandWantempSystemSdwanServiceEndPort2edl(d, v, "end_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1879,7 +1902,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("end_src_port"); ok || d.HasChange("end_src_port") {
-		t, err := expandWantempSystemSdwanServiceEndSrcPortWsssa(d, v, "end_src_port")
+		t, err := expandWantempSystemSdwanServiceEndSrcPort2edl(d, v, "end_src_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1888,7 +1911,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("gateway"); ok || d.HasChange("gateway") {
-		t, err := expandWantempSystemSdwanServiceGatewayWsssa(d, v, "gateway")
+		t, err := expandWantempSystemSdwanServiceGateway2edl(d, v, "gateway")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1897,7 +1920,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("groups"); ok || d.HasChange("groups") {
-		t, err := expandWantempSystemSdwanServiceGroupsWsssa(d, v, "groups")
+		t, err := expandWantempSystemSdwanServiceGroups2edl(d, v, "groups")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1906,7 +1929,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("hash_mode"); ok || d.HasChange("hash_mode") {
-		t, err := expandWantempSystemSdwanServiceHashModeWsssa(d, v, "hash_mode")
+		t, err := expandWantempSystemSdwanServiceHashMode2edl(d, v, "hash_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1915,7 +1938,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemSdwanServiceHealthCheckWsssa(d, v, "health_check")
+		t, err := expandWantempSystemSdwanServiceHealthCheck2edl(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1924,7 +1947,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("hold_down_time"); ok || d.HasChange("hold_down_time") {
-		t, err := expandWantempSystemSdwanServiceHoldDownTimeWsssa(d, v, "hold_down_time")
+		t, err := expandWantempSystemSdwanServiceHoldDownTime2edl(d, v, "hold_down_time")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1933,7 +1956,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemSdwanServiceIdWsssa(d, v, "fosid")
+		t, err := expandWantempSystemSdwanServiceId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1942,7 +1965,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("input_device"); ok || d.HasChange("input_device") {
-		t, err := expandWantempSystemSdwanServiceInputDeviceWsssa(d, v, "input_device")
+		t, err := expandWantempSystemSdwanServiceInputDevice2edl(d, v, "input_device")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1951,7 +1974,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("input_device_negate"); ok || d.HasChange("input_device_negate") {
-		t, err := expandWantempSystemSdwanServiceInputDeviceNegateWsssa(d, v, "input_device_negate")
+		t, err := expandWantempSystemSdwanServiceInputDeviceNegate2edl(d, v, "input_device_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1960,7 +1983,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("input_zone"); ok || d.HasChange("input_zone") {
-		t, err := expandWantempSystemSdwanServiceInputZoneWsssa(d, v, "input_zone")
+		t, err := expandWantempSystemSdwanServiceInputZone2edl(d, v, "input_zone")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1969,7 +1992,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service"); ok || d.HasChange("internet_service") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceWsssa(d, v, "internet_service")
+		t, err := expandWantempSystemSdwanServiceInternetService2edl(d, v, "internet_service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1978,7 +2001,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_app_ctrl"); ok || d.HasChange("internet_service_app_ctrl") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrlWsssa(d, v, "internet_service_app_ctrl")
+		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrl2edl(d, v, "internet_service_app_ctrl")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1987,7 +2010,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_app_ctrl_category"); ok || d.HasChange("internet_service_app_ctrl_category") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrlCategoryWsssa(d, v, "internet_service_app_ctrl_category")
+		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrlCategory2edl(d, v, "internet_service_app_ctrl_category")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1996,7 +2019,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_app_ctrl_group"); ok || d.HasChange("internet_service_app_ctrl_group") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrlGroupWsssa(d, v, "internet_service_app_ctrl_group")
+		t, err := expandWantempSystemSdwanServiceInternetServiceAppCtrlGroup2edl(d, v, "internet_service_app_ctrl_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2005,7 +2028,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_custom"); ok || d.HasChange("internet_service_custom") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceCustomWsssa(d, v, "internet_service_custom")
+		t, err := expandWantempSystemSdwanServiceInternetServiceCustom2edl(d, v, "internet_service_custom")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2014,7 +2037,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_custom_group"); ok || d.HasChange("internet_service_custom_group") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceCustomGroupWsssa(d, v, "internet_service_custom_group")
+		t, err := expandWantempSystemSdwanServiceInternetServiceCustomGroup2edl(d, v, "internet_service_custom_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2023,7 +2046,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_group"); ok || d.HasChange("internet_service_group") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceGroupWsssa(d, v, "internet_service_group")
+		t, err := expandWantempSystemSdwanServiceInternetServiceGroup2edl(d, v, "internet_service_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2032,7 +2055,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("internet_service_name"); ok || d.HasChange("internet_service_name") {
-		t, err := expandWantempSystemSdwanServiceInternetServiceNameWsssa(d, v, "internet_service_name")
+		t, err := expandWantempSystemSdwanServiceInternetServiceName2edl(d, v, "internet_service_name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2041,7 +2064,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("jitter_weight"); ok || d.HasChange("jitter_weight") {
-		t, err := expandWantempSystemSdwanServiceJitterWeightWsssa(d, v, "jitter_weight")
+		t, err := expandWantempSystemSdwanServiceJitterWeight2edl(d, v, "jitter_weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2050,7 +2073,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("latency_weight"); ok || d.HasChange("latency_weight") {
-		t, err := expandWantempSystemSdwanServiceLatencyWeightWsssa(d, v, "latency_weight")
+		t, err := expandWantempSystemSdwanServiceLatencyWeight2edl(d, v, "latency_weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2059,7 +2082,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("link_cost_factor"); ok || d.HasChange("link_cost_factor") {
-		t, err := expandWantempSystemSdwanServiceLinkCostFactorWsssa(d, v, "link_cost_factor")
+		t, err := expandWantempSystemSdwanServiceLinkCostFactor2edl(d, v, "link_cost_factor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2068,7 +2091,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("link_cost_threshold"); ok || d.HasChange("link_cost_threshold") {
-		t, err := expandWantempSystemSdwanServiceLinkCostThresholdWsssa(d, v, "link_cost_threshold")
+		t, err := expandWantempSystemSdwanServiceLinkCostThreshold2edl(d, v, "link_cost_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2077,7 +2100,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("load_balance"); ok || d.HasChange("load_balance") {
-		t, err := expandWantempSystemSdwanServiceLoadBalanceWsssa(d, v, "load_balance")
+		t, err := expandWantempSystemSdwanServiceLoadBalance2edl(d, v, "load_balance")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2086,7 +2109,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("minimum_sla_meet_members"); ok || d.HasChange("minimum_sla_meet_members") {
-		t, err := expandWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(d, v, "minimum_sla_meet_members")
+		t, err := expandWantempSystemSdwanServiceMinimumSlaMeetMembers2edl(d, v, "minimum_sla_meet_members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2095,7 +2118,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
-		t, err := expandWantempSystemSdwanServiceModeWsssa(d, v, "mode")
+		t, err := expandWantempSystemSdwanServiceMode2edl(d, v, "mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2104,7 +2127,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandWantempSystemSdwanServiceNameWsssa(d, v, "name")
+		t, err := expandWantempSystemSdwanServiceName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2113,7 +2136,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("packet_loss_weight"); ok || d.HasChange("packet_loss_weight") {
-		t, err := expandWantempSystemSdwanServicePacketLossWeightWsssa(d, v, "packet_loss_weight")
+		t, err := expandWantempSystemSdwanServicePacketLossWeight2edl(d, v, "packet_loss_weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2122,7 +2145,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("passive_measurement"); ok || d.HasChange("passive_measurement") {
-		t, err := expandWantempSystemSdwanServicePassiveMeasurementWsssa(d, v, "passive_measurement")
+		t, err := expandWantempSystemSdwanServicePassiveMeasurement2edl(d, v, "passive_measurement")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2131,7 +2154,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("priority_members"); ok || d.HasChange("priority_members") {
-		t, err := expandWantempSystemSdwanServicePriorityMembersWsssa(d, v, "priority_members")
+		t, err := expandWantempSystemSdwanServicePriorityMembers2edl(d, v, "priority_members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2140,7 +2163,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("priority_zone"); ok || d.HasChange("priority_zone") {
-		t, err := expandWantempSystemSdwanServicePriorityZoneWsssa(d, v, "priority_zone")
+		t, err := expandWantempSystemSdwanServicePriorityZone2edl(d, v, "priority_zone")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2149,7 +2172,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
-		t, err := expandWantempSystemSdwanServiceProtocolWsssa(d, v, "protocol")
+		t, err := expandWantempSystemSdwanServiceProtocol2edl(d, v, "protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2158,7 +2181,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("quality_link"); ok || d.HasChange("quality_link") {
-		t, err := expandWantempSystemSdwanServiceQualityLinkWsssa(d, v, "quality_link")
+		t, err := expandWantempSystemSdwanServiceQualityLink2edl(d, v, "quality_link")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2167,7 +2190,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
-		t, err := expandWantempSystemSdwanServiceRoleWsssa(d, v, "role")
+		t, err := expandWantempSystemSdwanServiceRole2edl(d, v, "role")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2176,7 +2199,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("shortcut"); ok || d.HasChange("shortcut") {
-		t, err := expandWantempSystemSdwanServiceShortcutWsssa(d, v, "shortcut")
+		t, err := expandWantempSystemSdwanServiceShortcut2edl(d, v, "shortcut")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2184,8 +2207,17 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("shortcut_priority"); ok || d.HasChange("shortcut_priority") {
+		t, err := expandWantempSystemSdwanServiceShortcutPriority2edl(d, v, "shortcut_priority")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["shortcut-priority"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("shortcut_stickiness"); ok || d.HasChange("shortcut_stickiness") {
-		t, err := expandWantempSystemSdwanServiceShortcutStickinessWsssa(d, v, "shortcut_stickiness")
+		t, err := expandWantempSystemSdwanServiceShortcutStickiness2edl(d, v, "shortcut_stickiness")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2194,7 +2226,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("route_tag"); ok || d.HasChange("route_tag") {
-		t, err := expandWantempSystemSdwanServiceRouteTagWsssa(d, v, "route_tag")
+		t, err := expandWantempSystemSdwanServiceRouteTag2edl(d, v, "route_tag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2203,7 +2235,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("sla"); ok || d.HasChange("sla") {
-		t, err := expandWantempSystemSdwanServiceSlaWsssa(d, v, "sla")
+		t, err := expandWantempSystemSdwanServiceSla2edl(d, v, "sla")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2212,7 +2244,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("sla_compare_method"); ok || d.HasChange("sla_compare_method") {
-		t, err := expandWantempSystemSdwanServiceSlaCompareMethodWsssa(d, v, "sla_compare_method")
+		t, err := expandWantempSystemSdwanServiceSlaCompareMethod2edl(d, v, "sla_compare_method")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2221,7 +2253,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("sla_stickiness"); ok || d.HasChange("sla_stickiness") {
-		t, err := expandWantempSystemSdwanServiceSlaStickinessWsssa(d, v, "sla_stickiness")
+		t, err := expandWantempSystemSdwanServiceSlaStickiness2edl(d, v, "sla_stickiness")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2230,7 +2262,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("src"); ok || d.HasChange("src") {
-		t, err := expandWantempSystemSdwanServiceSrcWsssa(d, v, "src")
+		t, err := expandWantempSystemSdwanServiceSrc2edl(d, v, "src")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2239,7 +2271,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("src_negate"); ok || d.HasChange("src_negate") {
-		t, err := expandWantempSystemSdwanServiceSrcNegateWsssa(d, v, "src_negate")
+		t, err := expandWantempSystemSdwanServiceSrcNegate2edl(d, v, "src_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2248,7 +2280,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("src6"); ok || d.HasChange("src6") {
-		t, err := expandWantempSystemSdwanServiceSrc6Wsssa(d, v, "src6")
+		t, err := expandWantempSystemSdwanServiceSrc62edl(d, v, "src6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2257,7 +2289,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("standalone_action"); ok || d.HasChange("standalone_action") {
-		t, err := expandWantempSystemSdwanServiceStandaloneActionWsssa(d, v, "standalone_action")
+		t, err := expandWantempSystemSdwanServiceStandaloneAction2edl(d, v, "standalone_action")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2266,7 +2298,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("start_port"); ok || d.HasChange("start_port") {
-		t, err := expandWantempSystemSdwanServiceStartPortWsssa(d, v, "start_port")
+		t, err := expandWantempSystemSdwanServiceStartPort2edl(d, v, "start_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2275,7 +2307,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("start_src_port"); ok || d.HasChange("start_src_port") {
-		t, err := expandWantempSystemSdwanServiceStartSrcPortWsssa(d, v, "start_src_port")
+		t, err := expandWantempSystemSdwanServiceStartSrcPort2edl(d, v, "start_src_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2284,7 +2316,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandWantempSystemSdwanServiceStatusWsssa(d, v, "status")
+		t, err := expandWantempSystemSdwanServiceStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2293,7 +2325,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("tie_break"); ok || d.HasChange("tie_break") {
-		t, err := expandWantempSystemSdwanServiceTieBreakWsssa(d, v, "tie_break")
+		t, err := expandWantempSystemSdwanServiceTieBreak2edl(d, v, "tie_break")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2302,7 +2334,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("tos"); ok || d.HasChange("tos") {
-		t, err := expandWantempSystemSdwanServiceTosWsssa(d, v, "tos")
+		t, err := expandWantempSystemSdwanServiceTos2edl(d, v, "tos")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2311,7 +2343,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("tos_mask"); ok || d.HasChange("tos_mask") {
-		t, err := expandWantempSystemSdwanServiceTosMaskWsssa(d, v, "tos_mask")
+		t, err := expandWantempSystemSdwanServiceTosMask2edl(d, v, "tos_mask")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2320,7 +2352,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("use_shortcut_sla"); ok || d.HasChange("use_shortcut_sla") {
-		t, err := expandWantempSystemSdwanServiceUseShortcutSlaWsssa(d, v, "use_shortcut_sla")
+		t, err := expandWantempSystemSdwanServiceUseShortcutSla2edl(d, v, "use_shortcut_sla")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2329,7 +2361,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
-		t, err := expandWantempSystemSdwanServiceUsersWsssa(d, v, "users")
+		t, err := expandWantempSystemSdwanServiceUsers2edl(d, v, "users")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2338,7 +2370,7 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("zone_mode"); ok || d.HasChange("zone_mode") {
-		t, err := expandWantempSystemSdwanServiceZoneModeWsssa(d, v, "zone_mode")
+		t, err := expandWantempSystemSdwanServiceZoneMode2edl(d, v, "zone_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

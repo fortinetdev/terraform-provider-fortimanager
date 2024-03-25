@@ -10,7 +10,7 @@ description: |-
 User group.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`member`: `fortimanager_system_admin_group_member`
+>- `member`: `fortimanager_system_admin_group_member`
 
 
 

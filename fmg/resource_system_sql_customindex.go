@@ -155,30 +155,30 @@ func resourceSystemSqlCustomIndexRead(d *schema.ResourceData, m interface{}) err
 	return nil
 }
 
-func flattenSystemSqlCustomIndexCaseSensitive(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlCustomIndexCaseSensitive2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSqlCustomIndexDeviceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlCustomIndexDeviceType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSqlCustomIndexId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlCustomIndexId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSqlCustomIndexIndexField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlCustomIndexIndexField2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSqlCustomIndexLogType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlCustomIndexLogType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemSqlCustomIndex(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("case_sensitive", flattenSystemSqlCustomIndexCaseSensitive(o["case-sensitive"], d, "case_sensitive")); err != nil {
+	if err = d.Set("case_sensitive", flattenSystemSqlCustomIndexCaseSensitive2edl(o["case-sensitive"], d, "case_sensitive")); err != nil {
 		if vv, ok := fortiAPIPatch(o["case-sensitive"], "SystemSqlCustomIndex-CaseSensitive"); ok {
 			if err = d.Set("case_sensitive", vv); err != nil {
 				return fmt.Errorf("Error reading case_sensitive: %v", err)
@@ -188,7 +188,7 @@ func refreshObjectSystemSqlCustomIndex(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("device_type", flattenSystemSqlCustomIndexDeviceType(o["device-type"], d, "device_type")); err != nil {
+	if err = d.Set("device_type", flattenSystemSqlCustomIndexDeviceType2edl(o["device-type"], d, "device_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["device-type"], "SystemSqlCustomIndex-DeviceType"); ok {
 			if err = d.Set("device_type", vv); err != nil {
 				return fmt.Errorf("Error reading device_type: %v", err)
@@ -198,7 +198,7 @@ func refreshObjectSystemSqlCustomIndex(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("fosid", flattenSystemSqlCustomIndexId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenSystemSqlCustomIndexId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemSqlCustomIndex-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -208,7 +208,7 @@ func refreshObjectSystemSqlCustomIndex(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("index_field", flattenSystemSqlCustomIndexIndexField(o["index-field"], d, "index_field")); err != nil {
+	if err = d.Set("index_field", flattenSystemSqlCustomIndexIndexField2edl(o["index-field"], d, "index_field")); err != nil {
 		if vv, ok := fortiAPIPatch(o["index-field"], "SystemSqlCustomIndex-IndexField"); ok {
 			if err = d.Set("index_field", vv); err != nil {
 				return fmt.Errorf("Error reading index_field: %v", err)
@@ -218,7 +218,7 @@ func refreshObjectSystemSqlCustomIndex(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
-	if err = d.Set("log_type", flattenSystemSqlCustomIndexLogType(o["log-type"], d, "log_type")); err != nil {
+	if err = d.Set("log_type", flattenSystemSqlCustomIndexLogType2edl(o["log-type"], d, "log_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-type"], "SystemSqlCustomIndex-LogType"); ok {
 			if err = d.Set("log_type", vv); err != nil {
 				return fmt.Errorf("Error reading log_type: %v", err)
@@ -237,23 +237,23 @@ func flattenSystemSqlCustomIndexFortiTestDebug(d *schema.ResourceData, fosdebugs
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemSqlCustomIndexCaseSensitive(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlCustomIndexCaseSensitive2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSqlCustomIndexDeviceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlCustomIndexDeviceType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSqlCustomIndexId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlCustomIndexId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSqlCustomIndexIndexField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlCustomIndexIndexField2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSqlCustomIndexLogType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlCustomIndexLogType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -261,7 +261,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("case_sensitive"); ok || d.HasChange("case_sensitive") {
-		t, err := expandSystemSqlCustomIndexCaseSensitive(d, v, "case_sensitive")
+		t, err := expandSystemSqlCustomIndexCaseSensitive2edl(d, v, "case_sensitive")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -270,7 +270,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("device_type"); ok || d.HasChange("device_type") {
-		t, err := expandSystemSqlCustomIndexDeviceType(d, v, "device_type")
+		t, err := expandSystemSqlCustomIndexDeviceType2edl(d, v, "device_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -279,7 +279,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandSystemSqlCustomIndexId(d, v, "fosid")
+		t, err := expandSystemSqlCustomIndexId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -288,7 +288,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("index_field"); ok || d.HasChange("index_field") {
-		t, err := expandSystemSqlCustomIndexIndexField(d, v, "index_field")
+		t, err := expandSystemSqlCustomIndexIndexField2edl(d, v, "index_field")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -297,7 +297,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 	}
 
 	if v, ok := d.GetOk("log_type"); ok || d.HasChange("log_type") {
-		t, err := expandSystemSqlCustomIndexLogType(d, v, "log_type")
+		t, err := expandSystemSqlCustomIndexLogType2edl(d, v, "log_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -171,39 +171,39 @@ func resourceObjectSystemNpuBackgroundSseScanRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenObjectSystemNpuBackgroundSseScanScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanScan2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanScanStale(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanScanStale2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanScanVt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanScanVt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanStatsQualAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanStatsQualAccess2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanStatsQualDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanStatsQualDuration2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanStatsUpdateInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanStatsUpdateInterval2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanUdpQualAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanUdpQualAccess2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuBackgroundSseScanUdpQualDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuBackgroundSseScanUdpQualDuration2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -214,7 +214,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("scan", flattenObjectSystemNpuBackgroundSseScanScan(o["scan"], d, "scan")); err != nil {
+	if err = d.Set("scan", flattenObjectSystemNpuBackgroundSseScanScan2edl(o["scan"], d, "scan")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scan"], "ObjectSystemNpuBackgroundSseScan-Scan"); ok {
 			if err = d.Set("scan", vv); err != nil {
 				return fmt.Errorf("Error reading scan: %v", err)
@@ -224,7 +224,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("scan_stale", flattenObjectSystemNpuBackgroundSseScanScanStale(o["scan-stale"], d, "scan_stale")); err != nil {
+	if err = d.Set("scan_stale", flattenObjectSystemNpuBackgroundSseScanScanStale2edl(o["scan-stale"], d, "scan_stale")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scan-stale"], "ObjectSystemNpuBackgroundSseScan-ScanStale"); ok {
 			if err = d.Set("scan_stale", vv); err != nil {
 				return fmt.Errorf("Error reading scan_stale: %v", err)
@@ -234,7 +234,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("scan_vt", flattenObjectSystemNpuBackgroundSseScanScanVt(o["scan-vt"], d, "scan_vt")); err != nil {
+	if err = d.Set("scan_vt", flattenObjectSystemNpuBackgroundSseScanScanVt2edl(o["scan-vt"], d, "scan_vt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scan-vt"], "ObjectSystemNpuBackgroundSseScan-ScanVt"); ok {
 			if err = d.Set("scan_vt", vv); err != nil {
 				return fmt.Errorf("Error reading scan_vt: %v", err)
@@ -244,7 +244,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("stats_qual_access", flattenObjectSystemNpuBackgroundSseScanStatsQualAccess(o["stats-qual-access"], d, "stats_qual_access")); err != nil {
+	if err = d.Set("stats_qual_access", flattenObjectSystemNpuBackgroundSseScanStatsQualAccess2edl(o["stats-qual-access"], d, "stats_qual_access")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stats-qual-access"], "ObjectSystemNpuBackgroundSseScan-StatsQualAccess"); ok {
 			if err = d.Set("stats_qual_access", vv); err != nil {
 				return fmt.Errorf("Error reading stats_qual_access: %v", err)
@@ -254,7 +254,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("stats_qual_duration", flattenObjectSystemNpuBackgroundSseScanStatsQualDuration(o["stats-qual-duration"], d, "stats_qual_duration")); err != nil {
+	if err = d.Set("stats_qual_duration", flattenObjectSystemNpuBackgroundSseScanStatsQualDuration2edl(o["stats-qual-duration"], d, "stats_qual_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stats-qual-duration"], "ObjectSystemNpuBackgroundSseScan-StatsQualDuration"); ok {
 			if err = d.Set("stats_qual_duration", vv); err != nil {
 				return fmt.Errorf("Error reading stats_qual_duration: %v", err)
@@ -264,7 +264,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("stats_update_interval", flattenObjectSystemNpuBackgroundSseScanStatsUpdateInterval(o["stats-update-interval"], d, "stats_update_interval")); err != nil {
+	if err = d.Set("stats_update_interval", flattenObjectSystemNpuBackgroundSseScanStatsUpdateInterval2edl(o["stats-update-interval"], d, "stats_update_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stats-update-interval"], "ObjectSystemNpuBackgroundSseScan-StatsUpdateInterval"); ok {
 			if err = d.Set("stats_update_interval", vv); err != nil {
 				return fmt.Errorf("Error reading stats_update_interval: %v", err)
@@ -274,7 +274,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("udp_keepalive_interval", flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(o["udp-keepalive-interval"], d, "udp_keepalive_interval")); err != nil {
+	if err = d.Set("udp_keepalive_interval", flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval2edl(o["udp-keepalive-interval"], d, "udp_keepalive_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-keepalive-interval"], "ObjectSystemNpuBackgroundSseScan-UdpKeepaliveInterval"); ok {
 			if err = d.Set("udp_keepalive_interval", vv); err != nil {
 				return fmt.Errorf("Error reading udp_keepalive_interval: %v", err)
@@ -284,7 +284,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("udp_qual_access", flattenObjectSystemNpuBackgroundSseScanUdpQualAccess(o["udp-qual-access"], d, "udp_qual_access")); err != nil {
+	if err = d.Set("udp_qual_access", flattenObjectSystemNpuBackgroundSseScanUdpQualAccess2edl(o["udp-qual-access"], d, "udp_qual_access")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-qual-access"], "ObjectSystemNpuBackgroundSseScan-UdpQualAccess"); ok {
 			if err = d.Set("udp_qual_access", vv); err != nil {
 				return fmt.Errorf("Error reading udp_qual_access: %v", err)
@@ -294,7 +294,7 @@ func refreshObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("udp_qual_duration", flattenObjectSystemNpuBackgroundSseScanUdpQualDuration(o["udp-qual-duration"], d, "udp_qual_duration")); err != nil {
+	if err = d.Set("udp_qual_duration", flattenObjectSystemNpuBackgroundSseScanUdpQualDuration2edl(o["udp-qual-duration"], d, "udp_qual_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-qual-duration"], "ObjectSystemNpuBackgroundSseScan-UdpQualDuration"); ok {
 			if err = d.Set("udp_qual_duration", vv); err != nil {
 				return fmt.Errorf("Error reading udp_qual_duration: %v", err)
@@ -313,39 +313,39 @@ func flattenObjectSystemNpuBackgroundSseScanFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuBackgroundSseScanScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanScan2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanScanStale(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanScanStale2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanScanVt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanScanVt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanStatsQualAccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanStatsQualAccess2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanStatsQualDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanStatsQualDuration2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanStatsUpdateInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanStatsUpdateInterval2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanUdpQualAccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanUdpQualAccess2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuBackgroundSseScanUdpQualDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuBackgroundSseScanUdpQualDuration2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -353,7 +353,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("scan"); ok || d.HasChange("scan") {
-		t, err := expandObjectSystemNpuBackgroundSseScanScan(d, v, "scan")
+		t, err := expandObjectSystemNpuBackgroundSseScanScan2edl(d, v, "scan")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -362,7 +362,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("scan_stale"); ok || d.HasChange("scan_stale") {
-		t, err := expandObjectSystemNpuBackgroundSseScanScanStale(d, v, "scan_stale")
+		t, err := expandObjectSystemNpuBackgroundSseScanScanStale2edl(d, v, "scan_stale")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -371,7 +371,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("scan_vt"); ok || d.HasChange("scan_vt") {
-		t, err := expandObjectSystemNpuBackgroundSseScanScanVt(d, v, "scan_vt")
+		t, err := expandObjectSystemNpuBackgroundSseScanScanVt2edl(d, v, "scan_vt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -380,7 +380,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("stats_qual_access"); ok || d.HasChange("stats_qual_access") {
-		t, err := expandObjectSystemNpuBackgroundSseScanStatsQualAccess(d, v, "stats_qual_access")
+		t, err := expandObjectSystemNpuBackgroundSseScanStatsQualAccess2edl(d, v, "stats_qual_access")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -389,7 +389,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("stats_qual_duration"); ok || d.HasChange("stats_qual_duration") {
-		t, err := expandObjectSystemNpuBackgroundSseScanStatsQualDuration(d, v, "stats_qual_duration")
+		t, err := expandObjectSystemNpuBackgroundSseScanStatsQualDuration2edl(d, v, "stats_qual_duration")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -398,7 +398,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("stats_update_interval"); ok || d.HasChange("stats_update_interval") {
-		t, err := expandObjectSystemNpuBackgroundSseScanStatsUpdateInterval(d, v, "stats_update_interval")
+		t, err := expandObjectSystemNpuBackgroundSseScanStatsUpdateInterval2edl(d, v, "stats_update_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -407,7 +407,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("udp_keepalive_interval"); ok || d.HasChange("udp_keepalive_interval") {
-		t, err := expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(d, v, "udp_keepalive_interval")
+		t, err := expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval2edl(d, v, "udp_keepalive_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -416,7 +416,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("udp_qual_access"); ok || d.HasChange("udp_qual_access") {
-		t, err := expandObjectSystemNpuBackgroundSseScanUdpQualAccess(d, v, "udp_qual_access")
+		t, err := expandObjectSystemNpuBackgroundSseScanUdpQualAccess2edl(d, v, "udp_qual_access")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -425,7 +425,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("udp_qual_duration"); ok || d.HasChange("udp_qual_duration") {
-		t, err := expandObjectSystemNpuBackgroundSseScanUdpQualDuration(d, v, "udp_qual_duration")
+		t, err := expandObjectSystemNpuBackgroundSseScanUdpQualDuration2edl(d, v, "udp_qual_duration")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

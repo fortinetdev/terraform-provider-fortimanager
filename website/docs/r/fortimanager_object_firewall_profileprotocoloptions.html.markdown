@@ -10,17 +10,17 @@ description: |-
 Configure protocol options.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`cifs`: `fortimanager_object_firewall_profileprotocoloptions_cifs`
-`dns`: `fortimanager_object_firewall_profileprotocoloptions_dns`
-`ftp`: `fortimanager_object_firewall_profileprotocoloptions_ftp`
-`http`: `fortimanager_object_firewall_profileprotocoloptions_http`
-`imap`: `fortimanager_object_firewall_profileprotocoloptions_imap`
-`mail_signature`: `fortimanager_object_firewall_profileprotocoloptions_mailsignature`
-`mapi`: `fortimanager_object_firewall_profileprotocoloptions_mapi`
-`nntp`: `fortimanager_object_firewall_profileprotocoloptions_nntp`
-`pop3`: `fortimanager_object_firewall_profileprotocoloptions_pop3`
-`smtp`: `fortimanager_object_firewall_profileprotocoloptions_smtp`
-`ssh`: `fortimanager_object_firewall_profileprotocoloptions_ssh`
+>- `cifs`: `fortimanager_object_firewall_profileprotocoloptions_cifs`
+>- `dns`: `fortimanager_object_firewall_profileprotocoloptions_dns`
+>- `ftp`: `fortimanager_object_firewall_profileprotocoloptions_ftp`
+>- `http`: `fortimanager_object_firewall_profileprotocoloptions_http`
+>- `imap`: `fortimanager_object_firewall_profileprotocoloptions_imap`
+>- `mail_signature`: `fortimanager_object_firewall_profileprotocoloptions_mailsignature`
+>- `mapi`: `fortimanager_object_firewall_profileprotocoloptions_mapi`
+>- `nntp`: `fortimanager_object_firewall_profileprotocoloptions_nntp`
+>- `pop3`: `fortimanager_object_firewall_profileprotocoloptions_pop3`
+>- `smtp`: `fortimanager_object_firewall_profileprotocoloptions_smtp`
+>- `ssh`: `fortimanager_object_firewall_profileprotocoloptions_ssh`
 
 
 

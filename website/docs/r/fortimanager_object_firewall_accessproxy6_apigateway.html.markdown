@@ -11,9 +11,9 @@ Set IPv4 API Gateway.
 
 ~> This resource is a sub resource for variable `api_gateway` of resource `fortimanager_object_firewall_accessproxy6`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`quic`: `fortimanager_object_firewall_accessproxy6_apigateway_quic`
-`realservers`: `fortimanager_object_firewall_accessproxy6_apigateway_realservers`
-`ssl_cipher_suites`: `fortimanager_object_firewall_accessproxy6_apigateway_sslciphersuites`
+>- `quic`: `fortimanager_object_firewall_accessproxy6_apigateway_quic`
+>- `realservers`: `fortimanager_object_firewall_accessproxy6_apigateway_realservers`
+>- `ssl_cipher_suites`: `fortimanager_object_firewall_accessproxy6_apigateway_sslciphersuites`
 
 
 

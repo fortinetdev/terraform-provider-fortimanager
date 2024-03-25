@@ -91,6 +91,7 @@ The following arguments are supported:
 
 * `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
 
+* `optional_antenna_gain` - Optional antenna gain in dBi (0 to 20, default = 0).
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 
@@ -102,15 +103,21 @@ The following arguments are supported:
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
 * `sam_bssid` - BSSID for WiFi network.
+* `sam_ca_certificate` - CA certificate for WPA2/WPA3-ENTERPRISE.
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `sam_client_certificate` - Client certificate for WPA2/WPA3-ENTERPRISE.
 * `sam_cwp_failure_string` - Failure identification on the page after an incorrect login.
 * `sam_cwp_match_string` - Identification string from the captive portal login form.
 * `sam_cwp_password` - Password for captive portal authentication.
 * `sam_cwp_success_string` - Success identification on the page after a successful login.
 * `sam_cwp_test_url` - Website the client is trying to access.
 * `sam_cwp_username` - Username for captive portal authentication.
+* `sam_eap_method` - Select WPA2/WPA3-ENTERPRISE EAP Method (default = PEAP). Valid values: `tls`, `peap`, `both`.
+
 * `sam_password` - Passphrase for WiFi network connection.
+* `sam_private_key` - Private key for WPA2/WPA3-ENTERPRISE.
+* `sam_private_key_password` - Password for private key file for WPA2/WPA3-ENTERPRISE.
 * `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
 

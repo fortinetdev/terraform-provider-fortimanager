@@ -10,7 +10,8 @@ description: |-
 Configure VideoFilter profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`fortiguard_category`: `fortimanager_object_videofilter_profile_fortiguardcategory`
+>- `filters`: `fortimanager_object_videofilter_profile_filters`
+>- `fortiguard_category`: `fortimanager_object_videofilter_profile_fortiguardcategory`
 
 
 
@@ -42,6 +43,7 @@ The following arguments are supported:
 
 * `default_action` - Video filter default action. Valid values: `block`, `monitor`, `allow`.
 
+* `filters` - Filters. The structure of `filters` block is documented below.
 * `fortiguard_category` - Fortiguard-Category. The structure of `fortiguard_category` block is documented below.
 * `log` - Enable/disable logging. Valid values: `disable`, `enable`.
 
@@ -54,6 +56,21 @@ The following arguments are supported:
 
 * `youtube_channel_filter` - Set YouTube channel filter.
 * `youtube_restrict` - Set YouTube-restrict mode. Valid values: `strict`, `none`, `moderate`.
+
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `filters` block supports:
+
+* `action` - Video filter action. Valid values: `block`, `monitor`, `allow`.
+
+* `category` - FortiGuard category ID.
+* `channel` - Channel ID.
+* `comment` - Comment.
+* `id` - ID.
+* `keyword` - Video filter keyword ID.
+* `log` - Enable/disable logging. Valid values: `disable`, `enable`.
+
+* `type` - Filter type. Valid values: `category`, `channel`, `title`, `description`.
 
 
 The `fortiguard_category` block supports:

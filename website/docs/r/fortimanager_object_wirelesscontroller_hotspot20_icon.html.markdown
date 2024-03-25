@@ -10,7 +10,7 @@ description: |-
 Configure OSU provider icon.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`icon_list`: `fortimanager_object_wirelesscontroller_hotspot20_icon_iconlist`
+>- `icon_list`: `fortimanager_object_wirelesscontroller_hotspot20_icon_iconlist`
 
 
 

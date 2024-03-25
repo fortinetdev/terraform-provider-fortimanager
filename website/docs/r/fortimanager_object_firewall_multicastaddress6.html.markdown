@@ -10,7 +10,7 @@ description: |-
 Configure IPv6 multicast address.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`tagging`: `fortimanager_object_firewall_multicastaddress6_tagging`
+>- `tagging`: `fortimanager_object_firewall_multicastaddress6_tagging`
 
 
 

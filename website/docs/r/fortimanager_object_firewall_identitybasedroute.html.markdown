@@ -10,7 +10,7 @@ description: |-
 Configure identity based routing.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rule`: `fortimanager_object_firewall_identitybasedroute_rule`
+>- `rule`: `fortimanager_object_firewall_identitybasedroute_rule`
 
 
 

@@ -10,7 +10,7 @@ description: |-
 Configure priorities for FortiGate units accessing antivirus updates and web filtering services.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`private_server`: `fortimanager_fmupdate_serveraccesspriorities_privateserver`
+>- `private_server`: `fortimanager_fmupdate_serveraccesspriorities_privateserver`
 
 
 

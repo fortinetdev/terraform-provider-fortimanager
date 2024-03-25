@@ -127,6 +127,10 @@ func resourceSystempLogFortianalyzerSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"server_cert_ca": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ssl_min_proto_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -322,6 +326,10 @@ func flattenSystempLogFortianalyzerSettingPriority(v interface{}, d *schema.Reso
 }
 
 func flattenSystempLogFortianalyzerSettingReliable(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempLogFortianalyzerSettingServerCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -522,6 +530,16 @@ func refreshObjectSystempLogFortianalyzerSetting(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("server_cert_ca", flattenSystempLogFortianalyzerSettingServerCertCa(o["server-cert-ca"], d, "server_cert_ca")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-cert-ca"], "SystempLogFortianalyzerSetting-ServerCertCa"); ok {
+			if err = d.Set("server_cert_ca", vv); err != nil {
+				return fmt.Errorf("Error reading server_cert_ca: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_cert_ca: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_min_proto_version", flattenSystempLogFortianalyzerSettingSslMinProtoVersion(o["ssl-min-proto-version"], d, "ssl_min_proto_version")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-min-proto-version"], "SystempLogFortianalyzerSetting-SslMinProtoVersion"); ok {
 			if err = d.Set("ssl_min_proto_version", vv); err != nil {
@@ -646,6 +664,10 @@ func expandSystempLogFortianalyzerSettingPriority(d *schema.ResourceData, v inte
 }
 
 func expandSystempLogFortianalyzerSettingReliable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogFortianalyzerSettingServerCertCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -822,6 +844,15 @@ func getObjectSystempLogFortianalyzerSetting(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["reliable"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server_cert_ca"); ok || d.HasChange("server_cert_ca") {
+		t, err := expandSystempLogFortianalyzerSettingServerCertCa(d, v, "server_cert_ca")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-cert-ca"] = t
 		}
 	}
 

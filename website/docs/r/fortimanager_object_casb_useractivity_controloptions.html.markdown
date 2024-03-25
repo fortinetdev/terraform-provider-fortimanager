@@ -11,7 +11,7 @@ CASB control options.
 
 ~> This resource is a sub resource for variable `control_options` of resource `fortimanager_object_casb_useractivity`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`operations`: `fortimanager_object_casb_useractivity_controloptions_operations`
+>- `operations`: `fortimanager_object_casb_useractivity_controloptions_operations`
 
 
 
@@ -26,6 +26,8 @@ The following arguments are supported:
 
 * `name` - CASB control option name.
 * `operations` - Operations. The structure of `operations` block is documented below.
+* `status` - CASB control option status. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `operations` block supports:

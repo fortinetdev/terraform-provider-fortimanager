@@ -122,22 +122,22 @@ func resourceFmupdateFdsSettingPushOverrideRead(d *schema.ResourceData, m interf
 	return nil
 }
 
-func flattenFmupdateFdsSettingPushOverrideIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverridePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverridePort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("ip", flattenFmupdateFdsSettingPushOverrideIp(o["ip"], d, "ip")); err != nil {
+	if err = d.Set("ip", flattenFmupdateFdsSettingPushOverrideIp2edl(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "FmupdateFdsSettingPushOverride-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {
 				return fmt.Errorf("Error reading ip: %v", err)
@@ -147,7 +147,7 @@ func refreshObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("port", flattenFmupdateFdsSettingPushOverridePort(o["port"], d, "port")); err != nil {
+	if err = d.Set("port", flattenFmupdateFdsSettingPushOverridePort2edl(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "FmupdateFdsSettingPushOverride-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
 				return fmt.Errorf("Error reading port: %v", err)
@@ -157,7 +157,7 @@ func refreshObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("status", flattenFmupdateFdsSettingPushOverrideStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenFmupdateFdsSettingPushOverrideStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "FmupdateFdsSettingPushOverride-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -176,15 +176,15 @@ func flattenFmupdateFdsSettingPushOverrideFortiTestDebug(d *schema.ResourceData,
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFdsSettingPushOverrideIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverridePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverridePort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -192,7 +192,7 @@ func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[strin
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
-		t, err := expandFmupdateFdsSettingPushOverrideIp(d, v, "ip")
+		t, err := expandFmupdateFdsSettingPushOverrideIp2edl(d, v, "ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -201,7 +201,7 @@ func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
-		t, err := expandFmupdateFdsSettingPushOverridePort(d, v, "port")
+		t, err := expandFmupdateFdsSettingPushOverridePort2edl(d, v, "port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -210,7 +210,7 @@ func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandFmupdateFdsSettingPushOverrideStatus(d, v, "status")
+		t, err := expandFmupdateFdsSettingPushOverrideStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

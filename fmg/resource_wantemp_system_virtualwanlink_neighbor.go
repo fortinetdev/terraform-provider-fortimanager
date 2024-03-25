@@ -210,23 +210,23 @@ func resourceWantempSystemVirtualWanLinkNeighborRead(d *schema.ResourceData, m i
 	return nil
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborRole2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -237,7 +237,7 @@ func refreshObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, o 
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkNeighborHealthCheck(o["health-check"], d, "health_check")); err != nil {
+	if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkNeighborHealthCheck2edl(o["health-check"], d, "health_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemVirtualWanLinkNeighbor-HealthCheck"); ok {
 			if err = d.Set("health_check", vv); err != nil {
 				return fmt.Errorf("Error reading health_check: %v", err)
@@ -247,7 +247,7 @@ func refreshObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("ip", flattenWantempSystemVirtualWanLinkNeighborIp(o["ip"], d, "ip")); err != nil {
+	if err = d.Set("ip", flattenWantempSystemVirtualWanLinkNeighborIp2edl(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "WantempSystemVirtualWanLinkNeighbor-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {
 				return fmt.Errorf("Error reading ip: %v", err)
@@ -257,7 +257,7 @@ func refreshObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("member", flattenWantempSystemVirtualWanLinkNeighborMember(o["member"], d, "member")); err != nil {
+	if err = d.Set("member", flattenWantempSystemVirtualWanLinkNeighborMember2edl(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "WantempSystemVirtualWanLinkNeighbor-Member"); ok {
 			if err = d.Set("member", vv); err != nil {
 				return fmt.Errorf("Error reading member: %v", err)
@@ -267,7 +267,7 @@ func refreshObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("role", flattenWantempSystemVirtualWanLinkNeighborRole(o["role"], d, "role")); err != nil {
+	if err = d.Set("role", flattenWantempSystemVirtualWanLinkNeighborRole2edl(o["role"], d, "role")); err != nil {
 		if vv, ok := fortiAPIPatch(o["role"], "WantempSystemVirtualWanLinkNeighbor-Role"); ok {
 			if err = d.Set("role", vv); err != nil {
 				return fmt.Errorf("Error reading role: %v", err)
@@ -277,7 +277,7 @@ func refreshObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("sla_id", flattenWantempSystemVirtualWanLinkNeighborSlaId(o["sla-id"], d, "sla_id")); err != nil {
+	if err = d.Set("sla_id", flattenWantempSystemVirtualWanLinkNeighborSlaId2edl(o["sla-id"], d, "sla_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-id"], "WantempSystemVirtualWanLinkNeighbor-SlaId"); ok {
 			if err = d.Set("sla_id", vv); err != nil {
 				return fmt.Errorf("Error reading sla_id: %v", err)
@@ -296,23 +296,23 @@ func flattenWantempSystemVirtualWanLinkNeighborFortiTestDebug(d *schema.Resource
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemVirtualWanLinkNeighborHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborRole2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -320,7 +320,7 @@ func getObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData) (*map[
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborHealthCheck(d, v, "health_check")
+		t, err := expandWantempSystemVirtualWanLinkNeighborHealthCheck2edl(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -329,7 +329,7 @@ func getObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborIp(d, v, "ip")
+		t, err := expandWantempSystemVirtualWanLinkNeighborIp2edl(d, v, "ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -338,7 +338,7 @@ func getObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborMember(d, v, "member")
+		t, err := expandWantempSystemVirtualWanLinkNeighborMember2edl(d, v, "member")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -347,7 +347,7 @@ func getObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborRole(d, v, "role")
+		t, err := expandWantempSystemVirtualWanLinkNeighborRole2edl(d, v, "role")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -356,7 +356,7 @@ func getObjectWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("sla_id"); ok || d.HasChange("sla_id") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborSlaId(d, v, "sla_id")
+		t, err := expandWantempSystemVirtualWanLinkNeighborSlaId2edl(d, v, "sla_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

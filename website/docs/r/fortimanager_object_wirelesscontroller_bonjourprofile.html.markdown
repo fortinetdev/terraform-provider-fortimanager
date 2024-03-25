@@ -10,7 +10,7 @@ description: |-
 Configure Bonjour profiles. Bonjour is Apple's zero configuration networking protocol. Bonjour profiles allow APs and FortiAPs to connnect to networks using Bonjour.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`policy_list`: `fortimanager_object_wirelesscontroller_bonjourprofile_policylist`
+>- `policy_list`: `fortimanager_object_wirelesscontroller_bonjourprofile_policylist`
 
 
 

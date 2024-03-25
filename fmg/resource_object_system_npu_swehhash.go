@@ -180,39 +180,39 @@ func resourceObjectSystemNpuSwEhHashRead(d *schema.ResourceData, m interface{}) 
 	return nil
 }
 
-func flattenObjectSystemNpuSwEhHashComputation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashComputation2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashDestinationIpLower16(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashDestinationIpLower162edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashDestinationIpUpper16(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashDestinationIpUpper162edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashDestinationPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashDestinationPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashIpProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashIpProtocol2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashNetmaskLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashNetmaskLength2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashSourceIpLower16(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashSourceIpLower162edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashSourceIpUpper16(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashSourceIpUpper162edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwEhHashSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwEhHashSourcePort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -223,7 +223,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("computation", flattenObjectSystemNpuSwEhHashComputation(o["computation"], d, "computation")); err != nil {
+	if err = d.Set("computation", flattenObjectSystemNpuSwEhHashComputation2edl(o["computation"], d, "computation")); err != nil {
 		if vv, ok := fortiAPIPatch(o["computation"], "ObjectSystemNpuSwEhHash-Computation"); ok {
 			if err = d.Set("computation", vv); err != nil {
 				return fmt.Errorf("Error reading computation: %v", err)
@@ -233,7 +233,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("destination_ip_lower_16", flattenObjectSystemNpuSwEhHashDestinationIpLower16(o["destination-ip-lower-16"], d, "destination_ip_lower_16")); err != nil {
+	if err = d.Set("destination_ip_lower_16", flattenObjectSystemNpuSwEhHashDestinationIpLower162edl(o["destination-ip-lower-16"], d, "destination_ip_lower_16")); err != nil {
 		if vv, ok := fortiAPIPatch(o["destination-ip-lower-16"], "ObjectSystemNpuSwEhHash-DestinationIpLower16"); ok {
 			if err = d.Set("destination_ip_lower_16", vv); err != nil {
 				return fmt.Errorf("Error reading destination_ip_lower_16: %v", err)
@@ -243,7 +243,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("destination_ip_upper_16", flattenObjectSystemNpuSwEhHashDestinationIpUpper16(o["destination-ip-upper-16"], d, "destination_ip_upper_16")); err != nil {
+	if err = d.Set("destination_ip_upper_16", flattenObjectSystemNpuSwEhHashDestinationIpUpper162edl(o["destination-ip-upper-16"], d, "destination_ip_upper_16")); err != nil {
 		if vv, ok := fortiAPIPatch(o["destination-ip-upper-16"], "ObjectSystemNpuSwEhHash-DestinationIpUpper16"); ok {
 			if err = d.Set("destination_ip_upper_16", vv); err != nil {
 				return fmt.Errorf("Error reading destination_ip_upper_16: %v", err)
@@ -253,7 +253,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("destination_port", flattenObjectSystemNpuSwEhHashDestinationPort(o["destination-port"], d, "destination_port")); err != nil {
+	if err = d.Set("destination_port", flattenObjectSystemNpuSwEhHashDestinationPort2edl(o["destination-port"], d, "destination_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["destination-port"], "ObjectSystemNpuSwEhHash-DestinationPort"); ok {
 			if err = d.Set("destination_port", vv); err != nil {
 				return fmt.Errorf("Error reading destination_port: %v", err)
@@ -263,7 +263,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("ip_protocol", flattenObjectSystemNpuSwEhHashIpProtocol(o["ip-protocol"], d, "ip_protocol")); err != nil {
+	if err = d.Set("ip_protocol", flattenObjectSystemNpuSwEhHashIpProtocol2edl(o["ip-protocol"], d, "ip_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-protocol"], "ObjectSystemNpuSwEhHash-IpProtocol"); ok {
 			if err = d.Set("ip_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading ip_protocol: %v", err)
@@ -273,7 +273,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("netmask_length", flattenObjectSystemNpuSwEhHashNetmaskLength(o["netmask-length"], d, "netmask_length")); err != nil {
+	if err = d.Set("netmask_length", flattenObjectSystemNpuSwEhHashNetmaskLength2edl(o["netmask-length"], d, "netmask_length")); err != nil {
 		if vv, ok := fortiAPIPatch(o["netmask-length"], "ObjectSystemNpuSwEhHash-NetmaskLength"); ok {
 			if err = d.Set("netmask_length", vv); err != nil {
 				return fmt.Errorf("Error reading netmask_length: %v", err)
@@ -283,7 +283,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("source_ip_lower_16", flattenObjectSystemNpuSwEhHashSourceIpLower16(o["source-ip-lower-16"], d, "source_ip_lower_16")); err != nil {
+	if err = d.Set("source_ip_lower_16", flattenObjectSystemNpuSwEhHashSourceIpLower162edl(o["source-ip-lower-16"], d, "source_ip_lower_16")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-ip-lower-16"], "ObjectSystemNpuSwEhHash-SourceIpLower16"); ok {
 			if err = d.Set("source_ip_lower_16", vv); err != nil {
 				return fmt.Errorf("Error reading source_ip_lower_16: %v", err)
@@ -293,7 +293,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("source_ip_upper_16", flattenObjectSystemNpuSwEhHashSourceIpUpper16(o["source-ip-upper-16"], d, "source_ip_upper_16")); err != nil {
+	if err = d.Set("source_ip_upper_16", flattenObjectSystemNpuSwEhHashSourceIpUpper162edl(o["source-ip-upper-16"], d, "source_ip_upper_16")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-ip-upper-16"], "ObjectSystemNpuSwEhHash-SourceIpUpper16"); ok {
 			if err = d.Set("source_ip_upper_16", vv); err != nil {
 				return fmt.Errorf("Error reading source_ip_upper_16: %v", err)
@@ -303,7 +303,7 @@ func refreshObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("source_port", flattenObjectSystemNpuSwEhHashSourcePort(o["source-port"], d, "source_port")); err != nil {
+	if err = d.Set("source_port", flattenObjectSystemNpuSwEhHashSourcePort2edl(o["source-port"], d, "source_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-port"], "ObjectSystemNpuSwEhHash-SourcePort"); ok {
 			if err = d.Set("source_port", vv); err != nil {
 				return fmt.Errorf("Error reading source_port: %v", err)
@@ -322,39 +322,39 @@ func flattenObjectSystemNpuSwEhHashFortiTestDebug(d *schema.ResourceData, fosdeb
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuSwEhHashComputation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashComputation2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashDestinationIpLower16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashDestinationIpLower162edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashDestinationIpUpper16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashDestinationIpUpper162edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashDestinationPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashDestinationPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashIpProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashIpProtocol2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashNetmaskLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashNetmaskLength2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashSourceIpLower16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashSourceIpLower162edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashSourceIpUpper16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashSourceIpUpper162edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwEhHashSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwEhHashSourcePort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -362,7 +362,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("computation"); ok || d.HasChange("computation") {
-		t, err := expandObjectSystemNpuSwEhHashComputation(d, v, "computation")
+		t, err := expandObjectSystemNpuSwEhHashComputation2edl(d, v, "computation")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -371,7 +371,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("destination_ip_lower_16"); ok || d.HasChange("destination_ip_lower_16") {
-		t, err := expandObjectSystemNpuSwEhHashDestinationIpLower16(d, v, "destination_ip_lower_16")
+		t, err := expandObjectSystemNpuSwEhHashDestinationIpLower162edl(d, v, "destination_ip_lower_16")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -380,7 +380,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("destination_ip_upper_16"); ok || d.HasChange("destination_ip_upper_16") {
-		t, err := expandObjectSystemNpuSwEhHashDestinationIpUpper16(d, v, "destination_ip_upper_16")
+		t, err := expandObjectSystemNpuSwEhHashDestinationIpUpper162edl(d, v, "destination_ip_upper_16")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -389,7 +389,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("destination_port"); ok || d.HasChange("destination_port") {
-		t, err := expandObjectSystemNpuSwEhHashDestinationPort(d, v, "destination_port")
+		t, err := expandObjectSystemNpuSwEhHashDestinationPort2edl(d, v, "destination_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -398,7 +398,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("ip_protocol"); ok || d.HasChange("ip_protocol") {
-		t, err := expandObjectSystemNpuSwEhHashIpProtocol(d, v, "ip_protocol")
+		t, err := expandObjectSystemNpuSwEhHashIpProtocol2edl(d, v, "ip_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -407,7 +407,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("netmask_length"); ok || d.HasChange("netmask_length") {
-		t, err := expandObjectSystemNpuSwEhHashNetmaskLength(d, v, "netmask_length")
+		t, err := expandObjectSystemNpuSwEhHashNetmaskLength2edl(d, v, "netmask_length")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -416,7 +416,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("source_ip_lower_16"); ok || d.HasChange("source_ip_lower_16") {
-		t, err := expandObjectSystemNpuSwEhHashSourceIpLower16(d, v, "source_ip_lower_16")
+		t, err := expandObjectSystemNpuSwEhHashSourceIpLower162edl(d, v, "source_ip_lower_16")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -425,7 +425,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("source_ip_upper_16"); ok || d.HasChange("source_ip_upper_16") {
-		t, err := expandObjectSystemNpuSwEhHashSourceIpUpper16(d, v, "source_ip_upper_16")
+		t, err := expandObjectSystemNpuSwEhHashSourceIpUpper162edl(d, v, "source_ip_upper_16")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -434,7 +434,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
-		t, err := expandObjectSystemNpuSwEhHashSourcePort(d, v, "source_port")
+		t, err := expandObjectSystemNpuSwEhHashSourcePort2edl(d, v, "source_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

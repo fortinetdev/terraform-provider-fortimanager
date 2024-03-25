@@ -474,7 +474,7 @@ func flattenObjectIpsSensorEntriesRateTrack2edl(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectIpsSensorEntriesRule2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorEntriesSeverity2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -849,7 +849,7 @@ func expandObjectIpsSensorEntriesId2edl(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectIpsSensorEntriesLastModified2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesLocation2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -905,7 +905,7 @@ func expandObjectIpsSensorEntriesRateTrack2edl(d *schema.ResourceData, v interfa
 }
 
 func expandObjectIpsSensorEntriesRule2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesSeverity2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

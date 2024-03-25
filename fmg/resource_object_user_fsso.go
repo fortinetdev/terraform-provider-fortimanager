@@ -816,7 +816,7 @@ func flattenObjectUserFssoDynamicMappingGroupPollInterval(v interface{}, d *sche
 }
 
 func flattenObjectUserFssoDynamicMappingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -924,7 +924,7 @@ func flattenObjectUserFssoDynamicMappingSslServerHostIpCheck(v interface{}, d *s
 }
 
 func flattenObjectUserFssoDynamicMappingSslTrustedCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -932,7 +932,7 @@ func flattenObjectUserFssoDynamicMappingType(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectUserFssoDynamicMappingUserInfoServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoGroupPollInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1636,7 +1636,7 @@ func expandObjectUserFssoDynamicMappingGroupPollInterval(d *schema.ResourceData,
 }
 
 func expandObjectUserFssoDynamicMappingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1744,7 +1744,7 @@ func expandObjectUserFssoDynamicMappingSslServerHostIpCheck(d *schema.ResourceDa
 }
 
 func expandObjectUserFssoDynamicMappingSslTrustedCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoDynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1752,7 +1752,7 @@ func expandObjectUserFssoDynamicMappingType(d *schema.ResourceData, v interface{
 }
 
 func expandObjectUserFssoDynamicMappingUserInfoServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoGroupPollInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

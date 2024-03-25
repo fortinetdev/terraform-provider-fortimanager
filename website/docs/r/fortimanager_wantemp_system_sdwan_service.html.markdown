@@ -11,7 +11,7 @@ Create SD-WAN rules (also called services) to control how sessions are distribut
 
 ~> This resource is a sub resource for variable `service` of resource `fortimanager_wantemp_system_sdwan`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`sla`: `fortimanager_wantemp_system_sdwan_service_sla`
+>- `sla`: `fortimanager_wantemp_system_sdwan_service_sla`
 
 
 
@@ -85,6 +85,8 @@ The following arguments are supported:
 * `role` - Service role to work with neighbor. Valid values: `primary`, `secondary`, `standalone`.
 
 * `shortcut` - Enable/disable shortcut for this service. Valid values: `disable`, `enable`.
+
+* `shortcut_priority` - High priority of ADVPN shortcut for this service. Valid values: `disable`, `enable`, `auto`.
 
 * `shortcut_stickiness` - Enable/disable shortcut-stickiness of ADVPN. Valid values: `disable`, `enable`.
 

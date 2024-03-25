@@ -10,8 +10,8 @@ description: |-
 Logging rate limit.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`device`: `fortimanager_system_log_ratelimit_device`
-`ratelimits`: `fortimanager_system_log_ratelimit_ratelimits`
+>- `device`: `fortimanager_system_log_ratelimit_device`
+>- `ratelimits`: `fortimanager_system_log_ratelimit_ratelimits`
 
 
 

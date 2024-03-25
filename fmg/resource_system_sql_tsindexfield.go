@@ -140,18 +140,18 @@ func resourceSystemSqlTsIndexFieldRead(d *schema.ResourceData, m interface{}) er
 	return nil
 }
 
-func flattenSystemSqlTsIndexFieldCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlTsIndexFieldCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSqlTsIndexFieldValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSqlTsIndexFieldValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemSqlTsIndexField(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("category", flattenSystemSqlTsIndexFieldCategory(o["category"], d, "category")); err != nil {
+	if err = d.Set("category", flattenSystemSqlTsIndexFieldCategory2edl(o["category"], d, "category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["category"], "SystemSqlTsIndexField-Category"); ok {
 			if err = d.Set("category", vv); err != nil {
 				return fmt.Errorf("Error reading category: %v", err)
@@ -161,7 +161,7 @@ func refreshObjectSystemSqlTsIndexField(d *schema.ResourceData, o map[string]int
 		}
 	}
 
-	if err = d.Set("value", flattenSystemSqlTsIndexFieldValue(o["value"], d, "value")); err != nil {
+	if err = d.Set("value", flattenSystemSqlTsIndexFieldValue2edl(o["value"], d, "value")); err != nil {
 		if vv, ok := fortiAPIPatch(o["value"], "SystemSqlTsIndexField-Value"); ok {
 			if err = d.Set("value", vv); err != nil {
 				return fmt.Errorf("Error reading value: %v", err)
@@ -180,11 +180,11 @@ func flattenSystemSqlTsIndexFieldFortiTestDebug(d *schema.ResourceData, fosdebug
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemSqlTsIndexFieldCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlTsIndexFieldCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSqlTsIndexFieldValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSqlTsIndexFieldValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -192,7 +192,7 @@ func getObjectSystemSqlTsIndexField(d *schema.ResourceData) (*map[string]interfa
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
-		t, err := expandSystemSqlTsIndexFieldCategory(d, v, "category")
+		t, err := expandSystemSqlTsIndexFieldCategory2edl(d, v, "category")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -201,7 +201,7 @@ func getObjectSystemSqlTsIndexField(d *schema.ResourceData) (*map[string]interfa
 	}
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
-		t, err := expandSystemSqlTsIndexFieldValue(d, v, "value")
+		t, err := expandSystemSqlTsIndexFieldValue2edl(d, v, "value")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -11,8 +11,8 @@ WAF signatures.
 
 ~> This resource is a sub resource for variable `signature` of resource `fortimanager_object_waf_profile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_signature`: `fortimanager_object_waf_profile_signature_customsignature`
-`main_class`: `fortimanager_object_waf_profile_signature_mainclass`
+>- `custom_signature`: `fortimanager_object_waf_profile_signature_customsignature`
+>- `main_class`: `fortimanager_object_waf_profile_signature_mainclass`
 
 
 

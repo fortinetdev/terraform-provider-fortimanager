@@ -130,7 +130,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Computed: true,
 			},
 			"sctp_portrange": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -149,7 +149,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 			},
 			"tcp_portrange": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -167,8 +167,13 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 			},
 			"udp_portrange": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -401,6 +406,10 @@ func flattenObjectFirewallServiceCustomUdpIdleTimer(v interface{}, d *schema.Res
 
 func flattenObjectFirewallServiceCustomUdpPortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallServiceCustomUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallServiceCustomVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -684,6 +693,16 @@ func refreshObjectObjectFirewallServiceCustom(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallServiceCustomUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallServiceCustom-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("visibility", flattenObjectFirewallServiceCustomVisibility(o["visibility"], d, "visibility")); err != nil {
 		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallServiceCustom-Visibility"); ok {
 			if err = d.Set("visibility", vv); err != nil {
@@ -776,7 +795,7 @@ func expandObjectFirewallServiceCustomProxy(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallServiceCustomSctpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallServiceCustomSessionTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -792,7 +811,7 @@ func expandObjectFirewallServiceCustomTcpHalfopenTimer(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallServiceCustomTcpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallServiceCustomTcpRstTimer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -808,7 +827,11 @@ func expandObjectFirewallServiceCustomUdpIdleTimer(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallServiceCustomUdpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallServiceCustomUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallServiceCustomVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1058,6 +1081,15 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["udp-portrange"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallServiceCustomUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

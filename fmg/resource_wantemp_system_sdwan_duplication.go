@@ -241,52 +241,52 @@ func resourceWantempSystemSdwanDuplicationRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
-func flattenWantempSystemSdwanDuplicationDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanDuplicationDstaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanDuplicationDstaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanDuplicationDstintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanDuplicationId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanDuplicationDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanDuplicationPacketDeDuplication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanDuplicationDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanDuplicationPacketDuplication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanDuplicationId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanDuplicationService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanDuplicationServiceId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanDuplicationSlaMatchService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanDuplicationPacketDeDuplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemSdwanDuplicationSrcaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
-func flattenWantempSystemSdwanDuplicationPacketDuplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemSdwanDuplicationSrcaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
-func flattenWantempSystemSdwanDuplicationService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanDuplicationServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanDuplicationSlaMatchService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanDuplicationSrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanDuplicationSrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanDuplicationSrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemSdwanDuplicationSrcintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[string]interface{}) error {
@@ -296,7 +296,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("dstaddr", flattenWantempSystemSdwanDuplicationDstaddr(o["dstaddr"], d, "dstaddr")); err != nil {
+	if err = d.Set("dstaddr", flattenWantempSystemSdwanDuplicationDstaddr2edl(o["dstaddr"], d, "dstaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstaddr"], "WantempSystemSdwanDuplication-Dstaddr"); ok {
 			if err = d.Set("dstaddr", vv); err != nil {
 				return fmt.Errorf("Error reading dstaddr: %v", err)
@@ -306,7 +306,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("dstaddr6", flattenWantempSystemSdwanDuplicationDstaddr6(o["dstaddr6"], d, "dstaddr6")); err != nil {
+	if err = d.Set("dstaddr6", flattenWantempSystemSdwanDuplicationDstaddr62edl(o["dstaddr6"], d, "dstaddr6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstaddr6"], "WantempSystemSdwanDuplication-Dstaddr6"); ok {
 			if err = d.Set("dstaddr6", vv); err != nil {
 				return fmt.Errorf("Error reading dstaddr6: %v", err)
@@ -316,7 +316,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("dstintf", flattenWantempSystemSdwanDuplicationDstintf(o["dstintf"], d, "dstintf")); err != nil {
+	if err = d.Set("dstintf", flattenWantempSystemSdwanDuplicationDstintf2edl(o["dstintf"], d, "dstintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstintf"], "WantempSystemSdwanDuplication-Dstintf"); ok {
 			if err = d.Set("dstintf", vv); err != nil {
 				return fmt.Errorf("Error reading dstintf: %v", err)
@@ -326,7 +326,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemSdwanDuplicationId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemSdwanDuplicationId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemSdwanDuplication-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -336,7 +336,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("packet_de_duplication", flattenWantempSystemSdwanDuplicationPacketDeDuplication(o["packet-de-duplication"], d, "packet_de_duplication")); err != nil {
+	if err = d.Set("packet_de_duplication", flattenWantempSystemSdwanDuplicationPacketDeDuplication2edl(o["packet-de-duplication"], d, "packet_de_duplication")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packet-de-duplication"], "WantempSystemSdwanDuplication-PacketDeDuplication"); ok {
 			if err = d.Set("packet_de_duplication", vv); err != nil {
 				return fmt.Errorf("Error reading packet_de_duplication: %v", err)
@@ -346,7 +346,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("packet_duplication", flattenWantempSystemSdwanDuplicationPacketDuplication(o["packet-duplication"], d, "packet_duplication")); err != nil {
+	if err = d.Set("packet_duplication", flattenWantempSystemSdwanDuplicationPacketDuplication2edl(o["packet-duplication"], d, "packet_duplication")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packet-duplication"], "WantempSystemSdwanDuplication-PacketDuplication"); ok {
 			if err = d.Set("packet_duplication", vv); err != nil {
 				return fmt.Errorf("Error reading packet_duplication: %v", err)
@@ -356,7 +356,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("service", flattenWantempSystemSdwanDuplicationService(o["service"], d, "service")); err != nil {
+	if err = d.Set("service", flattenWantempSystemSdwanDuplicationService2edl(o["service"], d, "service")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service"], "WantempSystemSdwanDuplication-Service"); ok {
 			if err = d.Set("service", vv); err != nil {
 				return fmt.Errorf("Error reading service: %v", err)
@@ -366,7 +366,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("service_id", flattenWantempSystemSdwanDuplicationServiceId(o["service-id"], d, "service_id")); err != nil {
+	if err = d.Set("service_id", flattenWantempSystemSdwanDuplicationServiceId2edl(o["service-id"], d, "service_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-id"], "WantempSystemSdwanDuplication-ServiceId"); ok {
 			if err = d.Set("service_id", vv); err != nil {
 				return fmt.Errorf("Error reading service_id: %v", err)
@@ -376,7 +376,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sla_match_service", flattenWantempSystemSdwanDuplicationSlaMatchService(o["sla-match-service"], d, "sla_match_service")); err != nil {
+	if err = d.Set("sla_match_service", flattenWantempSystemSdwanDuplicationSlaMatchService2edl(o["sla-match-service"], d, "sla_match_service")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-match-service"], "WantempSystemSdwanDuplication-SlaMatchService"); ok {
 			if err = d.Set("sla_match_service", vv); err != nil {
 				return fmt.Errorf("Error reading sla_match_service: %v", err)
@@ -386,7 +386,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("srcaddr", flattenWantempSystemSdwanDuplicationSrcaddr(o["srcaddr"], d, "srcaddr")); err != nil {
+	if err = d.Set("srcaddr", flattenWantempSystemSdwanDuplicationSrcaddr2edl(o["srcaddr"], d, "srcaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr"], "WantempSystemSdwanDuplication-Srcaddr"); ok {
 			if err = d.Set("srcaddr", vv); err != nil {
 				return fmt.Errorf("Error reading srcaddr: %v", err)
@@ -396,7 +396,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("srcaddr6", flattenWantempSystemSdwanDuplicationSrcaddr6(o["srcaddr6"], d, "srcaddr6")); err != nil {
+	if err = d.Set("srcaddr6", flattenWantempSystemSdwanDuplicationSrcaddr62edl(o["srcaddr6"], d, "srcaddr6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr6"], "WantempSystemSdwanDuplication-Srcaddr6"); ok {
 			if err = d.Set("srcaddr6", vv); err != nil {
 				return fmt.Errorf("Error reading srcaddr6: %v", err)
@@ -406,7 +406,7 @@ func refreshObjectWantempSystemSdwanDuplication(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("srcintf", flattenWantempSystemSdwanDuplicationSrcintf(o["srcintf"], d, "srcintf")); err != nil {
+	if err = d.Set("srcintf", flattenWantempSystemSdwanDuplicationSrcintf2edl(o["srcintf"], d, "srcintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcintf"], "WantempSystemSdwanDuplication-Srcintf"); ok {
 			if err = d.Set("srcintf", vv); err != nil {
 				return fmt.Errorf("Error reading srcintf: %v", err)
@@ -425,59 +425,59 @@ func flattenWantempSystemSdwanDuplicationFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanDuplicationDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanDuplicationDstaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanDuplicationDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanDuplicationDstintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanDuplicationId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanDuplicationDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanDuplicationPacketDeDuplication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanDuplicationDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanDuplicationPacketDuplication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanDuplicationId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanDuplicationService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanDuplicationServiceId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanDuplicationSlaMatchService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanDuplicationPacketDeDuplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemSdwanDuplicationSrcaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
-func expandWantempSystemSdwanDuplicationPacketDuplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemSdwanDuplicationSrcaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
-func expandWantempSystemSdwanDuplicationService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanDuplicationServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanDuplicationSlaMatchService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanDuplicationSrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanDuplicationSrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanDuplicationSrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemSdwanDuplicationSrcintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
 func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
-		t, err := expandWantempSystemSdwanDuplicationDstaddr(d, v, "dstaddr")
+		t, err := expandWantempSystemSdwanDuplicationDstaddr2edl(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -486,7 +486,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
-		t, err := expandWantempSystemSdwanDuplicationDstaddr6(d, v, "dstaddr6")
+		t, err := expandWantempSystemSdwanDuplicationDstaddr62edl(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -495,7 +495,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
-		t, err := expandWantempSystemSdwanDuplicationDstintf(d, v, "dstintf")
+		t, err := expandWantempSystemSdwanDuplicationDstintf2edl(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -504,7 +504,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemSdwanDuplicationId(d, v, "fosid")
+		t, err := expandWantempSystemSdwanDuplicationId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -513,7 +513,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("packet_de_duplication"); ok || d.HasChange("packet_de_duplication") {
-		t, err := expandWantempSystemSdwanDuplicationPacketDeDuplication(d, v, "packet_de_duplication")
+		t, err := expandWantempSystemSdwanDuplicationPacketDeDuplication2edl(d, v, "packet_de_duplication")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -522,7 +522,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("packet_duplication"); ok || d.HasChange("packet_duplication") {
-		t, err := expandWantempSystemSdwanDuplicationPacketDuplication(d, v, "packet_duplication")
+		t, err := expandWantempSystemSdwanDuplicationPacketDuplication2edl(d, v, "packet_duplication")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -531,7 +531,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
-		t, err := expandWantempSystemSdwanDuplicationService(d, v, "service")
+		t, err := expandWantempSystemSdwanDuplicationService2edl(d, v, "service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -540,7 +540,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("service_id"); ok || d.HasChange("service_id") {
-		t, err := expandWantempSystemSdwanDuplicationServiceId(d, v, "service_id")
+		t, err := expandWantempSystemSdwanDuplicationServiceId2edl(d, v, "service_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -549,7 +549,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sla_match_service"); ok || d.HasChange("sla_match_service") {
-		t, err := expandWantempSystemSdwanDuplicationSlaMatchService(d, v, "sla_match_service")
+		t, err := expandWantempSystemSdwanDuplicationSlaMatchService2edl(d, v, "sla_match_service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -558,7 +558,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
-		t, err := expandWantempSystemSdwanDuplicationSrcaddr(d, v, "srcaddr")
+		t, err := expandWantempSystemSdwanDuplicationSrcaddr2edl(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -567,7 +567,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
-		t, err := expandWantempSystemSdwanDuplicationSrcaddr6(d, v, "srcaddr6")
+		t, err := expandWantempSystemSdwanDuplicationSrcaddr62edl(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -576,7 +576,7 @@ func getObjectWantempSystemSdwanDuplication(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
-		t, err := expandWantempSystemSdwanDuplicationSrcintf(d, v, "srcintf")
+		t, err := expandWantempSystemSdwanDuplicationSrcintf2edl(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

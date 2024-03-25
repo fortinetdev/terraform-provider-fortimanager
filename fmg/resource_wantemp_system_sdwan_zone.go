@@ -50,6 +50,15 @@ func resourceWantempSystemSdwanZone() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"advpn_health_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"advpn_select": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"minimum_sla_meet_members": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -203,15 +212,23 @@ func resourceWantempSystemSdwanZoneRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
-func flattenWantempSystemSdwanZoneMinimumSlaMeetMembers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanZoneAdvpnHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanZoneName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanZoneAdvpnSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanZoneServiceSlaTieBreak(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanZoneMinimumSlaMeetMembers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanZoneName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanZoneServiceSlaTieBreak2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -222,7 +239,27 @@ func refreshObjectWantempSystemSdwanZone(d *schema.ResourceData, o map[string]in
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanZoneMinimumSlaMeetMembers(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
+	if err = d.Set("advpn_health_check", flattenWantempSystemSdwanZoneAdvpnHealthCheck2edl(o["advpn-health-check"], d, "advpn_health_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["advpn-health-check"], "WantempSystemSdwanZone-AdvpnHealthCheck"); ok {
+			if err = d.Set("advpn_health_check", vv); err != nil {
+				return fmt.Errorf("Error reading advpn_health_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading advpn_health_check: %v", err)
+		}
+	}
+
+	if err = d.Set("advpn_select", flattenWantempSystemSdwanZoneAdvpnSelect2edl(o["advpn-select"], d, "advpn_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["advpn-select"], "WantempSystemSdwanZone-AdvpnSelect"); ok {
+			if err = d.Set("advpn_select", vv); err != nil {
+				return fmt.Errorf("Error reading advpn_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading advpn_select: %v", err)
+		}
+	}
+
+	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanZoneMinimumSlaMeetMembers2edl(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["minimum-sla-meet-members"], "WantempSystemSdwanZone-MinimumSlaMeetMembers"); ok {
 			if err = d.Set("minimum_sla_meet_members", vv); err != nil {
 				return fmt.Errorf("Error reading minimum_sla_meet_members: %v", err)
@@ -232,7 +269,7 @@ func refreshObjectWantempSystemSdwanZone(d *schema.ResourceData, o map[string]in
 		}
 	}
 
-	if err = d.Set("name", flattenWantempSystemSdwanZoneName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenWantempSystemSdwanZoneName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "WantempSystemSdwanZone-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -242,7 +279,7 @@ func refreshObjectWantempSystemSdwanZone(d *schema.ResourceData, o map[string]in
 		}
 	}
 
-	if err = d.Set("service_sla_tie_break", flattenWantempSystemSdwanZoneServiceSlaTieBreak(o["service-sla-tie-break"], d, "service_sla_tie_break")); err != nil {
+	if err = d.Set("service_sla_tie_break", flattenWantempSystemSdwanZoneServiceSlaTieBreak2edl(o["service-sla-tie-break"], d, "service_sla_tie_break")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-sla-tie-break"], "WantempSystemSdwanZone-ServiceSlaTieBreak"); ok {
 			if err = d.Set("service_sla_tie_break", vv); err != nil {
 				return fmt.Errorf("Error reading service_sla_tie_break: %v", err)
@@ -261,23 +298,49 @@ func flattenWantempSystemSdwanZoneFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanZoneMinimumSlaMeetMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanZoneAdvpnHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanZoneName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanZoneAdvpnSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanZoneServiceSlaTieBreak(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanZoneMinimumSlaMeetMembers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanZoneName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanZoneServiceSlaTieBreak2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func getObjectWantempSystemSdwanZone(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("advpn_health_check"); ok || d.HasChange("advpn_health_check") {
+		t, err := expandWantempSystemSdwanZoneAdvpnHealthCheck2edl(d, v, "advpn_health_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["advpn-health-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("advpn_select"); ok || d.HasChange("advpn_select") {
+		t, err := expandWantempSystemSdwanZoneAdvpnSelect2edl(d, v, "advpn_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["advpn-select"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("minimum_sla_meet_members"); ok || d.HasChange("minimum_sla_meet_members") {
-		t, err := expandWantempSystemSdwanZoneMinimumSlaMeetMembers(d, v, "minimum_sla_meet_members")
+		t, err := expandWantempSystemSdwanZoneMinimumSlaMeetMembers2edl(d, v, "minimum_sla_meet_members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -286,7 +349,7 @@ func getObjectWantempSystemSdwanZone(d *schema.ResourceData) (*map[string]interf
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandWantempSystemSdwanZoneName(d, v, "name")
+		t, err := expandWantempSystemSdwanZoneName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -295,7 +358,7 @@ func getObjectWantempSystemSdwanZone(d *schema.ResourceData) (*map[string]interf
 	}
 
 	if v, ok := d.GetOk("service_sla_tie_break"); ok || d.HasChange("service_sla_tie_break") {
-		t, err := expandWantempSystemSdwanZoneServiceSlaTieBreak(d, v, "service_sla_tie_break")
+		t, err := expandWantempSystemSdwanZoneServiceSlaTieBreak2edl(d, v, "service_sla_tie_break")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

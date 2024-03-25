@@ -39,6 +39,16 @@ func resourceSystemConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"faznotify_msg_queue_max": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"faznotify_msg_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"fsso_refresh_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -145,6 +155,14 @@ func flattenSystemConnectorConnRefreshInterval(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenSystemConnectorFaznotifyMsgQueueMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemConnectorFaznotifyMsgTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemConnectorFssoRefreshInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -181,6 +199,26 @@ func refreshObjectSystemConnector(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading conn_refresh_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("faznotify_msg_queue_max", flattenSystemConnectorFaznotifyMsgQueueMax(o["faznotify-msg-queue-max"], d, "faznotify_msg_queue_max")); err != nil {
+		if vv, ok := fortiAPIPatch(o["faznotify-msg-queue-max"], "SystemConnector-FaznotifyMsgQueueMax"); ok {
+			if err = d.Set("faznotify_msg_queue_max", vv); err != nil {
+				return fmt.Errorf("Error reading faznotify_msg_queue_max: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading faznotify_msg_queue_max: %v", err)
+		}
+	}
+
+	if err = d.Set("faznotify_msg_timeout", flattenSystemConnectorFaznotifyMsgTimeout(o["faznotify-msg-timeout"], d, "faznotify_msg_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["faznotify-msg-timeout"], "SystemConnector-FaznotifyMsgTimeout"); ok {
+			if err = d.Set("faznotify_msg_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading faznotify_msg_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading faznotify_msg_timeout: %v", err)
 		}
 	}
 
@@ -241,6 +279,14 @@ func expandSystemConnectorConnRefreshInterval(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandSystemConnectorFaznotifyMsgQueueMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemConnectorFaznotifyMsgTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemConnectorFssoRefreshInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -275,6 +321,24 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["conn-refresh-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("faznotify_msg_queue_max"); ok || d.HasChange("faznotify_msg_queue_max") {
+		t, err := expandSystemConnectorFaznotifyMsgQueueMax(d, v, "faznotify_msg_queue_max")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["faznotify-msg-queue-max"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("faznotify_msg_timeout"); ok || d.HasChange("faznotify_msg_timeout") {
+		t, err := expandSystemConnectorFaznotifyMsgTimeout(d, v, "faznotify_msg_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["faznotify-msg-timeout"] = t
 		}
 	}
 

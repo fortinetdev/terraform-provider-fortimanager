@@ -10,7 +10,7 @@ description: |-
 Configure shaping profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`shaping_entries`: `fortimanager_object_firewall_shapingprofile_shapingentries`
+>- `shaping_entries`: `fortimanager_object_firewall_shapingprofile_shapingentries`
 
 
 

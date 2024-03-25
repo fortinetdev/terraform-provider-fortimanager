@@ -48,16 +48,30 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"defaultgw": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"dhcp_client_identifier": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"dns_server_override": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"ip": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -130,8 +144,18 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"mtu": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"mtu_override": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -141,7 +165,7 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 			},
 			"rating_service_ip": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -168,7 +192,7 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"update_service_ip": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -314,7 +338,19 @@ func flattenSystemInterfaceAllowaccess(v interface{}, d *schema.ResourceData, pr
 	return flattenStringList(v)
 }
 
+func flattenSystemInterfaceDefaultgw(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceDhcpClientIdentifier(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceDnsServerOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -429,7 +465,15 @@ func flattenSystemInterfaceMinLinksDown(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenSystemInterfaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceMtu(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceMtuOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -506,6 +550,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("defaultgw", flattenSystemInterfaceDefaultgw(o["defaultgw"], d, "defaultgw")); err != nil {
+		if vv, ok := fortiAPIPatch(o["defaultgw"], "SystemInterface-Defaultgw"); ok {
+			if err = d.Set("defaultgw", vv); err != nil {
+				return fmt.Errorf("Error reading defaultgw: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading defaultgw: %v", err)
+		}
+	}
+
 	if err = d.Set("description", flattenSystemInterfaceDescription(o["description"], d, "description")); err != nil {
 		if vv, ok := fortiAPIPatch(o["description"], "SystemInterface-Description"); ok {
 			if err = d.Set("description", vv); err != nil {
@@ -513,6 +567,26 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading description: %v", err)
+		}
+	}
+
+	if err = d.Set("dhcp_client_identifier", flattenSystemInterfaceDhcpClientIdentifier(o["dhcp-client-identifier"], d, "dhcp_client_identifier")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp-client-identifier"], "SystemInterface-DhcpClientIdentifier"); ok {
+			if err = d.Set("dhcp_client_identifier", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp_client_identifier: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp_client_identifier: %v", err)
+		}
+	}
+
+	if err = d.Set("dns_server_override", flattenSystemInterfaceDnsServerOverride(o["dns-server-override"], d, "dns_server_override")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dns-server-override"], "SystemInterface-DnsServerOverride"); ok {
+			if err = d.Set("dns_server_override", vv); err != nil {
+				return fmt.Errorf("Error reading dns_server_override: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dns_server_override: %v", err)
 		}
 	}
 
@@ -644,6 +718,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("mode", flattenSystemInterfaceMode(o["mode"], d, "mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mode"], "SystemInterface-Mode"); ok {
+			if err = d.Set("mode", vv); err != nil {
+				return fmt.Errorf("Error reading mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mode: %v", err)
+		}
+	}
+
 	if err = d.Set("mtu", flattenSystemInterfaceMtu(o["mtu"], d, "mtu")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mtu"], "SystemInterface-Mtu"); ok {
 			if err = d.Set("mtu", vv); err != nil {
@@ -651,6 +735,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading mtu: %v", err)
+		}
+	}
+
+	if err = d.Set("mtu_override", flattenSystemInterfaceMtuOverride(o["mtu-override"], d, "mtu_override")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mtu-override"], "SystemInterface-MtuOverride"); ok {
+			if err = d.Set("mtu_override", vv); err != nil {
+				return fmt.Errorf("Error reading mtu_override: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mtu_override: %v", err)
 		}
 	}
 
@@ -765,7 +859,19 @@ func expandSystemInterfaceAllowaccess(d *schema.ResourceData, v interface{}, pre
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandSystemInterfaceDefaultgw(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceDhcpClientIdentifier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceDnsServerOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -774,7 +880,7 @@ func expandSystemInterfaceInterface(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemInterfaceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystemInterfaceIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -872,7 +978,15 @@ func expandSystemInterfaceMinLinksDown(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandSystemInterfaceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceMtu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceMtuOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -881,7 +995,7 @@ func expandSystemInterfaceName(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemInterfaceRatingServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystemInterfaceServiceaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -901,7 +1015,7 @@ func expandSystemInterfaceType(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemInterfaceUpdateServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystemInterfaceVlanProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -942,12 +1056,39 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("defaultgw"); ok || d.HasChange("defaultgw") {
+		t, err := expandSystemInterfaceDefaultgw(d, v, "defaultgw")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["defaultgw"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandSystemInterfaceDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["description"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dhcp_client_identifier"); ok || d.HasChange("dhcp_client_identifier") {
+		t, err := expandSystemInterfaceDhcpClientIdentifier(d, v, "dhcp_client_identifier")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp-client-identifier"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dns_server_override"); ok || d.HasChange("dns_server_override") {
+		t, err := expandSystemInterfaceDnsServerOverride(d, v, "dns_server_override")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dns-server-override"] = t
 		}
 	}
 
@@ -1041,12 +1182,30 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
+		t, err := expandSystemInterfaceMode(d, v, "mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mode"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("mtu"); ok || d.HasChange("mtu") {
 		t, err := expandSystemInterfaceMtu(d, v, "mtu")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["mtu"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mtu_override"); ok || d.HasChange("mtu_override") {
+		t, err := expandSystemInterfaceMtuOverride(d, v, "mtu_override")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mtu-override"] = t
 		}
 	}
 

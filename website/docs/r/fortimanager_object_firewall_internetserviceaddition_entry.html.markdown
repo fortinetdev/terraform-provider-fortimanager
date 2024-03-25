@@ -11,7 +11,7 @@ Entries added to the Internet Service addition database.
 
 ~> This resource is a sub resource for variable `entry` of resource `fortimanager_object_firewall_internetserviceaddition`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`port_range`: `fortimanager_object_firewall_internetserviceaddition_entry_portrange`
+>- `port_range`: `fortimanager_object_firewall_internetserviceaddition_entry_portrange`
 
 
 

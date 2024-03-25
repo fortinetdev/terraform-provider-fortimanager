@@ -2796,7 +2796,7 @@ func expandObjectWafProfileAddressList(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectWafProfileAddressListBlockedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileAddressListBlockedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2812,7 +2812,7 @@ func expandObjectWafProfileAddressListStatus(d *schema.ResourceData, v interface
 }
 
 func expandObjectWafProfileAddressListTrustedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4096,11 +4096,11 @@ func expandObjectWafProfileSignatureCustomSignatureTarget(d *schema.ResourceData
 }
 
 func expandObjectWafProfileSignatureDisabledSignature(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileSignatureDisabledSubClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileSignatureMainClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

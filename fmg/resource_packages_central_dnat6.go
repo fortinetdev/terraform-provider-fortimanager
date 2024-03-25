@@ -210,7 +210,7 @@ func resourcePackagesCentralDnat6Read(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenPackagesCentralDnat6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectPackagesCentralDnat6(d *schema.ResourceData, o map[string]interface{}) error {
@@ -240,7 +240,7 @@ func flattenPackagesCentralDnat6FortiTestDebug(d *schema.ResourceData, fosdebugs
 }
 
 func expandPackagesCentralDnat6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectPackagesCentralDnat6(d *schema.ResourceData) (*map[string]interface{}, error) {

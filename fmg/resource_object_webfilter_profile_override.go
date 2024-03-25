@@ -71,13 +71,13 @@ func resourceObjectWebfilterProfileOverride() *schema.Resource {
 				Computed: true,
 			},
 			"ovrd_user_group": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"profile": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -345,11 +345,11 @@ func expandObjectWebfilterProfileOverrideOvrdScope2edl(d *schema.ResourceData, v
 }
 
 func expandObjectWebfilterProfileOverrideOvrdUserGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfileAttribute2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

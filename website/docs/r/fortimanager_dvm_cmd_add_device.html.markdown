@@ -40,8 +40,8 @@ The following arguments are supported:
 
 The `device` block supports:
 
-* `adm_pass` - <i>add real and promote device</i>.
-* `adm_usr` - <i>add real and promote device</i>.
+* `adm_pass` - <i>add real and promote device</i>. Device admin password.
+* `adm_usr` - <i>add real and promote device</i>. Device admin username.
 * `authorizationtemplate` - <i>add model device only</i>. Fabric Authorization Template to auto genreate for the new model device upon creation.
 * `desc` - <i>available for all operations</i>.
 * `deviceaction` - Specify add device operations, or leave blank to add real device:<ul><li>"add_model" - add a model device.<li>"promote_unreg" - promote an unregistered device to be managed by FortiManager using information from database.</ul>

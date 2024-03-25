@@ -11,7 +11,7 @@ SD-WAN status checking or health checking. Identify a server on the Internet and
 
 ~> This resource is a sub resource for variable `health_check` of resource `fortimanager_wantemp_system_virtualwanlink`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`sla`: `fortimanager_wantemp_system_virtualwanlink_healthcheck_sla`
+>- `sla`: `fortimanager_wantemp_system_virtualwanlink_healthcheck_sla`
 
 
 

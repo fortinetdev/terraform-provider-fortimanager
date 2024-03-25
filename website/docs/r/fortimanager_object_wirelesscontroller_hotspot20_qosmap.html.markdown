@@ -10,8 +10,8 @@ description: |-
 Configure QoS map set.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dscp_except`: `fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscpexcept`
-`dscp_range`: `fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscprange`
+>- `dscp_except`: `fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscpexcept`
+>- `dscp_range`: `fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscprange`
 
 
 

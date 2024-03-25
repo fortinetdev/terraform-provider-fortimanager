@@ -10,7 +10,7 @@ description: |-
 Configure IPv6 DoS policies.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`anomaly`: `fortimanager_packages_firewall_dospolicy6_anomaly`
+>- `anomaly`: `fortimanager_packages_firewall_dospolicy6_anomaly`
 
 
 

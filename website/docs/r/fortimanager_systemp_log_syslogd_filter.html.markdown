@@ -10,8 +10,8 @@ description: |-
 Filters for remote system server.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`exclude_list`: `fortimanager_systemp_log_syslogd_filter_excludelist`
-`free_style`: `fortimanager_systemp_log_syslogd_filter_freestyle`
+>- `exclude_list`: `fortimanager_systemp_log_syslogd_filter_excludelist`
+>- `free_style`: `fortimanager_systemp_log_syslogd_filter_freestyle`
 
 
 
@@ -34,6 +34,8 @@ The following arguments are supported:
 * `devprof` - Devprof.
 
 * `anomaly` - Enable/disable anomaly logging. Valid values: `disable`, `enable`.
+
+* `forti_switch` - Enable/disable Forti-Switch logging. Valid values: `disable`, `enable`.
 
 * `cifs` - Cifs. Valid values: `disable`, `enable`.
 

@@ -136,13 +136,13 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 				Optional: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"interface": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -155,15 +155,16 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -874,11 +875,11 @@ func expandPackagesFirewallDosPolicy6Comments(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallDosPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallDosPolicy6Interface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallDosPolicy6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -890,11 +891,11 @@ func expandPackagesFirewallDosPolicy6Policyid(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallDosPolicy6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallDosPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallDosPolicy6Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -27,8 +27,10 @@ The following arguments are supported:
 * `application` - Application ID list.
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
+* `casb_profile` - Name of an existing CASB profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
+* `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
@@ -37,6 +39,8 @@ The following arguments are supported:
 
 * `dstaddr4` - Destination IPv4 address name and address group names.
 * `dstaddr6` - Destination IPv6 address name and address group names.
+* `dstaddr6_negate` - When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
+
 * `dstintf` - Outgoing (egress) interface.
 * `emailfilter_profile` - Name of an existing email filter profile.
 * `enforce_default_app_port` - Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
@@ -81,6 +85,7 @@ The following arguments are supported:
 * `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
+* `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
 
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `all`, `utm`.
@@ -110,6 +115,8 @@ The following arguments are supported:
 
 * `srcaddr4` - Source IPv4 address name and address group names.
 * `srcaddr6` - Source IPv6 address name and address group names.
+* `srcaddr6_negate` - When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
+
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
@@ -121,6 +128,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `videofilter_profile` - Name of an existing VideoFilter profile.
+* `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `voip_profile` - Name of an existing VoIP profile.
 * `webfilter_profile` - Name of an existing Web filter profile.
 

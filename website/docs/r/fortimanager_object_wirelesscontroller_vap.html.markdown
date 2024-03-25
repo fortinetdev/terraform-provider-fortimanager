@@ -10,12 +10,12 @@ description: |-
 Configure Virtual Access Points (VAPs).
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_wirelesscontroller_vap_dynamic_mapping`
-`mac_filter_list`: `fortimanager_object_wirelesscontroller_vap_macfilterlist`
-`mpsk_key`: `fortimanager_object_wirelesscontroller_vap_mpskkey`
-`portal_message_overrides`: `fortimanager_object_wirelesscontroller_vap_portalmessageoverrides`
-`vlan_name`: `fortimanager_object_wirelesscontroller_vap_vlanname`
-`vlan_pool`: `fortimanager_object_wirelesscontroller_vap_vlanpool`
+>- `dynamic_mapping`: `fortimanager_object_wirelesscontroller_vap_dynamic_mapping`
+>- `mac_filter_list`: `fortimanager_object_wirelesscontroller_vap_macfilterlist`
+>- `mpsk_key`: `fortimanager_object_wirelesscontroller_vap_mpskkey`
+>- `portal_message_overrides`: `fortimanager_object_wirelesscontroller_vap_portalmessageoverrides`
+>- `vlan_name`: `fortimanager_object_wirelesscontroller_vap_vlanname`
+>- `vlan_pool`: `fortimanager_object_wirelesscontroller_vap_vlanpool`
 
 
 
@@ -111,6 +111,10 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+
+* `n80211k` - Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+
+* `n80211v` - Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
 
 * `_centmgmt` - _Centmgmt. Valid values: `disable`, `enable`.
 
@@ -359,9 +363,13 @@ The following arguments are supported:
 
 * `rates_11n_ss34` - Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 
+* `roaming_acct_interim_update` - Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `disable`, `enable`.
+
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
 * `sae_h2e_only` - Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
+
+* `sae_hnp_only` - Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
 
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
 * `sae_pk` - Enable/disable WPA3 SAE-PK (default = disable). Valid values: `disable`, `enable`.
@@ -412,6 +420,10 @@ The following arguments are supported:
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
+
+* `n80211k` - Enable/disable 802.11k assisted roaming (default = enable). Valid values: `disable`, `enable`.
+
+* `n80211v` - Enable/disable 802.11v assisted roaming (default = enable). Valid values: `disable`, `enable`.
 
 * `_centmgmt` - _Centmgmt. Valid values: `disable`, `enable`.
 
@@ -659,9 +671,13 @@ The `dynamic_mapping` block supports:
 
 * `rates_11n_ss34` - Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
 
+* `roaming_acct_interim_update` - Enable/disable using accounting interim update instead of accounting start/stop on roaming for WPA-Enterprise security. Valid values: `disable`, `enable`.
+
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
 * `sae_h2e_only` - Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
+
+* `sae_hnp_only` - Use hunting-and-pecking-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
 
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
 * `sae_pk` - Enable/disable WPA3 SAE-PK (default = disable). Valid values: `disable`, `enable`.

@@ -53,6 +53,7 @@ func resourceObjectWirelessControllerApcfgProfile() *schema.Resource {
 			"ac_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"ac_timer": &schema.Schema{
 				Type:     schema.TypeInt,

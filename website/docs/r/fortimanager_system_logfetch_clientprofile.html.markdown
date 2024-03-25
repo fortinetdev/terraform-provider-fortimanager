@@ -10,8 +10,8 @@ description: |-
 Log-fetch client profile settings.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`device_filter`: `fortimanager_system_logfetch_clientprofile_devicefilter`
-`log_filter`: `fortimanager_system_logfetch_clientprofile_logfilter`
+>- `device_filter`: `fortimanager_system_logfetch_clientprofile_devicefilter`
+>- `log_filter`: `fortimanager_system_logfetch_clientprofile_logfilter`
 
 
 

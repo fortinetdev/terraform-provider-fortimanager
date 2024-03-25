@@ -149,26 +149,26 @@ func resourceSystemLogRatelimitRatelimitsRead(d *schema.ResourceData, m interfac
 	return nil
 }
 
-func flattenSystemLogRatelimitRatelimitsFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemLogRatelimitRatelimitsFilter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemLogRatelimitRatelimitsFilterType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemLogRatelimitRatelimitsFilterType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemLogRatelimitRatelimitsId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemLogRatelimitRatelimitsId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemLogRatelimitRatelimitsRatelimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemLogRatelimitRatelimitsRatelimit2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemLogRatelimitRatelimits(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("filter", flattenSystemLogRatelimitRatelimitsFilter(o["filter"], d, "filter")); err != nil {
+	if err = d.Set("filter", flattenSystemLogRatelimitRatelimitsFilter2edl(o["filter"], d, "filter")); err != nil {
 		if vv, ok := fortiAPIPatch(o["filter"], "SystemLogRatelimitRatelimits-Filter"); ok {
 			if err = d.Set("filter", vv); err != nil {
 				return fmt.Errorf("Error reading filter: %v", err)
@@ -178,7 +178,7 @@ func refreshObjectSystemLogRatelimitRatelimits(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("filter_type", flattenSystemLogRatelimitRatelimitsFilterType(o["filter-type"], d, "filter_type")); err != nil {
+	if err = d.Set("filter_type", flattenSystemLogRatelimitRatelimitsFilterType2edl(o["filter-type"], d, "filter_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["filter-type"], "SystemLogRatelimitRatelimits-FilterType"); ok {
 			if err = d.Set("filter_type", vv); err != nil {
 				return fmt.Errorf("Error reading filter_type: %v", err)
@@ -188,7 +188,7 @@ func refreshObjectSystemLogRatelimitRatelimits(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("fosid", flattenSystemLogRatelimitRatelimitsId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenSystemLogRatelimitRatelimitsId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemLogRatelimitRatelimits-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -198,7 +198,7 @@ func refreshObjectSystemLogRatelimitRatelimits(d *schema.ResourceData, o map[str
 		}
 	}
 
-	if err = d.Set("ratelimit", flattenSystemLogRatelimitRatelimitsRatelimit(o["ratelimit"], d, "ratelimit")); err != nil {
+	if err = d.Set("ratelimit", flattenSystemLogRatelimitRatelimitsRatelimit2edl(o["ratelimit"], d, "ratelimit")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ratelimit"], "SystemLogRatelimitRatelimits-Ratelimit"); ok {
 			if err = d.Set("ratelimit", vv); err != nil {
 				return fmt.Errorf("Error reading ratelimit: %v", err)
@@ -217,19 +217,19 @@ func flattenSystemLogRatelimitRatelimitsFortiTestDebug(d *schema.ResourceData, f
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemLogRatelimitRatelimitsFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemLogRatelimitRatelimitsFilter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemLogRatelimitRatelimitsFilterType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemLogRatelimitRatelimitsFilterType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemLogRatelimitRatelimitsId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemLogRatelimitRatelimitsId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemLogRatelimitRatelimitsRatelimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemLogRatelimitRatelimitsRatelimit2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -237,7 +237,7 @@ func getObjectSystemLogRatelimitRatelimits(d *schema.ResourceData) (*map[string]
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("filter"); ok || d.HasChange("filter") {
-		t, err := expandSystemLogRatelimitRatelimitsFilter(d, v, "filter")
+		t, err := expandSystemLogRatelimitRatelimitsFilter2edl(d, v, "filter")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -246,7 +246,7 @@ func getObjectSystemLogRatelimitRatelimits(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("filter_type"); ok || d.HasChange("filter_type") {
-		t, err := expandSystemLogRatelimitRatelimitsFilterType(d, v, "filter_type")
+		t, err := expandSystemLogRatelimitRatelimitsFilterType2edl(d, v, "filter_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -255,7 +255,7 @@ func getObjectSystemLogRatelimitRatelimits(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandSystemLogRatelimitRatelimitsId(d, v, "fosid")
+		t, err := expandSystemLogRatelimitRatelimitsId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -264,7 +264,7 @@ func getObjectSystemLogRatelimitRatelimits(d *schema.ResourceData) (*map[string]
 	}
 
 	if v, ok := d.GetOk("ratelimit"); ok || d.HasChange("ratelimit") {
-		t, err := expandSystemLogRatelimitRatelimitsRatelimit(d, v, "ratelimit")
+		t, err := expandSystemLogRatelimitRatelimitsRatelimit2edl(d, v, "ratelimit")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -173,7 +173,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 			},
 			"hub_iface": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -184,7 +184,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 			},
 			"iface": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -324,7 +324,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Computed: true,
 			},
 			"peer": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -375,7 +375,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 			},
 			"spoke_zone": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -419,13 +419,13 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 			},
 			"vpn_zone": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"vpntable": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -971,7 +971,7 @@ func flattenObjectVpnmgrNodeProtectedSubnet(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectVpnmgrNodeProtectedSubnetAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeProtectedSubnetSeq(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1984,7 +1984,7 @@ func expandObjectVpnmgrNodeHubPublicIp(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectVpnmgrNodeHubIface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodeId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1992,7 +1992,7 @@ func expandObjectVpnmgrNodeId(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandObjectVpnmgrNodeIface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodeIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2178,7 +2178,7 @@ func expandObjectVpnmgrNodeNetworkOverlay(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectVpnmgrNodePeer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodePeergrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2228,7 +2228,7 @@ func expandObjectVpnmgrNodeProtectedSubnet(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectVpnmgrNodeProtectedSubnetAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeProtectedSubnetSeq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2252,7 +2252,7 @@ func expandObjectVpnmgrNodeRouteOverlap(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectVpnmgrNodeSpokeZone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodeSummaryAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2323,11 +2323,11 @@ func expandObjectVpnmgrNodeVpnInterfacePriority(d *schema.ResourceData, v interf
 }
 
 func expandObjectVpnmgrNodeVpnZone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodeVpntable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectVpnmgrNodeXauthtype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

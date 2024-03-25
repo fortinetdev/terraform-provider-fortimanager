@@ -58,6 +58,7 @@ func resourceObjectSystemNpuHpe() *schema.Resource {
 			"enable_queue_shaper": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"enable_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -239,87 +240,87 @@ func resourceObjectSystemNpuHpeRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
-func flattenObjectSystemNpuHpeAllProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeAllProtocol2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeArpMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeArpMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeEnableQueueShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeEnableQueueShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeEnableShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeEnableShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeEspMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeEspMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeExceptionCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeExceptionCode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeFragmentWithSess(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeFragmentWithSess2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeFragmentWithoutSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeFragmentWithoutSession2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeHighPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeHighPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeIcmpMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeIcmpMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeIpFragMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeIpFragMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeIpOthersMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeIpOthersMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeL2OthersMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeL2OthersMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpePriTypeMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpePriTypeMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeQueueShaperMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeQueueShaperMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeSctpMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeSctpMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeTcpMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeTcpMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeTcpfinRstMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeTcpfinRstMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeTcpsynAckMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeTcpsynAckMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeTcpsynMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeTcpsynMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuHpeUdpMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuHpeUdpMax2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -330,7 +331,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("all_protocol", flattenObjectSystemNpuHpeAllProtocol(o["all-protocol"], d, "all_protocol")); err != nil {
+	if err = d.Set("all_protocol", flattenObjectSystemNpuHpeAllProtocol2edl(o["all-protocol"], d, "all_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["all-protocol"], "ObjectSystemNpuHpe-AllProtocol"); ok {
 			if err = d.Set("all_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading all_protocol: %v", err)
@@ -340,7 +341,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("arp_max", flattenObjectSystemNpuHpeArpMax(o["arp-max"], d, "arp_max")); err != nil {
+	if err = d.Set("arp_max", flattenObjectSystemNpuHpeArpMax2edl(o["arp-max"], d, "arp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["arp-max"], "ObjectSystemNpuHpe-ArpMax"); ok {
 			if err = d.Set("arp_max", vv); err != nil {
 				return fmt.Errorf("Error reading arp_max: %v", err)
@@ -350,7 +351,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("enable_queue_shaper", flattenObjectSystemNpuHpeEnableQueueShaper(o["enable-queue-shaper"], d, "enable_queue_shaper")); err != nil {
+	if err = d.Set("enable_queue_shaper", flattenObjectSystemNpuHpeEnableQueueShaper2edl(o["enable-queue-shaper"], d, "enable_queue_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["enable-queue-shaper"], "ObjectSystemNpuHpe-EnableQueueShaper"); ok {
 			if err = d.Set("enable_queue_shaper", vv); err != nil {
 				return fmt.Errorf("Error reading enable_queue_shaper: %v", err)
@@ -360,7 +361,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("enable_shaper", flattenObjectSystemNpuHpeEnableShaper(o["enable-shaper"], d, "enable_shaper")); err != nil {
+	if err = d.Set("enable_shaper", flattenObjectSystemNpuHpeEnableShaper2edl(o["enable-shaper"], d, "enable_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["enable-shaper"], "ObjectSystemNpuHpe-EnableShaper"); ok {
 			if err = d.Set("enable_shaper", vv); err != nil {
 				return fmt.Errorf("Error reading enable_shaper: %v", err)
@@ -370,7 +371,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("esp_max", flattenObjectSystemNpuHpeEspMax(o["esp-max"], d, "esp_max")); err != nil {
+	if err = d.Set("esp_max", flattenObjectSystemNpuHpeEspMax2edl(o["esp-max"], d, "esp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["esp-max"], "ObjectSystemNpuHpe-EspMax"); ok {
 			if err = d.Set("esp_max", vv); err != nil {
 				return fmt.Errorf("Error reading esp_max: %v", err)
@@ -380,7 +381,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("exception_code", flattenObjectSystemNpuHpeExceptionCode(o["exception-code"], d, "exception_code")); err != nil {
+	if err = d.Set("exception_code", flattenObjectSystemNpuHpeExceptionCode2edl(o["exception-code"], d, "exception_code")); err != nil {
 		if vv, ok := fortiAPIPatch(o["exception-code"], "ObjectSystemNpuHpe-ExceptionCode"); ok {
 			if err = d.Set("exception_code", vv); err != nil {
 				return fmt.Errorf("Error reading exception_code: %v", err)
@@ -390,7 +391,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fragment_with_sess", flattenObjectSystemNpuHpeFragmentWithSess(o["fragment-with-sess"], d, "fragment_with_sess")); err != nil {
+	if err = d.Set("fragment_with_sess", flattenObjectSystemNpuHpeFragmentWithSess2edl(o["fragment-with-sess"], d, "fragment_with_sess")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fragment-with-sess"], "ObjectSystemNpuHpe-FragmentWithSess"); ok {
 			if err = d.Set("fragment_with_sess", vv); err != nil {
 				return fmt.Errorf("Error reading fragment_with_sess: %v", err)
@@ -400,7 +401,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fragment_without_session", flattenObjectSystemNpuHpeFragmentWithoutSession(o["fragment-without-session"], d, "fragment_without_session")); err != nil {
+	if err = d.Set("fragment_without_session", flattenObjectSystemNpuHpeFragmentWithoutSession2edl(o["fragment-without-session"], d, "fragment_without_session")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fragment-without-session"], "ObjectSystemNpuHpe-FragmentWithoutSession"); ok {
 			if err = d.Set("fragment_without_session", vv); err != nil {
 				return fmt.Errorf("Error reading fragment_without_session: %v", err)
@@ -410,7 +411,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("high_priority", flattenObjectSystemNpuHpeHighPriority(o["high-priority"], d, "high_priority")); err != nil {
+	if err = d.Set("high_priority", flattenObjectSystemNpuHpeHighPriority2edl(o["high-priority"], d, "high_priority")); err != nil {
 		if vv, ok := fortiAPIPatch(o["high-priority"], "ObjectSystemNpuHpe-HighPriority"); ok {
 			if err = d.Set("high_priority", vv); err != nil {
 				return fmt.Errorf("Error reading high_priority: %v", err)
@@ -420,7 +421,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("icmp_max", flattenObjectSystemNpuHpeIcmpMax(o["icmp-max"], d, "icmp_max")); err != nil {
+	if err = d.Set("icmp_max", flattenObjectSystemNpuHpeIcmpMax2edl(o["icmp-max"], d, "icmp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-max"], "ObjectSystemNpuHpe-IcmpMax"); ok {
 			if err = d.Set("icmp_max", vv); err != nil {
 				return fmt.Errorf("Error reading icmp_max: %v", err)
@@ -430,7 +431,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("ip_frag_max", flattenObjectSystemNpuHpeIpFragMax(o["ip-frag-max"], d, "ip_frag_max")); err != nil {
+	if err = d.Set("ip_frag_max", flattenObjectSystemNpuHpeIpFragMax2edl(o["ip-frag-max"], d, "ip_frag_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-frag-max"], "ObjectSystemNpuHpe-IpFragMax"); ok {
 			if err = d.Set("ip_frag_max", vv); err != nil {
 				return fmt.Errorf("Error reading ip_frag_max: %v", err)
@@ -440,7 +441,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("ip_others_max", flattenObjectSystemNpuHpeIpOthersMax(o["ip-others-max"], d, "ip_others_max")); err != nil {
+	if err = d.Set("ip_others_max", flattenObjectSystemNpuHpeIpOthersMax2edl(o["ip-others-max"], d, "ip_others_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-others-max"], "ObjectSystemNpuHpe-IpOthersMax"); ok {
 			if err = d.Set("ip_others_max", vv); err != nil {
 				return fmt.Errorf("Error reading ip_others_max: %v", err)
@@ -450,7 +451,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("l2_others_max", flattenObjectSystemNpuHpeL2OthersMax(o["l2-others-max"], d, "l2_others_max")); err != nil {
+	if err = d.Set("l2_others_max", flattenObjectSystemNpuHpeL2OthersMax2edl(o["l2-others-max"], d, "l2_others_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["l2-others-max"], "ObjectSystemNpuHpe-L2OthersMax"); ok {
 			if err = d.Set("l2_others_max", vv); err != nil {
 				return fmt.Errorf("Error reading l2_others_max: %v", err)
@@ -460,7 +461,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("pri_type_max", flattenObjectSystemNpuHpePriTypeMax(o["pri-type-max"], d, "pri_type_max")); err != nil {
+	if err = d.Set("pri_type_max", flattenObjectSystemNpuHpePriTypeMax2edl(o["pri-type-max"], d, "pri_type_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["pri-type-max"], "ObjectSystemNpuHpe-PriTypeMax"); ok {
 			if err = d.Set("pri_type_max", vv); err != nil {
 				return fmt.Errorf("Error reading pri_type_max: %v", err)
@@ -470,7 +471,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("queue_shaper_max", flattenObjectSystemNpuHpeQueueShaperMax(o["queue-shaper-max"], d, "queue_shaper_max")); err != nil {
+	if err = d.Set("queue_shaper_max", flattenObjectSystemNpuHpeQueueShaperMax2edl(o["queue-shaper-max"], d, "queue_shaper_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["queue-shaper-max"], "ObjectSystemNpuHpe-QueueShaperMax"); ok {
 			if err = d.Set("queue_shaper_max", vv); err != nil {
 				return fmt.Errorf("Error reading queue_shaper_max: %v", err)
@@ -480,7 +481,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("sctp_max", flattenObjectSystemNpuHpeSctpMax(o["sctp-max"], d, "sctp_max")); err != nil {
+	if err = d.Set("sctp_max", flattenObjectSystemNpuHpeSctpMax2edl(o["sctp-max"], d, "sctp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sctp-max"], "ObjectSystemNpuHpe-SctpMax"); ok {
 			if err = d.Set("sctp_max", vv); err != nil {
 				return fmt.Errorf("Error reading sctp_max: %v", err)
@@ -490,7 +491,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("tcp_max", flattenObjectSystemNpuHpeTcpMax(o["tcp-max"], d, "tcp_max")); err != nil {
+	if err = d.Set("tcp_max", flattenObjectSystemNpuHpeTcpMax2edl(o["tcp-max"], d, "tcp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-max"], "ObjectSystemNpuHpe-TcpMax"); ok {
 			if err = d.Set("tcp_max", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_max: %v", err)
@@ -500,7 +501,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("tcpfin_rst_max", flattenObjectSystemNpuHpeTcpfinRstMax(o["tcpfin-rst-max"], d, "tcpfin_rst_max")); err != nil {
+	if err = d.Set("tcpfin_rst_max", flattenObjectSystemNpuHpeTcpfinRstMax2edl(o["tcpfin-rst-max"], d, "tcpfin_rst_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcpfin-rst-max"], "ObjectSystemNpuHpe-TcpfinRstMax"); ok {
 			if err = d.Set("tcpfin_rst_max", vv); err != nil {
 				return fmt.Errorf("Error reading tcpfin_rst_max: %v", err)
@@ -510,7 +511,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("tcpsyn_ack_max", flattenObjectSystemNpuHpeTcpsynAckMax(o["tcpsyn-ack-max"], d, "tcpsyn_ack_max")); err != nil {
+	if err = d.Set("tcpsyn_ack_max", flattenObjectSystemNpuHpeTcpsynAckMax2edl(o["tcpsyn-ack-max"], d, "tcpsyn_ack_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcpsyn-ack-max"], "ObjectSystemNpuHpe-TcpsynAckMax"); ok {
 			if err = d.Set("tcpsyn_ack_max", vv); err != nil {
 				return fmt.Errorf("Error reading tcpsyn_ack_max: %v", err)
@@ -520,7 +521,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("tcpsyn_max", flattenObjectSystemNpuHpeTcpsynMax(o["tcpsyn-max"], d, "tcpsyn_max")); err != nil {
+	if err = d.Set("tcpsyn_max", flattenObjectSystemNpuHpeTcpsynMax2edl(o["tcpsyn-max"], d, "tcpsyn_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcpsyn-max"], "ObjectSystemNpuHpe-TcpsynMax"); ok {
 			if err = d.Set("tcpsyn_max", vv); err != nil {
 				return fmt.Errorf("Error reading tcpsyn_max: %v", err)
@@ -530,7 +531,7 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("udp_max", flattenObjectSystemNpuHpeUdpMax(o["udp-max"], d, "udp_max")); err != nil {
+	if err = d.Set("udp_max", flattenObjectSystemNpuHpeUdpMax2edl(o["udp-max"], d, "udp_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-max"], "ObjectSystemNpuHpe-UdpMax"); ok {
 			if err = d.Set("udp_max", vv); err != nil {
 				return fmt.Errorf("Error reading udp_max: %v", err)
@@ -549,87 +550,87 @@ func flattenObjectSystemNpuHpeFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuHpeAllProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeAllProtocol2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeArpMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeArpMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeEnableQueueShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeEnableQueueShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeEnableShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeEnableShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeEspMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeEspMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeExceptionCode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeExceptionCode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeFragmentWithSess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeFragmentWithSess2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeFragmentWithoutSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeFragmentWithoutSession2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeHighPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeHighPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeIcmpMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeIcmpMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeIpFragMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeIpFragMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeIpOthersMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeIpOthersMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeL2OthersMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeL2OthersMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpePriTypeMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpePriTypeMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeQueueShaperMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeQueueShaperMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeSctpMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeSctpMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeTcpMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeTcpMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeTcpfinRstMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeTcpfinRstMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeTcpsynAckMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeTcpsynAckMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeTcpsynMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeTcpsynMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuHpeUdpMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuHpeUdpMax2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -637,7 +638,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("all_protocol"); ok || d.HasChange("all_protocol") {
-		t, err := expandObjectSystemNpuHpeAllProtocol(d, v, "all_protocol")
+		t, err := expandObjectSystemNpuHpeAllProtocol2edl(d, v, "all_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -646,7 +647,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("arp_max"); ok || d.HasChange("arp_max") {
-		t, err := expandObjectSystemNpuHpeArpMax(d, v, "arp_max")
+		t, err := expandObjectSystemNpuHpeArpMax2edl(d, v, "arp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -655,7 +656,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("enable_queue_shaper"); ok || d.HasChange("enable_queue_shaper") {
-		t, err := expandObjectSystemNpuHpeEnableQueueShaper(d, v, "enable_queue_shaper")
+		t, err := expandObjectSystemNpuHpeEnableQueueShaper2edl(d, v, "enable_queue_shaper")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -664,7 +665,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("enable_shaper"); ok || d.HasChange("enable_shaper") {
-		t, err := expandObjectSystemNpuHpeEnableShaper(d, v, "enable_shaper")
+		t, err := expandObjectSystemNpuHpeEnableShaper2edl(d, v, "enable_shaper")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -673,7 +674,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("esp_max"); ok || d.HasChange("esp_max") {
-		t, err := expandObjectSystemNpuHpeEspMax(d, v, "esp_max")
+		t, err := expandObjectSystemNpuHpeEspMax2edl(d, v, "esp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -682,7 +683,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("exception_code"); ok || d.HasChange("exception_code") {
-		t, err := expandObjectSystemNpuHpeExceptionCode(d, v, "exception_code")
+		t, err := expandObjectSystemNpuHpeExceptionCode2edl(d, v, "exception_code")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -691,7 +692,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fragment_with_sess"); ok || d.HasChange("fragment_with_sess") {
-		t, err := expandObjectSystemNpuHpeFragmentWithSess(d, v, "fragment_with_sess")
+		t, err := expandObjectSystemNpuHpeFragmentWithSess2edl(d, v, "fragment_with_sess")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -700,7 +701,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fragment_without_session"); ok || d.HasChange("fragment_without_session") {
-		t, err := expandObjectSystemNpuHpeFragmentWithoutSession(d, v, "fragment_without_session")
+		t, err := expandObjectSystemNpuHpeFragmentWithoutSession2edl(d, v, "fragment_without_session")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -709,7 +710,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("high_priority"); ok || d.HasChange("high_priority") {
-		t, err := expandObjectSystemNpuHpeHighPriority(d, v, "high_priority")
+		t, err := expandObjectSystemNpuHpeHighPriority2edl(d, v, "high_priority")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -718,7 +719,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("icmp_max"); ok || d.HasChange("icmp_max") {
-		t, err := expandObjectSystemNpuHpeIcmpMax(d, v, "icmp_max")
+		t, err := expandObjectSystemNpuHpeIcmpMax2edl(d, v, "icmp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -727,7 +728,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("ip_frag_max"); ok || d.HasChange("ip_frag_max") {
-		t, err := expandObjectSystemNpuHpeIpFragMax(d, v, "ip_frag_max")
+		t, err := expandObjectSystemNpuHpeIpFragMax2edl(d, v, "ip_frag_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -736,7 +737,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("ip_others_max"); ok || d.HasChange("ip_others_max") {
-		t, err := expandObjectSystemNpuHpeIpOthersMax(d, v, "ip_others_max")
+		t, err := expandObjectSystemNpuHpeIpOthersMax2edl(d, v, "ip_others_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -745,7 +746,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("l2_others_max"); ok || d.HasChange("l2_others_max") {
-		t, err := expandObjectSystemNpuHpeL2OthersMax(d, v, "l2_others_max")
+		t, err := expandObjectSystemNpuHpeL2OthersMax2edl(d, v, "l2_others_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -754,7 +755,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("pri_type_max"); ok || d.HasChange("pri_type_max") {
-		t, err := expandObjectSystemNpuHpePriTypeMax(d, v, "pri_type_max")
+		t, err := expandObjectSystemNpuHpePriTypeMax2edl(d, v, "pri_type_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -763,7 +764,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("queue_shaper_max"); ok || d.HasChange("queue_shaper_max") {
-		t, err := expandObjectSystemNpuHpeQueueShaperMax(d, v, "queue_shaper_max")
+		t, err := expandObjectSystemNpuHpeQueueShaperMax2edl(d, v, "queue_shaper_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -772,7 +773,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("sctp_max"); ok || d.HasChange("sctp_max") {
-		t, err := expandObjectSystemNpuHpeSctpMax(d, v, "sctp_max")
+		t, err := expandObjectSystemNpuHpeSctpMax2edl(d, v, "sctp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -781,7 +782,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("tcp_max"); ok || d.HasChange("tcp_max") {
-		t, err := expandObjectSystemNpuHpeTcpMax(d, v, "tcp_max")
+		t, err := expandObjectSystemNpuHpeTcpMax2edl(d, v, "tcp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -790,7 +791,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("tcpfin_rst_max"); ok || d.HasChange("tcpfin_rst_max") {
-		t, err := expandObjectSystemNpuHpeTcpfinRstMax(d, v, "tcpfin_rst_max")
+		t, err := expandObjectSystemNpuHpeTcpfinRstMax2edl(d, v, "tcpfin_rst_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -799,7 +800,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("tcpsyn_ack_max"); ok || d.HasChange("tcpsyn_ack_max") {
-		t, err := expandObjectSystemNpuHpeTcpsynAckMax(d, v, "tcpsyn_ack_max")
+		t, err := expandObjectSystemNpuHpeTcpsynAckMax2edl(d, v, "tcpsyn_ack_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -808,7 +809,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("tcpsyn_max"); ok || d.HasChange("tcpsyn_max") {
-		t, err := expandObjectSystemNpuHpeTcpsynMax(d, v, "tcpsyn_max")
+		t, err := expandObjectSystemNpuHpeTcpsynMax2edl(d, v, "tcpsyn_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -817,7 +818,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("udp_max"); ok || d.HasChange("udp_max") {
-		t, err := expandObjectSystemNpuHpeUdpMax(d, v, "udp_max")
+		t, err := expandObjectSystemNpuHpeUdpMax2edl(d, v, "udp_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

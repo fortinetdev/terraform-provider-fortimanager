@@ -10,8 +10,8 @@ description: |-
 Configure devices.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_user_device_dynamic_mapping`
-`tagging`: `fortimanager_object_user_device_tagging`
+>- `dynamic_mapping`: `fortimanager_object_user_device_dynamic_mapping`
+>- `tagging`: `fortimanager_object_user_device_tagging`
 
 
 

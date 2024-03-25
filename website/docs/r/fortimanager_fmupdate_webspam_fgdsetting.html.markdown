@@ -10,7 +10,7 @@ description: |-
 Configure the FortiGuard run parameters.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`server_override`: `fortimanager_fmupdate_webspam_fgdsetting_serveroverride`
+>- `server_override`: `fortimanager_fmupdate_webspam_fgdsetting_serveroverride`
 
 
 

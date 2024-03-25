@@ -11,7 +11,7 @@ VRRP configuration.
 
 ~> This resource is a sub resource for variable `vrrp` of resource `fortimanager_object_fsp_vlan_interface`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`proxy_arp`: `fortimanager_object_fsp_vlan_interface_vrrp_proxyarp`
+>- `proxy_arp`: `fortimanager_object_fsp_vlan_interface_vrrp_proxyarp`
 
 
 

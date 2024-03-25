@@ -113,6 +113,10 @@ func resourceObjectUserLocal() *schema.Resource {
 				Sensitive: true,
 				Computed:  true,
 			},
+			"qkd_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"radius_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -350,6 +354,10 @@ func flattenObjectUserLocalPpkSecret(v interface{}, d *schema.ResourceData, pre 
 	return flattenStringList(v)
 }
 
+func flattenObjectUserLocalQkdProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLocalRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -530,6 +538,16 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading ppk_identity: %v", err)
+		}
+	}
+
+	if err = d.Set("qkd_profile", flattenObjectUserLocalQkdProfile(o["qkd-profile"], d, "qkd_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["qkd-profile"], "ObjectUserLocal-QkdProfile"); ok {
+			if err = d.Set("qkd_profile", vv); err != nil {
+				return fmt.Errorf("Error reading qkd_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading qkd_profile: %v", err)
 		}
 	}
 
@@ -738,6 +756,10 @@ func expandObjectUserLocalPpkSecret(d *schema.ResourceData, v interface{}, pre s
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectUserLocalQkdProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLocalRadiusServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -920,6 +942,15 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["ppk-secret"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("qkd_profile"); ok || d.HasChange("qkd_profile") {
+		t, err := expandObjectUserLocalQkdProfile(d, v, "qkd_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["qkd-profile"] = t
 		}
 	}
 

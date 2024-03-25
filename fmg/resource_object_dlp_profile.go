@@ -97,6 +97,7 @@ func resourceObjectDlpProfile() *schema.Resource {
 						"archive": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"expiry": &schema.Schema{
 							Type:     schema.TypeString,

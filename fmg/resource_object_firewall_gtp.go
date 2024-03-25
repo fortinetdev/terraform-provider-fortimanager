@@ -1221,7 +1221,7 @@ func flattenObjectFirewallGtpApnAction(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallGtpApnApnmember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpApnId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1679,7 +1679,7 @@ func flattenObjectFirewallGtpImsiAction(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallGtpImsiApnmember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpImsiId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2792,7 +2792,7 @@ func flattenObjectFirewallGtpPolicyApnSelMode(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallGtpPolicyApnmember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpPolicyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2947,7 +2947,7 @@ func flattenObjectFirewallGtpPolicyV2ApnSelMode(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallGtpPolicyV2Apnmember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpPolicyV2Id(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4191,7 +4191,7 @@ func expandObjectFirewallGtpApnAction(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallGtpApnApnmember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpApnId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4611,7 +4611,7 @@ func expandObjectFirewallGtpImsiAction(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallGtpImsiApnmember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpImsiId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5612,7 +5612,7 @@ func expandObjectFirewallGtpPolicyApnSelMode(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallGtpPolicyApnmember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpPolicyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5751,7 +5751,7 @@ func expandObjectFirewallGtpPolicyV2ApnSelMode(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallGtpPolicyV2Apnmember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpPolicyV2Id(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

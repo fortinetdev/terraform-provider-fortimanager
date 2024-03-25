@@ -45,6 +45,11 @@ func resourceObjectLogNpuServer() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"enforce_seq_order": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"log_processing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -134,6 +139,11 @@ func resourceObjectLogNpuServer() *schema.Resource {
 							Computed: true,
 						},
 						"ipv6_server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"log_transport": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -259,19 +269,23 @@ func resourceObjectLogNpuServerRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
-func flattenObjectLogNpuServerLogProcessingOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerEnforceSeqOrder(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerLogProcessorOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerLogProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerNetflowVerOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerLogProcessor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenObjectLogNpuServerNetflowVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectLogNpuServerServerGroup(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -292,55 +306,55 @@ func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceD
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
 		if _, ok := i["group-name"]; ok {
-			v := flattenObjectLogNpuServerServerGroupGroupNameOlna(i["group-name"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupGroupName(i["group-name"], d, pre_append)
 			tmp["group_name"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-GroupName")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_format"
 		if _, ok := i["log-format"]; ok {
-			v := flattenObjectLogNpuServerServerGroupLogFormatOlna(i["log-format"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupLogFormat(i["log-format"], d, pre_append)
 			tmp["log_format"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogFormat")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_gen_event"
 		if _, ok := i["log-gen-event"]; ok {
-			v := flattenObjectLogNpuServerServerGroupLogGenEventOlna(i["log-gen-event"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupLogGenEvent(i["log-gen-event"], d, pre_append)
 			tmp["log_gen_event"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogGenEvent")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_mode"
 		if _, ok := i["log-mode"]; ok {
-			v := flattenObjectLogNpuServerServerGroupLogModeOlna(i["log-mode"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupLogMode(i["log-mode"], d, pre_append)
 			tmp["log_mode"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogMode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_tx_mode"
 		if _, ok := i["log-tx-mode"]; ok {
-			v := flattenObjectLogNpuServerServerGroupLogTxModeOlna(i["log-tx-mode"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupLogTxMode(i["log-tx-mode"], d, pre_append)
 			tmp["log_tx_mode"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogTxMode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_user_info"
 		if _, ok := i["log-user-info"]; ok {
-			v := flattenObjectLogNpuServerServerGroupLogUserInfoOlna(i["log-user-info"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupLogUserInfo(i["log-user-info"], d, pre_append)
 			tmp["log_user_info"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogUserInfo")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_number"
 		if _, ok := i["server-number"]; ok {
-			v := flattenObjectLogNpuServerServerGroupServerNumberOlna(i["server-number"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupServerNumber(i["server-number"], d, pre_append)
 			tmp["server_number"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-ServerNumber")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_start_id"
 		if _, ok := i["server-start-id"]; ok {
-			v := flattenObjectLogNpuServerServerGroupServerStartIdOlna(i["server-start-id"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupServerStartId(i["server-start-id"], d, pre_append)
 			tmp["server_start_id"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-ServerStartId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sw_log_flags"
 		if _, ok := i["sw-log-flags"]; ok {
-			v := flattenObjectLogNpuServerServerGroupSwLogFlagsOlna(i["sw-log-flags"], d, pre_append)
+			v := flattenObjectLogNpuServerServerGroupSwLogFlags(i["sw-log-flags"], d, pre_append)
 			tmp["sw_log_flags"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-SwLogFlags")
 		}
 
@@ -354,43 +368,43 @@ func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceD
 	return result
 }
 
-func flattenObjectLogNpuServerServerGroupGroupNameOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogFormatOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogGenEventOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogGenEvent(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogModeOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogTxModeOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogTxMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogUserInfoOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupServerNumberOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupServerNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupServerStartIdOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupServerStartId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupSwLogFlagsOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupSwLogFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoOlna(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenObjectLogNpuServerServerInfo(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -411,49 +425,55 @@ func flattenObjectLogNpuServerServerInfoOlna(v interface{}, d *schema.ResourceDa
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dest_port"
 		if _, ok := i["dest-port"]; ok {
-			v := flattenObjectLogNpuServerServerInfoDestPortOlna(i["dest-port"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoDestPort(i["dest-port"], d, pre_append)
 			tmp["dest_port"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-DestPort")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenObjectLogNpuServerServerInfoIdOlna(i["id"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_family"
 		if _, ok := i["ip-family"]; ok {
-			v := flattenObjectLogNpuServerServerInfoIpFamilyOlna(i["ip-family"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoIpFamily(i["ip-family"], d, pre_append)
 			tmp["ip_family"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-IpFamily")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_server"
 		if _, ok := i["ipv4-server"]; ok {
-			v := flattenObjectLogNpuServerServerInfoIpv4ServerOlna(i["ipv4-server"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoIpv4Server(i["ipv4-server"], d, pre_append)
 			tmp["ipv4_server"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-Ipv4Server")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv6_server"
 		if _, ok := i["ipv6-server"]; ok {
-			v := flattenObjectLogNpuServerServerInfoIpv6ServerOlna(i["ipv6-server"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoIpv6Server(i["ipv6-server"], d, pre_append)
 			tmp["ipv6_server"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-Ipv6Server")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_transport"
+		if _, ok := i["log-transport"]; ok {
+			v := flattenObjectLogNpuServerServerInfoLogTransport(i["log-transport"], d, pre_append)
+			tmp["log_transport"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-LogTransport")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
 		if _, ok := i["source-port"]; ok {
-			v := flattenObjectLogNpuServerServerInfoSourcePortOlna(i["source-port"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoSourcePort(i["source-port"], d, pre_append)
 			tmp["source_port"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-SourcePort")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "template_tx_timeout"
 		if _, ok := i["template-tx-timeout"]; ok {
-			v := flattenObjectLogNpuServerServerInfoTemplateTxTimeoutOlna(i["template-tx-timeout"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoTemplateTxTimeout(i["template-tx-timeout"], d, pre_append)
 			tmp["template_tx_timeout"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-TemplateTxTimeout")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
 		if _, ok := i["vdom"]; ok {
-			v := flattenObjectLogNpuServerServerInfoVdomOlna(i["vdom"], d, pre_append)
+			v := flattenObjectLogNpuServerServerInfoVdom(i["vdom"], d, pre_append)
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-Vdom")
 		}
 
@@ -467,43 +487,47 @@ func flattenObjectLogNpuServerServerInfoOlna(v interface{}, d *schema.ResourceDa
 	return result
 }
 
-func flattenObjectLogNpuServerServerInfoDestPortOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoDestPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIdOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpFamilyOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpFamily(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpv4ServerOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpv4Server(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoIpv6ServerOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoIpv6Server(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoSourcePortOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoLogTransport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoTemplateTxTimeoutOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerInfoVdomOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoTemplateTxTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerSyslogFacilityOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerInfoVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerSyslogSeverityOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerSyslogFacility(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectLogNpuServerSyslogSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -518,7 +542,17 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("log_processing", flattenObjectLogNpuServerLogProcessingOlna(o["log-processing"], d, "log_processing")); err != nil {
+	if err = d.Set("enforce_seq_order", flattenObjectLogNpuServerEnforceSeqOrder(o["enforce-seq-order"], d, "enforce_seq_order")); err != nil {
+		if vv, ok := fortiAPIPatch(o["enforce-seq-order"], "ObjectLogNpuServer-EnforceSeqOrder"); ok {
+			if err = d.Set("enforce_seq_order", vv); err != nil {
+				return fmt.Errorf("Error reading enforce_seq_order: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading enforce_seq_order: %v", err)
+		}
+	}
+
+	if err = d.Set("log_processing", flattenObjectLogNpuServerLogProcessing(o["log-processing"], d, "log_processing")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-processing"], "ObjectLogNpuServer-LogProcessing"); ok {
 			if err = d.Set("log_processing", vv); err != nil {
 				return fmt.Errorf("Error reading log_processing: %v", err)
@@ -528,7 +562,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("log_processor", flattenObjectLogNpuServerLogProcessorOlna(o["log-processor"], d, "log_processor")); err != nil {
+	if err = d.Set("log_processor", flattenObjectLogNpuServerLogProcessor(o["log-processor"], d, "log_processor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-processor"], "ObjectLogNpuServer-LogProcessor"); ok {
 			if err = d.Set("log_processor", vv); err != nil {
 				return fmt.Errorf("Error reading log_processor: %v", err)
@@ -538,7 +572,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("netflow_ver", flattenObjectLogNpuServerNetflowVerOlna(o["netflow-ver"], d, "netflow_ver")); err != nil {
+	if err = d.Set("netflow_ver", flattenObjectLogNpuServerNetflowVer(o["netflow-ver"], d, "netflow_ver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["netflow-ver"], "ObjectLogNpuServer-NetflowVer"); ok {
 			if err = d.Set("netflow_ver", vv); err != nil {
 				return fmt.Errorf("Error reading netflow_ver: %v", err)
@@ -549,7 +583,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("server_group", flattenObjectLogNpuServerServerGroupOlna(o["server-group"], d, "server_group")); err != nil {
+		if err = d.Set("server_group", flattenObjectLogNpuServerServerGroup(o["server-group"], d, "server_group")); err != nil {
 			if vv, ok := fortiAPIPatch(o["server-group"], "ObjectLogNpuServer-ServerGroup"); ok {
 				if err = d.Set("server_group", vv); err != nil {
 					return fmt.Errorf("Error reading server_group: %v", err)
@@ -560,7 +594,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("server_group"); ok {
-			if err = d.Set("server_group", flattenObjectLogNpuServerServerGroupOlna(o["server-group"], d, "server_group")); err != nil {
+			if err = d.Set("server_group", flattenObjectLogNpuServerServerGroup(o["server-group"], d, "server_group")); err != nil {
 				if vv, ok := fortiAPIPatch(o["server-group"], "ObjectLogNpuServer-ServerGroup"); ok {
 					if err = d.Set("server_group", vv); err != nil {
 						return fmt.Errorf("Error reading server_group: %v", err)
@@ -573,7 +607,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("server_info", flattenObjectLogNpuServerServerInfoOlna(o["server-info"], d, "server_info")); err != nil {
+		if err = d.Set("server_info", flattenObjectLogNpuServerServerInfo(o["server-info"], d, "server_info")); err != nil {
 			if vv, ok := fortiAPIPatch(o["server-info"], "ObjectLogNpuServer-ServerInfo"); ok {
 				if err = d.Set("server_info", vv); err != nil {
 					return fmt.Errorf("Error reading server_info: %v", err)
@@ -584,7 +618,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("server_info"); ok {
-			if err = d.Set("server_info", flattenObjectLogNpuServerServerInfoOlna(o["server-info"], d, "server_info")); err != nil {
+			if err = d.Set("server_info", flattenObjectLogNpuServerServerInfo(o["server-info"], d, "server_info")); err != nil {
 				if vv, ok := fortiAPIPatch(o["server-info"], "ObjectLogNpuServer-ServerInfo"); ok {
 					if err = d.Set("server_info", vv); err != nil {
 						return fmt.Errorf("Error reading server_info: %v", err)
@@ -596,7 +630,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("syslog_facility", flattenObjectLogNpuServerSyslogFacilityOlna(o["syslog-facility"], d, "syslog_facility")); err != nil {
+	if err = d.Set("syslog_facility", flattenObjectLogNpuServerSyslogFacility(o["syslog-facility"], d, "syslog_facility")); err != nil {
 		if vv, ok := fortiAPIPatch(o["syslog-facility"], "ObjectLogNpuServer-SyslogFacility"); ok {
 			if err = d.Set("syslog_facility", vv); err != nil {
 				return fmt.Errorf("Error reading syslog_facility: %v", err)
@@ -606,7 +640,7 @@ func refreshObjectObjectLogNpuServer(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("syslog_severity", flattenObjectLogNpuServerSyslogSeverityOlna(o["syslog-severity"], d, "syslog_severity")); err != nil {
+	if err = d.Set("syslog_severity", flattenObjectLogNpuServerSyslogSeverity(o["syslog-severity"], d, "syslog_severity")); err != nil {
 		if vv, ok := fortiAPIPatch(o["syslog-severity"], "ObjectLogNpuServer-SyslogSeverity"); ok {
 			if err = d.Set("syslog_severity", vv); err != nil {
 				return fmt.Errorf("Error reading syslog_severity: %v", err)
@@ -625,19 +659,23 @@ func flattenObjectLogNpuServerFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectLogNpuServerLogProcessingOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerEnforceSeqOrder(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerLogProcessorOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerLogProcessing(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerNetflowVerOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerLogProcessor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerNetflowVer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectLogNpuServerServerGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -653,47 +691,47 @@ func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["group-name"], _ = expandObjectLogNpuServerServerGroupGroupNameOlna(d, i["group_name"], pre_append)
+			tmp["group-name"], _ = expandObjectLogNpuServerServerGroupGroupName(d, i["group_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_format"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["log-format"], _ = expandObjectLogNpuServerServerGroupLogFormatOlna(d, i["log_format"], pre_append)
+			tmp["log-format"], _ = expandObjectLogNpuServerServerGroupLogFormat(d, i["log_format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_gen_event"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["log-gen-event"], _ = expandObjectLogNpuServerServerGroupLogGenEventOlna(d, i["log_gen_event"], pre_append)
+			tmp["log-gen-event"], _ = expandObjectLogNpuServerServerGroupLogGenEvent(d, i["log_gen_event"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["log-mode"], _ = expandObjectLogNpuServerServerGroupLogModeOlna(d, i["log_mode"], pre_append)
+			tmp["log-mode"], _ = expandObjectLogNpuServerServerGroupLogMode(d, i["log_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_tx_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["log-tx-mode"], _ = expandObjectLogNpuServerServerGroupLogTxModeOlna(d, i["log_tx_mode"], pre_append)
+			tmp["log-tx-mode"], _ = expandObjectLogNpuServerServerGroupLogTxMode(d, i["log_tx_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_user_info"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["log-user-info"], _ = expandObjectLogNpuServerServerGroupLogUserInfoOlna(d, i["log_user_info"], pre_append)
+			tmp["log-user-info"], _ = expandObjectLogNpuServerServerGroupLogUserInfo(d, i["log_user_info"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_number"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["server-number"], _ = expandObjectLogNpuServerServerGroupServerNumberOlna(d, i["server_number"], pre_append)
+			tmp["server-number"], _ = expandObjectLogNpuServerServerGroupServerNumber(d, i["server_number"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_start_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["server-start-id"], _ = expandObjectLogNpuServerServerGroupServerStartIdOlna(d, i["server_start_id"], pre_append)
+			tmp["server-start-id"], _ = expandObjectLogNpuServerServerGroupServerStartId(d, i["server_start_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sw_log_flags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sw-log-flags"], _ = expandObjectLogNpuServerServerGroupSwLogFlagsOlna(d, i["sw_log_flags"], pre_append)
+			tmp["sw-log-flags"], _ = expandObjectLogNpuServerServerGroupSwLogFlags(d, i["sw_log_flags"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -706,43 +744,43 @@ func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface
 	return result, nil
 }
 
-func expandObjectLogNpuServerServerGroupGroupNameOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogFormatOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogFormat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogGenEventOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogGenEvent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogModeOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogTxModeOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogTxMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogUserInfoOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogUserInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupServerNumberOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupServerNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupServerStartIdOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupServerStartId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupSwLogFlagsOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupSwLogFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -758,42 +796,47 @@ func expandObjectLogNpuServerServerInfoOlna(d *schema.ResourceData, v interface{
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dest_port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dest-port"], _ = expandObjectLogNpuServerServerInfoDestPortOlna(d, i["dest_port"], pre_append)
+			tmp["dest-port"], _ = expandObjectLogNpuServerServerInfoDestPort(d, i["dest_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandObjectLogNpuServerServerInfoIdOlna(d, i["id"], pre_append)
+			tmp["id"], _ = expandObjectLogNpuServerServerInfoId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_family"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip-family"], _ = expandObjectLogNpuServerServerInfoIpFamilyOlna(d, i["ip_family"], pre_append)
+			tmp["ip-family"], _ = expandObjectLogNpuServerServerInfoIpFamily(d, i["ip_family"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ipv4-server"], _ = expandObjectLogNpuServerServerInfoIpv4ServerOlna(d, i["ipv4_server"], pre_append)
+			tmp["ipv4-server"], _ = expandObjectLogNpuServerServerInfoIpv4Server(d, i["ipv4_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv6_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ipv6-server"], _ = expandObjectLogNpuServerServerInfoIpv6ServerOlna(d, i["ipv6_server"], pre_append)
+			tmp["ipv6-server"], _ = expandObjectLogNpuServerServerInfoIpv6Server(d, i["ipv6_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_transport"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["log-transport"], _ = expandObjectLogNpuServerServerInfoLogTransport(d, i["log_transport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["source-port"], _ = expandObjectLogNpuServerServerInfoSourcePortOlna(d, i["source_port"], pre_append)
+			tmp["source-port"], _ = expandObjectLogNpuServerServerInfoSourcePort(d, i["source_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "template_tx_timeout"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["template-tx-timeout"], _ = expandObjectLogNpuServerServerInfoTemplateTxTimeoutOlna(d, i["template_tx_timeout"], pre_append)
+			tmp["template-tx-timeout"], _ = expandObjectLogNpuServerServerInfoTemplateTxTimeout(d, i["template_tx_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["vdom"], _ = expandObjectLogNpuServerServerInfoVdomOlna(d, i["vdom"], pre_append)
+			tmp["vdom"], _ = expandObjectLogNpuServerServerInfoVdom(d, i["vdom"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -806,51 +849,64 @@ func expandObjectLogNpuServerServerInfoOlna(d *schema.ResourceData, v interface{
 	return result, nil
 }
 
-func expandObjectLogNpuServerServerInfoDestPortOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoDestPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIdOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpFamilyOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpFamily(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpv4ServerOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpv4Server(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoIpv6ServerOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoIpv6Server(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoSourcePortOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoLogTransport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoTemplateTxTimeoutOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerInfoVdomOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoTemplateTxTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerSyslogFacilityOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerInfoVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerSyslogSeverityOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerSyslogFacility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectLogNpuServerSyslogSeverity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("enforce_seq_order"); ok || d.HasChange("enforce_seq_order") {
+		t, err := expandObjectLogNpuServerEnforceSeqOrder(d, v, "enforce_seq_order")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["enforce-seq-order"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("log_processing"); ok || d.HasChange("log_processing") {
-		t, err := expandObjectLogNpuServerLogProcessingOlna(d, v, "log_processing")
+		t, err := expandObjectLogNpuServerLogProcessing(d, v, "log_processing")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -859,7 +915,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("log_processor"); ok || d.HasChange("log_processor") {
-		t, err := expandObjectLogNpuServerLogProcessorOlna(d, v, "log_processor")
+		t, err := expandObjectLogNpuServerLogProcessor(d, v, "log_processor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -868,7 +924,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("netflow_ver"); ok || d.HasChange("netflow_ver") {
-		t, err := expandObjectLogNpuServerNetflowVerOlna(d, v, "netflow_ver")
+		t, err := expandObjectLogNpuServerNetflowVer(d, v, "netflow_ver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -877,7 +933,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("server_group"); ok || d.HasChange("server_group") {
-		t, err := expandObjectLogNpuServerServerGroupOlna(d, v, "server_group")
+		t, err := expandObjectLogNpuServerServerGroup(d, v, "server_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -886,7 +942,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("server_info"); ok || d.HasChange("server_info") {
-		t, err := expandObjectLogNpuServerServerInfoOlna(d, v, "server_info")
+		t, err := expandObjectLogNpuServerServerInfo(d, v, "server_info")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -895,7 +951,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("syslog_facility"); ok || d.HasChange("syslog_facility") {
-		t, err := expandObjectLogNpuServerSyslogFacilityOlna(d, v, "syslog_facility")
+		t, err := expandObjectLogNpuServerSyslogFacility(d, v, "syslog_facility")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -904,7 +960,7 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("syslog_severity"); ok || d.HasChange("syslog_severity") {
-		t, err := expandObjectLogNpuServerSyslogSeverityOlna(d, v, "syslog_severity")
+		t, err := expandObjectLogNpuServerSyslogSeverity(d, v, "syslog_severity")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

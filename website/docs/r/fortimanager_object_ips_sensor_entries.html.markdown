@@ -11,7 +11,7 @@ IPS sensor filter.
 
 ~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_ips_sensor`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`exempt_ip`: `fortimanager_object_ips_sensor_entries_exemptip`
+>- `exempt_ip`: `fortimanager_object_ips_sensor_entries_exemptip`
 
 
 

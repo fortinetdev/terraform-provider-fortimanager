@@ -64,6 +64,11 @@ func resourceObjectCasbSaasApplication() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -208,6 +213,10 @@ func flattenObjectCasbSaasApplicationName(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectCasbSaasApplicationStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbSaasApplicationType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -263,6 +272,16 @@ func refreshObjectObjectCasbSaasApplication(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("status", flattenObjectCasbSaasApplicationStatus(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectCasbSaasApplication-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectCasbSaasApplicationType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectCasbSaasApplication-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -305,6 +324,10 @@ func expandObjectCasbSaasApplicationDomains(d *schema.ResourceData, v interface{
 }
 
 func expandObjectCasbSaasApplicationName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -352,6 +375,15 @@ func getObjectObjectCasbSaasApplication(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
+		t, err := expandObjectCasbSaasApplicationStatus(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
 		}
 	}
 

@@ -96,6 +96,8 @@ The following arguments are supported:
 * `set_route_tag` - Route tag for routing table.
 * `set_tag` - Tag value.
 * `set_vpnv4_nexthop` - IP address of VPNv4 next-hop.
+* `set_vpnv6_nexthop` - IPv6 global address of VPNv6 next-hop.
+* `set_vpnv6_nexthop_local` - IPv6 link-local address of VPNv6 next-hop.
 * `set_weight` - BGP weight for routing table.
 
 

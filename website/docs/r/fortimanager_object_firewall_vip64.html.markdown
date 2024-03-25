@@ -10,8 +10,8 @@ description: |-
 Configure IPv6 to IPv4 virtual IPs.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_firewall_vip64_dynamic_mapping`
-`realservers`: `fortimanager_object_firewall_vip64_realservers`
+>- `dynamic_mapping`: `fortimanager_object_firewall_vip64_dynamic_mapping`
+>- `realservers`: `fortimanager_object_firewall_vip64_realservers`
 
 
 

@@ -354,7 +354,7 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyMac2edl(v interfa
 }
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedules2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -536,7 +536,7 @@ func expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyMac2edl(d *schema.
 }
 
 func expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedules2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -11,8 +11,8 @@ AntiPhishing profile.
 
 ~> This resource is a sub resource for variable `antiphish` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_patterns`: `fortimanager_object_webfilter_profile_antiphish_custompatterns`
-`inspection_entries`: `fortimanager_object_webfilter_profile_antiphish_inspectionentries`
+>- `custom_patterns`: `fortimanager_object_webfilter_profile_antiphish_custompatterns`
+>- `inspection_entries`: `fortimanager_object_webfilter_profile_antiphish_inspectionentries`
 
 
 

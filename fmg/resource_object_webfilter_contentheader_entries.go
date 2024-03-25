@@ -208,7 +208,7 @@ func flattenObjectWebfilterContentHeaderEntriesAction2edl(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterContentHeaderEntriesCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterContentHeaderEntriesPattern2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -266,7 +266,7 @@ func expandObjectWebfilterContentHeaderEntriesAction2edl(d *schema.ResourceData,
 }
 
 func expandObjectWebfilterContentHeaderEntriesCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterContentHeaderEntriesPattern2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

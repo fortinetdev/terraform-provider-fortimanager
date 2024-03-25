@@ -10,7 +10,7 @@ description: |-
 Configure IPv4 prefix lists.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rule`: `fortimanager_object_router_prefixlist_rule`
+>- `rule`: `fortimanager_object_router_prefixlist_rule`
 
 
 

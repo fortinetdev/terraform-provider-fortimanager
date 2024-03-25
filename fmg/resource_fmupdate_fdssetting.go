@@ -371,43 +371,43 @@ func resourceFmupdateFdsSettingRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
-func flattenFmupdateFdsSettingUserAgentFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUserAgent(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingFdsCltSslProtocolFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingFdsCltSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingFdsSslProtocolFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingFdsSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingFmtrLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingFmtrLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingFortiguardAnycastFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingFortiguardAnycast(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingFortiguardAnycastSourceFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingFortiguardAnycastSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingLinkdLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingLinkdLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingMaxAvIpsVersionFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingMaxAvIpsVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingMaxWorkFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingMaxWork(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingPushOverride(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -418,36 +418,36 @@ func flattenFmupdateFdsSettingPushOverrideFfa(v interface{}, d *schema.ResourceD
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ip"
 	if _, ok := i["ip"]; ok {
-		result["ip"] = flattenFmupdateFdsSettingPushOverrideIpFfa(i["ip"], d, pre_append)
+		result["ip"] = flattenFmupdateFdsSettingPushOverrideIp(i["ip"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "port"
 	if _, ok := i["port"]; ok {
-		result["port"] = flattenFmupdateFdsSettingPushOverridePortFfa(i["port"], d, pre_append)
+		result["port"] = flattenFmupdateFdsSettingPushOverridePort(i["port"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenFmupdateFdsSettingPushOverrideStatusFfa(i["status"], d, pre_append)
+		result["status"] = flattenFmupdateFdsSettingPushOverrideStatus(i["status"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenFmupdateFdsSettingPushOverrideIpFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverridePortFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverridePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClient(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -458,19 +458,19 @@ func flattenFmupdateFdsSettingPushOverrideToClientFfa(v interface{}, d *schema.R
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "announce_ip"
 	if _, ok := i["announce-ip"]; ok {
-		result["announce_ip"] = flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(i["announce-ip"], d, pre_append)
+		result["announce_ip"] = flattenFmupdateFdsSettingPushOverrideToClientAnnounceIp(i["announce-ip"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenFmupdateFdsSettingPushOverrideToClientStatusFfa(i["status"], d, pre_append)
+		result["status"] = flattenFmupdateFdsSettingPushOverrideToClientStatus(i["status"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -491,19 +491,19 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(v interface{}, d
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfa(i["id"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfa(i["ip"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIp(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(i["port"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPort(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Port")
 		}
 
@@ -517,31 +517,31 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(v interface{}, d
 	return result
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingSendReportFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSendReport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingSendSetupFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSendSetup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingServerOverride(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -552,19 +552,19 @@ func flattenFmupdateFdsSettingServerOverrideFfa(v interface{}, d *schema.Resourc
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := i["servlist"]; ok {
-		result["servlist"] = flattenFmupdateFdsSettingServerOverrideServlistFfa(i["servlist"], d, pre_append)
+		result["servlist"] = flattenFmupdateFdsSettingServerOverrideServlist(i["servlist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenFmupdateFdsSettingServerOverrideStatusFfa(i["status"], d, pre_append)
+		result["status"] = flattenFmupdateFdsSettingServerOverrideStatus(i["status"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlist(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -585,31 +585,31 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfa(v interface{}, d *schema
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIdFfa(i["id"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIpFfa(i["ip"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistIp(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := i["ip6"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIp6Ffa(i["ip6"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistIp6(i["ip6"], d, pre_append)
 			tmp["ip6"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Ip6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistPortFfa(i["port"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistPort(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Port")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := i["service-type"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(i["service-type"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistServiceType(i["service-type"], d, pre_append)
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-ServiceType")
 		}
 
@@ -623,75 +623,75 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfa(v interface{}, d *schema
 	return result
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIdFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIpFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIp6Ffa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistPortFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingSystemSupportFazFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFaz(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFctFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFct(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFdcFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFdc(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFgtFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFgt(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFisFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFis(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFmlFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFml(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFsaFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFtsFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFts(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingSystemSupportFswFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingSystemSupportFsw(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingUmsvcLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUmsvcLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUnregDevOptionFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUnregDevOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleFfa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingUpdateSchedule(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -702,52 +702,52 @@ func flattenFmupdateFdsSettingUpdateScheduleFfa(v interface{}, d *schema.Resourc
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "day"
 	if _, ok := i["day"]; ok {
-		result["day"] = flattenFmupdateFdsSettingUpdateScheduleDayFfa(i["day"], d, pre_append)
+		result["day"] = flattenFmupdateFdsSettingUpdateScheduleDay(i["day"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "frequency"
 	if _, ok := i["frequency"]; ok {
-		result["frequency"] = flattenFmupdateFdsSettingUpdateScheduleFrequencyFfa(i["frequency"], d, pre_append)
+		result["frequency"] = flattenFmupdateFdsSettingUpdateScheduleFrequency(i["frequency"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenFmupdateFdsSettingUpdateScheduleStatusFfa(i["status"], d, pre_append)
+		result["status"] = flattenFmupdateFdsSettingUpdateScheduleStatus(i["status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "time"
 	if _, ok := i["time"]; ok {
-		result["time"] = flattenFmupdateFdsSettingUpdateScheduleTimeFfa(i["time"], d, pre_append)
+		result["time"] = flattenFmupdateFdsSettingUpdateScheduleTime(i["time"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleDayFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleFrequencyFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleFrequency(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleTimeFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenFmupdateFdsSettingWanipQueryModeFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingWanipQueryMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("user_agent", flattenFmupdateFdsSettingUserAgentFfa(o["User-Agent"], d, "user_agent")); err != nil {
+	if err = d.Set("user_agent", flattenFmupdateFdsSettingUserAgent(o["User-Agent"], d, "user_agent")); err != nil {
 		if vv, ok := fortiAPIPatch(o["User-Agent"], "FmupdateFdsSetting-UserAgent"); ok {
 			if err = d.Set("user_agent", vv); err != nil {
 				return fmt.Errorf("Error reading user_agent: %v", err)
@@ -757,7 +757,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fds_clt_ssl_protocol", flattenFmupdateFdsSettingFdsCltSslProtocolFfa(o["fds-clt-ssl-protocol"], d, "fds_clt_ssl_protocol")); err != nil {
+	if err = d.Set("fds_clt_ssl_protocol", flattenFmupdateFdsSettingFdsCltSslProtocol(o["fds-clt-ssl-protocol"], d, "fds_clt_ssl_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fds-clt-ssl-protocol"], "FmupdateFdsSetting-FdsCltSslProtocol"); ok {
 			if err = d.Set("fds_clt_ssl_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading fds_clt_ssl_protocol: %v", err)
@@ -767,7 +767,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fds_ssl_protocol", flattenFmupdateFdsSettingFdsSslProtocolFfa(o["fds-ssl-protocol"], d, "fds_ssl_protocol")); err != nil {
+	if err = d.Set("fds_ssl_protocol", flattenFmupdateFdsSettingFdsSslProtocol(o["fds-ssl-protocol"], d, "fds_ssl_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fds-ssl-protocol"], "FmupdateFdsSetting-FdsSslProtocol"); ok {
 			if err = d.Set("fds_ssl_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading fds_ssl_protocol: %v", err)
@@ -777,7 +777,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fmtr_log", flattenFmupdateFdsSettingFmtrLogFfa(o["fmtr-log"], d, "fmtr_log")); err != nil {
+	if err = d.Set("fmtr_log", flattenFmupdateFdsSettingFmtrLog(o["fmtr-log"], d, "fmtr_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fmtr-log"], "FmupdateFdsSetting-FmtrLog"); ok {
 			if err = d.Set("fmtr_log", vv); err != nil {
 				return fmt.Errorf("Error reading fmtr_log: %v", err)
@@ -787,7 +787,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fortiguard_anycast", flattenFmupdateFdsSettingFortiguardAnycastFfa(o["fortiguard-anycast"], d, "fortiguard_anycast")); err != nil {
+	if err = d.Set("fortiguard_anycast", flattenFmupdateFdsSettingFortiguardAnycast(o["fortiguard-anycast"], d, "fortiguard_anycast")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fortiguard-anycast"], "FmupdateFdsSetting-FortiguardAnycast"); ok {
 			if err = d.Set("fortiguard_anycast", vv); err != nil {
 				return fmt.Errorf("Error reading fortiguard_anycast: %v", err)
@@ -797,7 +797,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("fortiguard_anycast_source", flattenFmupdateFdsSettingFortiguardAnycastSourceFfa(o["fortiguard-anycast-source"], d, "fortiguard_anycast_source")); err != nil {
+	if err = d.Set("fortiguard_anycast_source", flattenFmupdateFdsSettingFortiguardAnycastSource(o["fortiguard-anycast-source"], d, "fortiguard_anycast_source")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fortiguard-anycast-source"], "FmupdateFdsSetting-FortiguardAnycastSource"); ok {
 			if err = d.Set("fortiguard_anycast_source", vv); err != nil {
 				return fmt.Errorf("Error reading fortiguard_anycast_source: %v", err)
@@ -807,7 +807,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("linkd_log", flattenFmupdateFdsSettingLinkdLogFfa(o["linkd-log"], d, "linkd_log")); err != nil {
+	if err = d.Set("linkd_log", flattenFmupdateFdsSettingLinkdLog(o["linkd-log"], d, "linkd_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["linkd-log"], "FmupdateFdsSetting-LinkdLog"); ok {
 			if err = d.Set("linkd_log", vv); err != nil {
 				return fmt.Errorf("Error reading linkd_log: %v", err)
@@ -817,7 +817,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("max_av_ips_version", flattenFmupdateFdsSettingMaxAvIpsVersionFfa(o["max-av-ips-version"], d, "max_av_ips_version")); err != nil {
+	if err = d.Set("max_av_ips_version", flattenFmupdateFdsSettingMaxAvIpsVersion(o["max-av-ips-version"], d, "max_av_ips_version")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-av-ips-version"], "FmupdateFdsSetting-MaxAvIpsVersion"); ok {
 			if err = d.Set("max_av_ips_version", vv); err != nil {
 				return fmt.Errorf("Error reading max_av_ips_version: %v", err)
@@ -827,7 +827,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("max_work", flattenFmupdateFdsSettingMaxWorkFfa(o["max-work"], d, "max_work")); err != nil {
+	if err = d.Set("max_work", flattenFmupdateFdsSettingMaxWork(o["max-work"], d, "max_work")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-work"], "FmupdateFdsSetting-MaxWork"); ok {
 			if err = d.Set("max_work", vv); err != nil {
 				return fmt.Errorf("Error reading max_work: %v", err)
@@ -838,7 +838,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("push_override", flattenFmupdateFdsSettingPushOverrideFfa(o["push-override"], d, "push_override")); err != nil {
+		if err = d.Set("push_override", flattenFmupdateFdsSettingPushOverride(o["push-override"], d, "push_override")); err != nil {
 			if vv, ok := fortiAPIPatch(o["push-override"], "FmupdateFdsSetting-PushOverride"); ok {
 				if err = d.Set("push_override", vv); err != nil {
 					return fmt.Errorf("Error reading push_override: %v", err)
@@ -849,7 +849,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("push_override"); ok {
-			if err = d.Set("push_override", flattenFmupdateFdsSettingPushOverrideFfa(o["push-override"], d, "push_override")); err != nil {
+			if err = d.Set("push_override", flattenFmupdateFdsSettingPushOverride(o["push-override"], d, "push_override")); err != nil {
 				if vv, ok := fortiAPIPatch(o["push-override"], "FmupdateFdsSetting-PushOverride"); ok {
 					if err = d.Set("push_override", vv); err != nil {
 						return fmt.Errorf("Error reading push_override: %v", err)
@@ -862,7 +862,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("push_override_to_client", flattenFmupdateFdsSettingPushOverrideToClientFfa(o["push-override-to-client"], d, "push_override_to_client")); err != nil {
+		if err = d.Set("push_override_to_client", flattenFmupdateFdsSettingPushOverrideToClient(o["push-override-to-client"], d, "push_override_to_client")); err != nil {
 			if vv, ok := fortiAPIPatch(o["push-override-to-client"], "FmupdateFdsSetting-PushOverrideToClient"); ok {
 				if err = d.Set("push_override_to_client", vv); err != nil {
 					return fmt.Errorf("Error reading push_override_to_client: %v", err)
@@ -873,7 +873,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("push_override_to_client"); ok {
-			if err = d.Set("push_override_to_client", flattenFmupdateFdsSettingPushOverrideToClientFfa(o["push-override-to-client"], d, "push_override_to_client")); err != nil {
+			if err = d.Set("push_override_to_client", flattenFmupdateFdsSettingPushOverrideToClient(o["push-override-to-client"], d, "push_override_to_client")); err != nil {
 				if vv, ok := fortiAPIPatch(o["push-override-to-client"], "FmupdateFdsSetting-PushOverrideToClient"); ok {
 					if err = d.Set("push_override_to_client", vv); err != nil {
 						return fmt.Errorf("Error reading push_override_to_client: %v", err)
@@ -885,7 +885,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("send_report", flattenFmupdateFdsSettingSendReportFfa(o["send_report"], d, "send_report")); err != nil {
+	if err = d.Set("send_report", flattenFmupdateFdsSettingSendReport(o["send_report"], d, "send_report")); err != nil {
 		if vv, ok := fortiAPIPatch(o["send_report"], "FmupdateFdsSetting-SendReport"); ok {
 			if err = d.Set("send_report", vv); err != nil {
 				return fmt.Errorf("Error reading send_report: %v", err)
@@ -895,7 +895,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("send_setup", flattenFmupdateFdsSettingSendSetupFfa(o["send_setup"], d, "send_setup")); err != nil {
+	if err = d.Set("send_setup", flattenFmupdateFdsSettingSendSetup(o["send_setup"], d, "send_setup")); err != nil {
 		if vv, ok := fortiAPIPatch(o["send_setup"], "FmupdateFdsSetting-SendSetup"); ok {
 			if err = d.Set("send_setup", vv); err != nil {
 				return fmt.Errorf("Error reading send_setup: %v", err)
@@ -906,7 +906,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("server_override", flattenFmupdateFdsSettingServerOverrideFfa(o["server-override"], d, "server_override")); err != nil {
+		if err = d.Set("server_override", flattenFmupdateFdsSettingServerOverride(o["server-override"], d, "server_override")); err != nil {
 			if vv, ok := fortiAPIPatch(o["server-override"], "FmupdateFdsSetting-ServerOverride"); ok {
 				if err = d.Set("server_override", vv); err != nil {
 					return fmt.Errorf("Error reading server_override: %v", err)
@@ -917,7 +917,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("server_override"); ok {
-			if err = d.Set("server_override", flattenFmupdateFdsSettingServerOverrideFfa(o["server-override"], d, "server_override")); err != nil {
+			if err = d.Set("server_override", flattenFmupdateFdsSettingServerOverride(o["server-override"], d, "server_override")); err != nil {
 				if vv, ok := fortiAPIPatch(o["server-override"], "FmupdateFdsSetting-ServerOverride"); ok {
 					if err = d.Set("server_override", vv); err != nil {
 						return fmt.Errorf("Error reading server_override: %v", err)
@@ -929,7 +929,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_faz", flattenFmupdateFdsSettingSystemSupportFazFfa(o["system-support-faz"], d, "system_support_faz")); err != nil {
+	if err = d.Set("system_support_faz", flattenFmupdateFdsSettingSystemSupportFaz(o["system-support-faz"], d, "system_support_faz")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-faz"], "FmupdateFdsSetting-SystemSupportFaz"); ok {
 			if err = d.Set("system_support_faz", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_faz: %v", err)
@@ -939,7 +939,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fct", flattenFmupdateFdsSettingSystemSupportFctFfa(o["system-support-fct"], d, "system_support_fct")); err != nil {
+	if err = d.Set("system_support_fct", flattenFmupdateFdsSettingSystemSupportFct(o["system-support-fct"], d, "system_support_fct")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fct"], "FmupdateFdsSetting-SystemSupportFct"); ok {
 			if err = d.Set("system_support_fct", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fct: %v", err)
@@ -949,7 +949,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fdc", flattenFmupdateFdsSettingSystemSupportFdcFfa(o["system-support-fdc"], d, "system_support_fdc")); err != nil {
+	if err = d.Set("system_support_fdc", flattenFmupdateFdsSettingSystemSupportFdc(o["system-support-fdc"], d, "system_support_fdc")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fdc"], "FmupdateFdsSetting-SystemSupportFdc"); ok {
 			if err = d.Set("system_support_fdc", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fdc: %v", err)
@@ -959,7 +959,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fgt", flattenFmupdateFdsSettingSystemSupportFgtFfa(o["system-support-fgt"], d, "system_support_fgt")); err != nil {
+	if err = d.Set("system_support_fgt", flattenFmupdateFdsSettingSystemSupportFgt(o["system-support-fgt"], d, "system_support_fgt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fgt"], "FmupdateFdsSetting-SystemSupportFgt"); ok {
 			if err = d.Set("system_support_fgt", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fgt: %v", err)
@@ -969,7 +969,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fis", flattenFmupdateFdsSettingSystemSupportFisFfa(o["system-support-fis"], d, "system_support_fis")); err != nil {
+	if err = d.Set("system_support_fis", flattenFmupdateFdsSettingSystemSupportFis(o["system-support-fis"], d, "system_support_fis")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fis"], "FmupdateFdsSetting-SystemSupportFis"); ok {
 			if err = d.Set("system_support_fis", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fis: %v", err)
@@ -979,7 +979,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fml", flattenFmupdateFdsSettingSystemSupportFmlFfa(o["system-support-fml"], d, "system_support_fml")); err != nil {
+	if err = d.Set("system_support_fml", flattenFmupdateFdsSettingSystemSupportFml(o["system-support-fml"], d, "system_support_fml")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fml"], "FmupdateFdsSetting-SystemSupportFml"); ok {
 			if err = d.Set("system_support_fml", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fml: %v", err)
@@ -989,7 +989,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fsa", flattenFmupdateFdsSettingSystemSupportFsaFfa(o["system-support-fsa"], d, "system_support_fsa")); err != nil {
+	if err = d.Set("system_support_fsa", flattenFmupdateFdsSettingSystemSupportFsa(o["system-support-fsa"], d, "system_support_fsa")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fsa"], "FmupdateFdsSetting-SystemSupportFsa"); ok {
 			if err = d.Set("system_support_fsa", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fsa: %v", err)
@@ -999,7 +999,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fts", flattenFmupdateFdsSettingSystemSupportFtsFfa(o["system-support-fts"], d, "system_support_fts")); err != nil {
+	if err = d.Set("system_support_fts", flattenFmupdateFdsSettingSystemSupportFts(o["system-support-fts"], d, "system_support_fts")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fts"], "FmupdateFdsSetting-SystemSupportFts"); ok {
 			if err = d.Set("system_support_fts", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fts: %v", err)
@@ -1009,7 +1009,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("system_support_fsw", flattenFmupdateFdsSettingSystemSupportFswFfa(o["system-support-fsw"], d, "system_support_fsw")); err != nil {
+	if err = d.Set("system_support_fsw", flattenFmupdateFdsSettingSystemSupportFsw(o["system-support-fsw"], d, "system_support_fsw")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fsw"], "FmupdateFdsSetting-SystemSupportFsw"); ok {
 			if err = d.Set("system_support_fsw", vv); err != nil {
 				return fmt.Errorf("Error reading system_support_fsw: %v", err)
@@ -1019,7 +1019,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("umsvc_log", flattenFmupdateFdsSettingUmsvcLogFfa(o["umsvc-log"], d, "umsvc_log")); err != nil {
+	if err = d.Set("umsvc_log", flattenFmupdateFdsSettingUmsvcLog(o["umsvc-log"], d, "umsvc_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["umsvc-log"], "FmupdateFdsSetting-UmsvcLog"); ok {
 			if err = d.Set("umsvc_log", vv); err != nil {
 				return fmt.Errorf("Error reading umsvc_log: %v", err)
@@ -1029,7 +1029,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("unreg_dev_option", flattenFmupdateFdsSettingUnregDevOptionFfa(o["unreg-dev-option"], d, "unreg_dev_option")); err != nil {
+	if err = d.Set("unreg_dev_option", flattenFmupdateFdsSettingUnregDevOption(o["unreg-dev-option"], d, "unreg_dev_option")); err != nil {
 		if vv, ok := fortiAPIPatch(o["unreg-dev-option"], "FmupdateFdsSetting-UnregDevOption"); ok {
 			if err = d.Set("unreg_dev_option", vv); err != nil {
 				return fmt.Errorf("Error reading unreg_dev_option: %v", err)
@@ -1040,7 +1040,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("update_schedule", flattenFmupdateFdsSettingUpdateScheduleFfa(o["update-schedule"], d, "update_schedule")); err != nil {
+		if err = d.Set("update_schedule", flattenFmupdateFdsSettingUpdateSchedule(o["update-schedule"], d, "update_schedule")); err != nil {
 			if vv, ok := fortiAPIPatch(o["update-schedule"], "FmupdateFdsSetting-UpdateSchedule"); ok {
 				if err = d.Set("update_schedule", vv); err != nil {
 					return fmt.Errorf("Error reading update_schedule: %v", err)
@@ -1051,7 +1051,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("update_schedule"); ok {
-			if err = d.Set("update_schedule", flattenFmupdateFdsSettingUpdateScheduleFfa(o["update-schedule"], d, "update_schedule")); err != nil {
+			if err = d.Set("update_schedule", flattenFmupdateFdsSettingUpdateSchedule(o["update-schedule"], d, "update_schedule")); err != nil {
 				if vv, ok := fortiAPIPatch(o["update-schedule"], "FmupdateFdsSetting-UpdateSchedule"); ok {
 					if err = d.Set("update_schedule", vv); err != nil {
 						return fmt.Errorf("Error reading update_schedule: %v", err)
@@ -1063,7 +1063,7 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("wanip_query_mode", flattenFmupdateFdsSettingWanipQueryModeFfa(o["wanip-query-mode"], d, "wanip_query_mode")); err != nil {
+	if err = d.Set("wanip_query_mode", flattenFmupdateFdsSettingWanipQueryMode(o["wanip-query-mode"], d, "wanip_query_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanip-query-mode"], "FmupdateFdsSetting-WanipQueryMode"); ok {
 			if err = d.Set("wanip_query_mode", vv); err != nil {
 				return fmt.Errorf("Error reading wanip_query_mode: %v", err)
@@ -1082,43 +1082,43 @@ func flattenFmupdateFdsSettingFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFdsSettingUserAgentFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUserAgent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingFdsCltSslProtocolFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingFdsCltSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingFdsSslProtocolFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingFdsSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingFmtrLogFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingFmtrLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingFortiguardAnycastFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingFortiguardAnycast(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingFortiguardAnycastSourceFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingFortiguardAnycastSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingLinkdLogFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingLinkdLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingMaxAvIpsVersionFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingMaxAvIpsVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingMaxWorkFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingMaxWork(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -1130,33 +1130,33 @@ func expandFmupdateFdsSettingPushOverrideFfa(d *schema.ResourceData, v interface
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip"], _ = expandFmupdateFdsSettingPushOverrideIpFfa(d, i["ip"], pre_append)
+		result["ip"], _ = expandFmupdateFdsSettingPushOverrideIp(d, i["ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["port"], _ = expandFmupdateFdsSettingPushOverridePortFfa(d, i["port"], pre_append)
+		result["port"], _ = expandFmupdateFdsSettingPushOverridePort(d, i["port"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandFmupdateFdsSettingPushOverrideStatusFfa(d, i["status"], pre_append)
+		result["status"], _ = expandFmupdateFdsSettingPushOverrideStatus(d, i["status"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideIpFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverridePortFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverridePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideStatusFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -1168,7 +1168,7 @@ func expandFmupdateFdsSettingPushOverrideToClientFfa(d *schema.ResourceData, v i
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "announce_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d, i["announce_ip"], pre_append)
+		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIp(d, i["announce_ip"], pre_append)
 		if err != nil {
 			return result, err
 		} else if t != nil {
@@ -1177,13 +1177,13 @@ func expandFmupdateFdsSettingPushOverrideToClientFfa(d *schema.ResourceData, v i
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandFmupdateFdsSettingPushOverrideToClientStatusFfa(d, i["status"], pre_append)
+		result["status"], _ = expandFmupdateFdsSettingPushOverrideToClientStatus(d, i["status"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -1199,17 +1199,17 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d *schema.Resourc
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfa(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfa(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(d, i["port"], pre_append)
+			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPort(d, i["port"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1222,31 +1222,31 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d *schema.Resourc
 	return result, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientStatusFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingSendReportFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSendReport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingSendSetupFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSendSetup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -1258,7 +1258,7 @@ func expandFmupdateFdsSettingServerOverrideFfa(d *schema.ResourceData, v interfa
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		t, err := expandFmupdateFdsSettingServerOverrideServlistFfa(d, i["servlist"], pre_append)
+		t, err := expandFmupdateFdsSettingServerOverrideServlist(d, i["servlist"], pre_append)
 		if err != nil {
 			return result, err
 		} else if t != nil {
@@ -1267,13 +1267,13 @@ func expandFmupdateFdsSettingServerOverrideFfa(d *schema.ResourceData, v interfa
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandFmupdateFdsSettingServerOverrideStatusFfa(d, i["status"], pre_append)
+		result["status"], _ = expandFmupdateFdsSettingServerOverrideStatus(d, i["status"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -1289,27 +1289,27 @@ func expandFmupdateFdsSettingServerOverrideServlistFfa(d *schema.ResourceData, v
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateFdsSettingServerOverrideServlistIdFfa(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateFdsSettingServerOverrideServlistId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateFdsSettingServerOverrideServlistIpFfa(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateFdsSettingServerOverrideServlistIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip6"], _ = expandFmupdateFdsSettingServerOverrideServlistIp6Ffa(d, i["ip6"], pre_append)
+			tmp["ip6"], _ = expandFmupdateFdsSettingServerOverrideServlistIp6(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandFmupdateFdsSettingServerOverrideServlistPortFfa(d, i["port"], pre_append)
+			tmp["port"], _ = expandFmupdateFdsSettingServerOverrideServlistPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(d, i["service_type"], pre_append)
+			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceType(d, i["service_type"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1322,75 +1322,75 @@ func expandFmupdateFdsSettingServerOverrideServlistFfa(d *schema.ResourceData, v
 	return result, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIdFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIpFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIp6Ffa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistPortFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideStatusFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFazFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFaz(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFctFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFct(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFdcFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFdc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFgtFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFgt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFisFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFis(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFmlFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFml(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFsaFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFtsFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingSystemSupportFswFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingSystemSupportFsw(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingUmsvcLogFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUmsvcLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUnregDevOptionFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUnregDevOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -1402,41 +1402,41 @@ func expandFmupdateFdsSettingUpdateScheduleFfa(d *schema.ResourceData, v interfa
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "day"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["day"], _ = expandFmupdateFdsSettingUpdateScheduleDayFfa(d, i["day"], pre_append)
+		result["day"], _ = expandFmupdateFdsSettingUpdateScheduleDay(d, i["day"], pre_append)
 	}
 	pre_append = pre + ".0." + "frequency"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["frequency"], _ = expandFmupdateFdsSettingUpdateScheduleFrequencyFfa(d, i["frequency"], pre_append)
+		result["frequency"], _ = expandFmupdateFdsSettingUpdateScheduleFrequency(d, i["frequency"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandFmupdateFdsSettingUpdateScheduleStatusFfa(d, i["status"], pre_append)
+		result["status"], _ = expandFmupdateFdsSettingUpdateScheduleStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "time"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["time"], _ = expandFmupdateFdsSettingUpdateScheduleTimeFfa(d, i["time"], pre_append)
+		result["time"], _ = expandFmupdateFdsSettingUpdateScheduleTime(d, i["time"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleDayFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleDay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleFrequencyFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleFrequency(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleStatusFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleTimeFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandFmupdateFdsSettingWanipQueryModeFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingWanipQueryMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1444,7 +1444,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("user_agent"); ok || d.HasChange("user_agent") {
-		t, err := expandFmupdateFdsSettingUserAgentFfa(d, v, "user_agent")
+		t, err := expandFmupdateFdsSettingUserAgent(d, v, "user_agent")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1453,7 +1453,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fds_clt_ssl_protocol"); ok || d.HasChange("fds_clt_ssl_protocol") {
-		t, err := expandFmupdateFdsSettingFdsCltSslProtocolFfa(d, v, "fds_clt_ssl_protocol")
+		t, err := expandFmupdateFdsSettingFdsCltSslProtocol(d, v, "fds_clt_ssl_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1462,7 +1462,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fds_ssl_protocol"); ok || d.HasChange("fds_ssl_protocol") {
-		t, err := expandFmupdateFdsSettingFdsSslProtocolFfa(d, v, "fds_ssl_protocol")
+		t, err := expandFmupdateFdsSettingFdsSslProtocol(d, v, "fds_ssl_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1471,7 +1471,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fmtr_log"); ok || d.HasChange("fmtr_log") {
-		t, err := expandFmupdateFdsSettingFmtrLogFfa(d, v, "fmtr_log")
+		t, err := expandFmupdateFdsSettingFmtrLog(d, v, "fmtr_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1480,7 +1480,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fortiguard_anycast"); ok || d.HasChange("fortiguard_anycast") {
-		t, err := expandFmupdateFdsSettingFortiguardAnycastFfa(d, v, "fortiguard_anycast")
+		t, err := expandFmupdateFdsSettingFortiguardAnycast(d, v, "fortiguard_anycast")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1489,7 +1489,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("fortiguard_anycast_source"); ok || d.HasChange("fortiguard_anycast_source") {
-		t, err := expandFmupdateFdsSettingFortiguardAnycastSourceFfa(d, v, "fortiguard_anycast_source")
+		t, err := expandFmupdateFdsSettingFortiguardAnycastSource(d, v, "fortiguard_anycast_source")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1498,7 +1498,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("linkd_log"); ok || d.HasChange("linkd_log") {
-		t, err := expandFmupdateFdsSettingLinkdLogFfa(d, v, "linkd_log")
+		t, err := expandFmupdateFdsSettingLinkdLog(d, v, "linkd_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1507,7 +1507,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("max_av_ips_version"); ok || d.HasChange("max_av_ips_version") {
-		t, err := expandFmupdateFdsSettingMaxAvIpsVersionFfa(d, v, "max_av_ips_version")
+		t, err := expandFmupdateFdsSettingMaxAvIpsVersion(d, v, "max_av_ips_version")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1516,7 +1516,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("max_work"); ok || d.HasChange("max_work") {
-		t, err := expandFmupdateFdsSettingMaxWorkFfa(d, v, "max_work")
+		t, err := expandFmupdateFdsSettingMaxWork(d, v, "max_work")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1525,7 +1525,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("push_override"); ok || d.HasChange("push_override") {
-		t, err := expandFmupdateFdsSettingPushOverrideFfa(d, v, "push_override")
+		t, err := expandFmupdateFdsSettingPushOverride(d, v, "push_override")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1534,7 +1534,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("push_override_to_client"); ok || d.HasChange("push_override_to_client") {
-		t, err := expandFmupdateFdsSettingPushOverrideToClientFfa(d, v, "push_override_to_client")
+		t, err := expandFmupdateFdsSettingPushOverrideToClient(d, v, "push_override_to_client")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1543,7 +1543,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("send_report"); ok || d.HasChange("send_report") {
-		t, err := expandFmupdateFdsSettingSendReportFfa(d, v, "send_report")
+		t, err := expandFmupdateFdsSettingSendReport(d, v, "send_report")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1552,7 +1552,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("send_setup"); ok || d.HasChange("send_setup") {
-		t, err := expandFmupdateFdsSettingSendSetupFfa(d, v, "send_setup")
+		t, err := expandFmupdateFdsSettingSendSetup(d, v, "send_setup")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1561,7 +1561,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("server_override"); ok || d.HasChange("server_override") {
-		t, err := expandFmupdateFdsSettingServerOverrideFfa(d, v, "server_override")
+		t, err := expandFmupdateFdsSettingServerOverride(d, v, "server_override")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1570,7 +1570,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_faz"); ok || d.HasChange("system_support_faz") {
-		t, err := expandFmupdateFdsSettingSystemSupportFazFfa(d, v, "system_support_faz")
+		t, err := expandFmupdateFdsSettingSystemSupportFaz(d, v, "system_support_faz")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1579,7 +1579,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fct"); ok || d.HasChange("system_support_fct") {
-		t, err := expandFmupdateFdsSettingSystemSupportFctFfa(d, v, "system_support_fct")
+		t, err := expandFmupdateFdsSettingSystemSupportFct(d, v, "system_support_fct")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1588,7 +1588,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fdc"); ok || d.HasChange("system_support_fdc") {
-		t, err := expandFmupdateFdsSettingSystemSupportFdcFfa(d, v, "system_support_fdc")
+		t, err := expandFmupdateFdsSettingSystemSupportFdc(d, v, "system_support_fdc")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1597,7 +1597,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fgt"); ok || d.HasChange("system_support_fgt") {
-		t, err := expandFmupdateFdsSettingSystemSupportFgtFfa(d, v, "system_support_fgt")
+		t, err := expandFmupdateFdsSettingSystemSupportFgt(d, v, "system_support_fgt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1606,7 +1606,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fis"); ok || d.HasChange("system_support_fis") {
-		t, err := expandFmupdateFdsSettingSystemSupportFisFfa(d, v, "system_support_fis")
+		t, err := expandFmupdateFdsSettingSystemSupportFis(d, v, "system_support_fis")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1615,7 +1615,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fml"); ok || d.HasChange("system_support_fml") {
-		t, err := expandFmupdateFdsSettingSystemSupportFmlFfa(d, v, "system_support_fml")
+		t, err := expandFmupdateFdsSettingSystemSupportFml(d, v, "system_support_fml")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1624,7 +1624,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fsa"); ok || d.HasChange("system_support_fsa") {
-		t, err := expandFmupdateFdsSettingSystemSupportFsaFfa(d, v, "system_support_fsa")
+		t, err := expandFmupdateFdsSettingSystemSupportFsa(d, v, "system_support_fsa")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1633,7 +1633,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fts"); ok || d.HasChange("system_support_fts") {
-		t, err := expandFmupdateFdsSettingSystemSupportFtsFfa(d, v, "system_support_fts")
+		t, err := expandFmupdateFdsSettingSystemSupportFts(d, v, "system_support_fts")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1642,7 +1642,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("system_support_fsw"); ok || d.HasChange("system_support_fsw") {
-		t, err := expandFmupdateFdsSettingSystemSupportFswFfa(d, v, "system_support_fsw")
+		t, err := expandFmupdateFdsSettingSystemSupportFsw(d, v, "system_support_fsw")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1651,7 +1651,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("umsvc_log"); ok || d.HasChange("umsvc_log") {
-		t, err := expandFmupdateFdsSettingUmsvcLogFfa(d, v, "umsvc_log")
+		t, err := expandFmupdateFdsSettingUmsvcLog(d, v, "umsvc_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1660,7 +1660,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("unreg_dev_option"); ok || d.HasChange("unreg_dev_option") {
-		t, err := expandFmupdateFdsSettingUnregDevOptionFfa(d, v, "unreg_dev_option")
+		t, err := expandFmupdateFdsSettingUnregDevOption(d, v, "unreg_dev_option")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1669,7 +1669,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("update_schedule"); ok || d.HasChange("update_schedule") {
-		t, err := expandFmupdateFdsSettingUpdateScheduleFfa(d, v, "update_schedule")
+		t, err := expandFmupdateFdsSettingUpdateSchedule(d, v, "update_schedule")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1678,7 +1678,7 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("wanip_query_mode"); ok || d.HasChange("wanip_query_mode") {
-		t, err := expandFmupdateFdsSettingWanipQueryModeFfa(d, v, "wanip_query_mode")
+		t, err := expandFmupdateFdsSettingWanipQueryMode(d, v, "wanip_query_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

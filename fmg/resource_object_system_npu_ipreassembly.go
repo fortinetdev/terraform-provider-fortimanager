@@ -150,15 +150,15 @@ func resourceObjectSystemNpuIpReassemblyRead(d *schema.ResourceData, m interface
 	return nil
 }
 
-func flattenObjectSystemNpuIpReassemblyMaxTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIpReassemblyMaxTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuIpReassemblyMinTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIpReassemblyMinTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuIpReassemblyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuIpReassemblyStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -169,7 +169,7 @@ func refreshObjectObjectSystemNpuIpReassembly(d *schema.ResourceData, o map[stri
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("max_timeout", flattenObjectSystemNpuIpReassemblyMaxTimeout(o["max-timeout"], d, "max_timeout")); err != nil {
+	if err = d.Set("max_timeout", flattenObjectSystemNpuIpReassemblyMaxTimeout2edl(o["max-timeout"], d, "max_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-timeout"], "ObjectSystemNpuIpReassembly-MaxTimeout"); ok {
 			if err = d.Set("max_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading max_timeout: %v", err)
@@ -179,7 +179,7 @@ func refreshObjectObjectSystemNpuIpReassembly(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("min_timeout", flattenObjectSystemNpuIpReassemblyMinTimeout(o["min-timeout"], d, "min_timeout")); err != nil {
+	if err = d.Set("min_timeout", flattenObjectSystemNpuIpReassemblyMinTimeout2edl(o["min-timeout"], d, "min_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["min-timeout"], "ObjectSystemNpuIpReassembly-MinTimeout"); ok {
 			if err = d.Set("min_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading min_timeout: %v", err)
@@ -189,7 +189,7 @@ func refreshObjectObjectSystemNpuIpReassembly(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("status", flattenObjectSystemNpuIpReassemblyStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenObjectSystemNpuIpReassemblyStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "ObjectSystemNpuIpReassembly-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -208,15 +208,15 @@ func flattenObjectSystemNpuIpReassemblyFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuIpReassemblyMaxTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIpReassemblyMaxTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIpReassemblyMinTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIpReassemblyMinTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuIpReassemblyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuIpReassemblyStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -224,7 +224,7 @@ func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]i
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_timeout"); ok || d.HasChange("max_timeout") {
-		t, err := expandObjectSystemNpuIpReassemblyMaxTimeout(d, v, "max_timeout")
+		t, err := expandObjectSystemNpuIpReassemblyMaxTimeout2edl(d, v, "max_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("min_timeout"); ok || d.HasChange("min_timeout") {
-		t, err := expandObjectSystemNpuIpReassemblyMinTimeout(d, v, "min_timeout")
+		t, err := expandObjectSystemNpuIpReassemblyMinTimeout2edl(d, v, "min_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandObjectSystemNpuIpReassemblyStatus(d, v, "status")
+		t, err := expandObjectSystemNpuIpReassemblyStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

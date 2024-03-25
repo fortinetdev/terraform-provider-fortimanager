@@ -157,34 +157,34 @@ func resourceSystemSamlFabricIdpRead(d *schema.ResourceData, m interface{}) erro
 	return nil
 }
 
-func flattenSystemSamlFabricIdpDevId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpDevId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpCert2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpEntityId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpSingleLogoutUrl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpSingleSignOnUrl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemSamlFabricIdpIdpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemSamlFabricIdpIdpStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("dev_id", flattenSystemSamlFabricIdpDevId(o["dev-id"], d, "dev_id")); err != nil {
+	if err = d.Set("dev_id", flattenSystemSamlFabricIdpDevId2edl(o["dev-id"], d, "dev_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dev-id"], "SystemSamlFabricIdp-DevId"); ok {
 			if err = d.Set("dev_id", vv); err != nil {
 				return fmt.Errorf("Error reading dev_id: %v", err)
@@ -194,7 +194,7 @@ func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
-	if err = d.Set("idp_cert", flattenSystemSamlFabricIdpIdpCert(o["idp-cert"], d, "idp_cert")); err != nil {
+	if err = d.Set("idp_cert", flattenSystemSamlFabricIdpIdpCert2edl(o["idp-cert"], d, "idp_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-cert"], "SystemSamlFabricIdp-IdpCert"); ok {
 			if err = d.Set("idp_cert", vv); err != nil {
 				return fmt.Errorf("Error reading idp_cert: %v", err)
@@ -204,7 +204,7 @@ func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
-	if err = d.Set("idp_entity_id", flattenSystemSamlFabricIdpIdpEntityId(o["idp-entity-id"], d, "idp_entity_id")); err != nil {
+	if err = d.Set("idp_entity_id", flattenSystemSamlFabricIdpIdpEntityId2edl(o["idp-entity-id"], d, "idp_entity_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-entity-id"], "SystemSamlFabricIdp-IdpEntityId"); ok {
 			if err = d.Set("idp_entity_id", vv); err != nil {
 				return fmt.Errorf("Error reading idp_entity_id: %v", err)
@@ -214,7 +214,7 @@ func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
-	if err = d.Set("idp_single_logout_url", flattenSystemSamlFabricIdpIdpSingleLogoutUrl(o["idp-single-logout-url"], d, "idp_single_logout_url")); err != nil {
+	if err = d.Set("idp_single_logout_url", flattenSystemSamlFabricIdpIdpSingleLogoutUrl2edl(o["idp-single-logout-url"], d, "idp_single_logout_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-single-logout-url"], "SystemSamlFabricIdp-IdpSingleLogoutUrl"); ok {
 			if err = d.Set("idp_single_logout_url", vv); err != nil {
 				return fmt.Errorf("Error reading idp_single_logout_url: %v", err)
@@ -224,7 +224,7 @@ func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
-	if err = d.Set("idp_single_sign_on_url", flattenSystemSamlFabricIdpIdpSingleSignOnUrl(o["idp-single-sign-on-url"], d, "idp_single_sign_on_url")); err != nil {
+	if err = d.Set("idp_single_sign_on_url", flattenSystemSamlFabricIdpIdpSingleSignOnUrl2edl(o["idp-single-sign-on-url"], d, "idp_single_sign_on_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-single-sign-on-url"], "SystemSamlFabricIdp-IdpSingleSignOnUrl"); ok {
 			if err = d.Set("idp_single_sign_on_url", vv); err != nil {
 				return fmt.Errorf("Error reading idp_single_sign_on_url: %v", err)
@@ -234,7 +234,7 @@ func refreshObjectSystemSamlFabricIdp(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
-	if err = d.Set("idp_status", flattenSystemSamlFabricIdpIdpStatus(o["idp-status"], d, "idp_status")); err != nil {
+	if err = d.Set("idp_status", flattenSystemSamlFabricIdpIdpStatus2edl(o["idp-status"], d, "idp_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["idp-status"], "SystemSamlFabricIdp-IdpStatus"); ok {
 			if err = d.Set("idp_status", vv); err != nil {
 				return fmt.Errorf("Error reading idp_status: %v", err)
@@ -253,27 +253,27 @@ func flattenSystemSamlFabricIdpFortiTestDebug(d *schema.ResourceData, fosdebugsn
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemSamlFabricIdpDevId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpDevId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpCert2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpEntityId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpSingleLogoutUrl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpSingleSignOnUrl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemSamlFabricIdpIdpStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemSamlFabricIdpIdpStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -281,7 +281,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dev_id"); ok || d.HasChange("dev_id") {
-		t, err := expandSystemSamlFabricIdpDevId(d, v, "dev_id")
+		t, err := expandSystemSamlFabricIdpDevId2edl(d, v, "dev_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -290,7 +290,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	}
 
 	if v, ok := d.GetOk("idp_cert"); ok || d.HasChange("idp_cert") {
-		t, err := expandSystemSamlFabricIdpIdpCert(d, v, "idp_cert")
+		t, err := expandSystemSamlFabricIdpIdpCert2edl(d, v, "idp_cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -299,7 +299,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	}
 
 	if v, ok := d.GetOk("idp_entity_id"); ok || d.HasChange("idp_entity_id") {
-		t, err := expandSystemSamlFabricIdpIdpEntityId(d, v, "idp_entity_id")
+		t, err := expandSystemSamlFabricIdpIdpEntityId2edl(d, v, "idp_entity_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -308,7 +308,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	}
 
 	if v, ok := d.GetOk("idp_single_logout_url"); ok || d.HasChange("idp_single_logout_url") {
-		t, err := expandSystemSamlFabricIdpIdpSingleLogoutUrl(d, v, "idp_single_logout_url")
+		t, err := expandSystemSamlFabricIdpIdpSingleLogoutUrl2edl(d, v, "idp_single_logout_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -317,7 +317,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	}
 
 	if v, ok := d.GetOk("idp_single_sign_on_url"); ok || d.HasChange("idp_single_sign_on_url") {
-		t, err := expandSystemSamlFabricIdpIdpSingleSignOnUrl(d, v, "idp_single_sign_on_url")
+		t, err := expandSystemSamlFabricIdpIdpSingleSignOnUrl2edl(d, v, "idp_single_sign_on_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -326,7 +326,7 @@ func getObjectSystemSamlFabricIdp(d *schema.ResourceData) (*map[string]interface
 	}
 
 	if v, ok := d.GetOk("idp_status"); ok || d.HasChange("idp_status") {
-		t, err := expandSystemSamlFabricIdpIdpStatus(d, v, "idp_status")
+		t, err := expandSystemSamlFabricIdpIdpStatus2edl(d, v, "idp_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

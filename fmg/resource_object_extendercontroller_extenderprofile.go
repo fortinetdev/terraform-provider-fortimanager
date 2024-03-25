@@ -1707,7 +1707,7 @@ func expandObjectExtenderControllerExtenderProfileCellularControllerReportStatus
 }
 
 func expandObjectExtenderControllerExtenderProfileCellularDataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerExtenderProfileCellularModem1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

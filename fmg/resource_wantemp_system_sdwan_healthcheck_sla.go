@@ -79,6 +79,7 @@ func resourceWantempSystemSdwanHealthCheckSla() *schema.Resource {
 			"mos_threshold": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"packetloss_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -248,35 +249,35 @@ func resourceWantempSystemSdwanHealthCheckSlaRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaJitterThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaJitterThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaMosThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaMosThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPriorityInSla(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPriorityInSla3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -287,7 +288,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemSdwanHealthCheckSlaId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemSdwanHealthCheckSlaId3rdl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemSdwanHealthCheckSla-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -297,7 +298,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("jitter_threshold", flattenWantempSystemSdwanHealthCheckSlaJitterThreshold(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
+	if err = d.Set("jitter_threshold", flattenWantempSystemSdwanHealthCheckSlaJitterThreshold3rdl(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["jitter-threshold"], "WantempSystemSdwanHealthCheckSla-JitterThreshold"); ok {
 			if err = d.Set("jitter_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading jitter_threshold: %v", err)
@@ -307,7 +308,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("latency_threshold", flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold(o["latency-threshold"], d, "latency_threshold")); err != nil {
+	if err = d.Set("latency_threshold", flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold3rdl(o["latency-threshold"], d, "latency_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["latency-threshold"], "WantempSystemSdwanHealthCheckSla-LatencyThreshold"); ok {
 			if err = d.Set("latency_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading latency_threshold: %v", err)
@@ -317,7 +318,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("link_cost_factor", flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
+	if err = d.Set("link_cost_factor", flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor3rdl(o["link-cost-factor"], d, "link_cost_factor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["link-cost-factor"], "WantempSystemSdwanHealthCheckSla-LinkCostFactor"); ok {
 			if err = d.Set("link_cost_factor", vv); err != nil {
 				return fmt.Errorf("Error reading link_cost_factor: %v", err)
@@ -327,7 +328,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("mos_threshold", flattenWantempSystemSdwanHealthCheckSlaMosThreshold(o["mos-threshold"], d, "mos_threshold")); err != nil {
+	if err = d.Set("mos_threshold", flattenWantempSystemSdwanHealthCheckSlaMosThreshold3rdl(o["mos-threshold"], d, "mos_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mos-threshold"], "WantempSystemSdwanHealthCheckSla-MosThreshold"); ok {
 			if err = d.Set("mos_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading mos_threshold: %v", err)
@@ -337,7 +338,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("packetloss_threshold", flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
+	if err = d.Set("packetloss_threshold", flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold3rdl(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packetloss-threshold"], "WantempSystemSdwanHealthCheckSla-PacketlossThreshold"); ok {
 			if err = d.Set("packetloss_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading packetloss_threshold: %v", err)
@@ -347,7 +348,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("priority_in_sla", flattenWantempSystemSdwanHealthCheckSlaPriorityInSla(o["priority-in-sla"], d, "priority_in_sla")); err != nil {
+	if err = d.Set("priority_in_sla", flattenWantempSystemSdwanHealthCheckSlaPriorityInSla3rdl(o["priority-in-sla"], d, "priority_in_sla")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority-in-sla"], "WantempSystemSdwanHealthCheckSla-PriorityInSla"); ok {
 			if err = d.Set("priority_in_sla", vv); err != nil {
 				return fmt.Errorf("Error reading priority_in_sla: %v", err)
@@ -357,7 +358,7 @@ func refreshObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("priority_out_sla", flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla(o["priority-out-sla"], d, "priority_out_sla")); err != nil {
+	if err = d.Set("priority_out_sla", flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla3rdl(o["priority-out-sla"], d, "priority_out_sla")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority-out-sla"], "WantempSystemSdwanHealthCheckSla-PriorityOutSla"); ok {
 			if err = d.Set("priority_out_sla", vv); err != nil {
 				return fmt.Errorf("Error reading priority_out_sla: %v", err)
@@ -376,35 +377,35 @@ func flattenWantempSystemSdwanHealthCheckSlaFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanHealthCheckSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaJitterThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaJitterThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaLatencyThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaLatencyThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaLinkCostFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaLinkCostFactor3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaMosThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaMosThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPriorityInSla(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPriorityInSla3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPriorityOutSla(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPriorityOutSla3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -412,7 +413,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaId(d, v, "fosid")
+		t, err := expandWantempSystemSdwanHealthCheckSlaId3rdl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -421,7 +422,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("jitter_threshold"); ok || d.HasChange("jitter_threshold") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaJitterThreshold(d, v, "jitter_threshold")
+		t, err := expandWantempSystemSdwanHealthCheckSlaJitterThreshold3rdl(d, v, "jitter_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -430,7 +431,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("latency_threshold"); ok || d.HasChange("latency_threshold") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaLatencyThreshold(d, v, "latency_threshold")
+		t, err := expandWantempSystemSdwanHealthCheckSlaLatencyThreshold3rdl(d, v, "latency_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -439,7 +440,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("link_cost_factor"); ok || d.HasChange("link_cost_factor") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaLinkCostFactor(d, v, "link_cost_factor")
+		t, err := expandWantempSystemSdwanHealthCheckSlaLinkCostFactor3rdl(d, v, "link_cost_factor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -448,7 +449,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("mos_threshold"); ok || d.HasChange("mos_threshold") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaMosThreshold(d, v, "mos_threshold")
+		t, err := expandWantempSystemSdwanHealthCheckSlaMosThreshold3rdl(d, v, "mos_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -457,7 +458,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("packetloss_threshold"); ok || d.HasChange("packetloss_threshold") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold(d, v, "packetloss_threshold")
+		t, err := expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold3rdl(d, v, "packetloss_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -466,7 +467,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("priority_in_sla"); ok || d.HasChange("priority_in_sla") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaPriorityInSla(d, v, "priority_in_sla")
+		t, err := expandWantempSystemSdwanHealthCheckSlaPriorityInSla3rdl(d, v, "priority_in_sla")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -475,7 +476,7 @@ func getObjectWantempSystemSdwanHealthCheckSla(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("priority_out_sla"); ok || d.HasChange("priority_out_sla") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaPriorityOutSla(d, v, "priority_out_sla")
+		t, err := expandWantempSystemSdwanHealthCheckSlaPriorityOutSla3rdl(d, v, "priority_out_sla")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -10,8 +10,8 @@ description: |-
 ObjectDynamic Interface
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_dynamic_interface_dynamic_mapping`
-`platform_mapping`: `fortimanager_object_dynamic_interface_platform_mapping`
+>- `dynamic_mapping`: `fortimanager_object_dynamic_interface_dynamic_mapping`
+>- `platform_mapping`: `fortimanager_object_dynamic_interface_platform_mapping`
 
 
 

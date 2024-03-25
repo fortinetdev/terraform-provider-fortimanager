@@ -178,7 +178,7 @@ func resourceObjectWirelessControllerAddrgrpRead(d *schema.ResourceData, m inter
 }
 
 func flattenObjectWirelessControllerAddrgrpAddresses(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWirelessControllerAddrgrpDefaultPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -236,7 +236,7 @@ func flattenObjectWirelessControllerAddrgrpFortiTestDebug(d *schema.ResourceData
 }
 
 func expandObjectWirelessControllerAddrgrpAddresses(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWirelessControllerAddrgrpDefaultPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

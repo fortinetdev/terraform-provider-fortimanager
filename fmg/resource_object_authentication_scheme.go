@@ -61,6 +61,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"fsso_guest": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"kerberos_keytab": &schema.Schema{
 				Type:     schema.TypeString,
@@ -84,6 +85,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"require_tfa": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"saml_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -104,7 +106,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Computed: true,
 			},
 			"user_database": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -492,7 +494,7 @@ func expandObjectAuthenticationSchemeUserCert(d *schema.ResourceData, v interfac
 }
 
 func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {

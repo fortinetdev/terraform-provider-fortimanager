@@ -222,6 +222,7 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 						"mos_threshold": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"packetloss_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -451,127 +452,127 @@ func resourceWantempSystemSdwanHealthCheckRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
-func flattenWantempSystemSdwanHealthCheckDynamicServerWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckDynamicServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckAddrModeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckAddrMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckClassIdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckClassId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckDetectModeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckDetectMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckDiffservcodeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckDiffservcode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckDnsMatchIpWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckDnsMatchIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckDnsRequestDomainWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckDnsRequestDomain2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealthWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckFailtimeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckFailtime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckFtpFileWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckFtpFile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckFtpModeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckFtpMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckHaPriorityWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckHaPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckHttpAgentWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckHttpAgent2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckHttpGetWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckHttpGet2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckHttpMatchWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckHttpMatch2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckIntervalWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckInterval2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckMembersWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckMembers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckMosCodecWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckMosCodec2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckNameWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckPacketSizeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckPacketSize2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckPasswordWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckPortWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckProbeCountWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckProbeCount2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckProbePacketsWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckProbePackets2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckProbeTimeoutWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckProbeTimeout2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckProtocolWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckProtocol2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckQualityMeasuredMethodWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckQualityMeasuredMethod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckRecoverytimeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckRecoverytime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSecurityModeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSecurityMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckServerWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaWssha(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemSdwanHealthCheckSla2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -592,49 +593,49 @@ func flattenWantempSystemSdwanHealthCheckSlaWssha(v interface{}, d *schema.Resou
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaIdWssha(i["id"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaId2edl(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_threshold"
 		if _, ok := i["jitter-threshold"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaJitterThresholdWssha(i["jitter-threshold"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaJitterThreshold2edl(i["jitter-threshold"], d, pre_append)
 			tmp["jitter_threshold"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-JitterThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold"
 		if _, ok := i["latency-threshold"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaLatencyThresholdWssha(i["latency-threshold"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold2edl(i["latency-threshold"], d, pre_append)
 			tmp["latency_threshold"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-LatencyThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := i["link-cost-factor"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaLinkCostFactorWssha(i["link-cost-factor"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor2edl(i["link-cost-factor"], d, pre_append)
 			tmp["link_cost_factor"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-LinkCostFactor")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mos_threshold"
 		if _, ok := i["mos-threshold"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaMosThresholdWssha(i["mos-threshold"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaMosThreshold2edl(i["mos-threshold"], d, pre_append)
 			tmp["mos_threshold"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-MosThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packetloss_threshold"
 		if _, ok := i["packetloss-threshold"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaPacketlossThresholdWssha(i["packetloss-threshold"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold2edl(i["packetloss-threshold"], d, pre_append)
 			tmp["packetloss_threshold"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-PacketlossThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_in_sla"
 		if _, ok := i["priority-in-sla"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaPriorityInSlaWssha(i["priority-in-sla"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaPriorityInSla2edl(i["priority-in-sla"], d, pre_append)
 			tmp["priority_in_sla"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-PriorityInSla")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_out_sla"
 		if _, ok := i["priority-out-sla"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssha(i["priority-out-sla"], d, pre_append)
+			v := flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla2edl(i["priority-out-sla"], d, pre_append)
 			tmp["priority_out_sla"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-PriorityOutSla")
 		}
 
@@ -648,99 +649,99 @@ func flattenWantempSystemSdwanHealthCheckSlaWssha(v interface{}, d *schema.Resou
 	return result
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaIdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaJitterThresholdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaJitterThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaLatencyThresholdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaLatencyThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaLinkCostFactorWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaLinkCostFactor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaMosThresholdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaMosThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPacketlossThresholdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPacketlossThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPriorityInSlaWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPriorityInSla2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPriorityOutSla2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaFailLogPeriodWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaFailLogPeriod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaIdRedistributeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaIdRedistribute2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSlaPassLogPeriodWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSlaPassLogPeriod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSourceWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSource6Wssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSource62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckSystemDnsWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckSystemDns2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdAlertJitterWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdAlertJitter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdAlertLatencyWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdAlertLatency2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdAlertPacketlossWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdAlertPacketloss2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdWarningJitterWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdWarningJitter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdWarningLatencyWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckThresholdWarningPacketlossWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckUpdateCascadeInterfaceWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckUpdateCascadeInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckUpdateStaticRouteWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckUpdateStaticRoute2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckUserWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckUser2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanHealthCheckVrfWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanHealthCheckVrf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -755,7 +756,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("_dynamic_server", flattenWantempSystemSdwanHealthCheckDynamicServerWssha(o["_dynamic-server"], d, "_dynamic_server")); err != nil {
+	if err = d.Set("_dynamic_server", flattenWantempSystemSdwanHealthCheckDynamicServer2edl(o["_dynamic-server"], d, "_dynamic_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_dynamic-server"], "WantempSystemSdwanHealthCheck-DynamicServer"); ok {
 			if err = d.Set("_dynamic_server", vv); err != nil {
 				return fmt.Errorf("Error reading _dynamic_server: %v", err)
@@ -765,7 +766,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("addr_mode", flattenWantempSystemSdwanHealthCheckAddrModeWssha(o["addr-mode"], d, "addr_mode")); err != nil {
+	if err = d.Set("addr_mode", flattenWantempSystemSdwanHealthCheckAddrMode2edl(o["addr-mode"], d, "addr_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["addr-mode"], "WantempSystemSdwanHealthCheck-AddrMode"); ok {
 			if err = d.Set("addr_mode", vv); err != nil {
 				return fmt.Errorf("Error reading addr_mode: %v", err)
@@ -775,7 +776,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("class_id", flattenWantempSystemSdwanHealthCheckClassIdWssha(o["class-id"], d, "class_id")); err != nil {
+	if err = d.Set("class_id", flattenWantempSystemSdwanHealthCheckClassId2edl(o["class-id"], d, "class_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["class-id"], "WantempSystemSdwanHealthCheck-ClassId"); ok {
 			if err = d.Set("class_id", vv); err != nil {
 				return fmt.Errorf("Error reading class_id: %v", err)
@@ -785,7 +786,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("detect_mode", flattenWantempSystemSdwanHealthCheckDetectModeWssha(o["detect-mode"], d, "detect_mode")); err != nil {
+	if err = d.Set("detect_mode", flattenWantempSystemSdwanHealthCheckDetectMode2edl(o["detect-mode"], d, "detect_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["detect-mode"], "WantempSystemSdwanHealthCheck-DetectMode"); ok {
 			if err = d.Set("detect_mode", vv); err != nil {
 				return fmt.Errorf("Error reading detect_mode: %v", err)
@@ -795,7 +796,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("diffservcode", flattenWantempSystemSdwanHealthCheckDiffservcodeWssha(o["diffservcode"], d, "diffservcode")); err != nil {
+	if err = d.Set("diffservcode", flattenWantempSystemSdwanHealthCheckDiffservcode2edl(o["diffservcode"], d, "diffservcode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffservcode"], "WantempSystemSdwanHealthCheck-Diffservcode"); ok {
 			if err = d.Set("diffservcode", vv); err != nil {
 				return fmt.Errorf("Error reading diffservcode: %v", err)
@@ -805,7 +806,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("dns_match_ip", flattenWantempSystemSdwanHealthCheckDnsMatchIpWssha(o["dns-match-ip"], d, "dns_match_ip")); err != nil {
+	if err = d.Set("dns_match_ip", flattenWantempSystemSdwanHealthCheckDnsMatchIp2edl(o["dns-match-ip"], d, "dns_match_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dns-match-ip"], "WantempSystemSdwanHealthCheck-DnsMatchIp"); ok {
 			if err = d.Set("dns_match_ip", vv); err != nil {
 				return fmt.Errorf("Error reading dns_match_ip: %v", err)
@@ -815,7 +816,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("dns_request_domain", flattenWantempSystemSdwanHealthCheckDnsRequestDomainWssha(o["dns-request-domain"], d, "dns_request_domain")); err != nil {
+	if err = d.Set("dns_request_domain", flattenWantempSystemSdwanHealthCheckDnsRequestDomain2edl(o["dns-request-domain"], d, "dns_request_domain")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dns-request-domain"], "WantempSystemSdwanHealthCheck-DnsRequestDomain"); ok {
 			if err = d.Set("dns_request_domain", vv); err != nil {
 				return fmt.Errorf("Error reading dns_request_domain: %v", err)
@@ -825,7 +826,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("embed_measured_health", flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealthWssha(o["embed-measured-health"], d, "embed_measured_health")); err != nil {
+	if err = d.Set("embed_measured_health", flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealth2edl(o["embed-measured-health"], d, "embed_measured_health")); err != nil {
 		if vv, ok := fortiAPIPatch(o["embed-measured-health"], "WantempSystemSdwanHealthCheck-EmbedMeasuredHealth"); ok {
 			if err = d.Set("embed_measured_health", vv); err != nil {
 				return fmt.Errorf("Error reading embed_measured_health: %v", err)
@@ -835,7 +836,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("failtime", flattenWantempSystemSdwanHealthCheckFailtimeWssha(o["failtime"], d, "failtime")); err != nil {
+	if err = d.Set("failtime", flattenWantempSystemSdwanHealthCheckFailtime2edl(o["failtime"], d, "failtime")); err != nil {
 		if vv, ok := fortiAPIPatch(o["failtime"], "WantempSystemSdwanHealthCheck-Failtime"); ok {
 			if err = d.Set("failtime", vv); err != nil {
 				return fmt.Errorf("Error reading failtime: %v", err)
@@ -845,7 +846,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("ftp_file", flattenWantempSystemSdwanHealthCheckFtpFileWssha(o["ftp-file"], d, "ftp_file")); err != nil {
+	if err = d.Set("ftp_file", flattenWantempSystemSdwanHealthCheckFtpFile2edl(o["ftp-file"], d, "ftp_file")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ftp-file"], "WantempSystemSdwanHealthCheck-FtpFile"); ok {
 			if err = d.Set("ftp_file", vv); err != nil {
 				return fmt.Errorf("Error reading ftp_file: %v", err)
@@ -855,7 +856,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("ftp_mode", flattenWantempSystemSdwanHealthCheckFtpModeWssha(o["ftp-mode"], d, "ftp_mode")); err != nil {
+	if err = d.Set("ftp_mode", flattenWantempSystemSdwanHealthCheckFtpMode2edl(o["ftp-mode"], d, "ftp_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ftp-mode"], "WantempSystemSdwanHealthCheck-FtpMode"); ok {
 			if err = d.Set("ftp_mode", vv); err != nil {
 				return fmt.Errorf("Error reading ftp_mode: %v", err)
@@ -865,7 +866,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("ha_priority", flattenWantempSystemSdwanHealthCheckHaPriorityWssha(o["ha-priority"], d, "ha_priority")); err != nil {
+	if err = d.Set("ha_priority", flattenWantempSystemSdwanHealthCheckHaPriority2edl(o["ha-priority"], d, "ha_priority")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ha-priority"], "WantempSystemSdwanHealthCheck-HaPriority"); ok {
 			if err = d.Set("ha_priority", vv); err != nil {
 				return fmt.Errorf("Error reading ha_priority: %v", err)
@@ -875,7 +876,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("http_agent", flattenWantempSystemSdwanHealthCheckHttpAgentWssha(o["http-agent"], d, "http_agent")); err != nil {
+	if err = d.Set("http_agent", flattenWantempSystemSdwanHealthCheckHttpAgent2edl(o["http-agent"], d, "http_agent")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-agent"], "WantempSystemSdwanHealthCheck-HttpAgent"); ok {
 			if err = d.Set("http_agent", vv); err != nil {
 				return fmt.Errorf("Error reading http_agent: %v", err)
@@ -885,7 +886,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("http_get", flattenWantempSystemSdwanHealthCheckHttpGetWssha(o["http-get"], d, "http_get")); err != nil {
+	if err = d.Set("http_get", flattenWantempSystemSdwanHealthCheckHttpGet2edl(o["http-get"], d, "http_get")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-get"], "WantempSystemSdwanHealthCheck-HttpGet"); ok {
 			if err = d.Set("http_get", vv); err != nil {
 				return fmt.Errorf("Error reading http_get: %v", err)
@@ -895,7 +896,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("http_match", flattenWantempSystemSdwanHealthCheckHttpMatchWssha(o["http-match"], d, "http_match")); err != nil {
+	if err = d.Set("http_match", flattenWantempSystemSdwanHealthCheckHttpMatch2edl(o["http-match"], d, "http_match")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-match"], "WantempSystemSdwanHealthCheck-HttpMatch"); ok {
 			if err = d.Set("http_match", vv); err != nil {
 				return fmt.Errorf("Error reading http_match: %v", err)
@@ -905,7 +906,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("interval", flattenWantempSystemSdwanHealthCheckIntervalWssha(o["interval"], d, "interval")); err != nil {
+	if err = d.Set("interval", flattenWantempSystemSdwanHealthCheckInterval2edl(o["interval"], d, "interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interval"], "WantempSystemSdwanHealthCheck-Interval"); ok {
 			if err = d.Set("interval", vv); err != nil {
 				return fmt.Errorf("Error reading interval: %v", err)
@@ -915,7 +916,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("members", flattenWantempSystemSdwanHealthCheckMembersWssha(o["members"], d, "members")); err != nil {
+	if err = d.Set("members", flattenWantempSystemSdwanHealthCheckMembers2edl(o["members"], d, "members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["members"], "WantempSystemSdwanHealthCheck-Members"); ok {
 			if err = d.Set("members", vv); err != nil {
 				return fmt.Errorf("Error reading members: %v", err)
@@ -925,7 +926,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("mos_codec", flattenWantempSystemSdwanHealthCheckMosCodecWssha(o["mos-codec"], d, "mos_codec")); err != nil {
+	if err = d.Set("mos_codec", flattenWantempSystemSdwanHealthCheckMosCodec2edl(o["mos-codec"], d, "mos_codec")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mos-codec"], "WantempSystemSdwanHealthCheck-MosCodec"); ok {
 			if err = d.Set("mos_codec", vv); err != nil {
 				return fmt.Errorf("Error reading mos_codec: %v", err)
@@ -935,7 +936,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("name", flattenWantempSystemSdwanHealthCheckNameWssha(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenWantempSystemSdwanHealthCheckName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "WantempSystemSdwanHealthCheck-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -945,7 +946,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("packet_size", flattenWantempSystemSdwanHealthCheckPacketSizeWssha(o["packet-size"], d, "packet_size")); err != nil {
+	if err = d.Set("packet_size", flattenWantempSystemSdwanHealthCheckPacketSize2edl(o["packet-size"], d, "packet_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packet-size"], "WantempSystemSdwanHealthCheck-PacketSize"); ok {
 			if err = d.Set("packet_size", vv); err != nil {
 				return fmt.Errorf("Error reading packet_size: %v", err)
@@ -955,7 +956,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("password", flattenWantempSystemSdwanHealthCheckPasswordWssha(o["password"], d, "password")); err != nil {
+	if err = d.Set("password", flattenWantempSystemSdwanHealthCheckPassword2edl(o["password"], d, "password")); err != nil {
 		if vv, ok := fortiAPIPatch(o["password"], "WantempSystemSdwanHealthCheck-Password"); ok {
 			if err = d.Set("password", vv); err != nil {
 				return fmt.Errorf("Error reading password: %v", err)
@@ -965,7 +966,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("port", flattenWantempSystemSdwanHealthCheckPortWssha(o["port"], d, "port")); err != nil {
+	if err = d.Set("port", flattenWantempSystemSdwanHealthCheckPort2edl(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "WantempSystemSdwanHealthCheck-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
 				return fmt.Errorf("Error reading port: %v", err)
@@ -975,7 +976,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("probe_count", flattenWantempSystemSdwanHealthCheckProbeCountWssha(o["probe-count"], d, "probe_count")); err != nil {
+	if err = d.Set("probe_count", flattenWantempSystemSdwanHealthCheckProbeCount2edl(o["probe-count"], d, "probe_count")); err != nil {
 		if vv, ok := fortiAPIPatch(o["probe-count"], "WantempSystemSdwanHealthCheck-ProbeCount"); ok {
 			if err = d.Set("probe_count", vv); err != nil {
 				return fmt.Errorf("Error reading probe_count: %v", err)
@@ -985,7 +986,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("probe_packets", flattenWantempSystemSdwanHealthCheckProbePacketsWssha(o["probe-packets"], d, "probe_packets")); err != nil {
+	if err = d.Set("probe_packets", flattenWantempSystemSdwanHealthCheckProbePackets2edl(o["probe-packets"], d, "probe_packets")); err != nil {
 		if vv, ok := fortiAPIPatch(o["probe-packets"], "WantempSystemSdwanHealthCheck-ProbePackets"); ok {
 			if err = d.Set("probe_packets", vv); err != nil {
 				return fmt.Errorf("Error reading probe_packets: %v", err)
@@ -995,7 +996,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("probe_timeout", flattenWantempSystemSdwanHealthCheckProbeTimeoutWssha(o["probe-timeout"], d, "probe_timeout")); err != nil {
+	if err = d.Set("probe_timeout", flattenWantempSystemSdwanHealthCheckProbeTimeout2edl(o["probe-timeout"], d, "probe_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["probe-timeout"], "WantempSystemSdwanHealthCheck-ProbeTimeout"); ok {
 			if err = d.Set("probe_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading probe_timeout: %v", err)
@@ -1005,7 +1006,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("protocol", flattenWantempSystemSdwanHealthCheckProtocolWssha(o["protocol"], d, "protocol")); err != nil {
+	if err = d.Set("protocol", flattenWantempSystemSdwanHealthCheckProtocol2edl(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "WantempSystemSdwanHealthCheck-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
 				return fmt.Errorf("Error reading protocol: %v", err)
@@ -1015,7 +1016,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("quality_measured_method", flattenWantempSystemSdwanHealthCheckQualityMeasuredMethodWssha(o["quality-measured-method"], d, "quality_measured_method")); err != nil {
+	if err = d.Set("quality_measured_method", flattenWantempSystemSdwanHealthCheckQualityMeasuredMethod2edl(o["quality-measured-method"], d, "quality_measured_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["quality-measured-method"], "WantempSystemSdwanHealthCheck-QualityMeasuredMethod"); ok {
 			if err = d.Set("quality_measured_method", vv); err != nil {
 				return fmt.Errorf("Error reading quality_measured_method: %v", err)
@@ -1025,7 +1026,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("recoverytime", flattenWantempSystemSdwanHealthCheckRecoverytimeWssha(o["recoverytime"], d, "recoverytime")); err != nil {
+	if err = d.Set("recoverytime", flattenWantempSystemSdwanHealthCheckRecoverytime2edl(o["recoverytime"], d, "recoverytime")); err != nil {
 		if vv, ok := fortiAPIPatch(o["recoverytime"], "WantempSystemSdwanHealthCheck-Recoverytime"); ok {
 			if err = d.Set("recoverytime", vv); err != nil {
 				return fmt.Errorf("Error reading recoverytime: %v", err)
@@ -1035,7 +1036,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("security_mode", flattenWantempSystemSdwanHealthCheckSecurityModeWssha(o["security-mode"], d, "security_mode")); err != nil {
+	if err = d.Set("security_mode", flattenWantempSystemSdwanHealthCheckSecurityMode2edl(o["security-mode"], d, "security_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["security-mode"], "WantempSystemSdwanHealthCheck-SecurityMode"); ok {
 			if err = d.Set("security_mode", vv); err != nil {
 				return fmt.Errorf("Error reading security_mode: %v", err)
@@ -1045,7 +1046,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("server", flattenWantempSystemSdwanHealthCheckServerWssha(o["server"], d, "server")); err != nil {
+	if err = d.Set("server", flattenWantempSystemSdwanHealthCheckServer2edl(o["server"], d, "server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server"], "WantempSystemSdwanHealthCheck-Server"); ok {
 			if err = d.Set("server", vv); err != nil {
 				return fmt.Errorf("Error reading server: %v", err)
@@ -1056,7 +1057,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 	}
 
 	if isImportTable() {
-		if err = d.Set("sla", flattenWantempSystemSdwanHealthCheckSlaWssha(o["sla"], d, "sla")); err != nil {
+		if err = d.Set("sla", flattenWantempSystemSdwanHealthCheckSla2edl(o["sla"], d, "sla")); err != nil {
 			if vv, ok := fortiAPIPatch(o["sla"], "WantempSystemSdwanHealthCheck-Sla"); ok {
 				if err = d.Set("sla", vv); err != nil {
 					return fmt.Errorf("Error reading sla: %v", err)
@@ -1067,7 +1068,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	} else {
 		if _, ok := d.GetOk("sla"); ok {
-			if err = d.Set("sla", flattenWantempSystemSdwanHealthCheckSlaWssha(o["sla"], d, "sla")); err != nil {
+			if err = d.Set("sla", flattenWantempSystemSdwanHealthCheckSla2edl(o["sla"], d, "sla")); err != nil {
 				if vv, ok := fortiAPIPatch(o["sla"], "WantempSystemSdwanHealthCheck-Sla"); ok {
 					if err = d.Set("sla", vv); err != nil {
 						return fmt.Errorf("Error reading sla: %v", err)
@@ -1079,7 +1080,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sla_fail_log_period", flattenWantempSystemSdwanHealthCheckSlaFailLogPeriodWssha(o["sla-fail-log-period"], d, "sla_fail_log_period")); err != nil {
+	if err = d.Set("sla_fail_log_period", flattenWantempSystemSdwanHealthCheckSlaFailLogPeriod2edl(o["sla-fail-log-period"], d, "sla_fail_log_period")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-fail-log-period"], "WantempSystemSdwanHealthCheck-SlaFailLogPeriod"); ok {
 			if err = d.Set("sla_fail_log_period", vv); err != nil {
 				return fmt.Errorf("Error reading sla_fail_log_period: %v", err)
@@ -1089,7 +1090,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sla_id_redistribute", flattenWantempSystemSdwanHealthCheckSlaIdRedistributeWssha(o["sla-id-redistribute"], d, "sla_id_redistribute")); err != nil {
+	if err = d.Set("sla_id_redistribute", flattenWantempSystemSdwanHealthCheckSlaIdRedistribute2edl(o["sla-id-redistribute"], d, "sla_id_redistribute")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-id-redistribute"], "WantempSystemSdwanHealthCheck-SlaIdRedistribute"); ok {
 			if err = d.Set("sla_id_redistribute", vv); err != nil {
 				return fmt.Errorf("Error reading sla_id_redistribute: %v", err)
@@ -1099,7 +1100,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sla_pass_log_period", flattenWantempSystemSdwanHealthCheckSlaPassLogPeriodWssha(o["sla-pass-log-period"], d, "sla_pass_log_period")); err != nil {
+	if err = d.Set("sla_pass_log_period", flattenWantempSystemSdwanHealthCheckSlaPassLogPeriod2edl(o["sla-pass-log-period"], d, "sla_pass_log_period")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-pass-log-period"], "WantempSystemSdwanHealthCheck-SlaPassLogPeriod"); ok {
 			if err = d.Set("sla_pass_log_period", vv); err != nil {
 				return fmt.Errorf("Error reading sla_pass_log_period: %v", err)
@@ -1109,7 +1110,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("source", flattenWantempSystemSdwanHealthCheckSourceWssha(o["source"], d, "source")); err != nil {
+	if err = d.Set("source", flattenWantempSystemSdwanHealthCheckSource2edl(o["source"], d, "source")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source"], "WantempSystemSdwanHealthCheck-Source"); ok {
 			if err = d.Set("source", vv); err != nil {
 				return fmt.Errorf("Error reading source: %v", err)
@@ -1119,7 +1120,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("source6", flattenWantempSystemSdwanHealthCheckSource6Wssha(o["source6"], d, "source6")); err != nil {
+	if err = d.Set("source6", flattenWantempSystemSdwanHealthCheckSource62edl(o["source6"], d, "source6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source6"], "WantempSystemSdwanHealthCheck-Source6"); ok {
 			if err = d.Set("source6", vv); err != nil {
 				return fmt.Errorf("Error reading source6: %v", err)
@@ -1129,7 +1130,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("system_dns", flattenWantempSystemSdwanHealthCheckSystemDnsWssha(o["system-dns"], d, "system_dns")); err != nil {
+	if err = d.Set("system_dns", flattenWantempSystemSdwanHealthCheckSystemDns2edl(o["system-dns"], d, "system_dns")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-dns"], "WantempSystemSdwanHealthCheck-SystemDns"); ok {
 			if err = d.Set("system_dns", vv); err != nil {
 				return fmt.Errorf("Error reading system_dns: %v", err)
@@ -1139,7 +1140,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_alert_jitter", flattenWantempSystemSdwanHealthCheckThresholdAlertJitterWssha(o["threshold-alert-jitter"], d, "threshold_alert_jitter")); err != nil {
+	if err = d.Set("threshold_alert_jitter", flattenWantempSystemSdwanHealthCheckThresholdAlertJitter2edl(o["threshold-alert-jitter"], d, "threshold_alert_jitter")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-alert-jitter"], "WantempSystemSdwanHealthCheck-ThresholdAlertJitter"); ok {
 			if err = d.Set("threshold_alert_jitter", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_alert_jitter: %v", err)
@@ -1149,7 +1150,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_alert_latency", flattenWantempSystemSdwanHealthCheckThresholdAlertLatencyWssha(o["threshold-alert-latency"], d, "threshold_alert_latency")); err != nil {
+	if err = d.Set("threshold_alert_latency", flattenWantempSystemSdwanHealthCheckThresholdAlertLatency2edl(o["threshold-alert-latency"], d, "threshold_alert_latency")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-alert-latency"], "WantempSystemSdwanHealthCheck-ThresholdAlertLatency"); ok {
 			if err = d.Set("threshold_alert_latency", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_alert_latency: %v", err)
@@ -1159,7 +1160,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_alert_packetloss", flattenWantempSystemSdwanHealthCheckThresholdAlertPacketlossWssha(o["threshold-alert-packetloss"], d, "threshold_alert_packetloss")); err != nil {
+	if err = d.Set("threshold_alert_packetloss", flattenWantempSystemSdwanHealthCheckThresholdAlertPacketloss2edl(o["threshold-alert-packetloss"], d, "threshold_alert_packetloss")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-alert-packetloss"], "WantempSystemSdwanHealthCheck-ThresholdAlertPacketloss"); ok {
 			if err = d.Set("threshold_alert_packetloss", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_alert_packetloss: %v", err)
@@ -1169,7 +1170,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_warning_jitter", flattenWantempSystemSdwanHealthCheckThresholdWarningJitterWssha(o["threshold-warning-jitter"], d, "threshold_warning_jitter")); err != nil {
+	if err = d.Set("threshold_warning_jitter", flattenWantempSystemSdwanHealthCheckThresholdWarningJitter2edl(o["threshold-warning-jitter"], d, "threshold_warning_jitter")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-warning-jitter"], "WantempSystemSdwanHealthCheck-ThresholdWarningJitter"); ok {
 			if err = d.Set("threshold_warning_jitter", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_warning_jitter: %v", err)
@@ -1179,7 +1180,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_warning_latency", flattenWantempSystemSdwanHealthCheckThresholdWarningLatencyWssha(o["threshold-warning-latency"], d, "threshold_warning_latency")); err != nil {
+	if err = d.Set("threshold_warning_latency", flattenWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(o["threshold-warning-latency"], d, "threshold_warning_latency")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-warning-latency"], "WantempSystemSdwanHealthCheck-ThresholdWarningLatency"); ok {
 			if err = d.Set("threshold_warning_latency", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_warning_latency: %v", err)
@@ -1189,7 +1190,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("threshold_warning_packetloss", flattenWantempSystemSdwanHealthCheckThresholdWarningPacketlossWssha(o["threshold-warning-packetloss"], d, "threshold_warning_packetloss")); err != nil {
+	if err = d.Set("threshold_warning_packetloss", flattenWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(o["threshold-warning-packetloss"], d, "threshold_warning_packetloss")); err != nil {
 		if vv, ok := fortiAPIPatch(o["threshold-warning-packetloss"], "WantempSystemSdwanHealthCheck-ThresholdWarningPacketloss"); ok {
 			if err = d.Set("threshold_warning_packetloss", vv); err != nil {
 				return fmt.Errorf("Error reading threshold_warning_packetloss: %v", err)
@@ -1199,7 +1200,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("update_cascade_interface", flattenWantempSystemSdwanHealthCheckUpdateCascadeInterfaceWssha(o["update-cascade-interface"], d, "update_cascade_interface")); err != nil {
+	if err = d.Set("update_cascade_interface", flattenWantempSystemSdwanHealthCheckUpdateCascadeInterface2edl(o["update-cascade-interface"], d, "update_cascade_interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-cascade-interface"], "WantempSystemSdwanHealthCheck-UpdateCascadeInterface"); ok {
 			if err = d.Set("update_cascade_interface", vv); err != nil {
 				return fmt.Errorf("Error reading update_cascade_interface: %v", err)
@@ -1209,7 +1210,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("update_static_route", flattenWantempSystemSdwanHealthCheckUpdateStaticRouteWssha(o["update-static-route"], d, "update_static_route")); err != nil {
+	if err = d.Set("update_static_route", flattenWantempSystemSdwanHealthCheckUpdateStaticRoute2edl(o["update-static-route"], d, "update_static_route")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-static-route"], "WantempSystemSdwanHealthCheck-UpdateStaticRoute"); ok {
 			if err = d.Set("update_static_route", vv); err != nil {
 				return fmt.Errorf("Error reading update_static_route: %v", err)
@@ -1219,7 +1220,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("user", flattenWantempSystemSdwanHealthCheckUserWssha(o["user"], d, "user")); err != nil {
+	if err = d.Set("user", flattenWantempSystemSdwanHealthCheckUser2edl(o["user"], d, "user")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user"], "WantempSystemSdwanHealthCheck-User"); ok {
 			if err = d.Set("user", vv); err != nil {
 				return fmt.Errorf("Error reading user: %v", err)
@@ -1229,7 +1230,7 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("vrf", flattenWantempSystemSdwanHealthCheckVrfWssha(o["vrf"], d, "vrf")); err != nil {
+	if err = d.Set("vrf", flattenWantempSystemSdwanHealthCheckVrf2edl(o["vrf"], d, "vrf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vrf"], "WantempSystemSdwanHealthCheck-Vrf"); ok {
 			if err = d.Set("vrf", vv); err != nil {
 				return fmt.Errorf("Error reading vrf: %v", err)
@@ -1248,127 +1249,127 @@ func flattenWantempSystemSdwanHealthCheckFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanHealthCheckDynamicServerWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckDynamicServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckAddrModeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckAddrMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckClassIdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckClassId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckDetectModeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckDetectMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckDiffservcodeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckDiffservcode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckDnsMatchIpWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckDnsMatchIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckDnsRequestDomainWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckDnsRequestDomain2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckEmbedMeasuredHealthWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckEmbedMeasuredHealth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckFailtimeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckFailtime2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckFtpFileWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckFtpFile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckFtpModeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckFtpMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckHaPriorityWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckHaPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckHttpAgentWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckHttpAgent2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckHttpGetWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckHttpGet2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckHttpMatchWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckHttpMatch2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckIntervalWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckInterval2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckMembersWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckMembers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanHealthCheckMosCodecWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckMosCodec2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckNameWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckPacketSizeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckPacketSize2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckPasswordWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckPassword2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanHealthCheckPortWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckProbeCountWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckProbeCount2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckProbePacketsWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckProbePackets2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckProbeTimeoutWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckProbeTimeout2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckProtocolWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckProtocol2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckQualityMeasuredMethodWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckQualityMeasuredMethod2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckRecoverytimeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckRecoverytime2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSecurityModeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSecurityMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckServerWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -1384,42 +1385,42 @@ func expandWantempSystemSdwanHealthCheckSlaWssha(d *schema.ResourceData, v inter
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandWantempSystemSdwanHealthCheckSlaIdWssha(d, i["id"], pre_append)
+			tmp["id"], _ = expandWantempSystemSdwanHealthCheckSlaId2edl(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["jitter-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaJitterThresholdWssha(d, i["jitter_threshold"], pre_append)
+			tmp["jitter-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaJitterThreshold2edl(d, i["jitter_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["latency-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaLatencyThresholdWssha(d, i["latency_threshold"], pre_append)
+			tmp["latency-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaLatencyThreshold2edl(d, i["latency_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["link-cost-factor"], _ = expandWantempSystemSdwanHealthCheckSlaLinkCostFactorWssha(d, i["link_cost_factor"], pre_append)
+			tmp["link-cost-factor"], _ = expandWantempSystemSdwanHealthCheckSlaLinkCostFactor2edl(d, i["link_cost_factor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mos_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["mos-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaMosThresholdWssha(d, i["mos_threshold"], pre_append)
+			tmp["mos-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaMosThreshold2edl(d, i["mos_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packetloss_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["packetloss-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaPacketlossThresholdWssha(d, i["packetloss_threshold"], pre_append)
+			tmp["packetloss-threshold"], _ = expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold2edl(d, i["packetloss_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_in_sla"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["priority-in-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityInSlaWssha(d, i["priority_in_sla"], pre_append)
+			tmp["priority-in-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityInSla2edl(d, i["priority_in_sla"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_out_sla"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["priority-out-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssha(d, i["priority_out_sla"], pre_append)
+			tmp["priority-out-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityOutSla2edl(d, i["priority_out_sla"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -1432,99 +1433,99 @@ func expandWantempSystemSdwanHealthCheckSlaWssha(d *schema.ResourceData, v inter
 	return result, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaIdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaJitterThresholdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaJitterThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaLatencyThresholdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaLatencyThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaLinkCostFactorWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaLinkCostFactor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaMosThresholdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaMosThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPacketlossThresholdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPacketlossThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPriorityInSlaWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPriorityInSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPriorityOutSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaFailLogPeriodWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaFailLogPeriod2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaIdRedistributeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaIdRedistribute2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSlaPassLogPeriodWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSlaPassLogPeriod2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSourceWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSource6Wssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSource62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckSystemDnsWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckSystemDns2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdAlertJitterWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdAlertJitter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdAlertLatencyWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdAlertLatency2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdAlertPacketlossWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdAlertPacketloss2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdWarningJitterWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdWarningJitter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdWarningLatencyWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckThresholdWarningPacketlossWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckUpdateCascadeInterfaceWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckUpdateCascadeInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckUpdateStaticRouteWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckUpdateStaticRoute2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckUserWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckUser2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanHealthCheckVrfWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanHealthCheckVrf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1532,7 +1533,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("_dynamic_server"); ok || d.HasChange("_dynamic_server") {
-		t, err := expandWantempSystemSdwanHealthCheckDynamicServerWssha(d, v, "_dynamic_server")
+		t, err := expandWantempSystemSdwanHealthCheckDynamicServer2edl(d, v, "_dynamic_server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1541,7 +1542,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("addr_mode"); ok || d.HasChange("addr_mode") {
-		t, err := expandWantempSystemSdwanHealthCheckAddrModeWssha(d, v, "addr_mode")
+		t, err := expandWantempSystemSdwanHealthCheckAddrMode2edl(d, v, "addr_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1550,7 +1551,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("class_id"); ok || d.HasChange("class_id") {
-		t, err := expandWantempSystemSdwanHealthCheckClassIdWssha(d, v, "class_id")
+		t, err := expandWantempSystemSdwanHealthCheckClassId2edl(d, v, "class_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1559,7 +1560,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("detect_mode"); ok || d.HasChange("detect_mode") {
-		t, err := expandWantempSystemSdwanHealthCheckDetectModeWssha(d, v, "detect_mode")
+		t, err := expandWantempSystemSdwanHealthCheckDetectMode2edl(d, v, "detect_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1568,7 +1569,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("diffservcode"); ok || d.HasChange("diffservcode") {
-		t, err := expandWantempSystemSdwanHealthCheckDiffservcodeWssha(d, v, "diffservcode")
+		t, err := expandWantempSystemSdwanHealthCheckDiffservcode2edl(d, v, "diffservcode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1577,7 +1578,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("dns_match_ip"); ok || d.HasChange("dns_match_ip") {
-		t, err := expandWantempSystemSdwanHealthCheckDnsMatchIpWssha(d, v, "dns_match_ip")
+		t, err := expandWantempSystemSdwanHealthCheckDnsMatchIp2edl(d, v, "dns_match_ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1586,7 +1587,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("dns_request_domain"); ok || d.HasChange("dns_request_domain") {
-		t, err := expandWantempSystemSdwanHealthCheckDnsRequestDomainWssha(d, v, "dns_request_domain")
+		t, err := expandWantempSystemSdwanHealthCheckDnsRequestDomain2edl(d, v, "dns_request_domain")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1595,7 +1596,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("embed_measured_health"); ok || d.HasChange("embed_measured_health") {
-		t, err := expandWantempSystemSdwanHealthCheckEmbedMeasuredHealthWssha(d, v, "embed_measured_health")
+		t, err := expandWantempSystemSdwanHealthCheckEmbedMeasuredHealth2edl(d, v, "embed_measured_health")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1604,7 +1605,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("failtime"); ok || d.HasChange("failtime") {
-		t, err := expandWantempSystemSdwanHealthCheckFailtimeWssha(d, v, "failtime")
+		t, err := expandWantempSystemSdwanHealthCheckFailtime2edl(d, v, "failtime")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1613,7 +1614,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("ftp_file"); ok || d.HasChange("ftp_file") {
-		t, err := expandWantempSystemSdwanHealthCheckFtpFileWssha(d, v, "ftp_file")
+		t, err := expandWantempSystemSdwanHealthCheckFtpFile2edl(d, v, "ftp_file")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1622,7 +1623,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("ftp_mode"); ok || d.HasChange("ftp_mode") {
-		t, err := expandWantempSystemSdwanHealthCheckFtpModeWssha(d, v, "ftp_mode")
+		t, err := expandWantempSystemSdwanHealthCheckFtpMode2edl(d, v, "ftp_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1631,7 +1632,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("ha_priority"); ok || d.HasChange("ha_priority") {
-		t, err := expandWantempSystemSdwanHealthCheckHaPriorityWssha(d, v, "ha_priority")
+		t, err := expandWantempSystemSdwanHealthCheckHaPriority2edl(d, v, "ha_priority")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1640,7 +1641,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("http_agent"); ok || d.HasChange("http_agent") {
-		t, err := expandWantempSystemSdwanHealthCheckHttpAgentWssha(d, v, "http_agent")
+		t, err := expandWantempSystemSdwanHealthCheckHttpAgent2edl(d, v, "http_agent")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1649,7 +1650,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("http_get"); ok || d.HasChange("http_get") {
-		t, err := expandWantempSystemSdwanHealthCheckHttpGetWssha(d, v, "http_get")
+		t, err := expandWantempSystemSdwanHealthCheckHttpGet2edl(d, v, "http_get")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1658,7 +1659,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("http_match"); ok || d.HasChange("http_match") {
-		t, err := expandWantempSystemSdwanHealthCheckHttpMatchWssha(d, v, "http_match")
+		t, err := expandWantempSystemSdwanHealthCheckHttpMatch2edl(d, v, "http_match")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1667,7 +1668,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("interval"); ok || d.HasChange("interval") {
-		t, err := expandWantempSystemSdwanHealthCheckIntervalWssha(d, v, "interval")
+		t, err := expandWantempSystemSdwanHealthCheckInterval2edl(d, v, "interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1676,7 +1677,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
-		t, err := expandWantempSystemSdwanHealthCheckMembersWssha(d, v, "members")
+		t, err := expandWantempSystemSdwanHealthCheckMembers2edl(d, v, "members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1685,7 +1686,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("mos_codec"); ok || d.HasChange("mos_codec") {
-		t, err := expandWantempSystemSdwanHealthCheckMosCodecWssha(d, v, "mos_codec")
+		t, err := expandWantempSystemSdwanHealthCheckMosCodec2edl(d, v, "mos_codec")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1694,7 +1695,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandWantempSystemSdwanHealthCheckNameWssha(d, v, "name")
+		t, err := expandWantempSystemSdwanHealthCheckName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1703,7 +1704,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("packet_size"); ok || d.HasChange("packet_size") {
-		t, err := expandWantempSystemSdwanHealthCheckPacketSizeWssha(d, v, "packet_size")
+		t, err := expandWantempSystemSdwanHealthCheckPacketSize2edl(d, v, "packet_size")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1712,7 +1713,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
-		t, err := expandWantempSystemSdwanHealthCheckPasswordWssha(d, v, "password")
+		t, err := expandWantempSystemSdwanHealthCheckPassword2edl(d, v, "password")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1721,7 +1722,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
-		t, err := expandWantempSystemSdwanHealthCheckPortWssha(d, v, "port")
+		t, err := expandWantempSystemSdwanHealthCheckPort2edl(d, v, "port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1730,7 +1731,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("probe_count"); ok || d.HasChange("probe_count") {
-		t, err := expandWantempSystemSdwanHealthCheckProbeCountWssha(d, v, "probe_count")
+		t, err := expandWantempSystemSdwanHealthCheckProbeCount2edl(d, v, "probe_count")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1739,7 +1740,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("probe_packets"); ok || d.HasChange("probe_packets") {
-		t, err := expandWantempSystemSdwanHealthCheckProbePacketsWssha(d, v, "probe_packets")
+		t, err := expandWantempSystemSdwanHealthCheckProbePackets2edl(d, v, "probe_packets")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1748,7 +1749,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("probe_timeout"); ok || d.HasChange("probe_timeout") {
-		t, err := expandWantempSystemSdwanHealthCheckProbeTimeoutWssha(d, v, "probe_timeout")
+		t, err := expandWantempSystemSdwanHealthCheckProbeTimeout2edl(d, v, "probe_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1757,7 +1758,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
-		t, err := expandWantempSystemSdwanHealthCheckProtocolWssha(d, v, "protocol")
+		t, err := expandWantempSystemSdwanHealthCheckProtocol2edl(d, v, "protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1766,7 +1767,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("quality_measured_method"); ok || d.HasChange("quality_measured_method") {
-		t, err := expandWantempSystemSdwanHealthCheckQualityMeasuredMethodWssha(d, v, "quality_measured_method")
+		t, err := expandWantempSystemSdwanHealthCheckQualityMeasuredMethod2edl(d, v, "quality_measured_method")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1775,7 +1776,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("recoverytime"); ok || d.HasChange("recoverytime") {
-		t, err := expandWantempSystemSdwanHealthCheckRecoverytimeWssha(d, v, "recoverytime")
+		t, err := expandWantempSystemSdwanHealthCheckRecoverytime2edl(d, v, "recoverytime")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1784,7 +1785,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("security_mode"); ok || d.HasChange("security_mode") {
-		t, err := expandWantempSystemSdwanHealthCheckSecurityModeWssha(d, v, "security_mode")
+		t, err := expandWantempSystemSdwanHealthCheckSecurityMode2edl(d, v, "security_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1793,7 +1794,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
-		t, err := expandWantempSystemSdwanHealthCheckServerWssha(d, v, "server")
+		t, err := expandWantempSystemSdwanHealthCheckServer2edl(d, v, "server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1802,7 +1803,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sla"); ok || d.HasChange("sla") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaWssha(d, v, "sla")
+		t, err := expandWantempSystemSdwanHealthCheckSla2edl(d, v, "sla")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1811,7 +1812,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sla_fail_log_period"); ok || d.HasChange("sla_fail_log_period") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaFailLogPeriodWssha(d, v, "sla_fail_log_period")
+		t, err := expandWantempSystemSdwanHealthCheckSlaFailLogPeriod2edl(d, v, "sla_fail_log_period")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1820,7 +1821,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sla_id_redistribute"); ok || d.HasChange("sla_id_redistribute") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaIdRedistributeWssha(d, v, "sla_id_redistribute")
+		t, err := expandWantempSystemSdwanHealthCheckSlaIdRedistribute2edl(d, v, "sla_id_redistribute")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1829,7 +1830,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sla_pass_log_period"); ok || d.HasChange("sla_pass_log_period") {
-		t, err := expandWantempSystemSdwanHealthCheckSlaPassLogPeriodWssha(d, v, "sla_pass_log_period")
+		t, err := expandWantempSystemSdwanHealthCheckSlaPassLogPeriod2edl(d, v, "sla_pass_log_period")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1838,7 +1839,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("source"); ok || d.HasChange("source") {
-		t, err := expandWantempSystemSdwanHealthCheckSourceWssha(d, v, "source")
+		t, err := expandWantempSystemSdwanHealthCheckSource2edl(d, v, "source")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1847,7 +1848,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("source6"); ok || d.HasChange("source6") {
-		t, err := expandWantempSystemSdwanHealthCheckSource6Wssha(d, v, "source6")
+		t, err := expandWantempSystemSdwanHealthCheckSource62edl(d, v, "source6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1856,7 +1857,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("system_dns"); ok || d.HasChange("system_dns") {
-		t, err := expandWantempSystemSdwanHealthCheckSystemDnsWssha(d, v, "system_dns")
+		t, err := expandWantempSystemSdwanHealthCheckSystemDns2edl(d, v, "system_dns")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1865,7 +1866,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_alert_jitter"); ok || d.HasChange("threshold_alert_jitter") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertJitterWssha(d, v, "threshold_alert_jitter")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertJitter2edl(d, v, "threshold_alert_jitter")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1874,7 +1875,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_alert_latency"); ok || d.HasChange("threshold_alert_latency") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertLatencyWssha(d, v, "threshold_alert_latency")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertLatency2edl(d, v, "threshold_alert_latency")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1883,7 +1884,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_alert_packetloss"); ok || d.HasChange("threshold_alert_packetloss") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertPacketlossWssha(d, v, "threshold_alert_packetloss")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdAlertPacketloss2edl(d, v, "threshold_alert_packetloss")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1892,7 +1893,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_warning_jitter"); ok || d.HasChange("threshold_warning_jitter") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningJitterWssha(d, v, "threshold_warning_jitter")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningJitter2edl(d, v, "threshold_warning_jitter")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1901,7 +1902,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_warning_latency"); ok || d.HasChange("threshold_warning_latency") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningLatencyWssha(d, v, "threshold_warning_latency")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(d, v, "threshold_warning_latency")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1910,7 +1911,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("threshold_warning_packetloss"); ok || d.HasChange("threshold_warning_packetloss") {
-		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningPacketlossWssha(d, v, "threshold_warning_packetloss")
+		t, err := expandWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(d, v, "threshold_warning_packetloss")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1919,7 +1920,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("update_cascade_interface"); ok || d.HasChange("update_cascade_interface") {
-		t, err := expandWantempSystemSdwanHealthCheckUpdateCascadeInterfaceWssha(d, v, "update_cascade_interface")
+		t, err := expandWantempSystemSdwanHealthCheckUpdateCascadeInterface2edl(d, v, "update_cascade_interface")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1928,7 +1929,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("update_static_route"); ok || d.HasChange("update_static_route") {
-		t, err := expandWantempSystemSdwanHealthCheckUpdateStaticRouteWssha(d, v, "update_static_route")
+		t, err := expandWantempSystemSdwanHealthCheckUpdateStaticRoute2edl(d, v, "update_static_route")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1937,7 +1938,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
-		t, err := expandWantempSystemSdwanHealthCheckUserWssha(d, v, "user")
+		t, err := expandWantempSystemSdwanHealthCheckUser2edl(d, v, "user")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1946,7 +1947,7 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("vrf"); ok || d.HasChange("vrf") {
-		t, err := expandWantempSystemSdwanHealthCheckVrfWssha(d, v, "vrf")
+		t, err := expandWantempSystemSdwanHealthCheckVrf2edl(d, v, "vrf")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

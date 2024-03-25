@@ -678,7 +678,7 @@ func flattenObjectIpsSensorEntriesRateTrack(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectIpsSensorEntriesRule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorEntriesSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1065,7 +1065,7 @@ func expandObjectIpsSensorEntriesId(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectIpsSensorEntriesLastModified(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesLocation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1121,7 +1121,7 @@ func expandObjectIpsSensorEntriesRateTrack(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectIpsSensorEntriesRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesSeverity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

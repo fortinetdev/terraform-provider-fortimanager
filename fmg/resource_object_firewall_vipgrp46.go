@@ -54,7 +54,7 @@ func resourceObjectFirewallVipgrp46() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -282,7 +282,7 @@ func expandObjectFirewallVipgrp46Comments(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFirewallVipgrp46Member(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVipgrp46Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

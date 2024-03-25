@@ -10,8 +10,8 @@ description: |-
 Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`ip6_range`: `fortimanager_object_system_geoipoverride_ip6range`
-`ip_range`: `fortimanager_object_system_geoipoverride_iprange`
+>- `ip6_range`: `fortimanager_object_system_geoipoverride_ip6range`
+>- `ip_range`: `fortimanager_object_system_geoipoverride_iprange`
 
 
 

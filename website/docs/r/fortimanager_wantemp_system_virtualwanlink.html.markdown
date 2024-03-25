@@ -10,10 +10,10 @@ description: |-
 Configure redundant internet connections using SD-WAN (formerly virtual WAN link).
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`health_check`: `fortimanager_wantemp_system_virtualwanlink_healthcheck`
-`members`: `fortimanager_wantemp_system_virtualwanlink_members`
-`neighbor`: `fortimanager_wantemp_system_virtualwanlink_neighbor`
-`service`: `fortimanager_wantemp_system_virtualwanlink_service`
+>- `health_check`: `fortimanager_wantemp_system_virtualwanlink_healthcheck`
+>- `members`: `fortimanager_wantemp_system_virtualwanlink_members`
+>- `neighbor`: `fortimanager_wantemp_system_virtualwanlink_neighbor`
+>- `service`: `fortimanager_wantemp_system_virtualwanlink_service`
 
 
 

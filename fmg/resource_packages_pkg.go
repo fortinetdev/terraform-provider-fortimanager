@@ -95,6 +95,7 @@ func resourcePackagesPkg() *schema.Resource {
 						"inspection_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ngfw_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -429,7 +430,7 @@ func flattenPackagesPkgPackageSettingsPolicyOffloadLevel(v interface{}, d *schem
 }
 
 func flattenPackagesPkgPackageSettingsSslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesPkgPackageSetting(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

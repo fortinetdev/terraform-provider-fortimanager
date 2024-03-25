@@ -59,7 +59,7 @@ func resourceObjectFirewallSslSshProfileSslExempt() *schema.Resource {
 				Optional: true,
 			},
 			"fortiguard_category": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -80,7 +80,7 @@ func resourceObjectFirewallSslSshProfileSslExempt() *schema.Resource {
 				Computed: true,
 			},
 			"wildcard_fqdn": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -347,7 +347,7 @@ func expandObjectFirewallSslSshProfileSslExemptAddress62edl(d *schema.ResourceDa
 }
 
 func expandObjectFirewallSslSshProfileSslExemptFortiguardCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -363,7 +363,7 @@ func expandObjectFirewallSslSshProfileSslExemptType2edl(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallSslSshProfileSslExemptWildcardFqdn2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData) (*map[string]interface{}, error) {

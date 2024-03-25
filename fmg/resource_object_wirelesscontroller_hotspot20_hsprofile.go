@@ -151,7 +151,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 				Optional: true,
 			},
 			"osu_provider": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -977,7 +977,7 @@ func expandObjectWirelessControllerHotspot20HsProfileOperIcon(d *schema.Resource
 }
 
 func expandObjectWirelessControllerHotspot20HsProfileOsuProvider(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWirelessControllerHotspot20HsProfileOsuProviderNai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

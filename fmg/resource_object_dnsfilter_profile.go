@@ -126,7 +126,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				},
 			},
 			"external_ip_blocklist": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -994,7 +994,7 @@ func expandObjectDnsfilterProfileDomainFilterDomainFilterTable(d *schema.Resourc
 }
 
 func expandObjectDnsfilterProfileExternalIpBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectDnsfilterProfileFtgdDns(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

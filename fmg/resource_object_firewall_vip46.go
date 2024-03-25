@@ -181,7 +181,7 @@ func resourceObjectFirewallVip46() *schema.Resource {
 				Computed: true,
 			},
 			"monitor": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -636,7 +636,7 @@ func flattenObjectFirewallVip46DynamicMappingMappedport(v interface{}, d *schema
 }
 
 func flattenObjectFirewallVip46DynamicMappingMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip46DynamicMappingPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -656,7 +656,7 @@ func flattenObjectFirewallVip46DynamicMappingSrcFilter(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip46DynamicMappingSrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip46DynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -821,7 +821,7 @@ func flattenObjectFirewallVip46RealserversMaxConnections(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVip46RealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip46RealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -845,7 +845,7 @@ func flattenObjectFirewallVip46SrcFilter(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallVip46SrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip46Type(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1314,7 +1314,7 @@ func expandObjectFirewallVip46DynamicMappingMappedport(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallVip46DynamicMappingMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip46DynamicMappingPortforward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1334,7 +1334,7 @@ func expandObjectFirewallVip46DynamicMappingSrcFilter(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVip46DynamicMappingSrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip46DynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1370,7 +1370,7 @@ func expandObjectFirewallVip46Mappedport(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVip46Monitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVip46Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1484,7 +1484,7 @@ func expandObjectFirewallVip46RealserversMaxConnections(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallVip46RealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip46RealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1508,7 +1508,7 @@ func expandObjectFirewallVip46SrcFilter(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallVip46SrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip46Type(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

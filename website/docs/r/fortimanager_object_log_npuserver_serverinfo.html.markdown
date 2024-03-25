@@ -38,6 +38,8 @@ The following arguments are supported:
 
 * `ipv4_server` - set the IPv4 address for the log server
 * `ipv6_server` - set the IPv6 address for the log server
+* `log_transport` - set transport protocol Valid values: `udp`, `tcp`.
+
 * `source_port` - set the source port for the log packet
 * `template_tx_timeout` - set the template tx timeout
 * `vdom` - Interface connected to the log server is in this virtual domain (VDOM).

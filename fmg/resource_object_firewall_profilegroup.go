@@ -57,6 +57,10 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"diameter_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -274,6 +278,10 @@ func flattenObjectFirewallProfileGroupCasbProfile(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectFirewallProfileGroupDiameterFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -392,6 +400,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading casb_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("diameter_filter_profile", flattenObjectFirewallProfileGroupDiameterFilterProfile(o["diameter-filter-profile"], d, "diameter_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["diameter-filter-profile"], "ObjectFirewallProfileGroup-DiameterFilterProfile"); ok {
+			if err = d.Set("diameter_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
 		}
 	}
 
@@ -626,6 +644,10 @@ func expandObjectFirewallProfileGroupCasbProfile(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectFirewallProfileGroupDiameterFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -737,6 +759,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["casb-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("diameter_filter_profile"); ok || d.HasChange("diameter_filter_profile") {
+		t, err := expandObjectFirewallProfileGroupDiameterFilterProfile(d, v, "diameter_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["diameter-filter-profile"] = t
 		}
 	}
 

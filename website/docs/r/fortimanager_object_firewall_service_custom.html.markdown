@@ -64,6 +64,7 @@ The following arguments are supported:
 * `tcp_timewait_timer` - Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 * `udp_idle_timer` - UDP half close timeout (0 - 86400 sec, 0 = default).
 * `udp_portrange` - Multiple UDP port ranges.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable the visibility of the service on the GUI. Valid values: `disable`, `enable`.
 
 

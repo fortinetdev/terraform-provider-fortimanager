@@ -127,26 +127,26 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionRead(d *schema.ResourceData, m 
 	return nil
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionRetention2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionRunat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("retention", flattenSystemAutoDeleteDlpFilesAutoDeletionRetention(o["retention"], d, "retention")); err != nil {
+	if err = d.Set("retention", flattenSystemAutoDeleteDlpFilesAutoDeletionRetention2edl(o["retention"], d, "retention")); err != nil {
 		if vv, ok := fortiAPIPatch(o["retention"], "SystemAutoDeleteDlpFilesAutoDeletion-Retention"); ok {
 			if err = d.Set("retention", vv); err != nil {
 				return fmt.Errorf("Error reading retention: %v", err)
@@ -156,7 +156,7 @@ func refreshObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, o
 		}
 	}
 
-	if err = d.Set("runat", flattenSystemAutoDeleteDlpFilesAutoDeletionRunat(o["runat"], d, "runat")); err != nil {
+	if err = d.Set("runat", flattenSystemAutoDeleteDlpFilesAutoDeletionRunat2edl(o["runat"], d, "runat")); err != nil {
 		if vv, ok := fortiAPIPatch(o["runat"], "SystemAutoDeleteDlpFilesAutoDeletion-Runat"); ok {
 			if err = d.Set("runat", vv); err != nil {
 				return fmt.Errorf("Error reading runat: %v", err)
@@ -166,7 +166,7 @@ func refreshObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, o
 		}
 	}
 
-	if err = d.Set("status", flattenSystemAutoDeleteDlpFilesAutoDeletionStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemAutoDeleteDlpFilesAutoDeletionStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemAutoDeleteDlpFilesAutoDeletion-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -176,7 +176,7 @@ func refreshObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, o
 		}
 	}
 
-	if err = d.Set("value", flattenSystemAutoDeleteDlpFilesAutoDeletionValue(o["value"], d, "value")); err != nil {
+	if err = d.Set("value", flattenSystemAutoDeleteDlpFilesAutoDeletionValue2edl(o["value"], d, "value")); err != nil {
 		if vv, ok := fortiAPIPatch(o["value"], "SystemAutoDeleteDlpFilesAutoDeletion-Value"); ok {
 			if err = d.Set("value", vv); err != nil {
 				return fmt.Errorf("Error reading value: %v", err)
@@ -195,19 +195,19 @@ func flattenSystemAutoDeleteDlpFilesAutoDeletionFortiTestDebug(d *schema.Resourc
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionRetention2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionRunat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -215,7 +215,7 @@ func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData) (*map
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {
-		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionRetention(d, v, "retention")
+		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionRetention2edl(d, v, "retention")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -224,7 +224,7 @@ func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData) (*map
 	}
 
 	if v, ok := d.GetOk("runat"); ok || d.HasChange("runat") {
-		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionRunat(d, v, "runat")
+		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionRunat2edl(d, v, "runat")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData) (*map
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionStatus(d, v, "status")
+		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData) (*map
 	}
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
-		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionValue(d, v, "value")
+		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionValue2edl(d, v, "value")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

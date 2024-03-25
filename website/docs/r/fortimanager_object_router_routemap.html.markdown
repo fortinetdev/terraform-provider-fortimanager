@@ -10,7 +10,7 @@ description: |-
 Configure route maps.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rule`: `fortimanager_object_router_routemap_rule`
+>- `rule`: `fortimanager_object_router_routemap_rule`
 
 
 
@@ -101,6 +101,8 @@ The `rule` block supports:
 * `set_route_tag` - Route tag for routing table.
 * `set_tag` - Tag value.
 * `set_vpnv4_nexthop` - IP address of VPNv4 next-hop.
+* `set_vpnv6_nexthop` - IPv6 global address of VPNv6 next-hop.
+* `set_vpnv6_nexthop_local` - IPv6 link-local address of VPNv6 next-hop.
 * `set_weight` - BGP weight for routing table.
 
 

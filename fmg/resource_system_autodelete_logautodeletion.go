@@ -127,26 +127,26 @@ func resourceSystemAutoDeleteLogAutoDeletionRead(d *schema.ResourceData, m inter
 	return nil
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionRetention2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionRunat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("retention", flattenSystemAutoDeleteLogAutoDeletionRetention(o["retention"], d, "retention")); err != nil {
+	if err = d.Set("retention", flattenSystemAutoDeleteLogAutoDeletionRetention2edl(o["retention"], d, "retention")); err != nil {
 		if vv, ok := fortiAPIPatch(o["retention"], "SystemAutoDeleteLogAutoDeletion-Retention"); ok {
 			if err = d.Set("retention", vv); err != nil {
 				return fmt.Errorf("Error reading retention: %v", err)
@@ -156,7 +156,7 @@ func refreshObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, o map[
 		}
 	}
 
-	if err = d.Set("runat", flattenSystemAutoDeleteLogAutoDeletionRunat(o["runat"], d, "runat")); err != nil {
+	if err = d.Set("runat", flattenSystemAutoDeleteLogAutoDeletionRunat2edl(o["runat"], d, "runat")); err != nil {
 		if vv, ok := fortiAPIPatch(o["runat"], "SystemAutoDeleteLogAutoDeletion-Runat"); ok {
 			if err = d.Set("runat", vv); err != nil {
 				return fmt.Errorf("Error reading runat: %v", err)
@@ -166,7 +166,7 @@ func refreshObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, o map[
 		}
 	}
 
-	if err = d.Set("status", flattenSystemAutoDeleteLogAutoDeletionStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemAutoDeleteLogAutoDeletionStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemAutoDeleteLogAutoDeletion-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -176,7 +176,7 @@ func refreshObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, o map[
 		}
 	}
 
-	if err = d.Set("value", flattenSystemAutoDeleteLogAutoDeletionValue(o["value"], d, "value")); err != nil {
+	if err = d.Set("value", flattenSystemAutoDeleteLogAutoDeletionValue2edl(o["value"], d, "value")); err != nil {
 		if vv, ok := fortiAPIPatch(o["value"], "SystemAutoDeleteLogAutoDeletion-Value"); ok {
 			if err = d.Set("value", vv); err != nil {
 				return fmt.Errorf("Error reading value: %v", err)
@@ -195,19 +195,19 @@ func flattenSystemAutoDeleteLogAutoDeletionFortiTestDebug(d *schema.ResourceData
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemAutoDeleteLogAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionRetention2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionRunat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -215,7 +215,7 @@ func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData) (*map[stri
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {
-		t, err := expandSystemAutoDeleteLogAutoDeletionRetention(d, v, "retention")
+		t, err := expandSystemAutoDeleteLogAutoDeletionRetention2edl(d, v, "retention")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -224,7 +224,7 @@ func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData) (*map[stri
 	}
 
 	if v, ok := d.GetOk("runat"); ok || d.HasChange("runat") {
-		t, err := expandSystemAutoDeleteLogAutoDeletionRunat(d, v, "runat")
+		t, err := expandSystemAutoDeleteLogAutoDeletionRunat2edl(d, v, "runat")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData) (*map[stri
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemAutoDeleteLogAutoDeletionStatus(d, v, "status")
+		t, err := expandSystemAutoDeleteLogAutoDeletionStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData) (*map[stri
 	}
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
-		t, err := expandSystemAutoDeleteLogAutoDeletionValue(d, v, "value")
+		t, err := expandSystemAutoDeleteLogAutoDeletionValue2edl(d, v, "value")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

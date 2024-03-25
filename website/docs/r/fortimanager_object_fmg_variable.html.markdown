@@ -10,7 +10,7 @@ description: |-
 ObjectFmg Variable
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_fmg_variable_dynamic_mapping`
+>- `dynamic_mapping`: `fortimanager_object_fmg_variable_dynamic_mapping`
 
 
 

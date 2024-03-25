@@ -11,7 +11,7 @@ IPv6 subnet segments.
 
 ~> This resource is a sub resource for variable `subnet_segment` of resource `fortimanager_object_firewall_address6template`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`values`: `fortimanager_object_firewall_address6template_subnetsegment_values`
+>- `values`: `fortimanager_object_firewall_address6template_subnetsegment_values`
 
 
 

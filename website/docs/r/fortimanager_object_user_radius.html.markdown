@@ -10,8 +10,8 @@ description: |-
 Configure RADIUS server entries.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`accounting_server`: `fortimanager_object_user_radius_accountingserver`
-`dynamic_mapping`: `fortimanager_object_user_radius_dynamic_mapping`
+>- `accounting_server`: `fortimanager_object_user_radius_accountingserver`
+>- `dynamic_mapping`: `fortimanager_object_user_radius_dynamic_mapping`
 
 
 
@@ -139,6 +139,8 @@ The following arguments are supported:
 
 * `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `switch_controller_acct_fast_framedip_detect` - Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
+* `switch_controller_nas_ip_dynamic` - Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `disable`, `enable`.
+
 * `switch_controller_service_type` - RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 
 * `tertiary_secret` - Secret key to access the tertiary server.
@@ -298,6 +300,8 @@ The `dynamic_mapping` block supports:
 
 * `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `switch_controller_acct_fast_framedip_detect` - Switch-Controller-Acct-Fast-Framedip-Detect.
+* `switch_controller_nas_ip_dynamic` - Enable/Disable switch-controller nas-ip dynamic to dynamically set nas-ip. Valid values: `disable`, `enable`.
+
 * `switch_controller_service_type` - Switch-Controller-Service-Type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 
 * `tertiary_secret` - Secret key to access the tertiary server.

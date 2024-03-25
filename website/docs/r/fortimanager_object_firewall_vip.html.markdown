@@ -10,11 +10,12 @@ description: |-
 Configure virtual IP for IPv4.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_firewall_vip_dynamic_mapping`
-`quic`: `fortimanager_object_firewall_vip_quic`
-`realservers`: `fortimanager_object_firewall_vip_realservers`
-`ssl_cipher_suites`: `fortimanager_object_firewall_vip_sslciphersuites`
-`ssl_server_cipher_suites`: `fortimanager_object_firewall_vip_sslserverciphersuites`
+>- `dynamic_mapping`: `fortimanager_object_firewall_vip_dynamic_mapping`
+>- `gslb_public_ips`: `fortimanager_object_firewall_vip_gslbpublicips`
+>- `quic`: `fortimanager_object_firewall_vip_quic`
+>- `realservers`: `fortimanager_object_firewall_vip_realservers`
+>- `ssl_cipher_suites`: `fortimanager_object_firewall_vip_sslciphersuites`
+>- `ssl_server_cipher_suites`: `fortimanager_object_firewall_vip_sslserverciphersuites`
 
 
 
@@ -82,6 +83,9 @@ The following arguments are supported:
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `gratuitous_arp_interval` - Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+* `gslb_domain_name` - Domain to use when integrating with FortiGSLB.
+* `gslb_hostname` - Hostname to use within the configured FortiGSLB domain.
+* `gslb_public_ips` - Gslb-Public-Ips. The structure of `gslb_public_ips` block is documented below.
 * `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
 
 * `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
@@ -124,6 +128,8 @@ The following arguments are supported:
 * `nat44` - Enable/disable NAT44. Valid values: `disable`, `enable`.
 
 * `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `one_click_gslb_server` - Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -225,6 +231,8 @@ The `dynamic_mapping` block supports:
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `gratuitous_arp_interval` - Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+* `gslb_domain_name` - Domain to use when integrating with FortiGSLB.
+* `gslb_hostname` - Hostname to use within the configured FortiGSLB domain.
 * `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
 
 * `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
@@ -266,6 +274,8 @@ The `dynamic_mapping` block supports:
 * `nat44` - Enable/disable NAT44. Valid values: `disable`, `enable`.
 
 * `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `one_click_gslb_server` - Enable/disable one click GSLB server integration with FortiGSLB. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -386,6 +396,11 @@ The `ssl_cipher_suites` block supports:
 * `priority` - SSL/TLS cipher suites priority.
 * `versions` - SSL/TLS versions that the cipher suite can be used with. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+
+The `gslb_public_ips` block supports:
+
+* `index` - Index of this public IP setting.
+* `ip` - The publicly accessible IP address.
 
 The `quic` block supports:
 

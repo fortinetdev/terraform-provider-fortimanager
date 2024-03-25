@@ -177,7 +177,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 				Computed: true,
 			},
 			"monitor": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -622,7 +622,7 @@ func flattenObjectFirewallVip64DynamicMappingMappedport(v interface{}, d *schema
 }
 
 func flattenObjectFirewallVip64DynamicMappingMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64DynamicMappingPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -803,7 +803,7 @@ func flattenObjectFirewallVip64RealserversMaxConnections(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVip64RealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64RealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1277,7 +1277,7 @@ func expandObjectFirewallVip64DynamicMappingMappedport(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallVip64DynamicMappingMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64DynamicMappingPortforward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1329,7 +1329,7 @@ func expandObjectFirewallVip64Mappedport(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVip64Monitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVip64Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1443,7 +1443,7 @@ func expandObjectFirewallVip64RealserversMaxConnections(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallVip64RealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64RealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

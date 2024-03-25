@@ -362,11 +362,11 @@ func flattenObjectUserDeviceGroupDynamicMappingComment(v interface{}, d *schema.
 }
 
 func flattenObjectUserDeviceGroupDynamicMappingMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserDeviceGroupMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserDeviceGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -648,11 +648,11 @@ func expandObjectUserDeviceGroupDynamicMappingComment(d *schema.ResourceData, v 
 }
 
 func expandObjectUserDeviceGroupDynamicMappingMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserDeviceGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserDeviceGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

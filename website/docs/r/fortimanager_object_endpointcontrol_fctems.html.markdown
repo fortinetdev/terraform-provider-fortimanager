@@ -51,12 +51,16 @@ The following arguments are supported:
 
 * `pull_vulnerabilities` - Enable/disable pulling vulnerabilities from EMS. Valid values: `disable`, `enable`.
 
+* `send_tags_to_all_vdoms` - Relax restrictions on tags to send all EMS tags to all VDOMs Valid values: `disable`, `enable`.
+
 * `server` - FortiClient EMS FQDN or IPv4 address.
 * `source_ip` - REST API call source IP.
 * `status` - Enable or disable this EMS configuration. Valid values: `disable`, `enable`.
 
 * `trust_ca_cn` - Trust-Ca-Cn. Valid values: `disable`, `enable`.
 
+* `verified_cn` - EMS certificate CN.
+* `verifying_ca` - Lowest CA cert on Fortigate in verified EMS cert chain.
 * `tenant_id` - EMS Tenant ID.
 * `status_check_interval` - FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
 * `websocket_override` - Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.

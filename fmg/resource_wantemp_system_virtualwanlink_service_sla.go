@@ -220,11 +220,11 @@ func resourceWantempSystemVirtualWanLinkServiceSlaRead(d *schema.ResourceData, m
 	return nil
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSlaId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -235,7 +235,7 @@ func refreshObjectWantempSystemVirtualWanLinkServiceSla(d *schema.ResourceData, 
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck(o["health-check"], d, "health_check")); err != nil {
+	if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck3rdl(o["health-check"], d, "health_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemVirtualWanLinkServiceSla-HealthCheck"); ok {
 			if err = d.Set("health_check", vv); err != nil {
 				return fmt.Errorf("Error reading health_check: %v", err)
@@ -245,7 +245,7 @@ func refreshObjectWantempSystemVirtualWanLinkServiceSla(d *schema.ResourceData, 
 		}
 	}
 
-	if err = d.Set("fosid", flattenWantempSystemVirtualWanLinkServiceSlaId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenWantempSystemVirtualWanLinkServiceSlaId3rdl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "WantempSystemVirtualWanLinkServiceSla-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -264,11 +264,11 @@ func flattenWantempSystemVirtualWanLinkServiceSlaFortiTestDebug(d *schema.Resour
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemVirtualWanLinkServiceSlaHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSlaHealthCheck3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSlaId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -276,7 +276,7 @@ func getObjectWantempSystemVirtualWanLinkServiceSla(d *schema.ResourceData) (*ma
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemVirtualWanLinkServiceSlaHealthCheck(d, v, "health_check")
+		t, err := expandWantempSystemVirtualWanLinkServiceSlaHealthCheck3rdl(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -285,7 +285,7 @@ func getObjectWantempSystemVirtualWanLinkServiceSla(d *schema.ResourceData) (*ma
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandWantempSystemVirtualWanLinkServiceSlaId(d, v, "fosid")
+		t, err := expandWantempSystemVirtualWanLinkServiceSlaId3rdl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

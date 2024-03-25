@@ -127,26 +127,26 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionRead(d *schema.ResourceD
 	return nil
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("retention", flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention(o["retention"], d, "retention")); err != nil {
+	if err = d.Set("retention", flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention2edl(o["retention"], d, "retention")); err != nil {
 		if vv, ok := fortiAPIPatch(o["retention"], "SystemAutoDeleteQuarantineFilesAutoDeletion-Retention"); ok {
 			if err = d.Set("retention", vv); err != nil {
 				return fmt.Errorf("Error reading retention: %v", err)
@@ -156,7 +156,7 @@ func refreshObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.Resource
 		}
 	}
 
-	if err = d.Set("runat", flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat(o["runat"], d, "runat")); err != nil {
+	if err = d.Set("runat", flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat2edl(o["runat"], d, "runat")); err != nil {
 		if vv, ok := fortiAPIPatch(o["runat"], "SystemAutoDeleteQuarantineFilesAutoDeletion-Runat"); ok {
 			if err = d.Set("runat", vv); err != nil {
 				return fmt.Errorf("Error reading runat: %v", err)
@@ -166,7 +166,7 @@ func refreshObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.Resource
 		}
 	}
 
-	if err = d.Set("status", flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemAutoDeleteQuarantineFilesAutoDeletion-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -176,7 +176,7 @@ func refreshObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.Resource
 		}
 	}
 
-	if err = d.Set("value", flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue(o["value"], d, "value")); err != nil {
+	if err = d.Set("value", flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue2edl(o["value"], d, "value")); err != nil {
 		if vv, ok := fortiAPIPatch(o["value"], "SystemAutoDeleteQuarantineFilesAutoDeletion-Value"); ok {
 			if err = d.Set("value", vv); err != nil {
 				return fmt.Errorf("Error reading value: %v", err)
@@ -195,19 +195,19 @@ func flattenSystemAutoDeleteQuarantineFilesAutoDeletionFortiTestDebug(d *schema.
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -215,7 +215,7 @@ func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {
-		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention(d, v, "retention")
+		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention2edl(d, v, "retention")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -224,7 +224,7 @@ func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData
 	}
 
 	if v, ok := d.GetOk("runat"); ok || d.HasChange("runat") {
-		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat(d, v, "runat")
+		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat2edl(d, v, "runat")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus(d, v, "status")
+		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData
 	}
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
-		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionValue(d, v, "value")
+		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionValue2edl(d, v, "value")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

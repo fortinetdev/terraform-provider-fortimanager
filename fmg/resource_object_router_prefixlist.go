@@ -81,7 +81,7 @@ func resourceObjectRouterPrefixList() *schema.Resource {
 							Optional: true,
 						},
 						"prefix": &schema.Schema{
-							Type:     schema.TypeList,
+							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
@@ -456,7 +456,7 @@ func expandObjectRouterPrefixListRuleLe(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectRouterPrefixListRulePrefix(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectRouterPrefixList(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -183,19 +183,19 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeRead(d *schema.ResourceData, m i
 	return nil
 }
 
-func flattenObjectSystemNpuNpQueuesEthernetTypeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesEthernetTypeName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesEthernetTypeQueue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesEthernetTypeQueue3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesEthernetTypeType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesEthernetTypeType3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesEthernetTypeWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesEthernetTypeWeight3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -206,7 +206,7 @@ func refreshObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData, o 
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("name", flattenObjectSystemNpuNpQueuesEthernetTypeName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectSystemNpuNpQueuesEthernetTypeName3rdl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSystemNpuNpQueuesEthernetType-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -216,7 +216,7 @@ func refreshObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesEthernetTypeQueue(o["queue"], d, "queue")); err != nil {
+	if err = d.Set("queue", flattenObjectSystemNpuNpQueuesEthernetTypeQueue3rdl(o["queue"], d, "queue")); err != nil {
 		if vv, ok := fortiAPIPatch(o["queue"], "ObjectSystemNpuNpQueuesEthernetType-Queue"); ok {
 			if err = d.Set("queue", vv); err != nil {
 				return fmt.Errorf("Error reading queue: %v", err)
@@ -226,7 +226,7 @@ func refreshObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("type", flattenObjectSystemNpuNpQueuesEthernetTypeType(o["type"], d, "type")); err != nil {
+	if err = d.Set("type", flattenObjectSystemNpuNpQueuesEthernetTypeType3rdl(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectSystemNpuNpQueuesEthernetType-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
 				return fmt.Errorf("Error reading type: %v", err)
@@ -236,7 +236,7 @@ func refreshObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData, o 
 		}
 	}
 
-	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesEthernetTypeWeight(o["weight"], d, "weight")); err != nil {
+	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesEthernetTypeWeight3rdl(o["weight"], d, "weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weight"], "ObjectSystemNpuNpQueuesEthernetType-Weight"); ok {
 			if err = d.Set("weight", vv); err != nil {
 				return fmt.Errorf("Error reading weight: %v", err)
@@ -255,19 +255,19 @@ func flattenObjectSystemNpuNpQueuesEthernetTypeFortiTestDebug(d *schema.Resource
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuNpQueuesEthernetTypeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesEthernetTypeName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesEthernetTypeQueue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesEthernetTypeQueue3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesEthernetTypeType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesEthernetTypeType3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesEthernetTypeWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesEthernetTypeWeight3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -275,7 +275,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectSystemNpuNpQueuesEthernetTypeName(d, v, "name")
+		t, err := expandObjectSystemNpuNpQueuesEthernetTypeName3rdl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -284,7 +284,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
-		t, err := expandObjectSystemNpuNpQueuesEthernetTypeQueue(d, v, "queue")
+		t, err := expandObjectSystemNpuNpQueuesEthernetTypeQueue3rdl(d, v, "queue")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -293,7 +293,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
-		t, err := expandObjectSystemNpuNpQueuesEthernetTypeType(d, v, "type")
+		t, err := expandObjectSystemNpuNpQueuesEthernetTypeType3rdl(d, v, "type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -302,7 +302,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 	}
 
 	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
-		t, err := expandObjectSystemNpuNpQueuesEthernetTypeWeight(d, v, "weight")
+		t, err := expandObjectSystemNpuNpQueuesEthernetTypeWeight3rdl(d, v, "weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

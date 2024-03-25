@@ -1,4 +1,38 @@
-## 1.11.0 (Unreleased)
+## 1.12.0 (Unreleased)
+
+## 1.11.0 (Mar 25, 2024)
+
+IMPROVEMENTS:
+* Support FortiManager v6.4.14, v7.0.11, v7.4.2;
+* Fix issue of force replacement been triggered when the key been provided after resource been created;
+* Fix issue of variable cost could not set to metadata in string type;
+* Fix inconsistent return type issue; 
+* Fix non-escape mkey issue;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_diameterfilter_profile`
+* **New Resource:** `fortimanager_object_firewall_accessproxysshclientcert`
+* **New Resource:** `fortimanager_object_firewall_accessproxysshclientcert_certextension`
+* **New Resource:** `fortimanager_object_firewall_accessproxysshclientcert_move`
+* **New Resource:** `fortimanager_object_firewall_vip6_quic`
+* **New Resource:** `fortimanager_object_firewall_vip_gslbpublicips`
+* **New Resource:** `fortimanager_object_sctpfilter_profile`
+* **New Resource:** `fortimanager_object_sctpfilter_profile_ppidfilters`
+* **New Resource:** `fortimanager_object_switchcontroller_managedswitch_vlan`
+* **New Resource:** `fortimanager_object_system_npu_nputcam`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_data`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_mask`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_miract`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_priact`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_sact`
+* **New Resource:** `fortimanager_object_system_npu_nputcam_tact`
+* **New Resource:** `fortimanager_object_videofilter_keyword`
+* **New Resource:** `fortimanager_object_videofilter_keyword_word`
+* **New Resource:** `fortimanager_object_videofilter_profile_filters`
+* **New Resource:** `fortimanager_object_videofilter_profile_filters_move`
+* **New Resource:** `fortimanager_object_videofilter_youtubekey`
+* **New Resource:** `fortimanager_system_admin_profile_writepasswdprofiles`
+* **New Resource:** `fortimanager_system_admin_profile_writepasswduserlist`
 
 ## 1.10.0 (Dec 22, 2023)
 

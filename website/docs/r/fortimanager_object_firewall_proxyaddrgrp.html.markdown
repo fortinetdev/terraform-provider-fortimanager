@@ -10,7 +10,7 @@ description: |-
 Configure web proxy address group.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`tagging`: `fortimanager_object_firewall_proxyaddrgrp_tagging`
+>- `tagging`: `fortimanager_object_firewall_proxyaddrgrp_tagging`
 
 
 

@@ -111,6 +111,10 @@ func resourceObjectCasbUserActivityControlOptions() *schema.Resource {
 					},
 				},
 			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -388,6 +392,10 @@ func flattenObjectCasbUserActivityControlOptionsOperationsValues2edl(v interface
 	return flattenStringList(v)
 }
 
+func flattenObjectCasbUserActivityControlOptionsStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectCasbUserActivityControlOptions(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -430,6 +438,16 @@ func refreshObjectObjectCasbUserActivityControlOptions(d *schema.ResourceData, o
 					return fmt.Errorf("Error reading operations: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("status", flattenObjectCasbUserActivityControlOptionsStatus2edl(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectCasbUserActivityControlOptions-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
 		}
 	}
 
@@ -560,6 +578,10 @@ func expandObjectCasbUserActivityControlOptionsOperationsValues2edl(d *schema.Re
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectCasbUserActivityControlOptionsStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectCasbUserActivityControlOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -578,6 +600,15 @@ func getObjectObjectCasbUserActivityControlOptions(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["operations"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
+		t, err := expandObjectCasbUserActivityControlOptionsStatus2edl(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
 		}
 	}
 

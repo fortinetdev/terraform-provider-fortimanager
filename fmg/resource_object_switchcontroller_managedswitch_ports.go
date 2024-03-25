@@ -608,7 +608,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsAggregatorMode2edl(v interfa
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsAllowedVlans2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsAllowedVlansAll2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -763,7 +763,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsIgmpsFloodTraffic2edl(v inte
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsInterfaceTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsIpSourceGuard2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -983,7 +983,7 @@ func flattenObjectSwitchControllerManagedSwitchPortsType2edl(v interface{}, d *s
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsUntaggedVlans2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSwitchControllerManagedSwitchPortsVlan2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1887,7 +1887,7 @@ func expandObjectSwitchControllerManagedSwitchPortsAggregatorMode2edl(d *schema.
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsAllowedVlans2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsAllowedVlansAll2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2034,7 +2034,7 @@ func expandObjectSwitchControllerManagedSwitchPortsIgmpsFloodTraffic2edl(d *sche
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsInterfaceTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsIpSourceGuard2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2254,7 +2254,7 @@ func expandObjectSwitchControllerManagedSwitchPortsType2edl(d *schema.ResourceDa
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsUntaggedVlans2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSwitchControllerManagedSwitchPortsVlan2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

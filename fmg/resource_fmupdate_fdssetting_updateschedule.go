@@ -128,26 +128,26 @@ func resourceFmupdateFdsSettingUpdateScheduleRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleDay2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleFrequency(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleFrequency2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingUpdateScheduleTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingUpdateScheduleTime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
 func refreshObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("day", flattenFmupdateFdsSettingUpdateScheduleDay(o["day"], d, "day")); err != nil {
+	if err = d.Set("day", flattenFmupdateFdsSettingUpdateScheduleDay2edl(o["day"], d, "day")); err != nil {
 		if vv, ok := fortiAPIPatch(o["day"], "FmupdateFdsSettingUpdateSchedule-Day"); ok {
 			if err = d.Set("day", vv); err != nil {
 				return fmt.Errorf("Error reading day: %v", err)
@@ -157,7 +157,7 @@ func refreshObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("frequency", flattenFmupdateFdsSettingUpdateScheduleFrequency(o["frequency"], d, "frequency")); err != nil {
+	if err = d.Set("frequency", flattenFmupdateFdsSettingUpdateScheduleFrequency2edl(o["frequency"], d, "frequency")); err != nil {
 		if vv, ok := fortiAPIPatch(o["frequency"], "FmupdateFdsSettingUpdateSchedule-Frequency"); ok {
 			if err = d.Set("frequency", vv); err != nil {
 				return fmt.Errorf("Error reading frequency: %v", err)
@@ -167,7 +167,7 @@ func refreshObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("status", flattenFmupdateFdsSettingUpdateScheduleStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenFmupdateFdsSettingUpdateScheduleStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "FmupdateFdsSettingUpdateSchedule-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -177,7 +177,7 @@ func refreshObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("time", flattenFmupdateFdsSettingUpdateScheduleTime(o["time"], d, "time")); err != nil {
+	if err = d.Set("time", flattenFmupdateFdsSettingUpdateScheduleTime2edl(o["time"], d, "time")); err != nil {
 		if vv, ok := fortiAPIPatch(o["time"], "FmupdateFdsSettingUpdateSchedule-Time"); ok {
 			if err = d.Set("time", vv); err != nil {
 				return fmt.Errorf("Error reading time: %v", err)
@@ -196,19 +196,19 @@ func flattenFmupdateFdsSettingUpdateScheduleFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFdsSettingUpdateScheduleDay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleDay2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleFrequency(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleFrequency2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingUpdateScheduleTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingUpdateScheduleTime2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -216,7 +216,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("day"); ok || d.HasChange("day") {
-		t, err := expandFmupdateFdsSettingUpdateScheduleDay(d, v, "day")
+		t, err := expandFmupdateFdsSettingUpdateScheduleDay2edl(d, v, "day")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -225,7 +225,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("frequency"); ok || d.HasChange("frequency") {
-		t, err := expandFmupdateFdsSettingUpdateScheduleFrequency(d, v, "frequency")
+		t, err := expandFmupdateFdsSettingUpdateScheduleFrequency2edl(d, v, "frequency")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -234,7 +234,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandFmupdateFdsSettingUpdateScheduleStatus(d, v, "status")
+		t, err := expandFmupdateFdsSettingUpdateScheduleStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -243,7 +243,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("time"); ok || d.HasChange("time") {
-		t, err := expandFmupdateFdsSettingUpdateScheduleTime(d, v, "time")
+		t, err := expandFmupdateFdsSettingUpdateScheduleTime2edl(d, v, "time")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

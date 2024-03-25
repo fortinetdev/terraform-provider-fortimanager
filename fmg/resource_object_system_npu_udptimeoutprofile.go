@@ -172,11 +172,11 @@ func resourceObjectSystemNpuUdpTimeoutProfileRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenObjectSystemNpuUdpTimeoutProfileId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuUdpTimeoutProfileId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuUdpTimeoutProfileUdpIdle(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuUdpTimeoutProfileUdpIdle2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -187,7 +187,7 @@ func refreshObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("fosid", flattenObjectSystemNpuUdpTimeoutProfileId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectSystemNpuUdpTimeoutProfileId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectSystemNpuUdpTimeoutProfile-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -197,7 +197,7 @@ func refreshObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("udp_idle", flattenObjectSystemNpuUdpTimeoutProfileUdpIdle(o["udp-idle"], d, "udp_idle")); err != nil {
+	if err = d.Set("udp_idle", flattenObjectSystemNpuUdpTimeoutProfileUdpIdle2edl(o["udp-idle"], d, "udp_idle")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-idle"], "ObjectSystemNpuUdpTimeoutProfile-UdpIdle"); ok {
 			if err = d.Set("udp_idle", vv); err != nil {
 				return fmt.Errorf("Error reading udp_idle: %v", err)
@@ -216,11 +216,11 @@ func flattenObjectSystemNpuUdpTimeoutProfileFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuUdpTimeoutProfileId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuUdpTimeoutProfileId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuUdpTimeoutProfileUdpIdle(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuUdpTimeoutProfileUdpIdle2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -228,7 +228,7 @@ func getObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandObjectSystemNpuUdpTimeoutProfileId(d, v, "fosid")
+		t, err := expandObjectSystemNpuUdpTimeoutProfileId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -237,7 +237,7 @@ func getObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("udp_idle"); ok || d.HasChange("udp_idle") {
-		t, err := expandObjectSystemNpuUdpTimeoutProfileUdpIdle(d, v, "udp_idle")
+		t, err := expandObjectSystemNpuUdpTimeoutProfileUdpIdle2edl(d, v, "udp_idle")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

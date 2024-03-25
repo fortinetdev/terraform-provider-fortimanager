@@ -10,9 +10,9 @@ description: |-
 Configure VoIP profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`msrp`: `fortimanager_object_voip_profile_msrp`
-`sccp`: `fortimanager_object_voip_profile_sccp`
-`sip`: `fortimanager_object_voip_profile_sip`
+>- `msrp`: `fortimanager_object_voip_profile_msrp`
+>- `sccp`: `fortimanager_object_voip_profile_sccp`
+>- `sip`: `fortimanager_object_voip_profile_sip`
 
 
 

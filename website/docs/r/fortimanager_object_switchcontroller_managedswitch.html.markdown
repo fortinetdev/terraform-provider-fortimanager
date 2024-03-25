@@ -10,10 +10,11 @@ description: |-
 Configure FortiSwitch devices that are managed by this FortiGate.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_command`: `fortimanager_object_switchcontroller_managedswitch_customcommand`
-`dhcp_snooping_static_client`: `fortimanager_object_switchcontroller_managedswitch_dhcpsnoopingstaticclient`
-`ports`: `fortimanager_object_switchcontroller_managedswitch_ports`
-`route_offload_router`: `fortimanager_object_switchcontroller_managedswitch_routeoffloadrouter`
+>- `custom_command`: `fortimanager_object_switchcontroller_managedswitch_customcommand`
+>- `dhcp_snooping_static_client`: `fortimanager_object_switchcontroller_managedswitch_dhcpsnoopingstaticclient`
+>- `ports`: `fortimanager_object_switchcontroller_managedswitch_ports`
+>- `route_offload_router`: `fortimanager_object_switchcontroller_managedswitch_routeoffloadrouter`
+>- `vlan`: `fortimanager_object_switchcontroller_managedswitch_vlan`
 
 
 
@@ -50,6 +51,7 @@ The following arguments are supported:
 * `l3_discovered` - L3-Discovered.
 * `mclag_igmp_snooping_aware` - Enable/disable MCLAG IGMP-snooping awareness. Valid values: `disable`, `enable`.
 
+* `mgmt_mode` - FortiLink management mode.
 * `name` - Managed-switch name.
 * `override_snmp_community` - Enable/disable overriding the global SNMP communities. Valid values: `disable`, `enable`.
 
@@ -64,9 +66,14 @@ The following arguments are supported:
 * `ptp_profile` - PTP profile configuration.
 * `ptp_status` - Enable/disable PTP profile on this FortiSwitch. Valid values: `disable`, `enable`.
 
+* `purdue_level` - Purdue Level of this FortiSwitch. Valid values: `1`, `2`, `3`, `4`, `5`, `1.5`, `2.5`, `3.5`, `5.5`.
+
 * `qos_drop_policy` - Set QoS drop-policy. Valid values: `taildrop`, `random-early-detection`.
 
 * `qos_red_probability` - Set QoS RED/WRED drop probability.
+* `radius_nas_ip` - NAS-IP address.
+* `radius_nas_ip_override` - Use locally defined NAS-IP. Valid values: `disable`, `enable`.
+
 * `route_offload` - Enable/disable route offload on this FortiSwitch. Valid values: `disable`, `enable`.
 
 * `route_offload_mclag` - Enable/disable route offload MCLAG on this FortiSwitch. Valid values: `disable`, `enable`.
@@ -75,6 +82,8 @@ The following arguments are supported:
 * `switch_dhcp_opt43_key` - DHCP option43 key.
 * `switch_id` - Managed-switch id.
 * `tdr_supported` - Tdr-Supported.
+* `tunnel_discovered` - Tunnel-Discovered.
+* `vlan` - Vlan. The structure of `vlan` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `custom_command` block supports:
@@ -230,6 +239,11 @@ The `dhcp_snoop_option82_override` block supports:
 The `route_offload_router` block supports:
 
 * `router_ip` - Router IP address.
+* `vlan_name` - VLAN name.
+
+The `vlan` block supports:
+
+* `assignment_priority` - 802.1x Radius (Tunnel-Private-Group-Id) VLANID assign-by-name priority. A smaller value has a higher priority.
 * `vlan_name` - VLAN name.
 
 

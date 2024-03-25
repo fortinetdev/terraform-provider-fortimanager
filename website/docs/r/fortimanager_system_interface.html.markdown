@@ -10,8 +10,8 @@ description: |-
 Interface configuration.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`ipv6`: `fortimanager_system_interface_ipv6`
-`member`: `fortimanager_system_interface_member`
+>- `ipv6`: `fortimanager_system_interface_ipv6`
+>- `member`: `fortimanager_system_interface_member`
 
 
 
@@ -60,7 +60,12 @@ The following arguments are supported:
 * `alias` - Alias.
 * `allowaccess` - Allow management access to interface. ping - PING access. https - HTTPS access. ssh - SSH access. snmp - SNMP access. http - HTTP access. webservice - Web service access. https-logging - Logging over HTTPS access. Valid values: `ping`, `https`, `ssh`, `snmp`, `http`, `webservice`, `https-logging`.
 
+* `defaultgw` - Enable/disable default gateway. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `description` - Description.
+* `dhcp_client_identifier` - DHCP client identifier.
+* `dns_server_override` - Enable/disable use DNS acquired by DHCP or PPPoE. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `interface` - Underlying interface name.
 * `ip` - IP address of interface.
 * `ipv6` - Ipv6. The structure of `ipv6` block is documented below.
@@ -75,7 +80,11 @@ The following arguments are supported:
 * `min_links` - Minimum number of aggregated ports that must be up.
 * `min_links_down` - Action to take when less than the configured minimum number of links are active. operational - Set the aggregate operationally down. administrative - Set the aggregate administratively down. Valid values: `operational`, `administrative`.
 
+* `mode` - Addressing mode (static, DHCP). static - Static setting. dhcp - External DHCP client mode. Valid values: `static`, `dhcp`.
+
 * `mtu` - Maximum transportation unit(68 - 9000).
+* `mtu_override` - Enable/disable use MTU acquired by DHCP or PPPoE. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `name` - Interface name.
 * `rating_service_ip` - IP address for fgt rating service, must be same subnet with interface ip.
 * `serviceaccess` - Allow service access to interface. fgtupdates - FortiGate updates access. fclupdates - FortiClient updates access. webfilter-antispam - Web filtering and antispam access. Valid values: `fgtupdates`, `fclupdates`, `webfilter-antispam`.

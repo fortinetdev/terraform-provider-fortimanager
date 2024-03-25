@@ -504,7 +504,7 @@ func flattenObjectUserTacacsDynamicMappingAuthorization(v interface{}, d *schema
 }
 
 func flattenObjectUserTacacsDynamicMappingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserTacacsDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -884,7 +884,7 @@ func expandObjectUserTacacsDynamicMappingAuthorization(d *schema.ResourceData, v
 }
 
 func expandObjectUserTacacsDynamicMappingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserTacacsDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

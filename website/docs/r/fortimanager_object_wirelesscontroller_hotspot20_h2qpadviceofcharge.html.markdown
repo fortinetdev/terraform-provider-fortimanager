@@ -10,7 +10,7 @@ description: |-
 Configure advice of charge.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`aoc_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge_aoclist`
+>- `aoc_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge_aoclist`
 
 
 

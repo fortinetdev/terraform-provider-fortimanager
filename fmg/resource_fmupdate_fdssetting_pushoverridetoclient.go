@@ -139,7 +139,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientRead(d *schema.ResourceData, 
 	return nil
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -160,19 +160,19 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfpb(i["id"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpId2edl(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfpb(i["ip"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIp2edl(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(i["port"], d, pre_append)
+			v := flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPort2edl(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Port")
 		}
 
@@ -186,19 +186,19 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(v interface{}, 
 	return result
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfpb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfpb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingPushOverrideToClientStatusFfpb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingPushOverrideToClientStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -210,7 +210,7 @@ func refreshObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData,
 	}
 
 	if isImportTable() {
-		if err = d.Set("announce_ip", flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(o["announce-ip"], d, "announce_ip")); err != nil {
+		if err = d.Set("announce_ip", flattenFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(o["announce-ip"], d, "announce_ip")); err != nil {
 			if vv, ok := fortiAPIPatch(o["announce-ip"], "FmupdateFdsSettingPushOverrideToClient-AnnounceIp"); ok {
 				if err = d.Set("announce_ip", vv); err != nil {
 					return fmt.Errorf("Error reading announce_ip: %v", err)
@@ -221,7 +221,7 @@ func refreshObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData,
 		}
 	} else {
 		if _, ok := d.GetOk("announce_ip"); ok {
-			if err = d.Set("announce_ip", flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(o["announce-ip"], d, "announce_ip")); err != nil {
+			if err = d.Set("announce_ip", flattenFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(o["announce-ip"], d, "announce_ip")); err != nil {
 				if vv, ok := fortiAPIPatch(o["announce-ip"], "FmupdateFdsSettingPushOverrideToClient-AnnounceIp"); ok {
 					if err = d.Set("announce_ip", vv); err != nil {
 						return fmt.Errorf("Error reading announce_ip: %v", err)
@@ -233,7 +233,7 @@ func refreshObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData,
 		}
 	}
 
-	if err = d.Set("status", flattenFmupdateFdsSettingPushOverrideToClientStatusFfpb(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenFmupdateFdsSettingPushOverrideToClientStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "FmupdateFdsSettingPushOverrideToClient-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -252,7 +252,7 @@ func flattenFmupdateFdsSettingPushOverrideToClientFortiTestDebug(d *schema.Resou
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -268,17 +268,17 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d *schema.Resour
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfpb(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpId2edl(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfpb(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIp2edl(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(d, i["port"], pre_append)
+			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPort2edl(d, i["port"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -291,19 +291,19 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d *schema.Resour
 	return result, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfpb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfpb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingPushOverrideToClientStatusFfpb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingPushOverrideToClientStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -311,7 +311,7 @@ func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData) (*m
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("announce_ip"); ok || d.HasChange("announce_ip") {
-		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d, v, "announce_ip")
+		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(d, v, "announce_ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -320,7 +320,7 @@ func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData) (*m
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandFmupdateFdsSettingPushOverrideToClientStatusFfpb(d, v, "status")
+		t, err := expandFmupdateFdsSettingPushOverrideToClientStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

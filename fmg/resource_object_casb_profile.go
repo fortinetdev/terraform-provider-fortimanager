@@ -139,6 +139,11 @@ func resourceObjectCasbProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"tenant_control": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -347,6 +352,12 @@ func flattenObjectCasbProfileSaasApplication(v interface{}, d *schema.ResourceDa
 			tmp["safe_search_control"] = fortiAPISubPartPatch(v, "ObjectCasbProfile-SaasApplication-SafeSearchControl")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectCasbProfile-SaasApplication-Status")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tenant_control"
 		if _, ok := i["tenant-control"]; ok {
 			v := flattenObjectCasbProfileSaasApplicationTenantControl(i["tenant-control"], d, pre_append)
@@ -546,6 +557,10 @@ func flattenObjectCasbProfileSaasApplicationSafeSearchControl(v interface{}, d *
 	return flattenStringList(v)
 }
 
+func flattenObjectCasbProfileSaasApplicationStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbProfileSaasApplicationTenantControl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -674,6 +689,11 @@ func expandObjectCasbProfileSaasApplication(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "safe_search_control"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["safe-search-control"], _ = expandObjectCasbProfileSaasApplicationSafeSearchControl(d, i["safe_search_control"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["status"], _ = expandObjectCasbProfileSaasApplicationStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tenant_control"
@@ -854,6 +874,10 @@ func expandObjectCasbProfileSaasApplicationSafeSearch(d *schema.ResourceData, v 
 
 func expandObjectCasbProfileSaasApplicationSafeSearchControl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCasbProfileSaasApplicationTenantControl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

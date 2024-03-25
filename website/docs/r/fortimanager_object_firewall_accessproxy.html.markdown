@@ -10,10 +10,10 @@ description: |-
 Configure Access Proxy.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`api_gateway`: `fortimanager_object_firewall_accessproxy_apigateway`
-`api_gateway6`: `fortimanager_object_firewall_accessproxy_apigateway6`
-`realservers`: `fortimanager_object_firewall_accessproxy_realservers`
-`server_pubkey_auth_settings`: `fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings`
+>- `api_gateway`: `fortimanager_object_firewall_accessproxy_apigateway`
+>- `api_gateway6`: `fortimanager_object_firewall_accessproxy_apigateway6`
+>- `realservers`: `fortimanager_object_firewall_accessproxy_realservers`
+>- `server_pubkey_auth_settings`: `fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings`
 
 
 

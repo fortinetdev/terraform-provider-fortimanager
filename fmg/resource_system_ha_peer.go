@@ -155,30 +155,30 @@ func resourceSystemHaPeerRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func flattenSystemHaPeerId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaPeerId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaPeerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaPeerIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaPeerIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaPeerIp62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaPeerSerialNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaPeerSerialNumber2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemHaPeerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemHaPeerStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemHaPeer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("fosid", flattenSystemHaPeerId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenSystemHaPeerId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemHaPeer-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -188,7 +188,7 @@ func refreshObjectSystemHaPeer(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ip", flattenSystemHaPeerIp(o["ip"], d, "ip")); err != nil {
+	if err = d.Set("ip", flattenSystemHaPeerIp2edl(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "SystemHaPeer-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {
 				return fmt.Errorf("Error reading ip: %v", err)
@@ -198,7 +198,7 @@ func refreshObjectSystemHaPeer(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ip6", flattenSystemHaPeerIp6(o["ip6"], d, "ip6")); err != nil {
+	if err = d.Set("ip6", flattenSystemHaPeerIp62edl(o["ip6"], d, "ip6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip6"], "SystemHaPeer-Ip6"); ok {
 			if err = d.Set("ip6", vv); err != nil {
 				return fmt.Errorf("Error reading ip6: %v", err)
@@ -208,7 +208,7 @@ func refreshObjectSystemHaPeer(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("serial_number", flattenSystemHaPeerSerialNumber(o["serial-number"], d, "serial_number")); err != nil {
+	if err = d.Set("serial_number", flattenSystemHaPeerSerialNumber2edl(o["serial-number"], d, "serial_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["serial-number"], "SystemHaPeer-SerialNumber"); ok {
 			if err = d.Set("serial_number", vv); err != nil {
 				return fmt.Errorf("Error reading serial_number: %v", err)
@@ -218,7 +218,7 @@ func refreshObjectSystemHaPeer(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("status", flattenSystemHaPeerStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenSystemHaPeerStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "SystemHaPeer-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -237,23 +237,23 @@ func flattenSystemHaPeerFortiTestDebug(d *schema.ResourceData, fosdebugsn int, f
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemHaPeerId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaPeerId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaPeerIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaPeerIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaPeerIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaPeerIp62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaPeerSerialNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaPeerSerialNumber2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemHaPeerStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemHaPeerStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -261,7 +261,7 @@ func getObjectSystemHaPeer(d *schema.ResourceData) (*map[string]interface{}, err
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandSystemHaPeerId(d, v, "fosid")
+		t, err := expandSystemHaPeerId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -270,7 +270,7 @@ func getObjectSystemHaPeer(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
-		t, err := expandSystemHaPeerIp(d, v, "ip")
+		t, err := expandSystemHaPeerIp2edl(d, v, "ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -279,7 +279,7 @@ func getObjectSystemHaPeer(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ip6"); ok || d.HasChange("ip6") {
-		t, err := expandSystemHaPeerIp6(d, v, "ip6")
+		t, err := expandSystemHaPeerIp62edl(d, v, "ip6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -288,7 +288,7 @@ func getObjectSystemHaPeer(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("serial_number"); ok || d.HasChange("serial_number") {
-		t, err := expandSystemHaPeerSerialNumber(d, v, "serial_number")
+		t, err := expandSystemHaPeerSerialNumber2edl(d, v, "serial_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -297,7 +297,7 @@ func getObjectSystemHaPeer(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandSystemHaPeerStatus(d, v, "status")
+		t, err := expandSystemHaPeerStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

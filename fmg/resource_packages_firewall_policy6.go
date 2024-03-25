@@ -616,11 +616,11 @@ func flattenPackagesFirewallPolicy6AntiReplay(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesFirewallPolicy6AppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6AppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6Application(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -652,11 +652,11 @@ func flattenPackagesFirewallPolicy6Comments(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy6CustomLogFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6Devices(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6DiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -700,7 +700,7 @@ func flattenPackagesFirewallPolicy6Dsri(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenPackagesFirewallPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6DstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -708,7 +708,7 @@ func flattenPackagesFirewallPolicy6DstaddrNegate(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallPolicy6Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6EmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -724,7 +724,7 @@ func flattenPackagesFirewallPolicy6Fixedport(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy6FssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6GlobalLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -732,7 +732,7 @@ func flattenPackagesFirewallPolicy6GlobalLabel(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesFirewallPolicy6Groups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6HttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -812,7 +812,7 @@ func flattenPackagesFirewallPolicy6Policyid(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy6Poolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6ProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -844,7 +844,7 @@ func flattenPackagesFirewallPolicy6SendDenyPacket(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallPolicy6Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6ServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -860,7 +860,7 @@ func flattenPackagesFirewallPolicy6SpamfilterProfile(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6SrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -868,7 +868,7 @@ func flattenPackagesFirewallPolicy6SrcaddrNegate(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallPolicy6Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6SshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -884,7 +884,7 @@ func flattenPackagesFirewallPolicy6SslMirror(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy6SslMirrorIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6SslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -932,11 +932,11 @@ func flattenPackagesFirewallPolicy6TrafficShaperReverse(v interface{}, d *schema
 }
 
 func flattenPackagesFirewallPolicy6UrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6Users(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy6UtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1990,11 +1990,11 @@ func expandPackagesFirewallPolicy6AntiReplay(d *schema.ResourceData, v interface
 }
 
 func expandPackagesFirewallPolicy6AppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6AppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6Application(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2026,11 +2026,11 @@ func expandPackagesFirewallPolicy6Comments(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesFirewallPolicy6CustomLogFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6Devices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6DiffservForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2074,7 +2074,7 @@ func expandPackagesFirewallPolicy6Dsri(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandPackagesFirewallPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6DstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2082,7 +2082,7 @@ func expandPackagesFirewallPolicy6DstaddrNegate(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallPolicy6Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6EmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2098,7 +2098,7 @@ func expandPackagesFirewallPolicy6Fixedport(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy6FssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6GlobalLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2106,7 +2106,7 @@ func expandPackagesFirewallPolicy6GlobalLabel(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallPolicy6Groups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6HttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2186,7 +2186,7 @@ func expandPackagesFirewallPolicy6Policyid(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesFirewallPolicy6Poolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6ProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2218,7 +2218,7 @@ func expandPackagesFirewallPolicy6SendDenyPacket(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallPolicy6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6ServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2234,7 +2234,7 @@ func expandPackagesFirewallPolicy6SpamfilterProfile(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6SrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2242,7 +2242,7 @@ func expandPackagesFirewallPolicy6SrcaddrNegate(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallPolicy6Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6SshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2258,7 +2258,7 @@ func expandPackagesFirewallPolicy6SslMirror(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy6SslMirrorIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6SslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2306,11 +2306,11 @@ func expandPackagesFirewallPolicy6TrafficShaperReverse(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallPolicy6UrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6Users(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy6UtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

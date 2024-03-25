@@ -65,7 +65,7 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -81,7 +81,7 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"intf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -96,7 +96,7 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -107,7 +107,7 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -517,7 +517,7 @@ func expandPackagesFirewallLocalInPolicyComments(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallLocalInPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallLocalInPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -529,7 +529,7 @@ func expandPackagesFirewallLocalInPolicyHaMgmtIntfOnly(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallLocalInPolicyIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallLocalInPolicyPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -541,7 +541,7 @@ func expandPackagesFirewallLocalInPolicySchedule(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallLocalInPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallLocalInPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -549,7 +549,7 @@ func expandPackagesFirewallLocalInPolicyServiceNegate(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallLocalInPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallLocalInPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

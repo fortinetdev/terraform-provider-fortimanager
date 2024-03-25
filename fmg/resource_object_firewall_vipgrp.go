@@ -103,7 +103,7 @@ func resourceObjectFirewallVipgrp() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -625,7 +625,7 @@ func expandObjectFirewallVipgrpDynamicMappingInterface(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallVipgrpDynamicMappingMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipgrpDynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -637,7 +637,7 @@ func expandObjectFirewallVipgrpInterface(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVipgrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVipgrpName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -55,6 +55,11 @@ func resourceSystempLogSyslogdFilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"forti_switch": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cifs": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -303,6 +308,10 @@ func resourceSystempLogSyslogdFilterRead(d *schema.ResourceData, m interface{}) 
 }
 
 func flattenSystempLogSyslogdFilterAnomaly(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempLogSyslogdFilterFortiSwitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -574,6 +583,16 @@ func refreshObjectSystempLogSyslogdFilter(d *schema.ResourceData, o map[string]i
 		}
 	}
 
+	if err = d.Set("forti_switch", flattenSystempLogSyslogdFilterFortiSwitch(o["forti-switch"], d, "forti_switch")); err != nil {
+		if vv, ok := fortiAPIPatch(o["forti-switch"], "SystempLogSyslogdFilter-FortiSwitch"); ok {
+			if err = d.Set("forti_switch", vv); err != nil {
+				return fmt.Errorf("Error reading forti_switch: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading forti_switch: %v", err)
+		}
+	}
+
 	if err = d.Set("cifs", flattenSystempLogSyslogdFilterCifs(o["cifs"], d, "cifs")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs"], "SystempLogSyslogdFilter-Cifs"); ok {
 			if err = d.Set("cifs", vv); err != nil {
@@ -792,6 +811,10 @@ func flattenSystempLogSyslogdFilterFortiTestDebug(d *schema.ResourceData, fosdeb
 }
 
 func expandSystempLogSyslogdFilterAnomaly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogSyslogdFilterFortiSwitch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1031,6 +1054,15 @@ func getObjectSystempLogSyslogdFilter(d *schema.ResourceData) (*map[string]inter
 			return &obj, err
 		} else if t != nil {
 			obj["anomaly"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("forti_switch"); ok || d.HasChange("forti_switch") {
+		t, err := expandSystempLogSyslogdFilterFortiSwitch(d, v, "forti_switch")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["forti-switch"] = t
 		}
 	}
 

@@ -397,11 +397,11 @@ func resourcePackagesGlobalHeaderShapingPolicyRead(d *schema.ResourceData, m int
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyAppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyAppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -445,19 +445,19 @@ func flattenPackagesGlobalHeaderShapingPolicyDiffservcodeRev(v interface{}, d *s
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -469,23 +469,23 @@ func flattenPackagesGlobalHeaderShapingPolicyInternetService(v interface{}, d *s
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -493,23 +493,23 @@ func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrc(v interface{}, d
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -529,7 +529,7 @@ func flattenPackagesGlobalHeaderShapingPolicySchedule(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -537,15 +537,15 @@ func flattenPackagesGlobalHeaderShapingPolicyServiceType(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalHeaderShapingPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -577,11 +577,11 @@ func flattenPackagesGlobalHeaderShapingPolicyTrafficType(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1095,11 +1095,11 @@ func flattenPackagesGlobalHeaderShapingPolicyFortiTestDebug(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalHeaderShapingPolicyAppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyAppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1143,19 +1143,19 @@ func expandPackagesGlobalHeaderShapingPolicyDiffservcodeRev(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalHeaderShapingPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1167,23 +1167,23 @@ func expandPackagesGlobalHeaderShapingPolicyInternetService(d *schema.ResourceDa
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1191,23 +1191,23 @@ func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrc(d *schema.Resourc
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyIpVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1227,7 +1227,7 @@ func expandPackagesGlobalHeaderShapingPolicySchedule(d *schema.ResourceData, v i
 }
 
 func expandPackagesGlobalHeaderShapingPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1235,15 +1235,15 @@ func expandPackagesGlobalHeaderShapingPolicyServiceType(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalHeaderShapingPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1275,11 +1275,11 @@ func expandPackagesGlobalHeaderShapingPolicyTrafficType(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalHeaderShapingPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

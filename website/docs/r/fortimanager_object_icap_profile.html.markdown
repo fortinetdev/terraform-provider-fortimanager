@@ -10,8 +10,8 @@ description: |-
 Configure ICAP profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`icap_headers`: `fortimanager_object_icap_profile_icapheaders`
-`respmod_forward_rules`: `fortimanager_object_icap_profile_respmodforwardrules`
+>- `icap_headers`: `fortimanager_object_icap_profile_icapheaders`
+>- `respmod_forward_rules`: `fortimanager_object_icap_profile_respmodforwardrules`
 
 
 

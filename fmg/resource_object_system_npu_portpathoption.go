@@ -141,7 +141,7 @@ func resourceObjectSystemNpuPortPathOptionRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
-func flattenObjectSystemNpuPortPathOptionPortsUsingNpu(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPortPathOptionPortsUsingNpu2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -152,7 +152,7 @@ func refreshObjectObjectSystemNpuPortPathOption(d *schema.ResourceData, o map[st
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("ports_using_npu", flattenObjectSystemNpuPortPathOptionPortsUsingNpu(o["ports-using-npu"], d, "ports_using_npu")); err != nil {
+	if err = d.Set("ports_using_npu", flattenObjectSystemNpuPortPathOptionPortsUsingNpu2edl(o["ports-using-npu"], d, "ports_using_npu")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ports-using-npu"], "ObjectSystemNpuPortPathOption-PortsUsingNpu"); ok {
 			if err = d.Set("ports_using_npu", vv); err != nil {
 				return fmt.Errorf("Error reading ports_using_npu: %v", err)
@@ -171,7 +171,7 @@ func flattenObjectSystemNpuPortPathOptionFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuPortPathOptionPortsUsingNpu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPortPathOptionPortsUsingNpu2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -179,7 +179,7 @@ func getObjectObjectSystemNpuPortPathOption(d *schema.ResourceData) (*map[string
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ports_using_npu"); ok || d.HasChange("ports_using_npu") {
-		t, err := expandObjectSystemNpuPortPathOptionPortsUsingNpu(d, v, "ports_using_npu")
+		t, err := expandObjectSystemNpuPortPathOptionPortsUsingNpu2edl(d, v, "ports_using_npu")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

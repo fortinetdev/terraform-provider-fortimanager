@@ -11,7 +11,7 @@ Server SSH public key authentication settings.
 
 ~> This resource is a sub resource for variable `server_pubkey_auth_settings` of resource `fortimanager_object_firewall_accessproxy`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`cert_extension`: `fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings_certextension`
+>- `cert_extension`: `fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings_certextension`
 
 
 

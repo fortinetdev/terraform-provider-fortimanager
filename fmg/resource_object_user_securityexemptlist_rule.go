@@ -211,11 +211,11 @@ func resourceObjectUserSecurityExemptListRuleRead(d *schema.ResourceData, m inte
 }
 
 func flattenObjectUserSecurityExemptListRuleDevices2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSecurityExemptListRuleDstaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSecurityExemptListRuleId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -223,11 +223,11 @@ func flattenObjectUserSecurityExemptListRuleId2edl(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserSecurityExemptListRuleService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSecurityExemptListRuleSrcaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectUserSecurityExemptListRule(d *schema.ResourceData, o map[string]interface{}) error {
@@ -297,11 +297,11 @@ func flattenObjectUserSecurityExemptListRuleFortiTestDebug(d *schema.ResourceDat
 }
 
 func expandObjectUserSecurityExemptListRuleDevices2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSecurityExemptListRuleDstaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSecurityExemptListRuleId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -309,11 +309,11 @@ func expandObjectUserSecurityExemptListRuleId2edl(d *schema.ResourceData, v inte
 }
 
 func expandObjectUserSecurityExemptListRuleService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSecurityExemptListRuleSrcaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectUserSecurityExemptListRule(d *schema.ResourceData) (*map[string]interface{}, error) {

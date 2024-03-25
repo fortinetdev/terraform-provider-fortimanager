@@ -10,7 +10,7 @@ description: |-
 Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`policy`: `fortimanager_object_switchcontroller_dynamicportpolicy_policy`
+>- `policy`: `fortimanager_object_switchcontroller_dynamicportpolicy_policy`
 
 
 

@@ -9,10 +9,6 @@ description: |-
 # fortimanager_dvmdb_script_execute
 Run script.
 
-~> This resource is a sub resource for variable `execute` of resource `fortimanager_dvmdb_script`. Conflict and overwrite may occur if use both of them.
-
-
-
 ## Example Usage
 
 ```hcl

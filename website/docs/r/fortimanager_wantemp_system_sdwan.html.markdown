@@ -10,12 +10,12 @@ description: |-
 Configure redundant Internet connections with multiple outbound links and health-check profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`duplication`: `fortimanager_wantemp_system_sdwan_duplication`
-`health_check`: `fortimanager_wantemp_system_sdwan_healthcheck`
-`members`: `fortimanager_wantemp_system_sdwan_members`
-`neighbor`: `fortimanager_wantemp_system_sdwan_neighbor`
-`service`: `fortimanager_wantemp_system_sdwan_service`
-`zone`: `fortimanager_wantemp_system_sdwan_zone`
+>- `duplication`: `fortimanager_wantemp_system_sdwan_duplication`
+>- `health_check`: `fortimanager_wantemp_system_sdwan_healthcheck`
+>- `members`: `fortimanager_wantemp_system_sdwan_members`
+>- `neighbor`: `fortimanager_wantemp_system_sdwan_neighbor`
+>- `service`: `fortimanager_wantemp_system_sdwan_service`
+>- `zone`: `fortimanager_wantemp_system_sdwan_zone`
 
 
 
@@ -161,6 +161,7 @@ The `members` block supports:
 * `spillover_threshold` - Egress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
 * `status` - Enable/disable this interface in the SD-WAN. Valid values: `disable`, `enable`.
 
+* `transport_group` - Measured transport group (0 - 255).
 * `volume_ratio` - Measured volume ratio (this value / sum of all values = percentage of link volume, 1 - 255).
 * `weight` - Weight of this interface for weighted load balancing. (1 - 255) More traffic is directed to interfaces with higher weights.
 * `zone` - Zone name.
@@ -242,6 +243,8 @@ The `service` block supports:
 
 * `shortcut` - Enable/disable shortcut for this service. Valid values: `disable`, `enable`.
 
+* `shortcut_priority` - High priority of ADVPN shortcut for this service. Valid values: `disable`, `enable`, `auto`.
+
 * `shortcut_stickiness` - Enable/disable shortcut-stickiness of ADVPN. Valid values: `disable`, `enable`.
 
 * `route_tag` - IPv4 route map route-tag.
@@ -276,6 +279,9 @@ The `sla` block supports:
 * `id` - SLA ID.
 
 The `zone` block supports:
+
+* `advpn_health_check` - Health check for ADVPN local overlay link quality.
+* `advpn_select` - Enable/disable selection of ADVPN based on SDWAN information. Valid values: `disable`, `enable`.
 
 * `minimum_sla_meet_members` - Minimum number of members which meet SLA when the neighbor is preferred.
 * `name` - Zone name.

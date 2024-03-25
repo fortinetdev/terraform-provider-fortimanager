@@ -10,7 +10,7 @@ description: |-
 Configure firmware management settings.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`upgrade_timeout`: `fortimanager_fmupdate_fwmsetting_upgradetimeout`
+>- `upgrade_timeout`: `fortimanager_fmupdate_fwmsetting_upgradetimeout`
 
 
 
@@ -38,13 +38,21 @@ The following arguments are supported:
 * `fds_failover_fmg` - using fmg local image file is download from fds fails. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `fds_image_timeout` - timer for fgt download image from fortiguard (300-3600s default=1800)
+* `health_check` - do health check after upgrade disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `immx_source` - Configure which of IMMX file to be used for choosing upgrade pach. Default is file for FortiManager fmg - Use IMMX file for FortiManager fgt - Use IMMX file for FortiGate cloud - Use IMMX file for FortiCloud Valid values: `fmg`, `fgt`, `cloud`.
 
 * `log` - Configure log setting for fwm daemon fwm - FWM daemon log fwm_dm - FWM and Deployment service log fwm_dm_json - FWM and Deployment service log with JSON data between FMG-FGT Valid values: `fwm`, `fwm_dm`, `fwm_dm_json`.
 
+* `max_device_history` - max number of device upgrade report(1-10000, default=100)
+* `max_profile_history` - max number of profile upgrade report(1-10000, default=100)
 * `multiple_steps_interval` - waiting time between multiple steps upgrade (30-180s, default=60)
+* `retrieve` - do retrieve after upgrade disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `retry_interval` - waiting time for resending request to device(1-360s, default=60)
 * `retry_max` - max retry times(0-100, default=10)
+* `revision_diff` - calculate diff script after upgrade disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `upgrade_timeout` - Upgrade-Timeout. The structure of `upgrade_timeout` block is documented below.
 
 The `upgrade_timeout` block supports:
@@ -53,6 +61,7 @@ The `upgrade_timeout` block supports:
 * `ctrl_check_status_timeout` - timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)
 * `ctrl_put_image_by_fds_timeout` - timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)
 * `ha_sync_timeout` - timeout for waiting HA sync.(1-18000s, default=1800)
+* `health_check_timeout` - timeout for waiting retrieve.(1-6000s, default=600)
 * `license_check_timeout` - timeout for waiting fortigate check license.(1-6000s, default=600)
 * `prepare_image_timeout` - timeout for preparing image.(1-6000s, default=600)
 * `put_image_by_fds_timeout` - timeout for waiting device get image from fortiguard.(1-18000s, default=1800)

@@ -10,7 +10,9 @@ description: |-
 Admin profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`datamask_custom_fields`: `fortimanager_system_admin_profile_datamaskcustomfields`
+>- `datamask_custom_fields`: `fortimanager_system_admin_profile_datamaskcustomfields`
+>- `write_passwd_profiles`: `fortimanager_system_admin_profile_writepasswdprofiles`
+>- `write_passwd_user_list`: `fortimanager_system_admin_profile_writepasswduserlist`
 
 
 
@@ -99,6 +101,8 @@ The following arguments are supported:
 
 * `fgd_center` - FortiGuard Center. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `fgt_gui_proxy` - FortiGate GUI proxy. disable - No permission. enable - With permission. Valid values: `disable`, `enable`.
+
 * `global_policy_packages` - Global policy packages. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `import_policy_packages` - Import Policy Package. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
@@ -126,6 +130,8 @@ The following arguments are supported:
 * `ipv6_trusthost8` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
 * `ipv6_trusthost9` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
 * `log_viewer` - Log viewer. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
+* `policy_ips_attrs` - Policy ips attributes configuration. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `policy_objects` - Policy objects permission. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
@@ -172,6 +178,10 @@ The following arguments are supported:
 
 * `web_filter` - Web filter. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `write_passwd_access` - set all/specify-by-user/specify-by-profile write password access mode. all - All except super users. specify-by-user - Specify by user. specify-by-profile - Specify by profile. Valid values: `all`, `specify-by-user`, `specify-by-profile`.
+
+* `write_passwd_profiles` - Write-Passwd-Profiles. The structure of `write_passwd_profiles` block is documented below.
+* `write_passwd_user_list` - Write-Passwd-User-List. The structure of `write_passwd_user_list` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `datamask_custom_fields` block supports:
@@ -183,6 +193,14 @@ The `datamask_custom_fields` block supports:
 
 * `field_type` - Field type. string - String. ip - IP. mac - MAC address. email - Email address. unknown - Unknown. Valid values: `string`, `ip`, `mac`, `email`, `unknown`.
 
+
+The `write_passwd_profiles` block supports:
+
+* `profileid` - Profile ID.
+
+The `write_passwd_user_list` block supports:
+
+* `userid` - User ID.
 
 
 ## Attribute Reference

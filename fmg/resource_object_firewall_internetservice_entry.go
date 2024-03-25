@@ -186,23 +186,23 @@ func resourceObjectFirewallInternetServiceEntryRead(d *schema.ResourceData, m in
 	return nil
 }
 
-func flattenObjectFirewallInternetServiceEntryId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceEntryIpNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryIpNumber2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceEntryIpRangeNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryIpRangeNumber2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceEntryPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenObjectFirewallInternetServiceEntryProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryProtocol2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -213,7 +213,7 @@ func refreshObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData, o m
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("fosid", flattenObjectFirewallInternetServiceEntryId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectFirewallInternetServiceEntryId2edl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectFirewallInternetServiceEntry-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -223,7 +223,7 @@ func refreshObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("ip_number", flattenObjectFirewallInternetServiceEntryIpNumber(o["ip-number"], d, "ip_number")); err != nil {
+	if err = d.Set("ip_number", flattenObjectFirewallInternetServiceEntryIpNumber2edl(o["ip-number"], d, "ip_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-number"], "ObjectFirewallInternetServiceEntry-IpNumber"); ok {
 			if err = d.Set("ip_number", vv); err != nil {
 				return fmt.Errorf("Error reading ip_number: %v", err)
@@ -233,7 +233,7 @@ func refreshObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("ip_range_number", flattenObjectFirewallInternetServiceEntryIpRangeNumber(o["ip-range-number"], d, "ip_range_number")); err != nil {
+	if err = d.Set("ip_range_number", flattenObjectFirewallInternetServiceEntryIpRangeNumber2edl(o["ip-range-number"], d, "ip_range_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-range-number"], "ObjectFirewallInternetServiceEntry-IpRangeNumber"); ok {
 			if err = d.Set("ip_range_number", vv); err != nil {
 				return fmt.Errorf("Error reading ip_range_number: %v", err)
@@ -243,7 +243,7 @@ func refreshObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("port", flattenObjectFirewallInternetServiceEntryPort(o["port"], d, "port")); err != nil {
+	if err = d.Set("port", flattenObjectFirewallInternetServiceEntryPort2edl(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "ObjectFirewallInternetServiceEntry-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
 				return fmt.Errorf("Error reading port: %v", err)
@@ -253,7 +253,7 @@ func refreshObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("protocol", flattenObjectFirewallInternetServiceEntryProtocol(o["protocol"], d, "protocol")); err != nil {
+	if err = d.Set("protocol", flattenObjectFirewallInternetServiceEntryProtocol2edl(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "ObjectFirewallInternetServiceEntry-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
 				return fmt.Errorf("Error reading protocol: %v", err)
@@ -272,23 +272,23 @@ func flattenObjectFirewallInternetServiceEntryFortiTestDebug(d *schema.ResourceD
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectFirewallInternetServiceEntryId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceEntryIpNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryIpNumber2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceEntryIpRangeNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryIpRangeNumber2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceEntryPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandObjectFirewallInternetServiceEntryProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryProtocol2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -296,7 +296,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandObjectFirewallInternetServiceEntryId(d, v, "fosid")
+		t, err := expandObjectFirewallInternetServiceEntryId2edl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -305,7 +305,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("ip_number"); ok || d.HasChange("ip_number") {
-		t, err := expandObjectFirewallInternetServiceEntryIpNumber(d, v, "ip_number")
+		t, err := expandObjectFirewallInternetServiceEntryIpNumber2edl(d, v, "ip_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -314,7 +314,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("ip_range_number"); ok || d.HasChange("ip_range_number") {
-		t, err := expandObjectFirewallInternetServiceEntryIpRangeNumber(d, v, "ip_range_number")
+		t, err := expandObjectFirewallInternetServiceEntryIpRangeNumber2edl(d, v, "ip_range_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -323,7 +323,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
-		t, err := expandObjectFirewallInternetServiceEntryPort(d, v, "port")
+		t, err := expandObjectFirewallInternetServiceEntryPort2edl(d, v, "port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -332,7 +332,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
-		t, err := expandObjectFirewallInternetServiceEntryProtocol(d, v, "protocol")
+		t, err := expandObjectFirewallInternetServiceEntryProtocol2edl(d, v, "protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

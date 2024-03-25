@@ -10,7 +10,7 @@ description: |-
 Configure file-filter profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rules`: `fortimanager_object_filefilter_profile_rules`
+>- `rules`: `fortimanager_object_filefilter_profile_rules`
 
 
 

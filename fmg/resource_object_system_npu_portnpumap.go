@@ -173,11 +173,11 @@ func resourceObjectSystemNpuPortNpuMapRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
-func flattenObjectSystemNpuPortNpuMapInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPortNpuMapInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuPortNpuMapNpuGroupIndex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPortNpuMapNpuGroupIndex2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -188,7 +188,7 @@ func refreshObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData, o map[string
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("interface", flattenObjectSystemNpuPortNpuMapInterface(o["interface"], d, "interface")); err != nil {
+	if err = d.Set("interface", flattenObjectSystemNpuPortNpuMapInterface2edl(o["interface"], d, "interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interface"], "ObjectSystemNpuPortNpuMap-Interface"); ok {
 			if err = d.Set("interface", vv); err != nil {
 				return fmt.Errorf("Error reading interface: %v", err)
@@ -198,7 +198,7 @@ func refreshObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("npu_group_index", flattenObjectSystemNpuPortNpuMapNpuGroupIndex(o["npu-group-index"], d, "npu_group_index")); err != nil {
+	if err = d.Set("npu_group_index", flattenObjectSystemNpuPortNpuMapNpuGroupIndex2edl(o["npu-group-index"], d, "npu_group_index")); err != nil {
 		if vv, ok := fortiAPIPatch(o["npu-group-index"], "ObjectSystemNpuPortNpuMap-NpuGroupIndex"); ok {
 			if err = d.Set("npu_group_index", vv); err != nil {
 				return fmt.Errorf("Error reading npu_group_index: %v", err)
@@ -217,11 +217,11 @@ func flattenObjectSystemNpuPortNpuMapFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuPortNpuMapInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPortNpuMapInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuPortNpuMapNpuGroupIndex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPortNpuMapNpuGroupIndex2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -229,7 +229,7 @@ func getObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData) (*map[string]int
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
-		t, err := expandObjectSystemNpuPortNpuMapInterface(d, v, "interface")
+		t, err := expandObjectSystemNpuPortNpuMapInterface2edl(d, v, "interface")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -238,7 +238,7 @@ func getObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("npu_group_index"); ok || d.HasChange("npu_group_index") {
-		t, err := expandObjectSystemNpuPortNpuMapNpuGroupIndex(d, v, "npu_group_index")
+		t, err := expandObjectSystemNpuPortNpuMapNpuGroupIndex2edl(d, v, "npu_group_index")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -10,7 +10,7 @@ description: |-
 Configure system NTP information.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`ntpserver`: `fortimanager_systemp_system_ntp_ntpserver`
+>- `ntpserver`: `fortimanager_systemp_system_ntp_ntpserver`
 
 
 
@@ -52,6 +52,8 @@ The `ntpserver` block supports:
 * `authentication` - Enable/disable MD5(NTPv3)/SHA1(NTPv4) authentication. Valid values: `disable`, `enable`.
 
 * `id` - NTP server ID.
+* `ip_type` - Choose to connect to IPv4 or/and IPv6 NTP server. Valid values: `IPv6`, `IPv4`, `Both`.
+
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 

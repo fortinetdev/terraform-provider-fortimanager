@@ -150,15 +150,15 @@ func resourceObjectSystemNpuPriorityProtocolRead(d *schema.ResourceData, m inter
 	return nil
 }
 
-func flattenObjectSystemNpuPriorityProtocolBfd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPriorityProtocolBfd2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuPriorityProtocolBgp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPriorityProtocolBgp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuPriorityProtocolSlbc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPriorityProtocolSlbc2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -169,7 +169,7 @@ func refreshObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData, o map[
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("bfd", flattenObjectSystemNpuPriorityProtocolBfd(o["bfd"], d, "bfd")); err != nil {
+	if err = d.Set("bfd", flattenObjectSystemNpuPriorityProtocolBfd2edl(o["bfd"], d, "bfd")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bfd"], "ObjectSystemNpuPriorityProtocol-Bfd"); ok {
 			if err = d.Set("bfd", vv); err != nil {
 				return fmt.Errorf("Error reading bfd: %v", err)
@@ -179,7 +179,7 @@ func refreshObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData, o map[
 		}
 	}
 
-	if err = d.Set("bgp", flattenObjectSystemNpuPriorityProtocolBgp(o["bgp"], d, "bgp")); err != nil {
+	if err = d.Set("bgp", flattenObjectSystemNpuPriorityProtocolBgp2edl(o["bgp"], d, "bgp")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bgp"], "ObjectSystemNpuPriorityProtocol-Bgp"); ok {
 			if err = d.Set("bgp", vv); err != nil {
 				return fmt.Errorf("Error reading bgp: %v", err)
@@ -189,7 +189,7 @@ func refreshObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData, o map[
 		}
 	}
 
-	if err = d.Set("slbc", flattenObjectSystemNpuPriorityProtocolSlbc(o["slbc"], d, "slbc")); err != nil {
+	if err = d.Set("slbc", flattenObjectSystemNpuPriorityProtocolSlbc2edl(o["slbc"], d, "slbc")); err != nil {
 		if vv, ok := fortiAPIPatch(o["slbc"], "ObjectSystemNpuPriorityProtocol-Slbc"); ok {
 			if err = d.Set("slbc", vv); err != nil {
 				return fmt.Errorf("Error reading slbc: %v", err)
@@ -208,15 +208,15 @@ func flattenObjectSystemNpuPriorityProtocolFortiTestDebug(d *schema.ResourceData
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuPriorityProtocolBfd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPriorityProtocolBfd2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuPriorityProtocolBgp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPriorityProtocolBgp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuPriorityProtocolSlbc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPriorityProtocolSlbc2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -224,7 +224,7 @@ func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[stri
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("bfd"); ok || d.HasChange("bfd") {
-		t, err := expandObjectSystemNpuPriorityProtocolBfd(d, v, "bfd")
+		t, err := expandObjectSystemNpuPriorityProtocolBfd2edl(d, v, "bfd")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[stri
 	}
 
 	if v, ok := d.GetOk("bgp"); ok || d.HasChange("bgp") {
-		t, err := expandObjectSystemNpuPriorityProtocolBgp(d, v, "bgp")
+		t, err := expandObjectSystemNpuPriorityProtocolBgp2edl(d, v, "bgp")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -242,7 +242,7 @@ func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[stri
 	}
 
 	if v, ok := d.GetOk("slbc"); ok || d.HasChange("slbc") {
-		t, err := expandObjectSystemNpuPriorityProtocolSlbc(d, v, "slbc")
+		t, err := expandObjectSystemNpuPriorityProtocolSlbc2edl(d, v, "slbc")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

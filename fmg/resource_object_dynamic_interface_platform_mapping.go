@@ -211,11 +211,11 @@ func resourceObjectDynamicInterfacePlatformMappingRead(d *schema.ResourceData, m
 }
 
 func flattenObjectDynamicInterfacePlatformMappingEgressShapingProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfacePlatformMappingIngressShapingProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfacePlatformMappingIntfZone2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -297,11 +297,11 @@ func flattenObjectDynamicInterfacePlatformMappingFortiTestDebug(d *schema.Resour
 }
 
 func expandObjectDynamicInterfacePlatformMappingEgressShapingProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfacePlatformMappingIngressShapingProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfacePlatformMappingIntfZone2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

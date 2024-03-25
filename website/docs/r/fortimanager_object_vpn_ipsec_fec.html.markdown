@@ -10,7 +10,7 @@ description: |-
 Configure Forward Error Correction (FEC) mapping profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`mappings`: `fortimanager_object_vpn_ipsec_fec_mappings`
+>- `mappings`: `fortimanager_object_vpn_ipsec_fec_mappings`
 
 
 

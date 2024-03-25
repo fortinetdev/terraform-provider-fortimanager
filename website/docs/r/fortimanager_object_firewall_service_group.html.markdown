@@ -38,6 +38,7 @@ The following arguments are supported:
 * `name` - Address group name.
 * `proxy` - Enable/disable web proxy service group. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

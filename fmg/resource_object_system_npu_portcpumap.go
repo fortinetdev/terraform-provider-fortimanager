@@ -174,11 +174,11 @@ func resourceObjectSystemNpuPortCpuMapRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
-func flattenObjectSystemNpuPortCpuMapCpuCore(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPortCpuMapCpuCore2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuPortCpuMapInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuPortCpuMapInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -189,7 +189,7 @@ func refreshObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData, o map[string
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("cpu_core", flattenObjectSystemNpuPortCpuMapCpuCore(o["cpu-core"], d, "cpu_core")); err != nil {
+	if err = d.Set("cpu_core", flattenObjectSystemNpuPortCpuMapCpuCore2edl(o["cpu-core"], d, "cpu_core")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cpu-core"], "ObjectSystemNpuPortCpuMap-CpuCore"); ok {
 			if err = d.Set("cpu_core", vv); err != nil {
 				return fmt.Errorf("Error reading cpu_core: %v", err)
@@ -199,7 +199,7 @@ func refreshObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData, o map[string
 		}
 	}
 
-	if err = d.Set("interface", flattenObjectSystemNpuPortCpuMapInterface(o["interface"], d, "interface")); err != nil {
+	if err = d.Set("interface", flattenObjectSystemNpuPortCpuMapInterface2edl(o["interface"], d, "interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interface"], "ObjectSystemNpuPortCpuMap-Interface"); ok {
 			if err = d.Set("interface", vv); err != nil {
 				return fmt.Errorf("Error reading interface: %v", err)
@@ -218,11 +218,11 @@ func flattenObjectSystemNpuPortCpuMapFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuPortCpuMapCpuCore(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPortCpuMapCpuCore2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuPortCpuMapInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuPortCpuMapInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -230,7 +230,7 @@ func getObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData) (*map[string]int
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cpu_core"); ok || d.HasChange("cpu_core") {
-		t, err := expandObjectSystemNpuPortCpuMapCpuCore(d, v, "cpu_core")
+		t, err := expandObjectSystemNpuPortCpuMapCpuCore2edl(d, v, "cpu_core")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -239,7 +239,7 @@ func getObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData) (*map[string]int
 	}
 
 	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
-		t, err := expandObjectSystemNpuPortCpuMapInterface(d, v, "interface")
+		t, err := expandObjectSystemNpuPortCpuMapInterface2edl(d, v, "interface")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

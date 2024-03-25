@@ -234,7 +234,7 @@ func flattenObjectWebfilterProfileFtgdWfFiltersAction3rdl(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersCategory3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -376,7 +376,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAction3rdl(d *schema.ResourceData,
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

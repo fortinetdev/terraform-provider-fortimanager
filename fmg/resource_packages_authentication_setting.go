@@ -333,7 +333,7 @@ func flattenPackagesAuthenticationSettingCookieRefreshDiv(v interface{}, d *sche
 }
 
 func flattenPackagesAuthenticationSettingDevRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingIpAuthCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -357,7 +357,7 @@ func flattenPackagesAuthenticationSettingUpdateTime(v interface{}, d *schema.Res
 }
 
 func flattenPackagesAuthenticationSettingUserCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[string]interface{}) error {
@@ -657,7 +657,7 @@ func expandPackagesAuthenticationSettingCookieRefreshDiv(d *schema.ResourceData,
 }
 
 func expandPackagesAuthenticationSettingDevRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingIpAuthCookie(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -681,7 +681,7 @@ func expandPackagesAuthenticationSettingUpdateTime(d *schema.ResourceData, v int
 }
 
 func expandPackagesAuthenticationSettingUserCertCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string]interface{}, error) {

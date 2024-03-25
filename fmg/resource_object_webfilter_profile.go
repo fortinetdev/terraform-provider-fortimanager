@@ -230,7 +230,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"exempt_quota": &schema.Schema{
-							Type:     schema.TypeList,
+							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
@@ -294,7 +294,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Computed: true,
 						},
 						"ovrd": &schema.Schema{
-							Type:     schema.TypeList,
+							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
@@ -411,13 +411,13 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Computed: true,
 						},
 						"ovrd_user_group": &schema.Schema{
-							Type:     schema.TypeList,
+							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
 						"profile": &schema.Schema{
-							Type:     schema.TypeList,
+							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
@@ -610,6 +610,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"web_filter_vbs_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"web_flow_log_encoding": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"web_ftgd_err_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1335,7 +1340,7 @@ func flattenObjectWebfilterProfileFtgdWfFiltersAction(v interface{}, d *schema.R
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1450,7 +1455,7 @@ func flattenObjectWebfilterProfileFtgdWfQuota(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1850,6 +1855,10 @@ func flattenObjectWebfilterProfileWebFilterVbsLog(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectWebfilterProfileWebFlowLogEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileWebFtgdErrLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1875,7 +1884,7 @@ func flattenObjectWebfilterProfileWispAlgorithm(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWebfilterProfileWispServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileYoutubeChannelFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2333,6 +2342,16 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading web_filter_vbs_log: %v", err)
+		}
+	}
+
+	if err = d.Set("web_flow_log_encoding", flattenObjectWebfilterProfileWebFlowLogEncoding(o["web-flow-log-encoding"], d, "web_flow_log_encoding")); err != nil {
+		if vv, ok := fortiAPIPatch(o["web-flow-log-encoding"], "ObjectWebfilterProfile-WebFlowLogEncoding"); ok {
+			if err = d.Set("web_flow_log_encoding", vv); err != nil {
+				return fmt.Errorf("Error reading web_flow_log_encoding: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading web_flow_log_encoding: %v", err)
 		}
 	}
 
@@ -2875,7 +2894,7 @@ func expandObjectWebfilterProfileFtgdWf(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectWebfilterProfileFtgdWfExemptQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFilters(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2952,7 +2971,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAction(d *schema.ResourceData, v i
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2992,7 +3011,7 @@ func expandObjectWebfilterProfileFtgdWfOptions(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebfilterProfileFtgdWfOvrd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3055,7 +3074,7 @@ func expandObjectWebfilterProfileFtgdWfQuota(d *schema.ResourceData, v interface
 }
 
 func expandObjectWebfilterProfileFtgdWfQuotaCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfQuotaDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3181,11 +3200,11 @@ func expandObjectWebfilterProfileOverrideOvrdScope(d *schema.ResourceData, v int
 }
 
 func expandObjectWebfilterProfileOverrideOvrdUserGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfileAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3432,6 +3451,10 @@ func expandObjectWebfilterProfileWebFilterVbsLog(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectWebfilterProfileWebFlowLogEncoding(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebfilterProfileWebFtgdErrLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3457,7 +3480,7 @@ func expandObjectWebfilterProfileWispAlgorithm(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebfilterProfileWispServers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileYoutubeChannelFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3785,6 +3808,15 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["web-filter-vbs-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("web_flow_log_encoding"); ok || d.HasChange("web_flow_log_encoding") {
+		t, err := expandObjectWebfilterProfileWebFlowLogEncoding(d, v, "web_flow_log_encoding")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["web-flow-log-encoding"] = t
 		}
 	}
 

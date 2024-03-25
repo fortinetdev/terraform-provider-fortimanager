@@ -10,15 +10,15 @@ description: |-
 Admin user.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`adom`: `fortimanager_system_admin_user_adom`
-`adom_exclude`: `fortimanager_system_admin_user_adomexclude`
-`app_filter`: `fortimanager_system_admin_user_appfilter`
-`dashboard`: `fortimanager_system_admin_user_dashboard`
-`dashboard_tabs`: `fortimanager_system_admin_user_dashboardtabs`
-`ips_filter`: `fortimanager_system_admin_user_ipsfilter`
-`meta_data`: `fortimanager_system_admin_user_metadata`
-`policy_package`: `fortimanager_system_admin_user_policypackage`
-`web_filter`: `fortimanager_system_admin_user_webfilter`
+>- `adom`: `fortimanager_system_admin_user_adom`
+>- `adom_exclude`: `fortimanager_system_admin_user_adomexclude`
+>- `app_filter`: `fortimanager_system_admin_user_appfilter`
+>- `dashboard`: `fortimanager_system_admin_user_dashboard`
+>- `dashboard_tabs`: `fortimanager_system_admin_user_dashboardtabs`
+>- `ips_filter`: `fortimanager_system_admin_user_ipsfilter`
+>- `meta_data`: `fortimanager_system_admin_user_metadata`
+>- `policy_package`: `fortimanager_system_admin_user_policypackage`
+>- `web_filter`: `fortimanager_system_admin_user_webfilter`
 
 
 

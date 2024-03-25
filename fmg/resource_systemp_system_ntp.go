@@ -83,6 +83,10 @@ func resourceSystempSystemNtp() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"ip_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -292,6 +296,12 @@ func flattenSystempSystemNtpNtpserver(v interface{}, d *schema.ResourceData, pre
 			tmp["id"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-Id")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_type"
+		if _, ok := i["ip-type"]; ok {
+			v := flattenSystempSystemNtpNtpserverIpType(i["ip-type"], d, pre_append)
+			tmp["ip_type"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-IpType")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := i["interface"]; ok {
 			v := flattenSystempSystemNtpNtpserverInterface(i["interface"], d, pre_append)
@@ -343,6 +353,10 @@ func flattenSystempSystemNtpNtpserverAuthentication(v interface{}, d *schema.Res
 }
 
 func flattenSystempSystemNtpNtpserverId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemNtpNtpserverIpType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -550,6 +564,11 @@ func expandSystempSystemNtpNtpserver(d *schema.ResourceData, v interface{}, pre 
 			tmp["id"], _ = expandSystempSystemNtpNtpserverId(d, i["id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ip-type"], _ = expandSystempSystemNtpNtpserverIpType(d, i["ip_type"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandSystempSystemNtpNtpserverInterface(d, i["interface"], pre_append)
@@ -595,6 +614,10 @@ func expandSystempSystemNtpNtpserverAuthentication(d *schema.ResourceData, v int
 }
 
 func expandSystempSystemNtpNtpserverId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemNtpNtpserverIpType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

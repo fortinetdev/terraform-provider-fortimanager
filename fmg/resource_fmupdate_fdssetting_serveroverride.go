@@ -149,7 +149,7 @@ func resourceFmupdateFdsSettingServerOverrideRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistFfsa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlist2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -170,31 +170,31 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfsa(v interface{}, d *schem
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIdFfsa(i["id"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistId2edl(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIpFfsa(i["ip"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistIp2edl(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := i["ip6"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistIp6Ffsa(i["ip6"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistIp62edl(i["ip6"], d, pre_append)
 			tmp["ip6"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Ip6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistPortFfsa(i["port"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistPort2edl(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-Port")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := i["service-type"]; ok {
-			v := flattenFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(i["service-type"], d, pre_append)
+			v := flattenFmupdateFdsSettingServerOverrideServlistServiceType2edl(i["service-type"], d, pre_append)
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-ServiceType")
 		}
 
@@ -208,27 +208,27 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfsa(v interface{}, d *schem
 	return result
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIdFfsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIpFfsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistIp6Ffsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistIp62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistPortFfsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideServlistServiceType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateFdsSettingServerOverrideStatusFfsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateFdsSettingServerOverrideStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -240,7 +240,7 @@ func refreshObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData, o map
 	}
 
 	if isImportTable() {
-		if err = d.Set("servlist", flattenFmupdateFdsSettingServerOverrideServlistFfsa(o["servlist"], d, "servlist")); err != nil {
+		if err = d.Set("servlist", flattenFmupdateFdsSettingServerOverrideServlist2edl(o["servlist"], d, "servlist")); err != nil {
 			if vv, ok := fortiAPIPatch(o["servlist"], "FmupdateFdsSettingServerOverride-Servlist"); ok {
 				if err = d.Set("servlist", vv); err != nil {
 					return fmt.Errorf("Error reading servlist: %v", err)
@@ -251,7 +251,7 @@ func refreshObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData, o map
 		}
 	} else {
 		if _, ok := d.GetOk("servlist"); ok {
-			if err = d.Set("servlist", flattenFmupdateFdsSettingServerOverrideServlistFfsa(o["servlist"], d, "servlist")); err != nil {
+			if err = d.Set("servlist", flattenFmupdateFdsSettingServerOverrideServlist2edl(o["servlist"], d, "servlist")); err != nil {
 				if vv, ok := fortiAPIPatch(o["servlist"], "FmupdateFdsSettingServerOverride-Servlist"); ok {
 					if err = d.Set("servlist", vv); err != nil {
 						return fmt.Errorf("Error reading servlist: %v", err)
@@ -263,7 +263,7 @@ func refreshObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("status", flattenFmupdateFdsSettingServerOverrideStatusFfsa(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenFmupdateFdsSettingServerOverrideStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "FmupdateFdsSettingServerOverride-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -282,7 +282,7 @@ func flattenFmupdateFdsSettingServerOverrideFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlist2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -298,27 +298,27 @@ func expandFmupdateFdsSettingServerOverrideServlistFfsa(d *schema.ResourceData, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateFdsSettingServerOverrideServlistIdFfsa(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateFdsSettingServerOverrideServlistId2edl(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateFdsSettingServerOverrideServlistIpFfsa(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateFdsSettingServerOverrideServlistIp2edl(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip6"], _ = expandFmupdateFdsSettingServerOverrideServlistIp6Ffsa(d, i["ip6"], pre_append)
+			tmp["ip6"], _ = expandFmupdateFdsSettingServerOverrideServlistIp62edl(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandFmupdateFdsSettingServerOverrideServlistPortFfsa(d, i["port"], pre_append)
+			tmp["port"], _ = expandFmupdateFdsSettingServerOverrideServlistPort2edl(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(d, i["service_type"], pre_append)
+			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceType2edl(d, i["service_type"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -331,27 +331,27 @@ func expandFmupdateFdsSettingServerOverrideServlistFfsa(d *schema.ResourceData, 
 	return result, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIdFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIpFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistIp6Ffsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistIp62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistPortFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideServlistServiceType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateFdsSettingServerOverrideStatusFfsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateFdsSettingServerOverrideStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -359,7 +359,7 @@ func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("servlist"); ok || d.HasChange("servlist") {
-		t, err := expandFmupdateFdsSettingServerOverrideServlistFfsa(d, v, "servlist")
+		t, err := expandFmupdateFdsSettingServerOverrideServlist2edl(d, v, "servlist")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -368,7 +368,7 @@ func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandFmupdateFdsSettingServerOverrideStatusFfsa(d, v, "status")
+		t, err := expandFmupdateFdsSettingServerOverrideStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -60,6 +60,7 @@ The following arguments are supported:
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
 * `delay_tcp_npu_session` - Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `disable`, `enable`.
 
+* `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `diffserv_copy` - Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `disable`, `enable`.
 
 * `devices` - Names of devices or device groups that can be matched by the policy.

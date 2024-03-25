@@ -10,11 +10,11 @@ description: |-
 Web application firewall configuration.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`address_list`: `fortimanager_object_waf_profile_addresslist`
-`constraint`: `fortimanager_object_waf_profile_constraint`
-`method`: `fortimanager_object_waf_profile_method`
-`signature`: `fortimanager_object_waf_profile_signature`
-`url_access`: `fortimanager_object_waf_profile_urlaccess`
+>- `address_list`: `fortimanager_object_waf_profile_addresslist`
+>- `constraint`: `fortimanager_object_waf_profile_constraint`
+>- `method`: `fortimanager_object_waf_profile_method`
+>- `signature`: `fortimanager_object_waf_profile_signature`
+>- `url_access`: `fortimanager_object_waf_profile_urlaccess`
 
 
 

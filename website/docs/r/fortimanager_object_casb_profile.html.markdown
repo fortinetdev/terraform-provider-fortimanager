@@ -10,7 +10,7 @@ description: |-
 Configure CASB profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`saas_application`: `fortimanager_object_casb_profile_saasapplication`
+>- `saas_application`: `fortimanager_object_casb_profile_saasapplication`
 
 
 
@@ -39,6 +39,8 @@ The `saas_application` block supports:
 * `safe_search` - Enable/disable safe search. Valid values: `disable`, `enable`.
 
 * `safe_search_control` - CASB profile safe search control.
+* `status` - Enable/disable setting. Valid values: `disable`, `enable`.
+
 * `tenant_control` - Enable/disable tenant control. Valid values: `disable`, `enable`.
 
 * `tenant_control_tenants` - CASB profile tenant control tenants.

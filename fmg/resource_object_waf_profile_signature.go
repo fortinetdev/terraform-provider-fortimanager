@@ -655,11 +655,11 @@ func expandObjectWafProfileSignatureCustomSignatureTarget2edl(d *schema.Resource
 }
 
 func expandObjectWafProfileSignatureDisabledSignature2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileSignatureDisabledSubClass2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileSignatureMainClass2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -10,7 +10,7 @@ description: |-
 Global settings for remote syslog server.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_field_name`: `fortimanager_systemp_log_syslogd_setting_customfieldname`
+>- `custom_field_name`: `fortimanager_systemp_log_syslogd_setting_customfieldname`
 
 
 

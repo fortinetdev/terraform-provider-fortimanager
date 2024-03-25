@@ -475,7 +475,7 @@ func resourceObjectUserGroup() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -1288,7 +1288,7 @@ func flattenObjectUserGroupDynamicMappingMaxAccounts(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserGroupDynamicMappingMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupDynamicMappingMobilePhone(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1320,7 +1320,7 @@ func flattenObjectUserGroupDynamicMappingSponsor(v interface{}, d *schema.Resour
 }
 
 func flattenObjectUserGroupDynamicMappingSslvpnBookmarksGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupDynamicMappingSslvpnCacheCleaner(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1393,7 +1393,7 @@ func flattenObjectUserGroupDynamicMappingSslvpnOsCheckListTolerance(v interface{
 }
 
 func flattenObjectUserGroupDynamicMappingSslvpnPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupDynamicMappingSslvpnPortalHeading(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2620,7 +2620,7 @@ func expandObjectUserGroupDynamicMappingMaxAccounts(d *schema.ResourceData, v in
 }
 
 func expandObjectUserGroupDynamicMappingMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupDynamicMappingMobilePhone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2652,7 +2652,7 @@ func expandObjectUserGroupDynamicMappingSponsor(d *schema.ResourceData, v interf
 }
 
 func expandObjectUserGroupDynamicMappingSslvpnBookmarksGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupDynamicMappingSslvpnCacheCleaner(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2722,7 +2722,7 @@ func expandObjectUserGroupDynamicMappingSslvpnOsCheckListTolerance(d *schema.Res
 }
 
 func expandObjectUserGroupDynamicMappingSslvpnPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupDynamicMappingSslvpnPortalHeading(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2992,7 +2992,7 @@ func expandObjectUserGroupMaxAccounts(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectUserGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserGroupMobilePhone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

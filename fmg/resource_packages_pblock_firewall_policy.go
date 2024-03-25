@@ -175,6 +175,10 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"diameter_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"diffserv_copy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -238,7 +242,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -249,7 +253,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -260,7 +264,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -305,7 +309,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"fsso_groups": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -325,7 +329,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"groups": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -574,7 +578,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"natip": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -773,7 +777,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -804,13 +808,13 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"src_vendor_mac": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -821,7 +825,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -832,7 +836,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -921,7 +925,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"users": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -1309,6 +1313,10 @@ func flattenPackagesPblockFirewallPolicyDecryptedTrafficMirror2edl(v interface{}
 }
 
 func flattenPackagesPblockFirewallPolicyDelayTcpNpuSession2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyDiameterFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2318,6 +2326,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading delay_tcp_npu_session: %v", err)
+		}
+	}
+
+	if err = d.Set("diameter_filter_profile", flattenPackagesPblockFirewallPolicyDiameterFilterProfile2edl(o["diameter-filter-profile"], d, "diameter_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["diameter-filter-profile"], "PackagesPblockFirewallPolicy-DiameterFilterProfile"); ok {
+			if err = d.Set("diameter_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
 		}
 	}
 
@@ -4268,6 +4286,10 @@ func expandPackagesPblockFirewallPolicyDelayTcpNpuSession2edl(d *schema.Resource
 	return v, nil
 }
 
+func expandPackagesPblockFirewallPolicyDiameterFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallPolicyDiffservCopy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4325,7 +4347,7 @@ func expandPackagesPblockFirewallPolicyDsri2edl(d *schema.ResourceData, v interf
 }
 
 func expandPackagesPblockFirewallPolicyDstaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyDstaddrNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4333,7 +4355,7 @@ func expandPackagesPblockFirewallPolicyDstaddrNegate2edl(d *schema.ResourceData,
 }
 
 func expandPackagesPblockFirewallPolicyDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyDstaddr6Negate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4341,7 +4363,7 @@ func expandPackagesPblockFirewallPolicyDstaddr6Negate2edl(d *schema.ResourceData
 }
 
 func expandPackagesPblockFirewallPolicyDstintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyDynamicShaping2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4381,7 +4403,7 @@ func expandPackagesPblockFirewallPolicyFssoAgentForNtlm2edl(d *schema.ResourceDa
 }
 
 func expandPackagesPblockFirewallPolicyFssoGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyGeoipAnycast2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4397,7 +4419,7 @@ func expandPackagesPblockFirewallPolicyGlobalLabel2edl(d *schema.ResourceData, v
 }
 
 func expandPackagesPblockFirewallPolicyGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyGtpProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4593,7 +4615,7 @@ func expandPackagesPblockFirewallPolicyNatinbound2edl(d *schema.ResourceData, v 
 }
 
 func expandPackagesPblockFirewallPolicyNatip2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyNatoutbound2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4761,7 +4783,7 @@ func expandPackagesPblockFirewallPolicySendDenyPacket2edl(d *schema.ResourceData
 }
 
 func expandPackagesPblockFirewallPolicyService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyServiceNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4785,11 +4807,11 @@ func expandPackagesPblockFirewallPolicySgtCheck2edl(d *schema.ResourceData, v in
 }
 
 func expandPackagesPblockFirewallPolicySrcVendorMac2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicySrcaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicySrcaddrNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4797,7 +4819,7 @@ func expandPackagesPblockFirewallPolicySrcaddrNegate2edl(d *schema.ResourceData,
 }
 
 func expandPackagesPblockFirewallPolicySrcaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicySrcaddr6Negate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4805,7 +4827,7 @@ func expandPackagesPblockFirewallPolicySrcaddr6Negate2edl(d *schema.ResourceData
 }
 
 func expandPackagesPblockFirewallPolicySrcintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicySshFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4881,7 +4903,7 @@ func expandPackagesPblockFirewallPolicyUdpTimeoutPid2edl(d *schema.ResourceData,
 }
 
 func expandPackagesPblockFirewallPolicyUsers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesPblockFirewallPolicyUtmStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5243,6 +5265,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["delay-tcp-npu-session"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("diameter_filter_profile"); ok || d.HasChange("diameter_filter_profile") {
+		t, err := expandPackagesPblockFirewallPolicyDiameterFilterProfile2edl(d, v, "diameter_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["diameter-filter-profile"] = t
 		}
 	}
 

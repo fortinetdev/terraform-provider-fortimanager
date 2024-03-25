@@ -10,7 +10,7 @@ description: |-
 Configure FSSO active directory servers for polling mode.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`adgrp`: `fortimanager_object_user_fssopolling_adgrp`
+>- `adgrp`: `fortimanager_object_user_fssopolling_adgrp`
 
 
 

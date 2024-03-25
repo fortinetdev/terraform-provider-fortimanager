@@ -10,9 +10,9 @@ description: |-
 Configure user groups.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_user_group_dynamic_mapping`
-`guest`: `fortimanager_object_user_group_guest`
-`match`: `fortimanager_object_user_group_match`
+>- `dynamic_mapping`: `fortimanager_object_user_group_dynamic_mapping`
+>- `guest`: `fortimanager_object_user_group_guest`
+>- `match`: `fortimanager_object_user_group_match`
 
 
 

@@ -145,7 +145,7 @@ func resourceObjectUserDomainController() *schema.Resource {
 				Computed: true,
 			},
 			"ldap_server": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -873,7 +873,7 @@ func expandObjectUserDomainControllerIp6(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectUserDomainControllerLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserDomainControllerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

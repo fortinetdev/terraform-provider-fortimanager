@@ -43,6 +43,9 @@ The following arguments are supported:
 * `chassis_update_interval` - Chassis background update interval (4 - 1440 mins).
 * `device_sync_status` - Enable/disable device synchronization status indication. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `fgt_gui_proxy` - Enable/disable FortiGate GUI proxy. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `fgt_gui_proxy_port` - FortiGate GUI proxy port.
 * `firmware_upgrade_check` - Enable/disable firmware upgrade check. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `fsw_ignore_platform_check` - Enable/disable FortiSwitch Manager switch platform support check. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

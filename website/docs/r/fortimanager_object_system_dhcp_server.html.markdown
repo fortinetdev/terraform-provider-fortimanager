@@ -10,10 +10,10 @@ description: |-
 Configure DHCP servers.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`exclude_range`: `fortimanager_object_system_dhcp_server_excluderange`
-`ip_range`: `fortimanager_object_system_dhcp_server_iprange`
-`options`: `fortimanager_object_system_dhcp_server_options`
-`reserved_address`: `fortimanager_object_system_dhcp_server_reservedaddress`
+>- `exclude_range`: `fortimanager_object_system_dhcp_server_excluderange`
+>- `ip_range`: `fortimanager_object_system_dhcp_server_iprange`
+>- `options`: `fortimanager_object_system_dhcp_server_options`
+>- `reserved_address`: `fortimanager_object_system_dhcp_server_reservedaddress`
 
 
 

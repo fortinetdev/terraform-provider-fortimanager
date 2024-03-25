@@ -10,7 +10,7 @@ description: |-
 Configure virtual-patch profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`exemption`: `fortimanager_object_virtualpatch_profile_exemption`
+>- `exemption`: `fortimanager_object_virtualpatch_profile_exemption`
 
 
 

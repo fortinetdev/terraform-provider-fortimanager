@@ -11,10 +11,10 @@ IPv6 of interface.
 
 ~> This resource is a sub resource for variable `ipv6` of resource `fortimanager_object_fsp_vlan_interface`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`ip6_delegated_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6delegatedprefixlist`
-`ip6_extra_addr`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6extraaddr`
-`ip6_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6prefixlist`
-`vrrp6`: `fortimanager_object_fsp_vlan_interface_ipv6_vrrp6`
+>- `ip6_delegated_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6delegatedprefixlist`
+>- `ip6_extra_addr`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6extraaddr`
+>- `ip6_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6prefixlist`
+>- `vrrp6`: `fortimanager_object_fsp_vlan_interface_ipv6_vrrp6`
 
 
 
@@ -146,6 +146,8 @@ The `vrrp6` block supports:
 * `accept_mode` - Enable/disable accept mode. Valid values: `disable`, `enable`.
 
 * `adv_interval` - Advertisement interval (1 - 255 seconds).
+* `ignore_default_route` - Enable/disable ignoring of default route when checking destination. Valid values: `disable`, `enable`.
+
 * `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
 
 * `priority` - Priority of the virtual router (1 - 255).

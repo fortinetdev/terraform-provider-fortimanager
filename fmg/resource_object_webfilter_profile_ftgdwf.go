@@ -51,7 +51,7 @@ func resourceObjectWebfilterProfileFtgdWf() *schema.Resource {
 				ForceNew: true,
 			},
 			"exempt_quota": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -115,7 +115,7 @@ func resourceObjectWebfilterProfileFtgdWf() *schema.Resource {
 				Computed: true,
 			},
 			"ovrd": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -381,7 +381,7 @@ func flattenObjectWebfilterProfileFtgdWfFiltersAction2edl(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -496,7 +496,7 @@ func flattenObjectWebfilterProfileFtgdWfQuota2edl(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaDuration2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -688,7 +688,7 @@ func flattenObjectWebfilterProfileFtgdWfFortiTestDebug(d *schema.ResourceData, f
 }
 
 func expandObjectWebfilterProfileFtgdWfExemptQuota2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFilters2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -765,7 +765,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAction2edl(d *schema.ResourceData,
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -805,7 +805,7 @@ func expandObjectWebfilterProfileFtgdWfOptions2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectWebfilterProfileFtgdWfOvrd2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfQuota2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -868,7 +868,7 @@ func expandObjectWebfilterProfileFtgdWfQuota2edl(d *schema.ResourceData, v inter
 }
 
 func expandObjectWebfilterProfileFtgdWfQuotaCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfQuotaDuration2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -154,15 +154,15 @@ func resourceFmupdateServerAccessPrioritiesRead(d *schema.ResourceData, m interf
 	return nil
 }
 
-func flattenFmupdateServerAccessPrioritiesAccessPublicFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesAccessPublic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesAvIpsFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesAvIps(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesPrivateServerFsa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenFmupdateServerAccessPrioritiesPrivateServer(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -183,25 +183,25 @@ func flattenFmupdateServerAccessPrioritiesPrivateServerFsa(v interface{}, d *sch
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenFmupdateServerAccessPrioritiesPrivateServerIdFsa(i["id"], d, pre_append)
+			v := flattenFmupdateServerAccessPrioritiesPrivateServerId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "FmupdateServerAccessPriorities-PrivateServer-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenFmupdateServerAccessPrioritiesPrivateServerIpFsa(i["ip"], d, pre_append)
+			v := flattenFmupdateServerAccessPrioritiesPrivateServerIp(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "FmupdateServerAccessPriorities-PrivateServer-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := i["ip6"]; ok {
-			v := flattenFmupdateServerAccessPrioritiesPrivateServerIp6Fsa(i["ip6"], d, pre_append)
+			v := flattenFmupdateServerAccessPrioritiesPrivateServerIp6(i["ip6"], d, pre_append)
 			tmp["ip6"] = fortiAPISubPartPatch(v, "FmupdateServerAccessPriorities-PrivateServer-Ip6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "time_zone"
 		if _, ok := i["time_zone"]; ok {
-			v := flattenFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(i["time_zone"], d, pre_append)
+			v := flattenFmupdateServerAccessPrioritiesPrivateServerTimeZone(i["time_zone"], d, pre_append)
 			tmp["time_zone"] = fortiAPISubPartPatch(v, "FmupdateServerAccessPriorities-PrivateServer-TimeZone")
 		}
 
@@ -215,23 +215,23 @@ func flattenFmupdateServerAccessPrioritiesPrivateServerFsa(v interface{}, d *sch
 	return result
 }
 
-func flattenFmupdateServerAccessPrioritiesPrivateServerIdFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesPrivateServerId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesPrivateServerIpFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesPrivateServerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesPrivateServerIp6Fsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesPrivateServerIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesPrivateServerTimeZone(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenFmupdateServerAccessPrioritiesWebSpamFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenFmupdateServerAccessPrioritiesWebSpam(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -242,7 +242,7 @@ func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[s
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("access_public", flattenFmupdateServerAccessPrioritiesAccessPublicFsa(o["access-public"], d, "access_public")); err != nil {
+	if err = d.Set("access_public", flattenFmupdateServerAccessPrioritiesAccessPublic(o["access-public"], d, "access_public")); err != nil {
 		if vv, ok := fortiAPIPatch(o["access-public"], "FmupdateServerAccessPriorities-AccessPublic"); ok {
 			if err = d.Set("access_public", vv); err != nil {
 				return fmt.Errorf("Error reading access_public: %v", err)
@@ -252,7 +252,7 @@ func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("av_ips", flattenFmupdateServerAccessPrioritiesAvIpsFsa(o["av-ips"], d, "av_ips")); err != nil {
+	if err = d.Set("av_ips", flattenFmupdateServerAccessPrioritiesAvIps(o["av-ips"], d, "av_ips")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av-ips"], "FmupdateServerAccessPriorities-AvIps"); ok {
 			if err = d.Set("av_ips", vv); err != nil {
 				return fmt.Errorf("Error reading av_ips: %v", err)
@@ -263,7 +263,7 @@ func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[s
 	}
 
 	if isImportTable() {
-		if err = d.Set("private_server", flattenFmupdateServerAccessPrioritiesPrivateServerFsa(o["private-server"], d, "private_server")); err != nil {
+		if err = d.Set("private_server", flattenFmupdateServerAccessPrioritiesPrivateServer(o["private-server"], d, "private_server")); err != nil {
 			if vv, ok := fortiAPIPatch(o["private-server"], "FmupdateServerAccessPriorities-PrivateServer"); ok {
 				if err = d.Set("private_server", vv); err != nil {
 					return fmt.Errorf("Error reading private_server: %v", err)
@@ -274,7 +274,7 @@ func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[s
 		}
 	} else {
 		if _, ok := d.GetOk("private_server"); ok {
-			if err = d.Set("private_server", flattenFmupdateServerAccessPrioritiesPrivateServerFsa(o["private-server"], d, "private_server")); err != nil {
+			if err = d.Set("private_server", flattenFmupdateServerAccessPrioritiesPrivateServer(o["private-server"], d, "private_server")); err != nil {
 				if vv, ok := fortiAPIPatch(o["private-server"], "FmupdateServerAccessPriorities-PrivateServer"); ok {
 					if err = d.Set("private_server", vv); err != nil {
 						return fmt.Errorf("Error reading private_server: %v", err)
@@ -286,7 +286,7 @@ func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("web_spam", flattenFmupdateServerAccessPrioritiesWebSpamFsa(o["web-spam"], d, "web_spam")); err != nil {
+	if err = d.Set("web_spam", flattenFmupdateServerAccessPrioritiesWebSpam(o["web-spam"], d, "web_spam")); err != nil {
 		if vv, ok := fortiAPIPatch(o["web-spam"], "FmupdateServerAccessPriorities-WebSpam"); ok {
 			if err = d.Set("web_spam", vv); err != nil {
 				return fmt.Errorf("Error reading web_spam: %v", err)
@@ -305,15 +305,15 @@ func flattenFmupdateServerAccessPrioritiesFortiTestDebug(d *schema.ResourceData,
 	log.Printf("ER List: %v", e)
 }
 
-func expandFmupdateServerAccessPrioritiesAccessPublicFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesAccessPublic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesAvIpsFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesAvIps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesPrivateServerFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesPrivateServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -329,22 +329,22 @@ func expandFmupdateServerAccessPrioritiesPrivateServerFsa(d *schema.ResourceData
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandFmupdateServerAccessPrioritiesPrivateServerIdFsa(d, i["id"], pre_append)
+			tmp["id"], _ = expandFmupdateServerAccessPrioritiesPrivateServerId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandFmupdateServerAccessPrioritiesPrivateServerIpFsa(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandFmupdateServerAccessPrioritiesPrivateServerIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip6"], _ = expandFmupdateServerAccessPrioritiesPrivateServerIp6Fsa(d, i["ip6"], pre_append)
+			tmp["ip6"], _ = expandFmupdateServerAccessPrioritiesPrivateServerIp6(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "time_zone"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["time_zone"], _ = expandFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(d, i["time_zone"], pre_append)
+			tmp["time_zone"], _ = expandFmupdateServerAccessPrioritiesPrivateServerTimeZone(d, i["time_zone"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -357,23 +357,23 @@ func expandFmupdateServerAccessPrioritiesPrivateServerFsa(d *schema.ResourceData
 	return result, nil
 }
 
-func expandFmupdateServerAccessPrioritiesPrivateServerIdFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesPrivateServerId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesPrivateServerIpFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesPrivateServerIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesPrivateServerIp6Fsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesPrivateServerIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesPrivateServerTimeZone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandFmupdateServerAccessPrioritiesWebSpamFsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandFmupdateServerAccessPrioritiesWebSpam(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -381,7 +381,7 @@ func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[strin
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("access_public"); ok || d.HasChange("access_public") {
-		t, err := expandFmupdateServerAccessPrioritiesAccessPublicFsa(d, v, "access_public")
+		t, err := expandFmupdateServerAccessPrioritiesAccessPublic(d, v, "access_public")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -390,7 +390,7 @@ func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("av_ips"); ok || d.HasChange("av_ips") {
-		t, err := expandFmupdateServerAccessPrioritiesAvIpsFsa(d, v, "av_ips")
+		t, err := expandFmupdateServerAccessPrioritiesAvIps(d, v, "av_ips")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -399,7 +399,7 @@ func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("private_server"); ok || d.HasChange("private_server") {
-		t, err := expandFmupdateServerAccessPrioritiesPrivateServerFsa(d, v, "private_server")
+		t, err := expandFmupdateServerAccessPrioritiesPrivateServer(d, v, "private_server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -408,7 +408,7 @@ func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("web_spam"); ok || d.HasChange("web_spam") {
-		t, err := expandFmupdateServerAccessPrioritiesWebSpamFsa(d, v, "web_spam")
+		t, err := expandFmupdateServerAccessPrioritiesWebSpam(d, v, "web_spam")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

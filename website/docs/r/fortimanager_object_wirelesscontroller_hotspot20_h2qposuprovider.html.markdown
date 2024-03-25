@@ -10,8 +10,8 @@ description: |-
 Configure online sign up (OSU) provider list.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`friendly_name`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_friendlyname`
-`service_description`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_servicedescription`
+>- `friendly_name`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_friendlyname`
+>- `service_description`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_servicedescription`
 
 
 

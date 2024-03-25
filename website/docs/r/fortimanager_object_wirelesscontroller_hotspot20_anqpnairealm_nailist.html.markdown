@@ -11,7 +11,7 @@ NAI list.
 
 ~> This resource is a sub resource for variable `nai_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`eap_method`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod`
+>- `eap_method`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod`
 
 
 

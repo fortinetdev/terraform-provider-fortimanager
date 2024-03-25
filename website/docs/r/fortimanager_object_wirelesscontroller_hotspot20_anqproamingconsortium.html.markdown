@@ -10,7 +10,7 @@ description: |-
 Configure roaming consortium.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`oi_list`: `fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium_oilist`
+>- `oi_list`: `fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium_oilist`
 
 
 

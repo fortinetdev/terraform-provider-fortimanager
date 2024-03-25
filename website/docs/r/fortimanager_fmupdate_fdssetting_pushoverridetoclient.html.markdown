@@ -11,7 +11,7 @@ Enable/disable push updates, and override the default IP address and port used b
 
 ~> This resource is a sub resource for variable `push_override_to_client` of resource `fortimanager_fmupdate_fdssetting`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`announce_ip`: `fortimanager_fmupdate_fdssetting_pushoverridetoclient_announceip`
+>- `announce_ip`: `fortimanager_fmupdate_fdssetting_pushoverridetoclient_announceip`
 
 
 

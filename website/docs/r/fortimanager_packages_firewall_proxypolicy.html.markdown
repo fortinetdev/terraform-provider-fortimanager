@@ -58,11 +58,15 @@ The following arguments are supported:
 * `av_profile` - Name of an existing Antivirus profile.
 * `block_notification` - Enable/disable block notification. Valid values: `disable`, `enable`.
 
+* `casb_profile` - Name of an existing CASB profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Optional comments.
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
+* `detect_https_in_http_request` - Enable/disable detection of HTTPS in HTTP request. Valid values: `disable`, `enable`.
+
 * `device_ownership` - When enabled, the ownership enforcement will be done at policy level. Valid values: `disable`, `enable`.
 
+* `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `disclaimer` - Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 
 * `dlp_profile` - Name of an existing DLP profile.
@@ -88,7 +92,16 @@ The following arguments are supported:
 * `internet_service_id` - Internet Service ID.
 * `internet_service_negate` - When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `disable`, `enable`.
 
+* `internet_service6` - Enable/disable use of Internet Services IPv6 for this policy. If enabled, destination IPv6 address and service are not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_custom` - Custom Internet Service IPv6 name.
+* `internet_service6_custom_group` - Custom Internet Service IPv6 group name.
+* `internet_service6_group` - Internet Service IPv6 group name.
+* `internet_service6_name` - Internet Service IPv6 name.
+* `internet_service6_negate` - When enabled, Internet Services match against any internet service IPv6 EXCEPT the selected Internet Service IPv6. Valid values: `disable`, `enable`.
+
 * `ips_sensor` - Name of an existing IPS sensor.
+* `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `label` - VDOM-specific GUI visible label.
 * `logtraffic` - Enable/disable logging traffic through the policy. Valid values: `disable`, `all`, `utm`.
 
@@ -133,6 +146,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `videofilter_profile` - Name of an existing VideoFilter profile.
+* `virtual_patch_profile` - Virtual-Patch-Profile.
 * `voip_profile` - Name of an existing VoIP profile.
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webcache` - Enable/disable web caching. Valid values: `disable`, `enable`.

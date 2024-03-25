@@ -84,11 +84,19 @@ func resourcePackagesPblockFirewallSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"casb_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"comments": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"diameter_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -124,6 +132,11 @@ func resourcePackagesPblockFirewallSecurityPolicy() *schema.Resource {
 			"dstaddr6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"dstaddr6_negate": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -315,6 +328,10 @@ func resourcePackagesPblockFirewallSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ips_voip_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"learning_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -413,6 +430,11 @@ func resourcePackagesPblockFirewallSecurityPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"srcaddr6_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -455,6 +477,10 @@ func resourcePackagesPblockFirewallSecurityPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"virtual_patch_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -640,11 +666,19 @@ func flattenPackagesPblockFirewallSecurityPolicyAvProfile2edl(v interface{}, d *
 	return v
 }
 
+func flattenPackagesPblockFirewallSecurityPolicyCasbProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesPblockFirewallSecurityPolicyCifsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyComments2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -674,6 +708,10 @@ func flattenPackagesPblockFirewallSecurityPolicyDstaddrNegate2edl(v interface{},
 
 func flattenPackagesPblockFirewallSecurityPolicyDstaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallSecurityPolicyDstaddr6Negate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDstintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -816,6 +854,10 @@ func flattenPackagesPblockFirewallSecurityPolicyIpsSensor2edl(v interface{}, d *
 	return v
 }
 
+func flattenPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesPblockFirewallSecurityPolicyLearningMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -896,6 +938,10 @@ func flattenPackagesPblockFirewallSecurityPolicySrcaddr62edl(v interface{}, d *s
 	return flattenStringList(v)
 }
 
+func flattenPackagesPblockFirewallSecurityPolicySrcaddr6Negate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesPblockFirewallSecurityPolicySrcintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -929,6 +975,10 @@ func flattenPackagesPblockFirewallSecurityPolicyUuid2edl(v interface{}, d *schem
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyVideofilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1017,6 +1067,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("casb_profile", flattenPackagesPblockFirewallSecurityPolicyCasbProfile2edl(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "PackagesPblockFirewallSecurityPolicy-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("cifs_profile", flattenPackagesPblockFirewallSecurityPolicyCifsProfile2edl(o["cifs-profile"], d, "cifs_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs-profile"], "PackagesPblockFirewallSecurityPolicy-CifsProfile"); ok {
 			if err = d.Set("cifs_profile", vv); err != nil {
@@ -1034,6 +1094,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("diameter_filter_profile", flattenPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(o["diameter-filter-profile"], d, "diameter_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["diameter-filter-profile"], "PackagesPblockFirewallSecurityPolicy-DiameterFilterProfile"); ok {
+			if err = d.Set("diameter_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
 		}
 	}
 
@@ -1104,6 +1174,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading dstaddr6: %v", err)
+		}
+	}
+
+	if err = d.Set("dstaddr6_negate", flattenPackagesPblockFirewallSecurityPolicyDstaddr6Negate2edl(o["dstaddr6-negate"], d, "dstaddr6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dstaddr6-negate"], "PackagesPblockFirewallSecurityPolicy-Dstaddr6Negate"); ok {
+			if err = d.Set("dstaddr6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading dstaddr6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dstaddr6_negate: %v", err)
 		}
 	}
 
@@ -1457,6 +1537,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("ips_voip_filter", flattenPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(o["ips-voip-filter"], d, "ips_voip_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-voip-filter"], "PackagesPblockFirewallSecurityPolicy-IpsVoipFilter"); ok {
+			if err = d.Set("ips_voip_filter", vv); err != nil {
+				return fmt.Errorf("Error reading ips_voip_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_voip_filter: %v", err)
+		}
+	}
+
 	if err = d.Set("learning_mode", flattenPackagesPblockFirewallSecurityPolicyLearningMode2edl(o["learning-mode"], d, "learning_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["learning-mode"], "PackagesPblockFirewallSecurityPolicy-LearningMode"); ok {
 			if err = d.Set("learning_mode", vv); err != nil {
@@ -1657,6 +1747,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("srcaddr6_negate", flattenPackagesPblockFirewallSecurityPolicySrcaddr6Negate2edl(o["srcaddr6-negate"], d, "srcaddr6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["srcaddr6-negate"], "PackagesPblockFirewallSecurityPolicy-Srcaddr6Negate"); ok {
+			if err = d.Set("srcaddr6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading srcaddr6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading srcaddr6_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("srcintf", flattenPackagesPblockFirewallSecurityPolicySrcintf2edl(o["srcintf"], d, "srcintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcintf"], "PackagesPblockFirewallSecurityPolicy-Srcintf"); ok {
 			if err = d.Set("srcintf", vv); err != nil {
@@ -1747,6 +1847,16 @@ func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("virtual_patch_profile", flattenPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(o["virtual-patch-profile"], d, "virtual_patch_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch-profile"], "PackagesPblockFirewallSecurityPolicy-VirtualPatchProfile"); ok {
+			if err = d.Set("virtual_patch_profile", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("voip_profile", flattenPackagesPblockFirewallSecurityPolicyVoipProfile2edl(o["voip-profile"], d, "voip_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["voip-profile"], "PackagesPblockFirewallSecurityPolicy-VoipProfile"); ok {
 			if err = d.Set("voip_profile", vv); err != nil {
@@ -1804,11 +1914,19 @@ func expandPackagesPblockFirewallSecurityPolicyAvProfile2edl(d *schema.ResourceD
 	return v, nil
 }
 
+func expandPackagesPblockFirewallSecurityPolicyCasbProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallSecurityPolicyCifsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyComments2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1838,6 +1956,10 @@ func expandPackagesPblockFirewallSecurityPolicyDstaddrNegate2edl(d *schema.Resou
 
 func expandPackagesPblockFirewallSecurityPolicyDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallSecurityPolicyDstaddr6Negate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDstintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1980,6 +2102,10 @@ func expandPackagesPblockFirewallSecurityPolicyIpsSensor2edl(d *schema.ResourceD
 	return v, nil
 }
 
+func expandPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallSecurityPolicyLearningMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2060,6 +2186,10 @@ func expandPackagesPblockFirewallSecurityPolicySrcaddr62edl(d *schema.ResourceDa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesPblockFirewallSecurityPolicySrcaddr6Negate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallSecurityPolicySrcintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -2093,6 +2223,10 @@ func expandPackagesPblockFirewallSecurityPolicyUuid2edl(d *schema.ResourceData, 
 }
 
 func expandPackagesPblockFirewallSecurityPolicyVideofilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2170,6 +2304,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandPackagesPblockFirewallSecurityPolicyCasbProfile2edl(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesPblockFirewallSecurityPolicyCifsProfile2edl(d, v, "cifs_profile")
 		if err != nil {
@@ -2185,6 +2328,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("diameter_filter_profile"); ok || d.HasChange("diameter_filter_profile") {
+		t, err := expandPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(d, v, "diameter_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["diameter-filter-profile"] = t
 		}
 	}
 
@@ -2248,6 +2400,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["dstaddr6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dstaddr6_negate"); ok || d.HasChange("dstaddr6_negate") {
+		t, err := expandPackagesPblockFirewallSecurityPolicyDstaddr6Negate2edl(d, v, "dstaddr6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dstaddr6-negate"] = t
 		}
 	}
 
@@ -2566,6 +2727,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("ips_voip_filter"); ok || d.HasChange("ips_voip_filter") {
+		t, err := expandPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(d, v, "ips_voip_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-voip-filter"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("learning_mode"); ok || d.HasChange("learning_mode") {
 		t, err := expandPackagesPblockFirewallSecurityPolicyLearningMode2edl(d, v, "learning_mode")
 		if err != nil {
@@ -2746,6 +2916,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("srcaddr6_negate"); ok || d.HasChange("srcaddr6_negate") {
+		t, err := expandPackagesPblockFirewallSecurityPolicySrcaddr6Negate2edl(d, v, "srcaddr6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["srcaddr6-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesPblockFirewallSecurityPolicySrcintf2edl(d, v, "srcintf")
 		if err != nil {
@@ -2824,6 +3003,15 @@ func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["videofilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch_profile"); ok || d.HasChange("virtual_patch_profile") {
+		t, err := expandPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(d, v, "virtual_patch_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch-profile"] = t
 		}
 	}
 

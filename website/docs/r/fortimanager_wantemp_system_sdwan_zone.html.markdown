@@ -39,6 +39,9 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `wanprof` - Wanprof.
 
+* `advpn_health_check` - Health check for ADVPN local overlay link quality.
+* `advpn_select` - Enable/disable selection of ADVPN based on SDWAN information. Valid values: `disable`, `enable`.
+
 * `minimum_sla_meet_members` - Minimum number of members which meet SLA when the neighbor is preferred.
 * `name` - Zone name.
 * `service_sla_tie_break` - Method of selecting member if more than one meets the SLA. Valid values: `cfg-order`, `fib-best-match`.

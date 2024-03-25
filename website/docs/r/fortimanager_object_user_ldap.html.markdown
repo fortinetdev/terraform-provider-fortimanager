@@ -10,7 +10,7 @@ description: |-
 Configure LDAP server entries.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_user_ldap_dynamic_mapping`
+>- `dynamic_mapping`: `fortimanager_object_user_ldap_dynamic_mapping`
 
 
 

@@ -538,303 +538,303 @@ func resourceObjectSystemNpuNpQueuesProfileRead(d *schema.ResourceData, m interf
 	return nil
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos0(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos03rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos13rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos23rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos33rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos43rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos53rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos63rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileCos7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileCos73rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp0(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp03rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp13rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp10(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp103rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp11(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp113rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp12(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp123rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp13(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp133rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp14(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp143rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp15(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp153rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp16(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp163rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp17(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp173rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp18(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp183rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp19(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp193rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp23rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp20(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp203rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp21(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp213rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp22(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp223rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp23(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp233rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp24(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp243rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp25(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp253rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp26(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp263rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp27(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp273rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp28(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp283rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp29(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp293rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp33rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp30(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp303rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp31(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp313rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp32(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp323rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp33(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp333rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp34(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp343rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp35(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp353rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp36(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp363rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp37(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp373rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp38(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp383rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp39(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp393rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp43rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp40(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp403rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp41(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp413rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp42(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp423rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp43(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp433rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp44(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp443rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp45(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp453rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp463rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp47(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp473rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp48(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp483rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp49(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp493rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp53rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp50(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp503rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp51(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp513rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp52(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp523rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp53(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp533rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp54(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp543rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp55(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp553rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp56(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp563rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp57(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp573rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp58(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp583rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp59(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp593rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp63rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp60(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp603rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp61(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp613rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp62(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp623rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp63(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp633rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp73rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp8(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp83rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileDscp9(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileDscp93rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileType3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesProfileWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesProfileWeight3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -845,7 +845,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("cos0", flattenObjectSystemNpuNpQueuesProfileCos0(o["cos0"], d, "cos0")); err != nil {
+	if err = d.Set("cos0", flattenObjectSystemNpuNpQueuesProfileCos03rdl(o["cos0"], d, "cos0")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos0"], "ObjectSystemNpuNpQueuesProfile-Cos0"); ok {
 			if err = d.Set("cos0", vv); err != nil {
 				return fmt.Errorf("Error reading cos0: %v", err)
@@ -855,7 +855,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos1", flattenObjectSystemNpuNpQueuesProfileCos1(o["cos1"], d, "cos1")); err != nil {
+	if err = d.Set("cos1", flattenObjectSystemNpuNpQueuesProfileCos13rdl(o["cos1"], d, "cos1")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos1"], "ObjectSystemNpuNpQueuesProfile-Cos1"); ok {
 			if err = d.Set("cos1", vv); err != nil {
 				return fmt.Errorf("Error reading cos1: %v", err)
@@ -865,7 +865,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos2", flattenObjectSystemNpuNpQueuesProfileCos2(o["cos2"], d, "cos2")); err != nil {
+	if err = d.Set("cos2", flattenObjectSystemNpuNpQueuesProfileCos23rdl(o["cos2"], d, "cos2")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos2"], "ObjectSystemNpuNpQueuesProfile-Cos2"); ok {
 			if err = d.Set("cos2", vv); err != nil {
 				return fmt.Errorf("Error reading cos2: %v", err)
@@ -875,7 +875,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos3", flattenObjectSystemNpuNpQueuesProfileCos3(o["cos3"], d, "cos3")); err != nil {
+	if err = d.Set("cos3", flattenObjectSystemNpuNpQueuesProfileCos33rdl(o["cos3"], d, "cos3")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos3"], "ObjectSystemNpuNpQueuesProfile-Cos3"); ok {
 			if err = d.Set("cos3", vv); err != nil {
 				return fmt.Errorf("Error reading cos3: %v", err)
@@ -885,7 +885,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos4", flattenObjectSystemNpuNpQueuesProfileCos4(o["cos4"], d, "cos4")); err != nil {
+	if err = d.Set("cos4", flattenObjectSystemNpuNpQueuesProfileCos43rdl(o["cos4"], d, "cos4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos4"], "ObjectSystemNpuNpQueuesProfile-Cos4"); ok {
 			if err = d.Set("cos4", vv); err != nil {
 				return fmt.Errorf("Error reading cos4: %v", err)
@@ -895,7 +895,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos5", flattenObjectSystemNpuNpQueuesProfileCos5(o["cos5"], d, "cos5")); err != nil {
+	if err = d.Set("cos5", flattenObjectSystemNpuNpQueuesProfileCos53rdl(o["cos5"], d, "cos5")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos5"], "ObjectSystemNpuNpQueuesProfile-Cos5"); ok {
 			if err = d.Set("cos5", vv); err != nil {
 				return fmt.Errorf("Error reading cos5: %v", err)
@@ -905,7 +905,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos6", flattenObjectSystemNpuNpQueuesProfileCos6(o["cos6"], d, "cos6")); err != nil {
+	if err = d.Set("cos6", flattenObjectSystemNpuNpQueuesProfileCos63rdl(o["cos6"], d, "cos6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos6"], "ObjectSystemNpuNpQueuesProfile-Cos6"); ok {
 			if err = d.Set("cos6", vv); err != nil {
 				return fmt.Errorf("Error reading cos6: %v", err)
@@ -915,7 +915,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("cos7", flattenObjectSystemNpuNpQueuesProfileCos7(o["cos7"], d, "cos7")); err != nil {
+	if err = d.Set("cos7", flattenObjectSystemNpuNpQueuesProfileCos73rdl(o["cos7"], d, "cos7")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cos7"], "ObjectSystemNpuNpQueuesProfile-Cos7"); ok {
 			if err = d.Set("cos7", vv); err != nil {
 				return fmt.Errorf("Error reading cos7: %v", err)
@@ -925,7 +925,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp0", flattenObjectSystemNpuNpQueuesProfileDscp0(o["dscp0"], d, "dscp0")); err != nil {
+	if err = d.Set("dscp0", flattenObjectSystemNpuNpQueuesProfileDscp03rdl(o["dscp0"], d, "dscp0")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp0"], "ObjectSystemNpuNpQueuesProfile-Dscp0"); ok {
 			if err = d.Set("dscp0", vv); err != nil {
 				return fmt.Errorf("Error reading dscp0: %v", err)
@@ -935,7 +935,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp1", flattenObjectSystemNpuNpQueuesProfileDscp1(o["dscp1"], d, "dscp1")); err != nil {
+	if err = d.Set("dscp1", flattenObjectSystemNpuNpQueuesProfileDscp13rdl(o["dscp1"], d, "dscp1")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp1"], "ObjectSystemNpuNpQueuesProfile-Dscp1"); ok {
 			if err = d.Set("dscp1", vv); err != nil {
 				return fmt.Errorf("Error reading dscp1: %v", err)
@@ -945,7 +945,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp10", flattenObjectSystemNpuNpQueuesProfileDscp10(o["dscp10"], d, "dscp10")); err != nil {
+	if err = d.Set("dscp10", flattenObjectSystemNpuNpQueuesProfileDscp103rdl(o["dscp10"], d, "dscp10")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp10"], "ObjectSystemNpuNpQueuesProfile-Dscp10"); ok {
 			if err = d.Set("dscp10", vv); err != nil {
 				return fmt.Errorf("Error reading dscp10: %v", err)
@@ -955,7 +955,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp11", flattenObjectSystemNpuNpQueuesProfileDscp11(o["dscp11"], d, "dscp11")); err != nil {
+	if err = d.Set("dscp11", flattenObjectSystemNpuNpQueuesProfileDscp113rdl(o["dscp11"], d, "dscp11")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp11"], "ObjectSystemNpuNpQueuesProfile-Dscp11"); ok {
 			if err = d.Set("dscp11", vv); err != nil {
 				return fmt.Errorf("Error reading dscp11: %v", err)
@@ -965,7 +965,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp12", flattenObjectSystemNpuNpQueuesProfileDscp12(o["dscp12"], d, "dscp12")); err != nil {
+	if err = d.Set("dscp12", flattenObjectSystemNpuNpQueuesProfileDscp123rdl(o["dscp12"], d, "dscp12")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp12"], "ObjectSystemNpuNpQueuesProfile-Dscp12"); ok {
 			if err = d.Set("dscp12", vv); err != nil {
 				return fmt.Errorf("Error reading dscp12: %v", err)
@@ -975,7 +975,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp13", flattenObjectSystemNpuNpQueuesProfileDscp13(o["dscp13"], d, "dscp13")); err != nil {
+	if err = d.Set("dscp13", flattenObjectSystemNpuNpQueuesProfileDscp133rdl(o["dscp13"], d, "dscp13")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp13"], "ObjectSystemNpuNpQueuesProfile-Dscp13"); ok {
 			if err = d.Set("dscp13", vv); err != nil {
 				return fmt.Errorf("Error reading dscp13: %v", err)
@@ -985,7 +985,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp14", flattenObjectSystemNpuNpQueuesProfileDscp14(o["dscp14"], d, "dscp14")); err != nil {
+	if err = d.Set("dscp14", flattenObjectSystemNpuNpQueuesProfileDscp143rdl(o["dscp14"], d, "dscp14")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp14"], "ObjectSystemNpuNpQueuesProfile-Dscp14"); ok {
 			if err = d.Set("dscp14", vv); err != nil {
 				return fmt.Errorf("Error reading dscp14: %v", err)
@@ -995,7 +995,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp15", flattenObjectSystemNpuNpQueuesProfileDscp15(o["dscp15"], d, "dscp15")); err != nil {
+	if err = d.Set("dscp15", flattenObjectSystemNpuNpQueuesProfileDscp153rdl(o["dscp15"], d, "dscp15")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp15"], "ObjectSystemNpuNpQueuesProfile-Dscp15"); ok {
 			if err = d.Set("dscp15", vv); err != nil {
 				return fmt.Errorf("Error reading dscp15: %v", err)
@@ -1005,7 +1005,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp16", flattenObjectSystemNpuNpQueuesProfileDscp16(o["dscp16"], d, "dscp16")); err != nil {
+	if err = d.Set("dscp16", flattenObjectSystemNpuNpQueuesProfileDscp163rdl(o["dscp16"], d, "dscp16")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp16"], "ObjectSystemNpuNpQueuesProfile-Dscp16"); ok {
 			if err = d.Set("dscp16", vv); err != nil {
 				return fmt.Errorf("Error reading dscp16: %v", err)
@@ -1015,7 +1015,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp17", flattenObjectSystemNpuNpQueuesProfileDscp17(o["dscp17"], d, "dscp17")); err != nil {
+	if err = d.Set("dscp17", flattenObjectSystemNpuNpQueuesProfileDscp173rdl(o["dscp17"], d, "dscp17")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp17"], "ObjectSystemNpuNpQueuesProfile-Dscp17"); ok {
 			if err = d.Set("dscp17", vv); err != nil {
 				return fmt.Errorf("Error reading dscp17: %v", err)
@@ -1025,7 +1025,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp18", flattenObjectSystemNpuNpQueuesProfileDscp18(o["dscp18"], d, "dscp18")); err != nil {
+	if err = d.Set("dscp18", flattenObjectSystemNpuNpQueuesProfileDscp183rdl(o["dscp18"], d, "dscp18")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp18"], "ObjectSystemNpuNpQueuesProfile-Dscp18"); ok {
 			if err = d.Set("dscp18", vv); err != nil {
 				return fmt.Errorf("Error reading dscp18: %v", err)
@@ -1035,7 +1035,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp19", flattenObjectSystemNpuNpQueuesProfileDscp19(o["dscp19"], d, "dscp19")); err != nil {
+	if err = d.Set("dscp19", flattenObjectSystemNpuNpQueuesProfileDscp193rdl(o["dscp19"], d, "dscp19")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp19"], "ObjectSystemNpuNpQueuesProfile-Dscp19"); ok {
 			if err = d.Set("dscp19", vv); err != nil {
 				return fmt.Errorf("Error reading dscp19: %v", err)
@@ -1045,7 +1045,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp2", flattenObjectSystemNpuNpQueuesProfileDscp2(o["dscp2"], d, "dscp2")); err != nil {
+	if err = d.Set("dscp2", flattenObjectSystemNpuNpQueuesProfileDscp23rdl(o["dscp2"], d, "dscp2")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp2"], "ObjectSystemNpuNpQueuesProfile-Dscp2"); ok {
 			if err = d.Set("dscp2", vv); err != nil {
 				return fmt.Errorf("Error reading dscp2: %v", err)
@@ -1055,7 +1055,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp20", flattenObjectSystemNpuNpQueuesProfileDscp20(o["dscp20"], d, "dscp20")); err != nil {
+	if err = d.Set("dscp20", flattenObjectSystemNpuNpQueuesProfileDscp203rdl(o["dscp20"], d, "dscp20")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp20"], "ObjectSystemNpuNpQueuesProfile-Dscp20"); ok {
 			if err = d.Set("dscp20", vv); err != nil {
 				return fmt.Errorf("Error reading dscp20: %v", err)
@@ -1065,7 +1065,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp21", flattenObjectSystemNpuNpQueuesProfileDscp21(o["dscp21"], d, "dscp21")); err != nil {
+	if err = d.Set("dscp21", flattenObjectSystemNpuNpQueuesProfileDscp213rdl(o["dscp21"], d, "dscp21")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp21"], "ObjectSystemNpuNpQueuesProfile-Dscp21"); ok {
 			if err = d.Set("dscp21", vv); err != nil {
 				return fmt.Errorf("Error reading dscp21: %v", err)
@@ -1075,7 +1075,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp22", flattenObjectSystemNpuNpQueuesProfileDscp22(o["dscp22"], d, "dscp22")); err != nil {
+	if err = d.Set("dscp22", flattenObjectSystemNpuNpQueuesProfileDscp223rdl(o["dscp22"], d, "dscp22")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp22"], "ObjectSystemNpuNpQueuesProfile-Dscp22"); ok {
 			if err = d.Set("dscp22", vv); err != nil {
 				return fmt.Errorf("Error reading dscp22: %v", err)
@@ -1085,7 +1085,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp23", flattenObjectSystemNpuNpQueuesProfileDscp23(o["dscp23"], d, "dscp23")); err != nil {
+	if err = d.Set("dscp23", flattenObjectSystemNpuNpQueuesProfileDscp233rdl(o["dscp23"], d, "dscp23")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp23"], "ObjectSystemNpuNpQueuesProfile-Dscp23"); ok {
 			if err = d.Set("dscp23", vv); err != nil {
 				return fmt.Errorf("Error reading dscp23: %v", err)
@@ -1095,7 +1095,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp24", flattenObjectSystemNpuNpQueuesProfileDscp24(o["dscp24"], d, "dscp24")); err != nil {
+	if err = d.Set("dscp24", flattenObjectSystemNpuNpQueuesProfileDscp243rdl(o["dscp24"], d, "dscp24")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp24"], "ObjectSystemNpuNpQueuesProfile-Dscp24"); ok {
 			if err = d.Set("dscp24", vv); err != nil {
 				return fmt.Errorf("Error reading dscp24: %v", err)
@@ -1105,7 +1105,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp25", flattenObjectSystemNpuNpQueuesProfileDscp25(o["dscp25"], d, "dscp25")); err != nil {
+	if err = d.Set("dscp25", flattenObjectSystemNpuNpQueuesProfileDscp253rdl(o["dscp25"], d, "dscp25")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp25"], "ObjectSystemNpuNpQueuesProfile-Dscp25"); ok {
 			if err = d.Set("dscp25", vv); err != nil {
 				return fmt.Errorf("Error reading dscp25: %v", err)
@@ -1115,7 +1115,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp26", flattenObjectSystemNpuNpQueuesProfileDscp26(o["dscp26"], d, "dscp26")); err != nil {
+	if err = d.Set("dscp26", flattenObjectSystemNpuNpQueuesProfileDscp263rdl(o["dscp26"], d, "dscp26")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp26"], "ObjectSystemNpuNpQueuesProfile-Dscp26"); ok {
 			if err = d.Set("dscp26", vv); err != nil {
 				return fmt.Errorf("Error reading dscp26: %v", err)
@@ -1125,7 +1125,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp27", flattenObjectSystemNpuNpQueuesProfileDscp27(o["dscp27"], d, "dscp27")); err != nil {
+	if err = d.Set("dscp27", flattenObjectSystemNpuNpQueuesProfileDscp273rdl(o["dscp27"], d, "dscp27")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp27"], "ObjectSystemNpuNpQueuesProfile-Dscp27"); ok {
 			if err = d.Set("dscp27", vv); err != nil {
 				return fmt.Errorf("Error reading dscp27: %v", err)
@@ -1135,7 +1135,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp28", flattenObjectSystemNpuNpQueuesProfileDscp28(o["dscp28"], d, "dscp28")); err != nil {
+	if err = d.Set("dscp28", flattenObjectSystemNpuNpQueuesProfileDscp283rdl(o["dscp28"], d, "dscp28")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp28"], "ObjectSystemNpuNpQueuesProfile-Dscp28"); ok {
 			if err = d.Set("dscp28", vv); err != nil {
 				return fmt.Errorf("Error reading dscp28: %v", err)
@@ -1145,7 +1145,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp29", flattenObjectSystemNpuNpQueuesProfileDscp29(o["dscp29"], d, "dscp29")); err != nil {
+	if err = d.Set("dscp29", flattenObjectSystemNpuNpQueuesProfileDscp293rdl(o["dscp29"], d, "dscp29")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp29"], "ObjectSystemNpuNpQueuesProfile-Dscp29"); ok {
 			if err = d.Set("dscp29", vv); err != nil {
 				return fmt.Errorf("Error reading dscp29: %v", err)
@@ -1155,7 +1155,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp3", flattenObjectSystemNpuNpQueuesProfileDscp3(o["dscp3"], d, "dscp3")); err != nil {
+	if err = d.Set("dscp3", flattenObjectSystemNpuNpQueuesProfileDscp33rdl(o["dscp3"], d, "dscp3")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp3"], "ObjectSystemNpuNpQueuesProfile-Dscp3"); ok {
 			if err = d.Set("dscp3", vv); err != nil {
 				return fmt.Errorf("Error reading dscp3: %v", err)
@@ -1165,7 +1165,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp30", flattenObjectSystemNpuNpQueuesProfileDscp30(o["dscp30"], d, "dscp30")); err != nil {
+	if err = d.Set("dscp30", flattenObjectSystemNpuNpQueuesProfileDscp303rdl(o["dscp30"], d, "dscp30")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp30"], "ObjectSystemNpuNpQueuesProfile-Dscp30"); ok {
 			if err = d.Set("dscp30", vv); err != nil {
 				return fmt.Errorf("Error reading dscp30: %v", err)
@@ -1175,7 +1175,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp31", flattenObjectSystemNpuNpQueuesProfileDscp31(o["dscp31"], d, "dscp31")); err != nil {
+	if err = d.Set("dscp31", flattenObjectSystemNpuNpQueuesProfileDscp313rdl(o["dscp31"], d, "dscp31")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp31"], "ObjectSystemNpuNpQueuesProfile-Dscp31"); ok {
 			if err = d.Set("dscp31", vv); err != nil {
 				return fmt.Errorf("Error reading dscp31: %v", err)
@@ -1185,7 +1185,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp32", flattenObjectSystemNpuNpQueuesProfileDscp32(o["dscp32"], d, "dscp32")); err != nil {
+	if err = d.Set("dscp32", flattenObjectSystemNpuNpQueuesProfileDscp323rdl(o["dscp32"], d, "dscp32")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp32"], "ObjectSystemNpuNpQueuesProfile-Dscp32"); ok {
 			if err = d.Set("dscp32", vv); err != nil {
 				return fmt.Errorf("Error reading dscp32: %v", err)
@@ -1195,7 +1195,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp33", flattenObjectSystemNpuNpQueuesProfileDscp33(o["dscp33"], d, "dscp33")); err != nil {
+	if err = d.Set("dscp33", flattenObjectSystemNpuNpQueuesProfileDscp333rdl(o["dscp33"], d, "dscp33")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp33"], "ObjectSystemNpuNpQueuesProfile-Dscp33"); ok {
 			if err = d.Set("dscp33", vv); err != nil {
 				return fmt.Errorf("Error reading dscp33: %v", err)
@@ -1205,7 +1205,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp34", flattenObjectSystemNpuNpQueuesProfileDscp34(o["dscp34"], d, "dscp34")); err != nil {
+	if err = d.Set("dscp34", flattenObjectSystemNpuNpQueuesProfileDscp343rdl(o["dscp34"], d, "dscp34")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp34"], "ObjectSystemNpuNpQueuesProfile-Dscp34"); ok {
 			if err = d.Set("dscp34", vv); err != nil {
 				return fmt.Errorf("Error reading dscp34: %v", err)
@@ -1215,7 +1215,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp35", flattenObjectSystemNpuNpQueuesProfileDscp35(o["dscp35"], d, "dscp35")); err != nil {
+	if err = d.Set("dscp35", flattenObjectSystemNpuNpQueuesProfileDscp353rdl(o["dscp35"], d, "dscp35")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp35"], "ObjectSystemNpuNpQueuesProfile-Dscp35"); ok {
 			if err = d.Set("dscp35", vv); err != nil {
 				return fmt.Errorf("Error reading dscp35: %v", err)
@@ -1225,7 +1225,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp36", flattenObjectSystemNpuNpQueuesProfileDscp36(o["dscp36"], d, "dscp36")); err != nil {
+	if err = d.Set("dscp36", flattenObjectSystemNpuNpQueuesProfileDscp363rdl(o["dscp36"], d, "dscp36")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp36"], "ObjectSystemNpuNpQueuesProfile-Dscp36"); ok {
 			if err = d.Set("dscp36", vv); err != nil {
 				return fmt.Errorf("Error reading dscp36: %v", err)
@@ -1235,7 +1235,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp37", flattenObjectSystemNpuNpQueuesProfileDscp37(o["dscp37"], d, "dscp37")); err != nil {
+	if err = d.Set("dscp37", flattenObjectSystemNpuNpQueuesProfileDscp373rdl(o["dscp37"], d, "dscp37")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp37"], "ObjectSystemNpuNpQueuesProfile-Dscp37"); ok {
 			if err = d.Set("dscp37", vv); err != nil {
 				return fmt.Errorf("Error reading dscp37: %v", err)
@@ -1245,7 +1245,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp38", flattenObjectSystemNpuNpQueuesProfileDscp38(o["dscp38"], d, "dscp38")); err != nil {
+	if err = d.Set("dscp38", flattenObjectSystemNpuNpQueuesProfileDscp383rdl(o["dscp38"], d, "dscp38")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp38"], "ObjectSystemNpuNpQueuesProfile-Dscp38"); ok {
 			if err = d.Set("dscp38", vv); err != nil {
 				return fmt.Errorf("Error reading dscp38: %v", err)
@@ -1255,7 +1255,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp39", flattenObjectSystemNpuNpQueuesProfileDscp39(o["dscp39"], d, "dscp39")); err != nil {
+	if err = d.Set("dscp39", flattenObjectSystemNpuNpQueuesProfileDscp393rdl(o["dscp39"], d, "dscp39")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp39"], "ObjectSystemNpuNpQueuesProfile-Dscp39"); ok {
 			if err = d.Set("dscp39", vv); err != nil {
 				return fmt.Errorf("Error reading dscp39: %v", err)
@@ -1265,7 +1265,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp4", flattenObjectSystemNpuNpQueuesProfileDscp4(o["dscp4"], d, "dscp4")); err != nil {
+	if err = d.Set("dscp4", flattenObjectSystemNpuNpQueuesProfileDscp43rdl(o["dscp4"], d, "dscp4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp4"], "ObjectSystemNpuNpQueuesProfile-Dscp4"); ok {
 			if err = d.Set("dscp4", vv); err != nil {
 				return fmt.Errorf("Error reading dscp4: %v", err)
@@ -1275,7 +1275,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp40", flattenObjectSystemNpuNpQueuesProfileDscp40(o["dscp40"], d, "dscp40")); err != nil {
+	if err = d.Set("dscp40", flattenObjectSystemNpuNpQueuesProfileDscp403rdl(o["dscp40"], d, "dscp40")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp40"], "ObjectSystemNpuNpQueuesProfile-Dscp40"); ok {
 			if err = d.Set("dscp40", vv); err != nil {
 				return fmt.Errorf("Error reading dscp40: %v", err)
@@ -1285,7 +1285,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp41", flattenObjectSystemNpuNpQueuesProfileDscp41(o["dscp41"], d, "dscp41")); err != nil {
+	if err = d.Set("dscp41", flattenObjectSystemNpuNpQueuesProfileDscp413rdl(o["dscp41"], d, "dscp41")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp41"], "ObjectSystemNpuNpQueuesProfile-Dscp41"); ok {
 			if err = d.Set("dscp41", vv); err != nil {
 				return fmt.Errorf("Error reading dscp41: %v", err)
@@ -1295,7 +1295,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp42", flattenObjectSystemNpuNpQueuesProfileDscp42(o["dscp42"], d, "dscp42")); err != nil {
+	if err = d.Set("dscp42", flattenObjectSystemNpuNpQueuesProfileDscp423rdl(o["dscp42"], d, "dscp42")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp42"], "ObjectSystemNpuNpQueuesProfile-Dscp42"); ok {
 			if err = d.Set("dscp42", vv); err != nil {
 				return fmt.Errorf("Error reading dscp42: %v", err)
@@ -1305,7 +1305,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp43", flattenObjectSystemNpuNpQueuesProfileDscp43(o["dscp43"], d, "dscp43")); err != nil {
+	if err = d.Set("dscp43", flattenObjectSystemNpuNpQueuesProfileDscp433rdl(o["dscp43"], d, "dscp43")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp43"], "ObjectSystemNpuNpQueuesProfile-Dscp43"); ok {
 			if err = d.Set("dscp43", vv); err != nil {
 				return fmt.Errorf("Error reading dscp43: %v", err)
@@ -1315,7 +1315,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp44", flattenObjectSystemNpuNpQueuesProfileDscp44(o["dscp44"], d, "dscp44")); err != nil {
+	if err = d.Set("dscp44", flattenObjectSystemNpuNpQueuesProfileDscp443rdl(o["dscp44"], d, "dscp44")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp44"], "ObjectSystemNpuNpQueuesProfile-Dscp44"); ok {
 			if err = d.Set("dscp44", vv); err != nil {
 				return fmt.Errorf("Error reading dscp44: %v", err)
@@ -1325,7 +1325,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp45", flattenObjectSystemNpuNpQueuesProfileDscp45(o["dscp45"], d, "dscp45")); err != nil {
+	if err = d.Set("dscp45", flattenObjectSystemNpuNpQueuesProfileDscp453rdl(o["dscp45"], d, "dscp45")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp45"], "ObjectSystemNpuNpQueuesProfile-Dscp45"); ok {
 			if err = d.Set("dscp45", vv); err != nil {
 				return fmt.Errorf("Error reading dscp45: %v", err)
@@ -1335,7 +1335,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp46", flattenObjectSystemNpuNpQueuesProfileDscp46(o["dscp46"], d, "dscp46")); err != nil {
+	if err = d.Set("dscp46", flattenObjectSystemNpuNpQueuesProfileDscp463rdl(o["dscp46"], d, "dscp46")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp46"], "ObjectSystemNpuNpQueuesProfile-Dscp46"); ok {
 			if err = d.Set("dscp46", vv); err != nil {
 				return fmt.Errorf("Error reading dscp46: %v", err)
@@ -1345,7 +1345,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp47", flattenObjectSystemNpuNpQueuesProfileDscp47(o["dscp47"], d, "dscp47")); err != nil {
+	if err = d.Set("dscp47", flattenObjectSystemNpuNpQueuesProfileDscp473rdl(o["dscp47"], d, "dscp47")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp47"], "ObjectSystemNpuNpQueuesProfile-Dscp47"); ok {
 			if err = d.Set("dscp47", vv); err != nil {
 				return fmt.Errorf("Error reading dscp47: %v", err)
@@ -1355,7 +1355,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp48", flattenObjectSystemNpuNpQueuesProfileDscp48(o["dscp48"], d, "dscp48")); err != nil {
+	if err = d.Set("dscp48", flattenObjectSystemNpuNpQueuesProfileDscp483rdl(o["dscp48"], d, "dscp48")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp48"], "ObjectSystemNpuNpQueuesProfile-Dscp48"); ok {
 			if err = d.Set("dscp48", vv); err != nil {
 				return fmt.Errorf("Error reading dscp48: %v", err)
@@ -1365,7 +1365,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp49", flattenObjectSystemNpuNpQueuesProfileDscp49(o["dscp49"], d, "dscp49")); err != nil {
+	if err = d.Set("dscp49", flattenObjectSystemNpuNpQueuesProfileDscp493rdl(o["dscp49"], d, "dscp49")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp49"], "ObjectSystemNpuNpQueuesProfile-Dscp49"); ok {
 			if err = d.Set("dscp49", vv); err != nil {
 				return fmt.Errorf("Error reading dscp49: %v", err)
@@ -1375,7 +1375,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp5", flattenObjectSystemNpuNpQueuesProfileDscp5(o["dscp5"], d, "dscp5")); err != nil {
+	if err = d.Set("dscp5", flattenObjectSystemNpuNpQueuesProfileDscp53rdl(o["dscp5"], d, "dscp5")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp5"], "ObjectSystemNpuNpQueuesProfile-Dscp5"); ok {
 			if err = d.Set("dscp5", vv); err != nil {
 				return fmt.Errorf("Error reading dscp5: %v", err)
@@ -1385,7 +1385,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp50", flattenObjectSystemNpuNpQueuesProfileDscp50(o["dscp50"], d, "dscp50")); err != nil {
+	if err = d.Set("dscp50", flattenObjectSystemNpuNpQueuesProfileDscp503rdl(o["dscp50"], d, "dscp50")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp50"], "ObjectSystemNpuNpQueuesProfile-Dscp50"); ok {
 			if err = d.Set("dscp50", vv); err != nil {
 				return fmt.Errorf("Error reading dscp50: %v", err)
@@ -1395,7 +1395,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp51", flattenObjectSystemNpuNpQueuesProfileDscp51(o["dscp51"], d, "dscp51")); err != nil {
+	if err = d.Set("dscp51", flattenObjectSystemNpuNpQueuesProfileDscp513rdl(o["dscp51"], d, "dscp51")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp51"], "ObjectSystemNpuNpQueuesProfile-Dscp51"); ok {
 			if err = d.Set("dscp51", vv); err != nil {
 				return fmt.Errorf("Error reading dscp51: %v", err)
@@ -1405,7 +1405,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp52", flattenObjectSystemNpuNpQueuesProfileDscp52(o["dscp52"], d, "dscp52")); err != nil {
+	if err = d.Set("dscp52", flattenObjectSystemNpuNpQueuesProfileDscp523rdl(o["dscp52"], d, "dscp52")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp52"], "ObjectSystemNpuNpQueuesProfile-Dscp52"); ok {
 			if err = d.Set("dscp52", vv); err != nil {
 				return fmt.Errorf("Error reading dscp52: %v", err)
@@ -1415,7 +1415,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp53", flattenObjectSystemNpuNpQueuesProfileDscp53(o["dscp53"], d, "dscp53")); err != nil {
+	if err = d.Set("dscp53", flattenObjectSystemNpuNpQueuesProfileDscp533rdl(o["dscp53"], d, "dscp53")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp53"], "ObjectSystemNpuNpQueuesProfile-Dscp53"); ok {
 			if err = d.Set("dscp53", vv); err != nil {
 				return fmt.Errorf("Error reading dscp53: %v", err)
@@ -1425,7 +1425,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp54", flattenObjectSystemNpuNpQueuesProfileDscp54(o["dscp54"], d, "dscp54")); err != nil {
+	if err = d.Set("dscp54", flattenObjectSystemNpuNpQueuesProfileDscp543rdl(o["dscp54"], d, "dscp54")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp54"], "ObjectSystemNpuNpQueuesProfile-Dscp54"); ok {
 			if err = d.Set("dscp54", vv); err != nil {
 				return fmt.Errorf("Error reading dscp54: %v", err)
@@ -1435,7 +1435,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp55", flattenObjectSystemNpuNpQueuesProfileDscp55(o["dscp55"], d, "dscp55")); err != nil {
+	if err = d.Set("dscp55", flattenObjectSystemNpuNpQueuesProfileDscp553rdl(o["dscp55"], d, "dscp55")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp55"], "ObjectSystemNpuNpQueuesProfile-Dscp55"); ok {
 			if err = d.Set("dscp55", vv); err != nil {
 				return fmt.Errorf("Error reading dscp55: %v", err)
@@ -1445,7 +1445,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp56", flattenObjectSystemNpuNpQueuesProfileDscp56(o["dscp56"], d, "dscp56")); err != nil {
+	if err = d.Set("dscp56", flattenObjectSystemNpuNpQueuesProfileDscp563rdl(o["dscp56"], d, "dscp56")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp56"], "ObjectSystemNpuNpQueuesProfile-Dscp56"); ok {
 			if err = d.Set("dscp56", vv); err != nil {
 				return fmt.Errorf("Error reading dscp56: %v", err)
@@ -1455,7 +1455,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp57", flattenObjectSystemNpuNpQueuesProfileDscp57(o["dscp57"], d, "dscp57")); err != nil {
+	if err = d.Set("dscp57", flattenObjectSystemNpuNpQueuesProfileDscp573rdl(o["dscp57"], d, "dscp57")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp57"], "ObjectSystemNpuNpQueuesProfile-Dscp57"); ok {
 			if err = d.Set("dscp57", vv); err != nil {
 				return fmt.Errorf("Error reading dscp57: %v", err)
@@ -1465,7 +1465,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp58", flattenObjectSystemNpuNpQueuesProfileDscp58(o["dscp58"], d, "dscp58")); err != nil {
+	if err = d.Set("dscp58", flattenObjectSystemNpuNpQueuesProfileDscp583rdl(o["dscp58"], d, "dscp58")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp58"], "ObjectSystemNpuNpQueuesProfile-Dscp58"); ok {
 			if err = d.Set("dscp58", vv); err != nil {
 				return fmt.Errorf("Error reading dscp58: %v", err)
@@ -1475,7 +1475,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp59", flattenObjectSystemNpuNpQueuesProfileDscp59(o["dscp59"], d, "dscp59")); err != nil {
+	if err = d.Set("dscp59", flattenObjectSystemNpuNpQueuesProfileDscp593rdl(o["dscp59"], d, "dscp59")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp59"], "ObjectSystemNpuNpQueuesProfile-Dscp59"); ok {
 			if err = d.Set("dscp59", vv); err != nil {
 				return fmt.Errorf("Error reading dscp59: %v", err)
@@ -1485,7 +1485,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp6", flattenObjectSystemNpuNpQueuesProfileDscp6(o["dscp6"], d, "dscp6")); err != nil {
+	if err = d.Set("dscp6", flattenObjectSystemNpuNpQueuesProfileDscp63rdl(o["dscp6"], d, "dscp6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp6"], "ObjectSystemNpuNpQueuesProfile-Dscp6"); ok {
 			if err = d.Set("dscp6", vv); err != nil {
 				return fmt.Errorf("Error reading dscp6: %v", err)
@@ -1495,7 +1495,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp60", flattenObjectSystemNpuNpQueuesProfileDscp60(o["dscp60"], d, "dscp60")); err != nil {
+	if err = d.Set("dscp60", flattenObjectSystemNpuNpQueuesProfileDscp603rdl(o["dscp60"], d, "dscp60")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp60"], "ObjectSystemNpuNpQueuesProfile-Dscp60"); ok {
 			if err = d.Set("dscp60", vv); err != nil {
 				return fmt.Errorf("Error reading dscp60: %v", err)
@@ -1505,7 +1505,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp61", flattenObjectSystemNpuNpQueuesProfileDscp61(o["dscp61"], d, "dscp61")); err != nil {
+	if err = d.Set("dscp61", flattenObjectSystemNpuNpQueuesProfileDscp613rdl(o["dscp61"], d, "dscp61")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp61"], "ObjectSystemNpuNpQueuesProfile-Dscp61"); ok {
 			if err = d.Set("dscp61", vv); err != nil {
 				return fmt.Errorf("Error reading dscp61: %v", err)
@@ -1515,7 +1515,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp62", flattenObjectSystemNpuNpQueuesProfileDscp62(o["dscp62"], d, "dscp62")); err != nil {
+	if err = d.Set("dscp62", flattenObjectSystemNpuNpQueuesProfileDscp623rdl(o["dscp62"], d, "dscp62")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp62"], "ObjectSystemNpuNpQueuesProfile-Dscp62"); ok {
 			if err = d.Set("dscp62", vv); err != nil {
 				return fmt.Errorf("Error reading dscp62: %v", err)
@@ -1525,7 +1525,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp63", flattenObjectSystemNpuNpQueuesProfileDscp63(o["dscp63"], d, "dscp63")); err != nil {
+	if err = d.Set("dscp63", flattenObjectSystemNpuNpQueuesProfileDscp633rdl(o["dscp63"], d, "dscp63")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp63"], "ObjectSystemNpuNpQueuesProfile-Dscp63"); ok {
 			if err = d.Set("dscp63", vv); err != nil {
 				return fmt.Errorf("Error reading dscp63: %v", err)
@@ -1535,7 +1535,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp7", flattenObjectSystemNpuNpQueuesProfileDscp7(o["dscp7"], d, "dscp7")); err != nil {
+	if err = d.Set("dscp7", flattenObjectSystemNpuNpQueuesProfileDscp73rdl(o["dscp7"], d, "dscp7")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp7"], "ObjectSystemNpuNpQueuesProfile-Dscp7"); ok {
 			if err = d.Set("dscp7", vv); err != nil {
 				return fmt.Errorf("Error reading dscp7: %v", err)
@@ -1545,7 +1545,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp8", flattenObjectSystemNpuNpQueuesProfileDscp8(o["dscp8"], d, "dscp8")); err != nil {
+	if err = d.Set("dscp8", flattenObjectSystemNpuNpQueuesProfileDscp83rdl(o["dscp8"], d, "dscp8")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp8"], "ObjectSystemNpuNpQueuesProfile-Dscp8"); ok {
 			if err = d.Set("dscp8", vv); err != nil {
 				return fmt.Errorf("Error reading dscp8: %v", err)
@@ -1555,7 +1555,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("dscp9", flattenObjectSystemNpuNpQueuesProfileDscp9(o["dscp9"], d, "dscp9")); err != nil {
+	if err = d.Set("dscp9", flattenObjectSystemNpuNpQueuesProfileDscp93rdl(o["dscp9"], d, "dscp9")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dscp9"], "ObjectSystemNpuNpQueuesProfile-Dscp9"); ok {
 			if err = d.Set("dscp9", vv); err != nil {
 				return fmt.Errorf("Error reading dscp9: %v", err)
@@ -1565,7 +1565,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("fosid", flattenObjectSystemNpuNpQueuesProfileId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectSystemNpuNpQueuesProfileId3rdl(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectSystemNpuNpQueuesProfile-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -1575,7 +1575,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("type", flattenObjectSystemNpuNpQueuesProfileType(o["type"], d, "type")); err != nil {
+	if err = d.Set("type", flattenObjectSystemNpuNpQueuesProfileType3rdl(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectSystemNpuNpQueuesProfile-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
 				return fmt.Errorf("Error reading type: %v", err)
@@ -1585,7 +1585,7 @@ func refreshObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesProfileWeight(o["weight"], d, "weight")); err != nil {
+	if err = d.Set("weight", flattenObjectSystemNpuNpQueuesProfileWeight3rdl(o["weight"], d, "weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weight"], "ObjectSystemNpuNpQueuesProfile-Weight"); ok {
 			if err = d.Set("weight", vv); err != nil {
 				return fmt.Errorf("Error reading weight: %v", err)
@@ -1604,303 +1604,303 @@ func flattenObjectSystemNpuNpQueuesProfileFortiTestDebug(d *schema.ResourceData,
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos03rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos13rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos23rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos33rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos43rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos53rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos63rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileCos7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileCos73rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp03rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp13rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp103rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp11(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp113rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp12(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp123rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp13(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp133rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp14(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp143rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp15(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp153rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp163rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp17(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp173rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp18(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp183rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp19(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp193rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp23rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp20(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp203rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp21(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp213rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp22(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp223rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp23(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp233rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp24(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp243rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp25(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp253rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp26(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp263rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp27(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp273rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp28(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp283rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp29(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp293rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp33rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp30(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp303rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp31(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp313rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp32(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp323rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp33(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp333rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp34(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp343rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp35(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp353rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp36(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp363rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp37(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp373rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp38(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp383rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp39(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp393rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp43rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp40(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp403rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp41(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp413rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp42(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp423rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp43(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp433rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp44(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp443rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp45(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp453rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp463rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp47(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp473rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp48(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp483rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp49(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp493rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp53rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp50(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp503rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp51(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp513rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp52(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp523rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp53(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp533rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp54(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp543rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp55(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp553rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp56(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp563rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp57(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp573rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp58(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp583rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp59(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp593rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp63rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp60(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp603rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp61(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp613rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp62(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp623rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp63(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp633rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp73rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp83rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileDscp9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileDscp93rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileType3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesProfileWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesProfileWeight3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1908,7 +1908,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cos0"); ok || d.HasChange("cos0") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos0(d, v, "cos0")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos03rdl(d, v, "cos0")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1917,7 +1917,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos1"); ok || d.HasChange("cos1") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos1(d, v, "cos1")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos13rdl(d, v, "cos1")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1926,7 +1926,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos2"); ok || d.HasChange("cos2") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos2(d, v, "cos2")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos23rdl(d, v, "cos2")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1935,7 +1935,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos3"); ok || d.HasChange("cos3") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos3(d, v, "cos3")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos33rdl(d, v, "cos3")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1944,7 +1944,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos4"); ok || d.HasChange("cos4") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos4(d, v, "cos4")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos43rdl(d, v, "cos4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1953,7 +1953,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos5"); ok || d.HasChange("cos5") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos5(d, v, "cos5")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos53rdl(d, v, "cos5")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1962,7 +1962,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos6"); ok || d.HasChange("cos6") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos6(d, v, "cos6")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos63rdl(d, v, "cos6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1971,7 +1971,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("cos7"); ok || d.HasChange("cos7") {
-		t, err := expandObjectSystemNpuNpQueuesProfileCos7(d, v, "cos7")
+		t, err := expandObjectSystemNpuNpQueuesProfileCos73rdl(d, v, "cos7")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1980,7 +1980,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp0"); ok || d.HasChange("dscp0") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp0(d, v, "dscp0")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp03rdl(d, v, "dscp0")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1989,7 +1989,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp1"); ok || d.HasChange("dscp1") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp1(d, v, "dscp1")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp13rdl(d, v, "dscp1")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -1998,7 +1998,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp10"); ok || d.HasChange("dscp10") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp10(d, v, "dscp10")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp103rdl(d, v, "dscp10")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2007,7 +2007,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp11"); ok || d.HasChange("dscp11") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp11(d, v, "dscp11")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp113rdl(d, v, "dscp11")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2016,7 +2016,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp12"); ok || d.HasChange("dscp12") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp12(d, v, "dscp12")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp123rdl(d, v, "dscp12")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2025,7 +2025,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp13"); ok || d.HasChange("dscp13") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp13(d, v, "dscp13")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp133rdl(d, v, "dscp13")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2034,7 +2034,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp14"); ok || d.HasChange("dscp14") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp14(d, v, "dscp14")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp143rdl(d, v, "dscp14")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2043,7 +2043,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp15"); ok || d.HasChange("dscp15") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp15(d, v, "dscp15")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp153rdl(d, v, "dscp15")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2052,7 +2052,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp16"); ok || d.HasChange("dscp16") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp16(d, v, "dscp16")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp163rdl(d, v, "dscp16")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2061,7 +2061,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp17"); ok || d.HasChange("dscp17") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp17(d, v, "dscp17")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp173rdl(d, v, "dscp17")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2070,7 +2070,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp18"); ok || d.HasChange("dscp18") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp18(d, v, "dscp18")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp183rdl(d, v, "dscp18")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2079,7 +2079,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp19"); ok || d.HasChange("dscp19") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp19(d, v, "dscp19")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp193rdl(d, v, "dscp19")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2088,7 +2088,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp2"); ok || d.HasChange("dscp2") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp2(d, v, "dscp2")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp23rdl(d, v, "dscp2")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2097,7 +2097,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp20"); ok || d.HasChange("dscp20") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp20(d, v, "dscp20")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp203rdl(d, v, "dscp20")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2106,7 +2106,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp21"); ok || d.HasChange("dscp21") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp21(d, v, "dscp21")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp213rdl(d, v, "dscp21")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2115,7 +2115,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp22"); ok || d.HasChange("dscp22") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp22(d, v, "dscp22")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp223rdl(d, v, "dscp22")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2124,7 +2124,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp23"); ok || d.HasChange("dscp23") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp23(d, v, "dscp23")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp233rdl(d, v, "dscp23")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2133,7 +2133,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp24"); ok || d.HasChange("dscp24") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp24(d, v, "dscp24")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp243rdl(d, v, "dscp24")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2142,7 +2142,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp25"); ok || d.HasChange("dscp25") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp25(d, v, "dscp25")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp253rdl(d, v, "dscp25")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2151,7 +2151,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp26"); ok || d.HasChange("dscp26") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp26(d, v, "dscp26")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp263rdl(d, v, "dscp26")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2160,7 +2160,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp27"); ok || d.HasChange("dscp27") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp27(d, v, "dscp27")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp273rdl(d, v, "dscp27")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2169,7 +2169,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp28"); ok || d.HasChange("dscp28") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp28(d, v, "dscp28")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp283rdl(d, v, "dscp28")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2178,7 +2178,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp29"); ok || d.HasChange("dscp29") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp29(d, v, "dscp29")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp293rdl(d, v, "dscp29")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2187,7 +2187,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp3"); ok || d.HasChange("dscp3") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp3(d, v, "dscp3")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp33rdl(d, v, "dscp3")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2196,7 +2196,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp30"); ok || d.HasChange("dscp30") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp30(d, v, "dscp30")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp303rdl(d, v, "dscp30")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2205,7 +2205,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp31"); ok || d.HasChange("dscp31") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp31(d, v, "dscp31")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp313rdl(d, v, "dscp31")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2214,7 +2214,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp32"); ok || d.HasChange("dscp32") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp32(d, v, "dscp32")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp323rdl(d, v, "dscp32")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2223,7 +2223,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp33"); ok || d.HasChange("dscp33") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp33(d, v, "dscp33")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp333rdl(d, v, "dscp33")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2232,7 +2232,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp34"); ok || d.HasChange("dscp34") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp34(d, v, "dscp34")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp343rdl(d, v, "dscp34")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2241,7 +2241,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp35"); ok || d.HasChange("dscp35") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp35(d, v, "dscp35")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp353rdl(d, v, "dscp35")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2250,7 +2250,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp36"); ok || d.HasChange("dscp36") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp36(d, v, "dscp36")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp363rdl(d, v, "dscp36")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2259,7 +2259,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp37"); ok || d.HasChange("dscp37") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp37(d, v, "dscp37")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp373rdl(d, v, "dscp37")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2268,7 +2268,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp38"); ok || d.HasChange("dscp38") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp38(d, v, "dscp38")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp383rdl(d, v, "dscp38")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2277,7 +2277,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp39"); ok || d.HasChange("dscp39") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp39(d, v, "dscp39")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp393rdl(d, v, "dscp39")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2286,7 +2286,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp4"); ok || d.HasChange("dscp4") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp4(d, v, "dscp4")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp43rdl(d, v, "dscp4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2295,7 +2295,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp40"); ok || d.HasChange("dscp40") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp40(d, v, "dscp40")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp403rdl(d, v, "dscp40")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2304,7 +2304,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp41"); ok || d.HasChange("dscp41") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp41(d, v, "dscp41")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp413rdl(d, v, "dscp41")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2313,7 +2313,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp42"); ok || d.HasChange("dscp42") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp42(d, v, "dscp42")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp423rdl(d, v, "dscp42")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2322,7 +2322,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp43"); ok || d.HasChange("dscp43") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp43(d, v, "dscp43")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp433rdl(d, v, "dscp43")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2331,7 +2331,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp44"); ok || d.HasChange("dscp44") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp44(d, v, "dscp44")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp443rdl(d, v, "dscp44")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2340,7 +2340,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp45"); ok || d.HasChange("dscp45") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp45(d, v, "dscp45")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp453rdl(d, v, "dscp45")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2349,7 +2349,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp46"); ok || d.HasChange("dscp46") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp46(d, v, "dscp46")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp463rdl(d, v, "dscp46")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2358,7 +2358,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp47"); ok || d.HasChange("dscp47") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp47(d, v, "dscp47")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp473rdl(d, v, "dscp47")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2367,7 +2367,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp48"); ok || d.HasChange("dscp48") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp48(d, v, "dscp48")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp483rdl(d, v, "dscp48")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2376,7 +2376,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp49"); ok || d.HasChange("dscp49") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp49(d, v, "dscp49")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp493rdl(d, v, "dscp49")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2385,7 +2385,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp5"); ok || d.HasChange("dscp5") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp5(d, v, "dscp5")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp53rdl(d, v, "dscp5")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2394,7 +2394,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp50"); ok || d.HasChange("dscp50") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp50(d, v, "dscp50")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp503rdl(d, v, "dscp50")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2403,7 +2403,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp51"); ok || d.HasChange("dscp51") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp51(d, v, "dscp51")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp513rdl(d, v, "dscp51")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2412,7 +2412,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp52"); ok || d.HasChange("dscp52") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp52(d, v, "dscp52")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp523rdl(d, v, "dscp52")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2421,7 +2421,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp53"); ok || d.HasChange("dscp53") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp53(d, v, "dscp53")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp533rdl(d, v, "dscp53")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2430,7 +2430,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp54"); ok || d.HasChange("dscp54") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp54(d, v, "dscp54")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp543rdl(d, v, "dscp54")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2439,7 +2439,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp55"); ok || d.HasChange("dscp55") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp55(d, v, "dscp55")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp553rdl(d, v, "dscp55")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2448,7 +2448,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp56"); ok || d.HasChange("dscp56") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp56(d, v, "dscp56")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp563rdl(d, v, "dscp56")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2457,7 +2457,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp57"); ok || d.HasChange("dscp57") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp57(d, v, "dscp57")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp573rdl(d, v, "dscp57")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2466,7 +2466,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp58"); ok || d.HasChange("dscp58") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp58(d, v, "dscp58")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp583rdl(d, v, "dscp58")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2475,7 +2475,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp59"); ok || d.HasChange("dscp59") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp59(d, v, "dscp59")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp593rdl(d, v, "dscp59")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2484,7 +2484,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp6"); ok || d.HasChange("dscp6") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp6(d, v, "dscp6")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp63rdl(d, v, "dscp6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2493,7 +2493,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp60"); ok || d.HasChange("dscp60") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp60(d, v, "dscp60")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp603rdl(d, v, "dscp60")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2502,7 +2502,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp61"); ok || d.HasChange("dscp61") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp61(d, v, "dscp61")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp613rdl(d, v, "dscp61")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2511,7 +2511,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp62"); ok || d.HasChange("dscp62") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp62(d, v, "dscp62")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp623rdl(d, v, "dscp62")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2520,7 +2520,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp63"); ok || d.HasChange("dscp63") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp63(d, v, "dscp63")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp633rdl(d, v, "dscp63")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2529,7 +2529,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp7"); ok || d.HasChange("dscp7") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp7(d, v, "dscp7")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp73rdl(d, v, "dscp7")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2538,7 +2538,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp8"); ok || d.HasChange("dscp8") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp8(d, v, "dscp8")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp83rdl(d, v, "dscp8")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2547,7 +2547,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("dscp9"); ok || d.HasChange("dscp9") {
-		t, err := expandObjectSystemNpuNpQueuesProfileDscp9(d, v, "dscp9")
+		t, err := expandObjectSystemNpuNpQueuesProfileDscp93rdl(d, v, "dscp9")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2556,7 +2556,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
-		t, err := expandObjectSystemNpuNpQueuesProfileId(d, v, "fosid")
+		t, err := expandObjectSystemNpuNpQueuesProfileId3rdl(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2565,7 +2565,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
-		t, err := expandObjectSystemNpuNpQueuesProfileType(d, v, "type")
+		t, err := expandObjectSystemNpuNpQueuesProfileType3rdl(d, v, "type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2574,7 +2574,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
-		t, err := expandObjectSystemNpuNpQueuesProfileWeight(d, v, "weight")
+		t, err := expandObjectSystemNpuNpQueuesProfileWeight3rdl(d, v, "weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

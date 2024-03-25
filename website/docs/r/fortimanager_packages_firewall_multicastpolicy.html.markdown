@@ -52,6 +52,7 @@ The following arguments are supported:
 * `dstintf` - Destination interface name.
 * `end_port` - Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `fosid` - Policy ID ((0 - 4294967294).
+* `ips_sensor` - Name of an existing IPS sensor.
 * `logtraffic` - Enable/disable logging traffic accepted by this policy. Valid values: `disable`, `enable`.
 
 * `name` - Policy name.
@@ -65,6 +66,8 @@ The following arguments are supported:
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
 * `traffic_shaper` - Traffic shaper to apply to traffic forwarded by the multicast policy.
+* `utm_status` - Enable to add an IPS security profile to the policy. Valid values: `disable`, `enable`.
+
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 

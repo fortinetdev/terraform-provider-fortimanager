@@ -398,7 +398,7 @@ func flattenPackagesFirewallHyperscalePolicyDelayTcpNpuSession(v interface{}, d 
 }
 
 func flattenPackagesFirewallHyperscalePolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -406,11 +406,11 @@ func flattenPackagesFirewallHyperscalePolicyDstaddrNegate(v interface{}, d *sche
 }
 
 func flattenPackagesFirewallHyperscalePolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyFirewallSessionDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -446,11 +446,11 @@ func flattenPackagesFirewallHyperscalePolicyPolicyid(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallHyperscalePolicyPoolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyPoolname6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicySendDenyPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -458,7 +458,7 @@ func flattenPackagesFirewallHyperscalePolicySendDenyPacket(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallHyperscalePolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -466,7 +466,7 @@ func flattenPackagesFirewallHyperscalePolicyServiceNegate(v interface{}, d *sche
 }
 
 func flattenPackagesFirewallHyperscalePolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -474,11 +474,11 @@ func flattenPackagesFirewallHyperscalePolicySrcaddrNegate(v interface{}, d *sche
 }
 
 func flattenPackagesFirewallHyperscalePolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -918,7 +918,7 @@ func expandPackagesFirewallHyperscalePolicyDelayTcpNpuSession(d *schema.Resource
 }
 
 func expandPackagesFirewallHyperscalePolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -926,11 +926,11 @@ func expandPackagesFirewallHyperscalePolicyDstaddrNegate(d *schema.ResourceData,
 }
 
 func expandPackagesFirewallHyperscalePolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyFirewallSessionDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -966,11 +966,11 @@ func expandPackagesFirewallHyperscalePolicyPolicyid(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallHyperscalePolicyPoolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyPoolname6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicySendDenyPacket(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -978,7 +978,7 @@ func expandPackagesFirewallHyperscalePolicySendDenyPacket(d *schema.ResourceData
 }
 
 func expandPackagesFirewallHyperscalePolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -986,7 +986,7 @@ func expandPackagesFirewallHyperscalePolicyServiceNegate(d *schema.ResourceData,
 }
 
 func expandPackagesFirewallHyperscalePolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -994,11 +994,11 @@ func expandPackagesFirewallHyperscalePolicySrcaddrNegate(d *schema.ResourceData,
 }
 
 func expandPackagesFirewallHyperscalePolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

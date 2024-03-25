@@ -63,7 +63,7 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -74,6 +74,11 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 				Optional: true,
 			},
 			"proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -224,6 +229,10 @@ func flattenObjectFirewallServiceGroupProxy(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFirewallServiceGroupUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallServiceGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -301,6 +310,16 @@ func refreshObjectObjectFirewallServiceGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallServiceGroupUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallServiceGroup-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -327,7 +346,7 @@ func expandObjectFirewallServiceGroupGlobalObject(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallServiceGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallServiceGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -335,6 +354,10 @@ func expandObjectFirewallServiceGroupName(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFirewallServiceGroupProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallServiceGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -401,6 +424,15 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallServiceGroupUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

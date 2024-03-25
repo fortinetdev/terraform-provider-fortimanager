@@ -288,7 +288,7 @@ func flattenPackagesFirewallHyperscalePolicy46Comments(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -308,11 +308,11 @@ func flattenPackagesFirewallHyperscalePolicy46Policyid(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -542,7 +542,7 @@ func expandPackagesFirewallHyperscalePolicy46Comments(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallHyperscalePolicy46Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -562,11 +562,11 @@ func expandPackagesFirewallHyperscalePolicy46Policyid(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallHyperscalePolicy46Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

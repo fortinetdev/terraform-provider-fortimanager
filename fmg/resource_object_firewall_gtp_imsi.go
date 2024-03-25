@@ -221,7 +221,7 @@ func flattenObjectFirewallGtpImsiAction2edl(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallGtpImsiApnmember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpImsiId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -321,7 +321,7 @@ func expandObjectFirewallGtpImsiAction2edl(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFirewallGtpImsiApnmember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpImsiId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

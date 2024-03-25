@@ -59,7 +59,7 @@ func resourceWantempSystemVirtualWanLinkMembers() *schema.Resource {
 				Optional: true,
 			},
 			"cost": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"gateway": &schema.Schema{
@@ -250,63 +250,63 @@ func resourceWantempSystemVirtualWanLinkMembersRead(d *schema.ResourceData, m in
 	return nil
 }
 
-func flattenWantempSystemVirtualWanLinkMembersDynamicMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersDynamicMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersComment2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersCost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersCost2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return conv2str(v)
+}
+
+func flattenWantempSystemVirtualWanLinkMembersGateway2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersGateway(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersGateway62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersGateway6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSeqNum2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSeqNum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSource62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSource6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersVolumeRatio2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersVolumeRatio(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkMembersWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -317,7 +317,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("_dynamic_member", flattenWantempSystemVirtualWanLinkMembersDynamicMember(o["_dynamic-member"], d, "_dynamic_member")); err != nil {
+	if err = d.Set("_dynamic_member", flattenWantempSystemVirtualWanLinkMembersDynamicMember2edl(o["_dynamic-member"], d, "_dynamic_member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_dynamic-member"], "WantempSystemVirtualWanLinkMembers-DynamicMember"); ok {
 			if err = d.Set("_dynamic_member", vv); err != nil {
 				return fmt.Errorf("Error reading _dynamic_member: %v", err)
@@ -327,7 +327,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("comment", flattenWantempSystemVirtualWanLinkMembersComment(o["comment"], d, "comment")); err != nil {
+	if err = d.Set("comment", flattenWantempSystemVirtualWanLinkMembersComment2edl(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "WantempSystemVirtualWanLinkMembers-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {
 				return fmt.Errorf("Error reading comment: %v", err)
@@ -337,7 +337,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("cost", flattenWantempSystemVirtualWanLinkMembersCost(o["cost"], d, "cost")); err != nil {
+	if err = d.Set("cost", flattenWantempSystemVirtualWanLinkMembersCost2edl(o["cost"], d, "cost")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cost"], "WantempSystemVirtualWanLinkMembers-Cost"); ok {
 			if err = d.Set("cost", vv); err != nil {
 				return fmt.Errorf("Error reading cost: %v", err)
@@ -347,7 +347,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("gateway", flattenWantempSystemVirtualWanLinkMembersGateway(o["gateway"], d, "gateway")); err != nil {
+	if err = d.Set("gateway", flattenWantempSystemVirtualWanLinkMembersGateway2edl(o["gateway"], d, "gateway")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gateway"], "WantempSystemVirtualWanLinkMembers-Gateway"); ok {
 			if err = d.Set("gateway", vv); err != nil {
 				return fmt.Errorf("Error reading gateway: %v", err)
@@ -357,7 +357,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("gateway6", flattenWantempSystemVirtualWanLinkMembersGateway6(o["gateway6"], d, "gateway6")); err != nil {
+	if err = d.Set("gateway6", flattenWantempSystemVirtualWanLinkMembersGateway62edl(o["gateway6"], d, "gateway6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gateway6"], "WantempSystemVirtualWanLinkMembers-Gateway6"); ok {
 			if err = d.Set("gateway6", vv); err != nil {
 				return fmt.Errorf("Error reading gateway6: %v", err)
@@ -367,7 +367,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("ingress_spillover_threshold", flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(o["ingress-spillover-threshold"], d, "ingress_spillover_threshold")); err != nil {
+	if err = d.Set("ingress_spillover_threshold", flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(o["ingress-spillover-threshold"], d, "ingress_spillover_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ingress-spillover-threshold"], "WantempSystemVirtualWanLinkMembers-IngressSpilloverThreshold"); ok {
 			if err = d.Set("ingress_spillover_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading ingress_spillover_threshold: %v", err)
@@ -377,7 +377,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("interface", flattenWantempSystemVirtualWanLinkMembersInterface(o["interface"], d, "interface")); err != nil {
+	if err = d.Set("interface", flattenWantempSystemVirtualWanLinkMembersInterface2edl(o["interface"], d, "interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interface"], "WantempSystemVirtualWanLinkMembers-Interface"); ok {
 			if err = d.Set("interface", vv); err != nil {
 				return fmt.Errorf("Error reading interface: %v", err)
@@ -387,7 +387,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("priority", flattenWantempSystemVirtualWanLinkMembersPriority(o["priority"], d, "priority")); err != nil {
+	if err = d.Set("priority", flattenWantempSystemVirtualWanLinkMembersPriority2edl(o["priority"], d, "priority")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority"], "WantempSystemVirtualWanLinkMembers-Priority"); ok {
 			if err = d.Set("priority", vv); err != nil {
 				return fmt.Errorf("Error reading priority: %v", err)
@@ -397,7 +397,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("seq_num", flattenWantempSystemVirtualWanLinkMembersSeqNum(o["seq-num"], d, "seq_num")); err != nil {
+	if err = d.Set("seq_num", flattenWantempSystemVirtualWanLinkMembersSeqNum2edl(o["seq-num"], d, "seq_num")); err != nil {
 		if vv, ok := fortiAPIPatch(o["seq-num"], "WantempSystemVirtualWanLinkMembers-SeqNum"); ok {
 			if err = d.Set("seq_num", vv); err != nil {
 				return fmt.Errorf("Error reading seq_num: %v", err)
@@ -407,7 +407,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("source", flattenWantempSystemVirtualWanLinkMembersSource(o["source"], d, "source")); err != nil {
+	if err = d.Set("source", flattenWantempSystemVirtualWanLinkMembersSource2edl(o["source"], d, "source")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source"], "WantempSystemVirtualWanLinkMembers-Source"); ok {
 			if err = d.Set("source", vv); err != nil {
 				return fmt.Errorf("Error reading source: %v", err)
@@ -417,7 +417,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("source6", flattenWantempSystemVirtualWanLinkMembersSource6(o["source6"], d, "source6")); err != nil {
+	if err = d.Set("source6", flattenWantempSystemVirtualWanLinkMembersSource62edl(o["source6"], d, "source6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source6"], "WantempSystemVirtualWanLinkMembers-Source6"); ok {
 			if err = d.Set("source6", vv); err != nil {
 				return fmt.Errorf("Error reading source6: %v", err)
@@ -427,7 +427,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("spillover_threshold", flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold(o["spillover-threshold"], d, "spillover_threshold")); err != nil {
+	if err = d.Set("spillover_threshold", flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold2edl(o["spillover-threshold"], d, "spillover_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["spillover-threshold"], "WantempSystemVirtualWanLinkMembers-SpilloverThreshold"); ok {
 			if err = d.Set("spillover_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading spillover_threshold: %v", err)
@@ -437,7 +437,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("status", flattenWantempSystemVirtualWanLinkMembersStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenWantempSystemVirtualWanLinkMembersStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "WantempSystemVirtualWanLinkMembers-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -447,7 +447,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("volume_ratio", flattenWantempSystemVirtualWanLinkMembersVolumeRatio(o["volume-ratio"], d, "volume_ratio")); err != nil {
+	if err = d.Set("volume_ratio", flattenWantempSystemVirtualWanLinkMembersVolumeRatio2edl(o["volume-ratio"], d, "volume_ratio")); err != nil {
 		if vv, ok := fortiAPIPatch(o["volume-ratio"], "WantempSystemVirtualWanLinkMembers-VolumeRatio"); ok {
 			if err = d.Set("volume_ratio", vv); err != nil {
 				return fmt.Errorf("Error reading volume_ratio: %v", err)
@@ -457,7 +457,7 @@ func refreshObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, o m
 		}
 	}
 
-	if err = d.Set("weight", flattenWantempSystemVirtualWanLinkMembersWeight(o["weight"], d, "weight")); err != nil {
+	if err = d.Set("weight", flattenWantempSystemVirtualWanLinkMembersWeight2edl(o["weight"], d, "weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weight"], "WantempSystemVirtualWanLinkMembers-Weight"); ok {
 			if err = d.Set("weight", vv); err != nil {
 				return fmt.Errorf("Error reading weight: %v", err)
@@ -476,63 +476,63 @@ func flattenWantempSystemVirtualWanLinkMembersFortiTestDebug(d *schema.ResourceD
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemVirtualWanLinkMembersDynamicMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersDynamicMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersComment2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersCost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersCost2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersGateway2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersGateway6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersGateway62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSeqNum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSeqNum2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSource6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSource62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSpilloverThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersVolumeRatio(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersVolumeRatio2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -540,7 +540,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("_dynamic_member"); ok || d.HasChange("_dynamic_member") {
-		t, err := expandWantempSystemVirtualWanLinkMembersDynamicMember(d, v, "_dynamic_member")
+		t, err := expandWantempSystemVirtualWanLinkMembersDynamicMember2edl(d, v, "_dynamic_member")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -549,7 +549,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
-		t, err := expandWantempSystemVirtualWanLinkMembersComment(d, v, "comment")
+		t, err := expandWantempSystemVirtualWanLinkMembersComment2edl(d, v, "comment")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -558,7 +558,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("cost"); ok || d.HasChange("cost") {
-		t, err := expandWantempSystemVirtualWanLinkMembersCost(d, v, "cost")
+		t, err := expandWantempSystemVirtualWanLinkMembersCost2edl(d, v, "cost")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -567,7 +567,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("gateway"); ok || d.HasChange("gateway") {
-		t, err := expandWantempSystemVirtualWanLinkMembersGateway(d, v, "gateway")
+		t, err := expandWantempSystemVirtualWanLinkMembersGateway2edl(d, v, "gateway")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -576,7 +576,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("gateway6"); ok || d.HasChange("gateway6") {
-		t, err := expandWantempSystemVirtualWanLinkMembersGateway6(d, v, "gateway6")
+		t, err := expandWantempSystemVirtualWanLinkMembersGateway62edl(d, v, "gateway6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -585,7 +585,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("ingress_spillover_threshold"); ok || d.HasChange("ingress_spillover_threshold") {
-		t, err := expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(d, v, "ingress_spillover_threshold")
+		t, err := expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(d, v, "ingress_spillover_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -594,7 +594,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
-		t, err := expandWantempSystemVirtualWanLinkMembersInterface(d, v, "interface")
+		t, err := expandWantempSystemVirtualWanLinkMembersInterface2edl(d, v, "interface")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -603,7 +603,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("priority"); ok || d.HasChange("priority") {
-		t, err := expandWantempSystemVirtualWanLinkMembersPriority(d, v, "priority")
+		t, err := expandWantempSystemVirtualWanLinkMembersPriority2edl(d, v, "priority")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -612,7 +612,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("seq_num"); ok || d.HasChange("seq_num") {
-		t, err := expandWantempSystemVirtualWanLinkMembersSeqNum(d, v, "seq_num")
+		t, err := expandWantempSystemVirtualWanLinkMembersSeqNum2edl(d, v, "seq_num")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -621,7 +621,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("source"); ok || d.HasChange("source") {
-		t, err := expandWantempSystemVirtualWanLinkMembersSource(d, v, "source")
+		t, err := expandWantempSystemVirtualWanLinkMembersSource2edl(d, v, "source")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -630,7 +630,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("source6"); ok || d.HasChange("source6") {
-		t, err := expandWantempSystemVirtualWanLinkMembersSource6(d, v, "source6")
+		t, err := expandWantempSystemVirtualWanLinkMembersSource62edl(d, v, "source6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -639,7 +639,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("spillover_threshold"); ok || d.HasChange("spillover_threshold") {
-		t, err := expandWantempSystemVirtualWanLinkMembersSpilloverThreshold(d, v, "spillover_threshold")
+		t, err := expandWantempSystemVirtualWanLinkMembersSpilloverThreshold2edl(d, v, "spillover_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -648,7 +648,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandWantempSystemVirtualWanLinkMembersStatus(d, v, "status")
+		t, err := expandWantempSystemVirtualWanLinkMembersStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -657,7 +657,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("volume_ratio"); ok || d.HasChange("volume_ratio") {
-		t, err := expandWantempSystemVirtualWanLinkMembersVolumeRatio(d, v, "volume_ratio")
+		t, err := expandWantempSystemVirtualWanLinkMembersVolumeRatio2edl(d, v, "volume_ratio")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -666,7 +666,7 @@ func getObjectWantempSystemVirtualWanLinkMembers(d *schema.ResourceData) (*map[s
 	}
 
 	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
-		t, err := expandWantempSystemVirtualWanLinkMembersWeight(d, v, "weight")
+		t, err := expandWantempSystemVirtualWanLinkMembersWeight2edl(d, v, "weight")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

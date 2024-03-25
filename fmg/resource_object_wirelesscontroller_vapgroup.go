@@ -55,7 +55,7 @@ func resourceObjectWirelessControllerVapGroup() *schema.Resource {
 				Optional: true,
 			},
 			"vaps": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -245,7 +245,7 @@ func expandObjectWirelessControllerVapGroupName(d *schema.ResourceData, v interf
 }
 
 func expandObjectWirelessControllerVapGroupVaps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectWirelessControllerVapGroup(d *schema.ResourceData) (*map[string]interface{}, error) {

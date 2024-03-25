@@ -139,11 +139,14 @@ The following arguments are supported:
 
 * `delay_tcp_npu_sessoin` - Delay-Tcp-Npu-Sessoin. Valid values: `disable`, `enable`.
 
+* `detect_https_in_http_request` - Detect-Https-In-Http-Request. Valid values: `disable`, `enable`.
+
 * `device_detection_portal` - Device-Detection-Portal. Valid values: `disable`, `enable`.
 
 * `device_ownership` - Device-Ownership. Valid values: `disable`, `enable`.
 
 * `devices` - Devices.
+* `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `diffserv_copy` - Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `disable`, `enable`.
 
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
@@ -363,6 +366,7 @@ The following arguments are supported:
 
 * `radius_mac_auth_bypass` - Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. Valid values: `disable`, `enable`.
 
+* `redirect_profile` - Redirect-Profile.
 * `redirect_url` - URL users are directed to after seeing and accepting the disclaimer or authenticating.
 * `replacemsg_group` - Replacemsg-Group.
 * `replacemsg_override_group` - Override the default replacement message group for this policy.

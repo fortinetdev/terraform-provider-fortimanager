@@ -174,11 +174,11 @@ func resourceObjectSystemNpuNpQueuesSchedulerRead(d *schema.ResourceData, m inte
 	return nil
 }
 
-func flattenObjectSystemNpuNpQueuesSchedulerMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesSchedulerMode3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuNpQueuesSchedulerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuNpQueuesSchedulerName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -189,7 +189,7 @@ func refreshObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData, o map
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("mode", flattenObjectSystemNpuNpQueuesSchedulerMode(o["mode"], d, "mode")); err != nil {
+	if err = d.Set("mode", flattenObjectSystemNpuNpQueuesSchedulerMode3rdl(o["mode"], d, "mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mode"], "ObjectSystemNpuNpQueuesScheduler-Mode"); ok {
 			if err = d.Set("mode", vv); err != nil {
 				return fmt.Errorf("Error reading mode: %v", err)
@@ -199,7 +199,7 @@ func refreshObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("name", flattenObjectSystemNpuNpQueuesSchedulerName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectSystemNpuNpQueuesSchedulerName3rdl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectSystemNpuNpQueuesScheduler-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -218,11 +218,11 @@ func flattenObjectSystemNpuNpQueuesSchedulerFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuNpQueuesSchedulerMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesSchedulerMode3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuNpQueuesSchedulerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuNpQueuesSchedulerName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -230,7 +230,7 @@ func getObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData) (*map[str
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
-		t, err := expandObjectSystemNpuNpQueuesSchedulerMode(d, v, "mode")
+		t, err := expandObjectSystemNpuNpQueuesSchedulerMode3rdl(d, v, "mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -239,7 +239,7 @@ func getObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData) (*map[str
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectSystemNpuNpQueuesSchedulerName(d, v, "name")
+		t, err := expandObjectSystemNpuNpQueuesSchedulerName3rdl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

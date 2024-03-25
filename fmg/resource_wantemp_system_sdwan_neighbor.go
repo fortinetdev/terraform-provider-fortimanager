@@ -225,35 +225,35 @@ func resourceWantempSystemSdwanNeighborRead(d *schema.ResourceData, m interface{
 	return nil
 }
 
-func flattenWantempSystemSdwanNeighborHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanNeighborMinimumSlaMeetMembers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborMinimumSlaMeetMembers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborRole2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborServiceId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemSdwanNeighborServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemSdwanNeighborSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemSdwanNeighborSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -264,7 +264,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("health_check", flattenWantempSystemSdwanNeighborHealthCheck(o["health-check"], d, "health_check")); err != nil {
+	if err = d.Set("health_check", flattenWantempSystemSdwanNeighborHealthCheck2edl(o["health-check"], d, "health_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemSdwanNeighbor-HealthCheck"); ok {
 			if err = d.Set("health_check", vv); err != nil {
 				return fmt.Errorf("Error reading health_check: %v", err)
@@ -274,7 +274,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("ip", flattenWantempSystemSdwanNeighborIp(o["ip"], d, "ip")); err != nil {
+	if err = d.Set("ip", flattenWantempSystemSdwanNeighborIp2edl(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "WantempSystemSdwanNeighbor-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {
 				return fmt.Errorf("Error reading ip: %v", err)
@@ -284,7 +284,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("member", flattenWantempSystemSdwanNeighborMember(o["member"], d, "member")); err != nil {
+	if err = d.Set("member", flattenWantempSystemSdwanNeighborMember2edl(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "WantempSystemSdwanNeighbor-Member"); ok {
 			if err = d.Set("member", vv); err != nil {
 				return fmt.Errorf("Error reading member: %v", err)
@@ -294,7 +294,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanNeighborMinimumSlaMeetMembers(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
+	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanNeighborMinimumSlaMeetMembers2edl(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["minimum-sla-meet-members"], "WantempSystemSdwanNeighbor-MinimumSlaMeetMembers"); ok {
 			if err = d.Set("minimum_sla_meet_members", vv); err != nil {
 				return fmt.Errorf("Error reading minimum_sla_meet_members: %v", err)
@@ -304,7 +304,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("mode", flattenWantempSystemSdwanNeighborMode(o["mode"], d, "mode")); err != nil {
+	if err = d.Set("mode", flattenWantempSystemSdwanNeighborMode2edl(o["mode"], d, "mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mode"], "WantempSystemSdwanNeighbor-Mode"); ok {
 			if err = d.Set("mode", vv); err != nil {
 				return fmt.Errorf("Error reading mode: %v", err)
@@ -314,7 +314,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("role", flattenWantempSystemSdwanNeighborRole(o["role"], d, "role")); err != nil {
+	if err = d.Set("role", flattenWantempSystemSdwanNeighborRole2edl(o["role"], d, "role")); err != nil {
 		if vv, ok := fortiAPIPatch(o["role"], "WantempSystemSdwanNeighbor-Role"); ok {
 			if err = d.Set("role", vv); err != nil {
 				return fmt.Errorf("Error reading role: %v", err)
@@ -324,7 +324,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("service_id", flattenWantempSystemSdwanNeighborServiceId(o["service-id"], d, "service_id")); err != nil {
+	if err = d.Set("service_id", flattenWantempSystemSdwanNeighborServiceId2edl(o["service-id"], d, "service_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-id"], "WantempSystemSdwanNeighbor-ServiceId"); ok {
 			if err = d.Set("service_id", vv); err != nil {
 				return fmt.Errorf("Error reading service_id: %v", err)
@@ -334,7 +334,7 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
-	if err = d.Set("sla_id", flattenWantempSystemSdwanNeighborSlaId(o["sla-id"], d, "sla_id")); err != nil {
+	if err = d.Set("sla_id", flattenWantempSystemSdwanNeighborSlaId2edl(o["sla-id"], d, "sla_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-id"], "WantempSystemSdwanNeighbor-SlaId"); ok {
 			if err = d.Set("sla_id", vv); err != nil {
 				return fmt.Errorf("Error reading sla_id: %v", err)
@@ -353,35 +353,35 @@ func flattenWantempSystemSdwanNeighborFortiTestDebug(d *schema.ResourceData, fos
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemSdwanNeighborHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemSdwanNeighborMinimumSlaMeetMembers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborMinimumSlaMeetMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborRole2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborServiceId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemSdwanNeighborServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemSdwanNeighborSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemSdwanNeighborSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -389,7 +389,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemSdwanNeighborHealthCheck(d, v, "health_check")
+		t, err := expandWantempSystemSdwanNeighborHealthCheck2edl(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -398,7 +398,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
-		t, err := expandWantempSystemSdwanNeighborIp(d, v, "ip")
+		t, err := expandWantempSystemSdwanNeighborIp2edl(d, v, "ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -407,7 +407,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
-		t, err := expandWantempSystemSdwanNeighborMember(d, v, "member")
+		t, err := expandWantempSystemSdwanNeighborMember2edl(d, v, "member")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -416,7 +416,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("minimum_sla_meet_members"); ok || d.HasChange("minimum_sla_meet_members") {
-		t, err := expandWantempSystemSdwanNeighborMinimumSlaMeetMembers(d, v, "minimum_sla_meet_members")
+		t, err := expandWantempSystemSdwanNeighborMinimumSlaMeetMembers2edl(d, v, "minimum_sla_meet_members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -425,7 +425,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
-		t, err := expandWantempSystemSdwanNeighborMode(d, v, "mode")
+		t, err := expandWantempSystemSdwanNeighborMode2edl(d, v, "mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -434,7 +434,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
-		t, err := expandWantempSystemSdwanNeighborRole(d, v, "role")
+		t, err := expandWantempSystemSdwanNeighborRole2edl(d, v, "role")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -443,7 +443,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("service_id"); ok || d.HasChange("service_id") {
-		t, err := expandWantempSystemSdwanNeighborServiceId(d, v, "service_id")
+		t, err := expandWantempSystemSdwanNeighborServiceId2edl(d, v, "service_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -452,7 +452,7 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 	}
 
 	if v, ok := d.GetOk("sla_id"); ok || d.HasChange("sla_id") {
-		t, err := expandWantempSystemSdwanNeighborSlaId(d, v, "sla_id")
+		t, err := expandWantempSystemSdwanNeighborSlaId2edl(d, v, "sla_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

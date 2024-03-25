@@ -21,6 +21,8 @@ The following arguments are supported:
 * `description` - SaaS application description.
 * `domains` - SaaS application domain list.
 * `name` - SaaS application name.
+* `status` - Enable/disable setting. Valid values: `disable`, `enable`.
+
 * `type` - SaaS application type. Valid values: `built-in`, `customized`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

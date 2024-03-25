@@ -84,6 +84,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"api_ip_binding": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"clone_name_option": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -383,6 +388,35 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ssh_enc_algo": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_hostkey_algo": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_kex_algo": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_mac_algo": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_strong_crypto": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssl_cipher_suites": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -559,195 +593,199 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func flattenSystemGlobalAdminLockoutDurationSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdminLockoutDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdminLockoutMethodSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdminLockoutMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdminLockoutThresholdSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdminLockoutThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomModeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomRevAutoDeleteSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomRevAutoDelete(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomRevMaxBackupRevisionsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomRevMaxBackupRevisions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomRevMaxDaysSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomRevMaxDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomRevMaxRevisionsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomRevMaxRevisions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomSelectSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalAdomStatusSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalAdomStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalApacheModeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalApacheMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalCloneNameOptionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalApiIpBinding(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalCltCertReqSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalCloneNameOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalConsoleOutputSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalCltCertReq(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalContentpackFgtInstallSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalConsoleOutput(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalCountryFlagSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalContentpackFgtInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalCreateRevisionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalCountryFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalDaylightsavetimeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalCreateRevision(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalDetectUnregisteredLogDeviceSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalDaylightsavetime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalDeviceViewModeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalDetectUnregisteredLogDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalDhParamsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalDeviceViewMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalDisableModuleSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalDhParams(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalDisableModule(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenSystemGlobalEncAlgorithmSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalEncAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFazStatusSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFazStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFgfmCaCertSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFgfmCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFgfmCertExclusiveSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFgfmCertExclusive(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFgfmLocalCertSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFgfmLocalCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFgfmSslProtocolSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFgfmSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalFortiservicePortSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalFortiservicePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalGuiCurlTimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalGuiCurlTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalGuiPollingIntervalSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalGuiPollingInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalHaMemberAutoGroupingSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalHaMemberAutoGrouping(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalHostnameSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalImportIgnoreAddrCmtSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalImportIgnoreAddrCmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLanguageSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLanguage(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLatitudeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLatitude(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLdapCacheTimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLdapCacheTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLdapconntimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLdapconntimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLockPreemptSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLockPreempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLogChecksumSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLogChecksum(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLogChecksumUploadSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLogChecksumUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLogForwardCacheSizeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLogForwardCacheSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalLongitudeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalLongitude(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalManagementIpSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalManagementIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalManagementPortSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalManagementPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalMaxLogForwardSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalMaxLogForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalMaxRunningReportsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalMaxRunningReports(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalMcPolicyDisabledAdomsSga(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemGlobalMcPolicyDisabledAdoms(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -768,7 +806,7 @@ func flattenSystemGlobalMcPolicyDisabledAdomsSga(v interface{}, d *schema.Resour
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adom_name"
 		if _, ok := i["adom-name"]; ok {
-			v := flattenSystemGlobalMcPolicyDisabledAdomsAdomNameSga(i["adom-name"], d, pre_append)
+			v := flattenSystemGlobalMcPolicyDisabledAdomsAdomName(i["adom-name"], d, pre_append)
 			tmp["adom_name"] = fortiAPISubPartPatch(v, "SystemGlobal-McPolicyDisabledAdoms-AdomName")
 		}
 
@@ -782,99 +820,119 @@ func flattenSystemGlobalMcPolicyDisabledAdomsSga(v interface{}, d *schema.Resour
 	return result
 }
 
-func flattenSystemGlobalMcPolicyDisabledAdomsAdomNameSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalMcPolicyDisabledAdomsAdomName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalMultipleStepsUpgradeInAutolinkSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalMultipleStepsUpgradeInAutolink(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalNoCopyPermissionCheckSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalNoCopyPermissionCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalNoVipValueCheckSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalNoVipValueCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalNormalizedIntfZoneOnlySga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalNormalizedIntfZoneOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalObjectRevisionDbMaxSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalObjectRevisionDbMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalObjectRevisionMandatoryNoteSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalObjectRevisionMandatoryNote(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalObjectRevisionObjectMaxSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalObjectRevisionObjectMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalObjectRevisionStatusSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalObjectRevisionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalOftpSslProtocolSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalOftpSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPartialInstallSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPartialInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPartialInstallForceSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPartialInstallForce(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPartialInstallRevSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPartialInstallRev(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPerPolicyLockSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPerPolicyLock(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPerformImproveByHaSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPerformImproveByHa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPolicyObjectIconSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPolicyObjectIcon(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPolicyObjectInDualPaneSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPolicyObjectInDualPane(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPreLoginBannerSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPreLoginBanner(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPreLoginBannerMessageSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPreLoginBannerMessage(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalPrivateDataEncryptionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalPrivateDataEncryption(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalRemoteauthtimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalRemoteauthtimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSaveLastHitInAdomdbSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSaveLastHitInAdomdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSearchAllAdomsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSearchAllAdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslCipherSuitesSga(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemGlobalSshEncAlgo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemGlobalSshHostkeyAlgo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemGlobalSshKexAlgo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemGlobalSshMacAlgo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemGlobalSshStrongCrypto(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalSslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -895,19 +953,19 @@ func flattenSystemGlobalSslCipherSuitesSga(v interface{}, d *schema.ResourceData
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
 		if _, ok := i["cipher"]; ok {
-			v := flattenSystemGlobalSslCipherSuitesCipherSga(i["cipher"], d, pre_append)
+			v := flattenSystemGlobalSslCipherSuitesCipher(i["cipher"], d, pre_append)
 			tmp["cipher"] = fortiAPISubPartPatch(v, "SystemGlobal-SslCipherSuites-Cipher")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := i["priority"]; ok {
-			v := flattenSystemGlobalSslCipherSuitesPrioritySga(i["priority"], d, pre_append)
+			v := flattenSystemGlobalSslCipherSuitesPriority(i["priority"], d, pre_append)
 			tmp["priority"] = fortiAPISubPartPatch(v, "SystemGlobal-SslCipherSuites-Priority")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "version"
 		if _, ok := i["version"]; ok {
-			v := flattenSystemGlobalSslCipherSuitesVersionSga(i["version"], d, pre_append)
+			v := flattenSystemGlobalSslCipherSuitesVersion(i["version"], d, pre_append)
 			tmp["version"] = fortiAPISubPartPatch(v, "SystemGlobal-SslCipherSuites-Version")
 		}
 
@@ -921,71 +979,71 @@ func flattenSystemGlobalSslCipherSuitesSga(v interface{}, d *schema.ResourceData
 	return result
 }
 
-func flattenSystemGlobalSslCipherSuitesCipherSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslCipherSuitesPrioritySga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslCipherSuitesVersionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslLowEncryptionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslLowEncryption(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslProtocolSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenSystemGlobalSslStaticKeyCiphersSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslStaticKeyCiphers(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalTableEntryBlinkSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalTableEntryBlink(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalTaskListSizeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalTaskListSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalTftpSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalTftp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalTimezoneSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalTunnelMtuSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalTunnelMtu(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalUsgSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalUsg(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalVdomMirrorSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalVdomMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalWebserviceProtoSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalWebserviceProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenSystemGlobalWorkflowMaxSessionsSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalWorkflowMaxSessions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalWorkspaceModeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalWorkspaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalWorkspaceUnlockAfterInstallSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalWorkspaceUnlockAfterInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -996,7 +1054,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("admin_lockout_duration", flattenSystemGlobalAdminLockoutDurationSga(o["admin-lockout-duration"], d, "admin_lockout_duration")); err != nil {
+	if err = d.Set("admin_lockout_duration", flattenSystemGlobalAdminLockoutDuration(o["admin-lockout-duration"], d, "admin_lockout_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["admin-lockout-duration"], "SystemGlobal-AdminLockoutDuration"); ok {
 			if err = d.Set("admin_lockout_duration", vv); err != nil {
 				return fmt.Errorf("Error reading admin_lockout_duration: %v", err)
@@ -1006,7 +1064,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("admin_lockout_method", flattenSystemGlobalAdminLockoutMethodSga(o["admin-lockout-method"], d, "admin_lockout_method")); err != nil {
+	if err = d.Set("admin_lockout_method", flattenSystemGlobalAdminLockoutMethod(o["admin-lockout-method"], d, "admin_lockout_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["admin-lockout-method"], "SystemGlobal-AdminLockoutMethod"); ok {
 			if err = d.Set("admin_lockout_method", vv); err != nil {
 				return fmt.Errorf("Error reading admin_lockout_method: %v", err)
@@ -1016,7 +1074,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("admin_lockout_threshold", flattenSystemGlobalAdminLockoutThresholdSga(o["admin-lockout-threshold"], d, "admin_lockout_threshold")); err != nil {
+	if err = d.Set("admin_lockout_threshold", flattenSystemGlobalAdminLockoutThreshold(o["admin-lockout-threshold"], d, "admin_lockout_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["admin-lockout-threshold"], "SystemGlobal-AdminLockoutThreshold"); ok {
 			if err = d.Set("admin_lockout_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading admin_lockout_threshold: %v", err)
@@ -1026,7 +1084,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_mode", flattenSystemGlobalAdomModeSga(o["adom-mode"], d, "adom_mode")); err != nil {
+	if err = d.Set("adom_mode", flattenSystemGlobalAdomMode(o["adom-mode"], d, "adom_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-mode"], "SystemGlobal-AdomMode"); ok {
 			if err = d.Set("adom_mode", vv); err != nil {
 				return fmt.Errorf("Error reading adom_mode: %v", err)
@@ -1036,7 +1094,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_rev_auto_delete", flattenSystemGlobalAdomRevAutoDeleteSga(o["adom-rev-auto-delete"], d, "adom_rev_auto_delete")); err != nil {
+	if err = d.Set("adom_rev_auto_delete", flattenSystemGlobalAdomRevAutoDelete(o["adom-rev-auto-delete"], d, "adom_rev_auto_delete")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-rev-auto-delete"], "SystemGlobal-AdomRevAutoDelete"); ok {
 			if err = d.Set("adom_rev_auto_delete", vv); err != nil {
 				return fmt.Errorf("Error reading adom_rev_auto_delete: %v", err)
@@ -1046,7 +1104,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_rev_max_backup_revisions", flattenSystemGlobalAdomRevMaxBackupRevisionsSga(o["adom-rev-max-backup-revisions"], d, "adom_rev_max_backup_revisions")); err != nil {
+	if err = d.Set("adom_rev_max_backup_revisions", flattenSystemGlobalAdomRevMaxBackupRevisions(o["adom-rev-max-backup-revisions"], d, "adom_rev_max_backup_revisions")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-rev-max-backup-revisions"], "SystemGlobal-AdomRevMaxBackupRevisions"); ok {
 			if err = d.Set("adom_rev_max_backup_revisions", vv); err != nil {
 				return fmt.Errorf("Error reading adom_rev_max_backup_revisions: %v", err)
@@ -1056,7 +1114,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_rev_max_days", flattenSystemGlobalAdomRevMaxDaysSga(o["adom-rev-max-days"], d, "adom_rev_max_days")); err != nil {
+	if err = d.Set("adom_rev_max_days", flattenSystemGlobalAdomRevMaxDays(o["adom-rev-max-days"], d, "adom_rev_max_days")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-rev-max-days"], "SystemGlobal-AdomRevMaxDays"); ok {
 			if err = d.Set("adom_rev_max_days", vv); err != nil {
 				return fmt.Errorf("Error reading adom_rev_max_days: %v", err)
@@ -1066,7 +1124,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_rev_max_revisions", flattenSystemGlobalAdomRevMaxRevisionsSga(o["adom-rev-max-revisions"], d, "adom_rev_max_revisions")); err != nil {
+	if err = d.Set("adom_rev_max_revisions", flattenSystemGlobalAdomRevMaxRevisions(o["adom-rev-max-revisions"], d, "adom_rev_max_revisions")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-rev-max-revisions"], "SystemGlobal-AdomRevMaxRevisions"); ok {
 			if err = d.Set("adom_rev_max_revisions", vv); err != nil {
 				return fmt.Errorf("Error reading adom_rev_max_revisions: %v", err)
@@ -1076,7 +1134,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_select", flattenSystemGlobalAdomSelectSga(o["adom-select"], d, "adom_select")); err != nil {
+	if err = d.Set("adom_select", flattenSystemGlobalAdomSelect(o["adom-select"], d, "adom_select")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-select"], "SystemGlobal-AdomSelect"); ok {
 			if err = d.Set("adom_select", vv); err != nil {
 				return fmt.Errorf("Error reading adom_select: %v", err)
@@ -1086,7 +1144,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("adom_status", flattenSystemGlobalAdomStatusSga(o["adom-status"], d, "adom_status")); err != nil {
+	if err = d.Set("adom_status", flattenSystemGlobalAdomStatus(o["adom-status"], d, "adom_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-status"], "SystemGlobal-AdomStatus"); ok {
 			if err = d.Set("adom_status", vv); err != nil {
 				return fmt.Errorf("Error reading adom_status: %v", err)
@@ -1096,7 +1154,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("apache_mode", flattenSystemGlobalApacheModeSga(o["apache-mode"], d, "apache_mode")); err != nil {
+	if err = d.Set("apache_mode", flattenSystemGlobalApacheMode(o["apache-mode"], d, "apache_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["apache-mode"], "SystemGlobal-ApacheMode"); ok {
 			if err = d.Set("apache_mode", vv); err != nil {
 				return fmt.Errorf("Error reading apache_mode: %v", err)
@@ -1106,7 +1164,17 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("clone_name_option", flattenSystemGlobalCloneNameOptionSga(o["clone-name-option"], d, "clone_name_option")); err != nil {
+	if err = d.Set("api_ip_binding", flattenSystemGlobalApiIpBinding(o["api-ip-binding"], d, "api_ip_binding")); err != nil {
+		if vv, ok := fortiAPIPatch(o["api-ip-binding"], "SystemGlobal-ApiIpBinding"); ok {
+			if err = d.Set("api_ip_binding", vv); err != nil {
+				return fmt.Errorf("Error reading api_ip_binding: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading api_ip_binding: %v", err)
+		}
+	}
+
+	if err = d.Set("clone_name_option", flattenSystemGlobalCloneNameOption(o["clone-name-option"], d, "clone_name_option")); err != nil {
 		if vv, ok := fortiAPIPatch(o["clone-name-option"], "SystemGlobal-CloneNameOption"); ok {
 			if err = d.Set("clone_name_option", vv); err != nil {
 				return fmt.Errorf("Error reading clone_name_option: %v", err)
@@ -1116,7 +1184,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("clt_cert_req", flattenSystemGlobalCltCertReqSga(o["clt-cert-req"], d, "clt_cert_req")); err != nil {
+	if err = d.Set("clt_cert_req", flattenSystemGlobalCltCertReq(o["clt-cert-req"], d, "clt_cert_req")); err != nil {
 		if vv, ok := fortiAPIPatch(o["clt-cert-req"], "SystemGlobal-CltCertReq"); ok {
 			if err = d.Set("clt_cert_req", vv); err != nil {
 				return fmt.Errorf("Error reading clt_cert_req: %v", err)
@@ -1126,7 +1194,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("console_output", flattenSystemGlobalConsoleOutputSga(o["console-output"], d, "console_output")); err != nil {
+	if err = d.Set("console_output", flattenSystemGlobalConsoleOutput(o["console-output"], d, "console_output")); err != nil {
 		if vv, ok := fortiAPIPatch(o["console-output"], "SystemGlobal-ConsoleOutput"); ok {
 			if err = d.Set("console_output", vv); err != nil {
 				return fmt.Errorf("Error reading console_output: %v", err)
@@ -1136,7 +1204,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("contentpack_fgt_install", flattenSystemGlobalContentpackFgtInstallSga(o["contentpack-fgt-install"], d, "contentpack_fgt_install")); err != nil {
+	if err = d.Set("contentpack_fgt_install", flattenSystemGlobalContentpackFgtInstall(o["contentpack-fgt-install"], d, "contentpack_fgt_install")); err != nil {
 		if vv, ok := fortiAPIPatch(o["contentpack-fgt-install"], "SystemGlobal-ContentpackFgtInstall"); ok {
 			if err = d.Set("contentpack_fgt_install", vv); err != nil {
 				return fmt.Errorf("Error reading contentpack_fgt_install: %v", err)
@@ -1146,7 +1214,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("country_flag", flattenSystemGlobalCountryFlagSga(o["country-flag"], d, "country_flag")); err != nil {
+	if err = d.Set("country_flag", flattenSystemGlobalCountryFlag(o["country-flag"], d, "country_flag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["country-flag"], "SystemGlobal-CountryFlag"); ok {
 			if err = d.Set("country_flag", vv); err != nil {
 				return fmt.Errorf("Error reading country_flag: %v", err)
@@ -1156,7 +1224,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("create_revision", flattenSystemGlobalCreateRevisionSga(o["create-revision"], d, "create_revision")); err != nil {
+	if err = d.Set("create_revision", flattenSystemGlobalCreateRevision(o["create-revision"], d, "create_revision")); err != nil {
 		if vv, ok := fortiAPIPatch(o["create-revision"], "SystemGlobal-CreateRevision"); ok {
 			if err = d.Set("create_revision", vv); err != nil {
 				return fmt.Errorf("Error reading create_revision: %v", err)
@@ -1166,7 +1234,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("daylightsavetime", flattenSystemGlobalDaylightsavetimeSga(o["daylightsavetime"], d, "daylightsavetime")); err != nil {
+	if err = d.Set("daylightsavetime", flattenSystemGlobalDaylightsavetime(o["daylightsavetime"], d, "daylightsavetime")); err != nil {
 		if vv, ok := fortiAPIPatch(o["daylightsavetime"], "SystemGlobal-Daylightsavetime"); ok {
 			if err = d.Set("daylightsavetime", vv); err != nil {
 				return fmt.Errorf("Error reading daylightsavetime: %v", err)
@@ -1176,7 +1244,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("detect_unregistered_log_device", flattenSystemGlobalDetectUnregisteredLogDeviceSga(o["detect-unregistered-log-device"], d, "detect_unregistered_log_device")); err != nil {
+	if err = d.Set("detect_unregistered_log_device", flattenSystemGlobalDetectUnregisteredLogDevice(o["detect-unregistered-log-device"], d, "detect_unregistered_log_device")); err != nil {
 		if vv, ok := fortiAPIPatch(o["detect-unregistered-log-device"], "SystemGlobal-DetectUnregisteredLogDevice"); ok {
 			if err = d.Set("detect_unregistered_log_device", vv); err != nil {
 				return fmt.Errorf("Error reading detect_unregistered_log_device: %v", err)
@@ -1186,7 +1254,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("device_view_mode", flattenSystemGlobalDeviceViewModeSga(o["device-view-mode"], d, "device_view_mode")); err != nil {
+	if err = d.Set("device_view_mode", flattenSystemGlobalDeviceViewMode(o["device-view-mode"], d, "device_view_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["device-view-mode"], "SystemGlobal-DeviceViewMode"); ok {
 			if err = d.Set("device_view_mode", vv); err != nil {
 				return fmt.Errorf("Error reading device_view_mode: %v", err)
@@ -1196,7 +1264,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("dh_params", flattenSystemGlobalDhParamsSga(o["dh-params"], d, "dh_params")); err != nil {
+	if err = d.Set("dh_params", flattenSystemGlobalDhParams(o["dh-params"], d, "dh_params")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dh-params"], "SystemGlobal-DhParams"); ok {
 			if err = d.Set("dh_params", vv); err != nil {
 				return fmt.Errorf("Error reading dh_params: %v", err)
@@ -1206,7 +1274,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("disable_module", flattenSystemGlobalDisableModuleSga(o["disable-module"], d, "disable_module")); err != nil {
+	if err = d.Set("disable_module", flattenSystemGlobalDisableModule(o["disable-module"], d, "disable_module")); err != nil {
 		if vv, ok := fortiAPIPatch(o["disable-module"], "SystemGlobal-DisableModule"); ok {
 			if err = d.Set("disable_module", vv); err != nil {
 				return fmt.Errorf("Error reading disable_module: %v", err)
@@ -1216,7 +1284,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("enc_algorithm", flattenSystemGlobalEncAlgorithmSga(o["enc-algorithm"], d, "enc_algorithm")); err != nil {
+	if err = d.Set("enc_algorithm", flattenSystemGlobalEncAlgorithm(o["enc-algorithm"], d, "enc_algorithm")); err != nil {
 		if vv, ok := fortiAPIPatch(o["enc-algorithm"], "SystemGlobal-EncAlgorithm"); ok {
 			if err = d.Set("enc_algorithm", vv); err != nil {
 				return fmt.Errorf("Error reading enc_algorithm: %v", err)
@@ -1226,7 +1294,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("faz_status", flattenSystemGlobalFazStatusSga(o["faz-status"], d, "faz_status")); err != nil {
+	if err = d.Set("faz_status", flattenSystemGlobalFazStatus(o["faz-status"], d, "faz_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["faz-status"], "SystemGlobal-FazStatus"); ok {
 			if err = d.Set("faz_status", vv); err != nil {
 				return fmt.Errorf("Error reading faz_status: %v", err)
@@ -1236,7 +1304,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("fgfm_ca_cert", flattenSystemGlobalFgfmCaCertSga(o["fgfm-ca-cert"], d, "fgfm_ca_cert")); err != nil {
+	if err = d.Set("fgfm_ca_cert", flattenSystemGlobalFgfmCaCert(o["fgfm-ca-cert"], d, "fgfm_ca_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-ca-cert"], "SystemGlobal-FgfmCaCert"); ok {
 			if err = d.Set("fgfm_ca_cert", vv); err != nil {
 				return fmt.Errorf("Error reading fgfm_ca_cert: %v", err)
@@ -1246,7 +1314,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("fgfm_cert_exclusive", flattenSystemGlobalFgfmCertExclusiveSga(o["fgfm-cert-exclusive"], d, "fgfm_cert_exclusive")); err != nil {
+	if err = d.Set("fgfm_cert_exclusive", flattenSystemGlobalFgfmCertExclusive(o["fgfm-cert-exclusive"], d, "fgfm_cert_exclusive")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-cert-exclusive"], "SystemGlobal-FgfmCertExclusive"); ok {
 			if err = d.Set("fgfm_cert_exclusive", vv); err != nil {
 				return fmt.Errorf("Error reading fgfm_cert_exclusive: %v", err)
@@ -1256,7 +1324,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("fgfm_local_cert", flattenSystemGlobalFgfmLocalCertSga(o["fgfm-local-cert"], d, "fgfm_local_cert")); err != nil {
+	if err = d.Set("fgfm_local_cert", flattenSystemGlobalFgfmLocalCert(o["fgfm-local-cert"], d, "fgfm_local_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-local-cert"], "SystemGlobal-FgfmLocalCert"); ok {
 			if err = d.Set("fgfm_local_cert", vv); err != nil {
 				return fmt.Errorf("Error reading fgfm_local_cert: %v", err)
@@ -1266,7 +1334,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("fgfm_ssl_protocol", flattenSystemGlobalFgfmSslProtocolSga(o["fgfm-ssl-protocol"], d, "fgfm_ssl_protocol")); err != nil {
+	if err = d.Set("fgfm_ssl_protocol", flattenSystemGlobalFgfmSslProtocol(o["fgfm-ssl-protocol"], d, "fgfm_ssl_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-ssl-protocol"], "SystemGlobal-FgfmSslProtocol"); ok {
 			if err = d.Set("fgfm_ssl_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading fgfm_ssl_protocol: %v", err)
@@ -1276,7 +1344,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("fortiservice_port", flattenSystemGlobalFortiservicePortSga(o["fortiservice-port"], d, "fortiservice_port")); err != nil {
+	if err = d.Set("fortiservice_port", flattenSystemGlobalFortiservicePort(o["fortiservice-port"], d, "fortiservice_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fortiservice-port"], "SystemGlobal-FortiservicePort"); ok {
 			if err = d.Set("fortiservice_port", vv); err != nil {
 				return fmt.Errorf("Error reading fortiservice_port: %v", err)
@@ -1286,7 +1354,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("gui_curl_timeout", flattenSystemGlobalGuiCurlTimeoutSga(o["gui-curl-timeout"], d, "gui_curl_timeout")); err != nil {
+	if err = d.Set("gui_curl_timeout", flattenSystemGlobalGuiCurlTimeout(o["gui-curl-timeout"], d, "gui_curl_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-curl-timeout"], "SystemGlobal-GuiCurlTimeout"); ok {
 			if err = d.Set("gui_curl_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading gui_curl_timeout: %v", err)
@@ -1296,7 +1364,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("gui_polling_interval", flattenSystemGlobalGuiPollingIntervalSga(o["gui-polling-interval"], d, "gui_polling_interval")); err != nil {
+	if err = d.Set("gui_polling_interval", flattenSystemGlobalGuiPollingInterval(o["gui-polling-interval"], d, "gui_polling_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-polling-interval"], "SystemGlobal-GuiPollingInterval"); ok {
 			if err = d.Set("gui_polling_interval", vv); err != nil {
 				return fmt.Errorf("Error reading gui_polling_interval: %v", err)
@@ -1306,7 +1374,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ha_member_auto_grouping", flattenSystemGlobalHaMemberAutoGroupingSga(o["ha-member-auto-grouping"], d, "ha_member_auto_grouping")); err != nil {
+	if err = d.Set("ha_member_auto_grouping", flattenSystemGlobalHaMemberAutoGrouping(o["ha-member-auto-grouping"], d, "ha_member_auto_grouping")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ha-member-auto-grouping"], "SystemGlobal-HaMemberAutoGrouping"); ok {
 			if err = d.Set("ha_member_auto_grouping", vv); err != nil {
 				return fmt.Errorf("Error reading ha_member_auto_grouping: %v", err)
@@ -1316,7 +1384,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("hostname", flattenSystemGlobalHostnameSga(o["hostname"], d, "hostname")); err != nil {
+	if err = d.Set("hostname", flattenSystemGlobalHostname(o["hostname"], d, "hostname")); err != nil {
 		if vv, ok := fortiAPIPatch(o["hostname"], "SystemGlobal-Hostname"); ok {
 			if err = d.Set("hostname", vv); err != nil {
 				return fmt.Errorf("Error reading hostname: %v", err)
@@ -1326,7 +1394,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("import_ignore_addr_cmt", flattenSystemGlobalImportIgnoreAddrCmtSga(o["import-ignore-addr-cmt"], d, "import_ignore_addr_cmt")); err != nil {
+	if err = d.Set("import_ignore_addr_cmt", flattenSystemGlobalImportIgnoreAddrCmt(o["import-ignore-addr-cmt"], d, "import_ignore_addr_cmt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["import-ignore-addr-cmt"], "SystemGlobal-ImportIgnoreAddrCmt"); ok {
 			if err = d.Set("import_ignore_addr_cmt", vv); err != nil {
 				return fmt.Errorf("Error reading import_ignore_addr_cmt: %v", err)
@@ -1336,7 +1404,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("language", flattenSystemGlobalLanguageSga(o["language"], d, "language")); err != nil {
+	if err = d.Set("language", flattenSystemGlobalLanguage(o["language"], d, "language")); err != nil {
 		if vv, ok := fortiAPIPatch(o["language"], "SystemGlobal-Language"); ok {
 			if err = d.Set("language", vv); err != nil {
 				return fmt.Errorf("Error reading language: %v", err)
@@ -1346,7 +1414,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("latitude", flattenSystemGlobalLatitudeSga(o["latitude"], d, "latitude")); err != nil {
+	if err = d.Set("latitude", flattenSystemGlobalLatitude(o["latitude"], d, "latitude")); err != nil {
 		if vv, ok := fortiAPIPatch(o["latitude"], "SystemGlobal-Latitude"); ok {
 			if err = d.Set("latitude", vv); err != nil {
 				return fmt.Errorf("Error reading latitude: %v", err)
@@ -1356,7 +1424,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ldap_cache_timeout", flattenSystemGlobalLdapCacheTimeoutSga(o["ldap-cache-timeout"], d, "ldap_cache_timeout")); err != nil {
+	if err = d.Set("ldap_cache_timeout", flattenSystemGlobalLdapCacheTimeout(o["ldap-cache-timeout"], d, "ldap_cache_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ldap-cache-timeout"], "SystemGlobal-LdapCacheTimeout"); ok {
 			if err = d.Set("ldap_cache_timeout", vv); err != nil {
 				return fmt.Errorf("Error reading ldap_cache_timeout: %v", err)
@@ -1366,7 +1434,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ldapconntimeout", flattenSystemGlobalLdapconntimeoutSga(o["ldapconntimeout"], d, "ldapconntimeout")); err != nil {
+	if err = d.Set("ldapconntimeout", flattenSystemGlobalLdapconntimeout(o["ldapconntimeout"], d, "ldapconntimeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ldapconntimeout"], "SystemGlobal-Ldapconntimeout"); ok {
 			if err = d.Set("ldapconntimeout", vv); err != nil {
 				return fmt.Errorf("Error reading ldapconntimeout: %v", err)
@@ -1376,7 +1444,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("lock_preempt", flattenSystemGlobalLockPreemptSga(o["lock-preempt"], d, "lock_preempt")); err != nil {
+	if err = d.Set("lock_preempt", flattenSystemGlobalLockPreempt(o["lock-preempt"], d, "lock_preempt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["lock-preempt"], "SystemGlobal-LockPreempt"); ok {
 			if err = d.Set("lock_preempt", vv); err != nil {
 				return fmt.Errorf("Error reading lock_preempt: %v", err)
@@ -1386,7 +1454,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("log_checksum", flattenSystemGlobalLogChecksumSga(o["log-checksum"], d, "log_checksum")); err != nil {
+	if err = d.Set("log_checksum", flattenSystemGlobalLogChecksum(o["log-checksum"], d, "log_checksum")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-checksum"], "SystemGlobal-LogChecksum"); ok {
 			if err = d.Set("log_checksum", vv); err != nil {
 				return fmt.Errorf("Error reading log_checksum: %v", err)
@@ -1396,7 +1464,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("log_checksum_upload", flattenSystemGlobalLogChecksumUploadSga(o["log-checksum-upload"], d, "log_checksum_upload")); err != nil {
+	if err = d.Set("log_checksum_upload", flattenSystemGlobalLogChecksumUpload(o["log-checksum-upload"], d, "log_checksum_upload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-checksum-upload"], "SystemGlobal-LogChecksumUpload"); ok {
 			if err = d.Set("log_checksum_upload", vv); err != nil {
 				return fmt.Errorf("Error reading log_checksum_upload: %v", err)
@@ -1406,7 +1474,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("log_forward_cache_size", flattenSystemGlobalLogForwardCacheSizeSga(o["log-forward-cache-size"], d, "log_forward_cache_size")); err != nil {
+	if err = d.Set("log_forward_cache_size", flattenSystemGlobalLogForwardCacheSize(o["log-forward-cache-size"], d, "log_forward_cache_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-forward-cache-size"], "SystemGlobal-LogForwardCacheSize"); ok {
 			if err = d.Set("log_forward_cache_size", vv); err != nil {
 				return fmt.Errorf("Error reading log_forward_cache_size: %v", err)
@@ -1416,7 +1484,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("longitude", flattenSystemGlobalLongitudeSga(o["longitude"], d, "longitude")); err != nil {
+	if err = d.Set("longitude", flattenSystemGlobalLongitude(o["longitude"], d, "longitude")); err != nil {
 		if vv, ok := fortiAPIPatch(o["longitude"], "SystemGlobal-Longitude"); ok {
 			if err = d.Set("longitude", vv); err != nil {
 				return fmt.Errorf("Error reading longitude: %v", err)
@@ -1426,7 +1494,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("management_ip", flattenSystemGlobalManagementIpSga(o["management-ip"], d, "management_ip")); err != nil {
+	if err = d.Set("management_ip", flattenSystemGlobalManagementIp(o["management-ip"], d, "management_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["management-ip"], "SystemGlobal-ManagementIp"); ok {
 			if err = d.Set("management_ip", vv); err != nil {
 				return fmt.Errorf("Error reading management_ip: %v", err)
@@ -1436,7 +1504,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("management_port", flattenSystemGlobalManagementPortSga(o["management-port"], d, "management_port")); err != nil {
+	if err = d.Set("management_port", flattenSystemGlobalManagementPort(o["management-port"], d, "management_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["management-port"], "SystemGlobal-ManagementPort"); ok {
 			if err = d.Set("management_port", vv); err != nil {
 				return fmt.Errorf("Error reading management_port: %v", err)
@@ -1446,7 +1514,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("max_log_forward", flattenSystemGlobalMaxLogForwardSga(o["max-log-forward"], d, "max_log_forward")); err != nil {
+	if err = d.Set("max_log_forward", flattenSystemGlobalMaxLogForward(o["max-log-forward"], d, "max_log_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-log-forward"], "SystemGlobal-MaxLogForward"); ok {
 			if err = d.Set("max_log_forward", vv); err != nil {
 				return fmt.Errorf("Error reading max_log_forward: %v", err)
@@ -1456,7 +1524,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("max_running_reports", flattenSystemGlobalMaxRunningReportsSga(o["max-running-reports"], d, "max_running_reports")); err != nil {
+	if err = d.Set("max_running_reports", flattenSystemGlobalMaxRunningReports(o["max-running-reports"], d, "max_running_reports")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-running-reports"], "SystemGlobal-MaxRunningReports"); ok {
 			if err = d.Set("max_running_reports", vv); err != nil {
 				return fmt.Errorf("Error reading max_running_reports: %v", err)
@@ -1467,7 +1535,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 	}
 
 	if isImportTable() {
-		if err = d.Set("mc_policy_disabled_adoms", flattenSystemGlobalMcPolicyDisabledAdomsSga(o["mc-policy-disabled-adoms"], d, "mc_policy_disabled_adoms")); err != nil {
+		if err = d.Set("mc_policy_disabled_adoms", flattenSystemGlobalMcPolicyDisabledAdoms(o["mc-policy-disabled-adoms"], d, "mc_policy_disabled_adoms")); err != nil {
 			if vv, ok := fortiAPIPatch(o["mc-policy-disabled-adoms"], "SystemGlobal-McPolicyDisabledAdoms"); ok {
 				if err = d.Set("mc_policy_disabled_adoms", vv); err != nil {
 					return fmt.Errorf("Error reading mc_policy_disabled_adoms: %v", err)
@@ -1478,7 +1546,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	} else {
 		if _, ok := d.GetOk("mc_policy_disabled_adoms"); ok {
-			if err = d.Set("mc_policy_disabled_adoms", flattenSystemGlobalMcPolicyDisabledAdomsSga(o["mc-policy-disabled-adoms"], d, "mc_policy_disabled_adoms")); err != nil {
+			if err = d.Set("mc_policy_disabled_adoms", flattenSystemGlobalMcPolicyDisabledAdoms(o["mc-policy-disabled-adoms"], d, "mc_policy_disabled_adoms")); err != nil {
 				if vv, ok := fortiAPIPatch(o["mc-policy-disabled-adoms"], "SystemGlobal-McPolicyDisabledAdoms"); ok {
 					if err = d.Set("mc_policy_disabled_adoms", vv); err != nil {
 						return fmt.Errorf("Error reading mc_policy_disabled_adoms: %v", err)
@@ -1490,7 +1558,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("multiple_steps_upgrade_in_autolink", flattenSystemGlobalMultipleStepsUpgradeInAutolinkSga(o["multiple-steps-upgrade-in-autolink"], d, "multiple_steps_upgrade_in_autolink")); err != nil {
+	if err = d.Set("multiple_steps_upgrade_in_autolink", flattenSystemGlobalMultipleStepsUpgradeInAutolink(o["multiple-steps-upgrade-in-autolink"], d, "multiple_steps_upgrade_in_autolink")); err != nil {
 		if vv, ok := fortiAPIPatch(o["multiple-steps-upgrade-in-autolink"], "SystemGlobal-MultipleStepsUpgradeInAutolink"); ok {
 			if err = d.Set("multiple_steps_upgrade_in_autolink", vv); err != nil {
 				return fmt.Errorf("Error reading multiple_steps_upgrade_in_autolink: %v", err)
@@ -1500,7 +1568,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("no_copy_permission_check", flattenSystemGlobalNoCopyPermissionCheckSga(o["no-copy-permission-check"], d, "no_copy_permission_check")); err != nil {
+	if err = d.Set("no_copy_permission_check", flattenSystemGlobalNoCopyPermissionCheck(o["no-copy-permission-check"], d, "no_copy_permission_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["no-copy-permission-check"], "SystemGlobal-NoCopyPermissionCheck"); ok {
 			if err = d.Set("no_copy_permission_check", vv); err != nil {
 				return fmt.Errorf("Error reading no_copy_permission_check: %v", err)
@@ -1510,7 +1578,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("no_vip_value_check", flattenSystemGlobalNoVipValueCheckSga(o["no-vip-value-check"], d, "no_vip_value_check")); err != nil {
+	if err = d.Set("no_vip_value_check", flattenSystemGlobalNoVipValueCheck(o["no-vip-value-check"], d, "no_vip_value_check")); err != nil {
 		if vv, ok := fortiAPIPatch(o["no-vip-value-check"], "SystemGlobal-NoVipValueCheck"); ok {
 			if err = d.Set("no_vip_value_check", vv); err != nil {
 				return fmt.Errorf("Error reading no_vip_value_check: %v", err)
@@ -1520,7 +1588,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("normalized_intf_zone_only", flattenSystemGlobalNormalizedIntfZoneOnlySga(o["normalized-intf-zone-only"], d, "normalized_intf_zone_only")); err != nil {
+	if err = d.Set("normalized_intf_zone_only", flattenSystemGlobalNormalizedIntfZoneOnly(o["normalized-intf-zone-only"], d, "normalized_intf_zone_only")); err != nil {
 		if vv, ok := fortiAPIPatch(o["normalized-intf-zone-only"], "SystemGlobal-NormalizedIntfZoneOnly"); ok {
 			if err = d.Set("normalized_intf_zone_only", vv); err != nil {
 				return fmt.Errorf("Error reading normalized_intf_zone_only: %v", err)
@@ -1530,7 +1598,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("object_revision_db_max", flattenSystemGlobalObjectRevisionDbMaxSga(o["object-revision-db-max"], d, "object_revision_db_max")); err != nil {
+	if err = d.Set("object_revision_db_max", flattenSystemGlobalObjectRevisionDbMax(o["object-revision-db-max"], d, "object_revision_db_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["object-revision-db-max"], "SystemGlobal-ObjectRevisionDbMax"); ok {
 			if err = d.Set("object_revision_db_max", vv); err != nil {
 				return fmt.Errorf("Error reading object_revision_db_max: %v", err)
@@ -1540,7 +1608,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("object_revision_mandatory_note", flattenSystemGlobalObjectRevisionMandatoryNoteSga(o["object-revision-mandatory-note"], d, "object_revision_mandatory_note")); err != nil {
+	if err = d.Set("object_revision_mandatory_note", flattenSystemGlobalObjectRevisionMandatoryNote(o["object-revision-mandatory-note"], d, "object_revision_mandatory_note")); err != nil {
 		if vv, ok := fortiAPIPatch(o["object-revision-mandatory-note"], "SystemGlobal-ObjectRevisionMandatoryNote"); ok {
 			if err = d.Set("object_revision_mandatory_note", vv); err != nil {
 				return fmt.Errorf("Error reading object_revision_mandatory_note: %v", err)
@@ -1550,7 +1618,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("object_revision_object_max", flattenSystemGlobalObjectRevisionObjectMaxSga(o["object-revision-object-max"], d, "object_revision_object_max")); err != nil {
+	if err = d.Set("object_revision_object_max", flattenSystemGlobalObjectRevisionObjectMax(o["object-revision-object-max"], d, "object_revision_object_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["object-revision-object-max"], "SystemGlobal-ObjectRevisionObjectMax"); ok {
 			if err = d.Set("object_revision_object_max", vv); err != nil {
 				return fmt.Errorf("Error reading object_revision_object_max: %v", err)
@@ -1560,7 +1628,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("object_revision_status", flattenSystemGlobalObjectRevisionStatusSga(o["object-revision-status"], d, "object_revision_status")); err != nil {
+	if err = d.Set("object_revision_status", flattenSystemGlobalObjectRevisionStatus(o["object-revision-status"], d, "object_revision_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["object-revision-status"], "SystemGlobal-ObjectRevisionStatus"); ok {
 			if err = d.Set("object_revision_status", vv); err != nil {
 				return fmt.Errorf("Error reading object_revision_status: %v", err)
@@ -1570,7 +1638,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("oftp_ssl_protocol", flattenSystemGlobalOftpSslProtocolSga(o["oftp-ssl-protocol"], d, "oftp_ssl_protocol")); err != nil {
+	if err = d.Set("oftp_ssl_protocol", flattenSystemGlobalOftpSslProtocol(o["oftp-ssl-protocol"], d, "oftp_ssl_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["oftp-ssl-protocol"], "SystemGlobal-OftpSslProtocol"); ok {
 			if err = d.Set("oftp_ssl_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading oftp_ssl_protocol: %v", err)
@@ -1580,7 +1648,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("partial_install", flattenSystemGlobalPartialInstallSga(o["partial-install"], d, "partial_install")); err != nil {
+	if err = d.Set("partial_install", flattenSystemGlobalPartialInstall(o["partial-install"], d, "partial_install")); err != nil {
 		if vv, ok := fortiAPIPatch(o["partial-install"], "SystemGlobal-PartialInstall"); ok {
 			if err = d.Set("partial_install", vv); err != nil {
 				return fmt.Errorf("Error reading partial_install: %v", err)
@@ -1590,7 +1658,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("partial_install_force", flattenSystemGlobalPartialInstallForceSga(o["partial-install-force"], d, "partial_install_force")); err != nil {
+	if err = d.Set("partial_install_force", flattenSystemGlobalPartialInstallForce(o["partial-install-force"], d, "partial_install_force")); err != nil {
 		if vv, ok := fortiAPIPatch(o["partial-install-force"], "SystemGlobal-PartialInstallForce"); ok {
 			if err = d.Set("partial_install_force", vv); err != nil {
 				return fmt.Errorf("Error reading partial_install_force: %v", err)
@@ -1600,7 +1668,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("partial_install_rev", flattenSystemGlobalPartialInstallRevSga(o["partial-install-rev"], d, "partial_install_rev")); err != nil {
+	if err = d.Set("partial_install_rev", flattenSystemGlobalPartialInstallRev(o["partial-install-rev"], d, "partial_install_rev")); err != nil {
 		if vv, ok := fortiAPIPatch(o["partial-install-rev"], "SystemGlobal-PartialInstallRev"); ok {
 			if err = d.Set("partial_install_rev", vv); err != nil {
 				return fmt.Errorf("Error reading partial_install_rev: %v", err)
@@ -1610,7 +1678,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("per_policy_lock", flattenSystemGlobalPerPolicyLockSga(o["per-policy-lock"], d, "per_policy_lock")); err != nil {
+	if err = d.Set("per_policy_lock", flattenSystemGlobalPerPolicyLock(o["per-policy-lock"], d, "per_policy_lock")); err != nil {
 		if vv, ok := fortiAPIPatch(o["per-policy-lock"], "SystemGlobal-PerPolicyLock"); ok {
 			if err = d.Set("per_policy_lock", vv); err != nil {
 				return fmt.Errorf("Error reading per_policy_lock: %v", err)
@@ -1620,7 +1688,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("perform_improve_by_ha", flattenSystemGlobalPerformImproveByHaSga(o["perform-improve-by-ha"], d, "perform_improve_by_ha")); err != nil {
+	if err = d.Set("perform_improve_by_ha", flattenSystemGlobalPerformImproveByHa(o["perform-improve-by-ha"], d, "perform_improve_by_ha")); err != nil {
 		if vv, ok := fortiAPIPatch(o["perform-improve-by-ha"], "SystemGlobal-PerformImproveByHa"); ok {
 			if err = d.Set("perform_improve_by_ha", vv); err != nil {
 				return fmt.Errorf("Error reading perform_improve_by_ha: %v", err)
@@ -1630,7 +1698,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("policy_object_icon", flattenSystemGlobalPolicyObjectIconSga(o["policy-object-icon"], d, "policy_object_icon")); err != nil {
+	if err = d.Set("policy_object_icon", flattenSystemGlobalPolicyObjectIcon(o["policy-object-icon"], d, "policy_object_icon")); err != nil {
 		if vv, ok := fortiAPIPatch(o["policy-object-icon"], "SystemGlobal-PolicyObjectIcon"); ok {
 			if err = d.Set("policy_object_icon", vv); err != nil {
 				return fmt.Errorf("Error reading policy_object_icon: %v", err)
@@ -1640,7 +1708,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("policy_object_in_dual_pane", flattenSystemGlobalPolicyObjectInDualPaneSga(o["policy-object-in-dual-pane"], d, "policy_object_in_dual_pane")); err != nil {
+	if err = d.Set("policy_object_in_dual_pane", flattenSystemGlobalPolicyObjectInDualPane(o["policy-object-in-dual-pane"], d, "policy_object_in_dual_pane")); err != nil {
 		if vv, ok := fortiAPIPatch(o["policy-object-in-dual-pane"], "SystemGlobal-PolicyObjectInDualPane"); ok {
 			if err = d.Set("policy_object_in_dual_pane", vv); err != nil {
 				return fmt.Errorf("Error reading policy_object_in_dual_pane: %v", err)
@@ -1650,7 +1718,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("pre_login_banner", flattenSystemGlobalPreLoginBannerSga(o["pre-login-banner"], d, "pre_login_banner")); err != nil {
+	if err = d.Set("pre_login_banner", flattenSystemGlobalPreLoginBanner(o["pre-login-banner"], d, "pre_login_banner")); err != nil {
 		if vv, ok := fortiAPIPatch(o["pre-login-banner"], "SystemGlobal-PreLoginBanner"); ok {
 			if err = d.Set("pre_login_banner", vv); err != nil {
 				return fmt.Errorf("Error reading pre_login_banner: %v", err)
@@ -1660,7 +1728,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("pre_login_banner_message", flattenSystemGlobalPreLoginBannerMessageSga(o["pre-login-banner-message"], d, "pre_login_banner_message")); err != nil {
+	if err = d.Set("pre_login_banner_message", flattenSystemGlobalPreLoginBannerMessage(o["pre-login-banner-message"], d, "pre_login_banner_message")); err != nil {
 		if vv, ok := fortiAPIPatch(o["pre-login-banner-message"], "SystemGlobal-PreLoginBannerMessage"); ok {
 			if err = d.Set("pre_login_banner_message", vv); err != nil {
 				return fmt.Errorf("Error reading pre_login_banner_message: %v", err)
@@ -1670,7 +1738,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("private_data_encryption", flattenSystemGlobalPrivateDataEncryptionSga(o["private-data-encryption"], d, "private_data_encryption")); err != nil {
+	if err = d.Set("private_data_encryption", flattenSystemGlobalPrivateDataEncryption(o["private-data-encryption"], d, "private_data_encryption")); err != nil {
 		if vv, ok := fortiAPIPatch(o["private-data-encryption"], "SystemGlobal-PrivateDataEncryption"); ok {
 			if err = d.Set("private_data_encryption", vv); err != nil {
 				return fmt.Errorf("Error reading private_data_encryption: %v", err)
@@ -1680,7 +1748,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("remoteauthtimeout", flattenSystemGlobalRemoteauthtimeoutSga(o["remoteauthtimeout"], d, "remoteauthtimeout")); err != nil {
+	if err = d.Set("remoteauthtimeout", flattenSystemGlobalRemoteauthtimeout(o["remoteauthtimeout"], d, "remoteauthtimeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["remoteauthtimeout"], "SystemGlobal-Remoteauthtimeout"); ok {
 			if err = d.Set("remoteauthtimeout", vv); err != nil {
 				return fmt.Errorf("Error reading remoteauthtimeout: %v", err)
@@ -1690,7 +1758,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("save_last_hit_in_adomdb", flattenSystemGlobalSaveLastHitInAdomdbSga(o["save-last-hit-in-adomdb"], d, "save_last_hit_in_adomdb")); err != nil {
+	if err = d.Set("save_last_hit_in_adomdb", flattenSystemGlobalSaveLastHitInAdomdb(o["save-last-hit-in-adomdb"], d, "save_last_hit_in_adomdb")); err != nil {
 		if vv, ok := fortiAPIPatch(o["save-last-hit-in-adomdb"], "SystemGlobal-SaveLastHitInAdomdb"); ok {
 			if err = d.Set("save_last_hit_in_adomdb", vv); err != nil {
 				return fmt.Errorf("Error reading save_last_hit_in_adomdb: %v", err)
@@ -1700,7 +1768,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("search_all_adoms", flattenSystemGlobalSearchAllAdomsSga(o["search-all-adoms"], d, "search_all_adoms")); err != nil {
+	if err = d.Set("search_all_adoms", flattenSystemGlobalSearchAllAdoms(o["search-all-adoms"], d, "search_all_adoms")); err != nil {
 		if vv, ok := fortiAPIPatch(o["search-all-adoms"], "SystemGlobal-SearchAllAdoms"); ok {
 			if err = d.Set("search_all_adoms", vv); err != nil {
 				return fmt.Errorf("Error reading search_all_adoms: %v", err)
@@ -1710,8 +1778,58 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("ssh_enc_algo", flattenSystemGlobalSshEncAlgo(o["ssh-enc-algo"], d, "ssh_enc_algo")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-enc-algo"], "SystemGlobal-SshEncAlgo"); ok {
+			if err = d.Set("ssh_enc_algo", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_enc_algo: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_enc_algo: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_hostkey_algo", flattenSystemGlobalSshHostkeyAlgo(o["ssh-hostkey-algo"], d, "ssh_hostkey_algo")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-hostkey-algo"], "SystemGlobal-SshHostkeyAlgo"); ok {
+			if err = d.Set("ssh_hostkey_algo", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_hostkey_algo: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_hostkey_algo: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_kex_algo", flattenSystemGlobalSshKexAlgo(o["ssh-kex-algo"], d, "ssh_kex_algo")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-kex-algo"], "SystemGlobal-SshKexAlgo"); ok {
+			if err = d.Set("ssh_kex_algo", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_kex_algo: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_kex_algo: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_mac_algo", flattenSystemGlobalSshMacAlgo(o["ssh-mac-algo"], d, "ssh_mac_algo")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-mac-algo"], "SystemGlobal-SshMacAlgo"); ok {
+			if err = d.Set("ssh_mac_algo", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_mac_algo: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_mac_algo: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_strong_crypto", flattenSystemGlobalSshStrongCrypto(o["ssh-strong-crypto"], d, "ssh_strong_crypto")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-strong-crypto"], "SystemGlobal-SshStrongCrypto"); ok {
+			if err = d.Set("ssh_strong_crypto", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_strong_crypto: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_strong_crypto: %v", err)
+		}
+	}
+
 	if isImportTable() {
-		if err = d.Set("ssl_cipher_suites", flattenSystemGlobalSslCipherSuitesSga(o["ssl-cipher-suites"], d, "ssl_cipher_suites")); err != nil {
+		if err = d.Set("ssl_cipher_suites", flattenSystemGlobalSslCipherSuites(o["ssl-cipher-suites"], d, "ssl_cipher_suites")); err != nil {
 			if vv, ok := fortiAPIPatch(o["ssl-cipher-suites"], "SystemGlobal-SslCipherSuites"); ok {
 				if err = d.Set("ssl_cipher_suites", vv); err != nil {
 					return fmt.Errorf("Error reading ssl_cipher_suites: %v", err)
@@ -1722,7 +1840,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	} else {
 		if _, ok := d.GetOk("ssl_cipher_suites"); ok {
-			if err = d.Set("ssl_cipher_suites", flattenSystemGlobalSslCipherSuitesSga(o["ssl-cipher-suites"], d, "ssl_cipher_suites")); err != nil {
+			if err = d.Set("ssl_cipher_suites", flattenSystemGlobalSslCipherSuites(o["ssl-cipher-suites"], d, "ssl_cipher_suites")); err != nil {
 				if vv, ok := fortiAPIPatch(o["ssl-cipher-suites"], "SystemGlobal-SslCipherSuites"); ok {
 					if err = d.Set("ssl_cipher_suites", vv); err != nil {
 						return fmt.Errorf("Error reading ssl_cipher_suites: %v", err)
@@ -1734,7 +1852,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ssl_low_encryption", flattenSystemGlobalSslLowEncryptionSga(o["ssl-low-encryption"], d, "ssl_low_encryption")); err != nil {
+	if err = d.Set("ssl_low_encryption", flattenSystemGlobalSslLowEncryption(o["ssl-low-encryption"], d, "ssl_low_encryption")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-low-encryption"], "SystemGlobal-SslLowEncryption"); ok {
 			if err = d.Set("ssl_low_encryption", vv); err != nil {
 				return fmt.Errorf("Error reading ssl_low_encryption: %v", err)
@@ -1744,7 +1862,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ssl_protocol", flattenSystemGlobalSslProtocolSga(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
+	if err = d.Set("ssl_protocol", flattenSystemGlobalSslProtocol(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-protocol"], "SystemGlobal-SslProtocol"); ok {
 			if err = d.Set("ssl_protocol", vv); err != nil {
 				return fmt.Errorf("Error reading ssl_protocol: %v", err)
@@ -1754,7 +1872,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("ssl_static_key_ciphers", flattenSystemGlobalSslStaticKeyCiphersSga(o["ssl-static-key-ciphers"], d, "ssl_static_key_ciphers")); err != nil {
+	if err = d.Set("ssl_static_key_ciphers", flattenSystemGlobalSslStaticKeyCiphers(o["ssl-static-key-ciphers"], d, "ssl_static_key_ciphers")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-static-key-ciphers"], "SystemGlobal-SslStaticKeyCiphers"); ok {
 			if err = d.Set("ssl_static_key_ciphers", vv); err != nil {
 				return fmt.Errorf("Error reading ssl_static_key_ciphers: %v", err)
@@ -1764,7 +1882,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("table_entry_blink", flattenSystemGlobalTableEntryBlinkSga(o["table-entry-blink"], d, "table_entry_blink")); err != nil {
+	if err = d.Set("table_entry_blink", flattenSystemGlobalTableEntryBlink(o["table-entry-blink"], d, "table_entry_blink")); err != nil {
 		if vv, ok := fortiAPIPatch(o["table-entry-blink"], "SystemGlobal-TableEntryBlink"); ok {
 			if err = d.Set("table_entry_blink", vv); err != nil {
 				return fmt.Errorf("Error reading table_entry_blink: %v", err)
@@ -1774,7 +1892,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("task_list_size", flattenSystemGlobalTaskListSizeSga(o["task-list-size"], d, "task_list_size")); err != nil {
+	if err = d.Set("task_list_size", flattenSystemGlobalTaskListSize(o["task-list-size"], d, "task_list_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["task-list-size"], "SystemGlobal-TaskListSize"); ok {
 			if err = d.Set("task_list_size", vv); err != nil {
 				return fmt.Errorf("Error reading task_list_size: %v", err)
@@ -1784,7 +1902,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("tftp", flattenSystemGlobalTftpSga(o["tftp"], d, "tftp")); err != nil {
+	if err = d.Set("tftp", flattenSystemGlobalTftp(o["tftp"], d, "tftp")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tftp"], "SystemGlobal-Tftp"); ok {
 			if err = d.Set("tftp", vv); err != nil {
 				return fmt.Errorf("Error reading tftp: %v", err)
@@ -1794,7 +1912,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("timezone", flattenSystemGlobalTimezoneSga(o["timezone"], d, "timezone")); err != nil {
+	if err = d.Set("timezone", flattenSystemGlobalTimezone(o["timezone"], d, "timezone")); err != nil {
 		if vv, ok := fortiAPIPatch(o["timezone"], "SystemGlobal-Timezone"); ok {
 			if err = d.Set("timezone", vv); err != nil {
 				return fmt.Errorf("Error reading timezone: %v", err)
@@ -1804,7 +1922,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("tunnel_mtu", flattenSystemGlobalTunnelMtuSga(o["tunnel-mtu"], d, "tunnel_mtu")); err != nil {
+	if err = d.Set("tunnel_mtu", flattenSystemGlobalTunnelMtu(o["tunnel-mtu"], d, "tunnel_mtu")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tunnel-mtu"], "SystemGlobal-TunnelMtu"); ok {
 			if err = d.Set("tunnel_mtu", vv); err != nil {
 				return fmt.Errorf("Error reading tunnel_mtu: %v", err)
@@ -1814,7 +1932,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("usg", flattenSystemGlobalUsgSga(o["usg"], d, "usg")); err != nil {
+	if err = d.Set("usg", flattenSystemGlobalUsg(o["usg"], d, "usg")); err != nil {
 		if vv, ok := fortiAPIPatch(o["usg"], "SystemGlobal-Usg"); ok {
 			if err = d.Set("usg", vv); err != nil {
 				return fmt.Errorf("Error reading usg: %v", err)
@@ -1824,7 +1942,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("vdom_mirror", flattenSystemGlobalVdomMirrorSga(o["vdom-mirror"], d, "vdom_mirror")); err != nil {
+	if err = d.Set("vdom_mirror", flattenSystemGlobalVdomMirror(o["vdom-mirror"], d, "vdom_mirror")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vdom-mirror"], "SystemGlobal-VdomMirror"); ok {
 			if err = d.Set("vdom_mirror", vv); err != nil {
 				return fmt.Errorf("Error reading vdom_mirror: %v", err)
@@ -1834,7 +1952,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("webservice_proto", flattenSystemGlobalWebserviceProtoSga(o["webservice-proto"], d, "webservice_proto")); err != nil {
+	if err = d.Set("webservice_proto", flattenSystemGlobalWebserviceProto(o["webservice-proto"], d, "webservice_proto")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webservice-proto"], "SystemGlobal-WebserviceProto"); ok {
 			if err = d.Set("webservice_proto", vv); err != nil {
 				return fmt.Errorf("Error reading webservice_proto: %v", err)
@@ -1844,7 +1962,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("workflow_max_sessions", flattenSystemGlobalWorkflowMaxSessionsSga(o["workflow-max-sessions"], d, "workflow_max_sessions")); err != nil {
+	if err = d.Set("workflow_max_sessions", flattenSystemGlobalWorkflowMaxSessions(o["workflow-max-sessions"], d, "workflow_max_sessions")); err != nil {
 		if vv, ok := fortiAPIPatch(o["workflow-max-sessions"], "SystemGlobal-WorkflowMaxSessions"); ok {
 			if err = d.Set("workflow_max_sessions", vv); err != nil {
 				return fmt.Errorf("Error reading workflow_max_sessions: %v", err)
@@ -1854,7 +1972,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("workspace_mode", flattenSystemGlobalWorkspaceModeSga(o["workspace-mode"], d, "workspace_mode")); err != nil {
+	if err = d.Set("workspace_mode", flattenSystemGlobalWorkspaceMode(o["workspace-mode"], d, "workspace_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["workspace-mode"], "SystemGlobal-WorkspaceMode"); ok {
 			if err = d.Set("workspace_mode", vv); err != nil {
 				return fmt.Errorf("Error reading workspace_mode: %v", err)
@@ -1864,7 +1982,7 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
-	if err = d.Set("workspace_unlock_after_install", flattenSystemGlobalWorkspaceUnlockAfterInstallSga(o["workspace-unlock-after-install"], d, "workspace_unlock_after_install")); err != nil {
+	if err = d.Set("workspace_unlock_after_install", flattenSystemGlobalWorkspaceUnlockAfterInstall(o["workspace-unlock-after-install"], d, "workspace_unlock_after_install")); err != nil {
 		if vv, ok := fortiAPIPatch(o["workspace-unlock-after-install"], "SystemGlobal-WorkspaceUnlockAfterInstall"); ok {
 			if err = d.Set("workspace_unlock_after_install", vv); err != nil {
 				return fmt.Errorf("Error reading workspace_unlock_after_install: %v", err)
@@ -1883,195 +2001,199 @@ func flattenSystemGlobalFortiTestDebug(d *schema.ResourceData, fosdebugsn int, f
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemGlobalAdminLockoutDurationSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdminLockoutDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdminLockoutMethodSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdminLockoutMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdminLockoutThresholdSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdminLockoutThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomModeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomRevAutoDeleteSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomRevAutoDelete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomRevMaxBackupRevisionsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomRevMaxBackupRevisions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomRevMaxDaysSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomRevMaxDays(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomRevMaxRevisionsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomRevMaxRevisions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomSelectSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalAdomStatusSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalAdomStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalApacheModeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalApacheMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalCloneNameOptionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalApiIpBinding(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalCltCertReqSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalCloneNameOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalConsoleOutputSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalCltCertReq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalContentpackFgtInstallSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalConsoleOutput(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalCountryFlagSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalContentpackFgtInstall(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalCreateRevisionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalCountryFlag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalDaylightsavetimeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalCreateRevision(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalDetectUnregisteredLogDeviceSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalDaylightsavetime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalDeviceViewModeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalDetectUnregisteredLogDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalDhParamsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalDeviceViewMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalDisableModuleSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalDhParams(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalDisableModule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandSystemGlobalEncAlgorithmSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalEncAlgorithm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFazStatusSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFazStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFgfmCaCertSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFgfmCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFgfmCertExclusiveSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFgfmCertExclusive(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFgfmLocalCertSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFgfmLocalCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFgfmSslProtocolSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFgfmSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalFortiservicePortSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalFortiservicePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalGuiCurlTimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalGuiCurlTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalGuiPollingIntervalSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalGuiPollingInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalHaMemberAutoGroupingSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalHaMemberAutoGrouping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalHostnameSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalHostname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalImportIgnoreAddrCmtSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalImportIgnoreAddrCmt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLanguageSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLanguage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLatitudeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLatitude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLdapCacheTimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLdapCacheTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLdapconntimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLdapconntimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLockPreemptSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLockPreempt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLogChecksumSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLogChecksum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLogChecksumUploadSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLogChecksumUpload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLogForwardCacheSizeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLogForwardCacheSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalLongitudeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalLongitude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalManagementIpSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalManagementIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalManagementPortSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalManagementPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalMaxLogForwardSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalMaxLogForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalMaxRunningReportsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalMaxRunningReports(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalMcPolicyDisabledAdomsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalMcPolicyDisabledAdoms(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2087,7 +2209,7 @@ func expandSystemGlobalMcPolicyDisabledAdomsSga(d *schema.ResourceData, v interf
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adom_name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["adom-name"], _ = expandSystemGlobalMcPolicyDisabledAdomsAdomNameSga(d, i["adom_name"], pre_append)
+			tmp["adom-name"], _ = expandSystemGlobalMcPolicyDisabledAdomsAdomName(d, i["adom_name"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2100,99 +2222,119 @@ func expandSystemGlobalMcPolicyDisabledAdomsSga(d *schema.ResourceData, v interf
 	return result, nil
 }
 
-func expandSystemGlobalMcPolicyDisabledAdomsAdomNameSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalMcPolicyDisabledAdomsAdomName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalMultipleStepsUpgradeInAutolinkSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalMultipleStepsUpgradeInAutolink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalNoCopyPermissionCheckSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalNoCopyPermissionCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalNoVipValueCheckSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalNoVipValueCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalNormalizedIntfZoneOnlySga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalNormalizedIntfZoneOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalObjectRevisionDbMaxSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalObjectRevisionDbMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalObjectRevisionMandatoryNoteSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalObjectRevisionMandatoryNote(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalObjectRevisionObjectMaxSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalObjectRevisionObjectMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalObjectRevisionStatusSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalObjectRevisionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalOftpSslProtocolSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalOftpSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPartialInstallSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPartialInstall(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPartialInstallForceSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPartialInstallForce(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPartialInstallRevSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPartialInstallRev(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPerPolicyLockSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPerPolicyLock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPerformImproveByHaSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPerformImproveByHa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPolicyObjectIconSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPolicyObjectIcon(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPolicyObjectInDualPaneSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPolicyObjectInDualPane(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPreLoginBannerSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPreLoginBanner(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPreLoginBannerMessageSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPreLoginBannerMessage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalPrivateDataEncryptionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalPrivateDataEncryption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalRemoteauthtimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalRemoteauthtimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSaveLastHitInAdomdbSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSaveLastHitInAdomdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSearchAllAdomsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSearchAllAdoms(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslCipherSuitesSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSshEncAlgo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemGlobalSshHostkeyAlgo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemGlobalSshKexAlgo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemGlobalSshMacAlgo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemGlobalSshStrongCrypto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2208,17 +2350,17 @@ func expandSystemGlobalSslCipherSuitesSga(d *schema.ResourceData, v interface{},
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["cipher"], _ = expandSystemGlobalSslCipherSuitesCipherSga(d, i["cipher"], pre_append)
+			tmp["cipher"], _ = expandSystemGlobalSslCipherSuitesCipher(d, i["cipher"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["priority"], _ = expandSystemGlobalSslCipherSuitesPrioritySga(d, i["priority"], pre_append)
+			tmp["priority"], _ = expandSystemGlobalSslCipherSuitesPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "version"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["version"], _ = expandSystemGlobalSslCipherSuitesVersionSga(d, i["version"], pre_append)
+			tmp["version"], _ = expandSystemGlobalSslCipherSuitesVersion(d, i["version"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2231,71 +2373,71 @@ func expandSystemGlobalSslCipherSuitesSga(d *schema.ResourceData, v interface{},
 	return result, nil
 }
 
-func expandSystemGlobalSslCipherSuitesCipherSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesCipher(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslCipherSuitesPrioritySga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslCipherSuitesVersionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslLowEncryptionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslLowEncryption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslProtocolSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandSystemGlobalSslStaticKeyCiphersSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslStaticKeyCiphers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalTableEntryBlinkSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalTableEntryBlink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalTaskListSizeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalTaskListSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalTftpSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalTftp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalTimezoneSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalTimezone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalTunnelMtuSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalTunnelMtu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalUsgSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalUsg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalVdomMirrorSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalVdomMirror(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalWebserviceProtoSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalWebserviceProto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandSystemGlobalWorkflowMaxSessionsSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalWorkflowMaxSessions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalWorkspaceModeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalWorkspaceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalWorkspaceUnlockAfterInstallSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalWorkspaceUnlockAfterInstall(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2303,7 +2445,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("admin_lockout_duration"); ok || d.HasChange("admin_lockout_duration") {
-		t, err := expandSystemGlobalAdminLockoutDurationSga(d, v, "admin_lockout_duration")
+		t, err := expandSystemGlobalAdminLockoutDuration(d, v, "admin_lockout_duration")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2312,7 +2454,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("admin_lockout_method"); ok || d.HasChange("admin_lockout_method") {
-		t, err := expandSystemGlobalAdminLockoutMethodSga(d, v, "admin_lockout_method")
+		t, err := expandSystemGlobalAdminLockoutMethod(d, v, "admin_lockout_method")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2321,7 +2463,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("admin_lockout_threshold"); ok || d.HasChange("admin_lockout_threshold") {
-		t, err := expandSystemGlobalAdminLockoutThresholdSga(d, v, "admin_lockout_threshold")
+		t, err := expandSystemGlobalAdminLockoutThreshold(d, v, "admin_lockout_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2330,7 +2472,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_mode"); ok || d.HasChange("adom_mode") {
-		t, err := expandSystemGlobalAdomModeSga(d, v, "adom_mode")
+		t, err := expandSystemGlobalAdomMode(d, v, "adom_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2339,7 +2481,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_rev_auto_delete"); ok || d.HasChange("adom_rev_auto_delete") {
-		t, err := expandSystemGlobalAdomRevAutoDeleteSga(d, v, "adom_rev_auto_delete")
+		t, err := expandSystemGlobalAdomRevAutoDelete(d, v, "adom_rev_auto_delete")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2348,7 +2490,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_rev_max_backup_revisions"); ok || d.HasChange("adom_rev_max_backup_revisions") {
-		t, err := expandSystemGlobalAdomRevMaxBackupRevisionsSga(d, v, "adom_rev_max_backup_revisions")
+		t, err := expandSystemGlobalAdomRevMaxBackupRevisions(d, v, "adom_rev_max_backup_revisions")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2357,7 +2499,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_rev_max_days"); ok || d.HasChange("adom_rev_max_days") {
-		t, err := expandSystemGlobalAdomRevMaxDaysSga(d, v, "adom_rev_max_days")
+		t, err := expandSystemGlobalAdomRevMaxDays(d, v, "adom_rev_max_days")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2366,7 +2508,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_rev_max_revisions"); ok || d.HasChange("adom_rev_max_revisions") {
-		t, err := expandSystemGlobalAdomRevMaxRevisionsSga(d, v, "adom_rev_max_revisions")
+		t, err := expandSystemGlobalAdomRevMaxRevisions(d, v, "adom_rev_max_revisions")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2375,7 +2517,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_select"); ok || d.HasChange("adom_select") {
-		t, err := expandSystemGlobalAdomSelectSga(d, v, "adom_select")
+		t, err := expandSystemGlobalAdomSelect(d, v, "adom_select")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2384,7 +2526,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("adom_status"); ok || d.HasChange("adom_status") {
-		t, err := expandSystemGlobalAdomStatusSga(d, v, "adom_status")
+		t, err := expandSystemGlobalAdomStatus(d, v, "adom_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2393,7 +2535,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("apache_mode"); ok || d.HasChange("apache_mode") {
-		t, err := expandSystemGlobalApacheModeSga(d, v, "apache_mode")
+		t, err := expandSystemGlobalApacheMode(d, v, "apache_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2401,8 +2543,17 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("api_ip_binding"); ok || d.HasChange("api_ip_binding") {
+		t, err := expandSystemGlobalApiIpBinding(d, v, "api_ip_binding")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["api-ip-binding"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("clone_name_option"); ok || d.HasChange("clone_name_option") {
-		t, err := expandSystemGlobalCloneNameOptionSga(d, v, "clone_name_option")
+		t, err := expandSystemGlobalCloneNameOption(d, v, "clone_name_option")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2411,7 +2562,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("clt_cert_req"); ok || d.HasChange("clt_cert_req") {
-		t, err := expandSystemGlobalCltCertReqSga(d, v, "clt_cert_req")
+		t, err := expandSystemGlobalCltCertReq(d, v, "clt_cert_req")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2420,7 +2571,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("console_output"); ok || d.HasChange("console_output") {
-		t, err := expandSystemGlobalConsoleOutputSga(d, v, "console_output")
+		t, err := expandSystemGlobalConsoleOutput(d, v, "console_output")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2429,7 +2580,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("contentpack_fgt_install"); ok || d.HasChange("contentpack_fgt_install") {
-		t, err := expandSystemGlobalContentpackFgtInstallSga(d, v, "contentpack_fgt_install")
+		t, err := expandSystemGlobalContentpackFgtInstall(d, v, "contentpack_fgt_install")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2438,7 +2589,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("country_flag"); ok || d.HasChange("country_flag") {
-		t, err := expandSystemGlobalCountryFlagSga(d, v, "country_flag")
+		t, err := expandSystemGlobalCountryFlag(d, v, "country_flag")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2447,7 +2598,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("create_revision"); ok || d.HasChange("create_revision") {
-		t, err := expandSystemGlobalCreateRevisionSga(d, v, "create_revision")
+		t, err := expandSystemGlobalCreateRevision(d, v, "create_revision")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2456,7 +2607,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("daylightsavetime"); ok || d.HasChange("daylightsavetime") {
-		t, err := expandSystemGlobalDaylightsavetimeSga(d, v, "daylightsavetime")
+		t, err := expandSystemGlobalDaylightsavetime(d, v, "daylightsavetime")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2465,7 +2616,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("detect_unregistered_log_device"); ok || d.HasChange("detect_unregistered_log_device") {
-		t, err := expandSystemGlobalDetectUnregisteredLogDeviceSga(d, v, "detect_unregistered_log_device")
+		t, err := expandSystemGlobalDetectUnregisteredLogDevice(d, v, "detect_unregistered_log_device")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2474,7 +2625,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("device_view_mode"); ok || d.HasChange("device_view_mode") {
-		t, err := expandSystemGlobalDeviceViewModeSga(d, v, "device_view_mode")
+		t, err := expandSystemGlobalDeviceViewMode(d, v, "device_view_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2483,7 +2634,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("dh_params"); ok || d.HasChange("dh_params") {
-		t, err := expandSystemGlobalDhParamsSga(d, v, "dh_params")
+		t, err := expandSystemGlobalDhParams(d, v, "dh_params")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2492,7 +2643,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("disable_module"); ok || d.HasChange("disable_module") {
-		t, err := expandSystemGlobalDisableModuleSga(d, v, "disable_module")
+		t, err := expandSystemGlobalDisableModule(d, v, "disable_module")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2501,7 +2652,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("enc_algorithm"); ok || d.HasChange("enc_algorithm") {
-		t, err := expandSystemGlobalEncAlgorithmSga(d, v, "enc_algorithm")
+		t, err := expandSystemGlobalEncAlgorithm(d, v, "enc_algorithm")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2510,7 +2661,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("faz_status"); ok || d.HasChange("faz_status") {
-		t, err := expandSystemGlobalFazStatusSga(d, v, "faz_status")
+		t, err := expandSystemGlobalFazStatus(d, v, "faz_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2519,7 +2670,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("fgfm_ca_cert"); ok || d.HasChange("fgfm_ca_cert") {
-		t, err := expandSystemGlobalFgfmCaCertSga(d, v, "fgfm_ca_cert")
+		t, err := expandSystemGlobalFgfmCaCert(d, v, "fgfm_ca_cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2528,7 +2679,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("fgfm_cert_exclusive"); ok || d.HasChange("fgfm_cert_exclusive") {
-		t, err := expandSystemGlobalFgfmCertExclusiveSga(d, v, "fgfm_cert_exclusive")
+		t, err := expandSystemGlobalFgfmCertExclusive(d, v, "fgfm_cert_exclusive")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2537,7 +2688,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("fgfm_local_cert"); ok || d.HasChange("fgfm_local_cert") {
-		t, err := expandSystemGlobalFgfmLocalCertSga(d, v, "fgfm_local_cert")
+		t, err := expandSystemGlobalFgfmLocalCert(d, v, "fgfm_local_cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2546,7 +2697,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("fgfm_ssl_protocol"); ok || d.HasChange("fgfm_ssl_protocol") {
-		t, err := expandSystemGlobalFgfmSslProtocolSga(d, v, "fgfm_ssl_protocol")
+		t, err := expandSystemGlobalFgfmSslProtocol(d, v, "fgfm_ssl_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2555,7 +2706,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("fortiservice_port"); ok || d.HasChange("fortiservice_port") {
-		t, err := expandSystemGlobalFortiservicePortSga(d, v, "fortiservice_port")
+		t, err := expandSystemGlobalFortiservicePort(d, v, "fortiservice_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2564,7 +2715,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("gui_curl_timeout"); ok || d.HasChange("gui_curl_timeout") {
-		t, err := expandSystemGlobalGuiCurlTimeoutSga(d, v, "gui_curl_timeout")
+		t, err := expandSystemGlobalGuiCurlTimeout(d, v, "gui_curl_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2573,7 +2724,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("gui_polling_interval"); ok || d.HasChange("gui_polling_interval") {
-		t, err := expandSystemGlobalGuiPollingIntervalSga(d, v, "gui_polling_interval")
+		t, err := expandSystemGlobalGuiPollingInterval(d, v, "gui_polling_interval")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2582,7 +2733,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ha_member_auto_grouping"); ok || d.HasChange("ha_member_auto_grouping") {
-		t, err := expandSystemGlobalHaMemberAutoGroupingSga(d, v, "ha_member_auto_grouping")
+		t, err := expandSystemGlobalHaMemberAutoGrouping(d, v, "ha_member_auto_grouping")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2591,7 +2742,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("hostname"); ok || d.HasChange("hostname") {
-		t, err := expandSystemGlobalHostnameSga(d, v, "hostname")
+		t, err := expandSystemGlobalHostname(d, v, "hostname")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2600,7 +2751,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("import_ignore_addr_cmt"); ok || d.HasChange("import_ignore_addr_cmt") {
-		t, err := expandSystemGlobalImportIgnoreAddrCmtSga(d, v, "import_ignore_addr_cmt")
+		t, err := expandSystemGlobalImportIgnoreAddrCmt(d, v, "import_ignore_addr_cmt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2609,7 +2760,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("language"); ok || d.HasChange("language") {
-		t, err := expandSystemGlobalLanguageSga(d, v, "language")
+		t, err := expandSystemGlobalLanguage(d, v, "language")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2618,7 +2769,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("latitude"); ok || d.HasChange("latitude") {
-		t, err := expandSystemGlobalLatitudeSga(d, v, "latitude")
+		t, err := expandSystemGlobalLatitude(d, v, "latitude")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2627,7 +2778,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ldap_cache_timeout"); ok || d.HasChange("ldap_cache_timeout") {
-		t, err := expandSystemGlobalLdapCacheTimeoutSga(d, v, "ldap_cache_timeout")
+		t, err := expandSystemGlobalLdapCacheTimeout(d, v, "ldap_cache_timeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2636,7 +2787,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ldapconntimeout"); ok || d.HasChange("ldapconntimeout") {
-		t, err := expandSystemGlobalLdapconntimeoutSga(d, v, "ldapconntimeout")
+		t, err := expandSystemGlobalLdapconntimeout(d, v, "ldapconntimeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2645,7 +2796,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("lock_preempt"); ok || d.HasChange("lock_preempt") {
-		t, err := expandSystemGlobalLockPreemptSga(d, v, "lock_preempt")
+		t, err := expandSystemGlobalLockPreempt(d, v, "lock_preempt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2654,7 +2805,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("log_checksum"); ok || d.HasChange("log_checksum") {
-		t, err := expandSystemGlobalLogChecksumSga(d, v, "log_checksum")
+		t, err := expandSystemGlobalLogChecksum(d, v, "log_checksum")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2663,7 +2814,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("log_checksum_upload"); ok || d.HasChange("log_checksum_upload") {
-		t, err := expandSystemGlobalLogChecksumUploadSga(d, v, "log_checksum_upload")
+		t, err := expandSystemGlobalLogChecksumUpload(d, v, "log_checksum_upload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2672,7 +2823,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("log_forward_cache_size"); ok || d.HasChange("log_forward_cache_size") {
-		t, err := expandSystemGlobalLogForwardCacheSizeSga(d, v, "log_forward_cache_size")
+		t, err := expandSystemGlobalLogForwardCacheSize(d, v, "log_forward_cache_size")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2681,7 +2832,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("longitude"); ok || d.HasChange("longitude") {
-		t, err := expandSystemGlobalLongitudeSga(d, v, "longitude")
+		t, err := expandSystemGlobalLongitude(d, v, "longitude")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2690,7 +2841,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("management_ip"); ok || d.HasChange("management_ip") {
-		t, err := expandSystemGlobalManagementIpSga(d, v, "management_ip")
+		t, err := expandSystemGlobalManagementIp(d, v, "management_ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2699,7 +2850,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("management_port"); ok || d.HasChange("management_port") {
-		t, err := expandSystemGlobalManagementPortSga(d, v, "management_port")
+		t, err := expandSystemGlobalManagementPort(d, v, "management_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2708,7 +2859,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("max_log_forward"); ok || d.HasChange("max_log_forward") {
-		t, err := expandSystemGlobalMaxLogForwardSga(d, v, "max_log_forward")
+		t, err := expandSystemGlobalMaxLogForward(d, v, "max_log_forward")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2717,7 +2868,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("max_running_reports"); ok || d.HasChange("max_running_reports") {
-		t, err := expandSystemGlobalMaxRunningReportsSga(d, v, "max_running_reports")
+		t, err := expandSystemGlobalMaxRunningReports(d, v, "max_running_reports")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2726,7 +2877,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("mc_policy_disabled_adoms"); ok || d.HasChange("mc_policy_disabled_adoms") {
-		t, err := expandSystemGlobalMcPolicyDisabledAdomsSga(d, v, "mc_policy_disabled_adoms")
+		t, err := expandSystemGlobalMcPolicyDisabledAdoms(d, v, "mc_policy_disabled_adoms")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2735,7 +2886,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("multiple_steps_upgrade_in_autolink"); ok || d.HasChange("multiple_steps_upgrade_in_autolink") {
-		t, err := expandSystemGlobalMultipleStepsUpgradeInAutolinkSga(d, v, "multiple_steps_upgrade_in_autolink")
+		t, err := expandSystemGlobalMultipleStepsUpgradeInAutolink(d, v, "multiple_steps_upgrade_in_autolink")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2744,7 +2895,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("no_copy_permission_check"); ok || d.HasChange("no_copy_permission_check") {
-		t, err := expandSystemGlobalNoCopyPermissionCheckSga(d, v, "no_copy_permission_check")
+		t, err := expandSystemGlobalNoCopyPermissionCheck(d, v, "no_copy_permission_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2753,7 +2904,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("no_vip_value_check"); ok || d.HasChange("no_vip_value_check") {
-		t, err := expandSystemGlobalNoVipValueCheckSga(d, v, "no_vip_value_check")
+		t, err := expandSystemGlobalNoVipValueCheck(d, v, "no_vip_value_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2762,7 +2913,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("normalized_intf_zone_only"); ok || d.HasChange("normalized_intf_zone_only") {
-		t, err := expandSystemGlobalNormalizedIntfZoneOnlySga(d, v, "normalized_intf_zone_only")
+		t, err := expandSystemGlobalNormalizedIntfZoneOnly(d, v, "normalized_intf_zone_only")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2771,7 +2922,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("object_revision_db_max"); ok || d.HasChange("object_revision_db_max") {
-		t, err := expandSystemGlobalObjectRevisionDbMaxSga(d, v, "object_revision_db_max")
+		t, err := expandSystemGlobalObjectRevisionDbMax(d, v, "object_revision_db_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2780,7 +2931,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("object_revision_mandatory_note"); ok || d.HasChange("object_revision_mandatory_note") {
-		t, err := expandSystemGlobalObjectRevisionMandatoryNoteSga(d, v, "object_revision_mandatory_note")
+		t, err := expandSystemGlobalObjectRevisionMandatoryNote(d, v, "object_revision_mandatory_note")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2789,7 +2940,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("object_revision_object_max"); ok || d.HasChange("object_revision_object_max") {
-		t, err := expandSystemGlobalObjectRevisionObjectMaxSga(d, v, "object_revision_object_max")
+		t, err := expandSystemGlobalObjectRevisionObjectMax(d, v, "object_revision_object_max")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2798,7 +2949,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("object_revision_status"); ok || d.HasChange("object_revision_status") {
-		t, err := expandSystemGlobalObjectRevisionStatusSga(d, v, "object_revision_status")
+		t, err := expandSystemGlobalObjectRevisionStatus(d, v, "object_revision_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2807,7 +2958,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("oftp_ssl_protocol"); ok || d.HasChange("oftp_ssl_protocol") {
-		t, err := expandSystemGlobalOftpSslProtocolSga(d, v, "oftp_ssl_protocol")
+		t, err := expandSystemGlobalOftpSslProtocol(d, v, "oftp_ssl_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2816,7 +2967,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("partial_install"); ok || d.HasChange("partial_install") {
-		t, err := expandSystemGlobalPartialInstallSga(d, v, "partial_install")
+		t, err := expandSystemGlobalPartialInstall(d, v, "partial_install")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2825,7 +2976,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("partial_install_force"); ok || d.HasChange("partial_install_force") {
-		t, err := expandSystemGlobalPartialInstallForceSga(d, v, "partial_install_force")
+		t, err := expandSystemGlobalPartialInstallForce(d, v, "partial_install_force")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2834,7 +2985,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("partial_install_rev"); ok || d.HasChange("partial_install_rev") {
-		t, err := expandSystemGlobalPartialInstallRevSga(d, v, "partial_install_rev")
+		t, err := expandSystemGlobalPartialInstallRev(d, v, "partial_install_rev")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2843,7 +2994,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("per_policy_lock"); ok || d.HasChange("per_policy_lock") {
-		t, err := expandSystemGlobalPerPolicyLockSga(d, v, "per_policy_lock")
+		t, err := expandSystemGlobalPerPolicyLock(d, v, "per_policy_lock")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2852,7 +3003,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("perform_improve_by_ha"); ok || d.HasChange("perform_improve_by_ha") {
-		t, err := expandSystemGlobalPerformImproveByHaSga(d, v, "perform_improve_by_ha")
+		t, err := expandSystemGlobalPerformImproveByHa(d, v, "perform_improve_by_ha")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2861,7 +3012,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("policy_object_icon"); ok || d.HasChange("policy_object_icon") {
-		t, err := expandSystemGlobalPolicyObjectIconSga(d, v, "policy_object_icon")
+		t, err := expandSystemGlobalPolicyObjectIcon(d, v, "policy_object_icon")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2870,7 +3021,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("policy_object_in_dual_pane"); ok || d.HasChange("policy_object_in_dual_pane") {
-		t, err := expandSystemGlobalPolicyObjectInDualPaneSga(d, v, "policy_object_in_dual_pane")
+		t, err := expandSystemGlobalPolicyObjectInDualPane(d, v, "policy_object_in_dual_pane")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2879,7 +3030,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("pre_login_banner"); ok || d.HasChange("pre_login_banner") {
-		t, err := expandSystemGlobalPreLoginBannerSga(d, v, "pre_login_banner")
+		t, err := expandSystemGlobalPreLoginBanner(d, v, "pre_login_banner")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2888,7 +3039,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("pre_login_banner_message"); ok || d.HasChange("pre_login_banner_message") {
-		t, err := expandSystemGlobalPreLoginBannerMessageSga(d, v, "pre_login_banner_message")
+		t, err := expandSystemGlobalPreLoginBannerMessage(d, v, "pre_login_banner_message")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2897,7 +3048,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("private_data_encryption"); ok || d.HasChange("private_data_encryption") {
-		t, err := expandSystemGlobalPrivateDataEncryptionSga(d, v, "private_data_encryption")
+		t, err := expandSystemGlobalPrivateDataEncryption(d, v, "private_data_encryption")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2906,7 +3057,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("remoteauthtimeout"); ok || d.HasChange("remoteauthtimeout") {
-		t, err := expandSystemGlobalRemoteauthtimeoutSga(d, v, "remoteauthtimeout")
+		t, err := expandSystemGlobalRemoteauthtimeout(d, v, "remoteauthtimeout")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2915,7 +3066,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("save_last_hit_in_adomdb"); ok || d.HasChange("save_last_hit_in_adomdb") {
-		t, err := expandSystemGlobalSaveLastHitInAdomdbSga(d, v, "save_last_hit_in_adomdb")
+		t, err := expandSystemGlobalSaveLastHitInAdomdb(d, v, "save_last_hit_in_adomdb")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2924,7 +3075,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("search_all_adoms"); ok || d.HasChange("search_all_adoms") {
-		t, err := expandSystemGlobalSearchAllAdomsSga(d, v, "search_all_adoms")
+		t, err := expandSystemGlobalSearchAllAdoms(d, v, "search_all_adoms")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2932,8 +3083,53 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("ssh_enc_algo"); ok || d.HasChange("ssh_enc_algo") {
+		t, err := expandSystemGlobalSshEncAlgo(d, v, "ssh_enc_algo")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-enc-algo"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_hostkey_algo"); ok || d.HasChange("ssh_hostkey_algo") {
+		t, err := expandSystemGlobalSshHostkeyAlgo(d, v, "ssh_hostkey_algo")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-hostkey-algo"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_kex_algo"); ok || d.HasChange("ssh_kex_algo") {
+		t, err := expandSystemGlobalSshKexAlgo(d, v, "ssh_kex_algo")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-kex-algo"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_mac_algo"); ok || d.HasChange("ssh_mac_algo") {
+		t, err := expandSystemGlobalSshMacAlgo(d, v, "ssh_mac_algo")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-mac-algo"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_strong_crypto"); ok || d.HasChange("ssh_strong_crypto") {
+		t, err := expandSystemGlobalSshStrongCrypto(d, v, "ssh_strong_crypto")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-strong-crypto"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ssl_cipher_suites"); ok || d.HasChange("ssl_cipher_suites") {
-		t, err := expandSystemGlobalSslCipherSuitesSga(d, v, "ssl_cipher_suites")
+		t, err := expandSystemGlobalSslCipherSuites(d, v, "ssl_cipher_suites")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2942,7 +3138,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ssl_low_encryption"); ok || d.HasChange("ssl_low_encryption") {
-		t, err := expandSystemGlobalSslLowEncryptionSga(d, v, "ssl_low_encryption")
+		t, err := expandSystemGlobalSslLowEncryption(d, v, "ssl_low_encryption")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2951,7 +3147,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ssl_protocol"); ok || d.HasChange("ssl_protocol") {
-		t, err := expandSystemGlobalSslProtocolSga(d, v, "ssl_protocol")
+		t, err := expandSystemGlobalSslProtocol(d, v, "ssl_protocol")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2960,7 +3156,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("ssl_static_key_ciphers"); ok || d.HasChange("ssl_static_key_ciphers") {
-		t, err := expandSystemGlobalSslStaticKeyCiphersSga(d, v, "ssl_static_key_ciphers")
+		t, err := expandSystemGlobalSslStaticKeyCiphers(d, v, "ssl_static_key_ciphers")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2969,7 +3165,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("table_entry_blink"); ok || d.HasChange("table_entry_blink") {
-		t, err := expandSystemGlobalTableEntryBlinkSga(d, v, "table_entry_blink")
+		t, err := expandSystemGlobalTableEntryBlink(d, v, "table_entry_blink")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2978,7 +3174,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("task_list_size"); ok || d.HasChange("task_list_size") {
-		t, err := expandSystemGlobalTaskListSizeSga(d, v, "task_list_size")
+		t, err := expandSystemGlobalTaskListSize(d, v, "task_list_size")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2987,7 +3183,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("tftp"); ok || d.HasChange("tftp") {
-		t, err := expandSystemGlobalTftpSga(d, v, "tftp")
+		t, err := expandSystemGlobalTftp(d, v, "tftp")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2996,7 +3192,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("timezone"); ok || d.HasChange("timezone") {
-		t, err := expandSystemGlobalTimezoneSga(d, v, "timezone")
+		t, err := expandSystemGlobalTimezone(d, v, "timezone")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3005,7 +3201,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("tunnel_mtu"); ok || d.HasChange("tunnel_mtu") {
-		t, err := expandSystemGlobalTunnelMtuSga(d, v, "tunnel_mtu")
+		t, err := expandSystemGlobalTunnelMtu(d, v, "tunnel_mtu")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3014,7 +3210,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("usg"); ok || d.HasChange("usg") {
-		t, err := expandSystemGlobalUsgSga(d, v, "usg")
+		t, err := expandSystemGlobalUsg(d, v, "usg")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3023,7 +3219,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("vdom_mirror"); ok || d.HasChange("vdom_mirror") {
-		t, err := expandSystemGlobalVdomMirrorSga(d, v, "vdom_mirror")
+		t, err := expandSystemGlobalVdomMirror(d, v, "vdom_mirror")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3032,7 +3228,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("webservice_proto"); ok || d.HasChange("webservice_proto") {
-		t, err := expandSystemGlobalWebserviceProtoSga(d, v, "webservice_proto")
+		t, err := expandSystemGlobalWebserviceProto(d, v, "webservice_proto")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3041,7 +3237,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("workflow_max_sessions"); ok || d.HasChange("workflow_max_sessions") {
-		t, err := expandSystemGlobalWorkflowMaxSessionsSga(d, v, "workflow_max_sessions")
+		t, err := expandSystemGlobalWorkflowMaxSessions(d, v, "workflow_max_sessions")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3050,7 +3246,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("workspace_mode"); ok || d.HasChange("workspace_mode") {
-		t, err := expandSystemGlobalWorkspaceModeSga(d, v, "workspace_mode")
+		t, err := expandSystemGlobalWorkspaceMode(d, v, "workspace_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3059,7 +3255,7 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 	}
 
 	if v, ok := d.GetOk("workspace_unlock_after_install"); ok || d.HasChange("workspace_unlock_after_install") {
-		t, err := expandSystemGlobalWorkspaceUnlockAfterInstallSga(d, v, "workspace_unlock_after_install")
+		t, err := expandSystemGlobalWorkspaceUnlockAfterInstall(d, v, "workspace_unlock_after_install")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

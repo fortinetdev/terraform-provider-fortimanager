@@ -129,6 +129,14 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"gslb_domain_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"gslb_hostname": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"h2_support": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -248,6 +256,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Computed: true,
 						},
 						"nat46": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"one_click_gslb_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -557,7 +570,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 				},
 			},
 			"extaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -578,6 +591,32 @@ func resourceObjectFirewallVip() *schema.Resource {
 			"gratuitous_arp_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+			},
+			"gslb_domain_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"gslb_hostname": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"gslb_public_ips": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"index": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"ip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"h2_support": &schema.Schema{
 				Type:     schema.TypeString,
@@ -707,6 +746,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Computed: true,
 			},
 			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"one_click_gslb_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -857,7 +901,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Optional: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -869,7 +913,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Computed: true,
 			},
 			"srcintf_filter": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -1311,6 +1355,18 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["gratuitous_arp_interval"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-GratuitousArpInterval")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gslb_domain_name"
+		if _, ok := i["gslb-domain-name"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingGslbDomainName(i["gslb-domain-name"], d, pre_append)
+			tmp["gslb_domain_name"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-GslbDomainName")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gslb_hostname"
+		if _, ok := i["gslb-hostname"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingGslbHostname(i["gslb-hostname"], d, pre_append)
+			tmp["gslb_hostname"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-GslbHostname")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
 		if _, ok := i["h2-support"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingH2Support(i["h2-support"], d, pre_append)
@@ -1483,6 +1539,12 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 		if _, ok := i["nat46"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingNat46(i["nat46"], d, pre_append)
 			tmp["nat46"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-Nat46")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "one_click_gslb_server"
+		if _, ok := i["one-click-gslb-server"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingOneClickGslbServer(i["one-click-gslb-server"], d, pre_append)
+			tmp["one_click_gslb_server"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-OneClickGslbServer")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
@@ -1859,7 +1921,7 @@ func flattenObjectFirewallVipDynamicMappingDnsMappingTtl(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVipDynamicMappingExtaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingExtintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1875,6 +1937,14 @@ func flattenObjectFirewallVipDynamicMappingExtport(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVipDynamicMappingGratuitousArpInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingGslbDomainName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingGslbHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1979,7 +2049,7 @@ func flattenObjectFirewallVipDynamicMappingMaxEmbryonicConnections(v interface{}
 }
 
 func flattenObjectFirewallVipDynamicMappingMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingNatSourceVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1991,6 +2061,10 @@ func flattenObjectFirewallVipDynamicMappingNat44(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallVipDynamicMappingNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingOneClickGslbServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2140,7 +2214,7 @@ func flattenObjectFirewallVipDynamicMappingRealservers(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversClientIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2176,7 +2250,7 @@ func flattenObjectFirewallVipDynamicMappingRealserversMaxConnections(v interface
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2208,7 +2282,7 @@ func flattenObjectFirewallVipDynamicMappingServerType(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVipDynamicMappingService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingSrcFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2228,7 +2302,7 @@ func flattenObjectFirewallVipDynamicMappingSslAlgorithm(v interface{}, d *schema
 }
 
 func flattenObjectFirewallVipDynamicMappingSslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingSslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2460,6 +2534,63 @@ func flattenObjectFirewallVipGratuitousArpInterval(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectFirewallVipGslbDomainName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipGslbHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipGslbPublicIps(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
+		if _, ok := i["index"]; ok {
+			v := flattenObjectFirewallVipGslbPublicIpsIndex(i["index"], d, pre_append)
+			tmp["index"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-GslbPublicIps-Index")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := i["ip"]; ok {
+			v := flattenObjectFirewallVipGslbPublicIpsIp(i["ip"], d, pre_append)
+			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-GslbPublicIps-Ip")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallVipGslbPublicIpsIndex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipGslbPublicIpsIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipH2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2561,7 +2692,7 @@ func flattenObjectFirewallVipMaxEmbryonicConnections(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVipMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2577,6 +2708,10 @@ func flattenObjectFirewallVipNat44(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectFirewallVipNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipOneClickGslbServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2837,7 +2972,7 @@ func flattenObjectFirewallVipRealserversMaxConnections(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVipRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2889,7 +3024,7 @@ func flattenObjectFirewallVipSslAlgorithm(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallVipSslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipSslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -3295,6 +3430,50 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("gslb_domain_name", flattenObjectFirewallVipGslbDomainName(o["gslb-domain-name"], d, "gslb_domain_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gslb-domain-name"], "ObjectFirewallVip-GslbDomainName"); ok {
+			if err = d.Set("gslb_domain_name", vv); err != nil {
+				return fmt.Errorf("Error reading gslb_domain_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gslb_domain_name: %v", err)
+		}
+	}
+
+	if err = d.Set("gslb_hostname", flattenObjectFirewallVipGslbHostname(o["gslb-hostname"], d, "gslb_hostname")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gslb-hostname"], "ObjectFirewallVip-GslbHostname"); ok {
+			if err = d.Set("gslb_hostname", vv); err != nil {
+				return fmt.Errorf("Error reading gslb_hostname: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gslb_hostname: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("gslb_public_ips", flattenObjectFirewallVipGslbPublicIps(o["gslb-public-ips"], d, "gslb_public_ips")); err != nil {
+			if vv, ok := fortiAPIPatch(o["gslb-public-ips"], "ObjectFirewallVip-GslbPublicIps"); ok {
+				if err = d.Set("gslb_public_ips", vv); err != nil {
+					return fmt.Errorf("Error reading gslb_public_ips: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading gslb_public_ips: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("gslb_public_ips"); ok {
+			if err = d.Set("gslb_public_ips", flattenObjectFirewallVipGslbPublicIps(o["gslb-public-ips"], d, "gslb_public_ips")); err != nil {
+				if vv, ok := fortiAPIPatch(o["gslb-public-ips"], "ObjectFirewallVip-GslbPublicIps"); ok {
+					if err = d.Set("gslb_public_ips", vv); err != nil {
+						return fmt.Errorf("Error reading gslb_public_ips: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading gslb_public_ips: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("h2_support", flattenObjectFirewallVipH2Support(o["h2-support"], d, "h2_support")); err != nil {
 		if vv, ok := fortiAPIPatch(o["h2-support"], "ObjectFirewallVip-H2Support"); ok {
 			if err = d.Set("h2_support", vv); err != nil {
@@ -3592,6 +3771,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("one_click_gslb_server", flattenObjectFirewallVipOneClickGslbServer(o["one-click-gslb-server"], d, "one_click_gslb_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["one-click-gslb-server"], "ObjectFirewallVip-OneClickGslbServer"); ok {
+			if err = d.Set("one_click_gslb_server", vv); err != nil {
+				return fmt.Errorf("Error reading one_click_gslb_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading one_click_gslb_server: %v", err)
 		}
 	}
 
@@ -4264,6 +4453,16 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["gratuitous-arp-interval"], _ = expandObjectFirewallVipDynamicMappingGratuitousArpInterval(d, i["gratuitous_arp_interval"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gslb_domain_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["gslb-domain-name"], _ = expandObjectFirewallVipDynamicMappingGslbDomainName(d, i["gslb_domain_name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gslb_hostname"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["gslb-hostname"], _ = expandObjectFirewallVipDynamicMappingGslbHostname(d, i["gslb_hostname"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["h2-support"], _ = expandObjectFirewallVipDynamicMappingH2Support(d, i["h2_support"], pre_append)
@@ -4407,6 +4606,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat46"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat46"], _ = expandObjectFirewallVipDynamicMappingNat46(d, i["nat46"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "one_click_gslb_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["one-click-gslb-server"], _ = expandObjectFirewallVipDynamicMappingOneClickGslbServer(d, i["one_click_gslb_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
@@ -4737,7 +4941,7 @@ func expandObjectFirewallVipDynamicMappingDnsMappingTtl(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallVipDynamicMappingExtaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingExtintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4753,6 +4957,14 @@ func expandObjectFirewallVipDynamicMappingExtport(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallVipDynamicMappingGratuitousArpInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingGslbDomainName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingGslbHostname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4857,7 +5069,7 @@ func expandObjectFirewallVipDynamicMappingMaxEmbryonicConnections(d *schema.Reso
 }
 
 func expandObjectFirewallVipDynamicMappingMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingNatSourceVip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4869,6 +5081,10 @@ func expandObjectFirewallVipDynamicMappingNat44(d *schema.ResourceData, v interf
 }
 
 func expandObjectFirewallVipDynamicMappingNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingOneClickGslbServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4997,7 +5213,7 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversClientIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5033,7 +5249,7 @@ func expandObjectFirewallVipDynamicMappingRealserversMaxConnections(d *schema.Re
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5065,7 +5281,7 @@ func expandObjectFirewallVipDynamicMappingServerType(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallVipDynamicMappingService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingSrcFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5085,7 +5301,7 @@ func expandObjectFirewallVipDynamicMappingSslAlgorithm(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallVipDynamicMappingSslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5289,7 +5505,7 @@ func expandObjectFirewallVipDynamicMappingWebsphereServer(d *schema.ResourceData
 }
 
 func expandObjectFirewallVipExtaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVipExtintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5305,6 +5521,56 @@ func expandObjectFirewallVipExtport(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectFirewallVipGratuitousArpInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipGslbDomainName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipGslbHostname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipGslbPublicIps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["index"], _ = expandObjectFirewallVipGslbPublicIpsIndex(d, i["index"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ip"], _ = expandObjectFirewallVipGslbPublicIpsIp(d, i["ip"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallVipGslbPublicIpsIndex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipGslbPublicIpsIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5409,7 +5675,7 @@ func expandObjectFirewallVipMaxEmbryonicConnections(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallVipMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5425,6 +5691,10 @@ func expandObjectFirewallVipNat44(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectFirewallVipNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipOneClickGslbServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5658,7 +5928,7 @@ func expandObjectFirewallVipRealserversMaxConnections(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVipRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5690,7 +5960,7 @@ func expandObjectFirewallVipServerType(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallVipService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVipSrcFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5698,7 +5968,7 @@ func expandObjectFirewallVipSrcFilter(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallVipSrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVipSslAcceptFfdheGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5710,7 +5980,7 @@ func expandObjectFirewallVipSslAlgorithm(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVipSslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -6066,6 +6336,33 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("gslb_domain_name"); ok || d.HasChange("gslb_domain_name") {
+		t, err := expandObjectFirewallVipGslbDomainName(d, v, "gslb_domain_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gslb-domain-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gslb_hostname"); ok || d.HasChange("gslb_hostname") {
+		t, err := expandObjectFirewallVipGslbHostname(d, v, "gslb_hostname")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gslb-hostname"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gslb_public_ips"); ok || d.HasChange("gslb_public_ips") {
+		t, err := expandObjectFirewallVipGslbPublicIps(d, v, "gslb_public_ips")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gslb-public-ips"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("h2_support"); ok || d.HasChange("h2_support") {
 		t, err := expandObjectFirewallVipH2Support(d, v, "h2_support")
 		if err != nil {
@@ -6333,6 +6630,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("one_click_gslb_server"); ok || d.HasChange("one_click_gslb_server") {
+		t, err := expandObjectFirewallVipOneClickGslbServer(d, v, "one_click_gslb_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["one-click-gslb-server"] = t
 		}
 	}
 

@@ -135,7 +135,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021X() *schema.Resource {
 				Computed: true,
 			},
 			"user_group": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -631,7 +631,7 @@ func expandObjectSwitchControllerSecurityPolicy8021XSecurityMode(d *schema.Resou
 }
 
 func expandObjectSwitchControllerSecurityPolicy8021XUserGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectSwitchControllerSecurityPolicy8021X(d *schema.ResourceData) (*map[string]interface{}, error) {

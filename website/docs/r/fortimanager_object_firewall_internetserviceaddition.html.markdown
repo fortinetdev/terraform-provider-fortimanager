@@ -10,7 +10,7 @@ description: |-
 Configure Internet Services Addition.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entry`: `fortimanager_object_firewall_internetserviceaddition_entry`
+>- `entry`: `fortimanager_object_firewall_internetserviceaddition_entry`
 
 
 

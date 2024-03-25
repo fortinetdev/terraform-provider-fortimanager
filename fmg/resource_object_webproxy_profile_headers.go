@@ -249,11 +249,11 @@ func flattenObjectWebProxyProfileHeadersContent2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectWebProxyProfileHeadersDstaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebProxyProfileHeadersDstaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebProxyProfileHeadersId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -391,11 +391,11 @@ func expandObjectWebProxyProfileHeadersContent2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectWebProxyProfileHeadersDstaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebProxyProfileHeadersDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebProxyProfileHeadersId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

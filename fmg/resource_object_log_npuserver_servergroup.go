@@ -206,39 +206,39 @@ func resourceObjectLogNpuServerServerGroupRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
-func flattenObjectLogNpuServerServerGroupGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupGroupName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogFormat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogGenEvent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogGenEvent2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogTxMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogTxMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupLogUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupLogUserInfo2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupServerNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupServerNumber2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupServerStartId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupServerStartId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectLogNpuServerServerGroupSwLogFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectLogNpuServerServerGroupSwLogFlags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -249,7 +249,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("group_name", flattenObjectLogNpuServerServerGroupGroupName(o["group-name"], d, "group_name")); err != nil {
+	if err = d.Set("group_name", flattenObjectLogNpuServerServerGroupGroupName2edl(o["group-name"], d, "group_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["group-name"], "ObjectLogNpuServerServerGroup-GroupName"); ok {
 			if err = d.Set("group_name", vv); err != nil {
 				return fmt.Errorf("Error reading group_name: %v", err)
@@ -259,7 +259,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("log_format", flattenObjectLogNpuServerServerGroupLogFormat(o["log-format"], d, "log_format")); err != nil {
+	if err = d.Set("log_format", flattenObjectLogNpuServerServerGroupLogFormat2edl(o["log-format"], d, "log_format")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-format"], "ObjectLogNpuServerServerGroup-LogFormat"); ok {
 			if err = d.Set("log_format", vv); err != nil {
 				return fmt.Errorf("Error reading log_format: %v", err)
@@ -269,7 +269,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("log_gen_event", flattenObjectLogNpuServerServerGroupLogGenEvent(o["log-gen-event"], d, "log_gen_event")); err != nil {
+	if err = d.Set("log_gen_event", flattenObjectLogNpuServerServerGroupLogGenEvent2edl(o["log-gen-event"], d, "log_gen_event")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-gen-event"], "ObjectLogNpuServerServerGroup-LogGenEvent"); ok {
 			if err = d.Set("log_gen_event", vv); err != nil {
 				return fmt.Errorf("Error reading log_gen_event: %v", err)
@@ -279,7 +279,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("log_mode", flattenObjectLogNpuServerServerGroupLogMode(o["log-mode"], d, "log_mode")); err != nil {
+	if err = d.Set("log_mode", flattenObjectLogNpuServerServerGroupLogMode2edl(o["log-mode"], d, "log_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-mode"], "ObjectLogNpuServerServerGroup-LogMode"); ok {
 			if err = d.Set("log_mode", vv); err != nil {
 				return fmt.Errorf("Error reading log_mode: %v", err)
@@ -289,7 +289,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("log_tx_mode", flattenObjectLogNpuServerServerGroupLogTxMode(o["log-tx-mode"], d, "log_tx_mode")); err != nil {
+	if err = d.Set("log_tx_mode", flattenObjectLogNpuServerServerGroupLogTxMode2edl(o["log-tx-mode"], d, "log_tx_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-tx-mode"], "ObjectLogNpuServerServerGroup-LogTxMode"); ok {
 			if err = d.Set("log_tx_mode", vv); err != nil {
 				return fmt.Errorf("Error reading log_tx_mode: %v", err)
@@ -299,7 +299,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("log_user_info", flattenObjectLogNpuServerServerGroupLogUserInfo(o["log-user-info"], d, "log_user_info")); err != nil {
+	if err = d.Set("log_user_info", flattenObjectLogNpuServerServerGroupLogUserInfo2edl(o["log-user-info"], d, "log_user_info")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-user-info"], "ObjectLogNpuServerServerGroup-LogUserInfo"); ok {
 			if err = d.Set("log_user_info", vv); err != nil {
 				return fmt.Errorf("Error reading log_user_info: %v", err)
@@ -309,7 +309,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("server_number", flattenObjectLogNpuServerServerGroupServerNumber(o["server-number"], d, "server_number")); err != nil {
+	if err = d.Set("server_number", flattenObjectLogNpuServerServerGroupServerNumber2edl(o["server-number"], d, "server_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-number"], "ObjectLogNpuServerServerGroup-ServerNumber"); ok {
 			if err = d.Set("server_number", vv); err != nil {
 				return fmt.Errorf("Error reading server_number: %v", err)
@@ -319,7 +319,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("server_start_id", flattenObjectLogNpuServerServerGroupServerStartId(o["server-start-id"], d, "server_start_id")); err != nil {
+	if err = d.Set("server_start_id", flattenObjectLogNpuServerServerGroupServerStartId2edl(o["server-start-id"], d, "server_start_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-start-id"], "ObjectLogNpuServerServerGroup-ServerStartId"); ok {
 			if err = d.Set("server_start_id", vv); err != nil {
 				return fmt.Errorf("Error reading server_start_id: %v", err)
@@ -329,7 +329,7 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sw_log_flags", flattenObjectLogNpuServerServerGroupSwLogFlags(o["sw-log-flags"], d, "sw_log_flags")); err != nil {
+	if err = d.Set("sw_log_flags", flattenObjectLogNpuServerServerGroupSwLogFlags2edl(o["sw-log-flags"], d, "sw_log_flags")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sw-log-flags"], "ObjectLogNpuServerServerGroup-SwLogFlags"); ok {
 			if err = d.Set("sw_log_flags", vv); err != nil {
 				return fmt.Errorf("Error reading sw_log_flags: %v", err)
@@ -348,39 +348,39 @@ func flattenObjectLogNpuServerServerGroupFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectLogNpuServerServerGroupGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupGroupName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogFormat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogFormat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogGenEvent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogGenEvent2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogTxMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogTxMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupLogUserInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupLogUserInfo2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupServerNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupServerNumber2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupServerStartId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupServerStartId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectLogNpuServerServerGroupSwLogFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectLogNpuServerServerGroupSwLogFlags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -388,7 +388,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("group_name"); ok || d.HasChange("group_name") {
-		t, err := expandObjectLogNpuServerServerGroupGroupName(d, v, "group_name")
+		t, err := expandObjectLogNpuServerServerGroupGroupName2edl(d, v, "group_name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -397,7 +397,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("log_format"); ok || d.HasChange("log_format") {
-		t, err := expandObjectLogNpuServerServerGroupLogFormat(d, v, "log_format")
+		t, err := expandObjectLogNpuServerServerGroupLogFormat2edl(d, v, "log_format")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -406,7 +406,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("log_gen_event"); ok || d.HasChange("log_gen_event") {
-		t, err := expandObjectLogNpuServerServerGroupLogGenEvent(d, v, "log_gen_event")
+		t, err := expandObjectLogNpuServerServerGroupLogGenEvent2edl(d, v, "log_gen_event")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -415,7 +415,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("log_mode"); ok || d.HasChange("log_mode") {
-		t, err := expandObjectLogNpuServerServerGroupLogMode(d, v, "log_mode")
+		t, err := expandObjectLogNpuServerServerGroupLogMode2edl(d, v, "log_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -424,7 +424,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("log_tx_mode"); ok || d.HasChange("log_tx_mode") {
-		t, err := expandObjectLogNpuServerServerGroupLogTxMode(d, v, "log_tx_mode")
+		t, err := expandObjectLogNpuServerServerGroupLogTxMode2edl(d, v, "log_tx_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -433,7 +433,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("log_user_info"); ok || d.HasChange("log_user_info") {
-		t, err := expandObjectLogNpuServerServerGroupLogUserInfo(d, v, "log_user_info")
+		t, err := expandObjectLogNpuServerServerGroupLogUserInfo2edl(d, v, "log_user_info")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -442,7 +442,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("server_number"); ok || d.HasChange("server_number") {
-		t, err := expandObjectLogNpuServerServerGroupServerNumber(d, v, "server_number")
+		t, err := expandObjectLogNpuServerServerGroupServerNumber2edl(d, v, "server_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -451,7 +451,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("server_start_id"); ok || d.HasChange("server_start_id") {
-		t, err := expandObjectLogNpuServerServerGroupServerStartId(d, v, "server_start_id")
+		t, err := expandObjectLogNpuServerServerGroupServerStartId2edl(d, v, "server_start_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -460,7 +460,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sw_log_flags"); ok || d.HasChange("sw_log_flags") {
-		t, err := expandObjectLogNpuServerServerGroupSwLogFlags(d, v, "sw_log_flags")
+		t, err := expandObjectLogNpuServerServerGroupSwLogFlags2edl(d, v, "sw_log_flags")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

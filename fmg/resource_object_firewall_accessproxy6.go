@@ -88,6 +88,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_generation": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_path": &schema.Schema{
 							Type:     schema.TypeString,
@@ -106,6 +107,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
@@ -388,6 +390,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_generation": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_path": &schema.Schema{
 							Type:     schema.TypeString,
@@ -406,6 +409,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1366,7 +1370,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewayRealserversIp(v interface{}, d *
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversMappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2036,7 +2040,7 @@ func flattenObjectFirewallAccessProxy6ApiGateway6RealserversIp(v interface{}, d 
 }
 
 func flattenObjectFirewallAccessProxy6ApiGateway6RealserversMappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGateway6RealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2934,7 +2938,7 @@ func expandObjectFirewallAccessProxy6ApiGatewayRealserversIp(d *schema.ResourceD
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversMappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3546,7 +3550,7 @@ func expandObjectFirewallAccessProxy6ApiGateway6RealserversIp(d *schema.Resource
 }
 
 func expandObjectFirewallAccessProxy6ApiGateway6RealserversMappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGateway6RealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

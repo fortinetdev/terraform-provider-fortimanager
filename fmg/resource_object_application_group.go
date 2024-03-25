@@ -226,7 +226,7 @@ func flattenObjectApplicationGroupApplication(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectApplicationGroupBehavior(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationGroupCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -246,7 +246,7 @@ func flattenObjectApplicationGroupPopularity(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectApplicationGroupProtocols(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationGroupRisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -254,7 +254,7 @@ func flattenObjectApplicationGroupRisk(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectApplicationGroupTechnology(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationGroupType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -262,7 +262,7 @@ func flattenObjectApplicationGroupType(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectApplicationGroupVendor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectApplicationGroup(d *schema.ResourceData, o map[string]interface{}) error {
@@ -396,7 +396,7 @@ func expandObjectApplicationGroupApplication(d *schema.ResourceData, v interface
 }
 
 func expandObjectApplicationGroupBehavior(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationGroupCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -416,7 +416,7 @@ func expandObjectApplicationGroupPopularity(d *schema.ResourceData, v interface{
 }
 
 func expandObjectApplicationGroupProtocols(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationGroupRisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -424,7 +424,7 @@ func expandObjectApplicationGroupRisk(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectApplicationGroupTechnology(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationGroupType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -432,7 +432,7 @@ func expandObjectApplicationGroupType(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectApplicationGroupVendor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interface{}, error) {

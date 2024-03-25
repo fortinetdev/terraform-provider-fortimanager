@@ -11,7 +11,7 @@ ICAP response mode forward rules.
 
 ~> This resource is a sub resource for variable `respmod_forward_rules` of resource `fortimanager_object_icap_profile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`header_group`: `fortimanager_object_icap_profile_respmodforwardrules_headergroup`
+>- `header_group`: `fortimanager_object_icap_profile_respmodforwardrules_headergroup`
 
 
 

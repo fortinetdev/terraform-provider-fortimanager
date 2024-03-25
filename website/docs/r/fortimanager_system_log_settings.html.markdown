@@ -10,9 +10,9 @@ description: |-
 Log settings.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`rolling_analyzer`: `fortimanager_system_log_settings_rollinganalyzer`
-`rolling_local`: `fortimanager_system_log_settings_rollinglocal`
-`rolling_regular`: `fortimanager_system_log_settings_rollingregular`
+>- `rolling_analyzer`: `fortimanager_system_log_settings_rollinganalyzer`
+>- `rolling_local`: `fortimanager_system_log_settings_rollinglocal`
+>- `rolling_regular`: `fortimanager_system_log_settings_rollingregular`
 
 
 
@@ -56,6 +56,8 @@ The following arguments are supported:
 
 * `log_file_archive_name` - Log file name format for archiving, such as backup, upload or download. basic - Basic format for log archive file name, e.g. FGT20C0000000001.tlog.1417797247.log. extended - Extended format for log archive file name, e.g. FGT20C0000000001.2014-12-05-08:34:58.tlog.1417797247.log. Valid values: `basic`, `extended`.
 
+* `log_interval_dev_no_logging` - Interval in minute of no log received from a device when considering the device down.
+* `log_upload_interval_dev_no_logging` - Interval in minute of no log uploaded from a device when considering the device down.
 * `rolling_analyzer` - Rolling-Analyzer. The structure of `rolling_analyzer` block is documented below.
 * `rolling_local` - Rolling-Local. The structure of `rolling_local` block is documented below.
 * `rolling_regular` - Rolling-Regular. The structure of `rolling_regular` block is documented below.

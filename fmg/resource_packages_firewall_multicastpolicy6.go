@@ -70,13 +70,13 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Optional: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -89,6 +89,10 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
+				Optional: true,
+			},
+			"ips_sensor": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"logtraffic": &schema.Schema{
@@ -105,13 +109,13 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Optional: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -122,6 +126,11 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -309,6 +318,10 @@ func flattenPackagesFirewallMulticastPolicy6Id(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesFirewallMulticastPolicy6IpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallMulticastPolicy6Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -334,6 +347,10 @@ func flattenPackagesFirewallMulticastPolicy6StartPort(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallMulticastPolicy6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallMulticastPolicy6UtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -418,6 +435,16 @@ func refreshObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("ips_sensor", flattenPackagesFirewallMulticastPolicy6IpsSensor(o["ips-sensor"], d, "ips_sensor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-sensor"], "PackagesFirewallMulticastPolicy6-IpsSensor"); ok {
+			if err = d.Set("ips_sensor", vv); err != nil {
+				return fmt.Errorf("Error reading ips_sensor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_sensor: %v", err)
+		}
+	}
+
 	if err = d.Set("logtraffic", flattenPackagesFirewallMulticastPolicy6Logtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesFirewallMulticastPolicy6-Logtraffic"); ok {
 			if err = d.Set("logtraffic", vv); err != nil {
@@ -488,6 +515,16 @@ func refreshObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("utm_status", flattenPackagesFirewallMulticastPolicy6UtmStatus(o["utm-status"], d, "utm_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["utm-status"], "PackagesFirewallMulticastPolicy6-UtmStatus"); ok {
+			if err = d.Set("utm_status", vv); err != nil {
+				return fmt.Errorf("Error reading utm_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading utm_status: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenPackagesFirewallMulticastPolicy6Uuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesFirewallMulticastPolicy6-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -520,11 +557,11 @@ func expandPackagesFirewallMulticastPolicy6Comments(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallMulticastPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6EndPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -532,6 +569,10 @@ func expandPackagesFirewallMulticastPolicy6EndPort(d *schema.ResourceData, v int
 }
 
 func expandPackagesFirewallMulticastPolicy6Id(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallMulticastPolicy6IpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -548,11 +589,11 @@ func expandPackagesFirewallMulticastPolicy6Protocol(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallMulticastPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6StartPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -560,6 +601,10 @@ func expandPackagesFirewallMulticastPolicy6StartPort(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallMulticastPolicy6Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallMulticastPolicy6UtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -633,6 +678,15 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
+		t, err := expandPackagesFirewallMulticastPolicy6IpsSensor(d, v, "ips_sensor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-sensor"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
 		t, err := expandPackagesFirewallMulticastPolicy6Logtraffic(d, v, "logtraffic")
 		if err != nil {
@@ -693,6 +747,15 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("utm_status"); ok || d.HasChange("utm_status") {
+		t, err := expandPackagesFirewallMulticastPolicy6UtmStatus(d, v, "utm_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["utm-status"] = t
 		}
 	}
 

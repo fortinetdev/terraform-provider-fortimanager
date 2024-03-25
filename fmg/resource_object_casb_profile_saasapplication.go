@@ -135,6 +135,11 @@ func resourceObjectCasbProfileSaasApplication() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tenant_control": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -467,6 +472,10 @@ func flattenObjectCasbProfileSaasApplicationSafeSearchControl2edl(v interface{},
 	return flattenStringList(v)
 }
 
+func flattenObjectCasbProfileSaasApplicationStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbProfileSaasApplicationTenantControl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -591,6 +600,16 @@ func refreshObjectObjectCasbProfileSaasApplication(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading safe_search_control: %v", err)
+		}
+	}
+
+	if err = d.Set("status", flattenObjectCasbProfileSaasApplicationStatus2edl(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectCasbProfileSaasApplication-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
 		}
 	}
 
@@ -783,6 +802,10 @@ func expandObjectCasbProfileSaasApplicationSafeSearchControl2edl(d *schema.Resou
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectCasbProfileSaasApplicationStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbProfileSaasApplicationTenantControl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -863,6 +886,15 @@ func getObjectObjectCasbProfileSaasApplication(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["safe-search-control"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
+		t, err := expandObjectCasbProfileSaasApplicationStatus2edl(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
 		}
 	}
 

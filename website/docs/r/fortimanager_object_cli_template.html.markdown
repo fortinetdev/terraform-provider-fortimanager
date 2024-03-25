@@ -30,6 +30,8 @@ The following arguments are supported:
 * `description` - Description.
 * `modification_time` - Modification-Time.
 * `name` - Name.
+* `position` - Position. Valid values: `post-vdom-copy`, `prep-vdom-copy`.
+
 * `provision` - Provision. Valid values: `disable`, `enable`.
 
 * `script` - Script.

@@ -461,7 +461,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Optional: true,
 			},
 			"subnet": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -1135,7 +1135,7 @@ func flattenObjectFirewallAddressDynamicMappingFqdn(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallAddressDynamicMappingFssoGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddressDynamicMappingGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1243,7 +1243,7 @@ func flattenObjectFirewallAddressDynamicMappingTagType(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallAddressDynamicMappingTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddressDynamicMappingTenant(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1299,7 +1299,7 @@ func flattenObjectFirewallAddressFqdn(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFirewallAddressFssoGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddressHwModel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2529,7 +2529,7 @@ func expandObjectFirewallAddressDynamicMappingFqdn(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallAddressDynamicMappingFssoGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddressDynamicMappingGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2637,7 +2637,7 @@ func expandObjectFirewallAddressDynamicMappingTagType(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallAddressDynamicMappingTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddressDynamicMappingTenant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2693,7 +2693,7 @@ func expandObjectFirewallAddressFqdn(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectFirewallAddressFssoGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddressHwModel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2828,7 +2828,7 @@ func expandObjectFirewallAddressSubType(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallAddressSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAddressSubnetName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

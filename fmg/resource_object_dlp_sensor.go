@@ -582,7 +582,7 @@ func flattenObjectDlpSensorFilterFilterBy(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectDlpSensorFilterFpSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpSensorFilterId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -606,7 +606,7 @@ func flattenObjectDlpSensorFilterRegexp(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectDlpSensorFilterSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpSensorFilterSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1060,7 +1060,7 @@ func expandObjectDlpSensorFilterFilterBy(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectDlpSensorFilterFpSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpSensorFilterId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1084,7 +1084,7 @@ func expandObjectDlpSensorFilterRegexp(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectDlpSensorFilterSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpSensorFilterSeverity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

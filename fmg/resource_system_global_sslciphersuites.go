@@ -145,22 +145,22 @@ func resourceSystemGlobalSslCipherSuitesRead(d *schema.ResourceData, m interface
 	return nil
 }
 
-func flattenSystemGlobalSslCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesCipher2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslCipherSuitesPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemGlobalSslCipherSuitesVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemGlobalSslCipherSuitesVersion2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectSystemGlobalSslCipherSuites(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("cipher", flattenSystemGlobalSslCipherSuitesCipher(o["cipher"], d, "cipher")); err != nil {
+	if err = d.Set("cipher", flattenSystemGlobalSslCipherSuitesCipher2edl(o["cipher"], d, "cipher")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cipher"], "SystemGlobalSslCipherSuites-Cipher"); ok {
 			if err = d.Set("cipher", vv); err != nil {
 				return fmt.Errorf("Error reading cipher: %v", err)
@@ -170,7 +170,7 @@ func refreshObjectSystemGlobalSslCipherSuites(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("priority", flattenSystemGlobalSslCipherSuitesPriority(o["priority"], d, "priority")); err != nil {
+	if err = d.Set("priority", flattenSystemGlobalSslCipherSuitesPriority2edl(o["priority"], d, "priority")); err != nil {
 		if vv, ok := fortiAPIPatch(o["priority"], "SystemGlobalSslCipherSuites-Priority"); ok {
 			if err = d.Set("priority", vv); err != nil {
 				return fmt.Errorf("Error reading priority: %v", err)
@@ -180,7 +180,7 @@ func refreshObjectSystemGlobalSslCipherSuites(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("version", flattenSystemGlobalSslCipherSuitesVersion(o["version"], d, "version")); err != nil {
+	if err = d.Set("version", flattenSystemGlobalSslCipherSuitesVersion2edl(o["version"], d, "version")); err != nil {
 		if vv, ok := fortiAPIPatch(o["version"], "SystemGlobalSslCipherSuites-Version"); ok {
 			if err = d.Set("version", vv); err != nil {
 				return fmt.Errorf("Error reading version: %v", err)
@@ -199,15 +199,15 @@ func flattenSystemGlobalSslCipherSuitesFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemGlobalSslCipherSuitesCipher(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesCipher2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslCipherSuitesPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemGlobalSslCipherSuitesVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemGlobalSslCipherSuitesVersion2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -215,7 +215,7 @@ func getObjectSystemGlobalSslCipherSuites(d *schema.ResourceData) (*map[string]i
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cipher"); ok || d.HasChange("cipher") {
-		t, err := expandSystemGlobalSslCipherSuitesCipher(d, v, "cipher")
+		t, err := expandSystemGlobalSslCipherSuitesCipher2edl(d, v, "cipher")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -224,7 +224,7 @@ func getObjectSystemGlobalSslCipherSuites(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("priority"); ok || d.HasChange("priority") {
-		t, err := expandSystemGlobalSslCipherSuitesPriority(d, v, "priority")
+		t, err := expandSystemGlobalSslCipherSuitesPriority2edl(d, v, "priority")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -233,7 +233,7 @@ func getObjectSystemGlobalSslCipherSuites(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("version"); ok || d.HasChange("version") {
-		t, err := expandSystemGlobalSslCipherSuitesVersion(d, v, "version")
+		t, err := expandSystemGlobalSslCipherSuitesVersion2edl(d, v, "version")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

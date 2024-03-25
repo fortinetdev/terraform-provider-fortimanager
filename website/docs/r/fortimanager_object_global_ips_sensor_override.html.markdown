@@ -11,7 +11,7 @@ ObjectGlobal IpsSensorOverride
 
 ~> This resource is a sub resource for variable `override` of resource `fortimanager_object_global_ips_sensor`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`exempt_ip`: `fortimanager_object_global_ips_sensor_override_exemptip`
+>- `exempt_ip`: `fortimanager_object_global_ips_sensor_override_exemptip`
 
 
 

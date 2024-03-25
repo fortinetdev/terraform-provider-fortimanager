@@ -10,7 +10,7 @@ description: |-
 Configure MPSK profile.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`mpsk_group`: `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup`
+>- `mpsk_group`: `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup`
 
 
 

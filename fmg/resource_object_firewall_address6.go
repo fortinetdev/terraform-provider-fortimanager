@@ -802,7 +802,7 @@ func flattenObjectFirewallAddress6DynamicMappingComment(v interface{}, d *schema
 }
 
 func flattenObjectFirewallAddress6DynamicMappingCountry(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6DynamicMappingEndIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -929,7 +929,7 @@ func flattenObjectFirewallAddress6DynamicMappingSubnetSegmentValue(v interface{}
 }
 
 func flattenObjectFirewallAddress6DynamicMappingTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6DynamicMappingTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1861,7 +1861,7 @@ func expandObjectFirewallAddress6DynamicMappingComment(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallAddress6DynamicMappingCountry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6DynamicMappingEndIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1980,7 +1980,7 @@ func expandObjectFirewallAddress6DynamicMappingSubnetSegmentValue(d *schema.Reso
 }
 
 func expandObjectFirewallAddress6DynamicMappingTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6DynamicMappingTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -67,6 +67,11 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"enforce_device_config": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"folder": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -268,6 +273,10 @@ func flattenObjectFmgDeviceBlueprintDevGroup(v interface{}, d *schema.ResourceDa
 	return flattenStringList(v)
 }
 
+func flattenObjectFmgDeviceBlueprintEnforceDeviceConfig(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFmgDeviceBlueprintFolder(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -368,6 +377,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading dev_group: %v", err)
+		}
+	}
+
+	if err = d.Set("enforce_device_config", flattenObjectFmgDeviceBlueprintEnforceDeviceConfig(o["enforce-device-config"], d, "enforce_device_config")); err != nil {
+		if vv, ok := fortiAPIPatch(o["enforce-device-config"], "ObjectFmgDeviceBlueprint-EnforceDeviceConfig"); ok {
+			if err = d.Set("enforce_device_config", vv); err != nil {
+				return fmt.Errorf("Error reading enforce_device_config: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading enforce_device_config: %v", err)
 		}
 	}
 
@@ -536,6 +555,10 @@ func expandObjectFmgDeviceBlueprintDevGroup(d *schema.ResourceData, v interface{
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFmgDeviceBlueprintEnforceDeviceConfig(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFmgDeviceBlueprintFolder(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -628,6 +651,15 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["dev-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("enforce_device_config"); ok || d.HasChange("enforce_device_config") {
+		t, err := expandObjectFmgDeviceBlueprintEnforceDeviceConfig(d, v, "enforce_device_config")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["enforce-device-config"] = t
 		}
 	}
 

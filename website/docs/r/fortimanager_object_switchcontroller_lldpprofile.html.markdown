@@ -10,9 +10,9 @@ description: |-
 Configure FortiSwitch LLDP profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`custom_tlvs`: `fortimanager_object_switchcontroller_lldpprofile_customtlvs`
-`med_location_service`: `fortimanager_object_switchcontroller_lldpprofile_medlocationservice`
-`med_network_policy`: `fortimanager_object_switchcontroller_lldpprofile_mednetworkpolicy`
+>- `custom_tlvs`: `fortimanager_object_switchcontroller_lldpprofile_customtlvs`
+>- `med_location_service`: `fortimanager_object_switchcontroller_lldpprofile_medlocationservice`
+>- `med_network_policy`: `fortimanager_object_switchcontroller_lldpprofile_mednetworkpolicy`
 
 
 

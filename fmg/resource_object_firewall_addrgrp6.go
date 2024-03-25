@@ -151,7 +151,7 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -510,7 +510,7 @@ func flattenObjectFirewallAddrgrp6DynamicMappingMember(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallAddrgrp6DynamicMappingTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddrgrp6DynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -962,11 +962,11 @@ func expandObjectFirewallAddrgrp6DynamicMappingGlobalObject(d *schema.ResourceDa
 }
 
 func expandObjectFirewallAddrgrp6DynamicMappingMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddrgrp6DynamicMappingTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddrgrp6DynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -994,7 +994,7 @@ func expandObjectFirewallAddrgrp6GlobalObject(d *schema.ResourceData, v interfac
 }
 
 func expandObjectFirewallAddrgrp6Member(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAddrgrp6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

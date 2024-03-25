@@ -50,7 +50,7 @@ func resourceObjectWebfilterFtgdLocalRating() *schema.Resource {
 				Optional: true,
 			},
 			"rating": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -260,7 +260,7 @@ func expandObjectWebfilterFtgdLocalRatingComment(d *schema.ResourceData, v inter
 }
 
 func expandObjectWebfilterFtgdLocalRatingRating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectWebfilterFtgdLocalRatingStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

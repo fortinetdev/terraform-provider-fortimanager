@@ -244,7 +244,7 @@ func resourceWantempSystemVirtualWanLink() *schema.Resource {
 							Optional: true,
 						},
 						"cost": &schema.Schema{
-							Type:     schema.TypeInt,
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"gateway": &schema.Schema{
@@ -683,15 +683,15 @@ func resourceWantempSystemVirtualWanLinkRead(d *schema.ResourceData, m interface
 	return nil
 }
 
-func flattenWantempSystemVirtualWanLinkFailAlertInterfacesWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkFailAlertInterfaces(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkFailDetectWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkFailDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheck(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -712,193 +712,193 @@ func flattenWantempSystemVirtualWanLinkHealthCheckWsva(v interface{}, d *schema.
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dynamic_server"
 		if _, ok := i["_dynamic-server"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckDynamicServerWsva(i["_dynamic-server"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckDynamicServer(i["_dynamic-server"], d, pre_append)
 			tmp["_dynamic_server"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-DynamicServer")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := i["addr-mode"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckAddrModeWsva(i["addr-mode"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckAddrMode(i["addr-mode"], d, pre_append)
 			tmp["addr_mode"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-AddrMode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diffservcode"
 		if _, ok := i["diffservcode"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckDiffservcodeWsva(i["diffservcode"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckDiffservcode(i["diffservcode"], d, pre_append)
 			tmp["diffservcode"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Diffservcode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "failtime"
 		if _, ok := i["failtime"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckFailtimeWsva(i["failtime"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckFailtime(i["failtime"], d, pre_append)
 			tmp["failtime"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Failtime")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ha_priority"
 		if _, ok := i["ha-priority"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckHaPriorityWsva(i["ha-priority"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckHaPriority(i["ha-priority"], d, pre_append)
 			tmp["ha_priority"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-HaPriority")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_agent"
 		if _, ok := i["http-agent"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpAgentWsva(i["http-agent"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpAgent(i["http-agent"], d, pre_append)
 			tmp["http_agent"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-HttpAgent")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_get"
 		if _, ok := i["http-get"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpGetWsva(i["http-get"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpGet(i["http-get"], d, pre_append)
 			tmp["http_get"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-HttpGet")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_match"
 		if _, ok := i["http-match"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpMatchWsva(i["http-match"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckHttpMatch(i["http-match"], d, pre_append)
 			tmp["http_match"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-HttpMatch")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_id"
 		if _, ok := i["internet-service-id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckInternetServiceIdWsva(i["internet-service-id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckInternetServiceId(i["internet-service-id"], d, pre_append)
 			tmp["internet_service_id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-InternetServiceId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interval"
 		if _, ok := i["interval"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckIntervalWsva(i["interval"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckInterval(i["interval"], d, pre_append)
 			tmp["interval"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Interval")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "members"
 		if _, ok := i["members"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckMembersWsva(i["members"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckMembers(i["members"], d, pre_append)
 			tmp["members"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Members")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckNameWsva(i["name"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckName(i["name"], d, pre_append)
 			tmp["name"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Name")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_size"
 		if _, ok := i["packet-size"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckPacketSizeWsva(i["packet-size"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckPacketSize(i["packet-size"], d, pre_append)
 			tmp["packet_size"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-PacketSize")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := i["password"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckPasswordWsva(i["password"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckPassword(i["password"], d, pre_append)
 			tmp["password"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Password")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckPortWsva(i["port"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckPort(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Port")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_packets"
 		if _, ok := i["probe-packets"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckProbePacketsWsva(i["probe-packets"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckProbePackets(i["probe-packets"], d, pre_append)
 			tmp["probe_packets"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ProbePackets")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_timeout"
 		if _, ok := i["probe-timeout"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckProbeTimeoutWsva(i["probe-timeout"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckProbeTimeout(i["probe-timeout"], d, pre_append)
 			tmp["probe_timeout"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ProbeTimeout")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := i["protocol"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckProtocolWsva(i["protocol"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckProtocol(i["protocol"], d, pre_append)
 			tmp["protocol"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Protocol")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "recoverytime"
 		if _, ok := i["recoverytime"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckRecoverytimeWsva(i["recoverytime"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckRecoverytime(i["recoverytime"], d, pre_append)
 			tmp["recoverytime"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Recoverytime")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security_mode"
 		if _, ok := i["security-mode"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSecurityModeWsva(i["security-mode"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSecurityMode(i["security-mode"], d, pre_append)
 			tmp["security_mode"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-SecurityMode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
 		if _, ok := i["server"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckServerWsva(i["server"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckServer(i["server"], d, pre_append)
 			tmp["server"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Server")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla"
 		if _, ok := i["sla"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaWsva(i["sla"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSla(i["sla"], d, pre_append)
 			tmp["sla"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Sla")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_fail_log_period"
 		if _, ok := i["sla-fail-log-period"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriodWsva(i["sla-fail-log-period"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriod(i["sla-fail-log-period"], d, pre_append)
 			tmp["sla_fail_log_period"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-SlaFailLogPeriod")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_pass_log_period"
 		if _, ok := i["sla-pass-log-period"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriodWsva(i["sla-pass-log-period"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriod(i["sla-pass-log-period"], d, pre_append)
 			tmp["sla_pass_log_period"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-SlaPassLogPeriod")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_jitter"
 		if _, ok := i["threshold-alert-jitter"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitterWsva(i["threshold-alert-jitter"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitter(i["threshold-alert-jitter"], d, pre_append)
 			tmp["threshold_alert_jitter"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdAlertJitter")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_latency"
 		if _, ok := i["threshold-alert-latency"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatencyWsva(i["threshold-alert-latency"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatency(i["threshold-alert-latency"], d, pre_append)
 			tmp["threshold_alert_latency"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdAlertLatency")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_packetloss"
 		if _, ok := i["threshold-alert-packetloss"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketlossWsva(i["threshold-alert-packetloss"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketloss(i["threshold-alert-packetloss"], d, pre_append)
 			tmp["threshold_alert_packetloss"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdAlertPacketloss")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_jitter"
 		if _, ok := i["threshold-warning-jitter"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitterWsva(i["threshold-warning-jitter"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitter(i["threshold-warning-jitter"], d, pre_append)
 			tmp["threshold_warning_jitter"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdWarningJitter")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_latency"
 		if _, ok := i["threshold-warning-latency"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatencyWsva(i["threshold-warning-latency"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatency(i["threshold-warning-latency"], d, pre_append)
 			tmp["threshold_warning_latency"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdWarningLatency")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_packetloss"
 		if _, ok := i["threshold-warning-packetloss"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketlossWsva(i["threshold-warning-packetloss"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketloss(i["threshold-warning-packetloss"], d, pre_append)
 			tmp["threshold_warning_packetloss"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-ThresholdWarningPacketloss")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_cascade_interface"
 		if _, ok := i["update-cascade-interface"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterfaceWsva(i["update-cascade-interface"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterface(i["update-cascade-interface"], d, pre_append)
 			tmp["update_cascade_interface"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-UpdateCascadeInterface")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_static_route"
 		if _, ok := i["update-static-route"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckUpdateStaticRouteWsva(i["update-static-route"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckUpdateStaticRoute(i["update-static-route"], d, pre_append)
 			tmp["update_static_route"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-UpdateStaticRoute")
 		}
 
@@ -912,91 +912,91 @@ func flattenWantempSystemVirtualWanLinkHealthCheckWsva(v interface{}, d *schema.
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckDynamicServerWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckDynamicServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckAddrModeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckAddrMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckDiffservcodeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckDiffservcode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckFailtimeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckFailtime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckHaPriorityWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckHaPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckHttpAgentWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckHttpAgent(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckHttpGetWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckHttpGet(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckHttpMatchWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckHttpMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckInternetServiceIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckIntervalWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckMembersWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckMembers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkHealthCheckName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckNameWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckPacketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckPacketSizeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkHealthCheckPasswordWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckPortWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckProbePacketsWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckProbePackets(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckProbeTimeoutWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckProbeTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckProtocolWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckRecoverytimeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckRecoverytime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSecurityModeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSecurityMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckServerWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSla(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -1017,31 +1017,31 @@ func flattenWantempSystemVirtualWanLinkHealthCheckSlaWsva(v interface{}, d *sche
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaIdWsva(i["id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_threshold"
 		if _, ok := i["jitter-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThresholdWsva(i["jitter-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(i["jitter-threshold"], d, pre_append)
 			tmp["jitter_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-JitterThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold"
 		if _, ok := i["latency-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThresholdWsva(i["latency-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(i["latency-threshold"], d, pre_append)
 			tmp["latency_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-LatencyThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := i["link-cost-factor"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactorWsva(i["link-cost-factor"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(i["link-cost-factor"], d, pre_append)
 			tmp["link_cost_factor"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-LinkCostFactor")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packetloss_threshold"
 		if _, ok := i["packetloss-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsva(i["packetloss-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(i["packetloss-threshold"], d, pre_append)
 			tmp["packetloss_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-PacketlossThreshold")
 		}
 
@@ -1055,71 +1055,71 @@ func flattenWantempSystemVirtualWanLinkHealthCheckSlaWsva(v interface{}, d *sche
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactorWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriodWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriodWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitterWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatencyWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatency(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketlossWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketloss(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitterWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatencyWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatency(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketlossWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketloss(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterfaceWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckUpdateStaticRouteWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkHealthCheckUpdateStaticRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkLoadBalanceModeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkLoadBalanceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkMembers(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -1140,91 +1140,91 @@ func flattenWantempSystemVirtualWanLinkMembersWsva(v interface{}, d *schema.Reso
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dynamic_member"
 		if _, ok := i["_dynamic-member"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersDynamicMemberWsva(i["_dynamic-member"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersDynamicMember(i["_dynamic-member"], d, pre_append)
 			tmp["_dynamic_member"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-DynamicMember")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
 		if _, ok := i["comment"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersCommentWsva(i["comment"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersComment(i["comment"], d, pre_append)
 			tmp["comment"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Comment")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cost"
 		if _, ok := i["cost"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersCostWsva(i["cost"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersCost(i["cost"], d, pre_append)
 			tmp["cost"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Cost")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway"
 		if _, ok := i["gateway"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersGatewayWsva(i["gateway"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersGateway(i["gateway"], d, pre_append)
 			tmp["gateway"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Gateway")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway6"
 		if _, ok := i["gateway6"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersGateway6Wsva(i["gateway6"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersGateway6(i["gateway6"], d, pre_append)
 			tmp["gateway6"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Gateway6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ingress_spillover_threshold"
 		if _, ok := i["ingress-spillover-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThresholdWsva(i["ingress-spillover-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(i["ingress-spillover-threshold"], d, pre_append)
 			tmp["ingress_spillover_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-IngressSpilloverThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := i["interface"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersInterfaceWsva(i["interface"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersInterface(i["interface"], d, pre_append)
 			tmp["interface"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Interface")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := i["priority"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersPriorityWsva(i["priority"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersPriority(i["priority"], d, pre_append)
 			tmp["priority"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Priority")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq_num"
 		if _, ok := i["seq-num"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersSeqNumWsva(i["seq-num"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersSeqNum(i["seq-num"], d, pre_append)
 			tmp["seq_num"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-SeqNum")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source"
 		if _, ok := i["source"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersSourceWsva(i["source"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersSource(i["source"], d, pre_append)
 			tmp["source"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Source")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source6"
 		if _, ok := i["source6"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersSource6Wsva(i["source6"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersSource6(i["source6"], d, pre_append)
 			tmp["source6"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Source6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "spillover_threshold"
 		if _, ok := i["spillover-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersSpilloverThresholdWsva(i["spillover-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold(i["spillover-threshold"], d, pre_append)
 			tmp["spillover_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-SpilloverThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
 		if _, ok := i["status"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersStatusWsva(i["status"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersStatus(i["status"], d, pre_append)
 			tmp["status"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Status")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "volume_ratio"
 		if _, ok := i["volume-ratio"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersVolumeRatioWsva(i["volume-ratio"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersVolumeRatio(i["volume-ratio"], d, pre_append)
 			tmp["volume_ratio"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-VolumeRatio")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := i["weight"]; ok {
-			v := flattenWantempSystemVirtualWanLinkMembersWeightWsva(i["weight"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkMembersWeight(i["weight"], d, pre_append)
 			tmp["weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Weight")
 		}
 
@@ -1238,67 +1238,67 @@ func flattenWantempSystemVirtualWanLinkMembersWsva(v interface{}, d *schema.Reso
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkMembersDynamicMemberWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersDynamicMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersCommentWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersCostWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersCost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return conv2str(v)
+}
+
+func flattenWantempSystemVirtualWanLinkMembersGateway(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersGatewayWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersGateway6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersGateway6Wsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersInterfaceWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersPriorityWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSeqNum(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSeqNumWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSourceWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSource6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSource6Wsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersSpilloverThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersStatusWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersVolumeRatio(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersVolumeRatioWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkMembersWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkMembersWeightWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkNeighborWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkNeighbor(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -1319,31 +1319,31 @@ func flattenWantempSystemVirtualWanLinkNeighborWsva(v interface{}, d *schema.Res
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := i["health-check"]; ok {
-			v := flattenWantempSystemVirtualWanLinkNeighborHealthCheckWsva(i["health-check"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkNeighborHealthCheck(i["health-check"], d, pre_append)
 			tmp["health_check"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-HealthCheck")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := i["ip"]; ok {
-			v := flattenWantempSystemVirtualWanLinkNeighborIpWsva(i["ip"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkNeighborIp(i["ip"], d, pre_append)
 			tmp["ip"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-Ip")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
 		if _, ok := i["member"]; ok {
-			v := flattenWantempSystemVirtualWanLinkNeighborMemberWsva(i["member"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkNeighborMember(i["member"], d, pre_append)
 			tmp["member"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-Member")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role"
 		if _, ok := i["role"]; ok {
-			v := flattenWantempSystemVirtualWanLinkNeighborRoleWsva(i["role"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkNeighborRole(i["role"], d, pre_append)
 			tmp["role"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-Role")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_id"
 		if _, ok := i["sla-id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkNeighborSlaIdWsva(i["sla-id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkNeighborSlaId(i["sla-id"], d, pre_append)
 			tmp["sla_id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-SlaId")
 		}
 
@@ -1357,39 +1357,39 @@ func flattenWantempSystemVirtualWanLinkNeighborWsva(v interface{}, d *schema.Res
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborHealthCheckWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborIpWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborMemberWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborRoleWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborSlaIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborHoldBootTimeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborHoldBootTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborHoldDownWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborHoldDown(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkNeighborHoldDownTimeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkNeighborHoldDownTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkService(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -1410,307 +1410,307 @@ func flattenWantempSystemVirtualWanLinkServiceWsva(v interface{}, d *schema.Reso
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := i["addr-mode"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceAddrModeWsva(i["addr-mode"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceAddrMode(i["addr-mode"], d, pre_append)
 			tmp["addr_mode"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-AddrMode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_weight"
 		if _, ok := i["bandwidth-weight"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceBandwidthWeightWsva(i["bandwidth-weight"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceBandwidthWeight(i["bandwidth-weight"], d, pre_append)
 			tmp["bandwidth_weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-BandwidthWeight")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "default"
 		if _, ok := i["default"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDefaultWsva(i["default"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDefault(i["default"], d, pre_append)
 			tmp["default"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Default")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_forward"
 		if _, ok := i["dscp-forward"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDscpForwardWsva(i["dscp-forward"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDscpForward(i["dscp-forward"], d, pre_append)
 			tmp["dscp_forward"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-DscpForward")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_forward_tag"
 		if _, ok := i["dscp-forward-tag"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDscpForwardTagWsva(i["dscp-forward-tag"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDscpForwardTag(i["dscp-forward-tag"], d, pre_append)
 			tmp["dscp_forward_tag"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-DscpForwardTag")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_reverse"
 		if _, ok := i["dscp-reverse"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDscpReverseWsva(i["dscp-reverse"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDscpReverse(i["dscp-reverse"], d, pre_append)
 			tmp["dscp_reverse"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-DscpReverse")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_reverse_tag"
 		if _, ok := i["dscp-reverse-tag"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDscpReverseTagWsva(i["dscp-reverse-tag"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDscpReverseTag(i["dscp-reverse-tag"], d, pre_append)
 			tmp["dscp_reverse_tag"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-DscpReverseTag")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst"
 		if _, ok := i["dst"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDstWsva(i["dst"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDst(i["dst"], d, pre_append)
 			tmp["dst"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Dst")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst_negate"
 		if _, ok := i["dst-negate"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDstNegateWsva(i["dst-negate"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDstNegate(i["dst-negate"], d, pre_append)
 			tmp["dst_negate"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-DstNegate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst6"
 		if _, ok := i["dst6"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceDst6Wsva(i["dst6"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceDst6(i["dst6"], d, pre_append)
 			tmp["dst6"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Dst6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_port"
 		if _, ok := i["end-port"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceEndPortWsva(i["end-port"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceEndPort(i["end-port"], d, pre_append)
 			tmp["end_port"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-EndPort")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway"
 		if _, ok := i["gateway"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceGatewayWsva(i["gateway"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceGateway(i["gateway"], d, pre_append)
 			tmp["gateway"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Gateway")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "groups"
 		if _, ok := i["groups"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceGroupsWsva(i["groups"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceGroups(i["groups"], d, pre_append)
 			tmp["groups"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Groups")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := i["health-check"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceHealthCheckWsva(i["health-check"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceHealthCheck(i["health-check"], d, pre_append)
 			tmp["health_check"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-HealthCheck")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "hold_down_time"
 		if _, ok := i["hold-down-time"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceHoldDownTimeWsva(i["hold-down-time"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceHoldDownTime(i["hold-down-time"], d, pre_append)
 			tmp["hold_down_time"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-HoldDownTime")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceIdWsva(i["id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Id")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "input_device"
 		if _, ok := i["input-device"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInputDeviceWsva(i["input-device"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInputDevice(i["input-device"], d, pre_append)
 			tmp["input_device"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InputDevice")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "input_device_negate"
 		if _, ok := i["input-device-negate"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInputDeviceNegateWsva(i["input-device-negate"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInputDeviceNegate(i["input-device-negate"], d, pre_append)
 			tmp["input_device_negate"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InputDeviceNegate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service"
 		if _, ok := i["internet-service"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceWsva(i["internet-service"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetService(i["internet-service"], d, pre_append)
 			tmp["internet_service"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetService")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_ctrl"
 		if _, ok := i["internet-service-ctrl"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlWsva(i["internet-service-ctrl"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrl(i["internet-service-ctrl"], d, pre_append)
 			tmp["internet_service_ctrl"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceCtrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_ctrl_group"
 		if _, ok := i["internet-service-ctrl-group"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroupWsva(i["internet-service-ctrl-group"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroup(i["internet-service-ctrl-group"], d, pre_append)
 			tmp["internet_service_ctrl_group"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceCtrlGroup")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_app_ctrl"
 		if _, ok := i["internet-service-app-ctrl"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlWsva(i["internet-service-app-ctrl"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrl(i["internet-service-app-ctrl"], d, pre_append)
 			tmp["internet_service_app_ctrl"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceAppCtrl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_app_ctrl_group"
 		if _, ok := i["internet-service-app-ctrl-group"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroupWsva(i["internet-service-app-ctrl-group"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroup(i["internet-service-app-ctrl-group"], d, pre_append)
 			tmp["internet_service_app_ctrl_group"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceAppCtrlGroup")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_custom"
 		if _, ok := i["internet-service-custom"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomWsva(i["internet-service-custom"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCustom(i["internet-service-custom"], d, pre_append)
 			tmp["internet_service_custom"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceCustom")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_custom_group"
 		if _, ok := i["internet-service-custom-group"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomGroupWsva(i["internet-service-custom-group"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomGroup(i["internet-service-custom-group"], d, pre_append)
 			tmp["internet_service_custom_group"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceCustomGroup")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_group"
 		if _, ok := i["internet-service-group"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceGroupWsva(i["internet-service-group"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceGroup(i["internet-service-group"], d, pre_append)
 			tmp["internet_service_group"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceGroup")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_id"
 		if _, ok := i["internet-service-id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceIdWsva(i["internet-service-id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceInternetServiceId(i["internet-service-id"], d, pre_append)
 			tmp["internet_service_id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-InternetServiceId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_weight"
 		if _, ok := i["jitter-weight"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceJitterWeightWsva(i["jitter-weight"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceJitterWeight(i["jitter-weight"], d, pre_append)
 			tmp["jitter_weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-JitterWeight")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_weight"
 		if _, ok := i["latency-weight"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceLatencyWeightWsva(i["latency-weight"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceLatencyWeight(i["latency-weight"], d, pre_append)
 			tmp["latency_weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-LatencyWeight")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := i["link-cost-factor"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceLinkCostFactorWsva(i["link-cost-factor"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceLinkCostFactor(i["link-cost-factor"], d, pre_append)
 			tmp["link_cost_factor"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-LinkCostFactor")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_threshold"
 		if _, ok := i["link-cost-threshold"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceLinkCostThresholdWsva(i["link-cost-threshold"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceLinkCostThreshold(i["link-cost-threshold"], d, pre_append)
 			tmp["link_cost_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-LinkCostThreshold")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
 		if _, ok := i["member"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceMemberWsva(i["member"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceMember(i["member"], d, pre_append)
 			tmp["member"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Member")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mode"
 		if _, ok := i["mode"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceModeWsva(i["mode"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceMode(i["mode"], d, pre_append)
 			tmp["mode"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Mode")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceNameWsva(i["name"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceName(i["name"], d, pre_append)
 			tmp["name"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Name")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_weight"
 		if _, ok := i["packet-loss-weight"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServicePacketLossWeightWsva(i["packet-loss-weight"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServicePacketLossWeight(i["packet-loss-weight"], d, pre_append)
 			tmp["packet_loss_weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-PacketLossWeight")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_members"
 		if _, ok := i["priority-members"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServicePriorityMembersWsva(i["priority-members"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServicePriorityMembers(i["priority-members"], d, pre_append)
 			tmp["priority_members"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-PriorityMembers")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := i["protocol"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceProtocolWsva(i["protocol"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceProtocol(i["protocol"], d, pre_append)
 			tmp["protocol"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Protocol")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quality_link"
 		if _, ok := i["quality-link"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceQualityLinkWsva(i["quality-link"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceQualityLink(i["quality-link"], d, pre_append)
 			tmp["quality_link"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-QualityLink")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role"
 		if _, ok := i["role"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceRoleWsva(i["role"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceRole(i["role"], d, pre_append)
 			tmp["role"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Role")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
 		if _, ok := i["route-tag"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceRouteTagWsva(i["route-tag"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceRouteTag(i["route-tag"], d, pre_append)
 			tmp["route_tag"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-RouteTag")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla"
 		if _, ok := i["sla"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSlaWsva(i["sla"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSla(i["sla"], d, pre_append)
 			tmp["sla"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Sla")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_compare_method"
 		if _, ok := i["sla-compare-method"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSlaCompareMethodWsva(i["sla-compare-method"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSlaCompareMethod(i["sla-compare-method"], d, pre_append)
 			tmp["sla_compare_method"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-SlaCompareMethod")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src"
 		if _, ok := i["src"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSrcWsva(i["src"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSrc(i["src"], d, pre_append)
 			tmp["src"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Src")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_negate"
 		if _, ok := i["src-negate"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSrcNegateWsva(i["src-negate"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSrcNegate(i["src-negate"], d, pre_append)
 			tmp["src_negate"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-SrcNegate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src6"
 		if _, ok := i["src6"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSrc6Wsva(i["src6"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSrc6(i["src6"], d, pre_append)
 			tmp["src6"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Src6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "standalone_action"
 		if _, ok := i["standalone-action"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceStandaloneActionWsva(i["standalone-action"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceStandaloneAction(i["standalone-action"], d, pre_append)
 			tmp["standalone_action"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-StandaloneAction")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_port"
 		if _, ok := i["start-port"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceStartPortWsva(i["start-port"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceStartPort(i["start-port"], d, pre_append)
 			tmp["start_port"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-StartPort")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
 		if _, ok := i["status"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceStatusWsva(i["status"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceStatus(i["status"], d, pre_append)
 			tmp["status"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Status")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
 		if _, ok := i["tos"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceTosWsva(i["tos"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceTos(i["tos"], d, pre_append)
 			tmp["tos"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Tos")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos_mask"
 		if _, ok := i["tos-mask"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceTosMaskWsva(i["tos-mask"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceTosMask(i["tos-mask"], d, pre_append)
 			tmp["tos_mask"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-TosMask")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "users"
 		if _, ok := i["users"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceUsersWsva(i["users"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceUsers(i["users"], d, pre_append)
 			tmp["users"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Users")
 		}
 
@@ -1724,167 +1724,167 @@ func flattenWantempSystemVirtualWanLinkServiceWsva(v interface{}, d *schema.Reso
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkServiceAddrModeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceAddrMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceBandwidthWeightWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceBandwidthWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDefaultWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDefault(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDscpForwardWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDscpForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDscpForwardTagWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDscpForwardTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDscpReverseWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDscpReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDscpReverseTagWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDscpReverseTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDstWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDst(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceDstNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDstNegateWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceDst6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceEndPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceDst6Wsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceGateway(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceEndPortWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceGatewayWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceHoldDownTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceGroupsWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceHealthCheckWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceInputDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceInputDeviceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceHoldDownTimeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceInputDeviceWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceInputDeviceNegateWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroupWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroupWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceJitterWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceLatencyWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceCustomGroupWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceLinkCostFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceGroupWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceLinkCostThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceInternetServiceIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceJitterWeightWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceLatencyWeightWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceLinkCostFactorWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServicePacketLossWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceLinkCostThresholdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServicePriorityMembers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceMemberWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceQualityLink(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceModeWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceNameWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceRouteTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServicePacketLossWeightWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServicePriorityMembersWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceProtocolWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceQualityLinkWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceRoleWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceRouteTagWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceSlaWsva(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSla(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -1905,13 +1905,13 @@ func flattenWantempSystemVirtualWanLinkServiceSlaWsva(v interface{}, d *schema.R
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := i["health-check"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSlaHealthCheckWsva(i["health-check"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck(i["health-check"], d, pre_append)
 			tmp["health_check"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkService-Sla-HealthCheck")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
-			v := flattenWantempSystemVirtualWanLinkServiceSlaIdWsva(i["id"], d, pre_append)
+			v := flattenWantempSystemVirtualWanLinkServiceSlaId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkService-Sla-Id")
 		}
 
@@ -1925,55 +1925,55 @@ func flattenWantempSystemVirtualWanLinkServiceSlaWsva(v interface{}, d *schema.R
 	return result
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSlaHealthCheckWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSlaIdWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSlaCompareMethodWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSlaCompareMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSrcWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceSrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSrcNegateWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceSrc6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemVirtualWanLinkServiceStandaloneAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceSrc6Wsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceStartPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceStandaloneActionWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceStartPortWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceTos(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceStatusWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkServiceTosMask(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkServiceTosWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+func flattenWantempSystemVirtualWanLinkServiceUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
-func flattenWantempSystemVirtualWanLinkServiceTosMaskWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkServiceUsersWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenWantempSystemVirtualWanLinkStatusWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenWantempSystemVirtualWanLinkStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1988,7 +1988,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("fail_alert_interfaces", flattenWantempSystemVirtualWanLinkFailAlertInterfacesWsva(o["fail-alert-interfaces"], d, "fail_alert_interfaces")); err != nil {
+	if err = d.Set("fail_alert_interfaces", flattenWantempSystemVirtualWanLinkFailAlertInterfaces(o["fail-alert-interfaces"], d, "fail_alert_interfaces")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fail-alert-interfaces"], "WantempSystemVirtualWanLink-FailAlertInterfaces"); ok {
 			if err = d.Set("fail_alert_interfaces", vv); err != nil {
 				return fmt.Errorf("Error reading fail_alert_interfaces: %v", err)
@@ -1998,7 +1998,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("fail_detect", flattenWantempSystemVirtualWanLinkFailDetectWsva(o["fail-detect"], d, "fail_detect")); err != nil {
+	if err = d.Set("fail_detect", flattenWantempSystemVirtualWanLinkFailDetect(o["fail-detect"], d, "fail_detect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fail-detect"], "WantempSystemVirtualWanLink-FailDetect"); ok {
 			if err = d.Set("fail_detect", vv); err != nil {
 				return fmt.Errorf("Error reading fail_detect: %v", err)
@@ -2009,7 +2009,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 	}
 
 	if isImportTable() {
-		if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkHealthCheckWsva(o["health-check"], d, "health_check")); err != nil {
+		if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkHealthCheck(o["health-check"], d, "health_check")); err != nil {
 			if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemVirtualWanLink-HealthCheck"); ok {
 				if err = d.Set("health_check", vv); err != nil {
 					return fmt.Errorf("Error reading health_check: %v", err)
@@ -2020,7 +2020,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	} else {
 		if _, ok := d.GetOk("health_check"); ok {
-			if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkHealthCheckWsva(o["health-check"], d, "health_check")); err != nil {
+			if err = d.Set("health_check", flattenWantempSystemVirtualWanLinkHealthCheck(o["health-check"], d, "health_check")); err != nil {
 				if vv, ok := fortiAPIPatch(o["health-check"], "WantempSystemVirtualWanLink-HealthCheck"); ok {
 					if err = d.Set("health_check", vv); err != nil {
 						return fmt.Errorf("Error reading health_check: %v", err)
@@ -2032,7 +2032,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("load_balance_mode", flattenWantempSystemVirtualWanLinkLoadBalanceModeWsva(o["load-balance-mode"], d, "load_balance_mode")); err != nil {
+	if err = d.Set("load_balance_mode", flattenWantempSystemVirtualWanLinkLoadBalanceMode(o["load-balance-mode"], d, "load_balance_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["load-balance-mode"], "WantempSystemVirtualWanLink-LoadBalanceMode"); ok {
 			if err = d.Set("load_balance_mode", vv); err != nil {
 				return fmt.Errorf("Error reading load_balance_mode: %v", err)
@@ -2043,7 +2043,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 	}
 
 	if isImportTable() {
-		if err = d.Set("members", flattenWantempSystemVirtualWanLinkMembersWsva(o["members"], d, "members")); err != nil {
+		if err = d.Set("members", flattenWantempSystemVirtualWanLinkMembers(o["members"], d, "members")); err != nil {
 			if vv, ok := fortiAPIPatch(o["members"], "WantempSystemVirtualWanLink-Members"); ok {
 				if err = d.Set("members", vv); err != nil {
 					return fmt.Errorf("Error reading members: %v", err)
@@ -2054,7 +2054,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	} else {
 		if _, ok := d.GetOk("members"); ok {
-			if err = d.Set("members", flattenWantempSystemVirtualWanLinkMembersWsva(o["members"], d, "members")); err != nil {
+			if err = d.Set("members", flattenWantempSystemVirtualWanLinkMembers(o["members"], d, "members")); err != nil {
 				if vv, ok := fortiAPIPatch(o["members"], "WantempSystemVirtualWanLink-Members"); ok {
 					if err = d.Set("members", vv); err != nil {
 						return fmt.Errorf("Error reading members: %v", err)
@@ -2067,7 +2067,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 	}
 
 	if isImportTable() {
-		if err = d.Set("neighbor", flattenWantempSystemVirtualWanLinkNeighborWsva(o["neighbor"], d, "neighbor")); err != nil {
+		if err = d.Set("neighbor", flattenWantempSystemVirtualWanLinkNeighbor(o["neighbor"], d, "neighbor")); err != nil {
 			if vv, ok := fortiAPIPatch(o["neighbor"], "WantempSystemVirtualWanLink-Neighbor"); ok {
 				if err = d.Set("neighbor", vv); err != nil {
 					return fmt.Errorf("Error reading neighbor: %v", err)
@@ -2078,7 +2078,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	} else {
 		if _, ok := d.GetOk("neighbor"); ok {
-			if err = d.Set("neighbor", flattenWantempSystemVirtualWanLinkNeighborWsva(o["neighbor"], d, "neighbor")); err != nil {
+			if err = d.Set("neighbor", flattenWantempSystemVirtualWanLinkNeighbor(o["neighbor"], d, "neighbor")); err != nil {
 				if vv, ok := fortiAPIPatch(o["neighbor"], "WantempSystemVirtualWanLink-Neighbor"); ok {
 					if err = d.Set("neighbor", vv); err != nil {
 						return fmt.Errorf("Error reading neighbor: %v", err)
@@ -2090,7 +2090,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("neighbor_hold_boot_time", flattenWantempSystemVirtualWanLinkNeighborHoldBootTimeWsva(o["neighbor-hold-boot-time"], d, "neighbor_hold_boot_time")); err != nil {
+	if err = d.Set("neighbor_hold_boot_time", flattenWantempSystemVirtualWanLinkNeighborHoldBootTime(o["neighbor-hold-boot-time"], d, "neighbor_hold_boot_time")); err != nil {
 		if vv, ok := fortiAPIPatch(o["neighbor-hold-boot-time"], "WantempSystemVirtualWanLink-NeighborHoldBootTime"); ok {
 			if err = d.Set("neighbor_hold_boot_time", vv); err != nil {
 				return fmt.Errorf("Error reading neighbor_hold_boot_time: %v", err)
@@ -2100,7 +2100,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("neighbor_hold_down", flattenWantempSystemVirtualWanLinkNeighborHoldDownWsva(o["neighbor-hold-down"], d, "neighbor_hold_down")); err != nil {
+	if err = d.Set("neighbor_hold_down", flattenWantempSystemVirtualWanLinkNeighborHoldDown(o["neighbor-hold-down"], d, "neighbor_hold_down")); err != nil {
 		if vv, ok := fortiAPIPatch(o["neighbor-hold-down"], "WantempSystemVirtualWanLink-NeighborHoldDown"); ok {
 			if err = d.Set("neighbor_hold_down", vv); err != nil {
 				return fmt.Errorf("Error reading neighbor_hold_down: %v", err)
@@ -2110,7 +2110,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("neighbor_hold_down_time", flattenWantempSystemVirtualWanLinkNeighborHoldDownTimeWsva(o["neighbor-hold-down-time"], d, "neighbor_hold_down_time")); err != nil {
+	if err = d.Set("neighbor_hold_down_time", flattenWantempSystemVirtualWanLinkNeighborHoldDownTime(o["neighbor-hold-down-time"], d, "neighbor_hold_down_time")); err != nil {
 		if vv, ok := fortiAPIPatch(o["neighbor-hold-down-time"], "WantempSystemVirtualWanLink-NeighborHoldDownTime"); ok {
 			if err = d.Set("neighbor_hold_down_time", vv); err != nil {
 				return fmt.Errorf("Error reading neighbor_hold_down_time: %v", err)
@@ -2121,7 +2121,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 	}
 
 	if isImportTable() {
-		if err = d.Set("service", flattenWantempSystemVirtualWanLinkServiceWsva(o["service"], d, "service")); err != nil {
+		if err = d.Set("service", flattenWantempSystemVirtualWanLinkService(o["service"], d, "service")); err != nil {
 			if vv, ok := fortiAPIPatch(o["service"], "WantempSystemVirtualWanLink-Service"); ok {
 				if err = d.Set("service", vv); err != nil {
 					return fmt.Errorf("Error reading service: %v", err)
@@ -2132,7 +2132,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	} else {
 		if _, ok := d.GetOk("service"); ok {
-			if err = d.Set("service", flattenWantempSystemVirtualWanLinkServiceWsva(o["service"], d, "service")); err != nil {
+			if err = d.Set("service", flattenWantempSystemVirtualWanLinkService(o["service"], d, "service")); err != nil {
 				if vv, ok := fortiAPIPatch(o["service"], "WantempSystemVirtualWanLink-Service"); ok {
 					if err = d.Set("service", vv); err != nil {
 						return fmt.Errorf("Error reading service: %v", err)
@@ -2144,7 +2144,7 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("status", flattenWantempSystemVirtualWanLinkStatusWsva(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenWantempSystemVirtualWanLinkStatus(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "WantempSystemVirtualWanLink-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -2163,15 +2163,15 @@ func flattenWantempSystemVirtualWanLinkFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf("ER List: %v", e)
 }
 
-func expandWantempSystemVirtualWanLinkFailAlertInterfacesWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkFailAlertInterfaces(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkFailDetectWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkFailDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2187,112 +2187,112 @@ func expandWantempSystemVirtualWanLinkHealthCheckWsva(d *schema.ResourceData, v 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dynamic_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_dynamic-server"], _ = expandWantempSystemVirtualWanLinkHealthCheckDynamicServerWsva(d, i["_dynamic_server"], pre_append)
+			tmp["_dynamic-server"], _ = expandWantempSystemVirtualWanLinkHealthCheckDynamicServer(d, i["_dynamic_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["addr-mode"], _ = expandWantempSystemVirtualWanLinkHealthCheckAddrModeWsva(d, i["addr_mode"], pre_append)
+			tmp["addr-mode"], _ = expandWantempSystemVirtualWanLinkHealthCheckAddrMode(d, i["addr_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diffservcode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["diffservcode"], _ = expandWantempSystemVirtualWanLinkHealthCheckDiffservcodeWsva(d, i["diffservcode"], pre_append)
+			tmp["diffservcode"], _ = expandWantempSystemVirtualWanLinkHealthCheckDiffservcode(d, i["diffservcode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "failtime"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["failtime"], _ = expandWantempSystemVirtualWanLinkHealthCheckFailtimeWsva(d, i["failtime"], pre_append)
+			tmp["failtime"], _ = expandWantempSystemVirtualWanLinkHealthCheckFailtime(d, i["failtime"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ha_priority"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ha-priority"], _ = expandWantempSystemVirtualWanLinkHealthCheckHaPriorityWsva(d, i["ha_priority"], pre_append)
+			tmp["ha-priority"], _ = expandWantempSystemVirtualWanLinkHealthCheckHaPriority(d, i["ha_priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_agent"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["http-agent"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpAgentWsva(d, i["http_agent"], pre_append)
+			tmp["http-agent"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpAgent(d, i["http_agent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_get"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["http-get"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpGetWsva(d, i["http_get"], pre_append)
+			tmp["http-get"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpGet(d, i["http_get"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_match"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["http-match"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpMatchWsva(d, i["http_match"], pre_append)
+			tmp["http-match"], _ = expandWantempSystemVirtualWanLinkHealthCheckHttpMatch(d, i["http_match"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-id"], _ = expandWantempSystemVirtualWanLinkHealthCheckInternetServiceIdWsva(d, i["internet_service_id"], pre_append)
+			tmp["internet-service-id"], _ = expandWantempSystemVirtualWanLinkHealthCheckInternetServiceId(d, i["internet_service_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interval"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["interval"], _ = expandWantempSystemVirtualWanLinkHealthCheckIntervalWsva(d, i["interval"], pre_append)
+			tmp["interval"], _ = expandWantempSystemVirtualWanLinkHealthCheckInterval(d, i["interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "members"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["members"], _ = expandWantempSystemVirtualWanLinkHealthCheckMembersWsva(d, i["members"], pre_append)
+			tmp["members"], _ = expandWantempSystemVirtualWanLinkHealthCheckMembers(d, i["members"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["name"], _ = expandWantempSystemVirtualWanLinkHealthCheckNameWsva(d, i["name"], pre_append)
+			tmp["name"], _ = expandWantempSystemVirtualWanLinkHealthCheckName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_size"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["packet-size"], _ = expandWantempSystemVirtualWanLinkHealthCheckPacketSizeWsva(d, i["packet_size"], pre_append)
+			tmp["packet-size"], _ = expandWantempSystemVirtualWanLinkHealthCheckPacketSize(d, i["packet_size"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["password"], _ = expandWantempSystemVirtualWanLinkHealthCheckPasswordWsva(d, i["password"], pre_append)
+			tmp["password"], _ = expandWantempSystemVirtualWanLinkHealthCheckPassword(d, i["password"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port"], _ = expandWantempSystemVirtualWanLinkHealthCheckPortWsva(d, i["port"], pre_append)
+			tmp["port"], _ = expandWantempSystemVirtualWanLinkHealthCheckPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_packets"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["probe-packets"], _ = expandWantempSystemVirtualWanLinkHealthCheckProbePacketsWsva(d, i["probe_packets"], pre_append)
+			tmp["probe-packets"], _ = expandWantempSystemVirtualWanLinkHealthCheckProbePackets(d, i["probe_packets"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_timeout"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["probe-timeout"], _ = expandWantempSystemVirtualWanLinkHealthCheckProbeTimeoutWsva(d, i["probe_timeout"], pre_append)
+			tmp["probe-timeout"], _ = expandWantempSystemVirtualWanLinkHealthCheckProbeTimeout(d, i["probe_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["protocol"], _ = expandWantempSystemVirtualWanLinkHealthCheckProtocolWsva(d, i["protocol"], pre_append)
+			tmp["protocol"], _ = expandWantempSystemVirtualWanLinkHealthCheckProtocol(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "recoverytime"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["recoverytime"], _ = expandWantempSystemVirtualWanLinkHealthCheckRecoverytimeWsva(d, i["recoverytime"], pre_append)
+			tmp["recoverytime"], _ = expandWantempSystemVirtualWanLinkHealthCheckRecoverytime(d, i["recoverytime"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["security-mode"], _ = expandWantempSystemVirtualWanLinkHealthCheckSecurityModeWsva(d, i["security_mode"], pre_append)
+			tmp["security-mode"], _ = expandWantempSystemVirtualWanLinkHealthCheckSecurityMode(d, i["security_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["server"], _ = expandWantempSystemVirtualWanLinkHealthCheckServerWsva(d, i["server"], pre_append)
+			tmp["server"], _ = expandWantempSystemVirtualWanLinkHealthCheckServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			t, err := expandWantempSystemVirtualWanLinkHealthCheckSlaWsva(d, i["sla"], pre_append)
+			t, err := expandWantempSystemVirtualWanLinkHealthCheckSla(d, i["sla"], pre_append)
 			if err != nil {
 				return result, err
 			} else if t != nil {
@@ -2302,52 +2302,52 @@ func expandWantempSystemVirtualWanLinkHealthCheckWsva(d *schema.ResourceData, v 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_fail_log_period"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sla-fail-log-period"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriodWsva(d, i["sla_fail_log_period"], pre_append)
+			tmp["sla-fail-log-period"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriod(d, i["sla_fail_log_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_pass_log_period"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sla-pass-log-period"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriodWsva(d, i["sla_pass_log_period"], pre_append)
+			tmp["sla-pass-log-period"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriod(d, i["sla_pass_log_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_jitter"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-alert-jitter"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitterWsva(d, i["threshold_alert_jitter"], pre_append)
+			tmp["threshold-alert-jitter"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitter(d, i["threshold_alert_jitter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_latency"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-alert-latency"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatencyWsva(d, i["threshold_alert_latency"], pre_append)
+			tmp["threshold-alert-latency"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatency(d, i["threshold_alert_latency"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_alert_packetloss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-alert-packetloss"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketlossWsva(d, i["threshold_alert_packetloss"], pre_append)
+			tmp["threshold-alert-packetloss"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketloss(d, i["threshold_alert_packetloss"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_jitter"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-warning-jitter"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitterWsva(d, i["threshold_warning_jitter"], pre_append)
+			tmp["threshold-warning-jitter"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitter(d, i["threshold_warning_jitter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_latency"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-warning-latency"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatencyWsva(d, i["threshold_warning_latency"], pre_append)
+			tmp["threshold-warning-latency"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatency(d, i["threshold_warning_latency"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold_warning_packetloss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["threshold-warning-packetloss"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketlossWsva(d, i["threshold_warning_packetloss"], pre_append)
+			tmp["threshold-warning-packetloss"], _ = expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketloss(d, i["threshold_warning_packetloss"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_cascade_interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["update-cascade-interface"], _ = expandWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterfaceWsva(d, i["update_cascade_interface"], pre_append)
+			tmp["update-cascade-interface"], _ = expandWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterface(d, i["update_cascade_interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_static_route"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["update-static-route"], _ = expandWantempSystemVirtualWanLinkHealthCheckUpdateStaticRouteWsva(d, i["update_static_route"], pre_append)
+			tmp["update-static-route"], _ = expandWantempSystemVirtualWanLinkHealthCheckUpdateStaticRoute(d, i["update_static_route"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2360,91 +2360,91 @@ func expandWantempSystemVirtualWanLinkHealthCheckWsva(d *schema.ResourceData, v 
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckDynamicServerWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckDynamicServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckAddrModeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckAddrMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckDiffservcodeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckDiffservcode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckFailtimeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckFailtime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckHaPriorityWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckHaPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckHttpAgentWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckHttpAgent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckHttpGetWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckHttpGet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckHttpMatchWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckHttpMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckInternetServiceIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckIntervalWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckMembersWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkHealthCheckName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckNameWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckPacketSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckPacketSizeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkHealthCheckPasswordWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckPortWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckProbePacketsWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckProbePackets(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckProbeTimeoutWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckProbeTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckProtocolWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckRecoverytimeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckRecoverytime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSecurityModeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSecurityMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckServerWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSla(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2460,27 +2460,27 @@ func expandWantempSystemVirtualWanLinkHealthCheckSlaWsva(d *schema.ResourceData,
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaIdWsva(d, i["id"], pre_append)
+			tmp["id"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["jitter-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThresholdWsva(d, i["jitter_threshold"], pre_append)
+			tmp["jitter-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(d, i["jitter_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["latency-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThresholdWsva(d, i["latency_threshold"], pre_append)
+			tmp["latency-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(d, i["latency_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["link-cost-factor"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactorWsva(d, i["link_cost_factor"], pre_append)
+			tmp["link-cost-factor"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(d, i["link_cost_factor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packetloss_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["packetloss-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsva(d, i["packetloss_threshold"], pre_append)
+			tmp["packetloss-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(d, i["packetloss_threshold"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2493,71 +2493,71 @@ func expandWantempSystemVirtualWanLinkHealthCheckSlaWsva(d *schema.ResourceData,
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaJitterThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaLatencyThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactorWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaLinkCostFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriodWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaFailLogPeriod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriodWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckSlaPassLogPeriod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitterWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertJitter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatencyWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertLatency(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketlossWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdAlertPacketloss(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitterWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningJitter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatencyWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningLatency(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketlossWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckThresholdWarningPacketloss(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterfaceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckUpdateCascadeInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkHealthCheckUpdateStaticRouteWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkHealthCheckUpdateStaticRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkLoadBalanceModeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkLoadBalanceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2573,77 +2573,77 @@ func expandWantempSystemVirtualWanLinkMembersWsva(d *schema.ResourceData, v inte
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dynamic_member"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_dynamic-member"], _ = expandWantempSystemVirtualWanLinkMembersDynamicMemberWsva(d, i["_dynamic_member"], pre_append)
+			tmp["_dynamic-member"], _ = expandWantempSystemVirtualWanLinkMembersDynamicMember(d, i["_dynamic_member"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["comment"], _ = expandWantempSystemVirtualWanLinkMembersCommentWsva(d, i["comment"], pre_append)
+			tmp["comment"], _ = expandWantempSystemVirtualWanLinkMembersComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cost"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["cost"], _ = expandWantempSystemVirtualWanLinkMembersCostWsva(d, i["cost"], pre_append)
+			tmp["cost"], _ = expandWantempSystemVirtualWanLinkMembersCost(d, i["cost"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["gateway"], _ = expandWantempSystemVirtualWanLinkMembersGatewayWsva(d, i["gateway"], pre_append)
+			tmp["gateway"], _ = expandWantempSystemVirtualWanLinkMembersGateway(d, i["gateway"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["gateway6"], _ = expandWantempSystemVirtualWanLinkMembersGateway6Wsva(d, i["gateway6"], pre_append)
+			tmp["gateway6"], _ = expandWantempSystemVirtualWanLinkMembersGateway6(d, i["gateway6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ingress_spillover_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ingress-spillover-threshold"], _ = expandWantempSystemVirtualWanLinkMembersIngressSpilloverThresholdWsva(d, i["ingress_spillover_threshold"], pre_append)
+			tmp["ingress-spillover-threshold"], _ = expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(d, i["ingress_spillover_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["interface"], _ = expandWantempSystemVirtualWanLinkMembersInterfaceWsva(d, i["interface"], pre_append)
+			tmp["interface"], _ = expandWantempSystemVirtualWanLinkMembersInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["priority"], _ = expandWantempSystemVirtualWanLinkMembersPriorityWsva(d, i["priority"], pre_append)
+			tmp["priority"], _ = expandWantempSystemVirtualWanLinkMembersPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq_num"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["seq-num"], _ = expandWantempSystemVirtualWanLinkMembersSeqNumWsva(d, i["seq_num"], pre_append)
+			tmp["seq-num"], _ = expandWantempSystemVirtualWanLinkMembersSeqNum(d, i["seq_num"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["source"], _ = expandWantempSystemVirtualWanLinkMembersSourceWsva(d, i["source"], pre_append)
+			tmp["source"], _ = expandWantempSystemVirtualWanLinkMembersSource(d, i["source"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["source6"], _ = expandWantempSystemVirtualWanLinkMembersSource6Wsva(d, i["source6"], pre_append)
+			tmp["source6"], _ = expandWantempSystemVirtualWanLinkMembersSource6(d, i["source6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "spillover_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["spillover-threshold"], _ = expandWantempSystemVirtualWanLinkMembersSpilloverThresholdWsva(d, i["spillover_threshold"], pre_append)
+			tmp["spillover-threshold"], _ = expandWantempSystemVirtualWanLinkMembersSpilloverThreshold(d, i["spillover_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["status"], _ = expandWantempSystemVirtualWanLinkMembersStatusWsva(d, i["status"], pre_append)
+			tmp["status"], _ = expandWantempSystemVirtualWanLinkMembersStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "volume_ratio"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["volume-ratio"], _ = expandWantempSystemVirtualWanLinkMembersVolumeRatioWsva(d, i["volume_ratio"], pre_append)
+			tmp["volume-ratio"], _ = expandWantempSystemVirtualWanLinkMembersVolumeRatio(d, i["volume_ratio"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["weight"], _ = expandWantempSystemVirtualWanLinkMembersWeightWsva(d, i["weight"], pre_append)
+			tmp["weight"], _ = expandWantempSystemVirtualWanLinkMembersWeight(d, i["weight"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2656,67 +2656,67 @@ func expandWantempSystemVirtualWanLinkMembersWsva(d *schema.ResourceData, v inte
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersDynamicMemberWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersDynamicMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersCommentWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersCostWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersCost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersGatewayWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersGateway6Wsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersGateway6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersInterfaceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersPriorityWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSeqNumWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSeqNum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSourceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSource6Wsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSource6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersSpilloverThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersStatusWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersVolumeRatioWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersVolumeRatio(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkMembersWeightWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkMembersWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2732,27 +2732,27 @@ func expandWantempSystemVirtualWanLinkNeighborWsva(d *schema.ResourceData, v int
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkNeighborHealthCheckWsva(d, i["health_check"], pre_append)
+			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkNeighborHealthCheck(d, i["health_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandWantempSystemVirtualWanLinkNeighborIpWsva(d, i["ip"], pre_append)
+			tmp["ip"], _ = expandWantempSystemVirtualWanLinkNeighborIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["member"], _ = expandWantempSystemVirtualWanLinkNeighborMemberWsva(d, i["member"], pre_append)
+			tmp["member"], _ = expandWantempSystemVirtualWanLinkNeighborMember(d, i["member"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["role"], _ = expandWantempSystemVirtualWanLinkNeighborRoleWsva(d, i["role"], pre_append)
+			tmp["role"], _ = expandWantempSystemVirtualWanLinkNeighborRole(d, i["role"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sla-id"], _ = expandWantempSystemVirtualWanLinkNeighborSlaIdWsva(d, i["sla_id"], pre_append)
+			tmp["sla-id"], _ = expandWantempSystemVirtualWanLinkNeighborSlaId(d, i["sla_id"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2765,39 +2765,39 @@ func expandWantempSystemVirtualWanLinkNeighborWsva(d *schema.ResourceData, v int
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborHealthCheckWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborIpWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborMemberWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborRoleWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborSlaIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborHoldBootTimeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborHoldBootTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborHoldDownWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborHoldDown(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkNeighborHoldDownTimeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkNeighborHoldDownTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -2813,207 +2813,207 @@ func expandWantempSystemVirtualWanLinkServiceWsva(d *schema.ResourceData, v inte
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["addr-mode"], _ = expandWantempSystemVirtualWanLinkServiceAddrModeWsva(d, i["addr_mode"], pre_append)
+			tmp["addr-mode"], _ = expandWantempSystemVirtualWanLinkServiceAddrMode(d, i["addr_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["bandwidth-weight"], _ = expandWantempSystemVirtualWanLinkServiceBandwidthWeightWsva(d, i["bandwidth_weight"], pre_append)
+			tmp["bandwidth-weight"], _ = expandWantempSystemVirtualWanLinkServiceBandwidthWeight(d, i["bandwidth_weight"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "default"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["default"], _ = expandWantempSystemVirtualWanLinkServiceDefaultWsva(d, i["default"], pre_append)
+			tmp["default"], _ = expandWantempSystemVirtualWanLinkServiceDefault(d, i["default"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_forward"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dscp-forward"], _ = expandWantempSystemVirtualWanLinkServiceDscpForwardWsva(d, i["dscp_forward"], pre_append)
+			tmp["dscp-forward"], _ = expandWantempSystemVirtualWanLinkServiceDscpForward(d, i["dscp_forward"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_forward_tag"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dscp-forward-tag"], _ = expandWantempSystemVirtualWanLinkServiceDscpForwardTagWsva(d, i["dscp_forward_tag"], pre_append)
+			tmp["dscp-forward-tag"], _ = expandWantempSystemVirtualWanLinkServiceDscpForwardTag(d, i["dscp_forward_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_reverse"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dscp-reverse"], _ = expandWantempSystemVirtualWanLinkServiceDscpReverseWsva(d, i["dscp_reverse"], pre_append)
+			tmp["dscp-reverse"], _ = expandWantempSystemVirtualWanLinkServiceDscpReverse(d, i["dscp_reverse"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp_reverse_tag"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dscp-reverse-tag"], _ = expandWantempSystemVirtualWanLinkServiceDscpReverseTagWsva(d, i["dscp_reverse_tag"], pre_append)
+			tmp["dscp-reverse-tag"], _ = expandWantempSystemVirtualWanLinkServiceDscpReverseTag(d, i["dscp_reverse_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dst"], _ = expandWantempSystemVirtualWanLinkServiceDstWsva(d, i["dst"], pre_append)
+			tmp["dst"], _ = expandWantempSystemVirtualWanLinkServiceDst(d, i["dst"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst_negate"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dst-negate"], _ = expandWantempSystemVirtualWanLinkServiceDstNegateWsva(d, i["dst_negate"], pre_append)
+			tmp["dst-negate"], _ = expandWantempSystemVirtualWanLinkServiceDstNegate(d, i["dst_negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dst6"], _ = expandWantempSystemVirtualWanLinkServiceDst6Wsva(d, i["dst6"], pre_append)
+			tmp["dst6"], _ = expandWantempSystemVirtualWanLinkServiceDst6(d, i["dst6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["end-port"], _ = expandWantempSystemVirtualWanLinkServiceEndPortWsva(d, i["end_port"], pre_append)
+			tmp["end-port"], _ = expandWantempSystemVirtualWanLinkServiceEndPort(d, i["end_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["gateway"], _ = expandWantempSystemVirtualWanLinkServiceGatewayWsva(d, i["gateway"], pre_append)
+			tmp["gateway"], _ = expandWantempSystemVirtualWanLinkServiceGateway(d, i["gateway"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "groups"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["groups"], _ = expandWantempSystemVirtualWanLinkServiceGroupsWsva(d, i["groups"], pre_append)
+			tmp["groups"], _ = expandWantempSystemVirtualWanLinkServiceGroups(d, i["groups"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkServiceHealthCheckWsva(d, i["health_check"], pre_append)
+			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkServiceHealthCheck(d, i["health_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "hold_down_time"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["hold-down-time"], _ = expandWantempSystemVirtualWanLinkServiceHoldDownTimeWsva(d, i["hold_down_time"], pre_append)
+			tmp["hold-down-time"], _ = expandWantempSystemVirtualWanLinkServiceHoldDownTime(d, i["hold_down_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceIdWsva(d, i["id"], pre_append)
+			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "input_device"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["input-device"], _ = expandWantempSystemVirtualWanLinkServiceInputDeviceWsva(d, i["input_device"], pre_append)
+			tmp["input-device"], _ = expandWantempSystemVirtualWanLinkServiceInputDevice(d, i["input_device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "input_device_negate"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["input-device-negate"], _ = expandWantempSystemVirtualWanLinkServiceInputDeviceNegateWsva(d, i["input_device_negate"], pre_append)
+			tmp["input-device-negate"], _ = expandWantempSystemVirtualWanLinkServiceInputDeviceNegate(d, i["input_device_negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceWsva(d, i["internet_service"], pre_append)
+			tmp["internet-service"], _ = expandWantempSystemVirtualWanLinkServiceInternetService(d, i["internet_service"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_ctrl"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-ctrl"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlWsva(d, i["internet_service_ctrl"], pre_append)
+			tmp["internet-service-ctrl"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCtrl(d, i["internet_service_ctrl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_ctrl_group"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-ctrl-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroupWsva(d, i["internet_service_ctrl_group"], pre_append)
+			tmp["internet-service-ctrl-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroup(d, i["internet_service_ctrl_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_app_ctrl"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-app-ctrl"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlWsva(d, i["internet_service_app_ctrl"], pre_append)
+			tmp["internet-service-app-ctrl"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrl(d, i["internet_service_app_ctrl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_app_ctrl_group"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-app-ctrl-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroupWsva(d, i["internet_service_app_ctrl_group"], pre_append)
+			tmp["internet-service-app-ctrl-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroup(d, i["internet_service_app_ctrl_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_custom"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-custom"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCustomWsva(d, i["internet_service_custom"], pre_append)
+			tmp["internet-service-custom"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCustom(d, i["internet_service_custom"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_custom_group"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-custom-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCustomGroupWsva(d, i["internet_service_custom_group"], pre_append)
+			tmp["internet-service-custom-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceCustomGroup(d, i["internet_service_custom_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_group"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceGroupWsva(d, i["internet_service_group"], pre_append)
+			tmp["internet-service-group"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceGroup(d, i["internet_service_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "internet_service_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["internet-service-id"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceIdWsva(d, i["internet_service_id"], pre_append)
+			tmp["internet-service-id"], _ = expandWantempSystemVirtualWanLinkServiceInternetServiceId(d, i["internet_service_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "jitter_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["jitter-weight"], _ = expandWantempSystemVirtualWanLinkServiceJitterWeightWsva(d, i["jitter_weight"], pre_append)
+			tmp["jitter-weight"], _ = expandWantempSystemVirtualWanLinkServiceJitterWeight(d, i["jitter_weight"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["latency-weight"], _ = expandWantempSystemVirtualWanLinkServiceLatencyWeightWsva(d, i["latency_weight"], pre_append)
+			tmp["latency-weight"], _ = expandWantempSystemVirtualWanLinkServiceLatencyWeight(d, i["latency_weight"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_factor"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["link-cost-factor"], _ = expandWantempSystemVirtualWanLinkServiceLinkCostFactorWsva(d, i["link_cost_factor"], pre_append)
+			tmp["link-cost-factor"], _ = expandWantempSystemVirtualWanLinkServiceLinkCostFactor(d, i["link_cost_factor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "link_cost_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["link-cost-threshold"], _ = expandWantempSystemVirtualWanLinkServiceLinkCostThresholdWsva(d, i["link_cost_threshold"], pre_append)
+			tmp["link-cost-threshold"], _ = expandWantempSystemVirtualWanLinkServiceLinkCostThreshold(d, i["link_cost_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["member"], _ = expandWantempSystemVirtualWanLinkServiceMemberWsva(d, i["member"], pre_append)
+			tmp["member"], _ = expandWantempSystemVirtualWanLinkServiceMember(d, i["member"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["mode"], _ = expandWantempSystemVirtualWanLinkServiceModeWsva(d, i["mode"], pre_append)
+			tmp["mode"], _ = expandWantempSystemVirtualWanLinkServiceMode(d, i["mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["name"], _ = expandWantempSystemVirtualWanLinkServiceNameWsva(d, i["name"], pre_append)
+			tmp["name"], _ = expandWantempSystemVirtualWanLinkServiceName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["packet-loss-weight"], _ = expandWantempSystemVirtualWanLinkServicePacketLossWeightWsva(d, i["packet_loss_weight"], pre_append)
+			tmp["packet-loss-weight"], _ = expandWantempSystemVirtualWanLinkServicePacketLossWeight(d, i["packet_loss_weight"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority_members"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["priority-members"], _ = expandWantempSystemVirtualWanLinkServicePriorityMembersWsva(d, i["priority_members"], pre_append)
+			tmp["priority-members"], _ = expandWantempSystemVirtualWanLinkServicePriorityMembers(d, i["priority_members"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["protocol"], _ = expandWantempSystemVirtualWanLinkServiceProtocolWsva(d, i["protocol"], pre_append)
+			tmp["protocol"], _ = expandWantempSystemVirtualWanLinkServiceProtocol(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quality_link"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["quality-link"], _ = expandWantempSystemVirtualWanLinkServiceQualityLinkWsva(d, i["quality_link"], pre_append)
+			tmp["quality-link"], _ = expandWantempSystemVirtualWanLinkServiceQualityLink(d, i["quality_link"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["role"], _ = expandWantempSystemVirtualWanLinkServiceRoleWsva(d, i["role"], pre_append)
+			tmp["role"], _ = expandWantempSystemVirtualWanLinkServiceRole(d, i["role"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["route-tag"], _ = expandWantempSystemVirtualWanLinkServiceRouteTagWsva(d, i["route_tag"], pre_append)
+			tmp["route-tag"], _ = expandWantempSystemVirtualWanLinkServiceRouteTag(d, i["route_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			t, err := expandWantempSystemVirtualWanLinkServiceSlaWsva(d, i["sla"], pre_append)
+			t, err := expandWantempSystemVirtualWanLinkServiceSla(d, i["sla"], pre_append)
 			if err != nil {
 				return result, err
 			} else if t != nil {
@@ -3023,52 +3023,52 @@ func expandWantempSystemVirtualWanLinkServiceWsva(d *schema.ResourceData, v inte
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sla_compare_method"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sla-compare-method"], _ = expandWantempSystemVirtualWanLinkServiceSlaCompareMethodWsva(d, i["sla_compare_method"], pre_append)
+			tmp["sla-compare-method"], _ = expandWantempSystemVirtualWanLinkServiceSlaCompareMethod(d, i["sla_compare_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["src"], _ = expandWantempSystemVirtualWanLinkServiceSrcWsva(d, i["src"], pre_append)
+			tmp["src"], _ = expandWantempSystemVirtualWanLinkServiceSrc(d, i["src"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_negate"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["src-negate"], _ = expandWantempSystemVirtualWanLinkServiceSrcNegateWsva(d, i["src_negate"], pre_append)
+			tmp["src-negate"], _ = expandWantempSystemVirtualWanLinkServiceSrcNegate(d, i["src_negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src6"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["src6"], _ = expandWantempSystemVirtualWanLinkServiceSrc6Wsva(d, i["src6"], pre_append)
+			tmp["src6"], _ = expandWantempSystemVirtualWanLinkServiceSrc6(d, i["src6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "standalone_action"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["standalone-action"], _ = expandWantempSystemVirtualWanLinkServiceStandaloneActionWsva(d, i["standalone_action"], pre_append)
+			tmp["standalone-action"], _ = expandWantempSystemVirtualWanLinkServiceStandaloneAction(d, i["standalone_action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["start-port"], _ = expandWantempSystemVirtualWanLinkServiceStartPortWsva(d, i["start_port"], pre_append)
+			tmp["start-port"], _ = expandWantempSystemVirtualWanLinkServiceStartPort(d, i["start_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["status"], _ = expandWantempSystemVirtualWanLinkServiceStatusWsva(d, i["status"], pre_append)
+			tmp["status"], _ = expandWantempSystemVirtualWanLinkServiceStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["tos"], _ = expandWantempSystemVirtualWanLinkServiceTosWsva(d, i["tos"], pre_append)
+			tmp["tos"], _ = expandWantempSystemVirtualWanLinkServiceTos(d, i["tos"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos_mask"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["tos-mask"], _ = expandWantempSystemVirtualWanLinkServiceTosMaskWsva(d, i["tos_mask"], pre_append)
+			tmp["tos-mask"], _ = expandWantempSystemVirtualWanLinkServiceTosMask(d, i["tos_mask"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "users"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["users"], _ = expandWantempSystemVirtualWanLinkServiceUsersWsva(d, i["users"], pre_append)
+			tmp["users"], _ = expandWantempSystemVirtualWanLinkServiceUsers(d, i["users"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -3081,167 +3081,167 @@ func expandWantempSystemVirtualWanLinkServiceWsva(d *schema.ResourceData, v inte
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceAddrModeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceAddrMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceBandwidthWeightWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceBandwidthWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDefaultWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDefault(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDscpForwardWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDscpForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDscpForwardTagWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDscpForwardTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDscpReverseWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDscpReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDscpReverseTagWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDscpReverseTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDstWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceDstNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDstNegateWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceDst6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceEndPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceDst6Wsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceEndPortWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceGatewayWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceHoldDownTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceGroupsWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceHealthCheckWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceInputDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceInputDeviceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceHoldDownTimeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceInternetService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceInputDeviceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceInputDeviceNegateWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceInternetServiceWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceInternetServiceCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroupWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemVirtualWanLinkServiceInternetServiceCtrlGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroupWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceInternetServiceAppCtrlGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceInternetServiceCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceInternetServiceCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceInternetServiceGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceJitterWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceCustomWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceLatencyWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceCustomGroupWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceLinkCostFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceGroupWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceLinkCostThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceInternetServiceIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceJitterWeightWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceLatencyWeightWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceLinkCostFactorWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServicePacketLossWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceLinkCostThresholdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServicePriorityMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceMemberWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceQualityLink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceModeWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceNameWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceRouteTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServicePacketLossWeightWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServicePriorityMembersWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceProtocolWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceQualityLinkWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceRoleWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceRouteTagWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceSlaWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSla(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -3257,12 +3257,12 @@ func expandWantempSystemVirtualWanLinkServiceSlaWsva(d *schema.ResourceData, v i
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkServiceSlaHealthCheckWsva(d, i["health_check"], pre_append)
+			tmp["health-check"], _ = expandWantempSystemVirtualWanLinkServiceSlaHealthCheck(d, i["health_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceSlaIdWsva(d, i["id"], pre_append)
+			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceSlaId(d, i["id"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -3275,55 +3275,55 @@ func expandWantempSystemVirtualWanLinkServiceSlaWsva(d *schema.ResourceData, v i
 	return result, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSlaHealthCheckWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSlaHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSlaIdWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSlaCompareMethodWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSlaCompareMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSrcWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceSrcNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSrcNegateWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceSrc6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandWantempSystemVirtualWanLinkServiceStandaloneAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceSrc6Wsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceStartPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceStandaloneActionWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceStartPortWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceTos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceStatusWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkServiceTosMask(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceTosWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+func expandWantempSystemVirtualWanLinkServiceUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
-func expandWantempSystemVirtualWanLinkServiceTosMaskWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkServiceUsersWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandWantempSystemVirtualWanLinkStatusWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandWantempSystemVirtualWanLinkStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3331,7 +3331,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fail_alert_interfaces"); ok || d.HasChange("fail_alert_interfaces") {
-		t, err := expandWantempSystemVirtualWanLinkFailAlertInterfacesWsva(d, v, "fail_alert_interfaces")
+		t, err := expandWantempSystemVirtualWanLinkFailAlertInterfaces(d, v, "fail_alert_interfaces")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3340,7 +3340,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("fail_detect"); ok || d.HasChange("fail_detect") {
-		t, err := expandWantempSystemVirtualWanLinkFailDetectWsva(d, v, "fail_detect")
+		t, err := expandWantempSystemVirtualWanLinkFailDetect(d, v, "fail_detect")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3349,7 +3349,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheckWsva(d, v, "health_check")
+		t, err := expandWantempSystemVirtualWanLinkHealthCheck(d, v, "health_check")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3358,7 +3358,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("load_balance_mode"); ok || d.HasChange("load_balance_mode") {
-		t, err := expandWantempSystemVirtualWanLinkLoadBalanceModeWsva(d, v, "load_balance_mode")
+		t, err := expandWantempSystemVirtualWanLinkLoadBalanceMode(d, v, "load_balance_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3367,7 +3367,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
-		t, err := expandWantempSystemVirtualWanLinkMembersWsva(d, v, "members")
+		t, err := expandWantempSystemVirtualWanLinkMembers(d, v, "members")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3376,7 +3376,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("neighbor"); ok || d.HasChange("neighbor") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborWsva(d, v, "neighbor")
+		t, err := expandWantempSystemVirtualWanLinkNeighbor(d, v, "neighbor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3385,7 +3385,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("neighbor_hold_boot_time"); ok || d.HasChange("neighbor_hold_boot_time") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborHoldBootTimeWsva(d, v, "neighbor_hold_boot_time")
+		t, err := expandWantempSystemVirtualWanLinkNeighborHoldBootTime(d, v, "neighbor_hold_boot_time")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3394,7 +3394,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("neighbor_hold_down"); ok || d.HasChange("neighbor_hold_down") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborHoldDownWsva(d, v, "neighbor_hold_down")
+		t, err := expandWantempSystemVirtualWanLinkNeighborHoldDown(d, v, "neighbor_hold_down")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3403,7 +3403,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("neighbor_hold_down_time"); ok || d.HasChange("neighbor_hold_down_time") {
-		t, err := expandWantempSystemVirtualWanLinkNeighborHoldDownTimeWsva(d, v, "neighbor_hold_down_time")
+		t, err := expandWantempSystemVirtualWanLinkNeighborHoldDownTime(d, v, "neighbor_hold_down_time")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3412,7 +3412,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
-		t, err := expandWantempSystemVirtualWanLinkServiceWsva(d, v, "service")
+		t, err := expandWantempSystemVirtualWanLinkService(d, v, "service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3421,7 +3421,7 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandWantempSystemVirtualWanLinkStatusWsva(d, v, "status")
+		t, err := expandWantempSystemVirtualWanLinkStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

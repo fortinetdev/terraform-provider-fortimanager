@@ -55,30 +55,24 @@ func expandStringList(c []interface{}) []string {
 
 func flattenStringList(v interface{}) interface{} {
 	if v == nil {
-		return nil
+		return v
 	}
-
-	if v1, ok := v.(string); ok {
-		result := make([]string, 0, 1)
-		v1_list := strings.Split(v1, ",")
-		for _, ele := range v1_list {
-			ele_content := strings.TrimSpace(ele)
-			result = append(result, ele_content)
+	vsList := []string{}
+	if cv, ok := v.(string); ok {
+		vsList = strings.Split(cv, ",")
+	} else if vList, ok := v.([]interface{}); ok {
+		for _, item := range vList {
+			vsList = append(vsList, fmt.Sprintf("%v", item))
 		}
-		return result
+	}
+	if len(vsList) == 0 {
+		return vsList
+	}
+	for i, item := range vsList {
+		vsList[i] = strings.TrimSpace(item)
 	}
 
-	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil
-	}
-
-	result := make([]string, 0, len(l))
-
-	for _, r := range l {
-		result = append(result, fortiStringValue(r))
-	}
-	return result
+	return vsList
 }
 
 func expandIntegerList(c []interface{}) []int {
@@ -383,7 +377,7 @@ func conv2str(v interface{}) interface{} {
 	if _, ok := v.(string); ok {
 		return v
 	} else if _, ok := v.([]interface{}); ok {
-		return convintflist2str(v)
+		return convintflist2str(v, nil)
 	} else if v1, ok := v.(float64); ok {
 		return strconv.FormatFloat(v1, 'f', -1, 64)
 	} else if v1, ok := v.(int); ok {
@@ -407,36 +401,63 @@ func conv2num(v interface{}) interface{} {
 	return v
 }
 
-func convintflist2str(v interface{}) interface{} {
-	res := ""
-	if t, ok := v.([]interface{}); ok {
-		if len(t) == 0 {
-			return res
+func convintflist2str(v, tfv interface{}) interface{} {
+	if vList, ok := v.([]interface{}); ok {
+		if len(vList) == 0 {
+			return ""
 		}
-
-		bFirst := true
-		for _, v1 := range t {
-			curVal := ""
-			if t1, ok := v1.(float64); ok {
-				curVal = strconv.FormatFloat(t1, 'f', -1, 64)
-			} else if t1, ok := v1.(int); ok {
-				curVal = strconv.FormatInt(int64(t1), 10)
-			} else if t1, ok := v1.(string); ok {
-				curVal = t1
-			} else {
-				continue
+		vsList := make([]string, len(vList))
+		for i, item := range vList {
+			vsList[i] = strings.TrimSpace(fmt.Sprintf("%v", item))
+		}
+		if tfv != nil {
+			if tfvs := fmt.Sprintf("%v", tfv); tfvs != "" {
+				tfvList := strings.Split(tfvs, ",")
+				if len(tfvList) == len(vsList) {
+					for i, s := range tfvList {
+						tfvList[i] = strings.TrimSpace(s)
+					}
+					tfvDict := make(map[string]bool)
+					for _, item := range tfvList {
+						tfvDict[item] = true
+					}
+					for _, item := range vsList {
+						if _, ok := tfvDict[item]; !ok {
+							return strings.Join(vsList[:], ", ")
+						}
+					}
+					return tfv
+				}
 			}
+			return strings.Join(vsList[:], ", ")
+		}
+	}
+	return ""
+}
 
-			if bFirst == true {
-				res += curVal
-				bFirst = false
-			} else {
-				res += " "
-				res += curVal
+func convstr2list(v, tfv interface{}) interface{} {
+	if v == nil {
+		return v
+	}
+	vsList := flattenStringList(v).([]string)
+	if tfv != nil {
+		if tfvList, ok := tfv.([]interface{}); ok {
+			if len(tfvList) == len(vsList) {
+				tfvDict := make(map[string]bool)
+				for _, item := range tfvList {
+					tfvDict[strings.TrimSpace(fmt.Sprintf("%v", item))] = true
+				}
+				for _, item := range vsList {
+					if _, ok := tfvDict[item]; !ok {
+						return vsList
+					}
+				}
+				return tfv
 			}
 		}
 	}
-	return res
+
+	return vsList
 }
 
 func convstrlist2str(v interface{}) interface{} {

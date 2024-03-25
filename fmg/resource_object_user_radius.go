@@ -556,6 +556,10 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"switch_controller_nas_ip_dynamic": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"switch_controller_service_type": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -778,6 +782,11 @@ func resourceObjectUserRadius() *schema.Resource {
 			},
 			"switch_controller_acct_fast_framedip_detect": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"switch_controller_nas_ip_dynamic": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -1614,6 +1623,12 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["switch_controller_acct_fast_framedip_detect"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SwitchControllerAcctFastFramedipDetect")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_nas_ip_dynamic"
+		if _, ok := i["switch-controller-nas-ip-dynamic"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingSwitchControllerNasIpDynamic(i["switch-controller-nas-ip-dynamic"], d, pre_append)
+			tmp["switch_controller_nas_ip_dynamic"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SwitchControllerNasIpDynamic")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_service_type"
 		if _, ok := i["switch-controller-service-type"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingSwitchControllerServiceType(i["switch-controller-service-type"], d, pre_append)
@@ -1821,7 +1836,7 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerId(v interface{}, d *s
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1865,7 +1880,7 @@ func flattenObjectUserRadiusDynamicMappingAuthType(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserRadiusDynamicMappingCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusDynamicMappingCallStationIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1877,7 +1892,7 @@ func flattenObjectUserRadiusDynamicMappingClass(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserRadiusDynamicMappingClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusDynamicMappingDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2021,7 +2036,7 @@ func flattenObjectUserRadiusDynamicMappingH3CCompatibility(v interface{}, d *sch
 }
 
 func flattenObjectUserRadiusDynamicMappingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2157,6 +2172,10 @@ func flattenObjectUserRadiusDynamicMappingStatusTtl(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserRadiusDynamicMappingSwitchControllerAcctFastFramedipDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingSwitchControllerNasIpDynamic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2345,6 +2364,10 @@ func flattenObjectUserRadiusStatusTtl(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserRadiusSwitchControllerAcctFastFramedipDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusSwitchControllerNasIpDynamic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2906,6 +2929,16 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading switch_controller_acct_fast_framedip_detect: %v", err)
+		}
+	}
+
+	if err = d.Set("switch_controller_nas_ip_dynamic", flattenObjectUserRadiusSwitchControllerNasIpDynamic(o["switch-controller-nas-ip-dynamic"], d, "switch_controller_nas_ip_dynamic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["switch-controller-nas-ip-dynamic"], "ObjectUserRadius-SwitchControllerNasIpDynamic"); ok {
+			if err = d.Set("switch_controller_nas_ip_dynamic", vv); err != nil {
+				return fmt.Errorf("Error reading switch_controller_nas_ip_dynamic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading switch_controller_nas_ip_dynamic: %v", err)
 		}
 	}
 
@@ -3562,6 +3595,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["switch-controller-acct-fast-framedip-detect"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerAcctFastFramedipDetect(d, i["switch_controller_acct_fast_framedip_detect"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_nas_ip_dynamic"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["switch-controller-nas-ip-dynamic"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerNasIpDynamic(d, i["switch_controller_nas_ip_dynamic"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_service_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["switch-controller-service-type"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerServiceType(d, i["switch_controller_service_type"], pre_append)
@@ -3736,7 +3774,7 @@ func expandObjectUserRadiusDynamicMappingAccountingServerId(d *schema.ResourceDa
 }
 
 func expandObjectUserRadiusDynamicMappingAccountingServerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusDynamicMappingAccountingServerInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3780,7 +3818,7 @@ func expandObjectUserRadiusDynamicMappingAuthType(d *schema.ResourceData, v inte
 }
 
 func expandObjectUserRadiusDynamicMappingCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusDynamicMappingCallStationIdType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3792,7 +3830,7 @@ func expandObjectUserRadiusDynamicMappingClass(d *schema.ResourceData, v interfa
 }
 
 func expandObjectUserRadiusDynamicMappingClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusDynamicMappingDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3936,7 +3974,7 @@ func expandObjectUserRadiusDynamicMappingH3CCompatibility(d *schema.ResourceData
 }
 
 func expandObjectUserRadiusDynamicMappingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4072,6 +4110,10 @@ func expandObjectUserRadiusDynamicMappingStatusTtl(d *schema.ResourceData, v int
 }
 
 func expandObjectUserRadiusDynamicMappingSwitchControllerAcctFastFramedipDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingSwitchControllerNasIpDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4260,6 +4302,10 @@ func expandObjectUserRadiusStatusTtl(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectUserRadiusSwitchControllerAcctFastFramedipDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusSwitchControllerNasIpDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4754,6 +4800,15 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["switch-controller-acct-fast-framedip-detect"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("switch_controller_nas_ip_dynamic"); ok || d.HasChange("switch_controller_nas_ip_dynamic") {
+		t, err := expandObjectUserRadiusSwitchControllerNasIpDynamic(d, v, "switch_controller_nas_ip_dynamic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["switch-controller-nas-ip-dynamic"] = t
 		}
 	}
 

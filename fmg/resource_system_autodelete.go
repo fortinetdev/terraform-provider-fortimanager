@@ -231,7 +231,7 @@ func resourceSystemAutoDeleteRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionSaa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletion(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -242,45 +242,45 @@ func flattenSystemAutoDeleteDlpFilesAutoDeletionSaa(v interface{}, d *schema.Res
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := i["retention"]; ok {
-		result["retention"] = flattenSystemAutoDeleteDlpFilesAutoDeletionRetentionSaa(i["retention"], d, pre_append)
+		result["retention"] = flattenSystemAutoDeleteDlpFilesAutoDeletionRetention(i["retention"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "runat"
 	if _, ok := i["runat"]; ok {
-		result["runat"] = flattenSystemAutoDeleteDlpFilesAutoDeletionRunatSaa(i["runat"], d, pre_append)
+		result["runat"] = flattenSystemAutoDeleteDlpFilesAutoDeletionRunat(i["runat"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenSystemAutoDeleteDlpFilesAutoDeletionStatusSaa(i["status"], d, pre_append)
+		result["status"] = flattenSystemAutoDeleteDlpFilesAutoDeletionStatus(i["status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "value"
 	if _, ok := i["value"]; ok {
-		result["value"] = flattenSystemAutoDeleteDlpFilesAutoDeletionValueSaa(i["value"], d, pre_append)
+		result["value"] = flattenSystemAutoDeleteDlpFilesAutoDeletionValue(i["value"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionRunatSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteDlpFilesAutoDeletionValueSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteDlpFilesAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionSaa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemAutoDeleteLogAutoDeletion(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -291,45 +291,45 @@ func flattenSystemAutoDeleteLogAutoDeletionSaa(v interface{}, d *schema.Resource
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := i["retention"]; ok {
-		result["retention"] = flattenSystemAutoDeleteLogAutoDeletionRetentionSaa(i["retention"], d, pre_append)
+		result["retention"] = flattenSystemAutoDeleteLogAutoDeletionRetention(i["retention"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "runat"
 	if _, ok := i["runat"]; ok {
-		result["runat"] = flattenSystemAutoDeleteLogAutoDeletionRunatSaa(i["runat"], d, pre_append)
+		result["runat"] = flattenSystemAutoDeleteLogAutoDeletionRunat(i["runat"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenSystemAutoDeleteLogAutoDeletionStatusSaa(i["status"], d, pre_append)
+		result["status"] = flattenSystemAutoDeleteLogAutoDeletionStatus(i["status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "value"
 	if _, ok := i["value"]; ok {
-		result["value"] = flattenSystemAutoDeleteLogAutoDeletionValueSaa(i["value"], d, pre_append)
+		result["value"] = flattenSystemAutoDeleteLogAutoDeletionValue(i["value"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionRunatSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteLogAutoDeletionValueSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteLogAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionSaa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletion(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -340,45 +340,45 @@ func flattenSystemAutoDeleteQuarantineFilesAutoDeletionSaa(v interface{}, d *sch
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := i["retention"]; ok {
-		result["retention"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetentionSaa(i["retention"], d, pre_append)
+		result["retention"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention(i["retention"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "runat"
 	if _, ok := i["runat"]; ok {
-		result["runat"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunatSaa(i["runat"], d, pre_append)
+		result["runat"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat(i["runat"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatusSaa(i["status"], d, pre_append)
+		result["status"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus(i["status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "value"
 	if _, ok := i["value"]; ok {
-		result["value"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionValueSaa(i["value"], d, pre_append)
+		result["value"] = flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue(i["value"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunatSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteQuarantineFilesAutoDeletionValueSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteQuarantineFilesAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionSaa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenSystemAutoDeleteReportAutoDeletion(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -389,45 +389,45 @@ func flattenSystemAutoDeleteReportAutoDeletionSaa(v interface{}, d *schema.Resou
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := i["retention"]; ok {
-		result["retention"] = flattenSystemAutoDeleteReportAutoDeletionRetentionSaa(i["retention"], d, pre_append)
+		result["retention"] = flattenSystemAutoDeleteReportAutoDeletionRetention(i["retention"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "runat"
 	if _, ok := i["runat"]; ok {
-		result["runat"] = flattenSystemAutoDeleteReportAutoDeletionRunatSaa(i["runat"], d, pre_append)
+		result["runat"] = flattenSystemAutoDeleteReportAutoDeletionRunat(i["runat"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "status"
 	if _, ok := i["status"]; ok {
-		result["status"] = flattenSystemAutoDeleteReportAutoDeletionStatusSaa(i["status"], d, pre_append)
+		result["status"] = flattenSystemAutoDeleteReportAutoDeletionStatus(i["status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "value"
 	if _, ok := i["value"]; ok {
-		result["value"] = flattenSystemAutoDeleteReportAutoDeletionValueSaa(i["value"], d, pre_append)
+		result["value"] = flattenSystemAutoDeleteReportAutoDeletionValue(i["value"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionRunatSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionRunat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteReportAutoDeletionValueSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteReportAutoDeletionValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenSystemAutoDeleteStatusFakeSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystemAutoDeleteStatusFake(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -435,7 +435,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 	var err error
 
 	if isImportTable() {
-		if err = d.Set("dlp_files_auto_deletion", flattenSystemAutoDeleteDlpFilesAutoDeletionSaa(o["dlp-files-auto-deletion"], d, "dlp_files_auto_deletion")); err != nil {
+		if err = d.Set("dlp_files_auto_deletion", flattenSystemAutoDeleteDlpFilesAutoDeletion(o["dlp-files-auto-deletion"], d, "dlp_files_auto_deletion")); err != nil {
 			if vv, ok := fortiAPIPatch(o["dlp-files-auto-deletion"], "SystemAutoDelete-DlpFilesAutoDeletion"); ok {
 				if err = d.Set("dlp_files_auto_deletion", vv); err != nil {
 					return fmt.Errorf("Error reading dlp_files_auto_deletion: %v", err)
@@ -446,7 +446,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 		}
 	} else {
 		if _, ok := d.GetOk("dlp_files_auto_deletion"); ok {
-			if err = d.Set("dlp_files_auto_deletion", flattenSystemAutoDeleteDlpFilesAutoDeletionSaa(o["dlp-files-auto-deletion"], d, "dlp_files_auto_deletion")); err != nil {
+			if err = d.Set("dlp_files_auto_deletion", flattenSystemAutoDeleteDlpFilesAutoDeletion(o["dlp-files-auto-deletion"], d, "dlp_files_auto_deletion")); err != nil {
 				if vv, ok := fortiAPIPatch(o["dlp-files-auto-deletion"], "SystemAutoDelete-DlpFilesAutoDeletion"); ok {
 					if err = d.Set("dlp_files_auto_deletion", vv); err != nil {
 						return fmt.Errorf("Error reading dlp_files_auto_deletion: %v", err)
@@ -459,7 +459,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 	}
 
 	if isImportTable() {
-		if err = d.Set("log_auto_deletion", flattenSystemAutoDeleteLogAutoDeletionSaa(o["log-auto-deletion"], d, "log_auto_deletion")); err != nil {
+		if err = d.Set("log_auto_deletion", flattenSystemAutoDeleteLogAutoDeletion(o["log-auto-deletion"], d, "log_auto_deletion")); err != nil {
 			if vv, ok := fortiAPIPatch(o["log-auto-deletion"], "SystemAutoDelete-LogAutoDeletion"); ok {
 				if err = d.Set("log_auto_deletion", vv); err != nil {
 					return fmt.Errorf("Error reading log_auto_deletion: %v", err)
@@ -470,7 +470,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 		}
 	} else {
 		if _, ok := d.GetOk("log_auto_deletion"); ok {
-			if err = d.Set("log_auto_deletion", flattenSystemAutoDeleteLogAutoDeletionSaa(o["log-auto-deletion"], d, "log_auto_deletion")); err != nil {
+			if err = d.Set("log_auto_deletion", flattenSystemAutoDeleteLogAutoDeletion(o["log-auto-deletion"], d, "log_auto_deletion")); err != nil {
 				if vv, ok := fortiAPIPatch(o["log-auto-deletion"], "SystemAutoDelete-LogAutoDeletion"); ok {
 					if err = d.Set("log_auto_deletion", vv); err != nil {
 						return fmt.Errorf("Error reading log_auto_deletion: %v", err)
@@ -483,7 +483,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 	}
 
 	if isImportTable() {
-		if err = d.Set("quarantine_files_auto_deletion", flattenSystemAutoDeleteQuarantineFilesAutoDeletionSaa(o["quarantine-files-auto-deletion"], d, "quarantine_files_auto_deletion")); err != nil {
+		if err = d.Set("quarantine_files_auto_deletion", flattenSystemAutoDeleteQuarantineFilesAutoDeletion(o["quarantine-files-auto-deletion"], d, "quarantine_files_auto_deletion")); err != nil {
 			if vv, ok := fortiAPIPatch(o["quarantine-files-auto-deletion"], "SystemAutoDelete-QuarantineFilesAutoDeletion"); ok {
 				if err = d.Set("quarantine_files_auto_deletion", vv); err != nil {
 					return fmt.Errorf("Error reading quarantine_files_auto_deletion: %v", err)
@@ -494,7 +494,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 		}
 	} else {
 		if _, ok := d.GetOk("quarantine_files_auto_deletion"); ok {
-			if err = d.Set("quarantine_files_auto_deletion", flattenSystemAutoDeleteQuarantineFilesAutoDeletionSaa(o["quarantine-files-auto-deletion"], d, "quarantine_files_auto_deletion")); err != nil {
+			if err = d.Set("quarantine_files_auto_deletion", flattenSystemAutoDeleteQuarantineFilesAutoDeletion(o["quarantine-files-auto-deletion"], d, "quarantine_files_auto_deletion")); err != nil {
 				if vv, ok := fortiAPIPatch(o["quarantine-files-auto-deletion"], "SystemAutoDelete-QuarantineFilesAutoDeletion"); ok {
 					if err = d.Set("quarantine_files_auto_deletion", vv); err != nil {
 						return fmt.Errorf("Error reading quarantine_files_auto_deletion: %v", err)
@@ -507,7 +507,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 	}
 
 	if isImportTable() {
-		if err = d.Set("report_auto_deletion", flattenSystemAutoDeleteReportAutoDeletionSaa(o["report-auto-deletion"], d, "report_auto_deletion")); err != nil {
+		if err = d.Set("report_auto_deletion", flattenSystemAutoDeleteReportAutoDeletion(o["report-auto-deletion"], d, "report_auto_deletion")); err != nil {
 			if vv, ok := fortiAPIPatch(o["report-auto-deletion"], "SystemAutoDelete-ReportAutoDeletion"); ok {
 				if err = d.Set("report_auto_deletion", vv); err != nil {
 					return fmt.Errorf("Error reading report_auto_deletion: %v", err)
@@ -518,7 +518,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 		}
 	} else {
 		if _, ok := d.GetOk("report_auto_deletion"); ok {
-			if err = d.Set("report_auto_deletion", flattenSystemAutoDeleteReportAutoDeletionSaa(o["report-auto-deletion"], d, "report_auto_deletion")); err != nil {
+			if err = d.Set("report_auto_deletion", flattenSystemAutoDeleteReportAutoDeletion(o["report-auto-deletion"], d, "report_auto_deletion")); err != nil {
 				if vv, ok := fortiAPIPatch(o["report-auto-deletion"], "SystemAutoDelete-ReportAutoDeletion"); ok {
 					if err = d.Set("report_auto_deletion", vv); err != nil {
 						return fmt.Errorf("Error reading report_auto_deletion: %v", err)
@@ -530,7 +530,7 @@ func refreshObjectSystemAutoDelete(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
-	if err = d.Set("status_fake", flattenSystemAutoDeleteStatusFakeSaa(o["status-fake"], d, "status_fake")); err != nil {
+	if err = d.Set("status_fake", flattenSystemAutoDeleteStatusFake(o["status-fake"], d, "status_fake")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status-fake"], "SystemAutoDelete-StatusFake"); ok {
 			if err = d.Set("status_fake", vv); err != nil {
 				return fmt.Errorf("Error reading status_fake: %v", err)
@@ -549,7 +549,7 @@ func flattenSystemAutoDeleteFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 	log.Printf("ER List: %v", e)
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -561,41 +561,41 @@ func expandSystemAutoDeleteDlpFilesAutoDeletionSaa(d *schema.ResourceData, v int
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["retention"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionRetentionSaa(d, i["retention"], pre_append)
+		result["retention"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionRetention(d, i["retention"], pre_append)
 	}
 	pre_append = pre + ".0." + "runat"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["runat"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionRunatSaa(d, i["runat"], pre_append)
+		result["runat"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionRunat(d, i["runat"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionStatusSaa(d, i["status"], pre_append)
+		result["status"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "value"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["value"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionValueSaa(d, i["value"], pre_append)
+		result["value"], _ = expandSystemAutoDeleteDlpFilesAutoDeletionValue(d, i["value"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionRetentionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionRunatSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionStatusSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteDlpFilesAutoDeletionValueSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteDlpFilesAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -607,41 +607,41 @@ func expandSystemAutoDeleteLogAutoDeletionSaa(d *schema.ResourceData, v interfac
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["retention"], _ = expandSystemAutoDeleteLogAutoDeletionRetentionSaa(d, i["retention"], pre_append)
+		result["retention"], _ = expandSystemAutoDeleteLogAutoDeletionRetention(d, i["retention"], pre_append)
 	}
 	pre_append = pre + ".0." + "runat"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["runat"], _ = expandSystemAutoDeleteLogAutoDeletionRunatSaa(d, i["runat"], pre_append)
+		result["runat"], _ = expandSystemAutoDeleteLogAutoDeletionRunat(d, i["runat"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandSystemAutoDeleteLogAutoDeletionStatusSaa(d, i["status"], pre_append)
+		result["status"], _ = expandSystemAutoDeleteLogAutoDeletionStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "value"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["value"], _ = expandSystemAutoDeleteLogAutoDeletionValueSaa(d, i["value"], pre_append)
+		result["value"], _ = expandSystemAutoDeleteLogAutoDeletionValue(d, i["value"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionRetentionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionRunatSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionStatusSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteLogAutoDeletionValueSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteLogAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -653,41 +653,41 @@ func expandSystemAutoDeleteQuarantineFilesAutoDeletionSaa(d *schema.ResourceData
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["retention"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionRetentionSaa(d, i["retention"], pre_append)
+		result["retention"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention(d, i["retention"], pre_append)
 	}
 	pre_append = pre + ".0." + "runat"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["runat"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionRunatSaa(d, i["runat"], pre_append)
+		result["runat"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat(d, i["runat"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionStatusSaa(d, i["status"], pre_append)
+		result["status"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "value"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["value"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionValueSaa(d, i["value"], pre_append)
+		result["value"], _ = expandSystemAutoDeleteQuarantineFilesAutoDeletionValue(d, i["value"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionRetentionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionRunatSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionStatusSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteQuarantineFilesAutoDeletionValueSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteQuarantineFilesAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -699,41 +699,41 @@ func expandSystemAutoDeleteReportAutoDeletionSaa(d *schema.ResourceData, v inter
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "retention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["retention"], _ = expandSystemAutoDeleteReportAutoDeletionRetentionSaa(d, i["retention"], pre_append)
+		result["retention"], _ = expandSystemAutoDeleteReportAutoDeletionRetention(d, i["retention"], pre_append)
 	}
 	pre_append = pre + ".0." + "runat"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["runat"], _ = expandSystemAutoDeleteReportAutoDeletionRunatSaa(d, i["runat"], pre_append)
+		result["runat"], _ = expandSystemAutoDeleteReportAutoDeletionRunat(d, i["runat"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["status"], _ = expandSystemAutoDeleteReportAutoDeletionStatusSaa(d, i["status"], pre_append)
+		result["status"], _ = expandSystemAutoDeleteReportAutoDeletionStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "value"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["value"], _ = expandSystemAutoDeleteReportAutoDeletionValueSaa(d, i["value"], pre_append)
+		result["value"], _ = expandSystemAutoDeleteReportAutoDeletionValue(d, i["value"], pre_append)
 	}
 
 	return result, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionRetentionSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionRetention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionRunatSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionRunat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionStatusSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteReportAutoDeletionValueSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteReportAutoDeletionValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandSystemAutoDeleteStatusFakeSaa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandSystemAutoDeleteStatusFake(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -741,7 +741,7 @@ func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{},
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dlp_files_auto_deletion"); ok || d.HasChange("dlp_files_auto_deletion") {
-		t, err := expandSystemAutoDeleteDlpFilesAutoDeletionSaa(d, v, "dlp_files_auto_deletion")
+		t, err := expandSystemAutoDeleteDlpFilesAutoDeletion(d, v, "dlp_files_auto_deletion")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -750,7 +750,7 @@ func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{},
 	}
 
 	if v, ok := d.GetOk("log_auto_deletion"); ok || d.HasChange("log_auto_deletion") {
-		t, err := expandSystemAutoDeleteLogAutoDeletionSaa(d, v, "log_auto_deletion")
+		t, err := expandSystemAutoDeleteLogAutoDeletion(d, v, "log_auto_deletion")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -759,7 +759,7 @@ func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{},
 	}
 
 	if v, ok := d.GetOk("quarantine_files_auto_deletion"); ok || d.HasChange("quarantine_files_auto_deletion") {
-		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletionSaa(d, v, "quarantine_files_auto_deletion")
+		t, err := expandSystemAutoDeleteQuarantineFilesAutoDeletion(d, v, "quarantine_files_auto_deletion")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -768,7 +768,7 @@ func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{},
 	}
 
 	if v, ok := d.GetOk("report_auto_deletion"); ok || d.HasChange("report_auto_deletion") {
-		t, err := expandSystemAutoDeleteReportAutoDeletionSaa(d, v, "report_auto_deletion")
+		t, err := expandSystemAutoDeleteReportAutoDeletion(d, v, "report_auto_deletion")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -777,7 +777,7 @@ func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{},
 	}
 
 	if v, ok := d.GetOk("status_fake"); ok || d.HasChange("status_fake") {
-		t, err := expandSystemAutoDeleteStatusFakeSaa(d, v, "status_fake")
+		t, err := expandSystemAutoDeleteStatusFake(d, v, "status_fake")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

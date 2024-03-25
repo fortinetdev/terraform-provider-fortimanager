@@ -10,7 +10,7 @@ description: |-
 Configure AntiVirus notification lists.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`entries`: `fortimanager_object_antivirus_notification_entries`
+>- `entries`: `fortimanager_object_antivirus_notification_entries`
 
 
 

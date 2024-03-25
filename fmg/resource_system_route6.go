@@ -34,7 +34,7 @@ func resourceSystemRoute6() *schema.Resource {
 				Optional: true,
 			},
 			"dst": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -224,7 +224,7 @@ func expandSystemRoute6Device(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandSystemRoute6Dst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystemRoute6Gateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

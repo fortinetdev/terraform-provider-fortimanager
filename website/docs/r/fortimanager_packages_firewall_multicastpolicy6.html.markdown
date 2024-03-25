@@ -49,6 +49,7 @@ The following arguments are supported:
 * `dstintf` - IPv6 destination interface name.
 * `end_port` - Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
 * `fosid` - Policy ID (0 - 4294967294).
+* `ips_sensor` - Name of an existing IPS sensor.
 * `logtraffic` - Enable/disable logging traffic accepted by this policy. Valid values: `disable`, `enable`.
 
 * `name` - Policy name.
@@ -57,6 +58,8 @@ The following arguments are supported:
 * `srcintf` - IPv6 source interface name.
 * `start_port` - Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
+
+* `utm_status` - Enable to add an IPS security profile to the policy. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 

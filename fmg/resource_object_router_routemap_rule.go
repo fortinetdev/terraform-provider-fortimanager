@@ -260,6 +260,14 @@ func resourceObjectRouterRouteMapRule() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"set_vpnv6_nexthop": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"set_vpnv6_nexthop_local": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"set_weight": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -588,6 +596,14 @@ func flattenObjectRouterRouteMapRuleSetTag2edl(v interface{}, d *schema.Resource
 }
 
 func flattenObjectRouterRouteMapRuleSetVpnv4Nexthop2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetVpnv6Nexthop2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetVpnv6NexthopLocal2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1072,6 +1088,26 @@ func refreshObjectObjectRouterRouteMapRule(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("set_vpnv6_nexthop", flattenObjectRouterRouteMapRuleSetVpnv6Nexthop2edl(o["set-vpnv6-nexthop"], d, "set_vpnv6_nexthop")); err != nil {
+		if vv, ok := fortiAPIPatch(o["set-vpnv6-nexthop"], "ObjectRouterRouteMapRule-SetVpnv6Nexthop"); ok {
+			if err = d.Set("set_vpnv6_nexthop", vv); err != nil {
+				return fmt.Errorf("Error reading set_vpnv6_nexthop: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading set_vpnv6_nexthop: %v", err)
+		}
+	}
+
+	if err = d.Set("set_vpnv6_nexthop_local", flattenObjectRouterRouteMapRuleSetVpnv6NexthopLocal2edl(o["set-vpnv6-nexthop-local"], d, "set_vpnv6_nexthop_local")); err != nil {
+		if vv, ok := fortiAPIPatch(o["set-vpnv6-nexthop-local"], "ObjectRouterRouteMapRule-SetVpnv6NexthopLocal"); ok {
+			if err = d.Set("set_vpnv6_nexthop_local", vv); err != nil {
+				return fmt.Errorf("Error reading set_vpnv6_nexthop_local: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading set_vpnv6_nexthop_local: %v", err)
+		}
+	}
+
 	if err = d.Set("set_weight", flattenObjectRouterRouteMapRuleSetWeight2edl(o["set-weight"], d, "set_weight")); err != nil {
 		if vv, ok := fortiAPIPatch(o["set-weight"], "ObjectRouterRouteMapRule-SetWeight"); ok {
 			if err = d.Set("set_weight", vv); err != nil {
@@ -1276,6 +1312,14 @@ func expandObjectRouterRouteMapRuleSetTag2edl(d *schema.ResourceData, v interfac
 }
 
 func expandObjectRouterRouteMapRuleSetVpnv4Nexthop2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetVpnv6Nexthop2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetVpnv6NexthopLocal2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1706,6 +1750,24 @@ func getObjectObjectRouterRouteMapRule(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["set-vpnv4-nexthop"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("set_vpnv6_nexthop"); ok || d.HasChange("set_vpnv6_nexthop") {
+		t, err := expandObjectRouterRouteMapRuleSetVpnv6Nexthop2edl(d, v, "set_vpnv6_nexthop")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["set-vpnv6-nexthop"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("set_vpnv6_nexthop_local"); ok || d.HasChange("set_vpnv6_nexthop_local") {
+		t, err := expandObjectRouterRouteMapRuleSetVpnv6NexthopLocal2edl(d, v, "set_vpnv6_nexthop_local")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["set-vpnv6-nexthop-local"] = t
 		}
 	}
 

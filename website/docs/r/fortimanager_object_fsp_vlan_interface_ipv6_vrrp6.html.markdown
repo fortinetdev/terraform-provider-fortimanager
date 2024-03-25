@@ -42,6 +42,8 @@ The following arguments are supported:
 * `accept_mode` - Enable/disable accept mode. Valid values: `disable`, `enable`.
 
 * `adv_interval` - Advertisement interval (1 - 255 seconds).
+* `ignore_default_route` - Enable/disable ignoring of default route when checking destination. Valid values: `disable`, `enable`.
+
 * `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
 
 * `priority` - Priority of the virtual router (1 - 255).

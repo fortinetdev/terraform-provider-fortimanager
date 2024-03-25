@@ -42,6 +42,8 @@ The following arguments are supported:
 
 * `ip` - Forward proxy server IP address.
 * `ipv6` - Forward proxy server IPv6 address.
+* `masquerade` - Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `disable`, `enable`.
+
 * `monitor` - URL for forward server health check monitoring (default = http://www.google.com).
 * `name` - Server name.
 * `password` - HTTP authentication password.

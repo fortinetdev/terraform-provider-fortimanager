@@ -307,11 +307,11 @@ func flattenSystemAlertEventAlertDestinationType(v interface{}, d *schema.Resour
 }
 
 func flattenSystemAlertEventEnableGenericText(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenSystemAlertEventEnableSeverityFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenSystemAlertEventEventTimePeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -335,7 +335,7 @@ func flattenSystemAlertEventSeverityFilter(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAlertEventSeverityLevelComp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenSystemAlertEventSeverityLevelLogs(v interface{}, d *schema.ResourceData, pre string) interface{} {

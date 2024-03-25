@@ -10,8 +10,8 @@ description: |-
 FortiExtender extender profile configuration.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`cellular`: `fortimanager_object_extensioncontroller_extenderprofile_cellular`
-`lan_extension`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension`
+>- `cellular`: `fortimanager_object_extensioncontroller_extenderprofile_cellular`
+>- `lan_extension`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension`
 
 
 

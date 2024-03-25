@@ -10,7 +10,7 @@ description: |-
 Configure AP local configuration profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`command_list`: `fortimanager_object_wirelesscontroller_apcfgprofile_commandlist`
+>- `command_list`: `fortimanager_object_wirelesscontroller_apcfgprofile_commandlist`
 
 
 

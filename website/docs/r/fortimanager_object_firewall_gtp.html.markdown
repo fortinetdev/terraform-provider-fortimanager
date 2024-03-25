@@ -10,19 +10,19 @@ description: |-
 Configure GTP.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`apn`: `fortimanager_object_firewall_gtp_apn`
-`ie_remove_policy`: `fortimanager_object_firewall_gtp_ieremovepolicy`
-`ie_validation`: `fortimanager_object_firewall_gtp_ievalidation`
-`imsi`: `fortimanager_object_firewall_gtp_imsi`
-`ip_policy`: `fortimanager_object_firewall_gtp_ippolicy`
-`message_rate_limit`: `fortimanager_object_firewall_gtp_messageratelimit`
-`message_rate_limit_v0`: `fortimanager_object_firewall_gtp_messageratelimitv0`
-`message_rate_limit_v1`: `fortimanager_object_firewall_gtp_messageratelimitv1`
-`message_rate_limit_v2`: `fortimanager_object_firewall_gtp_messageratelimitv2`
-`noip_policy`: `fortimanager_object_firewall_gtp_noippolicy`
-`per_apn_shaper`: `fortimanager_object_firewall_gtp_perapnshaper`
-`policy`: `fortimanager_object_firewall_gtp_policy`
-`policy_v2`: `fortimanager_object_firewall_gtp_policyv2`
+>- `apn`: `fortimanager_object_firewall_gtp_apn`
+>- `ie_remove_policy`: `fortimanager_object_firewall_gtp_ieremovepolicy`
+>- `ie_validation`: `fortimanager_object_firewall_gtp_ievalidation`
+>- `imsi`: `fortimanager_object_firewall_gtp_imsi`
+>- `ip_policy`: `fortimanager_object_firewall_gtp_ippolicy`
+>- `message_rate_limit`: `fortimanager_object_firewall_gtp_messageratelimit`
+>- `message_rate_limit_v0`: `fortimanager_object_firewall_gtp_messageratelimitv0`
+>- `message_rate_limit_v1`: `fortimanager_object_firewall_gtp_messageratelimitv1`
+>- `message_rate_limit_v2`: `fortimanager_object_firewall_gtp_messageratelimitv2`
+>- `noip_policy`: `fortimanager_object_firewall_gtp_noippolicy`
+>- `per_apn_shaper`: `fortimanager_object_firewall_gtp_perapnshaper`
+>- `policy`: `fortimanager_object_firewall_gtp_policy`
+>- `policy_v2`: `fortimanager_object_firewall_gtp_policyv2`
 
 
 

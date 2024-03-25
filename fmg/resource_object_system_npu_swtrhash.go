@@ -145,11 +145,11 @@ func resourceObjectSystemNpuSwTrHashRead(d *schema.ResourceData, m interface{}) 
 	return nil
 }
 
-func flattenObjectSystemNpuSwTrHashDraco15(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwTrHashDraco152edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectSystemNpuSwTrHashTcpUdpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectSystemNpuSwTrHashTcpUdpPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -160,7 +160,7 @@ func refreshObjectObjectSystemNpuSwTrHash(d *schema.ResourceData, o map[string]i
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("draco15", flattenObjectSystemNpuSwTrHashDraco15(o["draco15"], d, "draco15")); err != nil {
+	if err = d.Set("draco15", flattenObjectSystemNpuSwTrHashDraco152edl(o["draco15"], d, "draco15")); err != nil {
 		if vv, ok := fortiAPIPatch(o["draco15"], "ObjectSystemNpuSwTrHash-Draco15"); ok {
 			if err = d.Set("draco15", vv); err != nil {
 				return fmt.Errorf("Error reading draco15: %v", err)
@@ -170,7 +170,7 @@ func refreshObjectObjectSystemNpuSwTrHash(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("tcp_udp_port", flattenObjectSystemNpuSwTrHashTcpUdpPort(o["tcp-udp-port"], d, "tcp_udp_port")); err != nil {
+	if err = d.Set("tcp_udp_port", flattenObjectSystemNpuSwTrHashTcpUdpPort2edl(o["tcp-udp-port"], d, "tcp_udp_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-udp-port"], "ObjectSystemNpuSwTrHash-TcpUdpPort"); ok {
 			if err = d.Set("tcp_udp_port", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_udp_port: %v", err)
@@ -189,11 +189,11 @@ func flattenObjectSystemNpuSwTrHashFortiTestDebug(d *schema.ResourceData, fosdeb
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectSystemNpuSwTrHashDraco15(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwTrHashDraco152edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectSystemNpuSwTrHashTcpUdpPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectSystemNpuSwTrHashTcpUdpPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -201,7 +201,7 @@ func getObjectObjectSystemNpuSwTrHash(d *schema.ResourceData) (*map[string]inter
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("draco15"); ok || d.HasChange("draco15") {
-		t, err := expandObjectSystemNpuSwTrHashDraco15(d, v, "draco15")
+		t, err := expandObjectSystemNpuSwTrHashDraco152edl(d, v, "draco15")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -210,7 +210,7 @@ func getObjectObjectSystemNpuSwTrHash(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("tcp_udp_port"); ok || d.HasChange("tcp_udp_port") {
-		t, err := expandObjectSystemNpuSwTrHashTcpUdpPort(d, v, "tcp_udp_port")
+		t, err := expandObjectSystemNpuSwTrHashTcpUdpPort2edl(d, v, "tcp_udp_port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

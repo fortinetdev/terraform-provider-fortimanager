@@ -10,7 +10,7 @@ description: |-
 SSL-VPN host check software.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`check_item_list`: `fortimanager_object_vpn_ssl_web_hostchecksoftware_checkitemlist`
+>- `check_item_list`: `fortimanager_object_vpn_ssl_web_hostchecksoftware_checkitemlist`
 
 
 

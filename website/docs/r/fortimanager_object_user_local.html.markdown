@@ -53,6 +53,7 @@ The following arguments are supported:
 * `passwd_policy` - Password policy to apply to this user, as defined in config user password-policy.
 * `ppk_identity` - IKEv2 Postquantum Preshared Key Identity.
 * `ppk_secret` - IKEv2 Postquantum Preshared Key (ASCII string or hexadecimal encoded with a leading 0x).
+* `qkd_profile` - Quantum Key Distribution (QKD) profile.
 * `radius_server` - Name of RADIUS server with which the user must authenticate.
 * `sms_custom_server` - Two-factor recipient's SMS server.
 * `sms_phone` - Two-factor recipient's mobile phone number.

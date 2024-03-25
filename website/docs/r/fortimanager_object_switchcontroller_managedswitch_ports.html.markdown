@@ -11,7 +11,7 @@ Managed-switch port list.
 
 ~> This resource is a sub resource for variable `ports` of resource `fortimanager_object_switchcontroller_managedswitch`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dhcp_snoop_option82_override`: `fortimanager_object_switchcontroller_managedswitch_ports_dhcpsnoopoption82override`
+>- `dhcp_snoop_option82_override`: `fortimanager_object_switchcontroller_managedswitch_ports_dhcpsnoopoption82override`
 
 
 

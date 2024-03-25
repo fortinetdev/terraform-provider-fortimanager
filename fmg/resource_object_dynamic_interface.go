@@ -429,11 +429,11 @@ func flattenObjectDynamicInterfaceDynamicMappingScopeVdom(v interface{}, d *sche
 }
 
 func flattenObjectDynamicInterfaceDynamicMappingEgressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfaceDynamicMappingIngressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfaceDynamicMappingIntrazoneDeny(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -445,11 +445,11 @@ func flattenObjectDynamicInterfaceDynamicMappingLocalIntf(v interface{}, d *sche
 }
 
 func flattenObjectDynamicInterfaceEgressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfaceIngressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfaceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -516,11 +516,11 @@ func flattenObjectDynamicInterfacePlatformMapping(v interface{}, d *schema.Resou
 }
 
 func flattenObjectDynamicInterfacePlatformMappingEgressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfacePlatformMappingIngressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDynamicInterfacePlatformMappingIntfZone(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -870,11 +870,11 @@ func expandObjectDynamicInterfaceDynamicMappingScopeVdom(d *schema.ResourceData,
 }
 
 func expandObjectDynamicInterfaceDynamicMappingEgressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfaceDynamicMappingIngressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfaceDynamicMappingIntrazoneDeny(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -886,11 +886,11 @@ func expandObjectDynamicInterfaceDynamicMappingLocalIntf(d *schema.ResourceData,
 }
 
 func expandObjectDynamicInterfaceEgressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfaceIngressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfaceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -947,11 +947,11 @@ func expandObjectDynamicInterfacePlatformMapping(d *schema.ResourceData, v inter
 }
 
 func expandObjectDynamicInterfacePlatformMappingEgressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfacePlatformMappingIngressShapingProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDynamicInterfacePlatformMappingIntfZone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -32,6 +32,7 @@ The following arguments are supported:
 * `ctrl_check_status_timeout` - timeout for checking fap/fsw/fext status after request upgrade.(1-12000s, default=1200)
 * `ctrl_put_image_by_fds_timeout` - timeout for waiting device get fap/fsw/fext image from fortiguard.(1-9000ss, default=900)
 * `ha_sync_timeout` - timeout for waiting HA sync.(1-18000s, default=1800)
+* `health_check_timeout` - timeout for waiting retrieve.(1-6000s, default=600)
 * `license_check_timeout` - timeout for waiting fortigate check license.(1-6000s, default=600)
 * `prepare_image_timeout` - timeout for preparing image.(1-6000s, default=600)
 * `put_image_by_fds_timeout` - timeout for waiting device get image from fortiguard.(1-18000s, default=1800)

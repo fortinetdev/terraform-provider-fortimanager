@@ -30,6 +30,7 @@ The following arguments are supported:
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
 * `casb_profile` - Name of an existing CASB profile.
+* `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.

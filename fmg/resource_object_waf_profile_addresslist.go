@@ -268,7 +268,7 @@ func flattenObjectWafProfileAddressListFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandObjectWafProfileAddressListBlockedAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileAddressListBlockedLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -284,7 +284,7 @@ func expandObjectWafProfileAddressListStatus2edl(d *schema.ResourceData, v inter
 }
 
 func expandObjectWafProfileAddressListTrustedAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectWafProfileAddressList(d *schema.ResourceData) (*map[string]interface{}, error) {

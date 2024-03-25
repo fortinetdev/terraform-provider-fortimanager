@@ -60,7 +60,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 			},
 			"dst_addr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -75,7 +75,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -85,13 +85,13 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 			},
 			"nat_ippool": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"nat_ippool6": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -111,7 +111,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Computed: true,
 			},
 			"orig_addr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -134,7 +134,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -312,7 +312,7 @@ func flattenPackagesFirewallCentralSnatMapDstAddr(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallCentralSnatMapDstAddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallCentralSnatMapDstPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -352,7 +352,7 @@ func flattenPackagesFirewallCentralSnatMapOrigAddr(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallCentralSnatMapOrigAddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallCentralSnatMapOrigPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -604,11 +604,11 @@ func expandPackagesFirewallCentralSnatMapComments(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallCentralSnatMapDstAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapDstAddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallCentralSnatMapDstPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -616,7 +616,7 @@ func expandPackagesFirewallCentralSnatMapDstPort(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallCentralSnatMapDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -624,11 +624,11 @@ func expandPackagesFirewallCentralSnatMapNat(d *schema.ResourceData, v interface
 }
 
 func expandPackagesFirewallCentralSnatMapNatIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapNatIppool6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapNatPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -644,11 +644,11 @@ func expandPackagesFirewallCentralSnatMapNat64(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallCentralSnatMapOrigAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapOrigAddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallCentralSnatMapOrigPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -664,7 +664,7 @@ func expandPackagesFirewallCentralSnatMapProtocol(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallCentralSnatMapSrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallCentralSnatMapStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -10,10 +10,10 @@ description: |-
 Configure IPv6 firewall addresses.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`dynamic_mapping`: `fortimanager_object_firewall_address6_dynamic_mapping`
-`list`: `fortimanager_object_firewall_address6_list`
-`subnet_segment`: `fortimanager_object_firewall_address6_subnetsegment`
-`tagging`: `fortimanager_object_firewall_address6_tagging`
+>- `dynamic_mapping`: `fortimanager_object_firewall_address6_dynamic_mapping`
+>- `list`: `fortimanager_object_firewall_address6_list`
+>- `subnet_segment`: `fortimanager_object_firewall_address6_subnetsegment`
+>- `tagging`: `fortimanager_object_firewall_address6_tagging`
 
 
 

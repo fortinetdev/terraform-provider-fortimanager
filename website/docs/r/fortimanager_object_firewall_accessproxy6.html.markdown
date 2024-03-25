@@ -10,8 +10,8 @@ description: |-
 Configure IPv6 access proxy.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
-`api_gateway`: `fortimanager_object_firewall_accessproxy6_apigateway`
-`api_gateway6`: `fortimanager_object_firewall_accessproxy6_apigateway6`
+>- `api_gateway`: `fortimanager_object_firewall_accessproxy6_apigateway`
+>- `api_gateway6`: `fortimanager_object_firewall_accessproxy6_apigateway6`
 
 
 

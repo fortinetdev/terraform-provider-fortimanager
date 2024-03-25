@@ -56,7 +56,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"access_proxy": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -83,6 +83,10 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"casb_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -95,10 +99,19 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"detect_https_in_http_request": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"device_ownership": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"diameter_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"disclaimer": &schema.Schema{
 				Type:     schema.TypeString,
@@ -114,7 +127,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -125,13 +138,13 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -149,7 +162,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"groups": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -192,7 +205,45 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"internet_service6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service6_custom": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service6_custom_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service6_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service6_name": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service6_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ips_sensor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ips_voip_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -223,7 +274,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"poolname": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -266,7 +317,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -285,7 +336,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -296,7 +347,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -328,7 +379,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"users": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -343,6 +394,10 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"virtual_patch_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -377,7 +432,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"ztna_ems_tag": &schema.Schema{
-				Type:     schema.TypeList,
+				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -542,7 +597,7 @@ func flattenPackagesFirewallProxyPolicyAccessProxy(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallProxyPolicyAccessProxy6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -561,6 +616,10 @@ func flattenPackagesFirewallProxyPolicyBlockNotification(v interface{}, d *schem
 	return v
 }
 
+func flattenPackagesFirewallProxyPolicyCasbProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallProxyPolicyCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -573,7 +632,15 @@ func flattenPackagesFirewallProxyPolicyDecryptedTrafficMirror(v interface{}, d *
 	return v
 }
 
+func flattenPackagesFirewallProxyPolicyDetectHttpsInHttpRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallProxyPolicyDeviceOwnership(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallProxyPolicyDiameterFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -634,30 +701,58 @@ func flattenPackagesFirewallProxyPolicyInternetService(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicyInternetServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenPackagesFirewallProxyPolicyInternetService6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallProxyPolicyInternetService6Custom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyInternetService6CustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyInternetService6Group(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyInternetService6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyInternetService6Negate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallProxyPolicyIpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallProxyPolicyIpsVoipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -754,7 +849,7 @@ func flattenPackagesFirewallProxyPolicySrcaddr6(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallProxyPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallProxyPolicySshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -790,6 +885,10 @@ func flattenPackagesFirewallProxyPolicyUuid(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallProxyPolicyVideofilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallProxyPolicyVirtualPatchProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -896,6 +995,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("casb_profile", flattenPackagesFirewallProxyPolicyCasbProfile(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "PackagesFirewallProxyPolicy-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("cifs_profile", flattenPackagesFirewallProxyPolicyCifsProfile(o["cifs-profile"], d, "cifs_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs-profile"], "PackagesFirewallProxyPolicy-CifsProfile"); ok {
 			if err = d.Set("cifs_profile", vv); err != nil {
@@ -926,6 +1035,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("detect_https_in_http_request", flattenPackagesFirewallProxyPolicyDetectHttpsInHttpRequest(o["detect-https-in-http-request"], d, "detect_https_in_http_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["detect-https-in-http-request"], "PackagesFirewallProxyPolicy-DetectHttpsInHttpRequest"); ok {
+			if err = d.Set("detect_https_in_http_request", vv); err != nil {
+				return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+		}
+	}
+
 	if err = d.Set("device_ownership", flattenPackagesFirewallProxyPolicyDeviceOwnership(o["device-ownership"], d, "device_ownership")); err != nil {
 		if vv, ok := fortiAPIPatch(o["device-ownership"], "PackagesFirewallProxyPolicy-DeviceOwnership"); ok {
 			if err = d.Set("device_ownership", vv); err != nil {
@@ -933,6 +1052,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading device_ownership: %v", err)
+		}
+	}
+
+	if err = d.Set("diameter_filter_profile", flattenPackagesFirewallProxyPolicyDiameterFilterProfile(o["diameter-filter-profile"], d, "diameter_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["diameter-filter-profile"], "PackagesFirewallProxyPolicy-DiameterFilterProfile"); ok {
+			if err = d.Set("diameter_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading diameter_filter_profile: %v", err)
 		}
 	}
 
@@ -1136,6 +1265,66 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("internet_service6", flattenPackagesFirewallProxyPolicyInternetService6(o["internet-service6"], d, "internet_service6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6"], "PackagesFirewallProxyPolicy-InternetService6"); ok {
+			if err = d.Set("internet_service6", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_custom", flattenPackagesFirewallProxyPolicyInternetService6Custom(o["internet-service6-custom"], d, "internet_service6_custom")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-custom"], "PackagesFirewallProxyPolicy-InternetService6Custom"); ok {
+			if err = d.Set("internet_service6_custom", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_custom: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_custom: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_custom_group", flattenPackagesFirewallProxyPolicyInternetService6CustomGroup(o["internet-service6-custom-group"], d, "internet_service6_custom_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-custom-group"], "PackagesFirewallProxyPolicy-InternetService6CustomGroup"); ok {
+			if err = d.Set("internet_service6_custom_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_custom_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_custom_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_group", flattenPackagesFirewallProxyPolicyInternetService6Group(o["internet-service6-group"], d, "internet_service6_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-group"], "PackagesFirewallProxyPolicy-InternetService6Group"); ok {
+			if err = d.Set("internet_service6_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_name", flattenPackagesFirewallProxyPolicyInternetService6Name(o["internet-service6-name"], d, "internet_service6_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-name"], "PackagesFirewallProxyPolicy-InternetService6Name"); ok {
+			if err = d.Set("internet_service6_name", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_name: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_negate", flattenPackagesFirewallProxyPolicyInternetService6Negate(o["internet-service6-negate"], d, "internet_service6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-negate"], "PackagesFirewallProxyPolicy-InternetService6Negate"); ok {
+			if err = d.Set("internet_service6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("ips_sensor", flattenPackagesFirewallProxyPolicyIpsSensor(o["ips-sensor"], d, "ips_sensor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ips-sensor"], "PackagesFirewallProxyPolicy-IpsSensor"); ok {
 			if err = d.Set("ips_sensor", vv); err != nil {
@@ -1143,6 +1332,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ips_sensor: %v", err)
+		}
+	}
+
+	if err = d.Set("ips_voip_filter", flattenPackagesFirewallProxyPolicyIpsVoipFilter(o["ips-voip-filter"], d, "ips_voip_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-voip-filter"], "PackagesFirewallProxyPolicy-IpsVoipFilter"); ok {
+			if err = d.Set("ips_voip_filter", vv); err != nil {
+				return fmt.Errorf("Error reading ips_voip_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_voip_filter: %v", err)
 		}
 	}
 
@@ -1476,6 +1675,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("virtual_patch_profile", flattenPackagesFirewallProxyPolicyVirtualPatchProfile(o["virtual-patch-profile"], d, "virtual_patch_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch-profile"], "PackagesFirewallProxyPolicy-VirtualPatchProfile"); ok {
+			if err = d.Set("virtual_patch_profile", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("voip_profile", flattenPackagesFirewallProxyPolicyVoipProfile(o["voip-profile"], d, "voip_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["voip-profile"], "PackagesFirewallProxyPolicy-VoipProfile"); ok {
 			if err = d.Set("voip_profile", vv); err != nil {
@@ -1576,11 +1785,11 @@ func flattenPackagesFirewallProxyPolicyFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandPackagesFirewallProxyPolicyAccessProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyAccessProxy6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1599,6 +1808,10 @@ func expandPackagesFirewallProxyPolicyBlockNotification(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyCasbProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallProxyPolicyCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1611,7 +1824,15 @@ func expandPackagesFirewallProxyPolicyDecryptedTrafficMirror(d *schema.ResourceD
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyDetectHttpsInHttpRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallProxyPolicyDeviceOwnership(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallProxyPolicyDiameterFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1628,7 +1849,7 @@ func expandPackagesFirewallProxyPolicyDlpSensor(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallProxyPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1636,11 +1857,11 @@ func expandPackagesFirewallProxyPolicyDstaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallProxyPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1656,7 +1877,7 @@ func expandPackagesFirewallProxyPolicyGlobalLabel(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallProxyPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyHttpTunnelAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1672,30 +1893,58 @@ func expandPackagesFirewallProxyPolicyInternetService(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicyInternetServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyInternetService6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallProxyPolicyInternetService6Custom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyInternetService6CustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyInternetService6Group(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyInternetService6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyInternetService6Negate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallProxyPolicyIpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallProxyPolicyIpsVoipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1724,7 +1973,7 @@ func expandPackagesFirewallProxyPolicyPolicyid(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallProxyPolicyPoolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1764,7 +2013,7 @@ func expandPackagesFirewallProxyPolicySctpFilterProfile(d *schema.ResourceData, 
 }
 
 func expandPackagesFirewallProxyPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1780,7 +2029,7 @@ func expandPackagesFirewallProxyPolicySpamfilterProfile(d *schema.ResourceData, 
 }
 
 func expandPackagesFirewallProxyPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1788,11 +2037,11 @@ func expandPackagesFirewallProxyPolicySrcaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallProxyPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallProxyPolicySshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1816,7 +2065,7 @@ func expandPackagesFirewallProxyPolicyTransparent(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallProxyPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyUtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1828,6 +2077,10 @@ func expandPackagesFirewallProxyPolicyUuid(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesFirewallProxyPolicyVideofilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallProxyPolicyVirtualPatchProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1860,7 +2113,7 @@ func expandPackagesFirewallProxyPolicyWebproxyProfile(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallProxyPolicyZtnaEmsTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.([]interface{})), nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyZtnaTagsMatchLogic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1924,6 +2177,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandPackagesFirewallProxyPolicyCasbProfile(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesFirewallProxyPolicyCifsProfile(d, v, "cifs_profile")
 		if err != nil {
@@ -1951,12 +2213,30 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("detect_https_in_http_request"); ok || d.HasChange("detect_https_in_http_request") {
+		t, err := expandPackagesFirewallProxyPolicyDetectHttpsInHttpRequest(d, v, "detect_https_in_http_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["detect-https-in-http-request"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("device_ownership"); ok || d.HasChange("device_ownership") {
 		t, err := expandPackagesFirewallProxyPolicyDeviceOwnership(d, v, "device_ownership")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["device-ownership"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("diameter_filter_profile"); ok || d.HasChange("diameter_filter_profile") {
+		t, err := expandPackagesFirewallProxyPolicyDiameterFilterProfile(d, v, "diameter_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["diameter-filter-profile"] = t
 		}
 	}
 
@@ -2140,12 +2420,75 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("internet_service6"); ok || d.HasChange("internet_service6") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6(d, v, "internet_service6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_custom"); ok || d.HasChange("internet_service6_custom") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6Custom(d, v, "internet_service6_custom")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-custom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_custom_group"); ok || d.HasChange("internet_service6_custom_group") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6CustomGroup(d, v, "internet_service6_custom_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-custom-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_group"); ok || d.HasChange("internet_service6_group") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6Group(d, v, "internet_service6_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_name"); ok || d.HasChange("internet_service6_name") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6Name(d, v, "internet_service6_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_negate"); ok || d.HasChange("internet_service6_negate") {
+		t, err := expandPackagesFirewallProxyPolicyInternetService6Negate(d, v, "internet_service6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandPackagesFirewallProxyPolicyIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["ips-sensor"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ips_voip_filter"); ok || d.HasChange("ips_voip_filter") {
+		t, err := expandPackagesFirewallProxyPolicyIpsVoipFilter(d, v, "ips_voip_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-voip-filter"] = t
 		}
 	}
 
@@ -2443,6 +2786,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["videofilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch_profile"); ok || d.HasChange("virtual_patch_profile") {
+		t, err := expandPackagesFirewallProxyPolicyVirtualPatchProfile(d, v, "virtual_patch_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch-profile"] = t
 		}
 	}
 
