@@ -210,14 +210,6 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
-	pre_append = pre + ".0." + "adm_pass"
-	if _, ok := i["adm_pass"]; ok {
-		result["adm_pass"] = flattenDvmCmdAddDeviceDeviceAdmPass(i["adm_pass"], d, pre_append)
-		c := d.Get(pre_append).(string)
-		if c != "" {
-			result["adm_pass"] = c
-		}
-	}
 
 	pre_append = pre + ".0." + "adm_usr"
 	if _, ok := i["adm_usr"]; ok {
@@ -317,7 +309,7 @@ func flattenDvmCmdAddDeviceDeviceAdmUsr(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenDvmCmdAddDeviceDeviceAuthorizationTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmCmdAddDeviceDeviceDesc(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -329,7 +321,7 @@ func flattenDvmCmdAddDeviceDeviceDeviceAction(v interface{}, d *schema.ResourceD
 }
 
 func flattenDvmCmdAddDeviceDeviceDeviceBlueprint(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmCmdAddDeviceDeviceFazQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -632,7 +624,7 @@ func expandDvmCmdAddDeviceDeviceAdmUsr(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandDvmCmdAddDeviceDeviceAuthorizationTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmCmdAddDeviceDeviceDesc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -644,7 +636,7 @@ func expandDvmCmdAddDeviceDeviceDeviceAction(d *schema.ResourceData, v interface
 }
 
 func expandDvmCmdAddDeviceDeviceDeviceBlueprint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmCmdAddDeviceDeviceFazQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

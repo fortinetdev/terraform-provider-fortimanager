@@ -369,10 +369,6 @@ func flattenSystemHaMonitoredIpsIp(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
-func flattenSystemHaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemHaPeer(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil

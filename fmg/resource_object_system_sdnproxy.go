@@ -51,10 +51,11 @@ func resourceObjectSystemSdnProxy() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -195,10 +196,6 @@ func flattenObjectSystemSdnProxyName(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
-func flattenObjectSystemSdnProxyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectSystemSdnProxyServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -229,16 +226,6 @@ func refreshObjectObjectSystemSdnProxy(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectSystemSdnProxyPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectSystemSdnProxy-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

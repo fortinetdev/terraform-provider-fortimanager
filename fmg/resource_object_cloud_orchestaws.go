@@ -182,7 +182,7 @@ func resourceObjectCloudOrchestAwsRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenObjectCloudOrchestAwsConnector(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCloudOrchestAwsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -194,7 +194,7 @@ func flattenObjectCloudOrchestAwsRegionName(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectCloudOrchestAwsTemplateConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectCloudOrchestAws(d *schema.ResourceData, o map[string]interface{}) error {
@@ -254,7 +254,7 @@ func flattenObjectCloudOrchestAwsFortiTestDebug(d *schema.ResourceData, fosdebug
 }
 
 func expandObjectCloudOrchestAwsConnector(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCloudOrchestAwsName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -266,7 +266,7 @@ func expandObjectCloudOrchestAwsRegionName(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectCloudOrchestAwsTemplateConfiguration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectCloudOrchestAws(d *schema.ResourceData) (*map[string]interface{}, error) {

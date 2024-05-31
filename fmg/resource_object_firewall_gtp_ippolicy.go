@@ -219,11 +219,11 @@ func flattenObjectFirewallGtpIpPolicyAction2edl(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallGtpIpPolicyDstaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicyDstaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicyId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -231,11 +231,11 @@ func flattenObjectFirewallGtpIpPolicyId2edl(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallGtpIpPolicySrcaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicySrcaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallGtpIpPolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -319,11 +319,11 @@ func expandObjectFirewallGtpIpPolicyAction2edl(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallGtpIpPolicyDstaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicyDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicyId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -331,11 +331,11 @@ func expandObjectFirewallGtpIpPolicyId2edl(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFirewallGtpIpPolicySrcaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicySrcaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallGtpIpPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

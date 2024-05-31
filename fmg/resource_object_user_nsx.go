@@ -255,10 +255,6 @@ func flattenObjectUserNsxFmgip(v interface{}, d *schema.ResourceData, pre string
 	return v
 }
 
-func flattenObjectUserNsxFmgpasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserNsxFmguser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -269,10 +265,6 @@ func flattenObjectUserNsxIfAllgroup(v interface{}, d *schema.ResourceData, pre s
 
 func flattenObjectUserNsxName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserNsxPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserNsxServer(v interface{}, d *schema.ResourceData, pre string) interface{} {

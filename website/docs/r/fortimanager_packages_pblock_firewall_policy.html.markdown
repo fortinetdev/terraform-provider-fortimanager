@@ -216,6 +216,8 @@ The following arguments are supported:
 
 * `poolname` - IP Pool names.
 * `poolname6` - IPv6 pool names.
+* `port_preserve` - Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `disable`, `enable`.
+
 * `profile_group` - Name of profile group.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.

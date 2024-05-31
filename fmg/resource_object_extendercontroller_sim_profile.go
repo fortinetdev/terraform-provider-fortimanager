@@ -422,16 +422,8 @@ func flattenObjectExtenderControllerSimProfileSim1Pin(v interface{}, d *schema.R
 	return v
 }
 
-func flattenObjectExtenderControllerSimProfileSim1PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtenderControllerSimProfileSim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtenderControllerSimProfileSim2PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtenderControllerSimProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {

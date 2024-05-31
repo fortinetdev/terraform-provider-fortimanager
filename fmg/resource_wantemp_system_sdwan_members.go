@@ -303,7 +303,7 @@ func flattenWantempSystemSdwanMembersIngressSpilloverThreshold2edl(v interface{}
 }
 
 func flattenWantempSystemSdwanMembersInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanMembersPreferredSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -351,7 +351,7 @@ func flattenWantempSystemSdwanMembersWeight2edl(v interface{}, d *schema.Resourc
 }
 
 func flattenWantempSystemSdwanMembersZone2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string]interface{}) error {
@@ -585,7 +585,7 @@ func expandWantempSystemSdwanMembersIngressSpilloverThreshold2edl(d *schema.Reso
 }
 
 func expandWantempSystemSdwanMembersInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanMembersPreferredSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -633,7 +633,7 @@ func expandWantempSystemSdwanMembersWeight2edl(d *schema.ResourceData, v interfa
 }
 
 func expandWantempSystemSdwanMembersZone2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]interface{}, error) {

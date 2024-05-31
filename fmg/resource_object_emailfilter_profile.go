@@ -889,7 +889,7 @@ func flattenObjectEmailfilterProfilePop3TagType(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectEmailfilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSmtp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -969,15 +969,15 @@ func flattenObjectEmailfilterProfileSmtpTagType(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectEmailfilterProfileSpamBalTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSpamBwlTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSpamBwordTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSpamBwordThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -989,7 +989,7 @@ func flattenObjectEmailfilterProfileSpamFiltering(v interface{}, d *schema.Resou
 }
 
 func flattenObjectEmailfilterProfileSpamIptrustTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSpamLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1001,11 +1001,11 @@ func flattenObjectEmailfilterProfileSpamLogFortiguardResponse(v interface{}, d *
 }
 
 func flattenObjectEmailfilterProfileSpamMheaderTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterProfileSpamRblTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectEmailfilterProfile(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1759,7 +1759,7 @@ func expandObjectEmailfilterProfilePop3TagType(d *schema.ResourceData, v interfa
 }
 
 func expandObjectEmailfilterProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSmtp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1833,15 +1833,15 @@ func expandObjectEmailfilterProfileSmtpTagType(d *schema.ResourceData, v interfa
 }
 
 func expandObjectEmailfilterProfileSpamBalTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSpamBwlTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSpamBwordTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSpamBwordThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1853,7 +1853,7 @@ func expandObjectEmailfilterProfileSpamFiltering(d *schema.ResourceData, v inter
 }
 
 func expandObjectEmailfilterProfileSpamIptrustTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSpamLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1865,11 +1865,11 @@ func expandObjectEmailfilterProfileSpamLogFortiguardResponse(d *schema.ResourceD
 }
 
 func expandObjectEmailfilterProfileSpamMheaderTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterProfileSpamRblTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectEmailfilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {

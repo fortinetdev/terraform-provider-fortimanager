@@ -55,10 +55,11 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytab() *schema.Reso
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"principal": &schema.Schema{
 				Type:     schema.TypeString,
@@ -208,10 +209,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabKeytab3rdl(v int
 	return v
 }
 
-func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -230,16 +227,6 @@ func refreshObjectObjectFirewallProfileProtocolOptionsCifsServerKeytab(d *schema
 			}
 		} else {
 			return fmt.Errorf("Error reading keytab: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword3rdl(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectFirewallProfileProtocolOptionsCifsServerKeytab-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

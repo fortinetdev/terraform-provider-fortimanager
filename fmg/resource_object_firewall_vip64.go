@@ -598,7 +598,7 @@ func flattenObjectFirewallVip64DynamicMappingComment(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVip64DynamicMappingExtip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64DynamicMappingExtport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -614,7 +614,7 @@ func flattenObjectFirewallVip64DynamicMappingLdbMethod(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip64DynamicMappingMappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64DynamicMappingMappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -650,7 +650,7 @@ func flattenObjectFirewallVip64DynamicMappingUuid(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallVip64Extip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64Extport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -666,7 +666,7 @@ func flattenObjectFirewallVip64LdbMethod(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallVip64Mappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip64Mappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1253,7 +1253,7 @@ func expandObjectFirewallVip64DynamicMappingComment(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallVip64DynamicMappingExtip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64DynamicMappingExtport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1269,7 +1269,7 @@ func expandObjectFirewallVip64DynamicMappingLdbMethod(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVip64DynamicMappingMappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64DynamicMappingMappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1305,7 +1305,7 @@ func expandObjectFirewallVip64DynamicMappingUuid(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallVip64Extip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64Extport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1321,7 +1321,7 @@ func expandObjectFirewallVip64LdbMethod(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallVip64Mappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip64Mappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

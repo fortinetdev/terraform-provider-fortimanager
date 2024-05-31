@@ -208,7 +208,7 @@ func resourceObjectFirewallIdentityBasedRouteRuleRead(d *schema.ResourceData, m 
 }
 
 func flattenObjectFirewallIdentityBasedRouteRuleDevice2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallIdentityBasedRouteRuleGateway2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -280,7 +280,7 @@ func flattenObjectFirewallIdentityBasedRouteRuleFortiTestDebug(d *schema.Resourc
 }
 
 func expandObjectFirewallIdentityBasedRouteRuleDevice2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallIdentityBasedRouteRuleGateway2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

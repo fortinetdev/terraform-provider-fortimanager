@@ -437,7 +437,7 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulWeight2ed
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

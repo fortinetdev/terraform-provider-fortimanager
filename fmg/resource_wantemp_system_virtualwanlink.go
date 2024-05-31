@@ -118,10 +118,11 @@ func resourceWantempSystemVirtualWanLink() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -788,12 +789,6 @@ func flattenWantempSystemVirtualWanLinkHealthCheck(v interface{}, d *schema.Reso
 			tmp["packet_size"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-PacketSize")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenWantempSystemVirtualWanLinkHealthCheckPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
 			v := flattenWantempSystemVirtualWanLinkHealthCheckPort(i["port"], d, pre_append)
@@ -962,10 +957,6 @@ func flattenWantempSystemVirtualWanLinkHealthCheckName(v interface{}, d *schema.
 
 func flattenWantempSystemVirtualWanLinkHealthCheckPacketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenWantempSystemVirtualWanLinkHealthCheckPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenWantempSystemVirtualWanLinkHealthCheckPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1263,7 +1254,7 @@ func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(v interf
 }
 
 func flattenWantempSystemVirtualWanLinkMembersInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkMembersPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1358,15 +1349,15 @@ func flattenWantempSystemVirtualWanLinkNeighbor(v interface{}, d *schema.Resourc
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1777,7 +1768,7 @@ func flattenWantempSystemVirtualWanLinkServiceGroups(v interface{}, d *schema.Re
 }
 
 func flattenWantempSystemVirtualWanLinkServiceHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkServiceHoldDownTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2681,7 +2672,7 @@ func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold(d *schema
 }
 
 func expandWantempSystemVirtualWanLinkMembersInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkMembersPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2766,15 +2757,15 @@ func expandWantempSystemVirtualWanLinkNeighbor(d *schema.ResourceData, v interfa
 }
 
 func expandWantempSystemVirtualWanLinkNeighborHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3134,7 +3125,7 @@ func expandWantempSystemVirtualWanLinkServiceGroups(d *schema.ResourceData, v in
 }
 
 func expandWantempSystemVirtualWanLinkServiceHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkServiceHoldDownTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

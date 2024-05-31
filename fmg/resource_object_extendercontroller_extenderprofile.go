@@ -768,27 +768,9 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem1(v interface{},
 		result["sim1_pin"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1Pin(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1PinCode(i["sim1-pin-code"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["sim1_pin_code"] = c
-		}
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2Pin(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2PinCode(i["sim2-pin-code"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["sim2_pin_code"] = c
-		}
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -912,16 +894,8 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1Pin(v inter
 	return v
 }
 
-func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularModem2(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -978,27 +952,9 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem2(v interface{},
 		result["sim1_pin"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim1Pin(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim1PinCode(i["sim1-pin-code"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["sim1_pin_code"] = c
-		}
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim2Pin(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim2PinCode(i["sim2-pin-code"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["sim2_pin_code"] = c
-		}
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -1122,16 +1078,8 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem2Sim1Pin(v inter
 	return v
 }
 
-func flattenObjectExtenderControllerExtenderProfileCellularModem2Sim1PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtenderControllerExtenderProfileCellularModem2Sim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtenderControllerExtenderProfileCellularModem2Sim2PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotification(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1431,7 +1379,7 @@ func flattenObjectExtenderControllerExtenderProfileLanExtensionBackhaulWeight(v 
 }
 
 func flattenObjectExtenderControllerExtenderProfileLanExtensionBackhaulInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectExtenderControllerExtenderProfileLanExtensionBackhaulIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1444,10 +1392,6 @@ func flattenObjectExtenderControllerExtenderProfileLanExtensionIpsecTunnel(v int
 
 func flattenObjectExtenderControllerExtenderProfileLanExtensionLinkLoadbalance(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtenderControllerExtenderProfileLoginPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileLoginPasswordChange(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2370,7 +2314,7 @@ func expandObjectExtenderControllerExtenderProfileLanExtensionBackhaulWeight(d *
 }
 
 func expandObjectExtenderControllerExtenderProfileLanExtensionBackhaulInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtenderControllerExtenderProfileLanExtensionBackhaulIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

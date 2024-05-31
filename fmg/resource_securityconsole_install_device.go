@@ -112,7 +112,7 @@ func resourceSecurityconsoleInstallDeviceRead(d *schema.ResourceData, m interfac
 }
 
 func flattenSecurityconsoleInstallDeviceAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleInstallDeviceDevRevComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -243,7 +243,7 @@ func flattenSecurityconsoleInstallDeviceFortiTestDebug(d *schema.ResourceData, f
 }
 
 func expandSecurityconsoleInstallDeviceAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleInstallDeviceDevRevComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

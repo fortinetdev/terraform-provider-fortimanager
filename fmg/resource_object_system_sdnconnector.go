@@ -203,10 +203,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Computed: true,
 			},
 			"key_passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"last_update": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -286,10 +287,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"private_key": &schema.Schema{
 				Type:     schema.TypeString,
@@ -458,10 +460,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"vcenter_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"vcenter_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -623,20 +626,12 @@ func flattenObjectSystemSdnConnectorAltResourceIp(v interface{}, d *schema.Resou
 	return v
 }
 
-func flattenObjectSystemSdnConnectorApiKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectSystemSdnConnectorAzureRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemSdnConnectorClientId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectSystemSdnConnectorClientSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectSystemSdnConnectorCompartmentList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -910,10 +905,6 @@ func flattenObjectSystemSdnConnectorIbmRegionGen2(v interface{}, d *schema.Resou
 	return v
 }
 
-func flattenObjectSystemSdnConnectorKeyPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectSystemSdnConnectorLastUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1035,7 +1026,7 @@ func flattenObjectSystemSdnConnectorNsxCertFingerprint(v interface{}, d *schema.
 }
 
 func flattenObjectSystemSdnConnectorOciCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemSdnConnectorOciFingerprint(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1089,16 +1080,12 @@ func flattenObjectSystemSdnConnectorOciRegionType(v interface{}, d *schema.Resou
 	return v
 }
 
-func flattenObjectSystemSdnConnectorPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectSystemSdnConnectorPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemSdnConnectorProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemSdnConnectorRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1115,10 +1102,6 @@ func flattenObjectSystemSdnConnectorResourceUrl(v interface{}, d *schema.Resourc
 
 func flattenObjectSystemSdnConnectorRestInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectSystemSdnConnectorRestPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectSystemSdnConnectorRestSport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1282,10 +1265,6 @@ func flattenObjectSystemSdnConnectorRouteTableSubscriptionId(v interface{}, d *s
 	return v
 }
 
-func flattenObjectSystemSdnConnectorSecretKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectSystemSdnConnectorSecretToken(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1295,11 +1274,11 @@ func flattenObjectSystemSdnConnectorServer(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemSdnConnectorServerCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemSdnConnectorServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemSdnConnectorServerList(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1348,10 +1327,6 @@ func flattenObjectSystemSdnConnectorUserId(v interface{}, d *schema.ResourceData
 
 func flattenObjectSystemSdnConnectorUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectSystemSdnConnectorVcenterPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectSystemSdnConnectorVcenterServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1639,16 +1614,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("key_passwd", flattenObjectSystemSdnConnectorKeyPasswd(o["key-passwd"], d, "key_passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key-passwd"], "ObjectSystemSdnConnector-KeyPasswd"); ok {
-			if err = d.Set("key_passwd", vv); err != nil {
-				return fmt.Errorf("Error reading key_passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading key_passwd: %v", err)
-		}
-	}
-
 	if err = d.Set("last_update", flattenObjectSystemSdnConnectorLastUpdate(o["last-update"], d, "last_update")); err != nil {
 		if vv, ok := fortiAPIPatch(o["last-update"], "ObjectSystemSdnConnector-LastUpdate"); ok {
 			if err = d.Set("last_update", vv); err != nil {
@@ -1774,16 +1739,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading oci_region_type: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectSystemSdnConnectorPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectSystemSdnConnector-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
@@ -2072,16 +2027,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading username: %v", err)
-		}
-	}
-
-	if err = d.Set("vcenter_password", flattenObjectSystemSdnConnectorVcenterPassword(o["vcenter-password"], d, "vcenter_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["vcenter-password"], "ObjectSystemSdnConnector-VcenterPassword"); ok {
-			if err = d.Set("vcenter_password", vv); err != nil {
-				return fmt.Errorf("Error reading vcenter_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading vcenter_password: %v", err)
 		}
 	}
 
@@ -2534,7 +2479,7 @@ func expandObjectSystemSdnConnectorNsxCertFingerprint(d *schema.ResourceData, v 
 }
 
 func expandObjectSystemSdnConnectorOciCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemSdnConnectorOciFingerprint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2591,7 +2536,7 @@ func expandObjectSystemSdnConnectorPrivateKey(d *schema.ResourceData, v interfac
 }
 
 func expandObjectSystemSdnConnectorProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemSdnConnectorRegion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2771,11 +2716,11 @@ func expandObjectSystemSdnConnectorServer(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectSystemSdnConnectorServerCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemSdnConnectorServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemSdnConnectorServerList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

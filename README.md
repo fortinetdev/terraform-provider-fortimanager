@@ -9,7 +9,7 @@
 ## Requirements
 
 - [Terraform](https://www.terraform.io/downloads.html) 0.12.x +
-- [Go](https://golang.org/doc/install) 1.13.x (to build the provider plugin)
+- [Go](https://golang.org/doc/install) 1.21.x (to build the provider plugin)
 - The provider can cover FortiManager 6.0, 6.2, 6.4, 7.0 versions.
 
 ## Building the Provider

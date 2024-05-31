@@ -110,7 +110,7 @@ func resourceSecurityconsoleTemplateCliPreviewRead(d *schema.ResourceData, m int
 }
 
 func flattenSecurityconsoleTemplateCliPreviewAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleTemplateCliPreviewFilename(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -118,7 +118,7 @@ func flattenSecurityconsoleTemplateCliPreviewFilename(v interface{}, d *schema.R
 }
 
 func flattenSecurityconsoleTemplateCliPreviewPkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleTemplateCliPreviewScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -241,7 +241,7 @@ func flattenSecurityconsoleTemplateCliPreviewFortiTestDebug(d *schema.ResourceDa
 }
 
 func expandSecurityconsoleTemplateCliPreviewAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleTemplateCliPreviewFilename(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -249,7 +249,7 @@ func expandSecurityconsoleTemplateCliPreviewFilename(d *schema.ResourceData, v i
 }
 
 func expandSecurityconsoleTemplateCliPreviewPkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleTemplateCliPreviewScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

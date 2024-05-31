@@ -234,7 +234,7 @@ func flattenObjectDlpDataTypeMatchAhead(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectDlpDataTypeMatchAround(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpDataTypeMatchBack(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -418,7 +418,7 @@ func expandObjectDlpDataTypeMatchAhead(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectDlpDataTypeMatchAround(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpDataTypeMatchBack(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

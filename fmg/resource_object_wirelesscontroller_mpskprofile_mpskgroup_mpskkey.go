@@ -91,10 +91,11 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupMpskKey() *schema.Resou
 				Computed:  true,
 			},
 			"pmk": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 		},
 	}
@@ -276,14 +277,6 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyName3rdl(v interf
 	return v
 }
 
-func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func refreshObjectObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -348,16 +341,6 @@ func refreshObjectObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("pmk", flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk3rdl(o["pmk"], d, "pmk")); err != nil {
-		if vv, ok := fortiAPIPatch(o["pmk"], "ObjectWirelessControllerMpskProfileMpskGroupMpskKey-Pmk"); ok {
-			if err = d.Set("pmk", vv); err != nil {
-				return fmt.Errorf("Error reading pmk: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading pmk: %v", err)
 		}
 	}
 

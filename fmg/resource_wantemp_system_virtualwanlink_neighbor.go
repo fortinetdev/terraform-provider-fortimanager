@@ -211,15 +211,15 @@ func resourceWantempSystemVirtualWanLinkNeighborRead(d *schema.ResourceData, m i
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkNeighborRole2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -297,15 +297,15 @@ func flattenWantempSystemVirtualWanLinkNeighborFortiTestDebug(d *schema.Resource
 }
 
 func expandWantempSystemVirtualWanLinkNeighborHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkNeighborRole2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

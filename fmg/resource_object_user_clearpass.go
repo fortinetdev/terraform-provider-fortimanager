@@ -199,10 +199,6 @@ func flattenObjectUserClearpassName(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
-func flattenObjectUserClearpassPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserClearpassServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

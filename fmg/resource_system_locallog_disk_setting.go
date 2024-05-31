@@ -281,10 +281,6 @@ func flattenSystemLocallogDiskSettingUploadip(v interface{}, d *schema.ResourceD
 	return v
 }
 
-func flattenSystemLocallogDiskSettingUploadpass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemLocallogDiskSettingUploadport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

@@ -50,10 +50,11 @@ func resourceObjectCloudOrchestAwsconnector() *schema.Resource {
 				Optional: true,
 			},
 			"access_key_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -187,10 +188,6 @@ func flattenObjectCloudOrchestAwsconnectorAccessKeyId(v interface{}, d *schema.R
 	return v
 }
 
-func flattenObjectCloudOrchestAwsconnectorAccessKeySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectCloudOrchestAwsconnectorName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -213,16 +210,6 @@ func refreshObjectObjectCloudOrchestAwsconnector(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading access_key_id: %v", err)
-		}
-	}
-
-	if err = d.Set("access_key_secret", flattenObjectCloudOrchestAwsconnectorAccessKeySecret(o["access-key-secret"], d, "access_key_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["access-key-secret"], "ObjectCloudOrchestAwsconnector-AccessKeySecret"); ok {
-			if err = d.Set("access_key_secret", vv); err != nil {
-				return fmt.Errorf("Error reading access_key_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading access_key_secret: %v", err)
 		}
 	}
 

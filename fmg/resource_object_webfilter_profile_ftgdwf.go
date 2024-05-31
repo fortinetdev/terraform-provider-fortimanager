@@ -769,7 +769,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp2edl(d *schema.ResourceD
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

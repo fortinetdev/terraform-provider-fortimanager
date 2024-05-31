@@ -69,6 +69,11 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_ca": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"last_updated": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -76,6 +81,10 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
+				Optional: true,
+			},
+			"non_fabric_name": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"obsolete": &schema.Schema{
@@ -253,11 +262,19 @@ func flattenObjectVpnCertificateCaEstUrl(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectVpnCertificateCaFabricCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnCertificateCaLastUpdated(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectVpnCertificateCaName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnCertificateCaNonFabricName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -356,6 +373,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fabric_ca", flattenObjectVpnCertificateCaFabricCa(o["fabric-ca"], d, "fabric_ca")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-ca"], "ObjectVpnCertificateCa-FabricCa"); ok {
+			if err = d.Set("fabric_ca", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_ca: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_ca: %v", err)
+		}
+	}
+
 	if err = d.Set("last_updated", flattenObjectVpnCertificateCaLastUpdated(o["last-updated"], d, "last_updated")); err != nil {
 		if vv, ok := fortiAPIPatch(o["last-updated"], "ObjectVpnCertificateCa-LastUpdated"); ok {
 			if err = d.Set("last_updated", vv); err != nil {
@@ -373,6 +400,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("non_fabric_name", flattenObjectVpnCertificateCaNonFabricName(o["non-fabric-name"], d, "non_fabric_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["non-fabric-name"], "ObjectVpnCertificateCa-NonFabricName"); ok {
+			if err = d.Set("non_fabric_name", vv); err != nil {
+				return fmt.Errorf("Error reading non_fabric_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading non_fabric_name: %v", err)
 		}
 	}
 
@@ -479,11 +516,19 @@ func expandObjectVpnCertificateCaEstUrl(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectVpnCertificateCaFabricCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnCertificateCaLastUpdated(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectVpnCertificateCaName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnCertificateCaNonFabricName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -572,6 +617,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_ca"); ok || d.HasChange("fabric_ca") {
+		t, err := expandObjectVpnCertificateCaFabricCa(d, v, "fabric_ca")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-ca"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("last_updated"); ok || d.HasChange("last_updated") {
 		t, err := expandObjectVpnCertificateCaLastUpdated(d, v, "last_updated")
 		if err != nil {
@@ -587,6 +641,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("non_fabric_name"); ok || d.HasChange("non_fabric_name") {
+		t, err := expandObjectVpnCertificateCaNonFabricName(d, v, "non_fabric_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["non-fabric-name"] = t
 		}
 	}
 

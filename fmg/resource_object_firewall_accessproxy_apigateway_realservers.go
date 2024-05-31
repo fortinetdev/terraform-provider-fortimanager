@@ -310,7 +310,7 @@ func flattenObjectFirewallAccessProxyApiGatewayRealserversAddrType3rdl(v interfa
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversAddress3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversDomain3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -354,7 +354,7 @@ func flattenObjectFirewallAccessProxyApiGatewayRealserversPort3rdl(v interface{}
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversSshClientCert3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversSshHostKey3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -606,7 +606,7 @@ func expandObjectFirewallAccessProxyApiGatewayRealserversAddrType3rdl(d *schema.
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversAddress3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversDomain3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -650,7 +650,7 @@ func expandObjectFirewallAccessProxyApiGatewayRealserversPort3rdl(d *schema.Reso
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversSshClientCert3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversSshHostKey3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

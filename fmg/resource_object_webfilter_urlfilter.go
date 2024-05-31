@@ -381,7 +381,7 @@ func flattenObjectWebfilterUrlfilterEntriesUrl(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWebfilterUrlfilterEntriesWebProxyProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterUrlfilterId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -623,7 +623,7 @@ func expandObjectWebfilterUrlfilterEntriesUrl(d *schema.ResourceData, v interfac
 }
 
 func expandObjectWebfilterUrlfilterEntriesWebProxyProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterUrlfilterId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

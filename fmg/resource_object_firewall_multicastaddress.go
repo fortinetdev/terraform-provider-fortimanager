@@ -71,7 +71,7 @@ func resourceObjectFirewallMulticastAddress() *schema.Resource {
 				Optional: true,
 			},
 			"subnet": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -232,7 +232,7 @@ func resourceObjectFirewallMulticastAddressRead(d *schema.ResourceData, m interf
 }
 
 func flattenObjectFirewallMulticastAddressAssociatedInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMulticastAddressColor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -307,7 +307,7 @@ func flattenObjectFirewallMulticastAddressTagging(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallMulticastAddressTaggingCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMulticastAddressTaggingName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -461,7 +461,7 @@ func flattenObjectFirewallMulticastAddressFortiTestDebug(d *schema.ResourceData,
 }
 
 func expandObjectFirewallMulticastAddressAssociatedInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMulticastAddressColor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -485,7 +485,7 @@ func expandObjectFirewallMulticastAddressStartIp(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallMulticastAddressSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallMulticastAddressTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -528,7 +528,7 @@ func expandObjectFirewallMulticastAddressTagging(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallMulticastAddressTaggingCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMulticastAddressTaggingName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

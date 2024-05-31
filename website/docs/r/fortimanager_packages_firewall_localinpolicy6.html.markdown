@@ -41,6 +41,14 @@ The following arguments are supported:
 * `dstaddr` - Destination address object from available options.
 * `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
+* `internet_service6_src` - Enable/disable use of IPv6 Internet Services in source for this local-in policy.If enabled, source address is not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_src_custom` - Custom IPv6 Internet Service source name.
+* `internet_service6_src_custom_group` - Custom Internet Service6 source group name.
+* `internet_service6_src_group` - Internet Service6 source group name.
+* `internet_service6_src_name` - IPv6 Internet Service source name.
+* `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
 * `intf` - Incoming interface name from available options.
 * `policyid` - User defined local in policy ID.
 * `schedule` - Schedule object from available options.

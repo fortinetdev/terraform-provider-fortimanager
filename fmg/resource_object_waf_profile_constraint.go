@@ -878,7 +878,7 @@ func flattenObjectWafProfileConstraintException2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectWafProfileConstraintExceptionAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileConstraintExceptionContentLength2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2125,7 +2125,7 @@ func expandObjectWafProfileConstraintException2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectWafProfileConstraintExceptionAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileConstraintExceptionContentLength2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

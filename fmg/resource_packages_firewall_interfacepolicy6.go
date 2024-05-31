@@ -78,6 +78,17 @@ func resourcePackagesFirewallInterfacePolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"casb_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"casb_profile_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -349,7 +360,7 @@ func flattenPackagesFirewallInterfacePolicy6AddressType(v interface{}, d *schema
 }
 
 func flattenPackagesFirewallInterfacePolicy6ApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6ApplicationListStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -357,10 +368,18 @@ func flattenPackagesFirewallInterfacePolicy6ApplicationListStatus(v interface{},
 }
 
 func flattenPackagesFirewallInterfacePolicy6AvProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6AvProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallInterfacePolicy6CasbProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallInterfacePolicy6CasbProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -369,7 +388,7 @@ func flattenPackagesFirewallInterfacePolicy6Comments(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallInterfacePolicy6DlpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6DlpProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -377,7 +396,7 @@ func flattenPackagesFirewallInterfacePolicy6DlpProfileStatus(v interface{}, d *s
 }
 
 func flattenPackagesFirewallInterfacePolicy6DlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6DlpSensorStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -405,7 +424,7 @@ func flattenPackagesFirewallInterfacePolicy6Interface(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallInterfacePolicy6IpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6IpsSensorStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -453,7 +472,7 @@ func flattenPackagesFirewallInterfacePolicy6Uuid(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallInterfacePolicy6WebfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallInterfacePolicy6WebfilterProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -514,6 +533,26 @@ func refreshObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading av_profile_status: %v", err)
+		}
+	}
+
+	if err = d.Set("casb_profile", flattenPackagesFirewallInterfacePolicy6CasbProfile(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "PackagesFirewallInterfacePolicy6-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("casb_profile_status", flattenPackagesFirewallInterfacePolicy6CasbProfileStatus(o["casb-profile-status"], d, "casb_profile_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile-status"], "PackagesFirewallInterfacePolicy6-CasbProfileStatus"); ok {
+			if err = d.Set("casb_profile_status", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile_status: %v", err)
 		}
 	}
 
@@ -771,7 +810,7 @@ func expandPackagesFirewallInterfacePolicy6AddressType(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallInterfacePolicy6ApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6ApplicationListStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -779,10 +818,18 @@ func expandPackagesFirewallInterfacePolicy6ApplicationListStatus(d *schema.Resou
 }
 
 func expandPackagesFirewallInterfacePolicy6AvProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6AvProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallInterfacePolicy6CasbProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallInterfacePolicy6CasbProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -791,7 +838,7 @@ func expandPackagesFirewallInterfacePolicy6Comments(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallInterfacePolicy6DlpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6DlpProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -799,7 +846,7 @@ func expandPackagesFirewallInterfacePolicy6DlpProfileStatus(d *schema.ResourceDa
 }
 
 func expandPackagesFirewallInterfacePolicy6DlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6DlpSensorStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -827,7 +874,7 @@ func expandPackagesFirewallInterfacePolicy6Interface(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallInterfacePolicy6IpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6IpsSensorStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -875,7 +922,7 @@ func expandPackagesFirewallInterfacePolicy6Uuid(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallInterfacePolicy6WebfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallInterfacePolicy6WebfilterProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -927,6 +974,24 @@ func getObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["av-profile-status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandPackagesFirewallInterfacePolicy6CasbProfile(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("casb_profile_status"); ok || d.HasChange("casb_profile_status") {
+		t, err := expandPackagesFirewallInterfacePolicy6CasbProfileStatus(d, v, "casb_profile_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile-status"] = t
 		}
 	}
 

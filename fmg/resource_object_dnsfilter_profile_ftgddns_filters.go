@@ -286,7 +286,7 @@ func expandObjectDnsfilterProfileFtgdDnsFiltersAction3rdl(d *schema.ResourceData
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersCategory3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

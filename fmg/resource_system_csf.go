@@ -104,10 +104,11 @@ func resourceSystemCsf() *schema.Resource {
 				Computed: true,
 			},
 			"fixed_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"forticloud_account_enforcement": &schema.Schema{
 				Type:     schema.TypeString,
@@ -119,10 +120,11 @@ func resourceSystemCsf() *schema.Resource {
 				Optional: true,
 			},
 			"group_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"log_unification": &schema.Schema{
 				Type:     schema.TypeString,
@@ -377,20 +379,12 @@ func flattenSystemCsfFileQuotaWarning(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
-func flattenSystemCsfFixedKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemCsfForticloudAccountEnforcement(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemCsfGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemCsfGroupPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemCsfLogUnification(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -663,16 +657,6 @@ func refreshObjectSystemCsf(d *schema.ResourceData, o map[string]interface{}) er
 		}
 	}
 
-	if err = d.Set("fixed_key", flattenSystemCsfFixedKey(o["fixed-key"], d, "fixed_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["fixed-key"], "SystemCsf-FixedKey"); ok {
-			if err = d.Set("fixed_key", vv); err != nil {
-				return fmt.Errorf("Error reading fixed_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading fixed_key: %v", err)
-		}
-	}
-
 	if err = d.Set("forticloud_account_enforcement", flattenSystemCsfForticloudAccountEnforcement(o["forticloud-account-enforcement"], d, "forticloud_account_enforcement")); err != nil {
 		if vv, ok := fortiAPIPatch(o["forticloud-account-enforcement"], "SystemCsf-ForticloudAccountEnforcement"); ok {
 			if err = d.Set("forticloud_account_enforcement", vv); err != nil {
@@ -690,16 +674,6 @@ func refreshObjectSystemCsf(d *schema.ResourceData, o map[string]interface{}) er
 			}
 		} else {
 			return fmt.Errorf("Error reading group_name: %v", err)
-		}
-	}
-
-	if err = d.Set("group_password", flattenSystemCsfGroupPassword(o["group-password"], d, "group_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["group-password"], "SystemCsf-GroupPassword"); ok {
-			if err = d.Set("group_password", vv); err != nil {
-				return fmt.Errorf("Error reading group_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading group_password: %v", err)
 		}
 	}
 

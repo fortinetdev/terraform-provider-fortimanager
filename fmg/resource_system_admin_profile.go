@@ -735,10 +735,6 @@ func flattenSystemAdminProfileDatamaskFields(v interface{}, d *schema.ResourceDa
 	return flattenStringList(v)
 }
 
-func flattenSystemAdminProfileDatamaskKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminProfileDatamaskUnmaskedTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -964,43 +960,43 @@ func flattenSystemAdminProfileTriageEvents(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAdminProfileTrusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost10(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost7(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost8(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost9(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2370,43 +2366,43 @@ func expandSystemAdminProfileTriageEvents(d *schema.ResourceData, v interface{},
 }
 
 func expandSystemAdminProfileTrusthost1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileTrusthost9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemAdminProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

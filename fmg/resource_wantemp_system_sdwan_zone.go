@@ -213,7 +213,7 @@ func resourceWantempSystemSdwanZoneRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenWantempSystemSdwanZoneAdvpnHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanZoneAdvpnSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -299,7 +299,7 @@ func flattenWantempSystemSdwanZoneFortiTestDebug(d *schema.ResourceData, fosdebu
 }
 
 func expandWantempSystemSdwanZoneAdvpnHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanZoneAdvpnSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

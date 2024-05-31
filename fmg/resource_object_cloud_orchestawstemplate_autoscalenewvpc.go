@@ -63,10 +63,11 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpc() *schema.Resource {
 				Computed: true,
 			},
 			"faz_autoscale_admin_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"faz_autoscale_admin_username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -422,10 +423,6 @@ func flattenObjectCloudOrchestAwstemplateAutoscaleNewVpcCustomIdentifier(v inter
 	return v
 }
 
-func flattenObjectCloudOrchestAwstemplateAutoscaleNewVpcFazAutoscaleAdminPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectCloudOrchestAwstemplateAutoscaleNewVpcFazAutoscaleAdminUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -654,16 +651,6 @@ func refreshObjectObjectCloudOrchestAwstemplateAutoscaleNewVpc(d *schema.Resourc
 			}
 		} else {
 			return fmt.Errorf("Error reading custom_identifier: %v", err)
-		}
-	}
-
-	if err = d.Set("faz_autoscale_admin_password", flattenObjectCloudOrchestAwstemplateAutoscaleNewVpcFazAutoscaleAdminPassword(o["faz-autoscale-admin-password"], d, "faz_autoscale_admin_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["faz-autoscale-admin-password"], "ObjectCloudOrchestAwstemplateAutoscaleNewVpc-FazAutoscaleAdminPassword"); ok {
-			if err = d.Set("faz_autoscale_admin_password", vv); err != nil {
-				return fmt.Errorf("Error reading faz_autoscale_admin_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading faz_autoscale_admin_password: %v", err)
 		}
 	}
 

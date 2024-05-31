@@ -263,10 +263,6 @@ func flattenObjectWebProxyForwardServerName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
-func flattenObjectWebProxyForwardServerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWebProxyForwardServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

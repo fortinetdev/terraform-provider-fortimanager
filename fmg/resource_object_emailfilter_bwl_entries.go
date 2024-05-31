@@ -248,7 +248,7 @@ func flattenObjectEmailfilterBwlEntriesId2edl(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectEmailfilterBwlEntriesIp4Subnet2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterBwlEntriesIp6Subnet2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -390,7 +390,7 @@ func expandObjectEmailfilterBwlEntriesId2edl(d *schema.ResourceData, v interface
 }
 
 func expandObjectEmailfilterBwlEntriesIp4Subnet2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterBwlEntriesIp6Subnet2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -236,7 +236,7 @@ func flattenObjectCasbProfileSaasApplicationAccessRuleBypass3rdl(v interface{}, 
 }
 
 func flattenObjectCasbProfileSaasApplicationAccessRuleName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceData, o map[string]interface{}) error {
@@ -294,7 +294,7 @@ func expandObjectCasbProfileSaasApplicationAccessRuleBypass3rdl(d *schema.Resour
 }
 
 func expandObjectCasbProfileSaasApplicationAccessRuleName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceData) (*map[string]interface{}, error) {

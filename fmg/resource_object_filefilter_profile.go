@@ -266,7 +266,7 @@ func flattenObjectFileFilterProfileName(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFileFilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFileFilterProfileRules(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -507,7 +507,7 @@ func expandObjectFileFilterProfileName(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFileFilterProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFileFilterProfileRules(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

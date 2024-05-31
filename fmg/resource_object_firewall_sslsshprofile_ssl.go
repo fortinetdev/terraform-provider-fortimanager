@@ -72,6 +72,11 @@ func resourceObjectFirewallSslSshProfileSsl() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"encrypted_client_hello": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"expired_server_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -258,6 +263,10 @@ func flattenObjectFirewallSslSshProfileSslClientCertificate2edl(v interface{}, d
 	return v
 }
 
+func flattenObjectFirewallSslSshProfileSslEncryptedClientHello2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallSslSshProfileSslExpiredServerCert2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -364,6 +373,16 @@ func refreshObjectObjectFirewallSslSshProfileSsl(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading client_certificate: %v", err)
+		}
+	}
+
+	if err = d.Set("encrypted_client_hello", flattenObjectFirewallSslSshProfileSslEncryptedClientHello2edl(o["encrypted-client-hello"], d, "encrypted_client_hello")); err != nil {
+		if vv, ok := fortiAPIPatch(o["encrypted-client-hello"], "ObjectFirewallSslSshProfileSsl-EncryptedClientHello"); ok {
+			if err = d.Set("encrypted_client_hello", vv); err != nil {
+				return fmt.Errorf("Error reading encrypted_client_hello: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading encrypted_client_hello: %v", err)
 		}
 	}
 
@@ -526,6 +545,10 @@ func expandObjectFirewallSslSshProfileSslClientCertificate2edl(d *schema.Resourc
 	return v, nil
 }
 
+func expandObjectFirewallSslSshProfileSslEncryptedClientHello2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallSslSshProfileSslExpiredServerCert2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -623,6 +646,15 @@ func getObjectObjectFirewallSslSshProfileSsl(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["client-certificate"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("encrypted_client_hello"); ok || d.HasChange("encrypted_client_hello") {
+		t, err := expandObjectFirewallSslSshProfileSslEncryptedClientHello2edl(d, v, "encrypted_client_hello")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["encrypted-client-hello"] = t
 		}
 	}
 

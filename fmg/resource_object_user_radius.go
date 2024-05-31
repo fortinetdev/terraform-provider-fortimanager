@@ -325,10 +325,11 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 						},
 						"dp_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"dp_validate_request_secret": &schema.Schema{
 							Type:     schema.TypeString,
@@ -497,30 +498,33 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 						},
 						"rsso_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"rsso_validate_request_secret": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"secondary_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"secondary_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -567,10 +571,11 @@ func resourceObjectUserRadius() *schema.Resource {
 							Computed: true,
 						},
 						"tertiary_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"tertiary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -722,10 +727,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Optional: true,
 			},
 			"rsso_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"rsso_validate_request_secret": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1006,16 +1012,6 @@ func flattenObjectUserRadiusAccountingServer(v interface{}, d *schema.ResourceDa
 			tmp["port"] = fortiAPISubPartPatch(v, "ObjectUserRadius-AccountingServer-Port")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := i["secret"]; ok {
-			v := flattenObjectUserRadiusAccountingServerSecret(i["secret"], d, pre_append)
-			tmp["secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-AccountingServer-Secret")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["secret"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
 		if _, ok := i["server"]; ok {
 			v := flattenObjectUserRadiusAccountingServerServer(i["server"], d, pre_append)
@@ -1049,7 +1045,7 @@ func flattenObjectUserRadiusAccountingServerId(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserRadiusAccountingServerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusAccountingServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1058,10 +1054,6 @@ func flattenObjectUserRadiusAccountingServerInterfaceSelectMethod(v interface{},
 
 func flattenObjectUserRadiusAccountingServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserRadiusAccountingServerSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusAccountingServerServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1093,7 +1085,7 @@ func flattenObjectUserRadiusAuthType(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectUserRadiusCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusCallStationIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1105,7 +1097,7 @@ func flattenObjectUserRadiusClass(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserRadiusClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1303,12 +1295,6 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["dp-radius-server-port"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingDpRadiusServerPort(i["dp-radius-server-port"], d, pre_append)
 			tmp["dp_radius_server_port"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-DpRadiusServerPort")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_secret"
-		if _, ok := i["dp-secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingDpSecret(i["dp-secret"], d, pre_append)
-			tmp["dp_secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-DpSecret")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_validate_request_secret"
@@ -1545,34 +1531,16 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["rsso_radius_server_port"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-RssoRadiusServerPort")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_secret"
-		if _, ok := i["rsso-secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingRssoSecret(i["rsso-secret"], d, pre_append)
-			tmp["rsso_secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-RssoSecret")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_validate_request_secret"
 		if _, ok := i["rsso-validate-request-secret"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingRssoValidateRequestSecret(i["rsso-validate-request-secret"], d, pre_append)
 			tmp["rsso_validate_request_secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-RssoValidateRequestSecret")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_secret"
-		if _, ok := i["secondary-secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingSecondarySecret(i["secondary-secret"], d, pre_append)
-			tmp["secondary_secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SecondarySecret")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
 		if _, ok := i["secondary-server"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingSecondaryServer(i["secondary-server"], d, pre_append)
 			tmp["secondary_server"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SecondaryServer")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := i["secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingSecret(i["secret"], d, pre_append)
-			tmp["secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-Secret")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
@@ -1633,12 +1601,6 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["switch-controller-service-type"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingSwitchControllerServiceType(i["switch-controller-service-type"], d, pre_append)
 			tmp["switch_controller_service_type"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SwitchControllerServiceType")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_secret"
-		if _, ok := i["tertiary-secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingTertiarySecret(i["tertiary-secret"], d, pre_append)
-			tmp["tertiary_secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-TertiarySecret")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -1793,16 +1755,6 @@ func flattenObjectUserRadiusDynamicMappingAccountingServer(v interface{}, d *sch
 			tmp["port"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-Port")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := i["secret"]; ok {
-			v := flattenObjectUserRadiusDynamicMappingAccountingServerSecret(i["secret"], d, pre_append)
-			tmp["secret"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-Secret")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["secret"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
 		if _, ok := i["server"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingAccountingServerServer(i["server"], d, pre_append)
@@ -1845,10 +1797,6 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerInterfaceSelectMethod(
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserRadiusDynamicMappingAccountingServerSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1961,10 +1909,6 @@ func flattenObjectUserRadiusDynamicMappingDpRadiusResponse(v interface{}, d *sch
 
 func flattenObjectUserRadiusDynamicMappingDpRadiusServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserRadiusDynamicMappingDpSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingDpValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2123,24 +2067,12 @@ func flattenObjectUserRadiusDynamicMappingRssoRadiusServerPort(v interface{}, d 
 	return v
 }
 
-func flattenObjectUserRadiusDynamicMappingRssoSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserRadiusDynamicMappingRssoValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectUserRadiusDynamicMappingSecondarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserRadiusDynamicMappingSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserRadiusDynamicMappingSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2183,10 +2115,6 @@ func flattenObjectUserRadiusDynamicMappingSwitchControllerServiceType(v interfac
 	return flattenStringList(v)
 }
 
-func flattenObjectUserRadiusDynamicMappingTertiarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserRadiusDynamicMappingTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2224,7 +2152,7 @@ func flattenObjectUserRadiusH3CCompatibility(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectUserRadiusInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserRadiusInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2315,24 +2243,12 @@ func flattenObjectUserRadiusRssoRadiusServerPort(v interface{}, d *schema.Resour
 	return v
 }
 
-func flattenObjectUserRadiusRssoSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserRadiusRssoValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectUserRadiusSecondarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserRadiusSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2372,10 +2288,6 @@ func flattenObjectUserRadiusSwitchControllerNasIpDynamic(v interface{}, d *schem
 }
 
 func flattenObjectUserRadiusSwitchControllerServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserRadiusTertiarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -2822,16 +2734,6 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
-	if err = d.Set("rsso_secret", flattenObjectUserRadiusRssoSecret(o["rsso-secret"], d, "rsso_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["rsso-secret"], "ObjectUserRadius-RssoSecret"); ok {
-			if err = d.Set("rsso_secret", vv); err != nil {
-				return fmt.Errorf("Error reading rsso_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading rsso_secret: %v", err)
-		}
-	}
-
 	if err = d.Set("rsso_validate_request_secret", flattenObjectUserRadiusRssoValidateRequestSecret(o["rsso-validate-request-secret"], d, "rsso_validate_request_secret")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rsso-validate-request-secret"], "ObjectUserRadius-RssoValidateRequestSecret"); ok {
 			if err = d.Set("rsso_validate_request_secret", vv); err != nil {
@@ -3098,7 +3000,7 @@ func expandObjectUserRadiusAccountingServerId(d *schema.ResourceData, v interfac
 }
 
 func expandObjectUserRadiusAccountingServerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusAccountingServerInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3142,7 +3044,7 @@ func expandObjectUserRadiusAuthType(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectUserRadiusCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusCallStationIdType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3154,7 +3056,7 @@ func expandObjectUserRadiusClass(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandObjectUserRadiusClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4162,7 +4064,7 @@ func expandObjectUserRadiusH3CCompatibility(d *schema.ResourceData, v interface{
 }
 
 func expandObjectUserRadiusInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserRadiusInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -1910,15 +1910,15 @@ func flattenObjectVoipProfileSipSslAlgorithm(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectVoipProfileSipSslAuthClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslAuthServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslClientRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1946,7 +1946,7 @@ func flattenObjectVoipProfileSipSslSendEmptyFrags(v interface{}, d *schema.Resou
 }
 
 func flattenObjectVoipProfileSipSslServerCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3082,15 +3082,15 @@ func expandObjectVoipProfileSipSslAlgorithm(d *schema.ResourceData, v interface{
 }
 
 func expandObjectVoipProfileSipSslAuthClient(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslAuthServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslClientCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslClientRenegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3118,7 +3118,7 @@ func expandObjectVoipProfileSipSslSendEmptyFrags(d *schema.ResourceData, v inter
 }
 
 func expandObjectVoipProfileSipSslServerCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

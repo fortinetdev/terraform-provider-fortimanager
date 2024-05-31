@@ -50,6 +50,9 @@ The following arguments are supported:
 * `av_profile` - Antivirus profile.
 * `av_profile_status` - Enable/disable antivirus. Valid values: `disable`, `enable`.
 
+* `casb_profile` - CASB profile.
+* `casb_profile_status` - Enable/disable CASB. Valid values: `disable`, `enable`.
+
 * `comments` - Comments.
 * `dlp_profile` - DLP profile name.
 * `dlp_profile_status` - Enable/disable DLP. Valid values: `disable`, `enable`.

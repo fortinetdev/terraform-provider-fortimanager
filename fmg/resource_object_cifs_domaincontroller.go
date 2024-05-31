@@ -209,10 +209,6 @@ func flattenObjectCifsDomainControllerIp6(v interface{}, d *schema.ResourceData,
 	return v
 }
 
-func flattenObjectCifsDomainControllerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectCifsDomainControllerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

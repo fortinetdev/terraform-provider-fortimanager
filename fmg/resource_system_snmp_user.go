@@ -193,10 +193,6 @@ func flattenSystemSnmpUserAuthProto(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
-func flattenSystemSnmpUserAuthPwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemSnmpUserEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -215,10 +211,6 @@ func flattenSystemSnmpUserNotifyHosts6(v interface{}, d *schema.ResourceData, pr
 
 func flattenSystemSnmpUserPrivProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemSnmpUserPrivPwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemSnmpUserQueries(v interface{}, d *schema.ResourceData, pre string) interface{} {

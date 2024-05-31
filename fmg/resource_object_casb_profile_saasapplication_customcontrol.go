@@ -240,7 +240,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlRead(d *schema.Resourc
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlOption3rdl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -347,7 +347,7 @@ func flattenObjectCasbProfileSaasApplicationCustomControlFortiTestDebug(d *schem
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlOption3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

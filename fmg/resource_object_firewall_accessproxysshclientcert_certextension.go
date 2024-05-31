@@ -53,6 +53,7 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtension() *schema.Resou
 			"critical": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"data": &schema.Schema{
 				Type:     schema.TypeString,
@@ -66,6 +67,7 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtension() *schema.Resou
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

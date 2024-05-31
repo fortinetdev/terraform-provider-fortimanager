@@ -192,10 +192,6 @@ func flattenSystemAdminTacacsAuthorization(v interface{}, d *schema.ResourceData
 	return v
 }
 
-func flattenSystemAdminTacacsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminTacacsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -204,20 +200,12 @@ func flattenSystemAdminTacacsPort(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
-func flattenSystemAdminTacacsSecondaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminTacacsSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminTacacsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemAdminTacacsTertiaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemAdminTacacsTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -55,10 +55,11 @@ func resourceSystempSystemSnmpUser() *schema.Resource {
 				Optional: true,
 			},
 			"auth_pwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"events": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -96,10 +97,11 @@ func resourceSystempSystemSnmpUser() *schema.Resource {
 				Optional: true,
 			},
 			"priv_pwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"queries": &schema.Schema{
 				Type:     schema.TypeString,
@@ -295,10 +297,6 @@ func flattenSystempSystemSnmpUserAuthProto(v interface{}, d *schema.ResourceData
 	return v
 }
 
-func flattenSystempSystemSnmpUserAuthPwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystempSystemSnmpUserEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -308,7 +306,7 @@ func flattenSystempSystemSnmpUserHaDirect(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystempSystemSnmpUserMibView(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempSystemSnmpUserName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -320,15 +318,11 @@ func flattenSystempSystemSnmpUserNotifyHosts(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystempSystemSnmpUserNotifyHosts6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempSystemSnmpUserPrivProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystempSystemSnmpUserPrivPwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystempSystemSnmpUserQueries(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -385,16 +379,6 @@ func refreshObjectSystempSystemSnmpUser(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading auth_proto: %v", err)
-		}
-	}
-
-	if err = d.Set("auth_pwd", flattenSystempSystemSnmpUserAuthPwd(o["auth-pwd"], d, "auth_pwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["auth-pwd"], "SystempSystemSnmpUser-AuthPwd"); ok {
-			if err = d.Set("auth_pwd", vv); err != nil {
-				return fmt.Errorf("Error reading auth_pwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading auth_pwd: %v", err)
 		}
 	}
 
@@ -465,16 +449,6 @@ func refreshObjectSystempSystemSnmpUser(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading priv_proto: %v", err)
-		}
-	}
-
-	if err = d.Set("priv_pwd", flattenSystempSystemSnmpUserPrivPwd(o["priv-pwd"], d, "priv_pwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["priv-pwd"], "SystempSystemSnmpUser-PrivPwd"); ok {
-			if err = d.Set("priv_pwd", vv); err != nil {
-				return fmt.Errorf("Error reading priv_pwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading priv_pwd: %v", err)
 		}
 	}
 
@@ -604,7 +578,7 @@ func expandSystempSystemSnmpUserHaDirect(d *schema.ResourceData, v interface{}, 
 }
 
 func expandSystempSystemSnmpUserMibView(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempSystemSnmpUserName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -616,7 +590,7 @@ func expandSystempSystemSnmpUserNotifyHosts(d *schema.ResourceData, v interface{
 }
 
 func expandSystempSystemSnmpUserNotifyHosts6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempSystemSnmpUserPrivProto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

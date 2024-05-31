@@ -138,10 +138,11 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1() *schema.Re
 				Computed: true,
 			},
 			"sim1_pin_code": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"sim2_pin": &schema.Schema{
 				Type:     schema.TypeString,
@@ -149,10 +150,11 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1() *schema.Re
 				Computed: true,
 			},
 			"sim2_pin_code": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 		},
 	}
@@ -379,16 +381,8 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1Pin3rdl(v 
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func refreshObjectObjectExtensionControllerExtenderProfileCellularModem1(d *schema.ResourceData, o map[string]interface{}) error {
@@ -502,16 +496,6 @@ func refreshObjectObjectExtensionControllerExtenderProfileCellularModem1(d *sche
 		}
 	}
 
-	if err = d.Set("sim1_pin_code", flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode3rdl(o["sim1-pin-code"], d, "sim1_pin_code")); err != nil {
-		if vv, ok := fortiAPIPatch(o["sim1-pin-code"], "ObjectExtensionControllerExtenderProfileCellularModem1-Sim1PinCode"); ok {
-			if err = d.Set("sim1_pin_code", vv); err != nil {
-				return fmt.Errorf("Error reading sim1_pin_code: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading sim1_pin_code: %v", err)
-		}
-	}
-
 	if err = d.Set("sim2_pin", flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin3rdl(o["sim2-pin"], d, "sim2_pin")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sim2-pin"], "ObjectExtensionControllerExtenderProfileCellularModem1-Sim2Pin"); ok {
 			if err = d.Set("sim2_pin", vv); err != nil {
@@ -519,16 +503,6 @@ func refreshObjectObjectExtensionControllerExtenderProfileCellularModem1(d *sche
 			}
 		} else {
 			return fmt.Errorf("Error reading sim2_pin: %v", err)
-		}
-	}
-
-	if err = d.Set("sim2_pin_code", flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode3rdl(o["sim2-pin-code"], d, "sim2_pin_code")); err != nil {
-		if vv, ok := fortiAPIPatch(o["sim2-pin-code"], "ObjectExtensionControllerExtenderProfileCellularModem1-Sim2PinCode"); ok {
-			if err = d.Set("sim2_pin_code", vv); err != nil {
-				return fmt.Errorf("Error reading sim2_pin_code: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading sim2_pin_code: %v", err)
 		}
 	}
 

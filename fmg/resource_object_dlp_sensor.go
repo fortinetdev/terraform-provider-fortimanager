@@ -574,7 +574,7 @@ func flattenObjectDlpSensorFilterFileSize(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectDlpSensorFilterFileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpSensorFilterFilterBy(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -638,7 +638,7 @@ func flattenObjectDlpSensorOptions(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectDlpSensorReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpSensorSummaryProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -896,7 +896,7 @@ func expandObjectDlpSensorEntriesCount(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectDlpSensorEntriesDictionary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpSensorEntriesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1052,7 +1052,7 @@ func expandObjectDlpSensorFilterFileSize(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectDlpSensorFilterFileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpSensorFilterFilterBy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1116,7 +1116,7 @@ func expandObjectDlpSensorOptions(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectDlpSensorReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpSensorSummaryProto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -294,18 +294,6 @@ func flattenSystemLogSettingsRollingRegularMin2edl(v interface{}, d *schema.Reso
 	return v
 }
 
-func flattenSystemLogSettingsRollingRegularPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingRegularPassword22edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingRegularPassword32edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemLogSettingsRollingRegularPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

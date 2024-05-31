@@ -281,7 +281,7 @@ func flattenPackagesAuthenticationSettingAuthHttps(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesAuthenticationSettingCaptivePortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingCaptivePortalIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -305,7 +305,7 @@ func flattenPackagesAuthenticationSettingCaptivePortalType(v interface{}, d *sch
 }
 
 func flattenPackagesAuthenticationSettingCaptivePortal6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -313,7 +313,7 @@ func flattenPackagesAuthenticationSettingCertAuth(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesAuthenticationSettingCertCaptivePortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingCertCaptivePortalIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -349,7 +349,7 @@ func flattenPackagesAuthenticationSettingRewriteHttpsPort(v interface{}, d *sche
 }
 
 func flattenPackagesAuthenticationSettingSsoAuthScheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingUpdateTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -605,7 +605,7 @@ func expandPackagesAuthenticationSettingAuthHttps(d *schema.ResourceData, v inte
 }
 
 func expandPackagesAuthenticationSettingCaptivePortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingCaptivePortalIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -629,7 +629,7 @@ func expandPackagesAuthenticationSettingCaptivePortalType(d *schema.ResourceData
 }
 
 func expandPackagesAuthenticationSettingCaptivePortal6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -637,7 +637,7 @@ func expandPackagesAuthenticationSettingCertAuth(d *schema.ResourceData, v inter
 }
 
 func expandPackagesAuthenticationSettingCertCaptivePortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingCertCaptivePortalIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -673,7 +673,7 @@ func expandPackagesAuthenticationSettingRewriteHttpsPort(d *schema.ResourceData,
 }
 
 func expandPackagesAuthenticationSettingSsoAuthScheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingUpdateTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

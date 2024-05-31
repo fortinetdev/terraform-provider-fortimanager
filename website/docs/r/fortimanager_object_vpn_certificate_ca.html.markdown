@@ -38,8 +38,11 @@ The following arguments are supported:
 * `ca` - CA certificate as a PEM file.
 * `ca_identifier` - CA identifier of the SCEP server.
 * `est_url` - URL of the EST server.
+* `fabric_ca` - Enable/disable synchronization of CA across Security Fabric. Valid values: `disable`, `enable`.
+
 * `last_updated` - Time at which CA was last updated.
 * `name` - Name.
+* `non_fabric_name` - Name used prior to becoming a Security Fabric synchronized CA.
 * `obsolete` - Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
 
 * `range` - Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.

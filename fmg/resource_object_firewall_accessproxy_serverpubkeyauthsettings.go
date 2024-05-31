@@ -435,7 +435,7 @@ func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsFortiTestDebug(d *s
 }
 
 func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsAuthCa2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

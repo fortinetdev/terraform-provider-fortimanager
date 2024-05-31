@@ -205,7 +205,7 @@ func resourceObjectFirewallAddressTaggingRead(d *schema.ResourceData, m interfac
 }
 
 func flattenObjectFirewallAddressTaggingCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddressTaggingName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -263,7 +263,7 @@ func flattenObjectFirewallAddressTaggingFortiTestDebug(d *schema.ResourceData, f
 }
 
 func expandObjectFirewallAddressTaggingCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddressTaggingName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

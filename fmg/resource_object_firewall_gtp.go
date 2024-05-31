@@ -492,6 +492,10 @@ func resourceObjectFirewallGtp() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"echo_response": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"error_indication": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1237,19 +1241,19 @@ func flattenObjectFirewallGtpApnFilter(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallGtpAuthorizedGgsns(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpAuthorizedGgsns6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpAuthorizedSgsns(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpAuthorizedSgsns6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1301,7 +1305,7 @@ func flattenObjectFirewallGtpForwardedLog(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallGtpGlobalTunnelLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpGtpInGtp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1329,19 +1333,19 @@ func flattenObjectFirewallGtpHalfOpenTimeout(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallGtpHandoverGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpHandoverGroup6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeAllowListV0V1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeAllowListV2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeRemovePolicy(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1406,11 +1410,11 @@ func flattenObjectFirewallGtpIeRemovePolicyRemoveIes(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallGtpIeRemovePolicySgsnAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeRemovePolicySgsnAddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeRemover(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1602,11 +1606,11 @@ func flattenObjectFirewallGtpIeValidationUli(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallGtpIeWhiteListV0V1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeWhiteListV2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpImsi(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1703,7 +1707,7 @@ func flattenObjectFirewallGtpImsiFilter(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallGtpInterfaceNotify(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpInvalidReservedField(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1711,11 +1715,11 @@ func flattenObjectFirewallGtpInvalidReservedField(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallGtpInvalidSgsnsToLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpInvalidSgsns6ToLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1792,11 +1796,11 @@ func flattenObjectFirewallGtpIpPolicyAction(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallGtpIpPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1804,11 +1808,11 @@ func flattenObjectFirewallGtpIpPolicyId(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallGtpIpPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIpPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpLogFreq(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1832,11 +1836,11 @@ func flattenObjectFirewallGtpMaxMessageLength(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallGtpMessageFilterV0V1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpMessageFilterV2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpMessageRateLimit(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1916,6 +1920,11 @@ func flattenObjectFirewallGtpMessageRateLimit(v interface{}, d *schema.ResourceD
 	pre_append = pre + ".0." + "echo_request"
 	if _, ok := i["echo-request"]; ok {
 		result["echo_request"] = flattenObjectFirewallGtpMessageRateLimitEchoRequest(i["echo-request"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "echo_response"
+	if _, ok := i["echo-response"]; ok {
+		result["echo_response"] = flattenObjectFirewallGtpMessageRateLimitEchoResponse(i["echo-response"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "error_indication"
@@ -2195,6 +2204,10 @@ func flattenObjectFirewallGtpMessageRateLimitEchoReponse(v interface{}, d *schem
 }
 
 func flattenObjectFirewallGtpMessageRateLimitEchoRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallGtpMessageRateLimitEchoResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2655,7 +2668,7 @@ func flattenObjectFirewallGtpPerApnShaper(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallGtpPerApnShaperApn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpPerApnShaperId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2987,7 +3000,7 @@ func flattenObjectFirewallGtpPortNotify(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallGtpRatTimeoutProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpRateLimitMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4207,19 +4220,19 @@ func expandObjectFirewallGtpApnFilter(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallGtpAuthorizedGgsns(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpAuthorizedGgsns6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpAuthorizedSgsns(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpAuthorizedSgsns6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4271,7 +4284,7 @@ func expandObjectFirewallGtpForwardedLog(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallGtpGlobalTunnelLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpGtpInGtp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4299,19 +4312,19 @@ func expandObjectFirewallGtpHalfOpenTimeout(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallGtpHandoverGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpHandoverGroup6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeAllowListV0V1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeAllowListV2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeRemovePolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4367,11 +4380,11 @@ func expandObjectFirewallGtpIeRemovePolicyRemoveIes(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallGtpIeRemovePolicySgsnAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeRemovePolicySgsnAddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeRemover(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4545,11 +4558,11 @@ func expandObjectFirewallGtpIeValidationUli(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallGtpIeWhiteListV0V1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeWhiteListV2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpImsi(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4635,7 +4648,7 @@ func expandObjectFirewallGtpImsiFilter(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallGtpInterfaceNotify(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpInvalidReservedField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4643,11 +4656,11 @@ func expandObjectFirewallGtpInvalidReservedField(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallGtpInvalidSgsnsToLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpInvalidSgsns6ToLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4713,11 +4726,11 @@ func expandObjectFirewallGtpIpPolicyAction(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFirewallGtpIpPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4725,11 +4738,11 @@ func expandObjectFirewallGtpIpPolicyId(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallGtpIpPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIpPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpLogFreq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4753,11 +4766,11 @@ func expandObjectFirewallGtpMaxMessageLength(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallGtpMessageFilterV0V1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpMessageFilterV2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpMessageRateLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4825,6 +4838,10 @@ func expandObjectFirewallGtpMessageRateLimit(d *schema.ResourceData, v interface
 	pre_append = pre + ".0." + "echo_request"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["echo-request"], _ = expandObjectFirewallGtpMessageRateLimitEchoRequest(d, i["echo_request"], pre_append)
+	}
+	pre_append = pre + ".0." + "echo_response"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["echo-response"], _ = expandObjectFirewallGtpMessageRateLimitEchoResponse(d, i["echo_response"], pre_append)
 	}
 	pre_append = pre + ".0." + "error_indication"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -5059,6 +5076,10 @@ func expandObjectFirewallGtpMessageRateLimitEchoReponse(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallGtpMessageRateLimitEchoRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallGtpMessageRateLimitEchoResponse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5494,7 +5515,7 @@ func expandObjectFirewallGtpPerApnShaper(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallGtpPerApnShaperApn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpPerApnShaperId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5791,7 +5812,7 @@ func expandObjectFirewallGtpPortNotify(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallGtpRatTimeoutProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpRateLimitMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

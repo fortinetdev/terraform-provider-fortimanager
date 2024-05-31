@@ -67,6 +67,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
@@ -91,10 +92,12 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -405,7 +408,7 @@ func flattenObjectVideofilterProfileFiltersId(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectVideofilterProfileFiltersKeyword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVideofilterProfileFiltersLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -512,7 +515,7 @@ func flattenObjectVideofilterProfileName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectVideofilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVideofilterProfileVimeo(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -528,7 +531,7 @@ func flattenObjectVideofilterProfileYoutube(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectVideofilterProfileYoutubeChannelFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVideofilterProfileYoutubeRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -810,7 +813,7 @@ func expandObjectVideofilterProfileFiltersId(d *schema.ResourceData, v interface
 }
 
 func expandObjectVideofilterProfileFiltersKeyword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVideofilterProfileFiltersLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -913,7 +916,7 @@ func expandObjectVideofilterProfileName(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectVideofilterProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVideofilterProfileVimeo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -929,7 +932,7 @@ func expandObjectVideofilterProfileYoutube(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectVideofilterProfileYoutubeChannelFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVideofilterProfileYoutubeRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

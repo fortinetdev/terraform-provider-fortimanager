@@ -129,6 +129,11 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"port_preserve": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -363,6 +368,10 @@ func flattenPackagesFirewallCentralSnatMapPolicyid(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesFirewallCentralSnatMapPortPreserve(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallCentralSnatMapProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -540,6 +549,16 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("port_preserve", flattenPackagesFirewallCentralSnatMapPortPreserve(o["port-preserve"], d, "port_preserve")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-preserve"], "PackagesFirewallCentralSnatMap-PortPreserve"); ok {
+			if err = d.Set("port_preserve", vv); err != nil {
+				return fmt.Errorf("Error reading port_preserve: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_preserve: %v", err)
+		}
+	}
+
 	if err = d.Set("protocol", flattenPackagesFirewallCentralSnatMapProtocol(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "PackagesFirewallCentralSnatMap-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
@@ -656,6 +675,10 @@ func expandPackagesFirewallCentralSnatMapOrigPort(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallCentralSnatMapPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapPortPreserve(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -814,6 +837,15 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["policyid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("port_preserve"); ok || d.HasChange("port_preserve") {
+		t, err := expandPackagesFirewallCentralSnatMapPortPreserve(d, v, "port_preserve")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-preserve"] = t
 		}
 	}
 

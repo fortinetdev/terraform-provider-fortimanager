@@ -110,6 +110,8 @@ The following arguments are supported:
 
 * `ipv6_ver_err` - Invalid IPv6 packet version anomalies. Valid values: `drop`, `trap-to-host`.
 
+* `sctp_csum_err` - Invalid IPv4 SCTP checksum anomalies. Valid values: `allow`, `drop`, `trap-to-host`.
+
 * `nvgre_minlen_err` - Invalid IPv4 nvgre min length check error anomalies. Valid values: `drop`, `trap-to-host`.
 
 * `sctp_clen_err` - Invalid IPv4 SCTP length check error anomalies. Valid values: `drop`, `trap-to-host`.

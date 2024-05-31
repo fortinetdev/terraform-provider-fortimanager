@@ -34,6 +34,7 @@ The following arguments are supported:
 
 * `authentication` - Enable/disable authentication. Valid values: `disable`, `enable`.
 
+* `interface` - <i>Support meta variable</i> FortiGate interface(s) with NTP server mode enabled. Devices on your network can contact these interfaces for NTP services.
 * `key` - Key for authentication.
 * `key_id` - Key ID for authentication.
 * `key_type` - Key type for authentication (MD5, SHA1). Valid values: `MD5`, `SHA1`.
@@ -41,6 +42,9 @@ The following arguments are supported:
 * `ntpserver` - Ntpserver. The structure of `ntpserver` block is documented below.
 * `ntpsync` - Enable/disable setting the FortiGate system time by synchronizing with an NTP Server. Valid values: `disable`, `enable`.
 
+* `server_mode` - Enable/disable FortiGate NTP Server Mode. Your FortiGate becomes an NTP server for other devices on your network. The FortiGate relays NTP requests to its configured NTP server. Valid values: `disable`, `enable`.
+
+* `source_ip` - <i>Support meta variable</i> Source IP address for communication to the NTP server.
 * `source_ip6` - Source IPv6 address for communication to the NTP server.
 * `syncinterval` - NTP synchronization interval (1 - 1440 min).
 * `type` - Use the FortiGuard NTP server or any other available NTP Server. Valid values: `fortiguard`, `custom`.
@@ -59,6 +63,8 @@ The `ntpserver` block supports:
 
 * `key` - Key for MD5(NTPv3)/SHA1(NTPv4) authentication.
 * `key_id` - Key ID for authentication.
+* `key_type` - Select NTP authentication type. Valid values: `SHA1`, `SHA256`, `MD5`.
+
 * `ntpv3` - Enable to use NTPv3 instead of NTPv4. Valid values: `disable`, `enable`.
 
 * `server` - IP address or hostname of the NTP Server.

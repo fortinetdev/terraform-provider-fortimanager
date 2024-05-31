@@ -293,15 +293,11 @@ func flattenObjectUserFssoPollingId(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserFssoPollingLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoPollingLogonHistory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserFssoPollingPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserFssoPollingPollingFrequency(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -542,7 +538,7 @@ func expandObjectUserFssoPollingId(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserFssoPollingLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoPollingLogonHistory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

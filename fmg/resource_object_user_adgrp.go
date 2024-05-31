@@ -193,7 +193,7 @@ func flattenObjectUserAdgrpName(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenObjectUserAdgrpServerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectUserAdgrp(d *schema.ResourceData, o map[string]interface{}) error {
@@ -265,7 +265,7 @@ func expandObjectUserAdgrpName(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandObjectUserAdgrpServerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectUserAdgrp(d *schema.ResourceData) (*map[string]interface{}, error) {

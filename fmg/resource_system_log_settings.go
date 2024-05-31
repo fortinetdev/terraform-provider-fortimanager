@@ -818,33 +818,6 @@ func flattenSystemLogSettingsRollingAnalyzer(v interface{}, d *schema.ResourceDa
 		result["min"] = flattenSystemLogSettingsRollingAnalyzerMin(i["min"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "password"
-	if _, ok := i["password"]; ok {
-		result["password"] = flattenSystemLogSettingsRollingAnalyzerPassword(i["password"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password2"
-	if _, ok := i["password2"]; ok {
-		result["password2"] = flattenSystemLogSettingsRollingAnalyzerPassword2(i["password2"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password2"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password3"
-	if _, ok := i["password3"]; ok {
-		result["password3"] = flattenSystemLogSettingsRollingAnalyzerPassword3(i["password3"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password3"] = c
-		}
-	}
-
 	pre_append = pre + ".0." + "port"
 	if _, ok := i["port"]; ok {
 		result["port"] = flattenSystemLogSettingsRollingAnalyzerPort(i["port"], d, pre_append)
@@ -971,18 +944,6 @@ func flattenSystemLogSettingsRollingAnalyzerLogFormat(v interface{}, d *schema.R
 
 func flattenSystemLogSettingsRollingAnalyzerMin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemLogSettingsRollingAnalyzerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingAnalyzerPassword2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingAnalyzerPassword3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingAnalyzerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1113,33 +1074,6 @@ func flattenSystemLogSettingsRollingLocal(v interface{}, d *schema.ResourceData,
 		result["min"] = flattenSystemLogSettingsRollingLocalMin(i["min"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "password"
-	if _, ok := i["password"]; ok {
-		result["password"] = flattenSystemLogSettingsRollingLocalPassword(i["password"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password2"
-	if _, ok := i["password2"]; ok {
-		result["password2"] = flattenSystemLogSettingsRollingLocalPassword2(i["password2"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password2"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password3"
-	if _, ok := i["password3"]; ok {
-		result["password3"] = flattenSystemLogSettingsRollingLocalPassword3(i["password3"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password3"] = c
-		}
-	}
-
 	pre_append = pre + ".0." + "port"
 	if _, ok := i["port"]; ok {
 		result["port"] = flattenSystemLogSettingsRollingLocalPort(i["port"], d, pre_append)
@@ -1266,18 +1200,6 @@ func flattenSystemLogSettingsRollingLocalLogFormat(v interface{}, d *schema.Reso
 
 func flattenSystemLogSettingsRollingLocalMin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemLogSettingsRollingLocalPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingLocalPassword2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingLocalPassword3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingLocalPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1408,33 +1330,6 @@ func flattenSystemLogSettingsRollingRegular(v interface{}, d *schema.ResourceDat
 		result["min"] = flattenSystemLogSettingsRollingRegularMin(i["min"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "password"
-	if _, ok := i["password"]; ok {
-		result["password"] = flattenSystemLogSettingsRollingRegularPassword(i["password"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password2"
-	if _, ok := i["password2"]; ok {
-		result["password2"] = flattenSystemLogSettingsRollingRegularPassword2(i["password2"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password2"] = c
-		}
-	}
-
-	pre_append = pre + ".0." + "password3"
-	if _, ok := i["password3"]; ok {
-		result["password3"] = flattenSystemLogSettingsRollingRegularPassword3(i["password3"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["password3"] = c
-		}
-	}
-
 	pre_append = pre + ".0." + "port"
 	if _, ok := i["port"]; ok {
 		result["port"] = flattenSystemLogSettingsRollingRegularPort(i["port"], d, pre_append)
@@ -1561,18 +1456,6 @@ func flattenSystemLogSettingsRollingRegularLogFormat(v interface{}, d *schema.Re
 
 func flattenSystemLogSettingsRollingRegularMin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemLogSettingsRollingRegularPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingRegularPassword2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenSystemLogSettingsRollingRegularPassword3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingRegularPort(v interface{}, d *schema.ResourceData, pre string) interface{} {

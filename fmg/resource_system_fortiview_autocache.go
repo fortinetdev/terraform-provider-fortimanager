@@ -34,6 +34,11 @@ func resourceSystemFortiviewAutoCache() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"incr_fortiview": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -126,6 +131,10 @@ func flattenSystemFortiviewAutoCacheAggressiveFortiview(v interface{}, d *schema
 	return v
 }
 
+func flattenSystemFortiviewAutoCacheIncrFortiview(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemFortiviewAutoCacheInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -144,6 +153,16 @@ func refreshObjectSystemFortiviewAutoCache(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading aggressive_fortiview: %v", err)
+		}
+	}
+
+	if err = d.Set("incr_fortiview", flattenSystemFortiviewAutoCacheIncrFortiview(o["incr-fortiview"], d, "incr_fortiview")); err != nil {
+		if vv, ok := fortiAPIPatch(o["incr-fortiview"], "SystemFortiviewAutoCache-IncrFortiview"); ok {
+			if err = d.Set("incr_fortiview", vv); err != nil {
+				return fmt.Errorf("Error reading incr_fortiview: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading incr_fortiview: %v", err)
 		}
 	}
 
@@ -180,6 +199,10 @@ func expandSystemFortiviewAutoCacheAggressiveFortiview(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandSystemFortiviewAutoCacheIncrFortiview(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemFortiviewAutoCacheInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -197,6 +220,15 @@ func getObjectSystemFortiviewAutoCache(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["aggressive-fortiview"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("incr_fortiview"); ok || d.HasChange("incr_fortiview") {
+		t, err := expandSystemFortiviewAutoCacheIncrFortiview(d, v, "incr_fortiview")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["incr-fortiview"] = t
 		}
 	}
 

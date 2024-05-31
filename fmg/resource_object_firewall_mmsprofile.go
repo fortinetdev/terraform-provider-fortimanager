@@ -522,10 +522,11 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Optional: true,
 						},
 						"mmsc_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"mmsc_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -744,11 +745,11 @@ func resourceObjectFirewallMmsProfileRead(d *schema.ResourceData, m interface{})
 }
 
 func flattenObjectFirewallMmsProfileAvnotificationtable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMmsProfileBwordtable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMmsProfileCarrierEndpointPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -768,7 +769,7 @@ func flattenObjectFirewallMmsProfileCarrierEndpointPrefixString(v interface{}, d
 }
 
 func flattenObjectFirewallMmsProfileCarrierendpointbwltable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMmsProfileComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1214,7 +1215,7 @@ func flattenObjectFirewallMmsProfileMmsChecksumLog(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallMmsProfileMmsChecksumTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallMmsProfileMmsNotificationLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1421,11 +1422,6 @@ func flattenObjectFirewallMmsProfileNotification(v interface{}, d *schema.Resour
 		result["mmsc_hostname"] = flattenObjectFirewallMmsProfileNotificationMmscHostname(i["mmsc-hostname"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "mmsc_password"
-	if _, ok := i["mmsc-password"]; ok {
-		result["mmsc_password"] = flattenObjectFirewallMmsProfileNotificationMmscPassword(i["mmsc-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "mmsc_port"
 	if _, ok := i["mmsc-port"]; ok {
 		result["mmsc_port"] = flattenObjectFirewallMmsProfileNotificationMmscPort(i["mmsc-port"], d, pre_append)
@@ -1614,10 +1610,6 @@ func flattenObjectFirewallMmsProfileNotificationMmscHostname(v interface{}, d *s
 	return v
 }
 
-func flattenObjectFirewallMmsProfileNotificationMmscPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFirewallMmsProfileNotificationMmscPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1718,7 +1710,7 @@ func flattenObjectFirewallMmsProfileRemoveBlockedConstLength(v interface{}, d *s
 }
 
 func flattenObjectFirewallMmsProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallMmsProfile(d *schema.ResourceData, o map[string]interface{}) error {
@@ -2322,11 +2314,11 @@ func flattenObjectFirewallMmsProfileFortiTestDebug(d *schema.ResourceData, fosde
 }
 
 func expandObjectFirewallMmsProfileAvnotificationtable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMmsProfileBwordtable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMmsProfileCarrierEndpointPrefix(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2346,7 +2338,7 @@ func expandObjectFirewallMmsProfileCarrierEndpointPrefixString(d *schema.Resourc
 }
 
 func expandObjectFirewallMmsProfileCarrierendpointbwltable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMmsProfileComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2762,7 +2754,7 @@ func expandObjectFirewallMmsProfileMmsChecksumLog(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallMmsProfileMmsChecksumTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallMmsProfileMmsNotificationLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3216,7 +3208,7 @@ func expandObjectFirewallMmsProfileRemoveBlockedConstLength(d *schema.ResourceDa
 }
 
 func expandObjectFirewallMmsProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -194,10 +194,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
@@ -205,10 +206,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 								},
 							},
@@ -309,10 +311,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
@@ -320,10 +323,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 								},
 							},
@@ -487,10 +491,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 				},
 			},
 			"login_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"login_password_change": &schema.Schema{
 				Type:     schema.TypeString,
@@ -506,6 +511,216 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"wifi": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"dfs": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"country": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"radio_1": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Computed: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"n80211d": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"band": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"bandwidth": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"beacon_interval": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"bss_color": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"bss_color_mode": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"channel": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"extension_channel": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"guard_interval": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"lan_ext_vap": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"local_vaps": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"max_clients": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"mode": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"operating_standard": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"power_level": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"radio_id": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"status": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
+						"radio_2": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Computed: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"n80211d": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"band": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"bandwidth": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"beacon_interval": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"bss_color": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"bss_color_mode": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"channel": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"extension_channel": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"guard_interval": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"lan_ext_vap": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"local_vaps": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"max_clients": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"mode": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"operating_standard": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"power_level": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"radio_id": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"status": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
+					},
+				},
 			},
 		},
 	}
@@ -773,19 +988,9 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1(v interface{}
 		result["sim1_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1Pin(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode(i["sim1-pin-code"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode(i["sim2-pin-code"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -909,16 +1114,8 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1Pin(v inte
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileCellularModem2(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -975,19 +1172,9 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem2(v interface{}
 		result["sim1_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1Pin(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1PinCode(i["sim1-pin-code"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2Pin(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2PinCode(i["sim2-pin-code"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -1111,16 +1298,8 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1Pin(v inte
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2PinCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileCellularSmsNotification(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1435,10 +1614,6 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance(
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileLoginPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileLoginPasswordChange(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1448,6 +1623,379 @@ func flattenObjectExtensionControllerExtenderProfileModel(v interface{}, d *sche
 }
 
 func flattenObjectExtensionControllerExtenderProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifi(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "dfs"
+	if _, ok := i["DFS"]; ok {
+		result["dfs"] = flattenObjectExtensionControllerExtenderProfileWifiDfs(i["DFS"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "country"
+	if _, ok := i["country"]; ok {
+		result["country"] = flattenObjectExtensionControllerExtenderProfileWifiCountry(i["country"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "radio_1"
+	if _, ok := i["radio-1"]; ok {
+		result["radio_1"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1(i["radio-1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "radio_2"
+	if _, ok := i["radio-2"]; ok {
+		result["radio_2"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2(i["radio-2"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiDfs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiCountry(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectExtensionControllerExtenderProfileWifiRadio180211D(i["80211d"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "band"
+	if _, ok := i["band"]; ok {
+		result["band"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1Band(i["band"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bandwidth"
+	if _, ok := i["bandwidth"]; ok {
+		result["bandwidth"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1Bandwidth(i["bandwidth"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "beacon_interval"
+	if _, ok := i["beacon-interval"]; ok {
+		result["beacon_interval"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1BeaconInterval(i["beacon-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bss_color"
+	if _, ok := i["bss-color"]; ok {
+		result["bss_color"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1BssColor(i["bss-color"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bss_color_mode"
+	if _, ok := i["bss-color-mode"]; ok {
+		result["bss_color_mode"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1BssColorMode(i["bss-color-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "channel"
+	if _, ok := i["channel"]; ok {
+		result["channel"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1Channel(i["channel"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "extension_channel"
+	if _, ok := i["extension-channel"]; ok {
+		result["extension_channel"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1ExtensionChannel(i["extension-channel"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "guard_interval"
+	if _, ok := i["guard-interval"]; ok {
+		result["guard_interval"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1GuardInterval(i["guard-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "lan_ext_vap"
+	if _, ok := i["lan-ext-vap"]; ok {
+		result["lan_ext_vap"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1LanExtVap(i["lan-ext-vap"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "local_vaps"
+	if _, ok := i["local-vaps"]; ok {
+		result["local_vaps"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1LocalVaps(i["local-vaps"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_clients"
+	if _, ok := i["max-clients"]; ok {
+		result["max_clients"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1MaxClients(i["max-clients"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mode"
+	if _, ok := i["mode"]; ok {
+		result["mode"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1Mode(i["mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "operating_standard"
+	if _, ok := i["operating-standard"]; ok {
+		result["operating_standard"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1OperatingStandard(i["operating-standard"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "power_level"
+	if _, ok := i["power-level"]; ok {
+		result["power_level"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1PowerLevel(i["power-level"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "radio_id"
+	if _, ok := i["radio-id"]; ok {
+		result["radio_id"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1RadioId(i["radio-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectExtensionControllerExtenderProfileWifiRadio1Status(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio180211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1Band(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1Bandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1BeaconInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1BssColor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1BssColorMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1Channel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1ExtensionChannel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1GuardInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1LanExtVap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1LocalVaps(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1MaxClients(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1OperatingStandard(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1PowerLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1RadioId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio1Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectExtensionControllerExtenderProfileWifiRadio280211D(i["80211d"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "band"
+	if _, ok := i["band"]; ok {
+		result["band"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2Band(i["band"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bandwidth"
+	if _, ok := i["bandwidth"]; ok {
+		result["bandwidth"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2Bandwidth(i["bandwidth"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "beacon_interval"
+	if _, ok := i["beacon-interval"]; ok {
+		result["beacon_interval"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2BeaconInterval(i["beacon-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bss_color"
+	if _, ok := i["bss-color"]; ok {
+		result["bss_color"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2BssColor(i["bss-color"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bss_color_mode"
+	if _, ok := i["bss-color-mode"]; ok {
+		result["bss_color_mode"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2BssColorMode(i["bss-color-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "channel"
+	if _, ok := i["channel"]; ok {
+		result["channel"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2Channel(i["channel"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "extension_channel"
+	if _, ok := i["extension-channel"]; ok {
+		result["extension_channel"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2ExtensionChannel(i["extension-channel"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "guard_interval"
+	if _, ok := i["guard-interval"]; ok {
+		result["guard_interval"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2GuardInterval(i["guard-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "lan_ext_vap"
+	if _, ok := i["lan-ext-vap"]; ok {
+		result["lan_ext_vap"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2LanExtVap(i["lan-ext-vap"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "local_vaps"
+	if _, ok := i["local-vaps"]; ok {
+		result["local_vaps"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2LocalVaps(i["local-vaps"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_clients"
+	if _, ok := i["max-clients"]; ok {
+		result["max_clients"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2MaxClients(i["max-clients"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mode"
+	if _, ok := i["mode"]; ok {
+		result["mode"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2Mode(i["mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "operating_standard"
+	if _, ok := i["operating-standard"]; ok {
+		result["operating_standard"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2OperatingStandard(i["operating-standard"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "power_level"
+	if _, ok := i["power-level"]; ok {
+		result["power_level"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2PowerLevel(i["power-level"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "radio_id"
+	if _, ok := i["radio-id"]; ok {
+		result["radio_id"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2RadioId(i["radio-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectExtensionControllerExtenderProfileWifiRadio2Status(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio280211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2Band(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2Bandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2BeaconInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2BssColor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2BssColorMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2Channel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2ExtensionChannel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2GuardInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2LanExtVap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2LocalVaps(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2MaxClients(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2OperatingStandard(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2PowerLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2RadioId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileWifiRadio2Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1566,16 +2114,6 @@ func refreshObjectObjectExtensionControllerExtenderProfile(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("login_password", flattenObjectExtensionControllerExtenderProfileLoginPassword(o["login-password"], d, "login_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["login-password"], "ObjectExtensionControllerExtenderProfile-LoginPassword"); ok {
-			if err = d.Set("login_password", vv); err != nil {
-				return fmt.Errorf("Error reading login_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading login_password: %v", err)
-		}
-	}
-
 	if err = d.Set("login_password_change", flattenObjectExtensionControllerExtenderProfileLoginPasswordChange(o["login-password-change"], d, "login_password_change")); err != nil {
 		if vv, ok := fortiAPIPatch(o["login-password-change"], "ObjectExtensionControllerExtenderProfile-LoginPasswordChange"); ok {
 			if err = d.Set("login_password_change", vv); err != nil {
@@ -1603,6 +2141,30 @@ func refreshObjectObjectExtensionControllerExtenderProfile(d *schema.ResourceDat
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("wifi", flattenObjectExtensionControllerExtenderProfileWifi(o["wifi"], d, "wifi")); err != nil {
+			if vv, ok := fortiAPIPatch(o["wifi"], "ObjectExtensionControllerExtenderProfile-Wifi"); ok {
+				if err = d.Set("wifi", vv); err != nil {
+					return fmt.Errorf("Error reading wifi: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading wifi: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("wifi"); ok {
+			if err = d.Set("wifi", flattenObjectExtensionControllerExtenderProfileWifi(o["wifi"], d, "wifi")); err != nil {
+				if vv, ok := fortiAPIPatch(o["wifi"], "ObjectExtensionControllerExtenderProfile-Wifi"); ok {
+					if err = d.Set("wifi", vv); err != nil {
+						return fmt.Errorf("Error reading wifi: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading wifi: %v", err)
+				}
+			}
 		}
 	}
 
@@ -2383,7 +2945,7 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulWeight(d 
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2411,6 +2973,354 @@ func expandObjectExtensionControllerExtenderProfileModel(d *schema.ResourceData,
 }
 
 func expandObjectExtensionControllerExtenderProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifi(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "dfs"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["DFS"], _ = expandObjectExtensionControllerExtenderProfileWifiDfs(d, i["dfs"], pre_append)
+	}
+	pre_append = pre + ".0." + "country"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["country"], _ = expandObjectExtensionControllerExtenderProfileWifiCountry(d, i["country"], pre_append)
+	}
+	pre_append = pre + ".0." + "radio_1"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectExtensionControllerExtenderProfileWifiRadio1(d, i["radio_1"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["radio-1"] = t
+		}
+	}
+	pre_append = pre + ".0." + "radio_2"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectExtensionControllerExtenderProfileWifiRadio2(d, i["radio_2"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["radio-2"] = t
+		}
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiDfs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiCountry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio180211D(d, i["n80211d"], pre_append)
+	}
+	pre_append = pre + ".0." + "band"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["band"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1Band(d, i["band"], pre_append)
+	}
+	pre_append = pre + ".0." + "bandwidth"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bandwidth"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1Bandwidth(d, i["bandwidth"], pre_append)
+	}
+	pre_append = pre + ".0." + "beacon_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["beacon-interval"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1BeaconInterval(d, i["beacon_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "bss_color"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bss-color"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1BssColor(d, i["bss_color"], pre_append)
+	}
+	pre_append = pre + ".0." + "bss_color_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bss-color-mode"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1BssColorMode(d, i["bss_color_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "channel"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["channel"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1Channel(d, i["channel"], pre_append)
+	}
+	pre_append = pre + ".0." + "extension_channel"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["extension-channel"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1ExtensionChannel(d, i["extension_channel"], pre_append)
+	}
+	pre_append = pre + ".0." + "guard_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["guard-interval"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1GuardInterval(d, i["guard_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "lan_ext_vap"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["lan-ext-vap"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1LanExtVap(d, i["lan_ext_vap"], pre_append)
+	}
+	pre_append = pre + ".0." + "local_vaps"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["local-vaps"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1LocalVaps(d, i["local_vaps"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_clients"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-clients"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1MaxClients(d, i["max_clients"], pre_append)
+	}
+	pre_append = pre + ".0." + "mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mode"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1Mode(d, i["mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "operating_standard"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["operating-standard"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1OperatingStandard(d, i["operating_standard"], pre_append)
+	}
+	pre_append = pre + ".0." + "power_level"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["power-level"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1PowerLevel(d, i["power_level"], pre_append)
+	}
+	pre_append = pre + ".0." + "radio_id"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["radio-id"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1RadioId(d, i["radio_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["status"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio1Status(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio180211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1Band(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1Bandwidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1BeaconInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1BssColor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1BssColorMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1Channel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1ExtensionChannel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1GuardInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1LanExtVap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1LocalVaps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1MaxClients(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1Mode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1OperatingStandard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1PowerLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1RadioId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio1Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio280211D(d, i["n80211d"], pre_append)
+	}
+	pre_append = pre + ".0." + "band"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["band"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2Band(d, i["band"], pre_append)
+	}
+	pre_append = pre + ".0." + "bandwidth"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bandwidth"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2Bandwidth(d, i["bandwidth"], pre_append)
+	}
+	pre_append = pre + ".0." + "beacon_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["beacon-interval"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2BeaconInterval(d, i["beacon_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "bss_color"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bss-color"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2BssColor(d, i["bss_color"], pre_append)
+	}
+	pre_append = pre + ".0." + "bss_color_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["bss-color-mode"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2BssColorMode(d, i["bss_color_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "channel"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["channel"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2Channel(d, i["channel"], pre_append)
+	}
+	pre_append = pre + ".0." + "extension_channel"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["extension-channel"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2ExtensionChannel(d, i["extension_channel"], pre_append)
+	}
+	pre_append = pre + ".0." + "guard_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["guard-interval"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2GuardInterval(d, i["guard_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "lan_ext_vap"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["lan-ext-vap"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2LanExtVap(d, i["lan_ext_vap"], pre_append)
+	}
+	pre_append = pre + ".0." + "local_vaps"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["local-vaps"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2LocalVaps(d, i["local_vaps"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_clients"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-clients"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2MaxClients(d, i["max_clients"], pre_append)
+	}
+	pre_append = pre + ".0." + "mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mode"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2Mode(d, i["mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "operating_standard"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["operating-standard"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2OperatingStandard(d, i["operating_standard"], pre_append)
+	}
+	pre_append = pre + ".0." + "power_level"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["power-level"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2PowerLevel(d, i["power_level"], pre_append)
+	}
+	pre_append = pre + ".0." + "radio_id"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["radio-id"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2RadioId(d, i["radio_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["status"], _ = expandObjectExtensionControllerExtenderProfileWifiRadio2Status(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio280211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2Band(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2Bandwidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2BeaconInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2BssColor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2BssColorMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2Channel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2ExtensionChannel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2GuardInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2LanExtVap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2LocalVaps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2MaxClients(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2Mode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2OperatingStandard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2PowerLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2RadioId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileWifiRadio2Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2522,6 +3432,15 @@ func getObjectObjectExtensionControllerExtenderProfile(d *schema.ResourceData) (
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("wifi"); ok || d.HasChange("wifi") {
+		t, err := expandObjectExtensionControllerExtenderProfileWifi(d, v, "wifi")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["wifi"] = t
 		}
 	}
 

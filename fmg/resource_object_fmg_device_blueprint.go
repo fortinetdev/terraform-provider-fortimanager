@@ -92,10 +92,11 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Computed: true,
 			},
 			"ha_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"linked_to_model": &schema.Schema{
 				Type:     schema.TypeString,
@@ -293,10 +294,6 @@ func flattenObjectFmgDeviceBlueprintHaMonitor(v interface{}, d *schema.ResourceD
 	return flattenStringList(v)
 }
 
-func flattenObjectFmgDeviceBlueprintHaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFmgDeviceBlueprintLinkedToModel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -427,16 +424,6 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading ha_monitor: %v", err)
-		}
-	}
-
-	if err = d.Set("ha_password", flattenObjectFmgDeviceBlueprintHaPassword(o["ha-password"], d, "ha_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["ha-password"], "ObjectFmgDeviceBlueprint-HaPassword"); ok {
-			if err = d.Set("ha_password", vv); err != nil {
-				return fmt.Errorf("Error reading ha_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading ha_password: %v", err)
 		}
 	}
 

@@ -801,7 +801,7 @@ func flattenObjectSystemDhcpServerId(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectSystemDhcpServerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemDhcpServerIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1222,7 +1222,7 @@ func flattenObjectSystemDhcpServerTftpServer(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemDhcpServerTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemDhcpServerTimezoneOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2042,7 +2042,7 @@ func expandObjectSystemDhcpServerId(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectSystemDhcpServerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemDhcpServerIpMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2421,7 +2421,7 @@ func expandObjectSystemDhcpServerTftpServer(d *schema.ResourceData, v interface{
 }
 
 func expandObjectSystemDhcpServerTimezone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemDhcpServerTimezoneOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -80,6 +80,40 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"internet_service_src": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_custom": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_custom_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_name": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"intf": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -302,6 +336,30 @@ func flattenPackagesFirewallLocalInPolicyHaMgmtIntfOnly(v interface{}, d *schema
 	return v
 }
 
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrcCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrcCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrcGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrcName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallLocalInPolicyInternetServiceSrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicyIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -311,7 +369,7 @@ func flattenPackagesFirewallLocalInPolicyPolicyid(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallLocalInPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallLocalInPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -396,6 +454,66 @@ func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading ha_mgmt_intf_only: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src", flattenPackagesFirewallLocalInPolicyInternetServiceSrc(o["internet-service-src"], d, "internet_service_src")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src"], "PackagesFirewallLocalInPolicy-InternetServiceSrc"); ok {
+			if err = d.Set("internet_service_src", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_custom", flattenPackagesFirewallLocalInPolicyInternetServiceSrcCustom(o["internet-service-src-custom"], d, "internet_service_src_custom")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-custom"], "PackagesFirewallLocalInPolicy-InternetServiceSrcCustom"); ok {
+			if err = d.Set("internet_service_src_custom", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_custom: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_custom: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_custom_group", flattenPackagesFirewallLocalInPolicyInternetServiceSrcCustomGroup(o["internet-service-src-custom-group"], d, "internet_service_src_custom_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-custom-group"], "PackagesFirewallLocalInPolicy-InternetServiceSrcCustomGroup"); ok {
+			if err = d.Set("internet_service_src_custom_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_custom_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_custom_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_group", flattenPackagesFirewallLocalInPolicyInternetServiceSrcGroup(o["internet-service-src-group"], d, "internet_service_src_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-group"], "PackagesFirewallLocalInPolicy-InternetServiceSrcGroup"); ok {
+			if err = d.Set("internet_service_src_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_name", flattenPackagesFirewallLocalInPolicyInternetServiceSrcName(o["internet-service-src-name"], d, "internet_service_src_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-name"], "PackagesFirewallLocalInPolicy-InternetServiceSrcName"); ok {
+			if err = d.Set("internet_service_src_name", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_name: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_negate", flattenPackagesFirewallLocalInPolicyInternetServiceSrcNegate(o["internet-service-src-negate"], d, "internet_service_src_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-negate"], "PackagesFirewallLocalInPolicy-InternetServiceSrcNegate"); ok {
+			if err = d.Set("internet_service_src_negate", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_negate: %v", err)
 		}
 	}
 
@@ -528,6 +646,30 @@ func expandPackagesFirewallLocalInPolicyHaMgmtIntfOnly(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandPackagesFirewallLocalInPolicyInternetServiceSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallLocalInPolicyInternetServiceSrcCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallLocalInPolicyInternetServiceSrcCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallLocalInPolicyInternetServiceSrcGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallLocalInPolicyInternetServiceSrcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallLocalInPolicyInternetServiceSrcNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicyIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -537,7 +679,7 @@ func expandPackagesFirewallLocalInPolicyPolicyid(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallLocalInPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallLocalInPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -613,6 +755,60 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["ha-mgmt-intf-only"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src"); ok || d.HasChange("internet_service_src") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrc(d, v, "internet_service_src")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_custom"); ok || d.HasChange("internet_service_src_custom") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrcCustom(d, v, "internet_service_src_custom")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-custom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_custom_group"); ok || d.HasChange("internet_service_src_custom_group") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrcCustomGroup(d, v, "internet_service_src_custom_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-custom-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_group"); ok || d.HasChange("internet_service_src_group") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrcGroup(d, v, "internet_service_src_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_name"); ok || d.HasChange("internet_service_src_name") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrcName(d, v, "internet_service_src_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_negate"); ok || d.HasChange("internet_service_src_negate") {
+		t, err := expandPackagesFirewallLocalInPolicyInternetServiceSrcNegate(d, v, "internet_service_src_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-negate"] = t
 		}
 	}
 

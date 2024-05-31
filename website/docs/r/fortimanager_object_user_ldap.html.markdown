@@ -103,6 +103,7 @@ The following arguments are supported:
 * `source_port` - Source port to be used for communication with the LDAP server.
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
+* `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `tertiary_server` - Tertiary LDAP server CN domain name or IP.
 * `two_factor` - Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
 
@@ -171,6 +172,7 @@ The `dynamic_mapping` block supports:
 * `source_port` - Source-Port.
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
+* `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `tertiary_server` - Tertiary LDAP server CN domain name or IP.
 * `two_factor` - Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
 

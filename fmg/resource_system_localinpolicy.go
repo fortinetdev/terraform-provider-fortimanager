@@ -39,7 +39,7 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"dst": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -59,7 +59,7 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"src": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -285,7 +285,7 @@ func expandSystemLocalInPolicyDport(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemLocalInPolicyDst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemLocalInPolicyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -301,7 +301,7 @@ func expandSystemLocalInPolicyProtocol(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandSystemLocalInPolicySrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectSystemLocalInPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -145,10 +145,11 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -461,7 +462,7 @@ func flattenWantempSystemSdwanHealthCheckAddrMode2edl(v interface{}, d *schema.R
 }
 
 func flattenWantempSystemSdwanHealthCheckClassId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanHealthCheckDetectMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -530,10 +531,6 @@ func flattenWantempSystemSdwanHealthCheckName2edl(v interface{}, d *schema.Resou
 
 func flattenWantempSystemSdwanHealthCheckPacketSize2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenWantempSystemSdwanHealthCheckPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -956,16 +953,6 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("password", flattenWantempSystemSdwanHealthCheckPassword2edl(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "WantempSystemSdwanHealthCheck-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
-		}
-	}
-
 	if err = d.Set("port", flattenWantempSystemSdwanHealthCheckPort2edl(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "WantempSystemSdwanHealthCheck-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
@@ -1258,7 +1245,7 @@ func expandWantempSystemSdwanHealthCheckAddrMode2edl(d *schema.ResourceData, v i
 }
 
 func expandWantempSystemSdwanHealthCheckClassId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanHealthCheckDetectMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

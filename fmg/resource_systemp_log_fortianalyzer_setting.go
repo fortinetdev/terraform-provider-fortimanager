@@ -270,7 +270,7 @@ func flattenSystempLogFortianalyzerSettingAltServer(v interface{}, d *schema.Res
 }
 
 func flattenSystempLogFortianalyzerSettingCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogFortianalyzerSettingCertificateVerification(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -294,7 +294,7 @@ func flattenSystempLogFortianalyzerSettingHmacAlgorithm(v interface{}, d *schema
 }
 
 func flattenSystempLogFortianalyzerSettingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogFortianalyzerSettingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -330,7 +330,7 @@ func flattenSystempLogFortianalyzerSettingReliable(v interface{}, d *schema.Reso
 }
 
 func flattenSystempLogFortianalyzerSettingServerCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogFortianalyzerSettingSslMinProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -608,7 +608,7 @@ func expandSystempLogFortianalyzerSettingAltServer(d *schema.ResourceData, v int
 }
 
 func expandSystempLogFortianalyzerSettingCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogFortianalyzerSettingCertificateVerification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -632,7 +632,7 @@ func expandSystempLogFortianalyzerSettingHmacAlgorithm(d *schema.ResourceData, v
 }
 
 func expandSystempLogFortianalyzerSettingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogFortianalyzerSettingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -668,7 +668,7 @@ func expandSystempLogFortianalyzerSettingReliable(d *schema.ResourceData, v inte
 }
 
 func expandSystempLogFortianalyzerSettingServerCertCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogFortianalyzerSettingSslMinProtoVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

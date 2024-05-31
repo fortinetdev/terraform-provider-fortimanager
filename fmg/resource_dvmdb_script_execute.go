@@ -134,15 +134,15 @@ func resourceDvmdbScriptExecuteRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenDvmdbScriptExecuteAdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmdbScriptExecutePackage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmdbScriptExecutePblock2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmdbScriptExecuteScope2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -283,15 +283,15 @@ func flattenDvmdbScriptExecuteFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 }
 
 func expandDvmdbScriptExecuteAdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmdbScriptExecutePackage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmdbScriptExecutePblock2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmdbScriptExecuteScope2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

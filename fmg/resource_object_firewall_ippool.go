@@ -226,6 +226,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"pba_interim_log": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"pba_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -304,6 +308,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Computed: true,
 			},
 			"num_blocks_per_user": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"pba_interim_log": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
@@ -484,7 +492,7 @@ func flattenObjectFirewallIppoolAddNat64Route(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallIppoolArpIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallIppoolArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -492,7 +500,7 @@ func flattenObjectFirewallIppoolArpReply(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallIppoolAssociatedInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallIppoolBlockSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -682,6 +690,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 		if _, ok := i["num-blocks-per-user"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingNumBlocksPerUser(i["num-blocks-per-user"], d, pre_append)
 			tmp["num_blocks_per_user"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-NumBlocksPerUser")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pba_interim_log"
+		if _, ok := i["pba-interim-log"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingPbaInterimLog(i["pba-interim-log"], d, pre_append)
+			tmp["pba_interim_log"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-PbaInterimLog")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pba_timeout"
@@ -889,6 +903,10 @@ func flattenObjectFirewallIppoolDynamicMappingNumBlocksPerUser(v interface{}, d 
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingPbaInterimLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingPbaTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -954,6 +972,10 @@ func flattenObjectFirewallIppoolNat64(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFirewallIppoolNumBlocksPerUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolPbaInterimLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1246,6 +1268,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("pba_interim_log", flattenObjectFirewallIppoolPbaInterimLog(o["pba-interim-log"], d, "pba_interim_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pba-interim-log"], "ObjectFirewallIppool-PbaInterimLog"); ok {
+			if err = d.Set("pba_interim_log", vv); err != nil {
+				return fmt.Errorf("Error reading pba_interim_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pba_interim_log: %v", err)
+		}
+	}
+
 	if err = d.Set("pba_timeout", flattenObjectFirewallIppoolPbaTimeout(o["pba-timeout"], d, "pba_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["pba-timeout"], "ObjectFirewallIppool-PbaTimeout"); ok {
 			if err = d.Set("pba_timeout", vv); err != nil {
@@ -1370,7 +1402,7 @@ func expandObjectFirewallIppoolAddNat64Route(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallIppoolArpIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallIppoolArpReply(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1378,7 +1410,7 @@ func expandObjectFirewallIppoolArpReply(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallIppoolAssociatedInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallIppoolBlockSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1547,6 +1579,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "num_blocks_per_user"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["num-blocks-per-user"], _ = expandObjectFirewallIppoolDynamicMappingNumBlocksPerUser(d, i["num_blocks_per_user"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pba_interim_log"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["pba-interim-log"], _ = expandObjectFirewallIppoolDynamicMappingPbaInterimLog(d, i["pba_interim_log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pba_timeout"
@@ -1736,6 +1773,10 @@ func expandObjectFirewallIppoolDynamicMappingNumBlocksPerUser(d *schema.Resource
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingPbaInterimLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingPbaTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1801,6 +1842,10 @@ func expandObjectFirewallIppoolNat64(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectFirewallIppoolNumBlocksPerUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolPbaInterimLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2046,6 +2091,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["num-blocks-per-user"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pba_interim_log"); ok || d.HasChange("pba_interim_log") {
+		t, err := expandObjectFirewallIppoolPbaInterimLog(d, v, "pba_interim_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pba-interim-log"] = t
 		}
 	}
 

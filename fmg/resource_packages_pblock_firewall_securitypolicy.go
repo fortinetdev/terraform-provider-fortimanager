@@ -659,19 +659,19 @@ func flattenPackagesPblockFirewallSecurityPolicyApplication2edl(v interface{}, d
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyApplicationList2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyAvProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyCasbProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyCifsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyComments2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -679,19 +679,19 @@ func flattenPackagesPblockFirewallSecurityPolicyComments2edl(v interface{}, d *s
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDlpProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDlpSensor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDnsfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyDstaddr42edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -719,7 +719,7 @@ func flattenPackagesPblockFirewallSecurityPolicyDstintf2edl(v interface{}, d *sc
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyEmailfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyEnforceDefaultAppPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -727,7 +727,7 @@ func flattenPackagesPblockFirewallSecurityPolicyEnforceDefaultAppPort2edl(v inte
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyFileFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyFssoGroups2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -743,7 +743,7 @@ func flattenPackagesPblockFirewallSecurityPolicyGroups2edl(v interface{}, d *sch
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyIcapProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyInternetService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -851,11 +851,11 @@ func flattenPackagesPblockFirewallSecurityPolicyInternetService6SrcNegate2edl(v 
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyIpsSensor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyLearningMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -871,7 +871,7 @@ func flattenPackagesPblockFirewallSecurityPolicyLogtrafficStart2edl(v interface{
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyMmsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -891,11 +891,11 @@ func flattenPackagesPblockFirewallSecurityPolicyPolicyid2edl(v interface{}, d *s
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyProfileGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyProfileProtocolOptions2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyProfileType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -903,11 +903,11 @@ func flattenPackagesPblockFirewallSecurityPolicyProfileType2edl(v interface{}, d
 }
 
 func flattenPackagesPblockFirewallSecurityPolicySchedule2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicySctpFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicySendDenyPacket2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -947,11 +947,11 @@ func flattenPackagesPblockFirewallSecurityPolicySrcintf2edl(v interface{}, d *sc
 }
 
 func flattenPackagesPblockFirewallSecurityPolicySshFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicySslSshProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -975,19 +975,19 @@ func flattenPackagesPblockFirewallSecurityPolicyUuid2edl(v interface{}, d *schem
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyVideofilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyVoipProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockFirewallSecurityPolicyWebfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1907,19 +1907,19 @@ func expandPackagesPblockFirewallSecurityPolicyApplication2edl(d *schema.Resourc
 }
 
 func expandPackagesPblockFirewallSecurityPolicyApplicationList2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyAvProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyCasbProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyCifsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyComments2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1927,19 +1927,19 @@ func expandPackagesPblockFirewallSecurityPolicyComments2edl(d *schema.ResourceDa
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDiameterFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDlpProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDlpSensor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDnsfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyDstaddr42edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1967,7 +1967,7 @@ func expandPackagesPblockFirewallSecurityPolicyDstintf2edl(d *schema.ResourceDat
 }
 
 func expandPackagesPblockFirewallSecurityPolicyEmailfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyEnforceDefaultAppPort2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1975,7 +1975,7 @@ func expandPackagesPblockFirewallSecurityPolicyEnforceDefaultAppPort2edl(d *sche
 }
 
 func expandPackagesPblockFirewallSecurityPolicyFileFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyFssoGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1991,7 +1991,7 @@ func expandPackagesPblockFirewallSecurityPolicyGroups2edl(d *schema.ResourceData
 }
 
 func expandPackagesPblockFirewallSecurityPolicyIcapProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyInternetService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2099,11 +2099,11 @@ func expandPackagesPblockFirewallSecurityPolicyInternetService6SrcNegate2edl(d *
 }
 
 func expandPackagesPblockFirewallSecurityPolicyIpsSensor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyIpsVoipFilter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyLearningMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2119,7 +2119,7 @@ func expandPackagesPblockFirewallSecurityPolicyLogtrafficStart2edl(d *schema.Res
 }
 
 func expandPackagesPblockFirewallSecurityPolicyMmsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2139,11 +2139,11 @@ func expandPackagesPblockFirewallSecurityPolicyPolicyid2edl(d *schema.ResourceDa
 }
 
 func expandPackagesPblockFirewallSecurityPolicyProfileGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyProfileProtocolOptions2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyProfileType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2151,11 +2151,11 @@ func expandPackagesPblockFirewallSecurityPolicyProfileType2edl(d *schema.Resourc
 }
 
 func expandPackagesPblockFirewallSecurityPolicySchedule2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicySctpFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicySendDenyPacket2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2195,11 +2195,11 @@ func expandPackagesPblockFirewallSecurityPolicySrcintf2edl(d *schema.ResourceDat
 }
 
 func expandPackagesPblockFirewallSecurityPolicySshFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicySslSshProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2223,19 +2223,19 @@ func expandPackagesPblockFirewallSecurityPolicyUuid2edl(d *schema.ResourceData, 
 }
 
 func expandPackagesPblockFirewallSecurityPolicyVideofilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyVirtualPatchProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyVoipProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockFirewallSecurityPolicyWebfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectPackagesPblockFirewallSecurityPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

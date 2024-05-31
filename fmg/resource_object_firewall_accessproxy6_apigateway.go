@@ -789,7 +789,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewayRealserversAddrType2edl(v interf
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversDomain2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -833,7 +833,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewayRealserversPort2edl(v interface{
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversSshClientCert2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayRealserversSshHostKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -869,7 +869,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewaySamlRedirect2edl(v interface{}, 
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewaySamlServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -956,7 +956,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewaySslRenegotiation2edl(v interface
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewaySslVpnWebPortal2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayUrlMap2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -968,7 +968,7 @@ func flattenObjectFirewallAccessProxy6ApiGatewayUrlMapType2edl(v interface{}, d 
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayVirtualHost2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1572,7 +1572,7 @@ func expandObjectFirewallAccessProxy6ApiGatewayRealserversAddrType2edl(d *schema
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversDomain2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1616,7 +1616,7 @@ func expandObjectFirewallAccessProxy6ApiGatewayRealserversPort2edl(d *schema.Res
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversSshClientCert2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealserversSshHostKey2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1652,7 +1652,7 @@ func expandObjectFirewallAccessProxy6ApiGatewaySamlRedirect2edl(d *schema.Resour
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewaySamlServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1731,7 +1731,7 @@ func expandObjectFirewallAccessProxy6ApiGatewaySslRenegotiation2edl(d *schema.Re
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewaySslVpnWebPortal2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayUrlMap2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1743,7 +1743,7 @@ func expandObjectFirewallAccessProxy6ApiGatewayUrlMapType2edl(d *schema.Resource
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayVirtualHost2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -126,10 +126,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Optional: true,
 									},
 									"logon_password": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"logon_user": &schema.Schema{
 										Type:     schema.TypeString,
@@ -188,10 +189,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Optional: true,
 									},
 									"sso_password": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sso_username": &schema.Schema{
 										Type:     schema.TypeString,
@@ -435,10 +437,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 							Computed: true,
 						},
 						"sso_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sso_username": &schema.Schema{
 							Type:     schema.TypeString,
@@ -935,12 +938,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["load_balancing_info"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-LoadBalancingInfo")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_password"
-		if _, ok := i["logon-password"]; ok {
-			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword(i["logon-password"], d, pre_append)
-			tmp["logon_password"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-LogonPassword")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_user"
 		if _, ok := i["logon-user"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser(i["logon-user"], d, pre_append)
@@ -1023,12 +1020,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 		if _, ok := i["sso-credential-sent-once"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce(i["sso-credential-sent-once"], d, pre_append)
 			tmp["sso_credential_sent_once"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-SsoCredentialSentOnce")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_password"
-		if _, ok := i["sso-password"]; ok {
-			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword(i["sso-password"], d, pre_append)
-			tmp["sso_password"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-SsoPassword")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_username"
@@ -1158,10 +1149,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLoadBalancingInfo(v inter
 	return v
 }
 
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1218,10 +1205,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce(v i
 	return v
 }
 
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1251,7 +1234,7 @@ func flattenObjectVpnSslWebPortalClipboard(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnSslWebPortalCustomLang(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1431,11 +1414,6 @@ func flattenObjectVpnSslWebPortalLandingPage(v interface{}, d *schema.ResourceDa
 		result["sso_credential"] = flattenObjectVpnSslWebPortalLandingPageSsoCredential(i["sso-credential"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sso_password"
-	if _, ok := i["sso-password"]; ok {
-		result["sso_password"] = flattenObjectVpnSslWebPortalLandingPageSsoPassword(i["sso-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sso_username"
 	if _, ok := i["sso-username"]; ok {
 		result["sso_username"] = flattenObjectVpnSslWebPortalLandingPageSsoUsername(i["sso-username"], d, pre_append)
@@ -1509,10 +1487,6 @@ func flattenObjectVpnSslWebPortalLandingPageSso(v interface{}, d *schema.Resourc
 
 func flattenObjectVpnSslWebPortalLandingPageSsoCredential(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectVpnSslWebPortalLandingPageSsoPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalLandingPageSsoUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3143,7 +3117,7 @@ func expandObjectVpnSslWebPortalClipboard(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectVpnSslWebPortalCustomLang(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

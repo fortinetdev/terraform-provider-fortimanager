@@ -81,10 +81,11 @@ func resourceObjectVpnSslWebPortalLandingPage() *schema.Resource {
 				Computed: true,
 			},
 			"sso_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"sso_username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -268,10 +269,6 @@ func flattenObjectVpnSslWebPortalLandingPageSsoCredential2edl(v interface{}, d *
 	return v
 }
 
-func flattenObjectVpnSslWebPortalLandingPageSsoPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnSslWebPortalLandingPageSsoUsername2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -342,16 +339,6 @@ func refreshObjectObjectVpnSslWebPortalLandingPage(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading sso_credential: %v", err)
-		}
-	}
-
-	if err = d.Set("sso_password", flattenObjectVpnSslWebPortalLandingPageSsoPassword2edl(o["sso-password"], d, "sso_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["sso-password"], "ObjectVpnSslWebPortalLandingPage-SsoPassword"); ok {
-			if err = d.Set("sso_password", vv); err != nil {
-				return fmt.Errorf("Error reading sso_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading sso_password: %v", err)
 		}
 	}
 

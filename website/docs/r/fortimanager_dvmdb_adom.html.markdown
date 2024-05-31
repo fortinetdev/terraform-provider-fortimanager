@@ -61,8 +61,18 @@ The following arguments are supported:
 * `name` - Name.
 * `os_ver` - Os_Ver. Valid values: `unknown`, `0.0`, `1.0`, `2.0`, `3.0`, `4.0`, `5.0`, `6.0`, `7.0`, `8.0`.
 
+* `primary_dns_ip4` - Primary_Dns_Ip4.
+* `primary_dns_ip6_1` - Primary_Dns_Ip6_1.
+* `primary_dns_ip6_2` - Primary_Dns_Ip6_2.
+* `primary_dns_ip6_3` - Primary_Dns_Ip6_3.
+* `primary_dns_ip6_4` - Primary_Dns_Ip6_4.
 * `restricted_prds` - Restricted_Prds. Valid values: `fos`, `foc`, `fml`, `fch`, `fwb`, `log`, `fct`, `faz`, `fsa`, `fsw`, `fmg`, `fdd`, `fac`, `fpx`, `fna`, `ffw`, `fsr`, `fad`, `fdc`.
 
+* `secondary_dns_ip4` - Secondary_Dns_Ip4.
+* `secondary_dns_ip6_1` - Secondary_Dns_Ip6_1.
+* `secondary_dns_ip6_2` - Secondary_Dns_Ip6_2.
+* `secondary_dns_ip6_3` - Secondary_Dns_Ip6_3.
+* `secondary_dns_ip6_4` - Secondary_Dns_Ip6_4.
 * `state` - State.
 * `tz` - Tz.
 * `uuid` - Uuid.

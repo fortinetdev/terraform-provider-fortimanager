@@ -94,10 +94,11 @@ func resourceObjectWirelessControllerMpskProfile() *schema.Resource {
 										Computed:  true,
 									},
 									"pmk": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 								},
 							},
@@ -362,22 +363,6 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKey(v interface{}, d
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Name")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := i["passphrase"]; ok {
-			v := flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase(i["passphrase"], d, pre_append)
-			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Passphrase")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["passphrase"] = c
-			}
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmk"
-		if _, ok := i["pmk"]; ok {
-			v := flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk(i["pmk"], d, pre_append)
-			tmp["pmk"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Pmk")
-		}
-
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -410,14 +395,6 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedules(v i
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {

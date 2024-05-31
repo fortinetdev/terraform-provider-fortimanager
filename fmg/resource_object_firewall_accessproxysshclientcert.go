@@ -57,6 +57,7 @@ func resourceObjectFirewallAccessProxySshClientCert() *schema.Resource {
 						"critical": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"data": &schema.Schema{
 							Type:     schema.TypeString,
@@ -69,6 +70,7 @@ func resourceObjectFirewallAccessProxySshClientCert() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -81,26 +83,32 @@ func resourceObjectFirewallAccessProxySshClientCert() *schema.Resource {
 			"permit_agent_forwarding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"permit_port_forwarding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"permit_pty": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"permit_user_rc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"permit_x11_forwarding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -226,7 +234,7 @@ func resourceObjectFirewallAccessProxySshClientCertRead(d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallAccessProxySshClientCertAuthCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxySshClientCertCertExtension(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -451,7 +459,7 @@ func flattenObjectFirewallAccessProxySshClientCertFortiTestDebug(d *schema.Resou
 }
 
 func expandObjectFirewallAccessProxySshClientCertAuthCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxySshClientCertCertExtension(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

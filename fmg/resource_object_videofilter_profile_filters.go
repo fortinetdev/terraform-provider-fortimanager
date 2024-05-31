@@ -53,6 +53,7 @@ func resourceObjectVideofilterProfileFilters() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,10 +79,12 @@ func resourceObjectVideofilterProfileFilters() *schema.Resource {
 			"log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -243,7 +246,7 @@ func flattenObjectVideofilterProfileFiltersId2edl(v interface{}, d *schema.Resou
 }
 
 func flattenObjectVideofilterProfileFiltersKeyword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVideofilterProfileFiltersLog2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -371,7 +374,7 @@ func expandObjectVideofilterProfileFiltersId2edl(d *schema.ResourceData, v inter
 }
 
 func expandObjectVideofilterProfileFiltersKeyword2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVideofilterProfileFiltersLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

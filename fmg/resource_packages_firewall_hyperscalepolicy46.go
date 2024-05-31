@@ -292,7 +292,7 @@ func flattenPackagesFirewallHyperscalePolicy46Dstaddr(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -316,7 +316,7 @@ func flattenPackagesFirewallHyperscalePolicy46Srcaddr(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -324,19 +324,19 @@ func flattenPackagesFirewallHyperscalePolicy46Status(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallHyperscalePolicy46TcpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46TrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46TrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46UdpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallHyperscalePolicy46Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -546,7 +546,7 @@ func expandPackagesFirewallHyperscalePolicy46Dstaddr(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallHyperscalePolicy46Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -570,7 +570,7 @@ func expandPackagesFirewallHyperscalePolicy46Srcaddr(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallHyperscalePolicy46Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -578,19 +578,19 @@ func expandPackagesFirewallHyperscalePolicy46Status(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallHyperscalePolicy46TcpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46TrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46TrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46UdpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallHyperscalePolicy46Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

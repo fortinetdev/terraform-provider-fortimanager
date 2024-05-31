@@ -65,6 +65,11 @@ func resourcePackagesFirewallAcl() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fragment": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -258,8 +263,12 @@ func flattenPackagesFirewallAclDstaddr(v interface{}, d *schema.ResourceData, pr
 	return flattenStringList(v)
 }
 
-func flattenPackagesFirewallAclInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesFirewallAclFragment(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallAclInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallAclName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -310,6 +319,16 @@ func refreshObjectPackagesFirewallAcl(d *schema.ResourceData, o map[string]inter
 			}
 		} else {
 			return fmt.Errorf("Error reading dstaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("fragment", flattenPackagesFirewallAclFragment(o["fragment"], d, "fragment")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fragment"], "PackagesFirewallAcl-Fragment"); ok {
+			if err = d.Set("fragment", vv); err != nil {
+				return fmt.Errorf("Error reading fragment: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fragment: %v", err)
 		}
 	}
 
@@ -400,8 +419,12 @@ func expandPackagesFirewallAclDstaddr(d *schema.ResourceData, v interface{}, pre
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesFirewallAclInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesFirewallAclFragment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesFirewallAclInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallAclName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -446,6 +469,15 @@ func getObjectPackagesFirewallAcl(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["dstaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fragment"); ok || d.HasChange("fragment") {
+		t, err := expandPackagesFirewallAclFragment(d, v, "fragment")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fragment"] = t
 		}
 	}
 

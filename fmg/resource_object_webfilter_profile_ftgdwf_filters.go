@@ -380,7 +380,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp3rdl(d *schema.ResourceD
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -198,7 +198,7 @@ func flattenObjectFirewallAccessProxyVirtualHostName(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallAccessProxyVirtualHostReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyVirtualHostSslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -284,7 +284,7 @@ func expandObjectFirewallAccessProxyVirtualHostName(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallAccessProxyVirtualHostReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyVirtualHostSslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

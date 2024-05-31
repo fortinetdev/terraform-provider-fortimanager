@@ -530,7 +530,7 @@ func flattenObjectFirewallAddress6Comment(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallAddress6Country(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -854,7 +854,7 @@ func flattenObjectFirewallAddress6DynamicMappingRouteTag(v interface{}, d *schem
 }
 
 func flattenObjectFirewallAddress6DynamicMappingSdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6DynamicMappingSdnTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -933,7 +933,7 @@ func flattenObjectFirewallAddress6DynamicMappingTags(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallAddress6DynamicMappingTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6DynamicMappingTenant(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1064,7 +1064,7 @@ func flattenObjectFirewallAddress6RouteTag(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallAddress6Sdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6SdnTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1186,7 +1186,7 @@ func flattenObjectFirewallAddress6Tagging(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallAddress6TaggingCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6TaggingName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1198,7 +1198,7 @@ func flattenObjectFirewallAddress6TaggingTags(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallAddress6Template(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAddress6Tenant(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1620,7 +1620,7 @@ func expandObjectFirewallAddress6Comment(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallAddress6Country(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1913,7 +1913,7 @@ func expandObjectFirewallAddress6DynamicMappingRouteTag(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallAddress6DynamicMappingSdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6DynamicMappingSdnTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1984,7 +1984,7 @@ func expandObjectFirewallAddress6DynamicMappingTags(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallAddress6DynamicMappingTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6DynamicMappingTenant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2107,7 +2107,7 @@ func expandObjectFirewallAddress6RouteTag(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFirewallAddress6Sdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6SdnTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2213,7 +2213,7 @@ func expandObjectFirewallAddress6Tagging(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallAddress6TaggingCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6TaggingName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2225,7 +2225,7 @@ func expandObjectFirewallAddress6TaggingTags(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallAddress6Template(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAddress6Tenant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -245,7 +245,7 @@ func resourceSystempLogSyslogdSettingRead(d *schema.ResourceData, m interface{})
 }
 
 func flattenSystempLogSyslogdSettingCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogSyslogdSettingCustomFieldName(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -320,7 +320,7 @@ func flattenSystempLogSyslogdSettingFormat(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystempLogSyslogdSettingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogSyslogdSettingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -530,7 +530,7 @@ func flattenSystempLogSyslogdSettingFortiTestDebug(d *schema.ResourceData, fosde
 }
 
 func expandSystempLogSyslogdSettingCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogSyslogdSettingCustomFieldName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -597,7 +597,7 @@ func expandSystempLogSyslogdSettingFormat(d *schema.ResourceData, v interface{},
 }
 
 func expandSystempLogSyslogdSettingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogSyslogdSettingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

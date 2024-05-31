@@ -226,11 +226,11 @@ func resourceWantempSystemSdwanNeighborRead(d *schema.ResourceData, m interface{
 }
 
 func flattenWantempSystemSdwanNeighborHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -250,7 +250,7 @@ func flattenWantempSystemSdwanNeighborRole2edl(v interface{}, d *schema.Resource
 }
 
 func flattenWantempSystemSdwanNeighborServiceId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -354,11 +354,11 @@ func flattenWantempSystemSdwanNeighborFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandWantempSystemSdwanNeighborHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -378,7 +378,7 @@ func expandWantempSystemSdwanNeighborRole2edl(d *schema.ResourceData, v interfac
 }
 
 func expandWantempSystemSdwanNeighborServiceId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

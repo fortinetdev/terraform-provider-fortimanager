@@ -6,6 +6,7 @@ import (
 	"math"
 	"net"
 	"os"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -59,7 +60,26 @@ func flattenStringList(v interface{}) interface{} {
 	}
 	vsList := []string{}
 	if cv, ok := v.(string); ok {
-		vsList = strings.Split(cv, ",")
+		if strings.Contains(cv, "'") || strings.Contains(cv, "\"") {
+			re := regexp.MustCompile(`['\"].*?['\"]`)
+			comma := re.FindAllString(cv, -1)
+			non_comma := re.Split(cv, -1)
+			for i := range non_comma {
+				cur_list := strings.Split(non_comma[i], ",")
+				for _, item := range cur_list {
+					item = strings.TrimSpace(item)
+					if item != "" {
+						vsList = append(vsList, item)
+					}
+				}
+				if i < len(comma) {
+					cur_item := strings.Trim(comma[i], "'\" ")
+					vsList = append(vsList, cur_item)
+				}
+			}
+		} else {
+			vsList = strings.Split(cv, ",")
+		}
 	} else if vList, ok := v.([]interface{}); ok {
 		for _, item := range vList {
 			vsList = append(vsList, fmt.Sprintf("%v", item))
@@ -409,19 +429,20 @@ func convintflist2str(v, tfv interface{}) interface{} {
 		vsList := make([]string, len(vList))
 		for i, item := range vList {
 			vsList[i] = strings.TrimSpace(fmt.Sprintf("%v", item))
+			if strings.Contains(vsList[i], ",") {
+				vsList[i] = "'" + vsList[i] + "'"
+			}
 		}
 		if tfv != nil {
 			if tfvs := fmt.Sprintf("%v", tfv); tfvs != "" {
-				tfvList := strings.Split(tfvs, ",")
+				tfvList := flattenStringList(tfv).([]string)
 				if len(tfvList) == len(vsList) {
-					for i, s := range tfvList {
-						tfvList[i] = strings.TrimSpace(s)
-					}
 					tfvDict := make(map[string]bool)
 					for _, item := range tfvList {
 						tfvDict[item] = true
 					}
 					for _, item := range vsList {
+						item = strings.Trim(item, "'\" ")
 						if _, ok := tfvDict[item]; !ok {
 							return strings.Join(vsList[:], ", ")
 						}
@@ -445,9 +466,10 @@ func convstr2list(v, tfv interface{}) interface{} {
 			if len(tfvList) == len(vsList) {
 				tfvDict := make(map[string]bool)
 				for _, item := range tfvList {
-					tfvDict[strings.TrimSpace(fmt.Sprintf("%v", item))] = true
+					tfvDict[strings.Trim(fmt.Sprintf("%v", item), "'\" ")] = true
 				}
 				for _, item := range vsList {
+					item = strings.Trim(item, "'\" ")
 					if _, ok := tfvDict[item]; !ok {
 						return vsList
 					}

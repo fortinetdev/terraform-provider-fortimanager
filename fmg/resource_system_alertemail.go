@@ -155,10 +155,6 @@ func flattenSystemAlertemailFromname(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
-func flattenSystemAlertemailSmtppassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAlertemailSmtpport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

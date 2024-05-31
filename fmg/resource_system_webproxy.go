@@ -145,10 +145,6 @@ func flattenSystemWebProxyMode(v interface{}, d *schema.ResourceData, pre string
 	return v
 }
 
-func flattenSystemWebProxyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemWebProxyPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

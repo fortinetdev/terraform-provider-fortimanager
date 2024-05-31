@@ -181,10 +181,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Optional: true,
 			},
 			"ddns_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"ddns_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -388,10 +389,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Optional: true,
 			},
 			"eap_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"eap_supplicant": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1196,10 +1198,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"peer_interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1244,10 +1247,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Computed: true,
 			},
 			"pptp_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"pptp_server_ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1962,10 +1966,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Computed: true,
 			},
 			"wifi_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"wifi_keyindex": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -2240,10 +2245,6 @@ func flattenObjectFspVlanInterfaceDdnsKeyname2edl(v interface{}, d *schema.Resou
 	return v
 }
 
-func flattenObjectFspVlanInterfaceDdnsPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFspVlanInterfaceDdnsServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2422,10 +2423,6 @@ func flattenObjectFspVlanInterfaceEapIdentity2edl(v interface{}, d *schema.Resou
 
 func flattenObjectFspVlanInterfaceEapMethod2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfaceEapPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceEapSupplicant2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3627,10 +3624,6 @@ func flattenObjectFspVlanInterfacePadtRetryTimeout2edl(v interface{}, d *schema.
 	return v
 }
 
-func flattenObjectFspVlanInterfacePassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFspVlanInterfacePeerInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -3665,10 +3658,6 @@ func flattenObjectFspVlanInterfacePptpAuthType2edl(v interface{}, d *schema.Reso
 
 func flattenObjectFspVlanInterfacePptpClient2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfacePptpPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfacePptpServerIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4518,20 +4507,12 @@ func flattenObjectFspVlanInterfaceWifiGateway2edl(v interface{}, d *schema.Resou
 	return v
 }
 
-func flattenObjectFspVlanInterfaceWifiKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFspVlanInterfaceWifiKeyindex2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiMacFilter2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfaceWifiPassphrase2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceWifiRadiusServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4866,16 +4847,6 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading ddns_keyname: %v", err)
-		}
-	}
-
-	if err = d.Set("ddns_password", flattenObjectFspVlanInterfaceDdnsPassword2edl(o["ddns-password"], d, "ddns_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["ddns-password"], "ObjectFspVlanInterface-DdnsPassword"); ok {
-			if err = d.Set("ddns_password", vv); err != nil {
-				return fmt.Errorf("Error reading ddns_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading ddns_password: %v", err)
 		}
 	}
 
@@ -5326,16 +5297,6 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading eap_method: %v", err)
-		}
-	}
-
-	if err = d.Set("eap_password", flattenObjectFspVlanInterfaceEapPassword2edl(o["eap-password"], d, "eap_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["eap-password"], "ObjectFspVlanInterface-EapPassword"); ok {
-			if err = d.Set("eap_password", vv); err != nil {
-				return fmt.Errorf("Error reading eap_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading eap_password: %v", err)
 		}
 	}
 
@@ -6323,16 +6284,6 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 		}
 	}
 
-	if err = d.Set("password", flattenObjectFspVlanInterfacePassword2edl(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectFspVlanInterface-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
-		}
-	}
-
 	if err = d.Set("peer_interface", flattenObjectFspVlanInterfacePeerInterface2edl(o["peer-interface"], d, "peer_interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["peer-interface"], "ObjectFspVlanInterface-PeerInterface"); ok {
 			if err = d.Set("peer_interface", vv); err != nil {
@@ -6420,16 +6371,6 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading pptp_client: %v", err)
-		}
-	}
-
-	if err = d.Set("pptp_password", flattenObjectFspVlanInterfacePptpPassword2edl(o["pptp-password"], d, "pptp_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["pptp-password"], "ObjectFspVlanInterface-PptpPassword"); ok {
-			if err = d.Set("pptp_password", vv); err != nil {
-				return fmt.Errorf("Error reading pptp_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading pptp_password: %v", err)
 		}
 	}
 
@@ -7738,16 +7679,6 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading wifi_gateway: %v", err)
-		}
-	}
-
-	if err = d.Set("wifi_key", flattenObjectFspVlanInterfaceWifiKey2edl(o["wifi-key"], d, "wifi_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["wifi-key"], "ObjectFspVlanInterface-WifiKey"); ok {
-			if err = d.Set("wifi_key", vv); err != nil {
-				return fmt.Errorf("Error reading wifi_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading wifi_key: %v", err)
 		}
 	}
 

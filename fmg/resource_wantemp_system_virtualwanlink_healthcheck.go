@@ -104,10 +104,11 @@ func resourceWantempSystemVirtualWanLinkHealthCheck() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -405,10 +406,6 @@ func flattenWantempSystemVirtualWanLinkHealthCheckPacketSize2edl(v interface{}, 
 	return v
 }
 
-func flattenWantempSystemVirtualWanLinkHealthCheckPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenWantempSystemVirtualWanLinkHealthCheckPort2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -694,16 +691,6 @@ func refreshObjectWantempSystemVirtualWanLinkHealthCheck(d *schema.ResourceData,
 			}
 		} else {
 			return fmt.Errorf("Error reading packet_size: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenWantempSystemVirtualWanLinkHealthCheckPassword2edl(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "WantempSystemVirtualWanLinkHealthCheck-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

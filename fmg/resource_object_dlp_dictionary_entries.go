@@ -246,7 +246,7 @@ func flattenObjectDlpDictionaryEntriesStatus2edl(v interface{}, d *schema.Resour
 }
 
 func flattenObjectDlpDictionaryEntriesType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectDlpDictionaryEntries(d *schema.ResourceData, o map[string]interface{}) error {
@@ -360,7 +360,7 @@ func expandObjectDlpDictionaryEntriesStatus2edl(d *schema.ResourceData, v interf
 }
 
 func expandObjectDlpDictionaryEntriesType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectDlpDictionaryEntries(d *schema.ResourceData) (*map[string]interface{}, error) {

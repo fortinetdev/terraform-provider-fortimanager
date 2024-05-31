@@ -230,7 +230,7 @@ func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{
 }
 
 func flattenObjectAuthenticationSchemeDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAuthenticationSchemeEmsDeviceOwner(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -238,7 +238,7 @@ func flattenObjectAuthenticationSchemeEmsDeviceOwner(v interface{}, d *schema.Re
 }
 
 func flattenObjectAuthenticationSchemeFssoAgentForNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAuthenticationSchemeFssoGuest(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -246,7 +246,7 @@ func flattenObjectAuthenticationSchemeFssoGuest(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectAuthenticationSchemeKerberosKeytab(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAuthenticationSchemeMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -266,7 +266,7 @@ func flattenObjectAuthenticationSchemeRequireTfa(v interface{}, d *schema.Resour
 }
 
 func flattenObjectAuthenticationSchemeSamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAuthenticationSchemeSamlTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -274,7 +274,7 @@ func flattenObjectAuthenticationSchemeSamlTimeout(v interface{}, d *schema.Resou
 }
 
 func flattenObjectAuthenticationSchemeSshCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAuthenticationSchemeUserCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -442,7 +442,7 @@ func flattenObjectAuthenticationSchemeFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandObjectAuthenticationSchemeDomainController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAuthenticationSchemeEmsDeviceOwner(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -450,7 +450,7 @@ func expandObjectAuthenticationSchemeEmsDeviceOwner(d *schema.ResourceData, v in
 }
 
 func expandObjectAuthenticationSchemeFssoAgentForNtlm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAuthenticationSchemeFssoGuest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -458,7 +458,7 @@ func expandObjectAuthenticationSchemeFssoGuest(d *schema.ResourceData, v interfa
 }
 
 func expandObjectAuthenticationSchemeKerberosKeytab(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAuthenticationSchemeMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -478,7 +478,7 @@ func expandObjectAuthenticationSchemeRequireTfa(d *schema.ResourceData, v interf
 }
 
 func expandObjectAuthenticationSchemeSamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAuthenticationSchemeSamlTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -486,7 +486,7 @@ func expandObjectAuthenticationSchemeSamlTimeout(d *schema.ResourceData, v inter
 }
 
 func expandObjectAuthenticationSchemeSshCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAuthenticationSchemeUserCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

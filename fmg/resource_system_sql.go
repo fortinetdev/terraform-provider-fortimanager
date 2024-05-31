@@ -459,10 +459,6 @@ func flattenSystemSqlLogtype(v interface{}, d *schema.ResourceData, pre string) 
 	return flattenStringList(v)
 }
 
-func flattenSystemSqlPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemSqlPromptSqlUpgrade(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

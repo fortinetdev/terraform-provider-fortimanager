@@ -432,7 +432,7 @@ func flattenObjectUserDomainControllerHostname(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserDomainControllerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserDomainControllerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -453,10 +453,6 @@ func flattenObjectUserDomainControllerLdapServer(v interface{}, d *schema.Resour
 
 func flattenObjectUserDomainControllerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserDomainControllerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserDomainControllerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -857,7 +853,7 @@ func expandObjectUserDomainControllerHostname(d *schema.ResourceData, v interfac
 }
 
 func expandObjectUserDomainControllerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserDomainControllerInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

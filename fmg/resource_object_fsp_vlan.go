@@ -1608,10 +1608,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 						},
 						"ddns_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"ddns_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1815,10 +1816,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 						},
 						"eap_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"eap_supplicant": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2623,10 +2625,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"peer_interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2671,10 +2674,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"pptp_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"pptp_server_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -3389,10 +3393,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"wifi_key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"wifi_keyindex": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -7074,11 +7079,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["ddns_keyname"] = flattenObjectFspVlanInterfaceDdnsKeyname(i["ddns-keyname"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "ddns_password"
-	if _, ok := i["ddns-password"]; ok {
-		result["ddns_password"] = flattenObjectFspVlanInterfaceDdnsPassword(i["ddns-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "ddns_server"
 	if _, ok := i["ddns-server"]; ok {
 		result["ddns_server"] = flattenObjectFspVlanInterfaceDdnsServer(i["ddns-server"], d, pre_append)
@@ -7302,11 +7302,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "eap_method"
 	if _, ok := i["eap-method"]; ok {
 		result["eap_method"] = flattenObjectFspVlanInterfaceEapMethod(i["eap-method"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "eap_password"
-	if _, ok := i["eap-password"]; ok {
-		result["eap_password"] = flattenObjectFspVlanInterfaceEapPassword(i["eap-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "eap_supplicant"
@@ -7794,11 +7789,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["padt_retry_timeout"] = flattenObjectFspVlanInterfacePadtRetryTimeout(i["padt-retry-timeout"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "password"
-	if _, ok := i["password"]; ok {
-		result["password"] = flattenObjectFspVlanInterfacePassword(i["password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "peer_interface"
 	if _, ok := i["peer-interface"]; ok {
 		result["peer_interface"] = flattenObjectFspVlanInterfacePeerInterface(i["peer-interface"], d, pre_append)
@@ -7842,11 +7832,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "pptp_client"
 	if _, ok := i["pptp-client"]; ok {
 		result["pptp_client"] = flattenObjectFspVlanInterfacePptpClient(i["pptp-client"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "pptp_password"
-	if _, ok := i["pptp-password"]; ok {
-		result["pptp_password"] = flattenObjectFspVlanInterfacePptpPassword(i["pptp-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "pptp_server_ip"
@@ -8489,11 +8474,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["wifi_gateway"] = flattenObjectFspVlanInterfaceWifiGateway(i["wifi-gateway"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "wifi_key"
-	if _, ok := i["wifi-key"]; ok {
-		result["wifi_key"] = flattenObjectFspVlanInterfaceWifiKey(i["wifi-key"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "wifi_keyindex"
 	if _, ok := i["wifi-keyindex"]; ok {
 		result["wifi_keyindex"] = flattenObjectFspVlanInterfaceWifiKeyindex(i["wifi-keyindex"], d, pre_append)
@@ -8502,15 +8482,6 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "wifi_mac_filter"
 	if _, ok := i["wifi-mac-filter"]; ok {
 		result["wifi_mac_filter"] = flattenObjectFspVlanInterfaceWifiMacFilter(i["wifi-mac-filter"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "wifi_passphrase"
-	if _, ok := i["wifi-passphrase"]; ok {
-		result["wifi_passphrase"] = flattenObjectFspVlanInterfaceWifiPassphrase(i["wifi-passphrase"], d, pre_append)
-		c := d.Get(pre_append).(*schema.Set)
-		if c.Len() > 0 {
-			result["wifi_passphrase"] = c
-		}
 	}
 
 	pre_append = pre + ".0." + "wifi_radius_server"
@@ -8665,10 +8636,6 @@ func flattenObjectFspVlanInterfaceDdnsKey(v interface{}, d *schema.ResourceData,
 
 func flattenObjectFspVlanInterfaceDdnsKeyname(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfaceDdnsPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceDdnsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8849,10 +8816,6 @@ func flattenObjectFspVlanInterfaceEapIdentity(v interface{}, d *schema.ResourceD
 
 func flattenObjectFspVlanInterfaceEapMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfaceEapPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceEapSupplicant(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -10054,10 +10017,6 @@ func flattenObjectFspVlanInterfacePadtRetryTimeout(v interface{}, d *schema.Reso
 	return v
 }
 
-func flattenObjectFspVlanInterfacePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFspVlanInterfacePeerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -10092,10 +10051,6 @@ func flattenObjectFspVlanInterfacePptpAuthType(v interface{}, d *schema.Resource
 
 func flattenObjectFspVlanInterfacePptpClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfacePptpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfacePptpServerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -10945,20 +10900,12 @@ func flattenObjectFspVlanInterfaceWifiGateway(v interface{}, d *schema.ResourceD
 	return v
 }
 
-func flattenObjectFspVlanInterfaceWifiKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFspVlanInterfaceWifiKeyindex(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiMacFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFspVlanInterfaceWifiPassphrase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceWifiRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -521,11 +521,11 @@ func flattenPackagesGlobalHeaderShapingPolicyName(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -565,11 +565,11 @@ func flattenPackagesGlobalHeaderShapingPolicyTosNegate(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1219,11 +1219,11 @@ func expandPackagesGlobalHeaderShapingPolicyName(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalHeaderShapingPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1263,11 +1263,11 @@ func expandPackagesGlobalHeaderShapingPolicyTosNegate(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalHeaderShapingPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalHeaderShapingPolicyTrafficType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

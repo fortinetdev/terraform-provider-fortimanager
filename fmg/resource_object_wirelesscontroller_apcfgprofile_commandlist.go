@@ -60,10 +60,11 @@ func resourceObjectWirelessControllerApcfgProfileCommandList() *schema.Resource 
 				Optional: true,
 			},
 			"passwd_value": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -221,10 +222,6 @@ func flattenObjectWirelessControllerApcfgProfileCommandListName2edl(v interface{
 	return v
 }
 
-func flattenObjectWirelessControllerApcfgProfileCommandListPasswdValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerApcfgProfileCommandListType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -257,16 +254,6 @@ func refreshObjectObjectWirelessControllerApcfgProfileCommandList(d *schema.Reso
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("passwd_value", flattenObjectWirelessControllerApcfgProfileCommandListPasswdValue2edl(o["passwd-value"], d, "passwd_value")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passwd-value"], "ObjectWirelessControllerApcfgProfileCommandList-PasswdValue"); ok {
-			if err = d.Set("passwd_value", vv); err != nil {
-				return fmt.Errorf("Error reading passwd_value: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passwd_value: %v", err)
 		}
 	}
 

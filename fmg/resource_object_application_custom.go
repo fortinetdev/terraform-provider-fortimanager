@@ -210,7 +210,7 @@ func flattenObjectApplicationCustomBehavior(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectApplicationCustomCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationCustomComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -366,7 +366,7 @@ func expandObjectApplicationCustomBehavior(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectApplicationCustomCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationCustomComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -63,6 +63,7 @@ The following arguments are supported:
 * `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+* `pba_interim_log` - Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
 * `pba_timeout` - Port block allocation timeout (seconds).
 * `permit_any_host` - Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 
@@ -108,6 +109,7 @@ The `dynamic_mapping` block supports:
 * `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).
+* `pba_interim_log` - Port block allocation interim logging interval (600 - 86400 seconds, default = 0 which disables interim logging).
 * `pba_timeout` - Port block allocation timeout (seconds).
 * `permit_any_host` - Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 

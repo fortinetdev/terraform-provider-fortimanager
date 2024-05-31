@@ -251,7 +251,7 @@ func flattenObjectWafProfileUrlAccessAccessPatternRegex3rdl(v interface{}, d *sc
 }
 
 func flattenObjectWafProfileUrlAccessAccessPatternSrcaddr3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectWafProfileUrlAccessAccessPattern(d *schema.ResourceData, o map[string]interface{}) error {
@@ -337,7 +337,7 @@ func expandObjectWafProfileUrlAccessAccessPatternRegex3rdl(d *schema.ResourceDat
 }
 
 func expandObjectWafProfileUrlAccessAccessPatternSrcaddr3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectWafProfileUrlAccessAccessPattern(d *schema.ResourceData) (*map[string]interface{}, error) {

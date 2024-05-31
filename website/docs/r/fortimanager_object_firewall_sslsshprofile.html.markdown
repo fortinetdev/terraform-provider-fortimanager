@@ -11,6 +11,7 @@ Configure SSL/SSH protocol options.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `dot`: `fortimanager_object_firewall_sslsshprofile_dot`
+>- `ech_outer_sni`: `fortimanager_object_firewall_sslsshprofile_echoutersni`
 >- `ftps`: `fortimanager_object_firewall_sslsshprofile_ftps`
 >- `https`: `fortimanager_object_firewall_sslsshprofile_https`
 >- `imaps`: `fortimanager_object_firewall_sslsshprofile_imaps`
@@ -52,6 +53,7 @@ The following arguments are supported:
 * `caname` - CA certificate used by SSL Inspection.
 * `comment` - Optional comments.
 * `dot` - Dot. The structure of `dot` block is documented below.
+* `ech_outer_sni` - Ech-Outer-Sni. The structure of `ech_outer_sni` block is documented below.
 * `ftps` - Ftps. The structure of `ftps` block is documented below.
 * `https` - Https. The structure of `https` block is documented below.
 * `imaps` - Imaps. The structure of `imaps` block is documented below.
@@ -125,6 +127,11 @@ The `dot` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
+The `ech_outer_sni` block supports:
+
+* `name` - ClientHelloOuter SNI name.
+* `sni` - ClientHelloOuter SNI to be blocked.
+
 The `ftps` block supports:
 
 * `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
@@ -178,6 +185,8 @@ The `https` block supports:
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
 
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+
+* `encrypted_client_hello` - Block/allow session based on existence of encrypted-client-hello. Valid values: `block`, `allow`.
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 
@@ -358,6 +367,8 @@ The `ssl` block supports:
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
 
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+
+* `encrypted_client_hello` - Block/allow session based on existence of encrypted-client-hello. Valid values: `block`, `allow`.
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 

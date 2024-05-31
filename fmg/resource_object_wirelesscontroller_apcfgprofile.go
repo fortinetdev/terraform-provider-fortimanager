@@ -84,10 +84,11 @@ func resourceObjectWirelessControllerApcfgProfile() *schema.Resource {
 							Optional: true,
 						},
 						"passwd_value": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -284,12 +285,6 @@ func flattenObjectWirelessControllerApcfgProfileCommandList(v interface{}, d *sc
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerApcfgProfile-CommandList-Name")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd_value"
-		if _, ok := i["passwd-value"]; ok {
-			v := flattenObjectWirelessControllerApcfgProfileCommandListPasswdValue(i["passwd-value"], d, pre_append)
-			tmp["passwd_value"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerApcfgProfile-CommandList-PasswdValue")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectWirelessControllerApcfgProfileCommandListType(i["type"], d, pre_append)
@@ -318,10 +313,6 @@ func flattenObjectWirelessControllerApcfgProfileCommandListId(v interface{}, d *
 
 func flattenObjectWirelessControllerApcfgProfileCommandListName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerApcfgProfileCommandListPasswdValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerApcfgProfileCommandListType(v interface{}, d *schema.ResourceData, pre string) interface{} {

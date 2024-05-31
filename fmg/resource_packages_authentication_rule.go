@@ -59,6 +59,11 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"cert_auth_cookie": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -290,6 +295,10 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 }
 
 func flattenPackagesAuthenticationRuleActiveAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenPackagesAuthenticationRuleCertAuthCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -338,7 +347,7 @@ func flattenPackagesAuthenticationRuleSrcintf(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesAuthenticationRuleSsoAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationRuleStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -371,6 +380,16 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading active_auth_method: %v", err)
+		}
+	}
+
+	if err = d.Set("cert_auth_cookie", flattenPackagesAuthenticationRuleCertAuthCookie(o["cert-auth-cookie"], d, "cert_auth_cookie")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-auth-cookie"], "PackagesAuthenticationRule-CertAuthCookie"); ok {
+			if err = d.Set("cert_auth_cookie", vv); err != nil {
+				return fmt.Errorf("Error reading cert_auth_cookie: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_auth_cookie: %v", err)
 		}
 	}
 
@@ -544,6 +563,10 @@ func flattenPackagesAuthenticationRuleFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandPackagesAuthenticationRuleActiveAuthMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return convstr2list(v, nil), nil
+}
+
+func expandPackagesAuthenticationRuleCertAuthCookie(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -592,7 +615,7 @@ func expandPackagesAuthenticationRuleSrcintf(d *schema.ResourceData, v interface
 }
 
 func expandPackagesAuthenticationRuleSsoAuthMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationRuleStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -620,6 +643,15 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["active-auth-method"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cert_auth_cookie"); ok || d.HasChange("cert_auth_cookie") {
+		t, err := expandPackagesAuthenticationRuleCertAuthCookie(d, v, "cert_auth_cookie")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-auth-cookie"] = t
 		}
 	}
 

@@ -89,7 +89,7 @@ func resourceSecurityconsolePblockCloneRead(d *schema.ResourceData, m interface{
 }
 
 func flattenSecurityconsolePblockCloneAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsolePblockCloneDstName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -97,7 +97,7 @@ func flattenSecurityconsolePblockCloneDstName(v interface{}, d *schema.ResourceD
 }
 
 func flattenSecurityconsolePblockClonePblock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectSecurityconsolePblockClone(d *schema.ResourceData, o map[string]interface{}) error {
@@ -143,7 +143,7 @@ func flattenSecurityconsolePblockCloneFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandSecurityconsolePblockCloneAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsolePblockCloneDstName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -151,7 +151,7 @@ func expandSecurityconsolePblockCloneDstName(d *schema.ResourceData, v interface
 }
 
 func expandSecurityconsolePblockClonePblock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectSecurityconsolePblockClone(d *schema.ResourceData) (*map[string]interface{}, error) {

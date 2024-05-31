@@ -171,10 +171,6 @@ func flattenSystemSocFabricPort(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
-func flattenSystemSocFabricPsk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemSocFabricRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

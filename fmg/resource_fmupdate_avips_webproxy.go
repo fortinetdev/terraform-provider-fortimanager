@@ -146,10 +146,6 @@ func flattenFmupdateAvIpsWebProxyMode(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
-func flattenFmupdateAvIpsWebProxyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenFmupdateAvIpsWebProxyPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

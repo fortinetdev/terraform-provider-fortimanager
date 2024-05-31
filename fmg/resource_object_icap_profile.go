@@ -412,7 +412,7 @@ func flattenObjectIcapProfileFileTransferPath(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectIcapProfileFileTransferServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIcapProfileIcapBlockLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -505,7 +505,7 @@ func flattenObjectIcapProfilePreviewDataLength(v interface{}, d *schema.Resource
 }
 
 func flattenObjectIcapProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIcapProfileRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -521,7 +521,7 @@ func flattenObjectIcapProfileRequestPath(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectIcapProfileRequestServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIcapProfileRespmodDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -661,7 +661,7 @@ func flattenObjectIcapProfileRespmodForwardRulesHeaderGroupId(v interface{}, d *
 }
 
 func flattenObjectIcapProfileRespmodForwardRulesHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIcapProfileRespmodForwardRulesHttpRespStatusCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -689,7 +689,7 @@ func flattenObjectIcapProfileResponseReqHdr(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectIcapProfileResponseServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIcapProfileScanProgressInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1085,7 +1085,7 @@ func expandObjectIcapProfileFileTransferPath(d *schema.ResourceData, v interface
 }
 
 func expandObjectIcapProfileFileTransferServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIcapProfileIcapBlockLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1169,7 +1169,7 @@ func expandObjectIcapProfilePreviewDataLength(d *schema.ResourceData, v interfac
 }
 
 func expandObjectIcapProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIcapProfileRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1185,7 +1185,7 @@ func expandObjectIcapProfileRequestPath(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectIcapProfileRequestServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIcapProfileRespmodDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1311,7 +1311,7 @@ func expandObjectIcapProfileRespmodForwardRulesHeaderGroupId(d *schema.ResourceD
 }
 
 func expandObjectIcapProfileRespmodForwardRulesHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIcapProfileRespmodForwardRulesHttpRespStatusCode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1339,7 +1339,7 @@ func expandObjectIcapProfileResponseReqHdr(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectIcapProfileResponseServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIcapProfileScanProgressInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

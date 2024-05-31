@@ -217,10 +217,6 @@ func flattenObjectCredentialStoreDomainControllerIp6(v interface{}, d *schema.Re
 	return v
 }
 
-func flattenObjectCredentialStoreDomainControllerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectCredentialStoreDomainControllerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

@@ -374,6 +374,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"src_vip_filter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"srcintf_filter": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -909,6 +913,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 			"src_filter": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"src_vip_filter": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -1601,6 +1610,12 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["src_filter"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-SrcFilter")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_vip_filter"
+		if _, ok := i["src-vip-filter"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingSrcVipFilter(i["src-vip-filter"], d, pre_append)
+			tmp["src_vip_filter"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-SrcVipFilter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "srcintf_filter"
 		if _, ok := i["srcintf-filter"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingSrcintfFilter(i["srcintf-filter"], d, pre_append)
@@ -2033,7 +2048,7 @@ func flattenObjectFirewallVipDynamicMappingLdbMethod(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVipDynamicMappingMappedAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingMappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2289,6 +2304,10 @@ func flattenObjectFirewallVipDynamicMappingSrcFilter(v interface{}, d *schema.Re
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallVipDynamicMappingSrcVipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingSrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2411,7 +2430,7 @@ func flattenObjectFirewallVipDynamicMappingSslHpkpAge(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkpBackup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2419,7 +2438,7 @@ func flattenObjectFirewallVipDynamicMappingSslHpkpIncludeSubdomains(v interface{
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkpPrimary(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkpReportUri(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2519,11 +2538,11 @@ func flattenObjectFirewallVipExtaddr(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectFirewallVipExtintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipExtip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipExtport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2676,7 +2695,7 @@ func flattenObjectFirewallVipLdbMethod(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallVipMappedAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipMappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2940,7 +2959,7 @@ func flattenObjectFirewallVipRealservers(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallVipRealserversAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipRealserversClientIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3009,6 +3028,10 @@ func flattenObjectFirewallVipService(v interface{}, d *schema.ResourceData, pre 
 
 func flattenObjectFirewallVipSrcFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallVipSrcVipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallVipSrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3133,7 +3156,7 @@ func flattenObjectFirewallVipSslHpkpAge(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallVipSslHpkpBackup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipSslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3141,7 +3164,7 @@ func flattenObjectFirewallVipSslHpkpIncludeSubdomains(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVipSslHpkpPrimary(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVipSslHpkpReportUri(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3912,6 +3935,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("src_vip_filter", flattenObjectFirewallVipSrcVipFilter(o["src-vip-filter"], d, "src_vip_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["src-vip-filter"], "ObjectFirewallVip-SrcVipFilter"); ok {
+			if err = d.Set("src_vip_filter", vv); err != nil {
+				return fmt.Errorf("Error reading src_vip_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading src_vip_filter: %v", err)
+		}
+	}
+
 	if err = d.Set("srcintf_filter", flattenObjectFirewallVipSrcintfFilter(o["srcintf-filter"], d, "srcintf_filter")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcintf-filter"], "ObjectFirewallVip-SrcintfFilter"); ok {
 			if err = d.Set("srcintf_filter", vv); err != nil {
@@ -4663,6 +4696,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["src-filter"], _ = expandObjectFirewallVipDynamicMappingSrcFilter(d, i["src_filter"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_vip_filter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["src-vip-filter"], _ = expandObjectFirewallVipDynamicMappingSrcVipFilter(d, i["src_vip_filter"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "srcintf_filter"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["srcintf-filter"], _ = expandObjectFirewallVipDynamicMappingSrcintfFilter(d, i["srcintf_filter"], pre_append)
@@ -4949,7 +4987,7 @@ func expandObjectFirewallVipDynamicMappingExtintf(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallVipDynamicMappingExtip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingExtport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5053,7 +5091,7 @@ func expandObjectFirewallVipDynamicMappingLdbMethod(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallVipDynamicMappingMappedAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingMappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5288,6 +5326,10 @@ func expandObjectFirewallVipDynamicMappingSrcFilter(d *schema.ResourceData, v in
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallVipDynamicMappingSrcVipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingSrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -5401,7 +5443,7 @@ func expandObjectFirewallVipDynamicMappingSslHpkpAge(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallVipDynamicMappingSslHpkpBackup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingSslHpkpIncludeSubdomains(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5409,7 +5451,7 @@ func expandObjectFirewallVipDynamicMappingSslHpkpIncludeSubdomains(d *schema.Res
 }
 
 func expandObjectFirewallVipDynamicMappingSslHpkpPrimary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipDynamicMappingSslHpkpReportUri(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5509,11 +5551,11 @@ func expandObjectFirewallVipExtaddr(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectFirewallVipExtintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipExtip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipExtport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5659,7 +5701,7 @@ func expandObjectFirewallVipLdbMethod(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallVipMappedAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipMappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5896,7 +5938,7 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallVipRealserversAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipRealserversClientIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5965,6 +6007,10 @@ func expandObjectFirewallVipService(d *schema.ResourceData, v interface{}, pre s
 
 func expandObjectFirewallVipSrcFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallVipSrcVipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallVipSrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -6080,7 +6126,7 @@ func expandObjectFirewallVipSslHpkpAge(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallVipSslHpkpBackup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipSslHpkpIncludeSubdomains(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -6088,7 +6134,7 @@ func expandObjectFirewallVipSslHpkpIncludeSubdomains(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallVipSslHpkpPrimary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVipSslHpkpReportUri(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -6729,6 +6775,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["src-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("src_vip_filter"); ok || d.HasChange("src_vip_filter") {
+		t, err := expandObjectFirewallVipSrcVipFilter(d, v, "src_vip_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["src-vip-filter"] = t
 		}
 	}
 

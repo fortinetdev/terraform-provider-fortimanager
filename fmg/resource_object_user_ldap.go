@@ -217,10 +217,11 @@ func resourceObjectUserLdap() *schema.Resource {
 							Computed: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password_attr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -280,6 +281,10 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"status_ttl": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"tertiary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -419,6 +424,11 @@ func resourceObjectUserLdap() *schema.Resource {
 			},
 			"ssl_min_proto_version": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"status_ttl": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -600,11 +610,11 @@ func flattenObjectUserLdapAntiphish(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserLdapCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapClientCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -782,12 +792,6 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["obtain_user_info"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-ObtainUserInfo")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectUserLdapDynamicMappingPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_attr"
 		if _, ok := i["password-attr"]; ok {
 			v := flattenObjectUserLdapDynamicMappingPasswordAttr(i["password-attr"], d, pre_append)
@@ -864,6 +868,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["ssl-min-proto-version"]; ok {
 			v := flattenObjectUserLdapDynamicMappingSslMinProtoVersion(i["ssl-min-proto-version"], d, pre_append)
 			tmp["ssl_min_proto_version"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-SslMinProtoVersion")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status_ttl"
+		if _, ok := i["status-ttl"]; ok {
+			v := flattenObjectUserLdapDynamicMappingStatusTtl(i["status-ttl"], d, pre_append)
+			tmp["status_ttl"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-StatusTtl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -1065,10 +1075,6 @@ func flattenObjectUserLdapDynamicMappingObtainUserInfo(v interface{}, d *schema.
 	return v
 }
 
-func flattenObjectUserLdapDynamicMappingPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserLdapDynamicMappingPasswordAttr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1121,6 +1127,10 @@ func flattenObjectUserLdapDynamicMappingSslMinProtoVersion(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectUserLdapDynamicMappingStatusTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapDynamicMappingTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1170,7 +1180,7 @@ func flattenObjectUserLdapGroupSearchBase(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectUserLdapInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1187,10 +1197,6 @@ func flattenObjectUserLdapName(v interface{}, d *schema.ResourceData, pre string
 
 func flattenObjectUserLdapObtainUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserLdapPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserLdapPasswordAttr(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1241,6 +1247,10 @@ func flattenObjectUserLdapSslMinProtoVersion(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectUserLdapStatusTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1266,7 +1276,7 @@ func flattenObjectUserLdapType(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserLdapUserInfoExchangeServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLdapUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1618,6 +1628,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("status_ttl", flattenObjectUserLdapStatusTtl(o["status-ttl"], d, "status_ttl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status-ttl"], "ObjectUserLdap-StatusTtl"); ok {
+			if err = d.Set("status_ttl", vv); err != nil {
+				return fmt.Errorf("Error reading status_ttl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status_ttl: %v", err)
+		}
+	}
+
 	if err = d.Set("tertiary_server", flattenObjectUserLdapTertiaryServer(o["tertiary-server"], d, "tertiary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tertiary-server"], "ObjectUserLdap-TertiaryServer"); ok {
 			if err = d.Set("tertiary_server", vv); err != nil {
@@ -1728,11 +1748,11 @@ func expandObjectUserLdapAntiphish(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserLdapCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapClientCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1954,6 +1974,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_min_proto_version"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-min-proto-version"], _ = expandObjectUserLdapDynamicMappingSslMinProtoVersion(d, i["ssl_min_proto_version"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status_ttl"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["status-ttl"], _ = expandObjectUserLdapDynamicMappingStatusTtl(d, i["status_ttl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -2196,6 +2221,10 @@ func expandObjectUserLdapDynamicMappingSslMinProtoVersion(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectUserLdapDynamicMappingStatusTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapDynamicMappingTertiaryServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2245,7 +2274,7 @@ func expandObjectUserLdapGroupSearchBase(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectUserLdapInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2316,6 +2345,10 @@ func expandObjectUserLdapSslMinProtoVersion(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectUserLdapStatusTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapTertiaryServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2341,7 +2374,7 @@ func expandObjectUserLdapType(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandObjectUserLdapUserInfoExchangeServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLdapUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2645,6 +2678,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-min-proto-version"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status_ttl"); ok || d.HasChange("status_ttl") {
+		t, err := expandObjectUserLdapStatusTtl(d, v, "status_ttl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status-ttl"] = t
 		}
 	}
 

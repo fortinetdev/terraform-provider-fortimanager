@@ -36,6 +36,8 @@ The following arguments are supported:
 
 * `comments` - Comment.
 * `dstaddr` - Destination address name.
+* `fragment` - Pass/drop fragments that match L3 information. Valid values: `pass`, `drop`.
+
 * `interface` - Interface name.
 * `name` - Policy name.
 * `policyid` - Policy ID.

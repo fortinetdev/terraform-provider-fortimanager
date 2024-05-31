@@ -299,7 +299,7 @@ func flattenObjectGlobalIpsSensorOverrideExemptIp2edl(v interface{}, d *schema.R
 }
 
 func flattenObjectGlobalIpsSensorOverrideExemptIpDstIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectGlobalIpsSensorOverrideExemptIpId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -307,7 +307,7 @@ func flattenObjectGlobalIpsSensorOverrideExemptIpId2edl(v interface{}, d *schema
 }
 
 func flattenObjectGlobalIpsSensorOverrideExemptIpSrcIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectGlobalIpsSensorOverrideLog2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -506,7 +506,7 @@ func expandObjectGlobalIpsSensorOverrideExemptIp2edl(d *schema.ResourceData, v i
 }
 
 func expandObjectGlobalIpsSensorOverrideExemptIpDstIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectGlobalIpsSensorOverrideExemptIpId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -514,7 +514,7 @@ func expandObjectGlobalIpsSensorOverrideExemptIpId2edl(d *schema.ResourceData, v
 }
 
 func expandObjectGlobalIpsSensorOverrideExemptIpSrcIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectGlobalIpsSensorOverrideLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

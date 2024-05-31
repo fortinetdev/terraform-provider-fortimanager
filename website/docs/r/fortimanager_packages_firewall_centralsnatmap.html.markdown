@@ -55,6 +55,8 @@ The following arguments are supported:
 * `orig_addr6` - IPv6 Original address.
 * `orig_port` - Original TCP port (0 to 65535).
 * `policyid` - Policy ID.
+* `port_preserve` - Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `disable`, `enable`.
+
 * `protocol` - Integer value for the protocol type (0 - 255).
 * `srcintf` - Source interface name from available interfaces.
 * `status` - Enable/disable the active status of this policy. Valid values: `disable`, `enable`.

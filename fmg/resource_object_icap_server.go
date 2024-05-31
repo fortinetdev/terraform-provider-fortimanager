@@ -264,7 +264,7 @@ func flattenObjectIcapServerSecure(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectIcapServerSslCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectIcapServer(d *schema.ResourceData, o map[string]interface{}) error {
@@ -448,7 +448,7 @@ func expandObjectIcapServerSecure(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectIcapServerSslCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{}, error) {

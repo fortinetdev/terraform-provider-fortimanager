@@ -252,7 +252,7 @@ func flattenObjectEmailfilterBlockAllowListEntriesId2edl(v interface{}, d *schem
 }
 
 func flattenObjectEmailfilterBlockAllowListEntriesIp4Subnet2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEmailfilterBlockAllowListEntriesIp6Subnet2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -408,7 +408,7 @@ func expandObjectEmailfilterBlockAllowListEntriesId2edl(d *schema.ResourceData, 
 }
 
 func expandObjectEmailfilterBlockAllowListEntriesIp4Subnet2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEmailfilterBlockAllowListEntriesIp6Subnet2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

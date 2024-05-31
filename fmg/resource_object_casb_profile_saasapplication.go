@@ -351,7 +351,7 @@ func flattenObjectCasbProfileSaasApplicationAccessRuleBypass2edl(v interface{}, 
 }
 
 func flattenObjectCasbProfileSaasApplicationAccessRuleName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControl2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -396,7 +396,7 @@ func flattenObjectCasbProfileSaasApplicationCustomControl2edl(v interface{}, d *
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlOption2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -461,7 +461,7 @@ func flattenObjectCasbProfileSaasApplicationLog2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectCasbProfileSaasApplicationName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationSafeSearch2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -690,7 +690,7 @@ func expandObjectCasbProfileSaasApplicationAccessRuleBypass2edl(d *schema.Resour
 }
 
 func expandObjectCasbProfileSaasApplicationAccessRuleName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -733,7 +733,7 @@ func expandObjectCasbProfileSaasApplicationCustomControl2edl(d *schema.ResourceD
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlOption2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -791,7 +791,7 @@ func expandObjectCasbProfileSaasApplicationLog2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectCasbProfileSaasApplicationName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationSafeSearch2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

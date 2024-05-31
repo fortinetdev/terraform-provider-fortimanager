@@ -44,10 +44,11 @@ func resourceSystemMail() *schema.Resource {
 				Optional: true,
 			},
 			"from_passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -197,20 +198,12 @@ func flattenSystemMailFrom(v interface{}, d *schema.ResourceData, pre string) in
 	return v
 }
 
-func flattenSystemMailFromPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemMailId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemMailLocalCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemMailPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemMailPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -259,16 +252,6 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading from: %v", err)
-		}
-	}
-
-	if err = d.Set("from_passwd", flattenSystemMailFromPasswd(o["from_passwd"], d, "from_passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["from_passwd"], "SystemMail-FromPasswd"); ok {
-			if err = d.Set("from_passwd", vv); err != nil {
-				return fmt.Errorf("Error reading from_passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading from_passwd: %v", err)
 		}
 	}
 

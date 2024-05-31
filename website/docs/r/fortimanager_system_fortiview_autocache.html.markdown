@@ -26,6 +26,8 @@ The following arguments are supported:
 
 * `aggressive_fortiview` - Enable/disable auto-cache on fortiview aggressively. disable - Disable the aggressive fortiview auto-cache. enable - Enable the aggressive fortiview auto-cache. Valid values: `disable`, `enable`.
 
+* `incr_fortiview` - Enable/disable fortiview incremental cache. disable - Disable the fortiview incremental auto cache. enable - Enable the fortiview incremental auto cache. Valid values: `disable`, `enable`.
+
 * `interval` - The time interval in hours for fortiview auto-cache.
 * `status` - Enable/disable fortiview auto-cache. disable - Disable the fortiview auto-cache. enable - Enable the fortiview auto-cache. Valid values: `disable`, `enable`.
 

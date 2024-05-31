@@ -476,10 +476,6 @@ func flattenSystemAdminSettingPreferredFgfmIntf(v interface{}, d *schema.Resourc
 	return v
 }
 
-func flattenSystemAdminSettingRegisterPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminSettingRtmMaxMonitorByDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -498,10 +494,6 @@ func flattenSystemAdminSettingSdwanSkipUnmappedInputDevice(v interface{}, d *sch
 
 func flattenSystemAdminSettingShellAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemAdminSettingShellPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemAdminSettingShowAddMultiple(v interface{}, d *schema.ResourceData, pre string) interface{} {

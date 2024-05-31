@@ -521,11 +521,11 @@ func flattenPackagesGlobalFooterShapingPolicyName(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterShapingPolicyPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterShapingPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterShapingPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -565,11 +565,11 @@ func flattenPackagesGlobalFooterShapingPolicyTosNegate(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterShapingPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterShapingPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesGlobalFooterShapingPolicyTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1219,11 +1219,11 @@ func expandPackagesGlobalFooterShapingPolicyName(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterShapingPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterShapingPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterShapingPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1263,11 +1263,11 @@ func expandPackagesGlobalFooterShapingPolicyTosNegate(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterShapingPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterShapingPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesGlobalFooterShapingPolicyTrafficType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

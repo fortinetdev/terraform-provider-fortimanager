@@ -145,10 +145,6 @@ func flattenFmupdateWebSpamWebProxyMode(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
-func flattenFmupdateWebSpamWebProxyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenFmupdateWebSpamWebProxyPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

@@ -209,6 +209,11 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"strip_ech": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"transparent_dns_database": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -624,6 +629,10 @@ func flattenObjectDnsfilterProfileSdnsFtgdErrLog(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectDnsfilterProfileStripEch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDnsfilterProfileTransparentDnsDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -822,6 +831,16 @@ func refreshObjectObjectDnsfilterProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading sdns_ftgd_err_log: %v", err)
+		}
+	}
+
+	if err = d.Set("strip_ech", flattenObjectDnsfilterProfileStripEch(o["strip-ech"], d, "strip_ech")); err != nil {
+		if vv, ok := fortiAPIPatch(o["strip-ech"], "ObjectDnsfilterProfile-StripEch"); ok {
+			if err = d.Set("strip_ech", vv); err != nil {
+				return fmt.Errorf("Error reading strip_ech: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading strip_ech: %v", err)
 		}
 	}
 
@@ -1073,7 +1092,7 @@ func expandObjectDnsfilterProfileFtgdDnsFiltersAction(d *schema.ResourceData, v 
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1113,6 +1132,10 @@ func expandObjectDnsfilterProfileSdnsDomainLog(d *schema.ResourceData, v interfa
 }
 
 func expandObjectDnsfilterProfileSdnsFtgdErrLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDnsfilterProfileStripEch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1250,6 +1273,15 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["sdns-ftgd-err-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("strip_ech"); ok || d.HasChange("strip_ech") {
+		t, err := expandObjectDnsfilterProfileStripEch(d, v, "strip_ech")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["strip-ech"] = t
 		}
 	}
 

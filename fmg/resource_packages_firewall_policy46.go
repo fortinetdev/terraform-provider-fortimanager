@@ -360,7 +360,7 @@ func flattenPackagesFirewallPolicy46Name(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenPackagesFirewallPolicy46PerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy46PermitAnyHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -380,7 +380,7 @@ func flattenPackagesFirewallPolicy46Poolname(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy46Schedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy46Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -408,11 +408,11 @@ func flattenPackagesFirewallPolicy46TcpMssSender(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallPolicy46TrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy46TrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallPolicy46Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -726,7 +726,7 @@ func expandPackagesFirewallPolicy46Name(d *schema.ResourceData, v interface{}, p
 }
 
 func expandPackagesFirewallPolicy46PerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy46PermitAnyHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -746,7 +746,7 @@ func expandPackagesFirewallPolicy46Poolname(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy46Schedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy46Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -774,11 +774,11 @@ func expandPackagesFirewallPolicy46TcpMssSender(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallPolicy46TrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy46TrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallPolicy46Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

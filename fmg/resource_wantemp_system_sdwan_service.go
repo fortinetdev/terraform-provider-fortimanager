@@ -741,7 +741,7 @@ func flattenWantempSystemSdwanServiceSla2edl(v interface{}, d *schema.ResourceDa
 }
 
 func flattenWantempSystemSdwanServiceSlaHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanServiceSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1723,7 +1723,7 @@ func expandWantempSystemSdwanServiceSla2edl(d *schema.ResourceData, v interface{
 }
 
 func expandWantempSystemSdwanServiceSlaHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanServiceSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

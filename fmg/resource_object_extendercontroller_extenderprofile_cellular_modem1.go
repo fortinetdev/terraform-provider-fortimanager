@@ -381,16 +381,8 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1Pin3rdl(v i
 	return v
 }
 
-func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1PinCode3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2Pin3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2PinCode3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func refreshObjectObjectExtenderControllerExtenderProfileCellularModem1(d *schema.ResourceData, o map[string]interface{}) error {

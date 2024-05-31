@@ -199,7 +199,7 @@ func flattenObjectUserCertificateId(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserCertificateIssuer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserCertificateName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -299,7 +299,7 @@ func expandObjectUserCertificateId(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserCertificateIssuer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserCertificateName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

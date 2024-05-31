@@ -752,11 +752,11 @@ func flattenObjectRouterRouteMapRuleId(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectRouterRouteMapRuleMatchAsPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchCommunity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchCommunityExact(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -764,7 +764,7 @@ func flattenObjectRouterRouteMapRuleMatchCommunityExact(v interface{}, d *schema
 }
 
 func flattenObjectRouterRouteMapRuleMatchExtcommunity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchExtcommunityExact(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -776,23 +776,23 @@ func flattenObjectRouterRouteMapRuleMatchFlags(v interface{}, d *schema.Resource
 }
 
 func flattenObjectRouterRouteMapRuleMatchInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchIpAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchIpNexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchIp6Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchIp6Nexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleMatchMetric(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -844,7 +844,7 @@ func flattenObjectRouterRouteMapRuleSetCommunityAdditive(v interface{}, d *schem
 }
 
 func flattenObjectRouterRouteMapRuleSetCommunityDelete(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectRouterRouteMapRuleSetDampeningMaxSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1298,11 +1298,11 @@ func expandObjectRouterRouteMapRuleId(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectRouterRouteMapRuleMatchAsPath(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchCommunity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchCommunityExact(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1310,7 +1310,7 @@ func expandObjectRouterRouteMapRuleMatchCommunityExact(d *schema.ResourceData, v
 }
 
 func expandObjectRouterRouteMapRuleMatchExtcommunity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchExtcommunityExact(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1322,23 +1322,23 @@ func expandObjectRouterRouteMapRuleMatchFlags(d *schema.ResourceData, v interfac
 }
 
 func expandObjectRouterRouteMapRuleMatchInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchIpAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchIpNexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchIp6Address(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchIp6Nexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleMatchMetric(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1390,7 +1390,7 @@ func expandObjectRouterRouteMapRuleSetCommunityAdditive(d *schema.ResourceData, 
 }
 
 func expandObjectRouterRouteMapRuleSetCommunityDelete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectRouterRouteMapRuleSetDampeningMaxSuppress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

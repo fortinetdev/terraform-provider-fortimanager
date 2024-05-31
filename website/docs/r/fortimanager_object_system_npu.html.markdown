@@ -16,6 +16,7 @@ Configure NPU attributes.
 >- `dsw_queue_dts_profile`: `fortimanager_object_system_npu_dswqueuedtsprofile`
 >- `fp_anomaly`: `fortimanager_object_system_npu_fpanomaly`
 >- `hpe`: `fortimanager_object_system_npu_hpe`
+>- `icmp_rate_ctrl`: `fortimanager_object_system_npu_icmpratectrl`
 >- `ip_reassembly`: `fortimanager_object_system_npu_ipreassembly`
 >- `isf_np_queues`: `fortimanager_object_system_npu_isfnpqueues`
 >- `np_queues`: `fortimanager_object_system_npu_npqueues`
@@ -83,6 +84,7 @@ The following arguments are supported:
 * `htx_icmp_csum_chk` - Set HTX icmp csum checking mode. Valid values: `pass`, `drop`.
 
 * `hw_ha_scan_interval` - HW HA periodical scan interval in seconds (0-3600, default = 120, 0 to disable).
+* `icmp_rate_ctrl` - Icmp-Rate-Ctrl. The structure of `icmp_rate_ctrl` block is documented below.
 * `inbound_dscp_copy` - Enable/disable copying the DSCP field from outer IP header to inner IP Header. Valid values: `disable`, `enable`.
 
 * `inbound_dscp_copy_port` - Physical interfaces that support inbound-dscp-copy.
@@ -194,6 +196,8 @@ The following arguments are supported:
 * `switch_np_hash` - Switch-NP trunk port selection Criteria. Valid values: `src-ip`, `dst-ip`, `src-dst-ip`.
 
 * `tcp_rst_timeout` - TCP RST timeout in seconds (0-3600, default = 5).
+* `tunnel_over_vlink` - Enable/disable selection of which NP6 chip the tunnel uses (default = enable). Valid values: `disable`, `enable`.
+
 * `tcp_timeout_profile` - Tcp-Timeout-Profile. The structure of `tcp_timeout_profile` block is documented below.
 * `udp_timeout_profile` - Udp-Timeout-Profile. The structure of `udp_timeout_profile` block is documented below.
 * `uesp_offload` - Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `disable`, `enable`.
@@ -201,6 +205,8 @@ The following arguments are supported:
 * `ull_port_mode` - Set ULL port's speed to 10G/25G (default 10G). Valid values: `10G`, `25G`.
 
 * `vlan_lookup_cache` - Enable/disable vlan lookup cache (default enabled). Valid values: `disable`, `enable`.
+
+* `vxlan_offload` - Enable/disable offloading vxlan. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
@@ -326,6 +332,8 @@ The `fp_anomaly` block supports:
 
 * `ipv6_ver_err` - Invalid IPv6 packet version anomalies. Valid values: `drop`, `trap-to-host`.
 
+* `sctp_csum_err` - Invalid IPv4 SCTP checksum anomalies. Valid values: `allow`, `drop`, `trap-to-host`.
+
 * `nvgre_minlen_err` - Invalid IPv4 nvgre min length check error anomalies. Valid values: `drop`, `trap-to-host`.
 
 * `sctp_clen_err` - Invalid IPv4 SCTP length check error anomalies. Valid values: `drop`, `trap-to-host`.
@@ -402,6 +410,13 @@ The `hpe` block supports:
 * `tcpsyn_ack_max` - Maximum TCP carries SYN and ACK flags packet rate (1K - 40M pps, default = 600K pps).
 * `tcpsyn_max` - Maximum TCP SYN packet rate (1K - 40M pps, default = 600K pps).
 * `udp_max` - Maximum UDP packet rate (1K - 40M pps, default = 600K pps).
+
+The `icmp_rate_ctrl` block supports:
+
+* `icmp_v4_bucket_size` - Bucket size used in the token bucket algorithm for controlling the flow of ICMPv4 packets (1 - 100, default = 10).
+* `icmp_v4_rate` - Average rate of ICMPv4 packets that allowed to be generated per second (1 - 100, default = 1).
+* `icmp_v6_bucket_size` - Bucket size used in the token bucket algorithm for controlling the flow of ICMPv6 packets (1 - 100, default = 10).
+* `icmp_v6_rate` - Average rate of ICMPv6 packets that allowed to be generated per second (1 - 100, default = 1).
 
 The `ip_reassembly` block supports:
 

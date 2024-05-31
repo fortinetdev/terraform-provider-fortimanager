@@ -781,7 +781,7 @@ func expandPackagesPkgPackageSettingsPolicyOffloadLevel(d *schema.ResourceData, 
 }
 
 func expandPackagesPkgPackageSettingsSslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPkgPackageSetting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

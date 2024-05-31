@@ -149,10 +149,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 										Optional: true,
 									},
 									"password": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"principal": &schema.Schema{
 										Type:     schema.TypeString,
@@ -1293,12 +1294,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytab(v interface{}, 
 			tmp["keytab"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifs-ServerKeytab-Keytab")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifs-ServerKeytab-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"
 		if _, ok := i["principal"]; ok {
 			v := flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal(i["principal"], d, pre_append)
@@ -1317,10 +1312,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytab(v interface{}, 
 
 func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabKeytab(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2286,7 +2277,7 @@ func flattenObjectFirewallProfileProtocolOptionsPop3UncompressedOversizeLimit(v 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallProfileProtocolOptionsRpcOverHttp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2974,7 +2965,7 @@ func expandObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallProfileProtocolOptionsCifsDomainController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProfileProtocolOptionsCifsFileFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4042,7 +4033,7 @@ func expandObjectFirewallProfileProtocolOptionsPop3UncompressedOversizeLimit(d *
 }
 
 func expandObjectFirewallProfileProtocolOptionsReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProfileProtocolOptionsRpcOverHttp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

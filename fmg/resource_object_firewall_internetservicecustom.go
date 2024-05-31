@@ -161,6 +161,7 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 			"reputation": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

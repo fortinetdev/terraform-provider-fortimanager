@@ -183,10 +183,6 @@ func flattenSystemCertificateLocalName(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
-func flattenSystemCertificateLocalPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemCertificateLocalPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }

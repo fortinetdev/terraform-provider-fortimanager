@@ -324,7 +324,7 @@ func flattenObjectWafProfileUrlAccessAccessPatternRegex2edl(v interface{}, d *sc
 }
 
 func flattenObjectWafProfileUrlAccessAccessPatternSrcaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileUrlAccessAction2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -332,7 +332,7 @@ func flattenObjectWafProfileUrlAccessAction2edl(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWafProfileUrlAccessAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileUrlAccessId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -507,7 +507,7 @@ func expandObjectWafProfileUrlAccessAccessPatternRegex2edl(d *schema.ResourceDat
 }
 
 func expandObjectWafProfileUrlAccessAccessPatternSrcaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileUrlAccessAction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -515,7 +515,7 @@ func expandObjectWafProfileUrlAccessAction2edl(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWafProfileUrlAccessAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileUrlAccessId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

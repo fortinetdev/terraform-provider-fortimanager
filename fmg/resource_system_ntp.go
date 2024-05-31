@@ -200,16 +200,6 @@ func flattenSystemNtpNtpserver(v interface{}, d *schema.ResourceData, pre string
 			tmp["id"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Id")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := i["key"]; ok {
-			v := flattenSystemNtpNtpserverKey(i["key"], d, pre_append)
-			tmp["key"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Key")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["key"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_id"
 		if _, ok := i["key-id"]; ok {
 			v := flattenSystemNtpNtpserverKeyId(i["key-id"], d, pre_append)
@@ -256,10 +246,6 @@ func flattenSystemNtpNtpserverAuthentication(v interface{}, d *schema.ResourceDa
 
 func flattenSystemNtpNtpserverId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemNtpNtpserverKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -90,6 +90,14 @@ func resourceSystempSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"gui_device_latitude": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"gui_device_longitude": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"gui_ipv6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -105,8 +113,18 @@ func resourceSystempSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"hostname": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"language": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"timezone": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -255,6 +273,14 @@ func flattenSystempSystemGlobalAdmintimeout(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenSystempSystemGlobalGuiDeviceLatitude(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemGlobalGuiDeviceLongitude(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystempSystemGlobalGuiIpv6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -267,8 +293,16 @@ func flattenSystempSystemGlobalGuiTheme(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenSystempSystemGlobalHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystempSystemGlobalLanguage(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenSystempSystemGlobalTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenSystempSystemGlobalSwitchController(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -362,6 +396,26 @@ func refreshObjectSystempSystemGlobal(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("gui_device_latitude", flattenSystempSystemGlobalGuiDeviceLatitude(o["gui-device-latitude"], d, "gui_device_latitude")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-device-latitude"], "SystempSystemGlobal-GuiDeviceLatitude"); ok {
+			if err = d.Set("gui_device_latitude", vv); err != nil {
+				return fmt.Errorf("Error reading gui_device_latitude: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_device_latitude: %v", err)
+		}
+	}
+
+	if err = d.Set("gui_device_longitude", flattenSystempSystemGlobalGuiDeviceLongitude(o["gui-device-longitude"], d, "gui_device_longitude")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-device-longitude"], "SystempSystemGlobal-GuiDeviceLongitude"); ok {
+			if err = d.Set("gui_device_longitude", vv); err != nil {
+				return fmt.Errorf("Error reading gui_device_longitude: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_device_longitude: %v", err)
+		}
+	}
+
 	if err = d.Set("gui_ipv6", flattenSystempSystemGlobalGuiIpv6(o["gui-ipv6"], d, "gui_ipv6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-ipv6"], "SystempSystemGlobal-GuiIpv6"); ok {
 			if err = d.Set("gui_ipv6", vv); err != nil {
@@ -392,6 +446,16 @@ func refreshObjectSystempSystemGlobal(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("hostname", flattenSystempSystemGlobalHostname(o["hostname"], d, "hostname")); err != nil {
+		if vv, ok := fortiAPIPatch(o["hostname"], "SystempSystemGlobal-Hostname"); ok {
+			if err = d.Set("hostname", vv); err != nil {
+				return fmt.Errorf("Error reading hostname: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading hostname: %v", err)
+		}
+	}
+
 	if err = d.Set("language", flattenSystempSystemGlobalLanguage(o["language"], d, "language")); err != nil {
 		if vv, ok := fortiAPIPatch(o["language"], "SystempSystemGlobal-Language"); ok {
 			if err = d.Set("language", vv); err != nil {
@@ -399,6 +463,16 @@ func refreshObjectSystempSystemGlobal(d *schema.ResourceData, o map[string]inter
 			}
 		} else {
 			return fmt.Errorf("Error reading language: %v", err)
+		}
+	}
+
+	if err = d.Set("timezone", flattenSystempSystemGlobalTimezone(o["timezone"], d, "timezone")); err != nil {
+		if vv, ok := fortiAPIPatch(o["timezone"], "SystempSystemGlobal-Timezone"); ok {
+			if err = d.Set("timezone", vv); err != nil {
+				return fmt.Errorf("Error reading timezone: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading timezone: %v", err)
 		}
 	}
 
@@ -453,6 +527,14 @@ func expandSystempSystemGlobalAdmintimeout(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandSystempSystemGlobalGuiDeviceLatitude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemGlobalGuiDeviceLongitude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempSystemGlobalGuiIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -465,8 +547,16 @@ func expandSystempSystemGlobalGuiTheme(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandSystempSystemGlobalHostname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempSystemGlobalLanguage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandSystempSystemGlobalTimezone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystempSystemGlobalSwitchController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -548,6 +638,24 @@ func getObjectSystempSystemGlobal(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
+	if v, ok := d.GetOk("gui_device_latitude"); ok || d.HasChange("gui_device_latitude") {
+		t, err := expandSystempSystemGlobalGuiDeviceLatitude(d, v, "gui_device_latitude")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-device-latitude"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gui_device_longitude"); ok || d.HasChange("gui_device_longitude") {
+		t, err := expandSystempSystemGlobalGuiDeviceLongitude(d, v, "gui_device_longitude")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-device-longitude"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("gui_ipv6"); ok || d.HasChange("gui_ipv6") {
 		t, err := expandSystempSystemGlobalGuiIpv6(d, v, "gui_ipv6")
 		if err != nil {
@@ -575,12 +683,30 @@ func getObjectSystempSystemGlobal(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
+	if v, ok := d.GetOk("hostname"); ok || d.HasChange("hostname") {
+		t, err := expandSystempSystemGlobalHostname(d, v, "hostname")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["hostname"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("language"); ok || d.HasChange("language") {
 		t, err := expandSystempSystemGlobalLanguage(d, v, "language")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["language"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("timezone"); ok || d.HasChange("timezone") {
+		t, err := expandSystempSystemGlobalTimezone(d, v, "timezone")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["timezone"] = t
 		}
 	}
 

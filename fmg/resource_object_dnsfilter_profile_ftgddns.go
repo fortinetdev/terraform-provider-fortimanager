@@ -372,7 +372,7 @@ func expandObjectDnsfilterProfileFtgdDnsFiltersAction2edl(d *schema.ResourceData
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDnsfilterProfileFtgdDnsFiltersId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -619,16 +619,12 @@ func flattenObjectVpnmgrNodeAssignIpFrom(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
-func flattenObjectVpnmgrNodeAuthpasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnmgrNodeAuthusr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectVpnmgrNodeAuthusrgrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeAutoConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -688,7 +684,7 @@ func flattenObjectVpnmgrNodeExtgw(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectVpnmgrNodeExtgwHubip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeExtgwP2PerNet(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -696,7 +692,7 @@ func flattenObjectVpnmgrNodeExtgwP2PerNet(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectVpnmgrNodeExtgwip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeHubPublicIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -854,7 +850,7 @@ func flattenObjectVpnmgrNodeIpv4ExcludeRangeStartIp(v interface{}, d *schema.Res
 }
 
 func flattenObjectVpnmgrNodeIpv4Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeIpv4Netmask(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -862,11 +858,11 @@ func flattenObjectVpnmgrNodeIpv4Netmask(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectVpnmgrNodeIpv4SplitExclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeIpv4SplitInclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeIpv4StartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -918,7 +914,7 @@ func flattenObjectVpnmgrNodePeer(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectVpnmgrNodePeergrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodePeerid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1046,7 +1042,7 @@ func flattenObjectVpnmgrNodeSummaryAddr(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectVpnmgrNodeSummaryAddrAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeSummaryAddrPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1066,7 +1062,7 @@ func flattenObjectVpnmgrNodeUnitySupport(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectVpnmgrNodeUsrgrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeVpnInterfacePriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1908,7 +1904,7 @@ func expandObjectVpnmgrNodeAuthusr(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectVpnmgrNodeAuthusrgrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeAutoConfiguration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1968,7 +1964,7 @@ func expandObjectVpnmgrNodeExtgw(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandObjectVpnmgrNodeExtgwHubip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeExtgwP2PerNet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1976,7 +1972,7 @@ func expandObjectVpnmgrNodeExtgwP2PerNet(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectVpnmgrNodeExtgwip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeHubPublicIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2118,7 +2114,7 @@ func expandObjectVpnmgrNodeIpv4ExcludeRangeStartIp(d *schema.ResourceData, v int
 }
 
 func expandObjectVpnmgrNodeIpv4Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeIpv4Netmask(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2126,11 +2122,11 @@ func expandObjectVpnmgrNodeIpv4Netmask(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectVpnmgrNodeIpv4SplitExclude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeIpv4SplitInclude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeIpv4StartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2182,7 +2178,7 @@ func expandObjectVpnmgrNodePeer(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandObjectVpnmgrNodePeergrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodePeerid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2295,7 +2291,7 @@ func expandObjectVpnmgrNodeSummaryAddr(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectVpnmgrNodeSummaryAddrAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeSummaryAddrPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2315,7 +2311,7 @@ func expandObjectVpnmgrNodeUnitySupport(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectVpnmgrNodeUsrgrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeVpnInterfacePriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

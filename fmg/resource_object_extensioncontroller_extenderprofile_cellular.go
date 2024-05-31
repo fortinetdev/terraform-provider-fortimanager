@@ -176,10 +176,11 @@ func resourceObjectExtensionControllerExtenderProfileCellular() *schema.Resource
 							Computed: true,
 						},
 						"sim1_pin_code": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sim2_pin": &schema.Schema{
 							Type:     schema.TypeString,
@@ -187,10 +188,11 @@ func resourceObjectExtensionControllerExtenderProfileCellular() *schema.Resource
 							Computed: true,
 						},
 						"sim2_pin_code": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 					},
 				},
@@ -291,10 +293,11 @@ func resourceObjectExtensionControllerExtenderProfileCellular() *schema.Resource
 							Computed: true,
 						},
 						"sim1_pin_code": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sim2_pin": &schema.Schema{
 							Type:     schema.TypeString,
@@ -302,10 +305,11 @@ func resourceObjectExtensionControllerExtenderProfileCellular() *schema.Resource
 							Computed: true,
 						},
 						"sim2_pin_code": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 					},
 				},
@@ -603,19 +607,9 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem12edl(v interfa
 		result["sim1_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1Pin2edl(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode2edl(i["sim1-pin-code"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin2edl(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode2edl(i["sim2-pin-code"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -739,16 +733,8 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1Pin2edl(v 
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim1PinCode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2Pin2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileCellularModem22edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -805,19 +791,9 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem22edl(v interfa
 		result["sim1_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1Pin2edl(i["sim1-pin"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sim1_pin_code"
-	if _, ok := i["sim1-pin-code"]; ok {
-		result["sim1_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1PinCode2edl(i["sim1-pin-code"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := i["sim2-pin"]; ok {
 		result["sim2_pin"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2Pin2edl(i["sim2-pin"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sim2_pin_code"
-	if _, ok := i["sim2-pin-code"]; ok {
-		result["sim2_pin_code"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2PinCode2edl(i["sim2-pin-code"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -941,16 +917,8 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1Pin2edl(v 
 	return v
 }
 
-func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim1PinCode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2Pin2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectExtensionControllerExtenderProfileCellularModem2Sim2PinCode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileCellularSmsNotification2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

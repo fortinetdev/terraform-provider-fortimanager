@@ -78,7 +78,11 @@ The following arguments are supported:
 * `fgfm_ca_cert` - set the extra fgfm CA certificates.
 * `fgfm_cert_exclusive` - set if the local or CA certificates should be used exclusively. disable - Used certificate best-effort. enable - Used certificate exclusive. Valid values: `disable`, `enable`.
 
+* `fgfm_deny_unknown` - set if allow devices with unknown SN actively register as an unauthorized device. disable - Allow devices with unknown SN to actively register as an unauthorized device. enable - Deny devices with unknown SN to actively register as an unauthorized device. Valid values: `disable`, `enable`.
+
 * `fgfm_local_cert` - set the fgfm local certificate.
+* `fgfm_peercert_withoutsn` - set if the subject CN or SAN of peer&apos;s SSL certificate sent in FGFM should include the serial number of the device. disable - Peer&apos;s certificate must include serial number in subject CN or SAN. enable - Peer&apos;s certificate might not include serial number in subject CN or SAN. Valid values: `disable`, `enable`.
+
 * `fgfm_ssl_protocol` - set the lowest SSL protocols for fgfmsd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
 
 * `fortiservice_port` - FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.

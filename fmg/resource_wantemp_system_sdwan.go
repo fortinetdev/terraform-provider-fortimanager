@@ -228,10 +228,11 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1324,12 +1325,6 @@ func flattenWantempSystemSdwanHealthCheck(v interface{}, d *schema.ResourceData,
 			tmp["packet_size"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-PacketSize")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenWantempSystemSdwanHealthCheckPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
 			v := flattenWantempSystemSdwanHealthCheckPort(i["port"], d, pre_append)
@@ -1505,7 +1500,7 @@ func flattenWantempSystemSdwanHealthCheckAddrMode(v interface{}, d *schema.Resou
 }
 
 func flattenWantempSystemSdwanHealthCheckClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanHealthCheckDetectMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1574,10 +1569,6 @@ func flattenWantempSystemSdwanHealthCheckName(v interface{}, d *schema.ResourceD
 
 func flattenWantempSystemSdwanHealthCheckPacketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenWantempSystemSdwanHealthCheckPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1961,7 +1952,7 @@ func flattenWantempSystemSdwanMembersIngressSpilloverThreshold(v interface{}, d 
 }
 
 func flattenWantempSystemSdwanMembersInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanMembersPreferredSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2009,7 +2000,7 @@ func flattenWantempSystemSdwanMembersWeight(v interface{}, d *schema.ResourceDat
 }
 
 func flattenWantempSystemSdwanMembersZone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighbor(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2090,11 +2081,11 @@ func flattenWantempSystemSdwanNeighbor(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenWantempSystemSdwanNeighborHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2114,7 +2105,7 @@ func flattenWantempSystemSdwanNeighborRole(v interface{}, d *schema.ResourceData
 }
 
 func flattenWantempSystemSdwanNeighborServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanNeighborSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2790,7 +2781,7 @@ func flattenWantempSystemSdwanServiceSla(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenWantempSystemSdwanServiceSlaHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanServiceSlaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2925,7 +2916,7 @@ func flattenWantempSystemSdwanZone(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenWantempSystemSdwanZoneAdvpnHealthCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemSdwanZoneAdvpnSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3629,7 +3620,7 @@ func expandWantempSystemSdwanHealthCheckAddrMode(d *schema.ResourceData, v inter
 }
 
 func expandWantempSystemSdwanHealthCheckClassId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanHealthCheckDetectMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4048,7 +4039,7 @@ func expandWantempSystemSdwanMembersIngressSpilloverThreshold(d *schema.Resource
 }
 
 func expandWantempSystemSdwanMembersInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanMembersPreferredSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4096,7 +4087,7 @@ func expandWantempSystemSdwanMembersWeight(d *schema.ResourceData, v interface{}
 }
 
 func expandWantempSystemSdwanMembersZone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighbor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4164,11 +4155,11 @@ func expandWantempSystemSdwanNeighbor(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandWantempSystemSdwanNeighborHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4188,7 +4179,7 @@ func expandWantempSystemSdwanNeighborRole(d *schema.ResourceData, v interface{},
 }
 
 func expandWantempSystemSdwanNeighborServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanNeighborSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4792,7 +4783,7 @@ func expandWantempSystemSdwanServiceSla(d *schema.ResourceData, v interface{}, p
 }
 
 func expandWantempSystemSdwanServiceSlaHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanServiceSlaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4917,7 +4908,7 @@ func expandWantempSystemSdwanZone(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandWantempSystemSdwanZoneAdvpnHealthCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemSdwanZoneAdvpnSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

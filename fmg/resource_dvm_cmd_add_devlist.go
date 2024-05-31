@@ -41,10 +41,11 @@ func resourceDvmCmdAddDevList() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"adm_pass": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"adm_usr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -188,12 +189,6 @@ func flattenDvmCmdAddDevListAddDevList(v interface{}, d *schema.ResourceData, pr
 
 		pre_append := "" // table
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "adm_pass"
-		if _, ok := i["adm_pass"]; ok {
-			v := flattenDvmCmdAddDevListAddDevListAdmPass(i["adm_pass"], d, pre_append)
-			tmp["adm_pass"] = fortiAPISubPartPatch(v, "DvmCmdAddDevList-AddDevList-AdmPass")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adm_usr"
 		if _, ok := i["adm_usr"]; ok {
 			v := flattenDvmCmdAddDevListAddDevListAdmUsr(i["adm_usr"], d, pre_append)
@@ -300,16 +295,12 @@ func flattenDvmCmdAddDevListAddDevList(v interface{}, d *schema.ResourceData, pr
 	return result
 }
 
-func flattenDvmCmdAddDevListAddDevListAdmPass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenDvmCmdAddDevListAddDevListAdmUsr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenDvmCmdAddDevListAddDevListAuthorizationTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmCmdAddDevListAddDevListDesc(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -321,7 +312,7 @@ func flattenDvmCmdAddDevListAddDevListDeviceAction(v interface{}, d *schema.Reso
 }
 
 func flattenDvmCmdAddDevListAddDevListDeviceBlueprint(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmCmdAddDevListAddDevListFazQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -554,7 +545,7 @@ func expandDvmCmdAddDevListAddDevListAdmUsr(d *schema.ResourceData, v interface{
 }
 
 func expandDvmCmdAddDevListAddDevListAuthorizationTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmCmdAddDevListAddDevListDesc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -566,7 +557,7 @@ func expandDvmCmdAddDevListAddDevListDeviceAction(d *schema.ResourceData, v inte
 }
 
 func expandDvmCmdAddDevListAddDevListDeviceBlueprint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmCmdAddDevListAddDevListFazQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

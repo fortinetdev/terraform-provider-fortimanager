@@ -298,7 +298,7 @@ func flattenSystemSnmpCommunityHostsInterface(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemSnmpCommunityHostsIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convipstringlist2ipmask(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemSnmpCommunityHosts6(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -640,7 +640,7 @@ func expandSystemSnmpCommunityHostsInterface(d *schema.ResourceData, v interface
 }
 
 func expandSystemSnmpCommunityHostsIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystemSnmpCommunityHosts6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

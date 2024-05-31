@@ -106,7 +106,7 @@ func resourceSecurityconsoleSignCertificateTemplateRead(d *schema.ResourceData, 
 }
 
 func flattenSecurityconsoleSignCertificateTemplateAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleSignCertificateTemplateScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -159,7 +159,7 @@ func flattenSecurityconsoleSignCertificateTemplateScopeVdom(v interface{}, d *sc
 }
 
 func flattenSecurityconsoleSignCertificateTemplateTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData, o map[string]interface{}) error {
@@ -223,7 +223,7 @@ func flattenSecurityconsoleSignCertificateTemplateFortiTestDebug(d *schema.Resou
 }
 
 func expandSecurityconsoleSignCertificateTemplateAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleSignCertificateTemplateScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -269,7 +269,7 @@ func expandSecurityconsoleSignCertificateTemplateScopeVdom(d *schema.ResourceDat
 }
 
 func expandSecurityconsoleSignCertificateTemplateTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {

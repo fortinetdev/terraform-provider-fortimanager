@@ -349,7 +349,7 @@ func flattenObjectFirewallInternetServiceAdditionEntryProtocol(v interface{}, d 
 }
 
 func flattenObjectFirewallInternetServiceAdditionId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallInternetServiceAddition(d *schema.ResourceData, o map[string]interface{}) error {
@@ -533,7 +533,7 @@ func expandObjectFirewallInternetServiceAdditionEntryProtocol(d *schema.Resource
 }
 
 func expandObjectFirewallInternetServiceAdditionId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallInternetServiceAddition(d *schema.ResourceData) (*map[string]interface{}, error) {

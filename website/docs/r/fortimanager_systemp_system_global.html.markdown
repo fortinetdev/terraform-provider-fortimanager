@@ -39,13 +39,17 @@ The following arguments are supported:
 
 * `admin_telnet_port` - Administrative access port for TELNET. (1 - 65535, default = 23).
 * `admintimeout` - Number of minutes before an idle administrator session times out (5 - 480 minutes (8 hours), default = 5). A shorter idle timeout is more secure.
+* `gui_device_latitude` - <i>Support meta variable</i> Add the latitude of the location of this FortiGate to position it on the Threat Map.
+* `gui_device_longitude` - <i>Support meta variable</i> Add the longitude of the location of this FortiGate to position it on the Threat Map.
 * `gui_ipv6` - Enable/disable IPv6 settings on the GUI. Valid values: `disable`, `enable`.
 
 * `gui_lines_per_page` - Number of lines to display per page for web administration.
 * `gui_theme` - Color scheme for the administration GUI. Valid values: `blue`, `green`, `melongene`, `red`, `mariner`, `neutrino`.
 
+* `hostname` - <i>Support meta variable</i> FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
 * `language` - GUI display language. Valid values: `english`, `simch`, `japanese`, `korean`, `spanish`, `trach`, `french`, `portuguese`.
 
+* `timezone` - <i>Support meta variable</i> Timezone database name. Enter ? to view the list of timezone.
 * `switch_controller` - Enable/disable switch controller feature. Switch controller allows you to manage FortiSwitch from the FortiGate itself. Valid values: `disable`, `enable`.
 
 

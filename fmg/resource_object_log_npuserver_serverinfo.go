@@ -238,7 +238,7 @@ func flattenObjectLogNpuServerServerInfoTemplateTxTimeout2edl(v interface{}, d *
 }
 
 func flattenObjectLogNpuServerServerInfoVdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectLogNpuServerServerInfo(d *schema.ResourceData, o map[string]interface{}) error {
@@ -380,7 +380,7 @@ func expandObjectLogNpuServerServerInfoTemplateTxTimeout2edl(d *schema.ResourceD
 }
 
 func expandObjectLogNpuServerServerInfoVdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]interface{}, error) {

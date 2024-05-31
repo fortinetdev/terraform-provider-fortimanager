@@ -55,11 +55,18 @@ func resourceSystempSystemNtp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"key": &schema.Schema{
+			"interface": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"key": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"key_id": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -96,13 +103,18 @@ func resourceSystempSystemNtp() *schema.Resource {
 							Optional: true,
 						},
 						"key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"key_id": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"key_type": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"ntpv3": &schema.Schema{
@@ -117,6 +129,16 @@ func resourceSystempSystemNtp() *schema.Resource {
 				},
 			},
 			"ntpsync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -253,7 +275,7 @@ func flattenSystempSystemNtpAuthentication(v interface{}, d *schema.ResourceData
 	return v
 }
 
-func flattenSystempSystemNtpKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystempSystemNtpInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -314,16 +336,16 @@ func flattenSystempSystemNtpNtpserver(v interface{}, d *schema.ResourceData, pre
 			tmp["interface_select_method"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-InterfaceSelectMethod")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := i["key"]; ok {
-			v := flattenSystempSystemNtpNtpserverKey(i["key"], d, pre_append)
-			tmp["key"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-Key")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_id"
 		if _, ok := i["key-id"]; ok {
 			v := flattenSystempSystemNtpNtpserverKeyId(i["key-id"], d, pre_append)
 			tmp["key_id"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-KeyId")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_type"
+		if _, ok := i["key-type"]; ok {
+			v := flattenSystempSystemNtpNtpserverKeyType(i["key-type"], d, pre_append)
+			tmp["key_type"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-KeyType")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ntpv3"
@@ -368,11 +390,11 @@ func flattenSystempSystemNtpNtpserverInterfaceSelectMethod(v interface{}, d *sch
 	return v
 }
 
-func flattenSystempSystemNtpNtpserverKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+func flattenSystempSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
-func flattenSystempSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenSystempSystemNtpNtpserverKeyType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -385,6 +407,14 @@ func flattenSystempSystemNtpNtpserverServer(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystempSystemNtpNtpsync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemNtpServerMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemNtpSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -421,13 +451,13 @@ func refreshObjectSystempSystemNtp(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
-	if err = d.Set("key", flattenSystempSystemNtpKey(o["key"], d, "key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key"], "SystempSystemNtp-Key"); ok {
-			if err = d.Set("key", vv); err != nil {
-				return fmt.Errorf("Error reading key: %v", err)
+	if err = d.Set("interface", flattenSystempSystemNtpInterface(o["interface"], d, "interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface"], "SystempSystemNtp-Interface"); ok {
+			if err = d.Set("interface", vv); err != nil {
+				return fmt.Errorf("Error reading interface: %v", err)
 			}
 		} else {
-			return fmt.Errorf("Error reading key: %v", err)
+			return fmt.Errorf("Error reading interface: %v", err)
 		}
 	}
 
@@ -485,6 +515,26 @@ func refreshObjectSystempSystemNtp(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("server_mode", flattenSystempSystemNtpServerMode(o["server-mode"], d, "server_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-mode"], "SystempSystemNtp-ServerMode"); ok {
+			if err = d.Set("server_mode", vv); err != nil {
+				return fmt.Errorf("Error reading server_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("source_ip", flattenSystempSystemNtpSourceIp(o["source-ip"], d, "source_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-ip"], "SystempSystemNtp-SourceIp"); ok {
+			if err = d.Set("source_ip", vv); err != nil {
+				return fmt.Errorf("Error reading source_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_ip: %v", err)
+		}
+	}
+
 	if err = d.Set("source_ip6", flattenSystempSystemNtpSourceIp6(o["source-ip6"], d, "source_ip6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-ip6"], "SystempSystemNtp-SourceIp6"); ok {
 			if err = d.Set("source_ip6", vv); err != nil {
@@ -526,6 +576,10 @@ func flattenSystempSystemNtpFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 
 func expandSystempSystemNtpAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandSystempSystemNtpInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSystempSystemNtpKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -589,6 +643,11 @@ func expandSystempSystemNtpNtpserver(d *schema.ResourceData, v interface{}, pre 
 			tmp["key-id"], _ = expandSystempSystemNtpNtpserverKeyId(d, i["key_id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["key-type"], _ = expandSystempSystemNtpNtpserverKeyType(d, i["key_type"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ntpv3"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ntpv3"], _ = expandSystempSystemNtpNtpserverNtpv3(d, i["ntpv3"], pre_append)
@@ -637,6 +696,10 @@ func expandSystempSystemNtpNtpserverKeyId(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystempSystemNtpNtpserverKeyType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempSystemNtpNtpserverNtpv3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -646,6 +709,14 @@ func expandSystempSystemNtpNtpserverServer(d *schema.ResourceData, v interface{}
 }
 
 func expandSystempSystemNtpNtpsync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemNtpServerMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemNtpSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -670,6 +741,15 @@ func getObjectSystempSystemNtp(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["authentication"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
+		t, err := expandSystempSystemNtpInterface(d, v, "interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface"] = t
 		}
 	}
 
@@ -715,6 +795,24 @@ func getObjectSystempSystemNtp(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["ntpsync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server_mode"); ok || d.HasChange("server_mode") {
+		t, err := expandSystempSystemNtpServerMode(d, v, "server_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
+		t, err := expandSystempSystemNtpSourceIp(d, v, "source_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-ip"] = t
 		}
 	}
 

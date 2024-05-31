@@ -50,10 +50,11 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 			},
 			"admin_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"admin_username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -75,6 +76,10 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Computed: true,
 			},
 			"certificate_fingerprint": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"cloud_authentication_access_key": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -323,10 +328,6 @@ func flattenObjectEndpointControlFctemsCaCnInfo(v interface{}, d *schema.Resourc
 	return v
 }
 
-func flattenObjectEndpointControlFctemsAdminPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectEndpointControlFctemsAdminUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -336,7 +337,7 @@ func flattenObjectEndpointControlFctemsCallTimeout(v interface{}, d *schema.Reso
 }
 
 func flattenObjectEndpointControlFctemsCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEndpointControlFctemsCapabilities(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -344,6 +345,10 @@ func flattenObjectEndpointControlFctemsCapabilities(v interface{}, d *schema.Res
 }
 
 func flattenObjectEndpointControlFctemsCertificateFingerprint(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsCloudAuthenticationAccessKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -368,7 +373,7 @@ func flattenObjectEndpointControlFctemsHttpsPort(v interface{}, d *schema.Resour
 }
 
 func flattenObjectEndpointControlFctemsInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEndpointControlFctemsInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -436,7 +441,7 @@ func flattenObjectEndpointControlFctemsVerifiedCn(v interface{}, d *schema.Resou
 }
 
 func flattenObjectEndpointControlFctemsVerifyingCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEndpointControlFctemsTenantId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -465,16 +470,6 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ca_cn_info: %v", err)
-		}
-	}
-
-	if err = d.Set("admin_password", flattenObjectEndpointControlFctemsAdminPassword(o["admin-password"], d, "admin_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["admin-password"], "ObjectEndpointControlFctems-AdminPassword"); ok {
-			if err = d.Set("admin_password", vv); err != nil {
-				return fmt.Errorf("Error reading admin_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading admin_password: %v", err)
 		}
 	}
 
@@ -525,6 +520,16 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading certificate_fingerprint: %v", err)
+		}
+	}
+
+	if err = d.Set("cloud_authentication_access_key", flattenObjectEndpointControlFctemsCloudAuthenticationAccessKey(o["cloud-authentication-access-key"], d, "cloud_authentication_access_key")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cloud-authentication-access-key"], "ObjectEndpointControlFctems-CloudAuthenticationAccessKey"); ok {
+			if err = d.Set("cloud_authentication_access_key", vv); err != nil {
+				return fmt.Errorf("Error reading cloud_authentication_access_key: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cloud_authentication_access_key: %v", err)
 		}
 	}
 
@@ -814,7 +819,7 @@ func expandObjectEndpointControlFctemsCallTimeout(d *schema.ResourceData, v inte
 }
 
 func expandObjectEndpointControlFctemsCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEndpointControlFctemsCapabilities(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -822,6 +827,10 @@ func expandObjectEndpointControlFctemsCapabilities(d *schema.ResourceData, v int
 }
 
 func expandObjectEndpointControlFctemsCertificateFingerprint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsCloudAuthenticationAccessKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -846,7 +855,7 @@ func expandObjectEndpointControlFctemsHttpsPort(d *schema.ResourceData, v interf
 }
 
 func expandObjectEndpointControlFctemsInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEndpointControlFctemsInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -914,7 +923,7 @@ func expandObjectEndpointControlFctemsVerifiedCn(d *schema.ResourceData, v inter
 }
 
 func expandObjectEndpointControlFctemsVerifyingCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEndpointControlFctemsTenantId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -992,6 +1001,15 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["certificate-fingerprint"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cloud_authentication_access_key"); ok || d.HasChange("cloud_authentication_access_key") {
+		t, err := expandObjectEndpointControlFctemsCloudAuthenticationAccessKey(d, v, "cloud_authentication_access_key")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cloud-authentication-access-key"] = t
 		}
 	}
 

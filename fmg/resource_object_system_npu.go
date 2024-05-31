@@ -419,6 +419,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"sctp_csum_err": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"nvgre_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -711,6 +716,35 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
+			},
+			"icmp_rate_ctrl": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"icmp_v4_bucket_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"icmp_v4_rate": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmp_v6_bucket_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmp_v6_rate": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"inbound_dscp_copy": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1432,18 +1466,22 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"df": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstipv6": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstmac": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstport": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1452,10 +1490,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"ethertype": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"ext_tag": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"frag_off": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1468,6 +1508,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"gen_iv": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gen_l3_flags": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1488,10 +1529,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"gen_pri_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gen_tv": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"ihl": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1528,6 +1571,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mf": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"protocol": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1540,6 +1584,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"smac_change": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sp": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1548,6 +1593,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"src_cfi": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"src_prio": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1556,18 +1602,22 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"src_updt": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcipv6": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcmac": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcport": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1580,38 +1630,47 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tcp_ack": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_cwr": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_ece": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_fin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_push": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_rst": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_syn": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_urg": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_cfi": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_prio": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1620,10 +1679,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tgt_updt": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tos": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1662,18 +1723,22 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"df": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstipv6": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstmac": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dstport": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1682,10 +1747,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"ethertype": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"ext_tag": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"frag_off": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1698,6 +1765,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"gen_iv": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gen_l3_flags": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1718,10 +1786,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"gen_pri_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gen_tv": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"ihl": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1758,6 +1828,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mf": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"protocol": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1770,6 +1841,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"smac_change": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sp": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1778,6 +1850,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"src_cfi": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"src_prio": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1786,18 +1859,22 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"src_updt": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcipv6": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcmac": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"srcport": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1810,38 +1887,47 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tcp_ack": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_cwr": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_ece": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_fin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_push": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_rst": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_syn": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tcp_urg": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_cfi": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_prio": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1850,10 +1936,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tgt_updt": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgt_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tos": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1899,6 +1987,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"oid": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"pri_act": &schema.Schema{
 							Type:     schema.TypeList,
@@ -1932,6 +2021,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"act_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"bmproc": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1940,6 +2030,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"bmproc_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"df_lif": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1948,6 +2039,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"df_lif_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dfr": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1956,6 +2048,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"dfr_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dmac_skip": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1964,6 +2057,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"dmac_skip_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"dosen": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1972,6 +2066,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"dosen_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"espff_proc": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1980,6 +2075,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"espff_proc_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"etype_pid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1988,6 +2084,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"etype_pid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"frag_proc": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1996,6 +2093,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"frag_proc_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fwd": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2008,6 +2106,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"fwd_lif_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fwd_tvid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2016,10 +2115,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"fwd_tvid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fwd_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"icpen": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2028,6 +2129,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"icpen_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"igmp_mld_snp": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2036,6 +2138,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"igmp_mld_snp_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"learn": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2044,6 +2147,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"learn_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"m_srh_ctrl": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2052,6 +2156,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"m_srh_ctrl_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mac_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2060,6 +2165,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mac_id_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mss": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2068,6 +2174,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mss_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"pleen": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2076,6 +2183,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"pleen_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"prio_pid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2084,6 +2192,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"prio_pid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"promis": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2092,6 +2201,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"promis_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"rfsh": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2100,6 +2210,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"rfsh_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"smac_skip": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2108,10 +2219,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"smac_skip_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tp_smchk_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tp_smchk": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2124,6 +2237,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tpe_id_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vdm": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2132,6 +2246,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"vdm_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vdom_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2140,6 +2255,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"vdom_id_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"x_mode": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2148,6 +2264,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"x_mode_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -2166,6 +2283,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"act_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fmtuv4_s": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2174,6 +2292,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"fmtuv4_s_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fmtuv6_s": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2182,6 +2301,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"fmtuv6_s_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"lnkid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2190,6 +2310,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"lnkid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mac_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2198,6 +2319,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mac_id_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mss_t": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2206,6 +2328,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mss_t_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mtuv4": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2214,6 +2337,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mtuv4_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mtuv6": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2222,6 +2346,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"mtuv6_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"slif_act": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2230,6 +2355,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"slif_act_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sublnkid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2238,6 +2364,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"sublnkid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tgtv_act": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2246,6 +2373,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tgtv_act_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tlif_act": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2254,6 +2382,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tlif_act_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tpeid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2262,6 +2391,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"tpeid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"v6fe": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2270,10 +2400,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"v6fe_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vep_en_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vep_slid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2282,6 +2414,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"vep_slid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vep_en": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2294,6 +2427,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"xlt_lif_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"xlt_vid": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2302,6 +2436,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"xlt_vid_v": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -2309,6 +2444,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2622,6 +2758,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"tunnel_over_vlink": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tcp_timeout_profile": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -2688,6 +2829,10 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"vxlan_offload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3311,6 +3456,11 @@ func flattenObjectSystemNpuFpAnomaly(v interface{}, d *schema.ResourceData, pre 
 		result["ipv6_ver_err"] = flattenObjectSystemNpuFpAnomalyIpv6VerErr(i["ipv6-ver-err"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "sctp_csum_err"
+	if _, ok := i["sctp-csum-err"]; ok {
+		result["sctp_csum_err"] = flattenObjectSystemNpuFpAnomalySctpCsumErr(i["sctp-csum-err"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "nvgre_minlen_err"
 	if _, ok := i["nvgre-minlen-err"]; ok {
 		result["nvgre_minlen_err"] = flattenObjectSystemNpuFpAnomalyNvgreMinlenErr(i["nvgre-minlen-err"], d, pre_append)
@@ -3597,6 +3747,10 @@ func flattenObjectSystemNpuFpAnomalyIpv6Unknopt(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectSystemNpuFpAnomalyIpv6VerErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuFpAnomalySctpCsumErr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3947,6 +4101,55 @@ func flattenObjectSystemNpuHtxIcmpCsumChk(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectSystemNpuHwHaScanInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpRateCtrl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "icmp_v4_bucket_size"
+	if _, ok := i["icmp-v4-bucket-size"]; ok {
+		result["icmp_v4_bucket_size"] = flattenObjectSystemNpuIcmpRateCtrlIcmpV4BucketSize(i["icmp-v4-bucket-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmp_v4_rate"
+	if _, ok := i["icmp-v4-rate"]; ok {
+		result["icmp_v4_rate"] = flattenObjectSystemNpuIcmpRateCtrlIcmpV4Rate(i["icmp-v4-rate"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmp_v6_bucket_size"
+	if _, ok := i["icmp-v6-bucket-size"]; ok {
+		result["icmp_v6_bucket_size"] = flattenObjectSystemNpuIcmpRateCtrlIcmpV6BucketSize(i["icmp-v6-bucket-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmp_v6_rate"
+	if _, ok := i["icmp-v6-rate"]; ok {
+		result["icmp_v6_rate"] = flattenObjectSystemNpuIcmpRateCtrlIcmpV6Rate(i["icmp-v6-rate"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectSystemNpuIcmpRateCtrlIcmpV4BucketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpRateCtrlIcmpV4Rate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpRateCtrlIcmpV6BucketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpRateCtrlIcmpV6Rate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7741,6 +7944,10 @@ func flattenObjectSystemNpuTcpRstTimeout(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectSystemNpuTunnelOverVlink(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuTcpTimeoutProfile(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -7898,6 +8105,10 @@ func flattenObjectSystemNpuUllPortMode(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectSystemNpuVlanLookupCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuVxlanOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -8263,6 +8474,30 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading hw_ha_scan_interval: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("icmp_rate_ctrl", flattenObjectSystemNpuIcmpRateCtrl(o["icmp-rate-ctrl"], d, "icmp_rate_ctrl")); err != nil {
+			if vv, ok := fortiAPIPatch(o["icmp-rate-ctrl"], "ObjectSystemNpu-IcmpRateCtrl"); ok {
+				if err = d.Set("icmp_rate_ctrl", vv); err != nil {
+					return fmt.Errorf("Error reading icmp_rate_ctrl: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading icmp_rate_ctrl: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("icmp_rate_ctrl"); ok {
+			if err = d.Set("icmp_rate_ctrl", flattenObjectSystemNpuIcmpRateCtrl(o["icmp-rate-ctrl"], d, "icmp_rate_ctrl")); err != nil {
+				if vv, ok := fortiAPIPatch(o["icmp-rate-ctrl"], "ObjectSystemNpu-IcmpRateCtrl"); ok {
+					if err = d.Set("icmp_rate_ctrl", vv); err != nil {
+						return fmt.Errorf("Error reading icmp_rate_ctrl: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading icmp_rate_ctrl: %v", err)
+				}
+			}
 		}
 	}
 
@@ -9100,6 +9335,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("tunnel_over_vlink", flattenObjectSystemNpuTunnelOverVlink(o["tunnel-over-vlink"], d, "tunnel_over_vlink")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tunnel-over-vlink"], "ObjectSystemNpu-TunnelOverVlink"); ok {
+			if err = d.Set("tunnel_over_vlink", vv); err != nil {
+				return fmt.Errorf("Error reading tunnel_over_vlink: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tunnel_over_vlink: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("tcp_timeout_profile", flattenObjectSystemNpuTcpTimeoutProfile(o["tcp-timeout-profile"], d, "tcp_timeout_profile")); err != nil {
 			if vv, ok := fortiAPIPatch(o["tcp-timeout-profile"], "ObjectSystemNpu-TcpTimeoutProfile"); ok {
@@ -9175,6 +9420,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading vlan_lookup_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("vxlan_offload", flattenObjectSystemNpuVxlanOffload(o["vxlan-offload"], d, "vxlan_offload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vxlan-offload"], "ObjectSystemNpu-VxlanOffload"); ok {
+			if err = d.Set("vxlan_offload", vv); err != nil {
+				return fmt.Errorf("Error reading vxlan_offload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vxlan_offload: %v", err)
 		}
 	}
 
@@ -9646,6 +9901,10 @@ func expandObjectSystemNpuFpAnomaly(d *schema.ResourceData, v interface{}, pre s
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-ver-err"], _ = expandObjectSystemNpuFpAnomalyIpv6VerErr(d, i["ipv6_ver_err"], pre_append)
 	}
+	pre_append = pre + ".0." + "sctp_csum_err"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["sctp-csum-err"], _ = expandObjectSystemNpuFpAnomalySctpCsumErr(d, i["sctp_csum_err"], pre_append)
+	}
 	pre_append = pre + ".0." + "nvgre_minlen_err"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nvgre-minlen-err"], _ = expandObjectSystemNpuFpAnomalyNvgreMinlenErr(d, i["nvgre_minlen_err"], pre_append)
@@ -9907,6 +10166,10 @@ func expandObjectSystemNpuFpAnomalyIpv6Unknopt(d *schema.ResourceData, v interfa
 }
 
 func expandObjectSystemNpuFpAnomalyIpv6VerErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuFpAnomalySctpCsumErr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -10240,6 +10503,52 @@ func expandObjectSystemNpuHwHaScanInterval(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectSystemNpuIcmpRateCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "icmp_v4_bucket_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmp-v4-bucket-size"], _ = expandObjectSystemNpuIcmpRateCtrlIcmpV4BucketSize(d, i["icmp_v4_bucket_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmp_v4_rate"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmp-v4-rate"], _ = expandObjectSystemNpuIcmpRateCtrlIcmpV4Rate(d, i["icmp_v4_rate"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmp_v6_bucket_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmp-v6-bucket-size"], _ = expandObjectSystemNpuIcmpRateCtrlIcmpV6BucketSize(d, i["icmp_v6_bucket_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmp_v6_rate"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmp-v6-rate"], _ = expandObjectSystemNpuIcmpRateCtrlIcmpV6Rate(d, i["icmp_v6_rate"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemNpuIcmpRateCtrlIcmpV4BucketSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpRateCtrlIcmpV4Rate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpRateCtrlIcmpV6BucketSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpRateCtrlIcmpV6Rate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuInboundDscpCopy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -10401,35 +10710,35 @@ func expandObjectSystemNpuIsfNpQueues(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemNpuIsfNpRxTrDistr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -13717,6 +14026,10 @@ func expandObjectSystemNpuTcpRstTimeout(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectSystemNpuTunnelOverVlink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -13855,6 +14168,10 @@ func expandObjectSystemNpuUllPortMode(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectSystemNpuVlanLookupCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuVxlanOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14101,6 +14418,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["hw-ha-scan-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("icmp_rate_ctrl"); ok || d.HasChange("icmp_rate_ctrl") {
+		t, err := expandObjectSystemNpuIcmpRateCtrl(d, v, "icmp_rate_ctrl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["icmp-rate-ctrl"] = t
 		}
 	}
 
@@ -14716,6 +15042,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("tunnel_over_vlink"); ok || d.HasChange("tunnel_over_vlink") {
+		t, err := expandObjectSystemNpuTunnelOverVlink(d, v, "tunnel_over_vlink")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tunnel-over-vlink"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("tcp_timeout_profile"); ok || d.HasChange("tcp_timeout_profile") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfile(d, v, "tcp_timeout_profile")
 		if err != nil {
@@ -14758,6 +15093,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["vlan-lookup-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vxlan_offload"); ok || d.HasChange("vxlan_offload") {
+		t, err := expandObjectSystemNpuVxlanOffload(d, v, "vxlan_offload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vxlan-offload"] = t
 		}
 	}
 

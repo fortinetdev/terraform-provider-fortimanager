@@ -97,11 +97,11 @@ func resourceSecurityconsoleInstallPreviewRead(d *schema.ResourceData, m interfa
 }
 
 func flattenSecurityconsoleInstallPreviewAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleInstallPreviewDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleInstallPreviewFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -165,11 +165,11 @@ func flattenSecurityconsoleInstallPreviewFortiTestDebug(d *schema.ResourceData, 
 }
 
 func expandSecurityconsoleInstallPreviewAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleInstallPreviewDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleInstallPreviewFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

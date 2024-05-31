@@ -434,7 +434,7 @@ func expandObjectWebfilterProfileWebBlacklist2edl(d *schema.ResourceData, v inte
 }
 
 func expandObjectWebfilterProfileWebBwordTable2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebBwordThreshold2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -442,7 +442,7 @@ func expandObjectWebfilterProfileWebBwordThreshold2edl(d *schema.ResourceData, v
 }
 
 func expandObjectWebfilterProfileWebContentHeaderList2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebKeywordMatch2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -458,7 +458,7 @@ func expandObjectWebfilterProfileWebSafeSearch2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectWebfilterProfileWebUrlfilterTable2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebVimeoRestrict2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

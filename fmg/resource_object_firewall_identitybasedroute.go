@@ -264,7 +264,7 @@ func flattenObjectFirewallIdentityBasedRouteRule(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallIdentityBasedRouteRuleDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallIdentityBasedRouteRuleGateway(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -396,7 +396,7 @@ func expandObjectFirewallIdentityBasedRouteRule(d *schema.ResourceData, v interf
 }
 
 func expandObjectFirewallIdentityBasedRouteRuleDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallIdentityBasedRouteRuleGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

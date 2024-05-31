@@ -262,20 +262,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Computed: true,
 			},
 			"captive_portal_macauth_radius_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"captive_portal_macauth_radius_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"captive_portal_radius_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"captive_portal_radius_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -538,20 +540,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 						},
 						"captive_portal_macauth_radius_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"captive_portal_macauth_radius_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"captive_portal_radius_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"captive_portal_radius_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -710,10 +714,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Computed: true,
 						},
 						"key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"keyindex": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1104,10 +1109,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 						},
 						"sae_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sae_pk": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1363,10 +1369,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Computed: true,
 			},
 			"key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"keyindex": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1542,10 +1549,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 						},
 						"passphrase": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 					},
 				},
@@ -1842,10 +1850,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Optional: true,
 			},
 			"sae_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"sae_pk": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2321,16 +2330,8 @@ func flattenObjectWirelessControllerVapDhcpAddressEnforcement(v interface{}, d *
 	return v
 }
 
-func flattenObjectWirelessControllerVapCaptivePortalMacauthRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerVapCaptivePortalMacauthRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerVapCaptivePortalRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapCaptivePortalRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2654,22 +2655,10 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["captive_portal_fw_accounting"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalFwAccounting")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_secret"
-		if _, ok := i["captive-portal-macauth-radius-secret"]; ok {
-			v := flattenObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusSecret(i["captive-portal-macauth-radius-secret"], d, pre_append)
-			tmp["captive_portal_macauth_radius_secret"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalMacauthRadiusSecret")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_server"
 		if _, ok := i["captive-portal-macauth-radius-server"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusServer(i["captive-portal-macauth-radius-server"], d, pre_append)
 			tmp["captive_portal_macauth_radius_server"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalMacauthRadiusServer")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_radius_secret"
-		if _, ok := i["captive-portal-radius-secret"]; ok {
-			v := flattenObjectWirelessControllerVapDynamicMappingCaptivePortalRadiusSecret(i["captive-portal-radius-secret"], d, pre_append)
-			tmp["captive_portal_radius_secret"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalRadiusSecret")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_radius_server"
@@ -2874,12 +2863,6 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 		if _, ok := i["ipv6-rules"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingIpv6Rules(i["ipv6-rules"], d, pre_append)
 			tmp["ipv6_rules"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-Ipv6Rules")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := i["key"]; ok {
-			v := flattenObjectWirelessControllerVapDynamicMappingKey(i["key"], d, pre_append)
-			tmp["key"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-Key")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "keyindex"
@@ -3122,16 +3105,6 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["owe_transition_ssid"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-OweTransitionSsid")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := i["passphrase"]; ok {
-			v := flattenObjectWirelessControllerVapDynamicMappingPassphrase(i["passphrase"], d, pre_append)
-			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-Passphrase")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["passphrase"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmf"
 		if _, ok := i["pmf"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingPmf(i["pmf"], d, pre_append)
@@ -3364,12 +3337,6 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 		if _, ok := i["sae-hnp-only"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingSaeHnpOnly(i["sae-hnp-only"], d, pre_append)
 			tmp["sae_hnp_only"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-SaeHnpOnly")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "sae_password"
-		if _, ok := i["sae-password"]; ok {
-			v := flattenObjectWirelessControllerVapDynamicMappingSaePassword(i["sae-password"], d, pre_append)
-			tmp["sae_password"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-SaePassword")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sae_pk"
@@ -3787,16 +3754,8 @@ func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalFwAccounting(v
 	return v
 }
 
-func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3932,10 +3891,6 @@ func flattenObjectWirelessControllerVapDynamicMappingIpsSensor(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingIpv6Rules(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectWirelessControllerVapDynamicMappingKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -4099,10 +4054,6 @@ func flattenObjectWirelessControllerVapDynamicMappingOweTransitionSsid(v interfa
 	return v
 }
 
-func flattenObjectWirelessControllerVapDynamicMappingPassphrase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerVapDynamicMappingPmf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4257,10 +4208,6 @@ func flattenObjectWirelessControllerVapDynamicMappingSaeH2EOnly(v interface{}, d
 
 func flattenObjectWirelessControllerVapDynamicMappingSaeHnpOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerVapDynamicMappingSaePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingSaePk(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4479,10 +4426,6 @@ func flattenObjectWirelessControllerVapIpv6Rules(v interface{}, d *schema.Resour
 	return flattenStringList(v)
 }
 
-func flattenObjectWirelessControllerVapKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerVapKeyindex(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4693,12 +4636,6 @@ func flattenObjectWirelessControllerVapMpskKey(v interface{}, d *schema.Resource
 			tmp["mpsk_schedules"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-MpskKey-MpskSchedules")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := i["passphrase"]; ok {
-			v := flattenObjectWirelessControllerVapMpskKeyPassphrase(i["passphrase"], d, pre_append)
-			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-MpskKey-Passphrase")
-		}
-
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -4723,10 +4660,6 @@ func flattenObjectWirelessControllerVapMpskKeyKeyName(v interface{}, d *schema.R
 
 func flattenObjectWirelessControllerVapMpskKeyMpskSchedules(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
-}
-
-func flattenObjectWirelessControllerVapMpskKeyPassphrase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapMpskProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4779,10 +4712,6 @@ func flattenObjectWirelessControllerVapOweTransition(v interface{}, d *schema.Re
 
 func flattenObjectWirelessControllerVapOweTransitionSsid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerVapPassphrase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapPmf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4988,10 +4917,6 @@ func flattenObjectWirelessControllerVapSaeH2EOnly(v interface{}, d *schema.Resou
 
 func flattenObjectWirelessControllerVapSaeHnpOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerVapSaePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapSaePk(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -5673,16 +5598,6 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 		}
 	}
 
-	if err = d.Set("captive_portal_macauth_radius_secret", flattenObjectWirelessControllerVapCaptivePortalMacauthRadiusSecret(o["captive-portal-macauth-radius-secret"], d, "captive_portal_macauth_radius_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["captive-portal-macauth-radius-secret"], "ObjectWirelessControllerVap-CaptivePortalMacauthRadiusSecret"); ok {
-			if err = d.Set("captive_portal_macauth_radius_secret", vv); err != nil {
-				return fmt.Errorf("Error reading captive_portal_macauth_radius_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading captive_portal_macauth_radius_secret: %v", err)
-		}
-	}
-
 	if err = d.Set("captive_portal_macauth_radius_server", flattenObjectWirelessControllerVapCaptivePortalMacauthRadiusServer(o["captive-portal-macauth-radius-server"], d, "captive_portal_macauth_radius_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["captive-portal-macauth-radius-server"], "ObjectWirelessControllerVap-CaptivePortalMacauthRadiusServer"); ok {
 			if err = d.Set("captive_portal_macauth_radius_server", vv); err != nil {
@@ -5690,16 +5605,6 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading captive_portal_macauth_radius_server: %v", err)
-		}
-	}
-
-	if err = d.Set("captive_portal_radius_secret", flattenObjectWirelessControllerVapCaptivePortalRadiusSecret(o["captive-portal-radius-secret"], d, "captive_portal_radius_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["captive-portal-radius-secret"], "ObjectWirelessControllerVap-CaptivePortalRadiusSecret"); ok {
-			if err = d.Set("captive_portal_radius_secret", vv); err != nil {
-				return fmt.Errorf("Error reading captive_portal_radius_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading captive_portal_radius_secret: %v", err)
 		}
 	}
 
@@ -6044,16 +5949,6 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ipv6_rules: %v", err)
-		}
-	}
-
-	if err = d.Set("key", flattenObjectWirelessControllerVapKey(o["key"], d, "key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key"], "ObjectWirelessControllerVap-Key"); ok {
-			if err = d.Set("key", vv); err != nil {
-				return fmt.Errorf("Error reading key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading key: %v", err)
 		}
 	}
 
@@ -6916,16 +6811,6 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading sae_hnp_only: %v", err)
-		}
-	}
-
-	if err = d.Set("sae_password", flattenObjectWirelessControllerVapSaePassword(o["sae-password"], d, "sae_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["sae-password"], "ObjectWirelessControllerVap-SaePassword"); ok {
-			if err = d.Set("sae_password", vv); err != nil {
-				return fmt.Errorf("Error reading sae_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading sae_password: %v", err)
 		}
 	}
 

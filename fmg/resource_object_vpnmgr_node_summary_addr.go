@@ -203,7 +203,7 @@ func resourceObjectVpnmgrNodeSummaryAddrRead(d *schema.ResourceData, m interface
 }
 
 func flattenObjectVpnmgrNodeSummaryAddrAddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnmgrNodeSummaryAddrPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -261,7 +261,7 @@ func flattenObjectVpnmgrNodeSummaryAddrFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandObjectVpnmgrNodeSummaryAddrAddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnmgrNodeSummaryAddrPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

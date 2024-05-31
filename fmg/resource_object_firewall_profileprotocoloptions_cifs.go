@@ -147,10 +147,11 @@ func resourceObjectFirewallProfileProtocolOptionsCifs() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"principal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -481,12 +482,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(v interface
 			tmp["keytab"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifs-ServerKeytab-Keytab")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword2edl(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifs-ServerKeytab-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"
 		if _, ok := i["principal"]; ok {
 			v := flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal2edl(i["principal"], d, pre_append)
@@ -505,10 +500,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(v interface
 
 func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabKeytab2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -742,7 +733,7 @@ func flattenObjectFirewallProfileProtocolOptionsCifsFortiTestDebug(d *schema.Res
 }
 
 func expandObjectFirewallProfileProtocolOptionsCifsDomainController2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProfileProtocolOptionsCifsFileFilter2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

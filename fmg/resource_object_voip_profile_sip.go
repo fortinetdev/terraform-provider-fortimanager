@@ -1097,15 +1097,15 @@ func flattenObjectVoipProfileSipSslAlgorithm2edl(v interface{}, d *schema.Resour
 }
 
 func flattenObjectVoipProfileSipSslAuthClient2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslAuthServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslClientCertificate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipSslClientRenegotiation2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1133,7 +1133,7 @@ func flattenObjectVoipProfileSipSslSendEmptyFrags2edl(v interface{}, d *schema.R
 }
 
 func flattenObjectVoipProfileSipSslServerCertificate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVoipProfileSipStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2723,15 +2723,15 @@ func expandObjectVoipProfileSipSslAlgorithm2edl(d *schema.ResourceData, v interf
 }
 
 func expandObjectVoipProfileSipSslAuthClient2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslAuthServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslClientCertificate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipSslClientRenegotiation2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2759,7 +2759,7 @@ func expandObjectVoipProfileSipSslSendEmptyFrags2edl(d *schema.ResourceData, v i
 }
 
 func expandObjectVoipProfileSipSslServerCertificate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVoipProfileSipStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

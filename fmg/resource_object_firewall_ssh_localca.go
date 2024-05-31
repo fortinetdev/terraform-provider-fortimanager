@@ -192,10 +192,6 @@ func flattenObjectFirewallSshLocalCaName(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
-func flattenObjectFirewallSshLocalCaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectFirewallSshLocalCaPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

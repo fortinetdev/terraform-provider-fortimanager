@@ -331,7 +331,7 @@ func flattenObjectDlpDictionaryEntriesStatus(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectDlpDictionaryEntriesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpDictionaryMatchAround(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -532,7 +532,7 @@ func expandObjectDlpDictionaryEntriesStatus(d *schema.ResourceData, v interface{
 }
 
 func expandObjectDlpDictionaryEntriesType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpDictionaryMatchAround(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

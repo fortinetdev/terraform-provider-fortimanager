@@ -64,10 +64,11 @@ func resourceSystempSystemEmailServer() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -226,15 +227,11 @@ func flattenSystempSystemEmailServerAuthenticate(v interface{}, d *schema.Resour
 }
 
 func flattenSystempSystemEmailServerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempSystemEmailServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystempSystemEmailServerPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystempSystemEmailServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -311,16 +308,6 @@ func refreshObjectSystempSystemEmailServer(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading interface_select_method: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystempSystemEmailServerPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystempSystemEmailServer-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
@@ -438,7 +425,7 @@ func expandSystempSystemEmailServerAuthenticate(d *schema.ResourceData, v interf
 }
 
 func expandSystempSystemEmailServerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempSystemEmailServerInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -56,6 +56,8 @@ The following arguments are supported:
 
 * `sdns_ftgd_err_log` - Enable/disable FortiGuard SDNS rating error logging. Valid values: `disable`, `enable`.
 
+* `strip_ech` - Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
+
 * `transparent_dns_database` - Transparent DNS database zones.
 * `youtube_restrict` - Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
 

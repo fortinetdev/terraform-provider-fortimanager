@@ -606,7 +606,7 @@ func flattenObjectIpsSensorEntriesExemptIp(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIpsSensorEntriesExemptIpDstIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorEntriesExemptIpId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -614,7 +614,7 @@ func flattenObjectIpsSensorEntriesExemptIpId(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectIpsSensorEntriesExemptIpSrcIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorEntriesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -702,7 +702,7 @@ func flattenObjectIpsSensorName(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenObjectIpsSensorReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1049,7 +1049,7 @@ func expandObjectIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectIpsSensorEntriesExemptIpDstIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesExemptIpId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1057,7 +1057,7 @@ func expandObjectIpsSensorEntriesExemptIpId(d *schema.ResourceData, v interface{
 }
 
 func expandObjectIpsSensorEntriesExemptIpSrcIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1145,7 +1145,7 @@ func expandObjectIpsSensorName(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandObjectIpsSensorReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorScanBotnetConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

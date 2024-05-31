@@ -542,7 +542,7 @@ func flattenObjectSystemFortiguardGuiPromptAutoUpgrade(v interface{}, d *schema.
 }
 
 func flattenObjectSystemFortiguardInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemFortiguardInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -595,10 +595,6 @@ func flattenObjectSystemFortiguardPort(v interface{}, d *schema.ResourceData, pr
 
 func flattenObjectSystemFortiguardProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectSystemFortiguardProxyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectSystemFortiguardProxyServerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -670,7 +666,7 @@ func flattenObjectSystemFortiguardUpdateUwdb(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemFortiguardVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemFortiguardVideofilterExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1444,7 +1440,7 @@ func expandObjectSystemFortiguardGuiPromptAutoUpgrade(d *schema.ResourceData, v 
 }
 
 func expandObjectSystemFortiguardInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemFortiguardInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1572,7 +1568,7 @@ func expandObjectSystemFortiguardUpdateUwdb(d *schema.ResourceData, v interface{
 }
 
 func expandObjectSystemFortiguardVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemFortiguardVideofilterExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

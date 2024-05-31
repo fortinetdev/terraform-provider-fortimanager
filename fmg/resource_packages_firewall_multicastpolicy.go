@@ -338,7 +338,7 @@ func flattenPackagesFirewallMulticastPolicyId(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesFirewallMulticastPolicyIpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallMulticastPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -378,7 +378,7 @@ func flattenPackagesFirewallMulticastPolicyStatus(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallMulticastPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallMulticastPolicyUtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -648,7 +648,7 @@ func expandPackagesFirewallMulticastPolicyId(d *schema.ResourceData, v interface
 }
 
 func expandPackagesFirewallMulticastPolicyIpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallMulticastPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -688,7 +688,7 @@ func expandPackagesFirewallMulticastPolicyStatus(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallMulticastPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallMulticastPolicyUtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

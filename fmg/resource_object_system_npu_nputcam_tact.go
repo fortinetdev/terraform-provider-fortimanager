@@ -57,6 +57,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"act_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fmtuv4_s": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -65,6 +66,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"fmtuv4_s_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fmtuv6_s": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -73,6 +75,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"fmtuv6_s_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"lnkid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -81,6 +84,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"lnkid_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_id": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -89,6 +93,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"mac_id_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mss_t": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -97,6 +102,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"mss_t_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mtuv4": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -105,6 +111,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"mtuv4_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mtuv6": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -113,6 +120,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"mtuv6_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"slif_act": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -121,6 +129,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"slif_act_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sublnkid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -129,6 +138,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"sublnkid_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tgtv_act": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -137,6 +147,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"tgtv_act_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tlif_act": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -145,6 +156,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"tlif_act_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tpeid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -153,6 +165,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"tpeid_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"v6fe": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -161,10 +174,12 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"v6fe_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vep_en_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vep_slid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -173,6 +188,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"vep_slid_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vep_en": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -185,6 +201,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"xlt_lif_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"xlt_vid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -193,6 +210,7 @@ func resourceObjectSystemNpuNpuTcamTact() *schema.Resource {
 			"xlt_vid_v": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

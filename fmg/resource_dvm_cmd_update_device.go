@@ -95,7 +95,7 @@ func flattenDvmCmdUpdateDeviceAdom(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenDvmCmdUpdateDeviceDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenDvmCmdUpdateDeviceFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -149,7 +149,7 @@ func expandDvmCmdUpdateDeviceAdom(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandDvmCmdUpdateDeviceDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandDvmCmdUpdateDeviceFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

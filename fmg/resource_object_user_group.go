@@ -155,10 +155,11 @@ func resourceObjectUserGroup() *schema.Resource {
 										Optional: true,
 									},
 									"password": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sponsor": &schema.Schema{
 										Type:     schema.TypeString,
@@ -422,10 +423,11 @@ func resourceObjectUserGroup() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sponsor": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1126,12 +1128,6 @@ func flattenObjectUserGroupDynamicMappingGuest(v interface{}, d *schema.Resource
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserGroupDynamicMapping-Guest-Name")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectUserGroupDynamicMappingGuestPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectUserGroupDynamicMapping-Guest-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
 		if _, ok := i["sponsor"]; ok {
 			v := flattenObjectUserGroupDynamicMappingGuestSponsor(i["sponsor"], d, pre_append)
@@ -1184,10 +1180,6 @@ func flattenObjectUserGroupDynamicMappingGuestMobilePhone(v interface{}, d *sche
 
 func flattenObjectUserGroupDynamicMappingGuestName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserGroupDynamicMappingGuestPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserGroupDynamicMappingGuestSponsor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1280,7 +1272,7 @@ func flattenObjectUserGroupDynamicMappingMatchId(v interface{}, d *schema.Resour
 }
 
 func flattenObjectUserGroupDynamicMappingMatchServerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupDynamicMappingMaxAccounts(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1308,7 +1300,7 @@ func flattenObjectUserGroupDynamicMappingRedirUrl(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserGroupDynamicMappingSmsCustomServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupDynamicMappingSmsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1537,12 +1529,6 @@ func flattenObjectUserGroupGuest(v interface{}, d *schema.ResourceData, pre stri
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserGroup-Guest-Name")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectUserGroupGuestPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectUserGroup-Guest-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
 		if _, ok := i["sponsor"]; ok {
 			v := flattenObjectUserGroupGuestSponsor(i["sponsor"], d, pre_append)
@@ -1591,10 +1577,6 @@ func flattenObjectUserGroupGuestMobilePhone(v interface{}, d *schema.ResourceDat
 
 func flattenObjectUserGroupGuestName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserGroupGuestPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserGroupGuestSponsor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1679,7 +1661,7 @@ func flattenObjectUserGroupMatchId(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectUserGroupMatchServerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupMaxAccounts(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1707,7 +1689,7 @@ func flattenObjectUserGroupPassword(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserGroupSmsCustomServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserGroupSmsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2612,7 +2594,7 @@ func expandObjectUserGroupDynamicMappingMatchId(d *schema.ResourceData, v interf
 }
 
 func expandObjectUserGroupDynamicMappingMatchServerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupDynamicMappingMaxAccounts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2640,7 +2622,7 @@ func expandObjectUserGroupDynamicMappingRedirUrl(d *schema.ResourceData, v inter
 }
 
 func expandObjectUserGroupDynamicMappingSmsCustomServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupDynamicMappingSmsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2984,7 +2966,7 @@ func expandObjectUserGroupMatchId(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectUserGroupMatchServerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupMaxAccounts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3012,7 +2994,7 @@ func expandObjectUserGroupPassword(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserGroupSmsCustomServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserGroupSmsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

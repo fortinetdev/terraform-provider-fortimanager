@@ -505,7 +505,7 @@ func flattenObjectApplicationListEntriesParametersValue2edl(v interface{}, d *sc
 }
 
 func flattenObjectApplicationListEntriesPerIpShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesPopularity2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -553,11 +553,11 @@ func flattenObjectApplicationListEntriesSessionTtl2edl(v interface{}, d *schema.
 }
 
 func flattenObjectApplicationListEntriesShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesShaperReverse2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesSubCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1002,7 +1002,7 @@ func expandObjectApplicationListEntriesParametersValue2edl(d *schema.ResourceDat
 }
 
 func expandObjectApplicationListEntriesPerIpShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesPopularity2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1050,11 +1050,11 @@ func expandObjectApplicationListEntriesSessionTtl2edl(d *schema.ResourceData, v 
 }
 
 func expandObjectApplicationListEntriesShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesShaperReverse2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesSubCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

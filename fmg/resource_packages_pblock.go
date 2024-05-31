@@ -309,7 +309,7 @@ func flattenPackagesPblockPackageSettingsPolicyOffloadLevel(v interface{}, d *sc
 }
 
 func flattenPackagesPblockPackageSettingsSslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesPblockType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -469,7 +469,7 @@ func expandPackagesPblockPackageSettingsPolicyOffloadLevel(d *schema.ResourceDat
 }
 
 func expandPackagesPblockPackageSettingsSslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesPblockType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -1136,11 +1136,11 @@ func resourceObjectAntivirusProfileRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenObjectAntivirusProfileAnalyticsAcceptFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAntivirusProfileAnalyticsBlFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAntivirusProfileAnalyticsDb(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1148,7 +1148,7 @@ func flattenObjectAntivirusProfileAnalyticsDb(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectAntivirusProfileAnalyticsIgnoreFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAntivirusProfileAnalyticsMaxUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1156,7 +1156,7 @@ func flattenObjectAntivirusProfileAnalyticsMaxUpload(v interface{}, d *schema.Re
 }
 
 func flattenObjectAntivirusProfileAnalyticsWlFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAntivirusProfileAvBlockLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2359,7 +2359,7 @@ func flattenObjectAntivirusProfilePop3Quarantine(v interface{}, d *schema.Resour
 }
 
 func flattenObjectAntivirusProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectAntivirusProfileScanMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3295,11 +3295,11 @@ func flattenObjectAntivirusProfileFortiTestDebug(d *schema.ResourceData, fosdebu
 }
 
 func expandObjectAntivirusProfileAnalyticsAcceptFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAntivirusProfileAnalyticsBlFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAntivirusProfileAnalyticsDb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3307,7 +3307,7 @@ func expandObjectAntivirusProfileAnalyticsDb(d *schema.ResourceData, v interface
 }
 
 func expandObjectAntivirusProfileAnalyticsIgnoreFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAntivirusProfileAnalyticsMaxUpload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3315,7 +3315,7 @@ func expandObjectAntivirusProfileAnalyticsMaxUpload(d *schema.ResourceData, v in
 }
 
 func expandObjectAntivirusProfileAnalyticsWlFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAntivirusProfileAvBlockLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4419,7 +4419,7 @@ func expandObjectAntivirusProfilePop3Quarantine(d *schema.ResourceData, v interf
 }
 
 func expandObjectAntivirusProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectAntivirusProfileScanMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

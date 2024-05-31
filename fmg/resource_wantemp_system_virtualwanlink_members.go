@@ -275,7 +275,7 @@ func flattenWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(v in
 }
 
 func flattenWantempSystemVirtualWanLinkMembersInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkMembersPriority2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -501,7 +501,7 @@ func expandWantempSystemVirtualWanLinkMembersIngressSpilloverThreshold2edl(d *sc
 }
 
 func expandWantempSystemVirtualWanLinkMembersInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkMembersPriority2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

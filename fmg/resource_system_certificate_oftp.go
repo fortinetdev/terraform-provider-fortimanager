@@ -156,10 +156,6 @@ func flattenSystemCertificateOftpMode(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
-func flattenSystemCertificateOftpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemCertificateOftpPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }

@@ -69,10 +69,11 @@ func resourceObjectWanoptAuthGroup() *schema.Resource {
 				Computed: true,
 			},
 			"psk": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 		},
 	}
@@ -197,7 +198,7 @@ func flattenObjectWanoptAuthGroupAuthMethod(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectWanoptAuthGroupCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWanoptAuthGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -205,15 +206,11 @@ func flattenObjectWanoptAuthGroupName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectWanoptAuthGroupPeer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWanoptAuthGroupPeerAccept(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWanoptAuthGroupPsk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func refreshObjectObjectWanoptAuthGroup(d *schema.ResourceData, o map[string]interface{}) error {
@@ -273,16 +270,6 @@ func refreshObjectObjectWanoptAuthGroup(d *schema.ResourceData, o map[string]int
 		}
 	}
 
-	if err = d.Set("psk", flattenObjectWanoptAuthGroupPsk(o["psk"], d, "psk")); err != nil {
-		if vv, ok := fortiAPIPatch(o["psk"], "ObjectWanoptAuthGroup-Psk"); ok {
-			if err = d.Set("psk", vv); err != nil {
-				return fmt.Errorf("Error reading psk: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading psk: %v", err)
-		}
-	}
-
 	return nil
 }
 
@@ -297,7 +284,7 @@ func expandObjectWanoptAuthGroupAuthMethod(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectWanoptAuthGroupCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWanoptAuthGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -305,7 +292,7 @@ func expandObjectWanoptAuthGroupName(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectWanoptAuthGroupPeer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWanoptAuthGroupPeerAccept(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

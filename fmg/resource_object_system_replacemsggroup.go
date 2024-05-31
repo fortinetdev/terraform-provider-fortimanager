@@ -1984,7 +1984,7 @@ func flattenObjectSystemReplacemsgGroupMm1Header(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemReplacemsgGroupMm1Image(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemReplacemsgGroupMm1Message(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2149,7 +2149,7 @@ func flattenObjectSystemReplacemsgGroupMm3HtmlPart(v interface{}, d *schema.Reso
 }
 
 func flattenObjectSystemReplacemsgGroupMm3Image(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemReplacemsgGroupMm3Message(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2320,7 +2320,7 @@ func flattenObjectSystemReplacemsgGroupMm4Header(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemReplacemsgGroupMm4Image(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemReplacemsgGroupMm4Message(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2509,7 +2509,7 @@ func flattenObjectSystemReplacemsgGroupMm7Header(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemReplacemsgGroupMm7Image(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemReplacemsgGroupMm7Message(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2618,7 +2618,7 @@ func flattenObjectSystemReplacemsgGroupMmsHeader(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemReplacemsgGroupMmsImage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemReplacemsgGroupMmsMsgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4618,7 +4618,7 @@ func expandObjectSystemReplacemsgGroupMm1Header(d *schema.ResourceData, v interf
 }
 
 func expandObjectSystemReplacemsgGroupMm1Image(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemReplacemsgGroupMm1Message(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4766,7 +4766,7 @@ func expandObjectSystemReplacemsgGroupMm3HtmlPart(d *schema.ResourceData, v inte
 }
 
 func expandObjectSystemReplacemsgGroupMm3Image(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemReplacemsgGroupMm3Message(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4917,7 +4917,7 @@ func expandObjectSystemReplacemsgGroupMm4Header(d *schema.ResourceData, v interf
 }
 
 func expandObjectSystemReplacemsgGroupMm4Image(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemReplacemsgGroupMm4Message(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5085,7 +5085,7 @@ func expandObjectSystemReplacemsgGroupMm7Header(d *schema.ResourceData, v interf
 }
 
 func expandObjectSystemReplacemsgGroupMm7Image(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemReplacemsgGroupMm7Message(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5183,7 +5183,7 @@ func expandObjectSystemReplacemsgGroupMmsHeader(d *schema.ResourceData, v interf
 }
 
 func expandObjectSystemReplacemsgGroupMmsImage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemReplacemsgGroupMmsMsgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

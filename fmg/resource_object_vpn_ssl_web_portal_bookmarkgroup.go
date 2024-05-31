@@ -116,10 +116,11 @@ func resourceObjectVpnSslWebPortalBookmarkGroup() *schema.Resource {
 							Optional: true,
 						},
 						"logon_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"logon_user": &schema.Schema{
 							Type:     schema.TypeString,
@@ -178,10 +179,11 @@ func resourceObjectVpnSslWebPortalBookmarkGroup() *schema.Resource {
 							Optional: true,
 						},
 						"sso_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sso_username": &schema.Schema{
 							Type:     schema.TypeString,
@@ -442,12 +444,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks2edl(v interface{}, d *sc
 			tmp["load_balancing_info"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-LoadBalancingInfo")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_password"
-		if _, ok := i["logon-password"]; ok {
-			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword2edl(i["logon-password"], d, pre_append)
-			tmp["logon_password"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-LogonPassword")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_user"
 		if _, ok := i["logon-user"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser2edl(i["logon-user"], d, pre_append)
@@ -530,12 +526,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks2edl(v interface{}, d *sc
 		if _, ok := i["sso-credential-sent-once"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce2edl(i["sso-credential-sent-once"], d, pre_append)
 			tmp["sso_credential_sent_once"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-SsoCredentialSentOnce")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_password"
-		if _, ok := i["sso-password"]; ok {
-			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword2edl(i["sso-password"], d, pre_append)
-			tmp["sso_password"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-SsoPassword")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_username"
@@ -665,10 +655,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLoadBalancingInfo2edl(v i
 	return v
 }
 
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -723,10 +709,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredential2edl(v inter
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoUsername2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {

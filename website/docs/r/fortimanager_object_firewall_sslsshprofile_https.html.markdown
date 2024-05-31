@@ -48,6 +48,8 @@ The following arguments are supported:
 
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 
+* `encrypted_client_hello` - Block/allow session based on existence of encrypted-client-hello. Valid values: `block`, `allow`.
+
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 
 * `min_allowed_ssl_version` - Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.

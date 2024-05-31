@@ -355,7 +355,7 @@ func flattenObjectUserSamlAuthUrl(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserSamlCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSamlClockTolerance(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -567,7 +567,7 @@ func flattenObjectUserSamlDynamicMappingAuthUrl(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserSamlDynamicMappingCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSamlDynamicMappingClockTolerance(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -591,7 +591,7 @@ func flattenObjectUserSamlDynamicMappingGroupName(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserSamlDynamicMappingIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSamlDynamicMappingIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -643,7 +643,7 @@ func flattenObjectUserSamlGroupName(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserSamlIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserSamlIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -929,7 +929,7 @@ func expandObjectUserSamlAuthUrl(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandObjectUserSamlCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSamlClockTolerance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1115,7 +1115,7 @@ func expandObjectUserSamlDynamicMappingAuthUrl(d *schema.ResourceData, v interfa
 }
 
 func expandObjectUserSamlDynamicMappingCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSamlDynamicMappingClockTolerance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1139,7 +1139,7 @@ func expandObjectUserSamlDynamicMappingGroupName(d *schema.ResourceData, v inter
 }
 
 func expandObjectUserSamlDynamicMappingIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSamlDynamicMappingIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1191,7 +1191,7 @@ func expandObjectUserSamlGroupName(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserSamlIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserSamlIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

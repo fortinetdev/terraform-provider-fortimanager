@@ -218,10 +218,6 @@ func flattenObjectUserVcenterName(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
-func flattenObjectUserVcenterPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserVcenterRule(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil

@@ -106,11 +106,53 @@ func resourceDvmdbAdom() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"primary_dns_ip4": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"primary_dns_ip6_1": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"primary_dns_ip6_2": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"primary_dns_ip6_3": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"primary_dns_ip6_4": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"restricted_prds": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"secondary_dns_ip4": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"secondary_dns_ip6_1": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"secondary_dns_ip6_2": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"secondary_dns_ip6_3": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"secondary_dns_ip6_4": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"state": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -298,8 +340,48 @@ func flattenDvmdbAdomOsVer(v interface{}, d *schema.ResourceData, pre string) in
 	return v
 }
 
+func flattenDvmdbAdomPrimaryDnsIp4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomPrimaryDnsIp61(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomPrimaryDnsIp62(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomPrimaryDnsIp63(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomPrimaryDnsIp64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenDvmdbAdomRestrictedPrds(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convstr2list(v, d.Get(pre))
+}
+
+func flattenDvmdbAdomSecondaryDnsIp4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomSecondaryDnsIp61(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomSecondaryDnsIp62(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomSecondaryDnsIp63(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomSecondaryDnsIp64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenDvmdbAdomState(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -481,6 +563,56 @@ func refreshObjectDvmdbAdom(d *schema.ResourceData, o map[string]interface{}) er
 		}
 	}
 
+	if err = d.Set("primary_dns_ip4", flattenDvmdbAdomPrimaryDnsIp4(o["primary_dns_ip4"], d, "primary_dns_ip4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["primary_dns_ip4"], "DvmdbAdom-PrimaryDnsIp4"); ok {
+			if err = d.Set("primary_dns_ip4", vv); err != nil {
+				return fmt.Errorf("Error reading primary_dns_ip4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading primary_dns_ip4: %v", err)
+		}
+	}
+
+	if err = d.Set("primary_dns_ip6_1", flattenDvmdbAdomPrimaryDnsIp61(o["primary_dns_ip6_1"], d, "primary_dns_ip6_1")); err != nil {
+		if vv, ok := fortiAPIPatch(o["primary_dns_ip6_1"], "DvmdbAdom-PrimaryDnsIp61"); ok {
+			if err = d.Set("primary_dns_ip6_1", vv); err != nil {
+				return fmt.Errorf("Error reading primary_dns_ip6_1: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading primary_dns_ip6_1: %v", err)
+		}
+	}
+
+	if err = d.Set("primary_dns_ip6_2", flattenDvmdbAdomPrimaryDnsIp62(o["primary_dns_ip6_2"], d, "primary_dns_ip6_2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["primary_dns_ip6_2"], "DvmdbAdom-PrimaryDnsIp62"); ok {
+			if err = d.Set("primary_dns_ip6_2", vv); err != nil {
+				return fmt.Errorf("Error reading primary_dns_ip6_2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading primary_dns_ip6_2: %v", err)
+		}
+	}
+
+	if err = d.Set("primary_dns_ip6_3", flattenDvmdbAdomPrimaryDnsIp63(o["primary_dns_ip6_3"], d, "primary_dns_ip6_3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["primary_dns_ip6_3"], "DvmdbAdom-PrimaryDnsIp63"); ok {
+			if err = d.Set("primary_dns_ip6_3", vv); err != nil {
+				return fmt.Errorf("Error reading primary_dns_ip6_3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading primary_dns_ip6_3: %v", err)
+		}
+	}
+
+	if err = d.Set("primary_dns_ip6_4", flattenDvmdbAdomPrimaryDnsIp64(o["primary_dns_ip6_4"], d, "primary_dns_ip6_4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["primary_dns_ip6_4"], "DvmdbAdom-PrimaryDnsIp64"); ok {
+			if err = d.Set("primary_dns_ip6_4", vv); err != nil {
+				return fmt.Errorf("Error reading primary_dns_ip6_4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading primary_dns_ip6_4: %v", err)
+		}
+	}
+
 	if err = d.Set("restricted_prds", flattenDvmdbAdomRestrictedPrds(o["restricted_prds"], d, "restricted_prds")); err != nil {
 		if vv, ok := fortiAPIPatch(o["restricted_prds"], "DvmdbAdom-RestrictedPrds"); ok {
 			if err = d.Set("restricted_prds", vv); err != nil {
@@ -488,6 +620,56 @@ func refreshObjectDvmdbAdom(d *schema.ResourceData, o map[string]interface{}) er
 			}
 		} else {
 			return fmt.Errorf("Error reading restricted_prds: %v", err)
+		}
+	}
+
+	if err = d.Set("secondary_dns_ip4", flattenDvmdbAdomSecondaryDnsIp4(o["secondary_dns_ip4"], d, "secondary_dns_ip4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secondary_dns_ip4"], "DvmdbAdom-SecondaryDnsIp4"); ok {
+			if err = d.Set("secondary_dns_ip4", vv); err != nil {
+				return fmt.Errorf("Error reading secondary_dns_ip4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secondary_dns_ip4: %v", err)
+		}
+	}
+
+	if err = d.Set("secondary_dns_ip6_1", flattenDvmdbAdomSecondaryDnsIp61(o["secondary_dns_ip6_1"], d, "secondary_dns_ip6_1")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secondary_dns_ip6_1"], "DvmdbAdom-SecondaryDnsIp61"); ok {
+			if err = d.Set("secondary_dns_ip6_1", vv); err != nil {
+				return fmt.Errorf("Error reading secondary_dns_ip6_1: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secondary_dns_ip6_1: %v", err)
+		}
+	}
+
+	if err = d.Set("secondary_dns_ip6_2", flattenDvmdbAdomSecondaryDnsIp62(o["secondary_dns_ip6_2"], d, "secondary_dns_ip6_2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secondary_dns_ip6_2"], "DvmdbAdom-SecondaryDnsIp62"); ok {
+			if err = d.Set("secondary_dns_ip6_2", vv); err != nil {
+				return fmt.Errorf("Error reading secondary_dns_ip6_2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secondary_dns_ip6_2: %v", err)
+		}
+	}
+
+	if err = d.Set("secondary_dns_ip6_3", flattenDvmdbAdomSecondaryDnsIp63(o["secondary_dns_ip6_3"], d, "secondary_dns_ip6_3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secondary_dns_ip6_3"], "DvmdbAdom-SecondaryDnsIp63"); ok {
+			if err = d.Set("secondary_dns_ip6_3", vv); err != nil {
+				return fmt.Errorf("Error reading secondary_dns_ip6_3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secondary_dns_ip6_3: %v", err)
+		}
+	}
+
+	if err = d.Set("secondary_dns_ip6_4", flattenDvmdbAdomSecondaryDnsIp64(o["secondary_dns_ip6_4"], d, "secondary_dns_ip6_4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secondary_dns_ip6_4"], "DvmdbAdom-SecondaryDnsIp64"); ok {
+			if err = d.Set("secondary_dns_ip6_4", vv); err != nil {
+				return fmt.Errorf("Error reading secondary_dns_ip6_4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secondary_dns_ip6_4: %v", err)
 		}
 	}
 
@@ -604,8 +786,48 @@ func expandDvmdbAdomOsVer(d *schema.ResourceData, v interface{}, pre string) (in
 	return v, nil
 }
 
+func expandDvmdbAdomPrimaryDnsIp4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomPrimaryDnsIp61(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomPrimaryDnsIp62(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomPrimaryDnsIp63(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomPrimaryDnsIp64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandDvmdbAdomRestrictedPrds(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandDvmdbAdomSecondaryDnsIp4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomSecondaryDnsIp61(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomSecondaryDnsIp62(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomSecondaryDnsIp63(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomSecondaryDnsIp64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandDvmdbAdomState(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -771,12 +993,102 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
+	if v, ok := d.GetOk("primary_dns_ip4"); ok || d.HasChange("primary_dns_ip4") {
+		t, err := expandDvmdbAdomPrimaryDnsIp4(d, v, "primary_dns_ip4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["primary_dns_ip4"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("primary_dns_ip6_1"); ok || d.HasChange("primary_dns_ip6_1") {
+		t, err := expandDvmdbAdomPrimaryDnsIp61(d, v, "primary_dns_ip6_1")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["primary_dns_ip6_1"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("primary_dns_ip6_2"); ok || d.HasChange("primary_dns_ip6_2") {
+		t, err := expandDvmdbAdomPrimaryDnsIp62(d, v, "primary_dns_ip6_2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["primary_dns_ip6_2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("primary_dns_ip6_3"); ok || d.HasChange("primary_dns_ip6_3") {
+		t, err := expandDvmdbAdomPrimaryDnsIp63(d, v, "primary_dns_ip6_3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["primary_dns_ip6_3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("primary_dns_ip6_4"); ok || d.HasChange("primary_dns_ip6_4") {
+		t, err := expandDvmdbAdomPrimaryDnsIp64(d, v, "primary_dns_ip6_4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["primary_dns_ip6_4"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("restricted_prds"); ok || d.HasChange("restricted_prds") {
 		t, err := expandDvmdbAdomRestrictedPrds(d, v, "restricted_prds")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["restricted_prds"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secondary_dns_ip4"); ok || d.HasChange("secondary_dns_ip4") {
+		t, err := expandDvmdbAdomSecondaryDnsIp4(d, v, "secondary_dns_ip4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secondary_dns_ip4"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secondary_dns_ip6_1"); ok || d.HasChange("secondary_dns_ip6_1") {
+		t, err := expandDvmdbAdomSecondaryDnsIp61(d, v, "secondary_dns_ip6_1")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secondary_dns_ip6_1"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secondary_dns_ip6_2"); ok || d.HasChange("secondary_dns_ip6_2") {
+		t, err := expandDvmdbAdomSecondaryDnsIp62(d, v, "secondary_dns_ip6_2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secondary_dns_ip6_2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secondary_dns_ip6_3"); ok || d.HasChange("secondary_dns_ip6_3") {
+		t, err := expandDvmdbAdomSecondaryDnsIp63(d, v, "secondary_dns_ip6_3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secondary_dns_ip6_3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secondary_dns_ip6_4"); ok || d.HasChange("secondary_dns_ip6_4") {
+		t, err := expandDvmdbAdomSecondaryDnsIp64(d, v, "secondary_dns_ip6_4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secondary_dns_ip6_4"] = t
 		}
 	}
 

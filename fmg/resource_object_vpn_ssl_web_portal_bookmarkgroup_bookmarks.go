@@ -116,10 +116,11 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarks() *schema.Resource {
 				Optional: true,
 			},
 			"logon_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"logon_user": &schema.Schema{
 				Type:     schema.TypeString,
@@ -179,10 +180,11 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarks() *schema.Resource {
 				Optional: true,
 			},
 			"sso_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"sso_username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -454,10 +456,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLoadBalancingInfo3rdl(v i
 	return v
 }
 
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -512,10 +510,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredential3rdl(v inter
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoUsername3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -679,16 +673,6 @@ func refreshObjectObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.Resource
 		}
 	}
 
-	if err = d.Set("logon_password", flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword3rdl(o["logon-password"], d, "logon_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["logon-password"], "ObjectVpnSslWebPortalBookmarkGroupBookmarks-LogonPassword"); ok {
-			if err = d.Set("logon_password", vv); err != nil {
-				return fmt.Errorf("Error reading logon_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading logon_password: %v", err)
-		}
-	}
-
 	if err = d.Set("logon_user", flattenObjectVpnSslWebPortalBookmarkGroupBookmarksLogonUser3rdl(o["logon-user"], d, "logon_user")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logon-user"], "ObjectVpnSslWebPortalBookmarkGroupBookmarks-LogonUser"); ok {
 			if err = d.Set("logon_user", vv); err != nil {
@@ -826,16 +810,6 @@ func refreshObjectObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.Resource
 			}
 		} else {
 			return fmt.Errorf("Error reading sso_credential_sent_once: %v", err)
-		}
-	}
-
-	if err = d.Set("sso_password", flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword3rdl(o["sso-password"], d, "sso_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["sso-password"], "ObjectVpnSslWebPortalBookmarkGroupBookmarks-SsoPassword"); ok {
-			if err = d.Set("sso_password", vv); err != nil {
-				return fmt.Errorf("Error reading sso_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading sso_password: %v", err)
 		}
 	}
 

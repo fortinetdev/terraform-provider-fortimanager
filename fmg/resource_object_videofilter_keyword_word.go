@@ -62,10 +62,12 @@ func resourceObjectVideofilterKeywordWord() *schema.Resource {
 			"pattern_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

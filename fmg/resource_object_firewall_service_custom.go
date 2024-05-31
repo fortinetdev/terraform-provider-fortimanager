@@ -313,7 +313,7 @@ func flattenObjectFirewallServiceCustomApplication(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallServiceCustomCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2i(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallServiceCustomCheckResetRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -735,7 +735,7 @@ func expandObjectFirewallServiceCustomApplication(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallServiceCustomCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallServiceCustomCheckResetRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

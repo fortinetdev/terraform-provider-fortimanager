@@ -44,6 +44,14 @@ The following arguments are supported:
 
 * `ha_mgmt_intf_only` - Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `disable`, `enable`.
 
+* `internet_service_src` - Enable/disable use of Internet Services in source for this local-in policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
+
+* `internet_service_src_custom` - Custom Internet Service source name.
+* `internet_service_src_custom_group` - Custom Internet Service source group name.
+* `internet_service_src_group` - Internet Service source group name.
+* `internet_service_src_name` - Internet Service source name.
+* `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
 * `intf` - Incoming interface name from available options.
 * `policyid` - User defined local in policy ID.
 * `schedule` - Schedule object from available options.

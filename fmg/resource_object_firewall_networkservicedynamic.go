@@ -201,7 +201,7 @@ func flattenObjectFirewallNetworkServiceDynamicName(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallNetworkServiceDynamicSdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallNetworkServiceDynamic(d *schema.ResourceData, o map[string]interface{}) error {
@@ -287,7 +287,7 @@ func expandObjectFirewallNetworkServiceDynamicName(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallNetworkServiceDynamicSdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallNetworkServiceDynamic(d *schema.ResourceData) (*map[string]interface{}, error) {

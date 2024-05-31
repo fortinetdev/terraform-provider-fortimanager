@@ -68,10 +68,11 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"refresh_rate": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -248,7 +249,7 @@ func flattenObjectSystemExternalResourceComments(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemExternalResourceInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectSystemExternalResourceInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -257,10 +258,6 @@ func flattenObjectSystemExternalResourceInterfaceSelectMethod(v interface{}, d *
 
 func flattenObjectSystemExternalResourceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectSystemExternalResourcePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectSystemExternalResourceRefreshRate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -357,16 +354,6 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectSystemExternalResourcePassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectSystemExternalResource-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
@@ -488,7 +475,7 @@ func expandObjectSystemExternalResourceComments(d *schema.ResourceData, v interf
 }
 
 func expandObjectSystemExternalResourceInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectSystemExternalResourceInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

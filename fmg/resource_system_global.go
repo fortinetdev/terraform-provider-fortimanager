@@ -164,9 +164,19 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fgfm_deny_unknown": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fgfm_local_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"fgfm_peercert_withoutsn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"fgfm_ssl_protocol": &schema.Schema{
 				Type:     schema.TypeString,
@@ -701,7 +711,15 @@ func flattenSystemGlobalFgfmCertExclusive(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenSystemGlobalFgfmDenyUnknown(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalFgfmLocalCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalFgfmPeercertWithoutsn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1324,6 +1342,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fgfm_deny_unknown", flattenSystemGlobalFgfmDenyUnknown(o["fgfm-deny-unknown"], d, "fgfm_deny_unknown")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-deny-unknown"], "SystemGlobal-FgfmDenyUnknown"); ok {
+			if err = d.Set("fgfm_deny_unknown", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_deny_unknown: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_deny_unknown: %v", err)
+		}
+	}
+
 	if err = d.Set("fgfm_local_cert", flattenSystemGlobalFgfmLocalCert(o["fgfm-local-cert"], d, "fgfm_local_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-local-cert"], "SystemGlobal-FgfmLocalCert"); ok {
 			if err = d.Set("fgfm_local_cert", vv); err != nil {
@@ -1331,6 +1359,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading fgfm_local_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("fgfm_peercert_withoutsn", flattenSystemGlobalFgfmPeercertWithoutsn(o["fgfm-peercert-withoutsn"], d, "fgfm_peercert_withoutsn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-peercert-withoutsn"], "SystemGlobal-FgfmPeercertWithoutsn"); ok {
+			if err = d.Set("fgfm_peercert_withoutsn", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_peercert_withoutsn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_peercert_withoutsn: %v", err)
 		}
 	}
 
@@ -2109,7 +2147,15 @@ func expandSystemGlobalFgfmCertExclusive(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandSystemGlobalFgfmDenyUnknown(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalFgfmLocalCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalFgfmPeercertWithoutsn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2687,12 +2733,30 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fgfm_deny_unknown"); ok || d.HasChange("fgfm_deny_unknown") {
+		t, err := expandSystemGlobalFgfmDenyUnknown(d, v, "fgfm_deny_unknown")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-deny-unknown"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fgfm_local_cert"); ok || d.HasChange("fgfm_local_cert") {
 		t, err := expandSystemGlobalFgfmLocalCert(d, v, "fgfm_local_cert")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fgfm-local-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fgfm_peercert_withoutsn"); ok || d.HasChange("fgfm_peercert_withoutsn") {
+		t, err := expandSystemGlobalFgfmPeercertWithoutsn(d, v, "fgfm_peercert_withoutsn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-peercert-withoutsn"] = t
 		}
 	}
 

@@ -162,16 +162,8 @@ func flattenSystemBackupAllSettingsCert(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
-func flattenSystemBackupAllSettingsCrptpasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemBackupAllSettingsDirectory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemBackupAllSettingsPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemBackupAllSettingsProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {

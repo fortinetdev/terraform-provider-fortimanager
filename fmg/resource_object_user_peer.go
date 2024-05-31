@@ -89,10 +89,11 @@ func resourceObjectUserPeer() *schema.Resource {
 				Computed: true,
 			},
 			"mfa_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"mfa_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -112,10 +113,11 @@ func resourceObjectUserPeer() *schema.Resource {
 				Optional: true,
 			},
 			"passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"subject": &schema.Schema{
 				Type:     schema.TypeString,
@@ -245,7 +247,7 @@ func resourceObjectUserPeerRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectUserPeerCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserPeerCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -260,12 +262,8 @@ func flattenObjectUserPeerLdapMode(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
-func flattenObjectUserPeerLdapPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserPeerLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserPeerLdapUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -280,12 +278,8 @@ func flattenObjectUserPeerMfaMode(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
-func flattenObjectUserPeerMfaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserPeerMfaServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserPeerMfaUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -297,11 +291,7 @@ func flattenObjectUserPeerName(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserPeerOcspOverrideServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectUserPeerPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserPeerSubject(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -399,16 +389,6 @@ func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
-	if err = d.Set("mfa_password", flattenObjectUserPeerMfaPassword(o["mfa-password"], d, "mfa_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["mfa-password"], "ObjectUserPeer-MfaPassword"); ok {
-			if err = d.Set("mfa_password", vv); err != nil {
-				return fmt.Errorf("Error reading mfa_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading mfa_password: %v", err)
-		}
-	}
-
 	if err = d.Set("mfa_server", flattenObjectUserPeerMfaServer(o["mfa-server"], d, "mfa_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mfa-server"], "ObjectUserPeer-MfaServer"); ok {
 			if err = d.Set("mfa_server", vv); err != nil {
@@ -449,16 +429,6 @@ func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
-	if err = d.Set("passwd", flattenObjectUserPeerPasswd(o["passwd"], d, "passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passwd"], "ObjectUserPeer-Passwd"); ok {
-			if err = d.Set("passwd", vv); err != nil {
-				return fmt.Errorf("Error reading passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passwd: %v", err)
-		}
-	}
-
 	if err = d.Set("subject", flattenObjectUserPeerSubject(o["subject"], d, "subject")); err != nil {
 		if vv, ok := fortiAPIPatch(o["subject"], "ObjectUserPeer-Subject"); ok {
 			if err = d.Set("subject", vv); err != nil {
@@ -489,7 +459,7 @@ func flattenObjectUserPeerFortiTestDebug(d *schema.ResourceData, fosdebugsn int,
 }
 
 func expandObjectUserPeerCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserPeerCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -509,7 +479,7 @@ func expandObjectUserPeerLdapPassword(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectUserPeerLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserPeerLdapUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -529,7 +499,7 @@ func expandObjectUserPeerMfaPassword(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectUserPeerMfaServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserPeerMfaUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -541,7 +511,7 @@ func expandObjectUserPeerName(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandObjectUserPeerOcspOverrideServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserPeerPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

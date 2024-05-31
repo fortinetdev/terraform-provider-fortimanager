@@ -71,7 +71,7 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 			},
 			"ip": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -165,7 +165,7 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 			},
 			"rating_service_ip": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -192,7 +192,7 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"update_service_ip": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -880,7 +880,7 @@ func expandSystemInterfaceInterface(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemInterfaceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemInterfaceIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -995,7 +995,7 @@ func expandSystemInterfaceName(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemInterfaceRatingServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemInterfaceServiceaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1015,7 +1015,7 @@ func expandSystemInterfaceType(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemInterfaceUpdateServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemInterfaceVlanProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

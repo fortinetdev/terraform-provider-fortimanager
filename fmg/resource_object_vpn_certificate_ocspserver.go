@@ -195,7 +195,7 @@ func resourceObjectVpnCertificateOcspServerRead(d *schema.ResourceData, m interf
 }
 
 func flattenObjectVpnCertificateOcspServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnCertificateOcspServerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -203,7 +203,7 @@ func flattenObjectVpnCertificateOcspServerName(v interface{}, d *schema.Resource
 }
 
 func flattenObjectVpnCertificateOcspServerSecondaryCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnCertificateOcspServerSecondaryUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -309,7 +309,7 @@ func flattenObjectVpnCertificateOcspServerFortiTestDebug(d *schema.ResourceData,
 }
 
 func expandObjectVpnCertificateOcspServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnCertificateOcspServerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -317,7 +317,7 @@ func expandObjectVpnCertificateOcspServerName(d *schema.ResourceData, v interfac
 }
 
 func expandObjectVpnCertificateOcspServerSecondaryCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnCertificateOcspServerSecondaryUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

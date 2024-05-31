@@ -254,6 +254,7 @@ The `message_rate_limit` block supports:
 * `delete_pdp_response` - Rate limit for delete PDP context response (packets per second).
 * `echo_reponse` - Rate limit for echo response (packets per second).
 * `echo_request` - Rate limit for echo requests (packets per second).
+* `echo_response` - Rate limit for echo response (packets per second).
 * `error_indication` - Rate limit for error indication (packets per second).
 * `failure_report_request` - Rate limit for failure report request (packets per second).
 * `failure_report_response` - Rate limit for failure report response (packets per second).

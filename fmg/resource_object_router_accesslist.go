@@ -305,7 +305,7 @@ func flattenObjectRouterAccessListRulePrefix(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectRouterAccessListRuleWildcard(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectRouterAccessList(d *schema.ResourceData, o map[string]interface{}) error {
@@ -455,7 +455,7 @@ func expandObjectRouterAccessListRulePrefix(d *schema.ResourceData, v interface{
 }
 
 func expandObjectRouterAccessListRuleWildcard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectRouterAccessList(d *schema.ResourceData) (*map[string]interface{}, error) {

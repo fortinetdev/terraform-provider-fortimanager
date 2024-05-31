@@ -1612,7 +1612,7 @@ func flattenObjectWebfilterProfilePostAction(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectWebfilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWebfilterProfileUrlExtraction(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2608,7 +2608,7 @@ func expandObjectWebfilterProfileAntiphishDefaultAction(d *schema.ResourceData, 
 }
 
 func expandObjectWebfilterProfileAntiphishDomainController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileAntiphishInspectionEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2663,7 +2663,7 @@ func expandObjectWebfilterProfileAntiphishInspectionEntriesName(d *schema.Resour
 }
 
 func expandObjectWebfilterProfileAntiphishLdap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileAntiphishMaxBodyLen(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2975,7 +2975,7 @@ func expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp(d *schema.ResourceData,
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFiltersId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3224,7 +3224,7 @@ func expandObjectWebfilterProfilePostAction(d *schema.ResourceData, v interface{
 }
 
 func expandObjectWebfilterProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileUrlExtraction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3360,7 +3360,7 @@ func expandObjectWebfilterProfileWebBlacklist(d *schema.ResourceData, v interfac
 }
 
 func expandObjectWebfilterProfileWebBwordTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebBwordThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3368,7 +3368,7 @@ func expandObjectWebfilterProfileWebBwordThreshold(d *schema.ResourceData, v int
 }
 
 func expandObjectWebfilterProfileWebContentHeaderList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebKeywordMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3384,7 +3384,7 @@ func expandObjectWebfilterProfileWebSafeSearch(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebfilterProfileWebUrlfilterTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileWebVimeoRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

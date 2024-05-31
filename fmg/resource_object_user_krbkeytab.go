@@ -66,10 +66,11 @@ func resourceObjectUserKrbKeytab() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"principal": &schema.Schema{
 				Type:     schema.TypeString,
@@ -209,10 +210,6 @@ func flattenObjectUserKrbKeytabPacData(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
-func flattenObjectUserKrbKeytabPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserKrbKeytabPrincipal(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -261,16 +258,6 @@ func refreshObjectObjectUserKrbKeytab(d *schema.ResourceData, o map[string]inter
 			}
 		} else {
 			return fmt.Errorf("Error reading pac_data: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectUserKrbKeytabPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectUserKrbKeytab-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

@@ -106,6 +106,10 @@ func resourceObjectFirewallGtpMessageRateLimit() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"echo_response": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"error_indication": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -446,6 +450,10 @@ func flattenObjectFirewallGtpMessageRateLimitEchoRequest2edl(v interface{}, d *s
 	return v
 }
 
+func flattenObjectFirewallGtpMessageRateLimitEchoResponse2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallGtpMessageRateLimitErrorIndication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -766,6 +774,16 @@ func refreshObjectObjectFirewallGtpMessageRateLimit(d *schema.ResourceData, o ma
 			}
 		} else {
 			return fmt.Errorf("Error reading echo_request: %v", err)
+		}
+	}
+
+	if err = d.Set("echo_response", flattenObjectFirewallGtpMessageRateLimitEchoResponse2edl(o["echo-response"], d, "echo_response")); err != nil {
+		if vv, ok := fortiAPIPatch(o["echo-response"], "ObjectFirewallGtpMessageRateLimit-EchoResponse"); ok {
+			if err = d.Set("echo_response", vv); err != nil {
+				return fmt.Errorf("Error reading echo_response: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading echo_response: %v", err)
 		}
 	}
 
@@ -1274,6 +1292,10 @@ func expandObjectFirewallGtpMessageRateLimitEchoRequest2edl(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectFirewallGtpMessageRateLimitEchoResponse2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallGtpMessageRateLimitErrorIndication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1576,6 +1598,15 @@ func getObjectObjectFirewallGtpMessageRateLimit(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["echo-request"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("echo_response"); ok || d.HasChange("echo_response") {
+		t, err := expandObjectFirewallGtpMessageRateLimitEchoResponse2edl(d, v, "echo_response")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["echo-response"] = t
 		}
 	}
 

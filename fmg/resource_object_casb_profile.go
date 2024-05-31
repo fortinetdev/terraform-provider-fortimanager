@@ -45,6 +45,10 @@ func resourceObjectCasbProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"comment": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -281,6 +285,10 @@ func resourceObjectCasbProfileRead(d *schema.ResourceData, m interface{}) error 
 	return nil
 }
 
+func flattenObjectCasbProfileComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -436,7 +444,7 @@ func flattenObjectCasbProfileSaasApplicationAccessRuleBypass(v interface{}, d *s
 }
 
 func flattenObjectCasbProfileSaasApplicationAccessRuleName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -481,7 +489,7 @@ func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *sche
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlOption(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -546,7 +554,7 @@ func flattenObjectCasbProfileSaasApplicationLog(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectCasbProfileSaasApplicationName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCasbProfileSaasApplicationSafeSearch(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -578,6 +586,16 @@ func refreshObjectObjectCasbProfile(d *schema.ResourceData, o map[string]interfa
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("comment", flattenObjectCasbProfileComment(o["comment"], d, "comment")); err != nil {
+		if vv, ok := fortiAPIPatch(o["comment"], "ObjectCasbProfile-Comment"); ok {
+			if err = d.Set("comment", vv); err != nil {
+				return fmt.Errorf("Error reading comment: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading comment: %v", err)
+		}
 	}
 
 	if err = d.Set("name", flattenObjectCasbProfileName(o["name"], d, "name")); err != nil {
@@ -621,6 +639,10 @@ func flattenObjectCasbProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn i
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectCasbProfileComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCasbProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -764,7 +786,7 @@ func expandObjectCasbProfileSaasApplicationAccessRuleBypass(d *schema.ResourceDa
 }
 
 func expandObjectCasbProfileSaasApplicationAccessRuleName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -807,7 +829,7 @@ func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData,
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -865,7 +887,7 @@ func expandObjectCasbProfileSaasApplicationLog(d *schema.ResourceData, v interfa
 }
 
 func expandObjectCasbProfileSaasApplicationName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCasbProfileSaasApplicationSafeSearch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -890,6 +912,15 @@ func expandObjectCasbProfileSaasApplicationTenantControlTenants(d *schema.Resour
 
 func getObjectObjectCasbProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
+		t, err := expandObjectCasbProfileComment(d, v, "comment")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["comment"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCasbProfileName(d, v, "name")

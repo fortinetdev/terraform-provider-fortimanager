@@ -126,6 +126,11 @@ func resourceObjectUserTacacs() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"status_ttl": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"tertiary_key": &schema.Schema{
 							Type:      schema.TypeSet,
 							Elem:      &schema.Schema{Type: schema.TypeString},
@@ -184,6 +189,11 @@ func resourceObjectUserTacacs() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"status_ttl": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"tertiary_key": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -376,30 +386,10 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["interface_select_method"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-InterfaceSelectMethod")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := i["key"]; ok {
-			v := flattenObjectUserTacacsDynamicMappingKey(i["key"], d, pre_append)
-			tmp["key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-Key")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["key"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
 			v := flattenObjectUserTacacsDynamicMappingPort(i["port"], d, pre_append)
 			tmp["port"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-Port")
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_key"
-		if _, ok := i["secondary-key"]; ok {
-			v := flattenObjectUserTacacsDynamicMappingSecondaryKey(i["secondary-key"], d, pre_append)
-			tmp["secondary_key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-SecondaryKey")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["secondary_key"] = c
-			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
@@ -420,14 +410,10 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["source_ip"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-SourceIp")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_key"
-		if _, ok := i["tertiary-key"]; ok {
-			v := flattenObjectUserTacacsDynamicMappingTertiaryKey(i["tertiary-key"], d, pre_append)
-			tmp["tertiary_key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-TertiaryKey")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["tertiary_key"] = c
-			}
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status_ttl"
+		if _, ok := i["status-ttl"]; ok {
+			v := flattenObjectUserTacacsDynamicMappingStatusTtl(i["status-ttl"], d, pre_append)
+			tmp["status_ttl"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-StatusTtl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -511,16 +497,8 @@ func flattenObjectUserTacacsDynamicMappingInterfaceSelectMethod(v interface{}, d
 	return v
 }
 
-func flattenObjectUserTacacsDynamicMappingKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserTacacsDynamicMappingPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserTacacsDynamicMappingSecondaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserTacacsDynamicMappingSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -535,8 +513,8 @@ func flattenObjectUserTacacsDynamicMappingSourceIp(v interface{}, d *schema.Reso
 	return v
 }
 
-func flattenObjectUserTacacsDynamicMappingTertiaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+func flattenObjectUserTacacsDynamicMappingStatusTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserTacacsDynamicMappingTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -544,15 +522,11 @@ func flattenObjectUserTacacsDynamicMappingTertiaryServer(v interface{}, d *schem
 }
 
 func flattenObjectUserTacacsInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserTacacsInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserTacacsKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserTacacsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -561,10 +535,6 @@ func flattenObjectUserTacacsName(v interface{}, d *schema.ResourceData, pre stri
 
 func flattenObjectUserTacacsPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserTacacsSecondaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserTacacsSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -579,8 +549,8 @@ func flattenObjectUserTacacsSourceIp(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
-func flattenObjectUserTacacsTertiaryKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+func flattenObjectUserTacacsStatusTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserTacacsTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -712,6 +682,16 @@ func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("status_ttl", flattenObjectUserTacacsStatusTtl(o["status-ttl"], d, "status_ttl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status-ttl"], "ObjectUserTacacs-StatusTtl"); ok {
+			if err = d.Set("status_ttl", vv); err != nil {
+				return fmt.Errorf("Error reading status_ttl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status_ttl: %v", err)
+		}
+	}
+
 	if err = d.Set("tertiary_server", flattenObjectUserTacacsTertiaryServer(o["tertiary-server"], d, "tertiary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tertiary-server"], "ObjectUserTacacs-TertiaryServer"); ok {
 			if err = d.Set("tertiary_server", vv); err != nil {
@@ -811,6 +791,11 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserTacacsDynamicMappingSourceIp(d, i["source_ip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status_ttl"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["status-ttl"], _ = expandObjectUserTacacsDynamicMappingStatusTtl(d, i["status_ttl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_key"
@@ -915,6 +900,10 @@ func expandObjectUserTacacsDynamicMappingSourceIp(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectUserTacacsDynamicMappingStatusTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserTacacsDynamicMappingTertiaryKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -924,7 +913,7 @@ func expandObjectUserTacacsDynamicMappingTertiaryServer(d *schema.ResourceData, 
 }
 
 func expandObjectUserTacacsInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserTacacsInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -956,6 +945,10 @@ func expandObjectUserTacacsServer(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectUserTacacsSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserTacacsStatusTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1075,6 +1068,15 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status_ttl"); ok || d.HasChange("status_ttl") {
+		t, err := expandObjectUserTacacsStatusTtl(d, v, "status_ttl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status-ttl"] = t
 		}
 	}
 

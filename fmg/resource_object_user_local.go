@@ -67,16 +67,18 @@ func resourceObjectUserLocal() *schema.Resource {
 				Optional: true,
 			},
 			"history0": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"history1": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -315,15 +317,7 @@ func flattenObjectUserLocalEmailTo(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectUserLocalFortitoken(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectUserLocalHistory0(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserLocalHistory1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -331,39 +325,31 @@ func flattenObjectUserLocalId(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenObjectUserLocalLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectUserLocalPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserLocalPasswdPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalPpkIdentity(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectUserLocalPpkSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserLocalQkdProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalSmsCustomServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalSmsPhone(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -379,7 +365,7 @@ func flattenObjectUserLocalStatus(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserLocalTacacsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserLocalTwoFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -468,26 +454,6 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading fortitoken: %v", err)
-		}
-	}
-
-	if err = d.Set("history0", flattenObjectUserLocalHistory0(o["history0"], d, "history0")); err != nil {
-		if vv, ok := fortiAPIPatch(o["history0"], "ObjectUserLocal-History0"); ok {
-			if err = d.Set("history0", vv); err != nil {
-				return fmt.Errorf("Error reading history0: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading history0: %v", err)
-		}
-	}
-
-	if err = d.Set("history1", flattenObjectUserLocalHistory1(o["history1"], d, "history1")); err != nil {
-		if vv, ok := fortiAPIPatch(o["history1"], "ObjectUserLocal-History1"); ok {
-			if err = d.Set("history1", vv); err != nil {
-				return fmt.Errorf("Error reading history1: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading history1: %v", err)
 		}
 	}
 
@@ -717,7 +683,7 @@ func expandObjectUserLocalEmailTo(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectUserLocalFortitoken(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalHistory0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -733,7 +699,7 @@ func expandObjectUserLocalId(d *schema.ResourceData, v interface{}, pre string) 
 }
 
 func expandObjectUserLocalLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -745,7 +711,7 @@ func expandObjectUserLocalPasswd(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandObjectUserLocalPasswdPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalPpkIdentity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -757,15 +723,15 @@ func expandObjectUserLocalPpkSecret(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectUserLocalQkdProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalRadiusServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalSmsCustomServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalSmsPhone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -781,7 +747,7 @@ func expandObjectUserLocalStatus(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandObjectUserLocalTacacsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserLocalTwoFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

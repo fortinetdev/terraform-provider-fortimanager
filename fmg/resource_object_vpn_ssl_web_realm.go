@@ -219,7 +219,7 @@ func flattenObjectVpnSslWebRealmRadiusPort(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnSslWebRealmRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectVpnSslWebRealmUrlPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -235,7 +235,7 @@ func flattenObjectVpnSslWebRealmVirtualHostOnly(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVpnSslWebRealmVirtualHostServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectVpnSslWebRealm(d *schema.ResourceData, o map[string]interface{}) error {
@@ -361,7 +361,7 @@ func expandObjectVpnSslWebRealmRadiusPort(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectVpnSslWebRealmRadiusServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectVpnSslWebRealmUrlPath(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -377,7 +377,7 @@ func expandObjectVpnSslWebRealmVirtualHostOnly(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVpnSslWebRealmVirtualHostServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interface{}, error) {

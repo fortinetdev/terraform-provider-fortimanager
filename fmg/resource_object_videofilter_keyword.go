@@ -57,6 +57,7 @@ func resourceObjectVideofilterKeyword() *schema.Resource {
 			"match": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,10 +79,12 @@ func resourceObjectVideofilterKeyword() *schema.Resource {
 						"pattern_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

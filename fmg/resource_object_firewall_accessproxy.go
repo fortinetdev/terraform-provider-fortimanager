@@ -1447,7 +1447,7 @@ func flattenObjectFirewallAccessProxyApiGatewayRealserversAddrType(v interface{}
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1491,7 +1491,7 @@ func flattenObjectFirewallAccessProxyApiGatewayRealserversPort(v interface{}, d 
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversSshClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayRealserversSshHostKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1527,7 +1527,7 @@ func flattenObjectFirewallAccessProxyApiGatewaySamlRedirect(v interface{}, d *sc
 }
 
 func flattenObjectFirewallAccessProxyApiGatewaySamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1614,7 +1614,7 @@ func flattenObjectFirewallAccessProxyApiGatewaySslRenegotiation(v interface{}, d
 }
 
 func flattenObjectFirewallAccessProxyApiGatewaySslVpnWebPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayUrlMap(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1626,7 +1626,7 @@ func flattenObjectFirewallAccessProxyApiGatewayUrlMapType(v interface{}, d *sche
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayVirtualHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2117,7 +2117,7 @@ func flattenObjectFirewallAccessProxyApiGateway6RealserversAddrType(v interface{
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2161,7 +2161,7 @@ func flattenObjectFirewallAccessProxyApiGateway6RealserversPort(v interface{}, d
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversSshClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6RealserversSshHostKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2197,7 +2197,7 @@ func flattenObjectFirewallAccessProxyApiGateway6SamlRedirect(v interface{}, d *s
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6SamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2284,7 +2284,7 @@ func flattenObjectFirewallAccessProxyApiGateway6SslRenegotiation(v interface{}, 
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6SslVpnWebPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6UrlMap(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2296,7 +2296,7 @@ func flattenObjectFirewallAccessProxyApiGateway6UrlMapType(v interface{}, d *sch
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6VirtualHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyAuthPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2304,7 +2304,7 @@ func flattenObjectFirewallAccessProxyAuthPortal(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallAccessProxyAuthVirtualHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2312,7 +2312,7 @@ func flattenObjectFirewallAccessProxyClientCert(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallAccessProxyDecryptedTrafficMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallAccessProxyEmptyCertAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2589,7 +2589,7 @@ func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsSourceAddress(v int
 }
 
 func flattenObjectFirewallAccessProxyVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallAccessProxy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -3320,7 +3320,7 @@ func expandObjectFirewallAccessProxyApiGatewayRealserversAddrType(d *schema.Reso
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversDomain(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3364,7 +3364,7 @@ func expandObjectFirewallAccessProxyApiGatewayRealserversPort(d *schema.Resource
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversSshClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayRealserversSshHostKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3400,7 +3400,7 @@ func expandObjectFirewallAccessProxyApiGatewaySamlRedirect(d *schema.ResourceDat
 }
 
 func expandObjectFirewallAccessProxyApiGatewaySamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3479,7 +3479,7 @@ func expandObjectFirewallAccessProxyApiGatewaySslRenegotiation(d *schema.Resourc
 }
 
 func expandObjectFirewallAccessProxyApiGatewaySslVpnWebPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayUrlMap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3491,7 +3491,7 @@ func expandObjectFirewallAccessProxyApiGatewayUrlMapType(d *schema.ResourceData,
 }
 
 func expandObjectFirewallAccessProxyApiGatewayVirtualHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3932,7 +3932,7 @@ func expandObjectFirewallAccessProxyApiGateway6RealserversAddrType(d *schema.Res
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversDomain(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3976,7 +3976,7 @@ func expandObjectFirewallAccessProxyApiGateway6RealserversPort(d *schema.Resourc
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversSshClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6RealserversSshHostKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4012,7 +4012,7 @@ func expandObjectFirewallAccessProxyApiGateway6SamlRedirect(d *schema.ResourceDa
 }
 
 func expandObjectFirewallAccessProxyApiGateway6SamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4091,7 +4091,7 @@ func expandObjectFirewallAccessProxyApiGateway6SslRenegotiation(d *schema.Resour
 }
 
 func expandObjectFirewallAccessProxyApiGateway6SslVpnWebPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6UrlMap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4103,7 +4103,7 @@ func expandObjectFirewallAccessProxyApiGateway6UrlMapType(d *schema.ResourceData
 }
 
 func expandObjectFirewallAccessProxyApiGateway6VirtualHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyAuthPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4111,7 +4111,7 @@ func expandObjectFirewallAccessProxyAuthPortal(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallAccessProxyAuthVirtualHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4119,7 +4119,7 @@ func expandObjectFirewallAccessProxyClientCert(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallAccessProxyDecryptedTrafficMirror(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyEmptyCertAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4287,7 +4287,7 @@ func expandObjectFirewallAccessProxyServerPubkeyAuthSettings(d *schema.ResourceD
 }
 
 func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsAuthCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4375,7 +4375,7 @@ func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsSourceAddress(d *sch
 }
 
 func expandObjectFirewallAccessProxyVip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallAccessProxy(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -225,7 +225,7 @@ func resourceObjectIpsSensorEntriesExemptIpRead(d *schema.ResourceData, m interf
 }
 
 func flattenObjectIpsSensorEntriesExemptIpDstIp3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectIpsSensorEntriesExemptIpId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -233,7 +233,7 @@ func flattenObjectIpsSensorEntriesExemptIpId3rdl(v interface{}, d *schema.Resour
 }
 
 func flattenObjectIpsSensorEntriesExemptIpSrcIp3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectIpsSensorEntriesExemptIp(d *schema.ResourceData, o map[string]interface{}) error {
@@ -283,7 +283,7 @@ func flattenObjectIpsSensorEntriesExemptIpFortiTestDebug(d *schema.ResourceData,
 }
 
 func expandObjectIpsSensorEntriesExemptIpDstIp3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectIpsSensorEntriesExemptIpId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -291,7 +291,7 @@ func expandObjectIpsSensorEntriesExemptIpId3rdl(d *schema.ResourceData, v interf
 }
 
 func expandObjectIpsSensorEntriesExemptIpSrcIp3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectIpsSensorEntriesExemptIp(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -319,7 +319,7 @@ func flattenPackagesFirewallMulticastPolicy6Id(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesFirewallMulticastPolicy6IpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallMulticastPolicy6Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -573,7 +573,7 @@ func expandPackagesFirewallMulticastPolicy6Id(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallMulticastPolicy6IpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6Logtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -634,7 +634,7 @@ func expandObjectWebfilterProfileAntiphishDefaultAction2edl(d *schema.ResourceDa
 }
 
 func expandObjectWebfilterProfileAntiphishDomainController2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileAntiphishInspectionEntries2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -689,7 +689,7 @@ func expandObjectWebfilterProfileAntiphishInspectionEntriesName2edl(d *schema.Re
 }
 
 func expandObjectWebfilterProfileAntiphishLdap2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWebfilterProfileAntiphishMaxBodyLen2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

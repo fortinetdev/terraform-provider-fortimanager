@@ -446,10 +446,6 @@ func flattenSystemLogFetchClientProfileName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
-func flattenSystemLogFetchClientProfilePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemLogFetchClientProfilePeerCertCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

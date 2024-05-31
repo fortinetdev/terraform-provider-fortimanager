@@ -322,7 +322,7 @@ func flattenObjectDlpProfileName(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectDlpProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpProfileRule(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -461,7 +461,7 @@ func flattenObjectDlpProfileRuleFileSize(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectDlpProfileRuleFileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpProfileRuleFilterBy(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -473,7 +473,7 @@ func flattenObjectDlpProfileRuleId(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectDlpProfileRuleLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpProfileRuleMatchPercentage(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -671,7 +671,7 @@ func expandObjectDlpProfileName(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandObjectDlpProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpProfileRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -790,7 +790,7 @@ func expandObjectDlpProfileRuleFileSize(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectDlpProfileRuleFileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpProfileRuleFilterBy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -802,7 +802,7 @@ func expandObjectDlpProfileRuleId(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectDlpProfileRuleLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpProfileRuleMatchPercentage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

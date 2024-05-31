@@ -456,7 +456,7 @@ func resourceObjectWanoptProfileRead(d *schema.ResourceData, m interface{}) erro
 }
 
 func flattenObjectWanoptProfileAuthGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWanoptProfileCifs(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1109,7 +1109,7 @@ func flattenObjectWanoptProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn
 }
 
 func expandObjectWanoptProfileAuthGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWanoptProfileCifs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

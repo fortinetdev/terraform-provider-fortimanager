@@ -91,10 +91,11 @@ func resourceObjectExtensionControllerDataplan() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"pdn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -291,10 +292,6 @@ func flattenObjectExtensionControllerDataplanOverage(v interface{}, d *schema.Re
 	return v
 }
 
-func flattenObjectExtensionControllerDataplanPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtensionControllerDataplanPdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -431,16 +428,6 @@ func refreshObjectObjectExtensionControllerDataplan(d *schema.ResourceData, o ma
 			}
 		} else {
 			return fmt.Errorf("Error reading overage: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectExtensionControllerDataplanPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectExtensionControllerDataplan-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

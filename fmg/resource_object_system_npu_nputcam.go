@@ -55,18 +55,22 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"df": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstipv6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstmac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -75,10 +79,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"ethertype": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ext_tag": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"frag_off": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -91,6 +97,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"gen_iv": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gen_l3_flags": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -111,10 +118,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"gen_pri_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gen_tv": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ihl": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -151,6 +160,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mf": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -163,6 +173,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"smac_change": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sp": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -171,6 +182,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"src_cfi": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"src_prio": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -179,18 +191,22 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"src_updt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcipv6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcmac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -203,38 +219,47 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tcp_ack": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_cwr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_ece": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_fin": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_push": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_rst": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_syn": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_urg": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_cfi": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_prio": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -243,10 +268,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tgt_updt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tos": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -285,18 +312,22 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"df": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstipv6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstmac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -305,10 +336,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"ethertype": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ext_tag": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"frag_off": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -321,6 +354,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"gen_iv": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gen_l3_flags": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -341,10 +375,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"gen_pri_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gen_tv": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ihl": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -381,6 +417,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mf": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -393,6 +430,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"smac_change": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sp": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -401,6 +439,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"src_cfi": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"src_prio": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -409,18 +448,22 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"src_updt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcipv6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcmac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -433,38 +476,47 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tcp_ack": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_cwr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_ece": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_fin": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_push": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_rst": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_syn": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_urg": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_cfi": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_prio": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -473,10 +525,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tgt_updt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgt_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tos": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -523,6 +577,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 			"oid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"pri_act": &schema.Schema{
 				Type:     schema.TypeList,
@@ -556,6 +611,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"act_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"bmproc": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -564,6 +620,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"bmproc_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"df_lif": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -572,6 +629,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"df_lif_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dfr": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -580,6 +638,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"dfr_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dmac_skip": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -588,6 +647,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"dmac_skip_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dosen": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -596,6 +656,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"dosen_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"espff_proc": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -604,6 +665,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"espff_proc_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"etype_pid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -612,6 +674,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"etype_pid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"frag_proc": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -620,6 +683,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"frag_proc_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwd": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -632,6 +696,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"fwd_lif_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwd_tvid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -640,10 +705,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"fwd_tvid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwd_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"icpen": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -652,6 +719,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"icpen_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"igmp_mld_snp": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -660,6 +728,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"igmp_mld_snp_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"learn": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -668,6 +737,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"learn_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"m_srh_ctrl": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -676,6 +746,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"m_srh_ctrl_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -684,6 +755,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mac_id_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mss": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -692,6 +764,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mss_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pleen": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -700,6 +773,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"pleen_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"prio_pid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -708,6 +782,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"prio_pid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"promis": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -716,6 +791,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"promis_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rfsh": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -724,6 +800,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"rfsh_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"smac_skip": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -732,10 +809,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"smac_skip_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tp_smchk_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tp_smchk": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -748,6 +827,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tpe_id_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vdm": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -756,6 +836,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"vdm_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vdom_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -764,6 +845,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"vdom_id_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"x_mode": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -772,6 +854,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"x_mode_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -790,6 +873,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"act_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fmtuv4_s": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -798,6 +882,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"fmtuv4_s_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fmtuv6_s": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -806,6 +891,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"fmtuv6_s_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"lnkid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -814,6 +900,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"lnkid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -822,6 +909,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mac_id_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mss_t": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -830,6 +918,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mss_t_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mtuv4": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -838,6 +927,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mtuv4_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mtuv6": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -846,6 +936,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"mtuv6_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"slif_act": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -854,6 +945,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"slif_act_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sublnkid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -862,6 +954,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"sublnkid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tgtv_act": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -870,6 +963,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tgtv_act_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tlif_act": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -878,6 +972,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tlif_act_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tpeid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -886,6 +981,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"tpeid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"v6fe": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -894,10 +990,12 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"v6fe_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vep_en_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vep_slid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -906,6 +1004,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"vep_slid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vep_en": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -918,6 +1017,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"xlt_lif_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"xlt_vid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -926,6 +1026,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 						"xlt_vid_v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -933,6 +1034,7 @@ func resourceObjectSystemNpuNpuTcam() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vid": &schema.Schema{
 				Type:     schema.TypeInt,

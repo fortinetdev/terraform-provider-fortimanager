@@ -217,11 +217,11 @@ func flattenObjectFirewallGtpIeRemovePolicyRemoveIes2edl(v interface{}, d *schem
 }
 
 func flattenObjectFirewallGtpIeRemovePolicySgsnAddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallGtpIeRemovePolicySgsnAddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectFirewallGtpIeRemovePolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -289,11 +289,11 @@ func expandObjectFirewallGtpIeRemovePolicyRemoveIes2edl(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallGtpIeRemovePolicySgsnAddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallGtpIeRemovePolicySgsnAddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectFirewallGtpIeRemovePolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

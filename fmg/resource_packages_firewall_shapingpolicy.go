@@ -555,11 +555,11 @@ func flattenPackagesFirewallShapingPolicyName(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesFirewallShapingPolicyPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallShapingPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallShapingPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -595,11 +595,11 @@ func flattenPackagesFirewallShapingPolicyTosNegate(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallShapingPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallShapingPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesFirewallShapingPolicyTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1215,11 +1215,11 @@ func expandPackagesFirewallShapingPolicyName(d *schema.ResourceData, v interface
 }
 
 func expandPackagesFirewallShapingPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallShapingPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallShapingPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1255,11 +1255,11 @@ func expandPackagesFirewallShapingPolicyTosNegate(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallShapingPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallShapingPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesFirewallShapingPolicyTrafficType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

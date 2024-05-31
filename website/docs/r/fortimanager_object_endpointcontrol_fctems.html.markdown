@@ -25,6 +25,7 @@ The following arguments are supported:
 * `capabilities` - List of EMS capabilities. Valid values: `fabric-auth`, `silent-approval`, `websocket`, `websocket-malware`, `push-ca-certs`.
 
 * `certificate_fingerprint` - EMS certificate fingerprint.
+* `cloud_authentication_access_key` - FortiClient EMS Cloud multitenancy access key
 * `cloud_server_type` - Cloud server type. Valid values: `production`, `alpha`, `beta`.
 
 * `dirty_reason` - Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.

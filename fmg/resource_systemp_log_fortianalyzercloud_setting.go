@@ -275,7 +275,7 @@ func flattenSystempLogFortianalyzerCloudSettingAccessConfig(v interface{}, d *sc
 }
 
 func flattenSystempLogFortianalyzerCloudSettingCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogFortianalyzerCloudSettingCertificateVerification(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -295,7 +295,7 @@ func flattenSystempLogFortianalyzerCloudSettingHmacAlgorithm(v interface{}, d *s
 }
 
 func flattenSystempLogFortianalyzerCloudSettingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystempLogFortianalyzerCloudSettingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -613,7 +613,7 @@ func expandSystempLogFortianalyzerCloudSettingAccessConfig(d *schema.ResourceDat
 }
 
 func expandSystempLogFortianalyzerCloudSettingCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogFortianalyzerCloudSettingCertificateVerification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -633,7 +633,7 @@ func expandSystempLogFortianalyzerCloudSettingHmacAlgorithm(d *schema.ResourceDa
 }
 
 func expandSystempLogFortianalyzerCloudSettingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSystempLogFortianalyzerCloudSettingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

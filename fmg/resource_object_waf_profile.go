@@ -1318,7 +1318,7 @@ func flattenObjectWafProfileConstraintException(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWafProfileConstraintExceptionAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileConstraintExceptionContentLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2159,7 +2159,7 @@ func flattenObjectWafProfileMethodMethodPolicy(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWafProfileMethodMethodPolicyAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileMethodMethodPolicyAllowedMethods(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2558,7 +2558,7 @@ func flattenObjectWafProfileUrlAccessAccessPatternRegex(v interface{}, d *schema
 }
 
 func flattenObjectWafProfileUrlAccessAccessPatternSrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileUrlAccessAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2566,7 +2566,7 @@ func flattenObjectWafProfileUrlAccessAction(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectWafProfileUrlAccessAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileUrlAccessId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3123,7 +3123,7 @@ func expandObjectWafProfileConstraintException(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWafProfileConstraintExceptionAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileConstraintExceptionContentLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3911,7 +3911,7 @@ func expandObjectWafProfileMethodMethodPolicy(d *schema.ResourceData, v interfac
 }
 
 func expandObjectWafProfileMethodMethodPolicyAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileMethodMethodPolicyAllowedMethods(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4282,7 +4282,7 @@ func expandObjectWafProfileUrlAccessAccessPatternRegex(d *schema.ResourceData, v
 }
 
 func expandObjectWafProfileUrlAccessAccessPatternSrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileUrlAccessAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4290,7 +4290,7 @@ func expandObjectWafProfileUrlAccessAction(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectWafProfileUrlAccessAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileUrlAccessId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

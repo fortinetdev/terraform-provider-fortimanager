@@ -273,7 +273,7 @@ func resourceObjectWafProfileConstraintExceptionRead(d *schema.ResourceData, m i
 }
 
 func flattenObjectWafProfileConstraintExceptionAddress3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileConstraintExceptionContentLength3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -527,7 +527,7 @@ func flattenObjectWafProfileConstraintExceptionFortiTestDebug(d *schema.Resource
 }
 
 func expandObjectWafProfileConstraintExceptionAddress3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileConstraintExceptionContentLength3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -1,4 +1,24 @@
-## 1.12.0 (Unreleased)
+## 1.13.0 (Unreleased)
+
+## 1.12.0 (May 30, 2024)
+
+IMPROVEMENTS:
+* Support FortiManager v7.0.12, v7.2.5, v7.4.3;
+* Fix issue of value contains comma in string as list variable;
+* Fix issue of ip/mask merged for ipv4 format variable;
+* Fix crash issue due to the data type change;
+* Fix issus of password type of variables always show changes;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_system_npu_icmpratectrl`
+* **New Resource:** `fortimanager_dvmdb_device_vdom`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_wifi`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_wifi_radio1`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_wifi_radio2`
+* **New Resource:** `fortimanager_object_firewall_sslsshprofile_echoutersni`
+* **New Resource:** `fortimanager_object_system_externalresource_move`
+* **New Resource:** `fortimanager_object_user_externalidentityprovider`
+* **New Resource:** `fortimanager_system_log_ueba`
 
 ## 1.11.0 (Mar 25, 2024)
 

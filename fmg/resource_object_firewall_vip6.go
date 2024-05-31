@@ -324,6 +324,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"src_vip_filter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"ssl_accept_ffdhe_groups": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -680,34 +685,42 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"ack_delay_exponent": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"active_connection_id_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"active_migration": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"grease_quic_bit": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"max_ack_delay": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"max_datagram_frame_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"max_idle_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"max_udp_payload_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -781,6 +794,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"src_filter": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"src_vip_filter": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -1389,6 +1407,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["src_filter"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SrcFilter")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_vip_filter"
+		if _, ok := i["src-vip-filter"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSrcVipFilter(i["src-vip-filter"], d, pre_append)
+			tmp["src_vip_filter"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SrcVipFilter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
 		if _, ok := i["ssl-accept-ffdhe-groups"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(i["ssl-accept-ffdhe-groups"], d, pre_append)
@@ -1977,6 +2001,10 @@ func flattenObjectFirewallVip6DynamicMappingSrcFilter(v interface{}, d *schema.R
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallVip6DynamicMappingSrcVipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2085,7 +2113,7 @@ func flattenObjectFirewallVip6DynamicMappingSslHpkpAge(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslHpkpBackup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2093,7 +2121,7 @@ func flattenObjectFirewallVip6DynamicMappingSslHpkpIncludeSubdomains(v interface
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslHpkpPrimary(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslHpkpReportUri(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2189,7 +2217,7 @@ func flattenObjectFirewallVip6EmbeddedIpv4Address(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallVip6Extip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6Extport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2558,6 +2586,10 @@ func flattenObjectFirewallVip6SrcFilter(v interface{}, d *schema.ResourceData, p
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallVip6SrcVipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6SslAcceptFfdheGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2666,7 +2698,7 @@ func flattenObjectFirewallVip6SslHpkpAge(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallVip6SslHpkpBackup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6SslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2674,7 +2706,7 @@ func flattenObjectFirewallVip6SslHpkpIncludeSubdomains(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip6SslHpkpPrimary(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallVip6SslHpkpReportUri(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3294,6 +3326,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading src_filter: %v", err)
+		}
+	}
+
+	if err = d.Set("src_vip_filter", flattenObjectFirewallVip6SrcVipFilter(o["src-vip-filter"], d, "src_vip_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["src-vip-filter"], "ObjectFirewallVip6-SrcVipFilter"); ok {
+			if err = d.Set("src_vip_filter", vv); err != nil {
+				return fmt.Errorf("Error reading src_vip_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading src_vip_filter: %v", err)
 		}
 	}
 
@@ -3964,6 +4006,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["src-filter"], _ = expandObjectFirewallVip6DynamicMappingSrcFilter(d, i["src_filter"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_vip_filter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["src-vip-filter"], _ = expandObjectFirewallVip6DynamicMappingSrcVipFilter(d, i["src_vip_filter"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-accept-ffdhe-groups"], _ = expandObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(d, i["ssl_accept_ffdhe_groups"], pre_append)
@@ -4232,7 +4279,7 @@ func expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d *schema.Resourc
 }
 
 func expandObjectFirewallVip6DynamicMappingExtip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingExtport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4308,7 +4355,7 @@ func expandObjectFirewallVip6DynamicMappingLdbMethod(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallVip6DynamicMappingMappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingMappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4495,6 +4542,10 @@ func expandObjectFirewallVip6DynamicMappingSrcFilter(d *schema.ResourceData, v i
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallVip6DynamicMappingSrcVipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4595,7 +4646,7 @@ func expandObjectFirewallVip6DynamicMappingSslHpkpAge(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVip6DynamicMappingSslHpkpBackup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingSslHpkpIncludeSubdomains(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4603,7 +4654,7 @@ func expandObjectFirewallVip6DynamicMappingSslHpkpIncludeSubdomains(d *schema.Re
 }
 
 func expandObjectFirewallVip6DynamicMappingSslHpkpPrimary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingSslHpkpReportUri(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4699,7 +4750,7 @@ func expandObjectFirewallVip6EmbeddedIpv4Address(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallVip6Extip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6Extport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5044,6 +5095,10 @@ func expandObjectFirewallVip6SrcFilter(d *schema.ResourceData, v interface{}, pr
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallVip6SrcVipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6SslAcceptFfdheGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5144,7 +5199,7 @@ func expandObjectFirewallVip6SslHpkpAge(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallVip6SslHpkpBackup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6SslHpkpIncludeSubdomains(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5152,7 +5207,7 @@ func expandObjectFirewallVip6SslHpkpIncludeSubdomains(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVip6SslHpkpPrimary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallVip6SslHpkpReportUri(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5672,6 +5727,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["src-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("src_vip_filter"); ok || d.HasChange("src_vip_filter") {
+		t, err := expandObjectFirewallVip6SrcVipFilter(d, v, "src_vip_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["src-vip-filter"] = t
 		}
 	}
 

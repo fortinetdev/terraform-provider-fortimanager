@@ -147,6 +147,8 @@ The following arguments are supported:
 
 * `service` - Service name.
 * `src_filter` - Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces.
+* `src_vip_filter` - Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+
 * `srcintf_filter` - Interfaces to which the VIP applies. Separate the names with spaces.
 * `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
 
@@ -292,6 +294,8 @@ The `dynamic_mapping` block supports:
 
 * `service` - Service name.
 * `src_filter` - Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces.
+* `src_vip_filter` - Enable/disable use of 'src-filter' to match destinations for the reverse SNAT rule. Valid values: `disable`, `enable`.
+
 * `srcintf_filter` - Interfaces to which the VIP applies. Separate the names with spaces.
 * `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
 

@@ -114,7 +114,7 @@ func resourceSecurityconsolePackageCloneRead(d *schema.ResourceData, m interface
 }
 
 func flattenSecurityconsolePackageCloneAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsolePackageCloneDstName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -122,11 +122,11 @@ func flattenSecurityconsolePackageCloneDstName(v interface{}, d *schema.Resource
 }
 
 func flattenSecurityconsolePackageCloneDstParent(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsolePackageClonePkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsolePackageCloneScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -259,7 +259,7 @@ func flattenSecurityconsolePackageCloneFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandSecurityconsolePackageCloneAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsolePackageCloneDstName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -267,11 +267,11 @@ func expandSecurityconsolePackageCloneDstName(d *schema.ResourceData, v interfac
 }
 
 func expandSecurityconsolePackageCloneDstParent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsolePackageClonePkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsolePackageCloneScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

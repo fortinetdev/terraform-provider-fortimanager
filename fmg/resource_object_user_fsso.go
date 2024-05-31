@@ -590,56 +590,6 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["logon_timeout"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-LogonTimeout")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectUserFssoDynamicMappingPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["password"] = c
-			}
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password2"
-		if _, ok := i["password2"]; ok {
-			v := flattenObjectUserFssoDynamicMappingPassword2(i["password2"], d, pre_append)
-			tmp["password2"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password2")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["password2"] = c
-			}
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password3"
-		if _, ok := i["password3"]; ok {
-			v := flattenObjectUserFssoDynamicMappingPassword3(i["password3"], d, pre_append)
-			tmp["password3"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password3")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["password3"] = c
-			}
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password4"
-		if _, ok := i["password4"]; ok {
-			v := flattenObjectUserFssoDynamicMappingPassword4(i["password4"], d, pre_append)
-			tmp["password4"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password4")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["password4"] = c
-			}
-		}
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password5"
-		if _, ok := i["password5"]; ok {
-			v := flattenObjectUserFssoDynamicMappingPassword5(i["password5"], d, pre_append)
-			tmp["password5"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password5")
-			c := d.Get(pre_append).(*schema.Set)
-			if c.Len() > 0 {
-				tmp["password5"] = c
-			}
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := i["port"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPort(i["port"], d, pre_append)
@@ -836,31 +786,11 @@ func flattenObjectUserFssoDynamicMappingLdapPollInterval(v interface{}, d *schem
 }
 
 func flattenObjectUserFssoDynamicMappingLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoDynamicMappingLogonTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserFssoDynamicMappingPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoDynamicMappingPassword2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoDynamicMappingPassword3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoDynamicMappingPassword4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoDynamicMappingPassword5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserFssoDynamicMappingPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -940,7 +870,7 @@ func flattenObjectUserFssoGroupPollInterval(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectUserFssoInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -960,7 +890,7 @@ func flattenObjectUserFssoLdapPollInterval(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectUserFssoLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoLogonTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -969,26 +899,6 @@ func flattenObjectUserFssoLogonTimeout(v interface{}, d *schema.ResourceData, pr
 
 func flattenObjectUserFssoName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectUserFssoPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoPassword2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoPassword3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoPassword4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
-func flattenObjectUserFssoPassword5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectUserFssoPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1052,7 +962,7 @@ func flattenObjectUserFssoSslServerHostIpCheck(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserFssoSslTrustedCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFssoType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1060,7 +970,7 @@ func flattenObjectUserFssoType(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserFssoUserInfoServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1656,7 +1566,7 @@ func expandObjectUserFssoDynamicMappingLdapPollInterval(d *schema.ResourceData, 
 }
 
 func expandObjectUserFssoDynamicMappingLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoDynamicMappingLogonTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1760,7 +1670,7 @@ func expandObjectUserFssoGroupPollInterval(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectUserFssoInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1780,7 +1690,7 @@ func expandObjectUserFssoLdapPollInterval(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectUserFssoLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoLogonTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1872,7 +1782,7 @@ func expandObjectUserFssoSslServerHostIpCheck(d *schema.ResourceData, v interfac
 }
 
 func expandObjectUserFssoSslTrustedCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFssoType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1880,7 +1790,7 @@ func expandObjectUserFssoType(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandObjectUserFssoUserInfoServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, error) {

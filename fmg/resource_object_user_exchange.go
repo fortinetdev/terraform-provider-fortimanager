@@ -280,10 +280,6 @@ func flattenObjectUserExchangeName(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
-func flattenObjectUserExchangePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectUserExchangeServerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

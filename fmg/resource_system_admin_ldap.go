@@ -324,10 +324,6 @@ func flattenSystemAdminLdapName(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
-func flattenSystemAdminLdapPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminLdapPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

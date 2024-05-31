@@ -136,10 +136,11 @@ func resourceObjectWirelessControllerWtpProfileLbs() *schema.Resource {
 				Optional: true,
 			},
 			"fortipresence_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"fortipresence_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -401,10 +402,6 @@ func flattenObjectWirelessControllerWtpProfileLbsFortipresenceRogue2edl(v interf
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileLbsFortipresenceSecret2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileLbsFortipresenceServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -661,16 +658,6 @@ func refreshObjectObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData, 
 			}
 		} else {
 			return fmt.Errorf("Error reading fortipresence_rogue: %v", err)
-		}
-	}
-
-	if err = d.Set("fortipresence_secret", flattenObjectWirelessControllerWtpProfileLbsFortipresenceSecret2edl(o["fortipresence-secret"], d, "fortipresence_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["fortipresence-secret"], "ObjectWirelessControllerWtpProfileLbs-FortipresenceSecret"); ok {
-			if err = d.Set("fortipresence_secret", vv); err != nil {
-				return fmt.Errorf("Error reading fortipresence_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading fortipresence_secret: %v", err)
 		}
 	}
 

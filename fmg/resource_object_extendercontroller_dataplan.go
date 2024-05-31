@@ -298,10 +298,6 @@ func flattenObjectExtenderControllerDataplanOverage(v interface{}, d *schema.Res
 	return v
 }
 
-func flattenObjectExtenderControllerDataplanPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectExtenderControllerDataplanPdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

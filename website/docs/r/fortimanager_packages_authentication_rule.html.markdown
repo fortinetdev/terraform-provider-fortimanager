@@ -33,6 +33,8 @@ The following arguments are supported:
 * `pkg` - Package.
 
 * `active_auth_method` - Select an active authentication method.
+* `cert_auth_cookie` - Enable/disable to use device certificate as authentication cookie (default = enable). Valid values: `disable`, `enable`.
+
 * `comments` - Comment.
 * `cors_depth` - Depth to allow CORS access (default = 3).
 * `cors_stateful` - Enable/disable allowance of CORS access (default = disable). Valid values: `disable`, `enable`.

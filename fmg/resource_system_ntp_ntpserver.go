@@ -179,10 +179,6 @@ func flattenSystemNtpNtpserverId2edl(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
-func flattenSystemNtpNtpserverKey2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemNtpNtpserverKeyId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

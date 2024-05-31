@@ -409,10 +409,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"fortipresence_secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"fortipresence_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -514,10 +515,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Computed: true,
 			},
 			"login_passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"login_passwd_change": &schema.Schema{
 				Type:     schema.TypeString,
@@ -843,10 +845,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_cwp_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -866,20 +869,22 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Computed: true,
 						},
 						"sam_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_private_key": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"sam_private_key_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1262,10 +1267,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_cwp_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1285,20 +1291,22 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Computed: true,
 						},
 						"sam_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_private_key": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"sam_private_key_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1645,10 +1653,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_cwp_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1667,20 +1676,22 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_private_key": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"sam_private_key_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2023,10 +2034,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_cwp_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2045,20 +2057,22 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 						},
 						"sam_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_private_key": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"sam_private_key_password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2894,11 +2908,6 @@ func flattenObjectWirelessControllerWtpProfileLbs(v interface{}, d *schema.Resou
 		result["fortipresence_rogue"] = flattenObjectWirelessControllerWtpProfileLbsFortipresenceRogue(i["fortipresence-rogue"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "fortipresence_secret"
-	if _, ok := i["fortipresence-secret"]; ok {
-		result["fortipresence_secret"] = flattenObjectWirelessControllerWtpProfileLbsFortipresenceSecret(i["fortipresence-secret"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "fortipresence_server"
 	if _, ok := i["fortipresence-server"]; ok {
 		result["fortipresence_server"] = flattenObjectWirelessControllerWtpProfileLbsFortipresenceServer(i["fortipresence-server"], d, pre_append)
@@ -3065,10 +3074,6 @@ func flattenObjectWirelessControllerWtpProfileLbsFortipresenceRogue(v interface{
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileLbsFortipresenceSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileLbsFortipresenceServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3151,10 +3156,6 @@ func flattenObjectWirelessControllerWtpProfileLedState(v interface{}, d *schema.
 
 func flattenObjectWirelessControllerWtpProfileLldp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileLoginPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileLoginPasswdChange(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3516,11 +3517,6 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 		result["sam_cwp_match_string"] = flattenObjectWirelessControllerWtpProfileRadio1SamCwpMatchString(i["sam-cwp-match-string"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := i["sam-cwp-password"]; ok {
-		result["sam_cwp_password"] = flattenObjectWirelessControllerWtpProfileRadio1SamCwpPassword(i["sam-cwp-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := i["sam-cwp-success-string"]; ok {
 		result["sam_cwp_success_string"] = flattenObjectWirelessControllerWtpProfileRadio1SamCwpSuccessString(i["sam-cwp-success-string"], d, pre_append)
@@ -3541,19 +3537,9 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 		result["sam_eap_method"] = flattenObjectWirelessControllerWtpProfileRadio1SamEapMethod(i["sam-eap-method"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_password"
-	if _, ok := i["sam-password"]; ok {
-		result["sam_password"] = flattenObjectWirelessControllerWtpProfileRadio1SamPassword(i["sam-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_private_key"
 	if _, ok := i["sam-private-key"]; ok {
 		result["sam_private_key"] = flattenObjectWirelessControllerWtpProfileRadio1SamPrivateKey(i["sam-private-key"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sam_private_key_password"
-	if _, ok := i["sam-private-key-password"]; ok {
-		result["sam_private_key_password"] = flattenObjectWirelessControllerWtpProfileRadio1SamPrivateKeyPassword(i["sam-private-key-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "sam_report_intv"
@@ -3908,10 +3894,6 @@ func flattenObjectWirelessControllerWtpProfileRadio1SamCwpMatchString(v interfac
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio1SamCwpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio1SamCwpSuccessString(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3928,16 +3910,8 @@ func flattenObjectWirelessControllerWtpProfileRadio1SamEapMethod(v interface{}, 
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio1SamPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio1SamPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileRadio1SamPrivateKeyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1SamReportIntv(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4330,11 +4304,6 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 		result["sam_cwp_match_string"] = flattenObjectWirelessControllerWtpProfileRadio2SamCwpMatchString(i["sam-cwp-match-string"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := i["sam-cwp-password"]; ok {
-		result["sam_cwp_password"] = flattenObjectWirelessControllerWtpProfileRadio2SamCwpPassword(i["sam-cwp-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := i["sam-cwp-success-string"]; ok {
 		result["sam_cwp_success_string"] = flattenObjectWirelessControllerWtpProfileRadio2SamCwpSuccessString(i["sam-cwp-success-string"], d, pre_append)
@@ -4355,19 +4324,9 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 		result["sam_eap_method"] = flattenObjectWirelessControllerWtpProfileRadio2SamEapMethod(i["sam-eap-method"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_password"
-	if _, ok := i["sam-password"]; ok {
-		result["sam_password"] = flattenObjectWirelessControllerWtpProfileRadio2SamPassword(i["sam-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_private_key"
 	if _, ok := i["sam-private-key"]; ok {
 		result["sam_private_key"] = flattenObjectWirelessControllerWtpProfileRadio2SamPrivateKey(i["sam-private-key"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sam_private_key_password"
-	if _, ok := i["sam-private-key-password"]; ok {
-		result["sam_private_key_password"] = flattenObjectWirelessControllerWtpProfileRadio2SamPrivateKeyPassword(i["sam-private-key-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "sam_report_intv"
@@ -4722,10 +4681,6 @@ func flattenObjectWirelessControllerWtpProfileRadio2SamCwpMatchString(v interfac
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio2SamCwpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio2SamCwpSuccessString(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4742,16 +4697,8 @@ func flattenObjectWirelessControllerWtpProfileRadio2SamEapMethod(v interface{}, 
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio2SamPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio2SamPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileRadio2SamPrivateKeyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2SamReportIntv(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -5144,11 +5091,6 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 		result["sam_cwp_match_string"] = flattenObjectWirelessControllerWtpProfileRadio3SamCwpMatchString(i["sam-cwp-match-string"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := i["sam-cwp-password"]; ok {
-		result["sam_cwp_password"] = flattenObjectWirelessControllerWtpProfileRadio3SamCwpPassword(i["sam-cwp-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := i["sam-cwp-success-string"]; ok {
 		result["sam_cwp_success_string"] = flattenObjectWirelessControllerWtpProfileRadio3SamCwpSuccessString(i["sam-cwp-success-string"], d, pre_append)
@@ -5169,19 +5111,9 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 		result["sam_eap_method"] = flattenObjectWirelessControllerWtpProfileRadio3SamEapMethod(i["sam-eap-method"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_password"
-	if _, ok := i["sam-password"]; ok {
-		result["sam_password"] = flattenObjectWirelessControllerWtpProfileRadio3SamPassword(i["sam-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_private_key"
 	if _, ok := i["sam-private-key"]; ok {
 		result["sam_private_key"] = flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKey(i["sam-private-key"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sam_private_key_password"
-	if _, ok := i["sam-private-key-password"]; ok {
-		result["sam_private_key_password"] = flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword(i["sam-private-key-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "sam_report_intv"
@@ -5536,10 +5468,6 @@ func flattenObjectWirelessControllerWtpProfileRadio3SamCwpMatchString(v interfac
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio3SamCwpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio3SamCwpSuccessString(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5556,16 +5484,8 @@ func flattenObjectWirelessControllerWtpProfileRadio3SamEapMethod(v interface{}, 
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio3SamPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileRadio3SamPrivateKeyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3SamReportIntv(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -5958,11 +5878,6 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 		result["sam_cwp_match_string"] = flattenObjectWirelessControllerWtpProfileRadio4SamCwpMatchString(i["sam-cwp-match-string"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := i["sam-cwp-password"]; ok {
-		result["sam_cwp_password"] = flattenObjectWirelessControllerWtpProfileRadio4SamCwpPassword(i["sam-cwp-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := i["sam-cwp-success-string"]; ok {
 		result["sam_cwp_success_string"] = flattenObjectWirelessControllerWtpProfileRadio4SamCwpSuccessString(i["sam-cwp-success-string"], d, pre_append)
@@ -5983,19 +5898,9 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 		result["sam_eap_method"] = flattenObjectWirelessControllerWtpProfileRadio4SamEapMethod(i["sam-eap-method"], d, pre_append)
 	}
 
-	pre_append = pre + ".0." + "sam_password"
-	if _, ok := i["sam-password"]; ok {
-		result["sam_password"] = flattenObjectWirelessControllerWtpProfileRadio4SamPassword(i["sam-password"], d, pre_append)
-	}
-
 	pre_append = pre + ".0." + "sam_private_key"
 	if _, ok := i["sam-private-key"]; ok {
 		result["sam_private_key"] = flattenObjectWirelessControllerWtpProfileRadio4SamPrivateKey(i["sam-private-key"], d, pre_append)
-	}
-
-	pre_append = pre + ".0." + "sam_private_key_password"
-	if _, ok := i["sam-private-key-password"]; ok {
-		result["sam_private_key_password"] = flattenObjectWirelessControllerWtpProfileRadio4SamPrivateKeyPassword(i["sam-private-key-password"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "sam_report_intv"
@@ -6350,10 +6255,6 @@ func flattenObjectWirelessControllerWtpProfileRadio4SamCwpMatchString(v interfac
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio4SamCwpPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio4SamCwpSuccessString(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -6370,16 +6271,8 @@ func flattenObjectWirelessControllerWtpProfileRadio4SamEapMethod(v interface{}, 
 	return v
 }
 
-func flattenObjectWirelessControllerWtpProfileRadio4SamPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectWirelessControllerWtpProfileRadio4SamPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileRadio4SamPrivateKeyPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio4SamReportIntv(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6565,10 +6458,6 @@ func flattenObjectWirelessControllerWtpProfileWanPortAuthMacsec(v interface{}, d
 
 func flattenObjectWirelessControllerWtpProfileWanPortAuthMethods(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectWirelessControllerWtpProfileWanPortAuthPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileWanPortAuthUsrname(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6913,16 +6802,6 @@ func refreshObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData, o m
 			}
 		} else {
 			return fmt.Errorf("Error reading lldp: %v", err)
-		}
-	}
-
-	if err = d.Set("login_passwd", flattenObjectWirelessControllerWtpProfileLoginPasswd(o["login-passwd"], d, "login_passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["login-passwd"], "ObjectWirelessControllerWtpProfile-LoginPasswd"); ok {
-			if err = d.Set("login_passwd", vv); err != nil {
-				return fmt.Errorf("Error reading login_passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading login_passwd: %v", err)
 		}
 	}
 

@@ -225,11 +225,11 @@ func resourceObjectFirewallSslSshProfileSslExemptRead(d *schema.ResourceData, m 
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptAddress62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptFortiguardCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -339,11 +339,11 @@ func flattenObjectFirewallSslSshProfileSslExemptFortiTestDebug(d *schema.Resourc
 }
 
 func expandObjectFirewallSslSshProfileSslExemptAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptAddress62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptFortiguardCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

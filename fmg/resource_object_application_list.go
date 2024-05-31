@@ -868,7 +868,7 @@ func flattenObjectApplicationListEntriesParametersValue(v interface{}, d *schema
 }
 
 func flattenObjectApplicationListEntriesPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesPopularity(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -916,11 +916,11 @@ func flattenObjectApplicationListEntriesSessionTtl(v interface{}, d *schema.Reso
 }
 
 func flattenObjectApplicationListEntriesShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListEntriesSubCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -968,7 +968,7 @@ func flattenObjectApplicationListP2PBlackList(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectApplicationListReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectApplicationListUnknownApplicationAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1582,7 +1582,7 @@ func expandObjectApplicationListEntriesParametersValue(d *schema.ResourceData, v
 }
 
 func expandObjectApplicationListEntriesPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesPopularity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1630,11 +1630,11 @@ func expandObjectApplicationListEntriesSessionTtl(d *schema.ResourceData, v inte
 }
 
 func expandObjectApplicationListEntriesShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListEntriesSubCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1682,7 +1682,7 @@ func expandObjectApplicationListP2PBlackList(d *schema.ResourceData, v interface
 }
 
 func expandObjectApplicationListReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectApplicationListUnknownApplicationAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

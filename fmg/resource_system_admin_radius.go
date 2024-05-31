@@ -189,16 +189,8 @@ func flattenSystemAdminRadiusPort(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
-func flattenSystemAdminRadiusSecondarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenSystemAdminRadiusSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenSystemAdminRadiusSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenSystemAdminRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {

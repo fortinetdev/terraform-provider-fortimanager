@@ -291,10 +291,6 @@ func flattenObjectCertificateTemplateScepCaIdentifier(v interface{}, d *schema.R
 	return v
 }
 
-func flattenObjectCertificateTemplateScepPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
-}
-
 func flattenObjectCertificateTemplateScepServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }

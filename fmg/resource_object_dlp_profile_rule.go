@@ -279,7 +279,7 @@ func flattenObjectDlpProfileRuleFileSize2edl(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectDlpProfileRuleFileType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpProfileRuleFilterBy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -291,7 +291,7 @@ func flattenObjectDlpProfileRuleId2edl(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectDlpProfileRuleLabel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectDlpProfileRuleMatchPercentage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -505,7 +505,7 @@ func expandObjectDlpProfileRuleFileSize2edl(d *schema.ResourceData, v interface{
 }
 
 func expandObjectDlpProfileRuleFileType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpProfileRuleFilterBy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -517,7 +517,7 @@ func expandObjectDlpProfileRuleId2edl(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectDlpProfileRuleLabel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectDlpProfileRuleMatchPercentage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

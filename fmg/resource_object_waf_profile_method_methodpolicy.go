@@ -214,7 +214,7 @@ func resourceObjectWafProfileMethodMethodPolicyRead(d *schema.ResourceData, m in
 }
 
 func flattenObjectWafProfileMethodMethodPolicyAddress3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectWafProfileMethodMethodPolicyAllowedMethods3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -300,7 +300,7 @@ func flattenObjectWafProfileMethodMethodPolicyFortiTestDebug(d *schema.ResourceD
 }
 
 func expandObjectWafProfileMethodMethodPolicyAddress3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectWafProfileMethodMethodPolicyAllowedMethods3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

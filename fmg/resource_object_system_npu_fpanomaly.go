@@ -242,6 +242,11 @@ func resourceObjectSystemNpuFpAnomaly() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sctp_csum_err": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"nvgre_minlen_err": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -607,6 +612,10 @@ func flattenObjectSystemNpuFpAnomalyIpv6Unknopt2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectSystemNpuFpAnomalyIpv6VerErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuFpAnomalySctpCsumErr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1117,6 +1126,16 @@ func refreshObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("sctp_csum_err", flattenObjectSystemNpuFpAnomalySctpCsumErr2edl(o["sctp-csum-err"], d, "sctp_csum_err")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-csum-err"], "ObjectSystemNpuFpAnomaly-SctpCsumErr"); ok {
+			if err = d.Set("sctp_csum_err", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_csum_err: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_csum_err: %v", err)
+		}
+	}
+
 	if err = d.Set("nvgre_minlen_err", flattenObjectSystemNpuFpAnomalyNvgreMinlenErr2edl(o["nvgre-minlen-err"], d, "nvgre_minlen_err")); err != nil {
 		if vv, ok := fortiAPIPatch(o["nvgre-minlen-err"], "ObjectSystemNpuFpAnomaly-NvgreMinlenErr"); ok {
 			if err = d.Set("nvgre_minlen_err", vv); err != nil {
@@ -1533,6 +1552,10 @@ func expandObjectSystemNpuFpAnomalyIpv6Unknopt2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectSystemNpuFpAnomalyIpv6VerErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuFpAnomalySctpCsumErr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1996,6 +2019,15 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["ipv6-ver-err"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sctp_csum_err"); ok || d.HasChange("sctp_csum_err") {
+		t, err := expandObjectSystemNpuFpAnomalySctpCsumErr2edl(d, v, "sctp_csum_err")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-csum-err"] = t
 		}
 	}
 

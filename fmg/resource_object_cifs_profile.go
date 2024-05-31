@@ -123,10 +123,11 @@ func resourceObjectCifsProfile() *schema.Resource {
 							Optional: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"principal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -259,7 +260,7 @@ func resourceObjectCifsProfileRead(d *schema.ResourceData, m interface{}) error 
 }
 
 func flattenObjectCifsProfileDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectCifsProfileFileFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -420,12 +421,6 @@ func flattenObjectCifsProfileServerKeytab(v interface{}, d *schema.ResourceData,
 			tmp["keytab"] = fortiAPISubPartPatch(v, "ObjectCifsProfile-ServerKeytab-Keytab")
 		}
 
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := i["password"]; ok {
-			v := flattenObjectCifsProfileServerKeytabPassword(i["password"], d, pre_append)
-			tmp["password"] = fortiAPISubPartPatch(v, "ObjectCifsProfile-ServerKeytab-Password")
-		}
-
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"
 		if _, ok := i["principal"]; ok {
 			v := flattenObjectCifsProfileServerKeytabPrincipal(i["principal"], d, pre_append)
@@ -444,10 +439,6 @@ func flattenObjectCifsProfileServerKeytab(v interface{}, d *schema.ResourceData,
 
 func flattenObjectCifsProfileServerKeytabKeytab(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
-}
-
-func flattenObjectCifsProfileServerKeytabPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
 }
 
 func flattenObjectCifsProfileServerKeytabPrincipal(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -553,7 +544,7 @@ func flattenObjectCifsProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn i
 }
 
 func expandObjectCifsProfileDomainController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectCifsProfileFileFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

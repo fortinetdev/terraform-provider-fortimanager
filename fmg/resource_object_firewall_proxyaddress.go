@@ -411,7 +411,7 @@ func flattenObjectFirewallProxyAddressHeaderName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallProxyAddressHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallProxyAddressHostRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -486,7 +486,7 @@ func flattenObjectFirewallProxyAddressTagging(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallProxyAddressTaggingCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectFirewallProxyAddressTaggingName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -892,7 +892,7 @@ func expandObjectFirewallProxyAddressHeaderName(d *schema.ResourceData, v interf
 }
 
 func expandObjectFirewallProxyAddressHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProxyAddressHostRegex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -959,7 +959,7 @@ func expandObjectFirewallProxyAddressTagging(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallProxyAddressTaggingCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectFirewallProxyAddressTaggingName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

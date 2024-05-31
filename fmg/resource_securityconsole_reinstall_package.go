@@ -120,7 +120,7 @@ func resourceSecurityconsoleReinstallPackageRead(d *schema.ResourceData, m inter
 }
 
 func flattenSecurityconsoleReinstallPackageAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleReinstallPackageFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -169,7 +169,7 @@ func flattenSecurityconsoleReinstallPackageTarget(v interface{}, d *schema.Resou
 }
 
 func flattenSecurityconsoleReinstallPackageTargetPkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSecurityconsoleReinstallPackageTargetScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -282,7 +282,7 @@ func flattenSecurityconsoleReinstallPackageFortiTestDebug(d *schema.ResourceData
 }
 
 func expandSecurityconsoleReinstallPackageAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleReinstallPackageFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -329,7 +329,7 @@ func expandSecurityconsoleReinstallPackageTarget(d *schema.ResourceData, v inter
 }
 
 func expandSecurityconsoleReinstallPackageTargetPkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandSecurityconsoleReinstallPackageTargetScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
