@@ -1,6 +1,6 @@
 ## 1.13.0 (Unreleased)
 
-## 1.12.0 (May 30, 2024)
+## 1.12.0 (Jun 3, 2024)
 
 IMPROVEMENTS:
 * Support FortiManager v7.0.12, v7.2.5, v7.4.3;
