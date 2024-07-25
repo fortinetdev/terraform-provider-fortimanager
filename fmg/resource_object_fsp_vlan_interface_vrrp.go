@@ -87,6 +87,7 @@ func resourceObjectFspVlanInterfaceVrrp() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

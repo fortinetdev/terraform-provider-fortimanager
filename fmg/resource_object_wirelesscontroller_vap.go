@@ -448,6 +448,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"address_group_policy": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"alias": &schema.Schema{
 							Type:     schema.TypeString,
@@ -460,10 +461,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"application_detection_engine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"application_dscp_marking": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"application_list": &schema.Schema{
 							Type:     schema.TypeString,
@@ -472,6 +475,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"application_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"atf_weight": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -538,6 +542,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"captive_portal_fw_accounting": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"captive_portal_macauth_radius_secret": &schema.Schema{
 							Type:      schema.TypeSet,
@@ -572,6 +577,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"dhcp_address_enforcement": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_lease_time": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -727,10 +733,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"l3_roaming": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"l3_roaming_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ldpc": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1186,6 +1194,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"sticky_client_threshold_6g": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"target_wake_time": &schema.Schema{
 							Type:     schema.TypeString,

@@ -89,7 +89,7 @@ func resourceSecurityconsolePblockCloneRead(d *schema.ResourceData, m interface{
 }
 
 func flattenSecurityconsolePblockCloneAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsolePblockCloneDstName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -143,7 +143,7 @@ func flattenSecurityconsolePblockCloneFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandSecurityconsolePblockCloneAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsolePblockCloneDstName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

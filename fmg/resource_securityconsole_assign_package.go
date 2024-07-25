@@ -116,7 +116,7 @@ func flattenSecurityconsoleAssignPackageFlags(v interface{}, d *schema.ResourceD
 }
 
 func flattenSecurityconsoleAssignPackagePkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsoleAssignPackageTarget(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -167,7 +167,7 @@ func flattenSecurityconsoleAssignPackageTarget(v interface{}, d *schema.Resource
 }
 
 func flattenSecurityconsoleAssignPackageTargetAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsoleAssignPackageTargetExcluded(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -175,7 +175,7 @@ func flattenSecurityconsoleAssignPackageTargetExcluded(v interface{}, d *schema.
 }
 
 func flattenSecurityconsoleAssignPackageTargetPkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func refreshObjectSecurityconsoleAssignPackage(d *schema.ResourceData, o map[string]interface{}) error {
@@ -243,7 +243,7 @@ func expandSecurityconsoleAssignPackageFlags(d *schema.ResourceData, v interface
 }
 
 func expandSecurityconsoleAssignPackagePkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsoleAssignPackageTarget(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -286,7 +286,7 @@ func expandSecurityconsoleAssignPackageTarget(d *schema.ResourceData, v interfac
 }
 
 func expandSecurityconsoleAssignPackageTargetAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsoleAssignPackageTargetExcluded(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -294,7 +294,7 @@ func expandSecurityconsoleAssignPackageTargetExcluded(d *schema.ResourceData, v 
 }
 
 func expandSecurityconsoleAssignPackageTargetPkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func getObjectSecurityconsoleAssignPackage(d *schema.ResourceData) (*map[string]interface{}, error) {

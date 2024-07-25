@@ -106,7 +106,7 @@ func resourceSecurityconsoleSignCertificateTemplateRead(d *schema.ResourceData, 
 }
 
 func flattenSecurityconsoleSignCertificateTemplateAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsoleSignCertificateTemplateScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -223,7 +223,7 @@ func flattenSecurityconsoleSignCertificateTemplateFortiTestDebug(d *schema.Resou
 }
 
 func expandSecurityconsoleSignCertificateTemplateAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsoleSignCertificateTemplateScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

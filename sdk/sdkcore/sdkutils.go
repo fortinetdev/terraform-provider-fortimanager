@@ -267,7 +267,7 @@ func fortiAPIErrorFormat(result map[string]interface{}, body string) (code int, 
 			v := result["result"]
 
 			l := v.([]interface{})
-			if len(l) > 0 || l[0] != nil {
+			if len(l) > 0 && l[0] != nil {
 				v2 := l[0].(map[string]interface{})
 				if v2["status"] != nil {
 					v3 := v2["status"].(map[string]interface{})

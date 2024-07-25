@@ -42,6 +42,7 @@ func resourceSystemNtp() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"key": &schema.Schema{
 							Type:      schema.TypeSet,

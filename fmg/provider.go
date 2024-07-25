@@ -126,7 +126,6 @@ func Provider() *schema.Provider {
 			"fortimanager_dvm_cmd_update_devlist":                                                            resourceDvmCmdUpdateDevList(),
 			"fortimanager_dvm_cmd_update_device":                                                             resourceDvmCmdUpdateDevice(),
 			"fortimanager_dvmdb_adom":                                                                        resourceDvmdbAdom(),
-			"fortimanager_dvmdb_device_vdom":                                                                 resourceDvmdbDeviceVdom(),
 			"fortimanager_dvmdb_group":                                                                       resourceDvmdbGroup(),
 			"fortimanager_dvmdb_revision":                                                                    resourceDvmdbRevision(),
 			"fortimanager_dvmdb_script":                                                                      resourceDvmdbScript(),

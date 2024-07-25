@@ -127,6 +127,7 @@ func resourceSystempLogSyslogdFilter() *schema.Resource {
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"filter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -135,6 +136,7 @@ func resourceSystempLogSyslogdFilter() *schema.Resource {
 						"filter_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,

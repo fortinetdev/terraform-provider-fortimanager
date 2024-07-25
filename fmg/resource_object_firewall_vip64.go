@@ -82,6 +82,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"arp_reply": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"color": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -106,6 +107,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mappedip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -122,10 +124,12 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"portforward": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -140,6 +144,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,

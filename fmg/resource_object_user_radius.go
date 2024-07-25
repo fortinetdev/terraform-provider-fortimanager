@@ -167,10 +167,12 @@ func resourceObjectUserRadius() *schema.Resource {
 						"account_key_cert_field": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"account_key_processing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"accounting_server": &schema.Schema{
 							Type:     schema.TypeList,
@@ -243,6 +245,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"call_station_id_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"class": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -412,14 +415,17 @@ func resourceObjectUserRadius() *schema.Resource {
 						"mac_case": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_password_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_username_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nas_id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -428,6 +434,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"nas_id_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nas_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -533,6 +540,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"server_identity_check": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -554,6 +562,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"status_ttl": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"switch_controller_acct_fast_framedip_detect": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -589,10 +598,12 @@ func resourceObjectUserRadius() *schema.Resource {
 						"tls_min_proto_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"transport_protocol": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"use_group_for_profile": &schema.Schema{
 							Type:     schema.TypeString,

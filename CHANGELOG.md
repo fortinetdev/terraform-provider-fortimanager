@@ -1,5 +1,14 @@
 ## 1.13.0 (Unreleased)
 
+## 1.12.1 (Jul 24, 2024)
+
+IMPROVEMENTS:
+* Fix issue of variable mr could not set to 0 on resoure dvmdb_adom
+* Fix invalid data issue for security console resources; 
+* Fix mkey issue of resource system_ntp_ntpserver; 
+* Fix issue when convert list to string;
+* Fix crash issue if the HTTP response is empty;
+
 ## 1.12.0 (Jun 3, 2024)
 
 IMPROVEMENTS:

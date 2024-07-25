@@ -81,7 +81,7 @@ func resourceSecurityconsoleAbortRead(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenSecurityconsoleAbortAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func refreshObjectSecurityconsoleAbort(d *schema.ResourceData, o map[string]interface{}) error {
@@ -107,7 +107,7 @@ func flattenSecurityconsoleAbortFortiTestDebug(d *schema.ResourceData, fosdebugs
 }
 
 func expandSecurityconsoleAbortAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func getObjectSecurityconsoleAbort(d *schema.ResourceData) (*map[string]interface{}, error) {

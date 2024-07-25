@@ -57,10 +57,12 @@ func resourceObjectSwitchControllerQosQueuePolicy() *schema.Resource {
 						"drop_policy": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ecn": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"max_rate": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -85,6 +87,7 @@ func resourceObjectSwitchControllerQosQueuePolicy() *schema.Resource {
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

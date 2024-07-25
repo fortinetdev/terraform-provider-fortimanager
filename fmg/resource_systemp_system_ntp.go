@@ -120,6 +120,7 @@ func resourceSystempSystemNtp() *schema.Resource {
 						"ntpv3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,

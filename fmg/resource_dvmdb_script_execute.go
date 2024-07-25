@@ -134,7 +134,7 @@ func resourceDvmdbScriptExecuteRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenDvmdbScriptExecuteAdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenDvmdbScriptExecutePackage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -283,7 +283,7 @@ func flattenDvmdbScriptExecuteFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 }
 
 func expandDvmdbScriptExecuteAdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandDvmdbScriptExecutePackage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -81,7 +81,7 @@ func resourceSecurityconsolePackageCancelInstallRead(d *schema.ResourceData, m i
 }
 
 func flattenSecurityconsolePackageCancelInstallAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func refreshObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, o map[string]interface{}) error {
@@ -107,7 +107,7 @@ func flattenSecurityconsolePackageCancelInstallFortiTestDebug(d *schema.Resource
 }
 
 func expandSecurityconsolePackageCancelInstallAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData) (*map[string]interface{}, error) {

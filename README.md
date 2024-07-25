@@ -10,7 +10,7 @@
 
 - [Terraform](https://www.terraform.io/downloads.html) 0.12.x +
 - [Go](https://golang.org/doc/install) 1.21.x (to build the provider plugin)
-- The provider can cover FortiManager 6.0, 6.2, 6.4, 7.0 versions.
+- The provider can cover FortiManager 6.4 to 7.4 versions.
 
 ## Building the Provider
 

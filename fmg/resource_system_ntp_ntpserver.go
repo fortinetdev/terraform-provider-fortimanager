@@ -38,6 +38,7 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"key": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -86,10 +87,19 @@ func resourceSystemNtpNtpserverCreate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error creating SystemNtpNtpserver resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemNtpNtpserver(obj, paradict)
+	v, err := c.CreateSystemNtpNtpserver(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemNtpNtpserver resource: %v", err)
+	}
+
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceSystemNtpNtpserverRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating SystemNtpNtpserver resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))

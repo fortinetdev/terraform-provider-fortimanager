@@ -140,10 +140,12 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"h2_support": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"h3_support": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -192,6 +194,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"http_multiplex_ttl": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_redirect": &schema.Schema{
 							Type:     schema.TypeString,
@@ -534,6 +537,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"ssl_server_renegotiation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_server_session_state_max": &schema.Schema{
 							Type:     schema.TypeInt,

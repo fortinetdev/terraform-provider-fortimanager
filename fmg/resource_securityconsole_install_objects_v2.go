@@ -112,7 +112,7 @@ func resourceSecurityconsoleInstallObjectsV2Read(d *schema.ResourceData, m inter
 }
 
 func flattenSecurityconsoleInstallObjectsV2Adom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsoleInstallObjectsV2Category(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -243,7 +243,7 @@ func flattenSecurityconsoleInstallObjectsV2FortiTestDebug(d *schema.ResourceData
 }
 
 func expandSecurityconsoleInstallObjectsV2Adom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsoleInstallObjectsV2Category(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

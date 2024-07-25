@@ -102,7 +102,7 @@ func resourceSecurityconsolePackageCommitRead(d *schema.ResourceData, m interfac
 }
 
 func flattenSecurityconsolePackageCommitAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsolePackageCommitScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -205,7 +205,7 @@ func flattenSecurityconsolePackageCommitFortiTestDebug(d *schema.ResourceData, f
 }
 
 func expandSecurityconsolePackageCommitAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsolePackageCommitScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

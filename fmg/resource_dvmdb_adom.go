@@ -966,7 +966,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("mr"); ok || d.HasChange("mr") {
+	if v, ok := d.GetOkExists("mr"); ok {
 		t, err := expandDvmdbAdomMr(d, v, "mr")
 		if err != nil {
 			return &obj, err

@@ -116,6 +116,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"account_key_cert_field": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"account_key_filter": &schema.Schema{
 							Type:     schema.TypeString,

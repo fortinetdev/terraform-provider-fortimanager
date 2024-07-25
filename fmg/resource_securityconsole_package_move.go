@@ -93,7 +93,7 @@ func resourceSecurityconsolePackageMoveRead(d *schema.ResourceData, m interface{
 }
 
 func flattenSecurityconsolePackageMoveAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func flattenSecurityconsolePackageMoveDstName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -105,7 +105,7 @@ func flattenSecurityconsolePackageMoveDstParent(v interface{}, d *schema.Resourc
 }
 
 func flattenSecurityconsolePackageMovePkg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2str(v, d.Get(pre))
+	return v
 }
 
 func refreshObjectSecurityconsolePackageMove(d *schema.ResourceData, o map[string]interface{}) error {
@@ -161,7 +161,7 @@ func flattenSecurityconsolePackageMoveFortiTestDebug(d *schema.ResourceData, fos
 }
 
 func expandSecurityconsolePackageMoveAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func expandSecurityconsolePackageMoveDstName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -173,7 +173,7 @@ func expandSecurityconsolePackageMoveDstParent(d *schema.ResourceData, v interfa
 }
 
 func expandSecurityconsolePackageMovePkg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return convstr2list(v, nil), nil
+	return v, nil
 }
 
 func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]interface{}, error) {

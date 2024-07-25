@@ -172,6 +172,7 @@ func resourceSystemCsf() *schema.Resource {
 						"index": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,

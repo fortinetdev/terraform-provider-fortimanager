@@ -77,6 +77,7 @@ func resourceObjectWebProxyForwardServerGroup() *schema.Resource {
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

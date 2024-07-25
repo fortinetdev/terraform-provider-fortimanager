@@ -450,8 +450,8 @@ func convintflist2str(v, tfv interface{}) interface{} {
 					return tfv
 				}
 			}
-			return strings.Join(vsList[:], ", ")
 		}
+		return strings.Join(vsList[:], ", ")
 	}
 	return ""
 }
