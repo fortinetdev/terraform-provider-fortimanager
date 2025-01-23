@@ -39,6 +39,7 @@ The following arguments are supported:
 * `name` - IPv6 address template name.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.
 * `subnet_segment_count` - Number of IPv6 subnet segments.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `subnet_segment` block supports:

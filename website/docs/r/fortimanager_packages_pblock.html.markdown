@@ -13,6 +13,7 @@ Packages Pblock
 >- `firewall_consolidated_policy`: `fortimanager_packages_pblock_firewall_consolidated_policy`
 >- `firewall_policy`: `fortimanager_packages_pblock_firewall_policy`
 >- `firewall_policy6`: `fortimanager_packages_pblock_firewall_policy6`
+>- `firewall_proxy_policy`: `fortimanager_packages_pblock_firewall_proxypolicy`
 >- `firewall_security_policy`: `fortimanager_packages_pblock_firewall_securitypolicy`
 
 

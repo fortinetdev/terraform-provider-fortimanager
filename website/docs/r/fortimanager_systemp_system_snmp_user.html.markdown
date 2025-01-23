@@ -35,6 +35,9 @@ The following arguments are supported:
 
 * `ha_direct` - Enable/disable direct management of HA cluster members. Valid values: `disable`, `enable`.
 
+* `interface` - Specify outgoing interface to reach server.
+* `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+
 * `mib_view` - SNMP access control MIB view.
 * `name` - SNMP user name.
 * `notify_hosts` - SNMP managers to send notifications (traps) to.

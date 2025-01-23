@@ -62,6 +62,11 @@ func resourceSystemSyslog() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -192,6 +197,10 @@ func flattenSystemSyslogSecureConnection(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenSystemSyslogSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemSyslog(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -265,6 +274,16 @@ func refreshObjectSystemSyslog(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("ssl_protocol", flattenSystemSyslogSslProtocol(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-protocol"], "SystemSyslog-SslProtocol"); ok {
+			if err = d.Set("ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_protocol: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -299,6 +318,10 @@ func expandSystemSyslogReliable(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandSystemSyslogSecureConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSyslogSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -365,6 +388,15 @@ func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["secure-connection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_protocol"); ok || d.HasChange("ssl_protocol") {
+		t, err := expandSystemSyslogSslProtocol(d, v, "ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-protocol"] = t
 		}
 	}
 

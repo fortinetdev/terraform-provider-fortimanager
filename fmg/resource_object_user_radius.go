@@ -260,6 +260,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dp_carrier_endpoint_attribute": &schema.Schema{
 							Type:     schema.TypeString,
@@ -546,6 +547,12 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"source_ip_interface": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"sso_attribute": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -572,6 +579,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"switch_controller_nas_ip_dynamic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"switch_controller_service_type": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -778,6 +786,12 @@ func resourceObjectUserRadius() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"source_ip_interface": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"sso_attribute": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1572,6 +1586,12 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["source_ip"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SourceIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip_interface"
+		if _, ok := i["source-ip-interface"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingSourceIpInterface(i["source-ip-interface"], d, pre_append)
+			tmp["source_ip_interface"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-SourceIpInterface")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute"
 		if _, ok := i["sso-attribute"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingSsoAttribute(i["sso-attribute"], d, pre_append)
@@ -2098,6 +2118,10 @@ func flattenObjectUserRadiusDynamicMappingSourceIp(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingSourceIpInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectUserRadiusDynamicMappingSsoAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2272,6 +2296,10 @@ func flattenObjectUserRadiusServerIdentityCheck(v interface{}, d *schema.Resourc
 
 func flattenObjectUserRadiusSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectUserRadiusSourceIpInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusSsoAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2792,6 +2820,16 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading source_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("source_ip_interface", flattenObjectUserRadiusSourceIpInterface(o["source-ip-interface"], d, "source_ip_interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-ip-interface"], "ObjectUserRadius-SourceIpInterface"); ok {
+			if err = d.Set("source_ip_interface", vv); err != nil {
+				return fmt.Errorf("Error reading source_ip_interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_ip_interface: %v", err)
 		}
 	}
 
@@ -3483,6 +3521,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["source-ip"], _ = expandObjectUserRadiusDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip_interface"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source-ip-interface"], _ = expandObjectUserRadiusDynamicMappingSourceIpInterface(d, i["source_ip_interface"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-attribute"], _ = expandObjectUserRadiusDynamicMappingSsoAttribute(d, i["sso_attribute"], pre_append)
@@ -4006,6 +4049,10 @@ func expandObjectUserRadiusDynamicMappingSourceIp(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectUserRadiusDynamicMappingSourceIpInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserRadiusDynamicMappingSsoAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4196,6 +4243,10 @@ func expandObjectUserRadiusServerIdentityCheck(d *schema.ResourceData, v interfa
 
 func expandObjectUserRadiusSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectUserRadiusSourceIpInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserRadiusSsoAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4668,6 +4719,15 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source_ip_interface"); ok || d.HasChange("source_ip_interface") {
+		t, err := expandObjectUserRadiusSourceIpInterface(d, v, "source_ip_interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-ip-interface"] = t
 		}
 	}
 

@@ -12,6 +12,7 @@ Configure redundant Internet connections with multiple outbound links and health
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `duplication`: `fortimanager_wantemp_system_sdwan_duplication`
 >- `health_check`: `fortimanager_wantemp_system_sdwan_healthcheck`
+>- `health_check_fortiguard`: `fortimanager_wantemp_system_sdwan_healthcheckfortiguard`
 >- `members`: `fortimanager_wantemp_system_sdwan_members`
 >- `neighbor`: `fortimanager_wantemp_system_sdwan_neighbor`
 >- `service`: `fortimanager_wantemp_system_sdwan_service`
@@ -35,6 +36,7 @@ The following arguments are supported:
 * `fail_detect` - Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `disable`, `enable`.
 
 * `health_check` - Health-Check. The structure of `health_check` block is documented below.
+* `health_check_fortiguard` - Health-Check-Fortiguard. The structure of `health_check_fortiguard` block is documented below.
 * `load_balance_mode` - Algorithm or mode to use for load balancing Internet traffic to SD-WAN members. Valid values: `source-ip-based`, `weight-based`, `usage-based`, `source-dest-ip-based`, `measured-volume-based`.
 
 * `members` - Members. The structure of `members` block is documented below.
@@ -43,6 +45,8 @@ The following arguments are supported:
 * `neighbor_hold_down` - Enable/disable hold switching from the secondary neighbor to the primary neighbor. Valid values: `disable`, `enable`.
 
 * `neighbor_hold_down_time` - Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
+* `option` - Option. Valid values: `sdwan-overlay`, `sdwan-manager`.
+
 * `service` - Service. The structure of `service` block is documented below.
 * `speedtest_bypass_routing` - Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
 
@@ -143,6 +147,79 @@ The `sla` block supports:
 * `priority_in_sla` - Value to be distributed into routing table when in-sla (0 - 65535, default = 0).
 * `priority_out_sla` - Value to be distributed into routing table when out-sla (0 - 65535, default = 0).
 
+The `health_check_fortiguard` block supports:
+
+* `addr_mode` - Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+
+* `class_id` - Traffic class ID.
+* `detect_mode` - The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`, `remote`, `agent-based`.
+
+* `diffservcode` - Differentiated services code point (DSCP) in the IP header of the probe packet.
+* `dns_match_ip` - Response IP expected from DNS server if the protocol is DNS.
+* `dns_request_domain` - Fully qualified domain name to resolve for the DNS probe.
+* `embed_measured_health` - Enable/disable embedding measured health information. Valid values: `disable`, `enable`.
+
+* `failtime` - Number of failures before server is considered lost (1 - 3600, default = 5).
+* `ftp_file` - Full path and file name on the FTP server to download for FTP health-check to probe.
+* `ftp_mode` - FTP mode. Valid values: `passive`, `port`.
+
+* `ha_priority` - HA election priority (1 - 50).
+* `http_agent` - String in the http-agent field in the HTTP header.
+* `http_get` - URL used to communicate with the server if the protocol if the protocol is HTTP.
+* `http_match` - Response string expected from the server if the protocol is HTTP.
+* `interval` - Status check interval in milliseconds, or the time between attempting to connect to the server (20 - 3600*1000 msec, default = 500).
+* `members` - Member sequence number list.
+* `mos_codec` - Codec to use for MOS calculation (default = g711). Valid values: `g711`, `g722`, `g729`.
+
+* `packet_size` - Packet size of a TWAMP test session. (124/158 - 1024)
+* `password` - TWAMP controller password in authentication mode.
+* `port` - Port number used to communicate with the server over the selected protocol (0 - 65535, default = 0, auto select. http, tcp-connect: 80, udp-echo, tcp-echo: 7, dns: 53, ftp: 21, twamp: 862).
+* `probe_count` - Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
+* `probe_packets` - Enable/disable transmission of probe packets. Valid values: `disable`, `enable`.
+
+* `probe_timeout` - Time to wait before a probe packet is considered lost (20 - 3600*1000 msec, default = 500).
+* `protocol` - Protocol used to determine if the FortiGate can communicate with the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`, `dns`, `tcp-connect`, `ftp`, `https`.
+
+* `quality_measured_method` - Method to measure the quality of tcp-connect. Valid values: `half-close`, `half-open`.
+
+* `recoverytime` - Number of successful responses received before server is considered recovered (1 - 3600, default = 5).
+* `security_mode` - Twamp controller security mode. Valid values: `none`, `authentication`.
+
+* `server` - Predefined IP address or FQDN name from FortiGuard.
+* `sla` - Sla. The structure of `sla` block is documented below.
+* `sla_fail_log_period` - Time interval in seconds that SLA fail log messages will be generated (0 - 3600, default = 0).
+* `sla_id_redistribute` - Select the ID from the SLA sub-table. The selected SLA's priority value will be distributed into the routing table (0 - 32, default = 0).
+* `sla_pass_log_period` - Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).
+* `source` - Source IP address used in the health-check packet to the server.
+* `source6` - Source IPv6 address used in the health-check packet to server.
+* `system_dns` - Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
+
+* `target_name` - Status check or predefined health-check targets name.
+* `threshold_alert_jitter` - Alert threshold for jitter (ms, default = 0).
+* `threshold_alert_latency` - Alert threshold for latency (ms, default = 0).
+* `threshold_alert_packetloss` - Alert threshold for packet loss (percentage, default = 0).
+* `threshold_warning_jitter` - Warning threshold for jitter (ms, default = 0).
+* `threshold_warning_latency` - Warning threshold for latency (ms, default = 0).
+* `threshold_warning_packetloss` - Warning threshold for packet loss (percentage, default = 0).
+* `update_cascade_interface` - Enable/disable update cascade interface. Valid values: `disable`, `enable`.
+
+* `update_static_route` - Enable/disable updating the static route. Valid values: `disable`, `enable`.
+
+* `user` - The user name to access probe server.
+* `vrf` - Virtual Routing Forwarding ID.
+
+The `sla` block supports:
+
+* `id` - SLA ID.
+* `jitter_threshold` - Jitter for SLA to make decision in milliseconds. (0 - 10000000, default = 5).
+* `latency_threshold` - Latency for SLA to make decision in milliseconds. (0 - 10000000, default = 5).
+* `link_cost_factor` - Criteria on which to base link selection. Valid values: `latency`, `jitter`, `packet-loss`, `mos`, `remote`.
+
+* `mos_threshold` - Minimum Mean Opinion Score for SLA to be marked as pass. (1.0 - 5.0, default = 3.6).
+* `packetloss_threshold` - Packet loss for SLA to make decision in percentage. (0 - 100, default = 0).
+* `priority_in_sla` - Value to be distributed into routing table when in-sla (0 - 65535, default = 0).
+* `priority_out_sla` - Value to be distributed into routing table when out-sla (0 - 65535, default = 0).
+
 The `members` block supports:
 
 * `_dynamic_member` - _Dynamic-Member.
@@ -154,6 +231,8 @@ The `members` block supports:
 * `interface` - Interface name.
 * `preferred_source` - Preferred source of route for this member.
 * `priority` - Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+* `priority_in_sla` - Preferred priority of routes to this member when this member is in-sla (0 - 65535, default = 0).
+* `priority_out_sla` - Preferred priority of routes to this member when this member is out-of-sla (0 - 65535, default = 0).
 * `priority6` - Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 * `seq_num` - Sequence number(1-512).
 * `source` - Source IP address used in the health-check packet to the server.
@@ -186,6 +265,7 @@ The `service` block supports:
 * `agent_exclusive` - Set/unset the service as agent use exclusively. Valid values: `disable`, `enable`.
 
 * `bandwidth_weight` - Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
+* `comment` - Comments.
 * `default` - Enable/disable use of SD-WAN as default service. Valid values: `disable`, `enable`.
 
 * `dscp_forward` - Enable/disable forward traffic DSCP tag. Valid values: `disable`, `enable`.

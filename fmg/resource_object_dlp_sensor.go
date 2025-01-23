@@ -79,6 +79,10 @@ func resourceObjectDlpSensor() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fgd_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"match_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -412,6 +416,10 @@ func flattenObjectDlpSensorEval(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
+func flattenObjectDlpSensorFgdId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpSensorMatchType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -700,6 +708,16 @@ func refreshObjectObjectDlpSensor(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("fgd_id", flattenObjectDlpSensorFgdId(o["fgd-id"], d, "fgd_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgd-id"], "ObjectDlpSensor-FgdId"); ok {
+			if err = d.Set("fgd_id", vv); err != nil {
+				return fmt.Errorf("Error reading fgd_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgd_id: %v", err)
+		}
+	}
+
 	if err = d.Set("match_type", flattenObjectDlpSensorMatchType(o["match-type"], d, "match_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["match-type"], "ObjectDlpSensor-MatchType"); ok {
 			if err = d.Set("match_type", vv); err != nil {
@@ -908,6 +926,10 @@ func expandObjectDlpSensorEntriesStatus(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectDlpSensorEval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpSensorFgdId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1150,6 +1172,15 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["eval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fgd_id"); ok || d.HasChange("fgd_id") {
+		t, err := expandObjectDlpSensorFgdId(d, v, "fgd_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgd-id"] = t
 		}
 	}
 

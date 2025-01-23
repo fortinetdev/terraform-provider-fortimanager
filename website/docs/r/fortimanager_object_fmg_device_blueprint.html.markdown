@@ -34,9 +34,14 @@ The following arguments are supported:
 * `name` - Name.
 * `pkg` - Pkg.
 * `platform` - Platform.
+* `port_provisioning` - Port-Provisioning.
 * `prefer_img_ver` - Prefer-Img-Ver.
 * `prerun_cliprof` - Prerun-Cliprof.
 * `prov_type` - Prov-Type. Valid values: `none`, `templates`, `template-group`.
+
+* `sdwan_management` - Sdwan-Management. Valid values: `disable`, `enable`.
+
+* `split_switch_port` - Split-Switch-Port. Valid values: `disable`, `enable`.
 
 * `template_group` - Template-Group.
 * `templates` - Templates.

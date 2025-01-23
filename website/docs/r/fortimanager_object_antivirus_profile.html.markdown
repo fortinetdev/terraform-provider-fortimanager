@@ -142,6 +142,8 @@ The `cifs` block supports:
 
 The `content_disarm` block supports:
 
+* `analytics_suspicious` - Enable/disable using CDR as a secondary method for determining suspicous files for analytics. Valid values: `disable`, `enable`.
+
 * `cover_page` - Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
 
 * `detect_only` - Enable/disable only detect disarmable files, do not alter content. Valid values: `disable`, `enable`.

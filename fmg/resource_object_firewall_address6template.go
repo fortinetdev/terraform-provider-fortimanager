@@ -110,6 +110,11 @@ func resourceObjectFirewallAddress6Template() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -377,6 +382,10 @@ func flattenObjectFirewallAddress6TemplateSubnetSegmentCount(v interface{}, d *s
 	return v
 }
 
+func flattenObjectFirewallAddress6TemplateUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -459,6 +468,16 @@ func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading subnet_segment_count: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid", flattenObjectFirewallAddress6TemplateUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallAddress6Template-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -603,6 +622,10 @@ func expandObjectFirewallAddress6TemplateSubnetSegmentCount(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectFirewallAddress6TemplateUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -657,6 +680,15 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["subnet-segment-count"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallAddress6TemplateUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

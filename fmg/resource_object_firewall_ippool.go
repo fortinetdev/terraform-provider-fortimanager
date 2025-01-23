@@ -109,6 +109,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_prefix_length": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -198,6 +202,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"client_prefix_length": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"comments": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -216,6 +224,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
+						},
+						"icmp_session_quota": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"nat64": &schema.Schema{
 							Type:     schema.TypeString,
@@ -242,7 +254,16 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"privileged_port_use_pba": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"source_endip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"source_prefix6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -264,10 +285,18 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"tcp_session_quota": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"udp_session_quota": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"utilization_alarm_clear": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -296,6 +325,10 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"icmp_session_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -327,7 +360,16 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"privileged_port_use_pba": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"source_endip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"source_prefix6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -349,10 +391,18 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tcp_session_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"udp_session_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"utilization_alarm_clear": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -543,6 +593,10 @@ func flattenObjectFirewallIppoolCgnSpa(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectFirewallIppoolClientPrefixLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -656,6 +710,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["cgn_spa"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-CgnSpa")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_prefix_length"
+		if _, ok := i["client-prefix-length"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingClientPrefixLength(i["client-prefix-length"], d, pre_append)
+			tmp["client_prefix_length"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-ClientPrefixLength")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comments"
 		if _, ok := i["comments"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingComments(i["comments"], d, pre_append)
@@ -678,6 +738,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 		if _, ok := i["exclude-ip"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingExcludeIp(i["exclude-ip"], d, pre_append)
 			tmp["exclude_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-ExcludeIp")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "icmp_session_quota"
+		if _, ok := i["icmp-session-quota"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingIcmpSessionQuota(i["icmp-session-quota"], d, pre_append)
+			tmp["icmp_session_quota"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-IcmpSessionQuota")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
@@ -716,10 +782,22 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["port_per_user"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-PortPerUser")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "privileged_port_use_pba"
+		if _, ok := i["privileged-port-use-pba"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingPrivilegedPortUsePba(i["privileged-port-use-pba"], d, pre_append)
+			tmp["privileged_port_use_pba"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-PrivilegedPortUsePba")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_endip"
 		if _, ok := i["source-endip"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingSourceEndip(i["source-endip"], d, pre_append)
 			tmp["source_endip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-SourceEndip")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_prefix6"
+		if _, ok := i["source-prefix6"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingSourcePrefix6(i["source-prefix6"], d, pre_append)
+			tmp["source_prefix6"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-SourcePrefix6")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_startip"
@@ -746,10 +824,22 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["subnet_broadcast_in_ippool"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-SubnetBroadcastInIppool")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tcp_session_quota"
+		if _, ok := i["tcp-session-quota"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingTcpSessionQuota(i["tcp-session-quota"], d, pre_append)
+			tmp["tcp_session_quota"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-TcpSessionQuota")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingType(i["type"], d, pre_append)
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Type")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "udp_session_quota"
+		if _, ok := i["udp-session-quota"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingUdpSessionQuota(i["udp-session-quota"], d, pre_append)
+			tmp["udp_session_quota"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-UdpSessionQuota")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utilization_alarm_clear"
@@ -879,6 +969,10 @@ func flattenObjectFirewallIppoolDynamicMappingCgnSpa(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingClientPrefixLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -893,6 +987,10 @@ func flattenObjectFirewallIppoolDynamicMappingEndport(v interface{}, d *schema.R
 
 func flattenObjectFirewallIppoolDynamicMappingExcludeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallIppoolDynamicMappingIcmpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallIppoolDynamicMappingNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -919,7 +1017,15 @@ func flattenObjectFirewallIppoolDynamicMappingPortPerUser(v interface{}, d *sche
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingPrivilegedPortUsePba(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingSourceEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingSourcePrefix6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -939,7 +1045,15 @@ func flattenObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(v interfac
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingTcpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingUdpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -961,6 +1075,10 @@ func flattenObjectFirewallIppoolEndport(v interface{}, d *schema.ResourceData, p
 
 func flattenObjectFirewallIppoolExcludeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallIppoolIcmpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallIppoolName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -991,7 +1109,15 @@ func flattenObjectFirewallIppoolPortPerUser(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFirewallIppoolPrivilegedPortUsePba(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolSourceEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolSourcePrefix6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1011,7 +1137,15 @@ func flattenObjectFirewallIppoolSubnetBroadcastInIppool(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallIppoolTcpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolUdpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1174,6 +1308,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("client_prefix_length", flattenObjectFirewallIppoolClientPrefixLength(o["client-prefix-length"], d, "client_prefix_length")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-prefix-length"], "ObjectFirewallIppool-ClientPrefixLength"); ok {
+			if err = d.Set("client_prefix_length", vv); err != nil {
+				return fmt.Errorf("Error reading client_prefix_length: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_prefix_length: %v", err)
+		}
+	}
+
 	if err = d.Set("comments", flattenObjectFirewallIppoolComments(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "ObjectFirewallIppool-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {
@@ -1235,6 +1379,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading exclude_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("icmp_session_quota", flattenObjectFirewallIppoolIcmpSessionQuota(o["icmp-session-quota"], d, "icmp_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["icmp-session-quota"], "ObjectFirewallIppool-IcmpSessionQuota"); ok {
+			if err = d.Set("icmp_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading icmp_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading icmp_session_quota: %v", err)
 		}
 	}
 
@@ -1308,6 +1462,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("privileged_port_use_pba", flattenObjectFirewallIppoolPrivilegedPortUsePba(o["privileged-port-use-pba"], d, "privileged_port_use_pba")); err != nil {
+		if vv, ok := fortiAPIPatch(o["privileged-port-use-pba"], "ObjectFirewallIppool-PrivilegedPortUsePba"); ok {
+			if err = d.Set("privileged_port_use_pba", vv); err != nil {
+				return fmt.Errorf("Error reading privileged_port_use_pba: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading privileged_port_use_pba: %v", err)
+		}
+	}
+
 	if err = d.Set("source_endip", flattenObjectFirewallIppoolSourceEndip(o["source-endip"], d, "source_endip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-endip"], "ObjectFirewallIppool-SourceEndip"); ok {
 			if err = d.Set("source_endip", vv); err != nil {
@@ -1315,6 +1479,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading source_endip: %v", err)
+		}
+	}
+
+	if err = d.Set("source_prefix6", flattenObjectFirewallIppoolSourcePrefix6(o["source-prefix6"], d, "source_prefix6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-prefix6"], "ObjectFirewallIppool-SourcePrefix6"); ok {
+			if err = d.Set("source_prefix6", vv); err != nil {
+				return fmt.Errorf("Error reading source_prefix6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_prefix6: %v", err)
 		}
 	}
 
@@ -1358,6 +1532,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("tcp_session_quota", flattenObjectFirewallIppoolTcpSessionQuota(o["tcp-session-quota"], d, "tcp_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tcp-session-quota"], "ObjectFirewallIppool-TcpSessionQuota"); ok {
+			if err = d.Set("tcp_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading tcp_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tcp_session_quota: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectFirewallIppoolType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectFirewallIppool-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -1365,6 +1549,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("udp_session_quota", flattenObjectFirewallIppoolUdpSessionQuota(o["udp-session-quota"], d, "udp_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udp-session-quota"], "ObjectFirewallIppool-UdpSessionQuota"); ok {
+			if err = d.Set("udp_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading udp_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udp_session_quota: %v", err)
 		}
 	}
 
@@ -1450,6 +1644,10 @@ func expandObjectFirewallIppoolCgnPortStart(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallIppoolCgnSpa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolClientPrefixLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1551,6 +1749,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["cgn-spa"], _ = expandObjectFirewallIppoolDynamicMappingCgnSpa(d, i["cgn_spa"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_prefix_length"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["client-prefix-length"], _ = expandObjectFirewallIppoolDynamicMappingClientPrefixLength(d, i["client_prefix_length"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comments"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comments"], _ = expandObjectFirewallIppoolDynamicMappingComments(d, i["comments"], pre_append)
@@ -1569,6 +1772,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exclude-ip"], _ = expandObjectFirewallIppoolDynamicMappingExcludeIp(d, i["exclude_ip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "icmp_session_quota"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["icmp-session-quota"], _ = expandObjectFirewallIppoolDynamicMappingIcmpSessionQuota(d, i["icmp_session_quota"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
@@ -1601,9 +1809,19 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["port-per-user"], _ = expandObjectFirewallIppoolDynamicMappingPortPerUser(d, i["port_per_user"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "privileged_port_use_pba"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["privileged-port-use-pba"], _ = expandObjectFirewallIppoolDynamicMappingPrivilegedPortUsePba(d, i["privileged_port_use_pba"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_endip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-endip"], _ = expandObjectFirewallIppoolDynamicMappingSourceEndip(d, i["source_endip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_prefix6"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source-prefix6"], _ = expandObjectFirewallIppoolDynamicMappingSourcePrefix6(d, i["source_prefix6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_startip"
@@ -1626,9 +1844,19 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["subnet-broadcast-in-ippool"], _ = expandObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(d, i["subnet_broadcast_in_ippool"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tcp_session_quota"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["tcp-session-quota"], _ = expandObjectFirewallIppoolDynamicMappingTcpSessionQuota(d, i["tcp_session_quota"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallIppoolDynamicMappingType(d, i["type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "udp_session_quota"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["udp-session-quota"], _ = expandObjectFirewallIppoolDynamicMappingUdpSessionQuota(d, i["udp_session_quota"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utilization_alarm_clear"
@@ -1749,6 +1977,10 @@ func expandObjectFirewallIppoolDynamicMappingCgnSpa(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingClientPrefixLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1763,6 +1995,10 @@ func expandObjectFirewallIppoolDynamicMappingEndport(d *schema.ResourceData, v i
 
 func expandObjectFirewallIppoolDynamicMappingExcludeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingIcmpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallIppoolDynamicMappingNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1789,7 +2025,15 @@ func expandObjectFirewallIppoolDynamicMappingPortPerUser(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingPrivilegedPortUsePba(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingSourceEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingSourcePrefix6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1809,7 +2053,15 @@ func expandObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(d *schema.R
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingTcpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingUdpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1831,6 +2083,10 @@ func expandObjectFirewallIppoolEndport(d *schema.ResourceData, v interface{}, pr
 
 func expandObjectFirewallIppoolExcludeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallIppoolIcmpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallIppoolName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1861,7 +2117,15 @@ func expandObjectFirewallIppoolPortPerUser(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectFirewallIppoolPrivilegedPortUsePba(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolSourceEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolSourcePrefix6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1881,7 +2145,15 @@ func expandObjectFirewallIppoolSubnetBroadcastInIppool(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallIppoolTcpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolUdpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2022,6 +2294,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
+	if v, ok := d.GetOk("client_prefix_length"); ok || d.HasChange("client_prefix_length") {
+		t, err := expandObjectFirewallIppoolClientPrefixLength(d, v, "client_prefix_length")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-prefix-length"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectFirewallIppoolComments(d, v, "comments")
 		if err != nil {
@@ -2064,6 +2345,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["exclude-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("icmp_session_quota"); ok || d.HasChange("icmp_session_quota") {
+		t, err := expandObjectFirewallIppoolIcmpSessionQuota(d, v, "icmp_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["icmp-session-quota"] = t
 		}
 	}
 
@@ -2130,12 +2420,30 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
+	if v, ok := d.GetOk("privileged_port_use_pba"); ok || d.HasChange("privileged_port_use_pba") {
+		t, err := expandObjectFirewallIppoolPrivilegedPortUsePba(d, v, "privileged_port_use_pba")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["privileged-port-use-pba"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("source_endip"); ok || d.HasChange("source_endip") {
 		t, err := expandObjectFirewallIppoolSourceEndip(d, v, "source_endip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["source-endip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source_prefix6"); ok || d.HasChange("source_prefix6") {
+		t, err := expandObjectFirewallIppoolSourcePrefix6(d, v, "source_prefix6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-prefix6"] = t
 		}
 	}
 
@@ -2175,12 +2483,30 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
+	if v, ok := d.GetOk("tcp_session_quota"); ok || d.HasChange("tcp_session_quota") {
+		t, err := expandObjectFirewallIppoolTcpSessionQuota(d, v, "tcp_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tcp-session-quota"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallIppoolType(d, v, "type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udp_session_quota"); ok || d.HasChange("udp_session_quota") {
+		t, err := expandObjectFirewallIppoolUdpSessionQuota(d, v, "udp_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udp-session-quota"] = t
 		}
 	}
 

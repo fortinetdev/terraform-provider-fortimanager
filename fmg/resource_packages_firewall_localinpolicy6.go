@@ -115,6 +115,10 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"logtraffic": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
@@ -355,6 +359,10 @@ func flattenPackagesFirewallLocalInPolicy6Intf(v interface{}, d *schema.Resource
 	return flattenStringList(v)
 }
 
+func flattenPackagesFirewallLocalInPolicy6Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicy6Policyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -508,6 +516,16 @@ func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("logtraffic", flattenPackagesFirewallLocalInPolicy6Logtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesFirewallLocalInPolicy6-Logtraffic"); ok {
+			if err = d.Set("logtraffic", vv); err != nil {
+				return fmt.Errorf("Error reading logtraffic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading logtraffic: %v", err)
+		}
+	}
+
 	if err = d.Set("policyid", flattenPackagesFirewallLocalInPolicy6Policyid(o["policyid"], d, "policyid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["policyid"], "PackagesFirewallLocalInPolicy6-Policyid"); ok {
 			if err = d.Set("policyid", vv); err != nil {
@@ -651,6 +669,10 @@ func expandPackagesFirewallLocalInPolicy6Intf(d *schema.ResourceData, v interfac
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesFirewallLocalInPolicy6Logtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicy6Policyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -786,6 +808,15 @@ func getObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["intf"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
+		t, err := expandPackagesFirewallLocalInPolicy6Logtraffic(d, v, "logtraffic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["logtraffic"] = t
 		}
 	}
 

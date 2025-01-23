@@ -273,7 +273,7 @@ func resourcePackagesAuthenticationSettingRead(d *schema.ResourceData, m interfa
 }
 
 func flattenPackagesAuthenticationSettingActiveAuthScheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenPackagesAuthenticationSettingAuthHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -597,7 +597,7 @@ func flattenPackagesAuthenticationSettingFortiTestDebug(d *schema.ResourceData, 
 }
 
 func expandPackagesAuthenticationSettingActiveAuthScheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandPackagesAuthenticationSettingAuthHttps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

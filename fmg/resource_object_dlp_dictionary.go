@@ -88,6 +88,10 @@ func resourceObjectDlpDictionary() *schema.Resource {
 					},
 				},
 			},
+			"fgd_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"match_around": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -334,6 +338,10 @@ func flattenObjectDlpDictionaryEntriesType(v interface{}, d *schema.ResourceData
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectDlpDictionaryFgdId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpDictionaryMatchAround(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -392,6 +400,16 @@ func refreshObjectObjectDlpDictionary(d *schema.ResourceData, o map[string]inter
 					return fmt.Errorf("Error reading entries: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("fgd_id", flattenObjectDlpDictionaryFgdId(o["fgd-id"], d, "fgd_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgd-id"], "ObjectDlpDictionary-FgdId"); ok {
+			if err = d.Set("fgd_id", vv); err != nil {
+				return fmt.Errorf("Error reading fgd_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgd_id: %v", err)
 		}
 	}
 
@@ -535,6 +553,10 @@ func expandObjectDlpDictionaryEntriesType(d *schema.ResourceData, v interface{},
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectDlpDictionaryFgdId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpDictionaryMatchAround(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -569,6 +591,15 @@ func getObjectObjectDlpDictionary(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["entries"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fgd_id"); ok || d.HasChange("fgd_id") {
+		t, err := expandObjectDlpDictionaryFgdId(d, v, "fgd_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgd-id"] = t
 		}
 	}
 

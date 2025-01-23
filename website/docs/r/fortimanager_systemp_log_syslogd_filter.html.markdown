@@ -50,6 +50,8 @@ The following arguments are supported:
 * `free_style` - Free-Style. The structure of `free_style` block is documented below.
 * `gtp` - Enable/disable GTP messages logging. Valid values: `disable`, `enable`.
 
+* `http_transaction` - Enable/disable log HTTP transaction messages. Valid values: `disable`, `enable`.
+
 * `local_traffic` - Enable/disable local in or out traffic logging. Valid values: `disable`, `enable`.
 
 * `multicast_traffic` - Enable/disable multicast traffic logging. Valid values: `disable`, `enable`.

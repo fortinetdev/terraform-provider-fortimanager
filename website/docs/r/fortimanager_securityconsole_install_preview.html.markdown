@@ -29,8 +29,15 @@ The following arguments are supported:
 * `device` - Device.
 * `flags` - Flags. Valid values: `none`, `json`.
 
+* `scope` - Scope. The structure of `scope` block is documented below.
 * `vdoms` - Vdoms.
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 * `force_recreate` - The argument is optional, if it is set, when the value changes, the resource will be re-created.
+
+The `scope` block supports:
+
+* `name` - Name.
+* `vdom` - Vdom.
 
 
 ## Attribute Reference

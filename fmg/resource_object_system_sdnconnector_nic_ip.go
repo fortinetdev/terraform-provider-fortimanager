@@ -60,6 +60,10 @@ func resourceObjectSystemSdnConnectorNicIp() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"private_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"public_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -228,6 +232,10 @@ func flattenObjectSystemSdnConnectorNicIpName3rdl(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectSystemSdnConnectorNicIpPrivateIp3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorNicIpPublicIp3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -250,6 +258,16 @@ func refreshObjectObjectSystemSdnConnectorNicIp(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("private_ip", flattenObjectSystemSdnConnectorNicIpPrivateIp3rdl(o["private-ip"], d, "private_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["private-ip"], "ObjectSystemSdnConnectorNicIp-PrivateIp"); ok {
+			if err = d.Set("private_ip", vv); err != nil {
+				return fmt.Errorf("Error reading private_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading private_ip: %v", err)
 		}
 	}
 
@@ -286,6 +304,10 @@ func expandObjectSystemSdnConnectorNicIpName3rdl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorNicIpPrivateIp3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorNicIpPublicIp3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -303,6 +325,15 @@ func getObjectObjectSystemSdnConnectorNicIp(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("private_ip"); ok || d.HasChange("private_ip") {
+		t, err := expandObjectSystemSdnConnectorNicIpPrivateIp3rdl(d, v, "private_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["private-ip"] = t
 		}
 	}
 

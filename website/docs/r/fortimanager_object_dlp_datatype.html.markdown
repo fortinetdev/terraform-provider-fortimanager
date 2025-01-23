@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Optional comments.
+* `fgd_id` - ID of object in FortiGuard database.
 * `look_ahead` - Number of characters to obtain in advance for verification (1 - 255, default = 1).
 * `look_back` - Number of characters required to save for verification (1 - 255, default = 1).
 * `match_ahead` - Number of characters behind for match-around (1 - 4096, default = 1).

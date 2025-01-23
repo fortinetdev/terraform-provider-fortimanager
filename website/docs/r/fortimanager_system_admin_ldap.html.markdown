@@ -53,6 +53,8 @@ The following arguments are supported:
 * `secure` - SSL connection. disable - No SSL. starttls - Use StartTLS. ldaps - Use LDAPS. Valid values: `disable`, `starttls`, `ldaps`.
 
 * `server` - {<name_str|ip_str>} LDAP server domain name or IP.
+* `ssl_protocol` - set the lowest SSL protocol version for connection to ldap server. follow-global-ssl-protocol - Follow system.global.global-ssl-protocol setting (default). sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version. tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `follow-global-ssl-protocol`, `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
+
 * `tertiary_server` - {<name_str|ip_str>} tertiary LDAP server domain name or IP.
 * `type` - Type of LDAP binding. simple - Simple password authentication without search. anonymous - Bind using anonymous user search. regular - Bind using username/password and then search. Valid values: `simple`, `anonymous`, `regular`.
 

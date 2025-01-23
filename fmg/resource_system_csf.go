@@ -131,6 +131,11 @@ func resourceSystemCsf() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"saml_configuration_sync": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -188,6 +193,11 @@ func resourceSystemCsf() *schema.Resource {
 			"upstream": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"upstream_confirm": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"upstream_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -392,6 +402,10 @@ func flattenSystemCsfLogUnification(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
+func flattenSystemCsfSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemCsfSamlConfigurationSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -510,6 +524,10 @@ func flattenSystemCsfTrustedListSerial(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemCsfUpstream(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemCsfUpstreamConfirm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -688,6 +706,16 @@ func refreshObjectSystemCsf(d *schema.ResourceData, o map[string]interface{}) er
 		}
 	}
 
+	if err = d.Set("ssl_protocol", flattenSystemCsfSslProtocol(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-protocol"], "SystemCsf-SslProtocol"); ok {
+			if err = d.Set("ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("saml_configuration_sync", flattenSystemCsfSamlConfigurationSync(o["saml-configuration-sync"], d, "saml_configuration_sync")); err != nil {
 		if vv, ok := fortiAPIPatch(o["saml-configuration-sync"], "SystemCsf-SamlConfigurationSync"); ok {
 			if err = d.Set("saml_configuration_sync", vv); err != nil {
@@ -739,6 +767,16 @@ func refreshObjectSystemCsf(d *schema.ResourceData, o map[string]interface{}) er
 			}
 		} else {
 			return fmt.Errorf("Error reading upstream: %v", err)
+		}
+	}
+
+	if err = d.Set("upstream_confirm", flattenSystemCsfUpstreamConfirm(o["upstream-confirm"], d, "upstream_confirm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["upstream-confirm"], "SystemCsf-UpstreamConfirm"); ok {
+			if err = d.Set("upstream_confirm", vv); err != nil {
+				return fmt.Errorf("Error reading upstream_confirm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading upstream_confirm: %v", err)
 		}
 	}
 
@@ -876,6 +914,10 @@ func expandSystemCsfLogUnification(d *schema.ResourceData, v interface{}, pre st
 	return v, nil
 }
 
+func expandSystemCsfSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemCsfSamlConfigurationSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -981,6 +1023,10 @@ func expandSystemCsfTrustedListSerial(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemCsfUpstream(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemCsfUpstreamConfirm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1144,6 +1190,15 @@ func getObjectSystemCsf(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
+	if v, ok := d.GetOk("ssl_protocol"); ok || d.HasChange("ssl_protocol") {
+		t, err := expandSystemCsfSslProtocol(d, v, "ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-protocol"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("saml_configuration_sync"); ok || d.HasChange("saml_configuration_sync") {
 		t, err := expandSystemCsfSamlConfigurationSync(d, v, "saml_configuration_sync")
 		if err != nil {
@@ -1177,6 +1232,15 @@ func getObjectSystemCsf(d *schema.ResourceData) (*map[string]interface{}, error)
 			return &obj, err
 		} else if t != nil {
 			obj["upstream"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("upstream_confirm"); ok || d.HasChange("upstream_confirm") {
+		t, err := expandSystemCsfUpstreamConfirm(d, v, "upstream_confirm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["upstream-confirm"] = t
 		}
 	}
 

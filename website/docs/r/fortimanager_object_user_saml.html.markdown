@@ -52,6 +52,7 @@ The following arguments are supported:
 * `name` - SAML server entry name.
 * `reauth` - Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `scim_client` - SCIM client name.
 * `single_logout_url` - SP single logout URL.
 * `single_sign_on_url` - SP single sign-on URL.
 * `user_claim_type` - User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
@@ -81,6 +82,7 @@ The `dynamic_mapping` block supports:
 
 * `reauth` - Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `scim_client` - SCIM client name.
 * `single_logout_url` - SP single logout URL.
 * `single_sign_on_url` - SP single sign-on URL.
 * `user_claim_type` - User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.

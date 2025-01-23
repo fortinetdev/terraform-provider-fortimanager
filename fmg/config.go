@@ -452,6 +452,8 @@ func convintflist2str(v, tfv interface{}) interface{} {
 			}
 		}
 		return strings.Join(vsList[:], ", ")
+	} else if vs, ok := v.(string); ok {
+		return vs
 	}
 	return ""
 }

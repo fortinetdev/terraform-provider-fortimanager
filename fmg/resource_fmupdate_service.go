@@ -49,6 +49,11 @@ func resourceFmupdateService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"query_ioc": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"query_iot": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -173,6 +178,10 @@ func flattenFmupdateServiceQueryFilequery(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenFmupdateServiceQueryIoc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenFmupdateServiceQueryIot(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -237,6 +246,16 @@ func refreshObjectFmupdateService(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading query_filequery: %v", err)
+		}
+	}
+
+	if err = d.Set("query_ioc", flattenFmupdateServiceQueryIoc(o["query-ioc"], d, "query_ioc")); err != nil {
+		if vv, ok := fortiAPIPatch(o["query-ioc"], "FmupdateService-QueryIoc"); ok {
+			if err = d.Set("query_ioc", vv); err != nil {
+				return fmt.Errorf("Error reading query_ioc: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading query_ioc: %v", err)
 		}
 	}
 
@@ -325,6 +344,10 @@ func expandFmupdateServiceQueryFilequery(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandFmupdateServiceQueryIoc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandFmupdateServiceQueryIot(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -385,6 +408,15 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["query-filequery"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("query_ioc"); ok || d.HasChange("query_ioc") {
+		t, err := expandFmupdateServiceQueryIoc(d, v, "query_ioc")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["query-ioc"] = t
 		}
 	}
 

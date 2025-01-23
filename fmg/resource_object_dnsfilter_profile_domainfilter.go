@@ -163,7 +163,7 @@ func resourceObjectDnsfilterProfileDomainFilterRead(d *schema.ResourceData, m in
 }
 
 func flattenObjectDnsfilterProfileDomainFilterDomainFilterTable2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2num(v)
 }
 
 func refreshObjectObjectDnsfilterProfileDomainFilter(d *schema.ResourceData, o map[string]interface{}) error {

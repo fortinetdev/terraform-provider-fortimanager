@@ -33,6 +33,7 @@ The following arguments are supported:
 * `global_object` - Global Object.
 * `member` - Schedules added to the schedule group.
 * `name` - Schedule group name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

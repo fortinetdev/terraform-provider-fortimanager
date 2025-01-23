@@ -595,6 +595,7 @@ func resourceObjectSwitchControllerManagedSwitch() *schema.Resource {
 			"radius_nas_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_nas_ip_override": &schema.Schema{
 				Type:     schema.TypeString,

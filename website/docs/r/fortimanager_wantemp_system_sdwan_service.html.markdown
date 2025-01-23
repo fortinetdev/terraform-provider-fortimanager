@@ -29,6 +29,7 @@ The following arguments are supported:
 * `agent_exclusive` - Set/unset the service as agent use exclusively. Valid values: `disable`, `enable`.
 
 * `bandwidth_weight` - Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
+* `comment` - Comments.
 * `default` - Enable/disable use of SD-WAN as default service. Valid values: `disable`, `enable`.
 
 * `dscp_forward` - Enable/disable forward traffic DSCP tag. Valid values: `disable`, `enable`.

@@ -135,6 +135,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"account_key_upn_san": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"antiphish": &schema.Schema{
 							Type:     schema.TypeString,
@@ -274,8 +275,18 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"source_ip_interface": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"source_port": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"ssl_max_proto_version": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"ssl_min_proto_version": &schema.Schema{
@@ -416,6 +427,12 @@ func resourceObjectUserLdap() *schema.Resource {
 			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"source_ip_interface": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -859,10 +876,22 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["source_ip"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-SourceIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip_interface"
+		if _, ok := i["source-ip-interface"]; ok {
+			v := flattenObjectUserLdapDynamicMappingSourceIpInterface(i["source-ip-interface"], d, pre_append)
+			tmp["source_ip_interface"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-SourceIpInterface")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
 		if _, ok := i["source-port"]; ok {
 			v := flattenObjectUserLdapDynamicMappingSourcePort(i["source-port"], d, pre_append)
 			tmp["source_port"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-SourcePort")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_max_proto_version"
+		if _, ok := i["ssl-max-proto-version"]; ok {
+			v := flattenObjectUserLdapDynamicMappingSslMaxProtoVersion(i["ssl-max-proto-version"], d, pre_append)
+			tmp["ssl_max_proto_version"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-SslMaxProtoVersion")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_min_proto_version"
@@ -1120,7 +1149,15 @@ func flattenObjectUserLdapDynamicMappingSourceIp(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectUserLdapDynamicMappingSourceIpInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectUserLdapDynamicMappingSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingSslMaxProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1238,6 +1275,10 @@ func flattenObjectUserLdapServerIdentityCheck(v interface{}, d *schema.ResourceD
 
 func flattenObjectUserLdapSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectUserLdapSourceIpInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectUserLdapSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1609,6 +1650,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("source_ip_interface", flattenObjectUserLdapSourceIpInterface(o["source-ip-interface"], d, "source_ip_interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-ip-interface"], "ObjectUserLdap-SourceIpInterface"); ok {
+			if err = d.Set("source_ip_interface", vv); err != nil {
+				return fmt.Errorf("Error reading source_ip_interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_ip_interface: %v", err)
+		}
+	}
+
 	if err = d.Set("source_port", flattenObjectUserLdapSourcePort(o["source-port"], d, "source_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-port"], "ObjectUserLdap-SourcePort"); ok {
 			if err = d.Set("source_port", vv); err != nil {
@@ -1967,9 +2018,19 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["source-ip"], _ = expandObjectUserLdapDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip_interface"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source-ip-interface"], _ = expandObjectUserLdapDynamicMappingSourceIpInterface(d, i["source_ip_interface"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-port"], _ = expandObjectUserLdapDynamicMappingSourcePort(d, i["source_port"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_max_proto_version"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ssl-max-proto-version"], _ = expandObjectUserLdapDynamicMappingSslMaxProtoVersion(d, i["ssl_max_proto_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_min_proto_version"
@@ -2214,7 +2275,15 @@ func expandObjectUserLdapDynamicMappingSourceIp(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectUserLdapDynamicMappingSourceIpInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserLdapDynamicMappingSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingSslMaxProtoVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2336,6 +2405,10 @@ func expandObjectUserLdapServerIdentityCheck(d *schema.ResourceData, v interface
 
 func expandObjectUserLdapSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectUserLdapSourceIpInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserLdapSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2661,6 +2734,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source_ip_interface"); ok || d.HasChange("source_ip_interface") {
+		t, err := expandObjectUserLdapSourceIpInterface(d, v, "source_ip_interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-ip-interface"] = t
 		}
 	}
 

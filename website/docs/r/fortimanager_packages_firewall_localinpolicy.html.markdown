@@ -53,6 +53,8 @@ The following arguments are supported:
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `intf` - Incoming interface name from available options.
+* `logtraffic` - Enable/disable local-in traffic logging. Valid values: `disable`, `enable`.
+
 * `policyid` - User defined local in policy ID.
 * `schedule` - Schedule object from available options.
 * `service` - Service object from available options.

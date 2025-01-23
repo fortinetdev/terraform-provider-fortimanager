@@ -48,6 +48,7 @@ func resourceObjectUserExternalIdentityProvider() *schema.Resource {
 			"group_attr_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -72,6 +73,7 @@ func resourceObjectUserExternalIdentityProvider() *schema.Resource {
 			"server_identity_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -93,6 +95,7 @@ func resourceObjectUserExternalIdentityProvider() *schema.Resource {
 			"user_attr_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"version": &schema.Schema{
 				Type:     schema.TypeString,

@@ -38,10 +38,14 @@ The following arguments are supported:
 * `comments` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `endip` - Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
+* `external_prefix` - <i>Support meta variable</i> External NPTv6 prefix length (32 - 64).
+* `internal_prefix` - <i>Support meta variable</i> Internal NPTv6 prefix length (32 - 64).
 * `name` - IPv6 IP pool name.
 * `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
 
 * `startip` - First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
+* `type` - Configure IPv6 pool type (overload or NPTv6). Valid values: `overload`, `nptv6`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -51,9 +55,13 @@ The `dynamic_mapping` block supports:
 
 * `comments` - Comment.
 * `endip` - Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
+* `external_prefix` - <i>Support meta variable</i> External NPTv6 prefix length (32 - 64).
+* `internal_prefix` - <i>Support meta variable</i> Internal NPTv6 prefix length (32 - 64).
 * `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
 
 * `startip` - First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
+* `type` - Configure IPv6 pool type (overload or NPTv6). Valid values: `overload`, `nptv6`.
+
 
 The `_scope` block supports:
 

@@ -79,6 +79,11 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -225,6 +230,10 @@ func flattenObjectFirewallScheduleRecurringStart(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectFirewallScheduleRecurringUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallScheduleRecurring(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -302,6 +311,16 @@ func refreshObjectObjectFirewallScheduleRecurring(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallScheduleRecurringUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallScheduleRecurring-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -336,6 +355,10 @@ func expandObjectFirewallScheduleRecurringName(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallScheduleRecurringStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallScheduleRecurringUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -402,6 +425,15 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["start"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallScheduleRecurringUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

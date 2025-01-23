@@ -86,6 +86,11 @@ func resourceObjectFirewallScheduleOnetime() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -240,6 +245,10 @@ func flattenObjectFirewallScheduleOnetimeStartUtc(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectFirewallScheduleOnetimeUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallScheduleOnetime(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -337,6 +346,16 @@ func refreshObjectObjectFirewallScheduleOnetime(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallScheduleOnetimeUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallScheduleOnetime-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -379,6 +398,10 @@ func expandObjectFirewallScheduleOnetimeStart(d *schema.ResourceData, v interfac
 }
 
 func expandObjectFirewallScheduleOnetimeStartUtc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallScheduleOnetimeUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -463,6 +486,15 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["start-utc"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallScheduleOnetimeUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

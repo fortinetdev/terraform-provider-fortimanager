@@ -38,6 +38,7 @@ The following arguments are supported:
 * `name` - Onetime schedule name.
 * `start` - Schedule start date and time, format hh:mm yyyy/mm/dd.
 * `start_utc` - Schedule start date and time, in epoch format.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

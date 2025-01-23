@@ -117,6 +117,8 @@ The following arguments are supported:
 * `cgn_log_server_grp` - NP log server group name
 * `cgn_resource_quota` - resource quota
 * `cgn_session_quota` - session quota
+* `cgn_sw_eif_ctrl` - Enable/disable software endpoint independent filtering control. Valid values: `disable`, `enable`.
+
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
 * `custom_log_fields` - Custom fields to append to log messages for this policy.
@@ -153,6 +155,10 @@ The following arguments are supported:
 
 * `dstintf` - Outgoing (egress) interface.
 * `dynamic_shaping` - Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `disable`, `enable`.
+
+* `eif_check` - Enable/Disable check endpoint-independent-filtering pinhole. Valid values: `disable`, `enable`.
+
+* `eif_learn` - Enable/Disable learning of end-point-independent filtering pinhole. Valid values: `disable`, `enable`.
 
 * `email_collect` - Enable/disable email collection. Valid values: `disable`, `enable`.
 
@@ -223,6 +229,8 @@ The following arguments are supported:
 * `ips_sensor` - Name of an existing IPS sensor.
 * `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
+* `log_http_transaction` - Enable/disable HTTP transaction log. Valid values: `disable`, `enable`, `all`, `utm`.
+
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
 
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `enable`, `all`, `utm`.
@@ -285,6 +293,8 @@ The following arguments are supported:
 * `profile_group` - Name of profile group.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
+
+* `radius_ip_auth_bypass` - Enable IP authentication bypass. The bypassed IP address must be received from RADIUS server. Valid values: `disable`, `enable`.
 
 * `radius_mac_auth_bypass` - Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. Valid values: `disable`, `enable`.
 

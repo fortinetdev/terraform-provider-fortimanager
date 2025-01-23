@@ -1,4 +1,102 @@
-## 1.13.0 (Unreleased)
+## 1.14.0 (Unreleased)
+
+## 1.13.0 (Jan 23, 2025)
+
+IMPROVEMENTS:
+* Support FortiManager version 6.4.15, 7.0.13, 7.2.6, 7.2.7, 7.2.8, 7.4.4, 7.4.5, 7.6.0, 7.6.1;
+* Fix errors of inconsistent result;
+* Fix issue of token not work on FMG 7.6;
+* Fix error of setting resource name with space;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_lanextension_downlinks`
+* **New Resource:** `fortimanager_object_fmg_sasemanager_settings`
+* **New Resource:** `fortimanager_object_fmg_sasemanager_status`
+* **New Resource:** `fortimanager_object_system_npu_icmperrorratectrl`
+* **New Resource:** `fortimanager_system_admin_user_policyblock`
+* **New Resource:** `fortimanager_system_fmgcluster`
+* **New Resource:** `fortimanager_system_fmgcluster_peer`
+* **New Resource:** `fortimanager_dvmdb_device_vdom`
+* **New Resource:** `fortimanager_exec_fgfm_reclaimdevtunnel`
+* **New Resource:** `fortimanager_object_application_list_entries_move`
+* **New Resource:** `fortimanager_object_dlp_dictionary_entries_move`
+* **New Resource:** `fortimanager_object_dlp_filepattern_entries_move`
+* **New Resource:** `fortimanager_object_dlp_sensor_entries_move`
+* **New Resource:** `fortimanager_object_dlp_sensor_filter`
+* **New Resource:** `fortimanager_object_dlp_sensor_filter_move`
+* **New Resource:** `fortimanager_object_dynamic_certificate_local_dynamic_mapping`
+* **New Resource:** `fortimanager_object_dynamic_interface_dynamic_mapping`
+* **New Resource:** `fortimanager_object_dynamic_multicast_interface_dynamic_mapping`
+* **New Resource:** `fortimanager_object_dynamic_vpntunnel_dynamic_mapping`
+* **New Resource:** `fortimanager_object_emailfilter_bword_entries_move`
+* **New Resource:** `fortimanager_object_extendercontroller_extenderprofile_cellular`
+* **New Resource:** `fortimanager_object_extendercontroller_extenderprofile_lanextension_backhaul_move`
+* **New Resource:** `fortimanager_object_firewall_address_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_address6_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_address6_dynamic_mapping_subnetsegment`
+* **New Resource:** `fortimanager_object_firewall_addrgrp_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_addrgrp6_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_ippool_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_ippool6_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_vip_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_vip_sslserverciphersuites`
+* **New Resource:** `fortimanager_object_firewall_vip46_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_vip6_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_vip6_sslserverciphersuites`
+* **New Resource:** `fortimanager_object_firewall_vip64_dynamic_mapping`
+* **New Resource:** `fortimanager_object_firewall_vipgrp_dynamic_mapping`
+* **New Resource:** `fortimanager_object_fmg_fabric_authorization_template_platforms`
+* **New Resource:** `fortimanager_object_fmg_variable_dynamic_mapping`
+* **New Resource:** `fortimanager_object_fsp_vlan_dhcpserver`
+* **New Resource:** `fortimanager_object_fsp_vlan_dhcpserver_excluderange`
+* **New Resource:** `fortimanager_object_fsp_vlan_dhcpserver_iprange`
+* **New Resource:** `fortimanager_object_fsp_vlan_dhcpserver_options`
+* **New Resource:** `fortimanager_object_fsp_vlan_dhcpserver_reservedaddress`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping_dhcpserver`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping_dhcpserver_excluderange`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping_dhcpserver_iprange`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping_dhcpserver_options`
+* **New Resource:** `fortimanager_object_fsp_vlan_dynamic_mapping_dhcpserver_reservedaddress`
+* **New Resource:** `fortimanager_object_fsp_vlan_interface_vrrp_proxyarp`
+* **New Resource:** `fortimanager_object_icap_profile_icapheaders`
+* **New Resource:** `fortimanager_object_switchcontroller_managedswitch_routeoffloadrouter`
+* **New Resource:** `fortimanager_object_switchcontroller_qos_queuepolicy_cosqueue`
+* **New Resource:** `fortimanager_object_user_fsso_dynamic_mapping`
+* **New Resource:** `fortimanager_object_user_group_dynamic_mapping`
+* **New Resource:** `fortimanager_object_user_group_dynamic_mapping_match`
+* **New Resource:** `fortimanager_object_user_ldap_dynamic_mapping`
+* **New Resource:** `fortimanager_object_user_radius_dynamic_mapping`
+* **New Resource:** `fortimanager_object_user_radius_dynamic_mapping_accountingserver`
+* **New Resource:** `fortimanager_object_user_saml_dynamic_mapping`
+* **New Resource:** `fortimanager_object_user_tacacs_dynamic_mapping`
+* **New Resource:** `fortimanager_object_waf_profile_signature_mainclass`
+* **New Resource:** `fortimanager_object_webproxy_forwardservergroup_serverlist`
+* **New Resource:** `fortimanager_object_wirelesscontroller_vap_dynamic_mapping`
+* **New Resource:** `fortimanager_packages_pblock_firewall_policy_move`
+* **New Resource:** `fortimanager_system_admin_profile_datamaskcustomfields`
+* **New Resource:** `fortimanager_system_csf_trustedlist`
+* **New Resource:** `fortimanager_system_interface_ipv6`
+* **New Resource:** `fortimanager_system_interface_member`
+* **New Resource:** `fortimanager_systemp_log_syslogd_filter_freestyle`
+* **New Resource:** `fortimanager_systemp_log_syslogd_setting_customfieldname`
+* **New Resource:** `fortimanager_systemp_system_ntp_ntpserver`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_admin`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_alertmail`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_auth`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_ec`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_fortiguardwf`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_ftp`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_http`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_mail`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_mms`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_nacquar`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_spam`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_sslvpn`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_trafficquota`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_utm`
+* **New Resource:** `fortimanager_systemp_system_replacemsg_webproxy`
+* **New Resource:** `fortimanager_systemp_system_snmp_community_hosts6`
 
 ## 1.12.1 (Jul 24, 2024)
 

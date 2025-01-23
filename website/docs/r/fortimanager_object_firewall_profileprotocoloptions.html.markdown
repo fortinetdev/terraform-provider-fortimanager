@@ -153,6 +153,8 @@ The `http` block supports:
 * `block_page_status_code` - Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+* `domain_fronting` - Configure HTTP domain fronting (default = block). Valid values: `block`, `monitor`, `allow`.
+
 * `h2c` - Enable/disable h2c HTTP connection upgrade. Valid values: `disable`, `enable`.
 
 * `fortinet_bar` - Fortinet-Bar. Valid values: `disable`, `enable`.

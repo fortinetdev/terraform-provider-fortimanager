@@ -120,6 +120,10 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"logtraffic": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
@@ -364,6 +368,10 @@ func flattenPackagesFirewallLocalInPolicyIntf(v interface{}, d *schema.ResourceD
 	return flattenStringList(v)
 }
 
+func flattenPackagesFirewallLocalInPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicyPolicyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -527,6 +535,16 @@ func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("logtraffic", flattenPackagesFirewallLocalInPolicyLogtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesFirewallLocalInPolicy-Logtraffic"); ok {
+			if err = d.Set("logtraffic", vv); err != nil {
+				return fmt.Errorf("Error reading logtraffic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading logtraffic: %v", err)
+		}
+	}
+
 	if err = d.Set("policyid", flattenPackagesFirewallLocalInPolicyPolicyid(o["policyid"], d, "policyid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["policyid"], "PackagesFirewallLocalInPolicy-Policyid"); ok {
 			if err = d.Set("policyid", vv); err != nil {
@@ -674,6 +692,10 @@ func expandPackagesFirewallLocalInPolicyIntf(d *schema.ResourceData, v interface
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesFirewallLocalInPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicyPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -818,6 +840,15 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["intf"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
+		t, err := expandPackagesFirewallLocalInPolicyLogtraffic(d, v, "logtraffic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["logtraffic"] = t
 		}
 	}
 

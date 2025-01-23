@@ -121,6 +121,11 @@ func resourceSystemAdminLdap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -344,6 +349,10 @@ func flattenSystemAdminLdapServer(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenSystemAdminLdapSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminLdapTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -547,6 +556,16 @@ func refreshObjectSystemAdminLdap(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("ssl_protocol", flattenSystemAdminLdapSslProtocol(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-protocol"], "SystemAdminLdap-SslProtocol"); ok {
+			if err = d.Set("ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("tertiary_server", flattenSystemAdminLdapTertiaryServer(o["tertiary-server"], d, "tertiary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tertiary-server"], "SystemAdminLdap-TertiaryServer"); ok {
 			if err = d.Set("tertiary_server", vv); err != nil {
@@ -684,6 +703,10 @@ func expandSystemAdminLdapSecure(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandSystemAdminLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminLdapSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -861,6 +884,15 @@ func getObjectSystemAdminLdap(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_protocol"); ok || d.HasChange("ssl_protocol") {
+		t, err := expandSystemAdminLdapSslProtocol(d, v, "ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-protocol"] = t
 		}
 	}
 

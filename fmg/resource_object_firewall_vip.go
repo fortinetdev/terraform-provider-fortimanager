@@ -204,6 +204,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"http_supported_max_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"https_cookie_secure": &schema.Schema{
 							Type:     schema.TypeString,
@@ -380,6 +381,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"src_vip_filter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcintf_filter": &schema.Schema{
 							Type:     schema.TypeSet,

@@ -50,6 +50,10 @@ func resourceObjectAntivirusProfileContentDisarm() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"analytics_suspicious": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cover_page": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -253,6 +257,10 @@ func resourceObjectAntivirusProfileContentDisarmRead(d *schema.ResourceData, m i
 	return nil
 }
 
+func flattenObjectAntivirusProfileContentDisarmAnalyticsSuspicious2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileContentDisarmCoverPage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -334,6 +342,16 @@ func refreshObjectObjectAntivirusProfileContentDisarm(d *schema.ResourceData, o 
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("analytics_suspicious", flattenObjectAntivirusProfileContentDisarmAnalyticsSuspicious2edl(o["analytics-suspicious"], d, "analytics_suspicious")); err != nil {
+		if vv, ok := fortiAPIPatch(o["analytics-suspicious"], "ObjectAntivirusProfileContentDisarm-AnalyticsSuspicious"); ok {
+			if err = d.Set("analytics_suspicious", vv); err != nil {
+				return fmt.Errorf("Error reading analytics_suspicious: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading analytics_suspicious: %v", err)
+		}
 	}
 
 	if err = d.Set("cover_page", flattenObjectAntivirusProfileContentDisarmCoverPage2edl(o["cover-page"], d, "cover_page")); err != nil {
@@ -535,6 +553,10 @@ func flattenObjectAntivirusProfileContentDisarmFortiTestDebug(d *schema.Resource
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectAntivirusProfileContentDisarmAnalyticsSuspicious2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileContentDisarmCoverPage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -613,6 +635,15 @@ func expandObjectAntivirusProfileContentDisarmPdfJavacode2edl(d *schema.Resource
 
 func getObjectObjectAntivirusProfileContentDisarm(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("analytics_suspicious"); ok || d.HasChange("analytics_suspicious") {
+		t, err := expandObjectAntivirusProfileContentDisarmAnalyticsSuspicious2edl(d, v, "analytics_suspicious")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["analytics-suspicious"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("cover_page"); ok || d.HasChange("cover_page") {
 		t, err := expandObjectAntivirusProfileContentDisarmCoverPage2edl(d, v, "cover_page")

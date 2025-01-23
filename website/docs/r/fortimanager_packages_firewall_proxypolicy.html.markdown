@@ -50,6 +50,7 @@ The following arguments are supported:
 * `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `access_proxy` - Access Proxy.
 * `access_proxy6` - IPv6 access proxy.
 * `action` - Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
@@ -70,6 +71,7 @@ The following arguments are supported:
 * `disclaimer` - Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 
 * `dlp_profile` - Name of an existing DLP profile.
+* `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dstaddr` - Destination address objects.
 * `dstaddr_negate` - When enabled, destination addresses match against any address EXCEPT the specified destination addresses. Valid values: `disable`, `enable`.
@@ -103,6 +105,8 @@ The following arguments are supported:
 * `ips_sensor` - Name of an existing IPS sensor.
 * `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `label` - VDOM-specific GUI visible label.
+* `log_http_transaction` - Enable/disable HTTP transaction log. Valid values: `disable`, `enable`.
+
 * `logtraffic` - Enable/disable logging traffic through the policy. Valid values: `disable`, `all`, `utm`.
 
 * `logtraffic_start` - Enable/disable policy log traffic start. Valid values: `disable`, `enable`.
@@ -157,6 +161,7 @@ The following arguments are supported:
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
 * `ztna_ems_tag` - ZTNA EMS Tag names.
+* `ztna_proxy` - IPv4 ZTNA traffic forward proxy.
 * `ztna_tags_match_logic` - ZTNA tag matching logic. Valid values: `or`, `and`.
 
 

@@ -70,6 +70,8 @@ The following arguments are supported:
 * `gtpu_forwarded_log` - Enable/disable logging of forwarded GTP-U packets. Valid values: `disable`, `enable`.
 
 * `gtpu_log_freq` - Logging of frequency of GTP-U packets.
+* `gtpv0` - GTPv0 traffic. Valid values: `allow`, `deny`.
+
 * `half_close_timeout` - Half-close tunnel timeout (in seconds).
 * `half_open_timeout` - Half-open tunnel timeout (in seconds).
 * `handover_group` - Handover SGSN group

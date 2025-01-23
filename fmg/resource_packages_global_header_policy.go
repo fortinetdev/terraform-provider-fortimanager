@@ -173,6 +173,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cgn_sw_eif_ctrl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -348,6 +353,14 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"eif_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"eif_learn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"email_collect": &schema.Schema{
 				Type:     schema.TypeString,
@@ -886,6 +899,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"radius_ip_auth_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"radius_mac_auth_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1150,6 +1168,12 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"udp_timeout_pid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"url_risk": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"url_category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1570,6 +1594,10 @@ func flattenPackagesGlobalHeaderPolicyCgnSessionQuota(v interface{}, d *schema.R
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyCgnSwEifCtrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -1723,6 +1751,14 @@ func flattenPackagesGlobalHeaderPolicyDynamicProfileGroup(v interface{}, d *sche
 }
 
 func flattenPackagesGlobalHeaderPolicyDynamicShaping(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyEifCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyEifLearn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2194,6 +2230,10 @@ func flattenPackagesGlobalHeaderPolicyProfileType(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyRadiusIpAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyRadiusMacAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2428,6 +2468,10 @@ func flattenPackagesGlobalHeaderPolicyType(v interface{}, d *schema.ResourceData
 
 func flattenPackagesGlobalHeaderPolicyUdpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenPackagesGlobalHeaderPolicyUrlRisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalHeaderPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2873,6 +2917,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("cgn_sw_eif_ctrl", flattenPackagesGlobalHeaderPolicyCgnSwEifCtrl(o["cgn-sw-eif-ctrl"], d, "cgn_sw_eif_ctrl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-sw-eif-ctrl"], "PackagesGlobalHeaderPolicy-CgnSwEifCtrl"); ok {
+			if err = d.Set("cgn_sw_eif_ctrl", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_sw_eif_ctrl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_sw_eif_ctrl: %v", err)
+		}
+	}
+
 	if err = d.Set("cifs_profile", flattenPackagesGlobalHeaderPolicyCifsProfile(o["cifs-profile"], d, "cifs_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs-profile"], "PackagesGlobalHeaderPolicy-CifsProfile"); ok {
 			if err = d.Set("cifs_profile", vv); err != nil {
@@ -3260,6 +3314,26 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading dynamic_shaping: %v", err)
+		}
+	}
+
+	if err = d.Set("eif_check", flattenPackagesGlobalHeaderPolicyEifCheck(o["eif-check"], d, "eif_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["eif-check"], "PackagesGlobalHeaderPolicy-EifCheck"); ok {
+			if err = d.Set("eif_check", vv); err != nil {
+				return fmt.Errorf("Error reading eif_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading eif_check: %v", err)
+		}
+	}
+
+	if err = d.Set("eif_learn", flattenPackagesGlobalHeaderPolicyEifLearn(o["eif-learn"], d, "eif_learn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["eif-learn"], "PackagesGlobalHeaderPolicy-EifLearn"); ok {
+			if err = d.Set("eif_learn", vv); err != nil {
+				return fmt.Errorf("Error reading eif_learn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading eif_learn: %v", err)
 		}
 	}
 
@@ -4433,6 +4507,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("radius_ip_auth_bypass", flattenPackagesGlobalHeaderPolicyRadiusIpAuthBypass(o["radius-ip-auth-bypass"], d, "radius_ip_auth_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["radius-ip-auth-bypass"], "PackagesGlobalHeaderPolicy-RadiusIpAuthBypass"); ok {
+			if err = d.Set("radius_ip_auth_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading radius_ip_auth_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading radius_ip_auth_bypass: %v", err)
+		}
+	}
+
 	if err = d.Set("radius_mac_auth_bypass", flattenPackagesGlobalHeaderPolicyRadiusMacAuthBypass(o["radius-mac-auth-bypass"], d, "radius_mac_auth_bypass")); err != nil {
 		if vv, ok := fortiAPIPatch(o["radius-mac-auth-bypass"], "PackagesGlobalHeaderPolicy-RadiusMacAuthBypass"); ok {
 			if err = d.Set("radius_mac_auth_bypass", vv); err != nil {
@@ -5023,6 +5107,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("url_risk", flattenPackagesGlobalHeaderPolicyUrlRisk(o["url-risk"], d, "url_risk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-risk"], "PackagesGlobalHeaderPolicy-UrlRisk"); ok {
+			if err = d.Set("url_risk", vv); err != nil {
+				return fmt.Errorf("Error reading url_risk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_risk: %v", err)
+		}
+	}
+
 	if err = d.Set("url_category", flattenPackagesGlobalHeaderPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesGlobalHeaderPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
@@ -5502,6 +5596,10 @@ func expandPackagesGlobalHeaderPolicyCgnSessionQuota(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyCgnSwEifCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -5655,6 +5753,14 @@ func expandPackagesGlobalHeaderPolicyDynamicProfileGroup(d *schema.ResourceData,
 }
 
 func expandPackagesGlobalHeaderPolicyDynamicShaping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyEifCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyEifLearn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6126,6 +6232,10 @@ func expandPackagesGlobalHeaderPolicyProfileType(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyRadiusIpAuthBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyRadiusMacAuthBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6360,6 +6470,10 @@ func expandPackagesGlobalHeaderPolicyType(d *schema.ResourceData, v interface{},
 
 func expandPackagesGlobalHeaderPolicyUdpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandPackagesGlobalHeaderPolicyUrlRisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalHeaderPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -6775,6 +6889,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("cgn_sw_eif_ctrl"); ok || d.HasChange("cgn_sw_eif_ctrl") {
+		t, err := expandPackagesGlobalHeaderPolicyCgnSwEifCtrl(d, v, "cgn_sw_eif_ctrl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-sw-eif-ctrl"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesGlobalHeaderPolicyCifsProfile(d, v, "cifs_profile")
 		if err != nil {
@@ -7123,6 +7246,24 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic-shaping"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("eif_check"); ok || d.HasChange("eif_check") {
+		t, err := expandPackagesGlobalHeaderPolicyEifCheck(d, v, "eif_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["eif-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("eif_learn"); ok || d.HasChange("eif_learn") {
+		t, err := expandPackagesGlobalHeaderPolicyEifLearn(d, v, "eif_learn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["eif-learn"] = t
 		}
 	}
 
@@ -8179,6 +8320,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("radius_ip_auth_bypass"); ok || d.HasChange("radius_ip_auth_bypass") {
+		t, err := expandPackagesGlobalHeaderPolicyRadiusIpAuthBypass(d, v, "radius_ip_auth_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["radius-ip-auth-bypass"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("radius_mac_auth_bypass"); ok || d.HasChange("radius_mac_auth_bypass") {
 		t, err := expandPackagesGlobalHeaderPolicyRadiusMacAuthBypass(d, v, "radius_mac_auth_bypass")
 		if err != nil {
@@ -8707,6 +8857,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["udp-timeout-pid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("url_risk"); ok || d.HasChange("url_risk") {
+		t, err := expandPackagesGlobalHeaderPolicyUrlRisk(d, v, "url_risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-risk"] = t
 		}
 	}
 

@@ -50,6 +50,8 @@ The following arguments are supported:
 * `interface` - Interface name.
 * `preferred_source` - Preferred source of route for this member.
 * `priority` - Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
+* `priority_in_sla` - Preferred priority of routes to this member when this member is in-sla (0 - 65535, default = 0).
+* `priority_out_sla` - Preferred priority of routes to this member when this member is out-of-sla (0 - 65535, default = 0).
 * `priority6` - Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 * `seq_num` - Sequence number(1-512).
 * `source` - Source IP address used in the health-check packet to the server.

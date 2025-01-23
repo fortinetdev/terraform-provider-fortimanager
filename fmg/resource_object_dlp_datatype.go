@@ -49,6 +49,10 @@ func resourceObjectDlpDataType() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fgd_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"look_ahead": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -221,6 +225,10 @@ func flattenObjectDlpDataTypeComment(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectDlpDataTypeFgdId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpDataTypeLookAhead(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -279,6 +287,16 @@ func refreshObjectObjectDlpDataType(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("fgd_id", flattenObjectDlpDataTypeFgdId(o["fgd-id"], d, "fgd_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgd-id"], "ObjectDlpDataType-FgdId"); ok {
+			if err = d.Set("fgd_id", vv); err != nil {
+				return fmt.Errorf("Error reading fgd_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgd_id: %v", err)
 		}
 	}
 
@@ -405,6 +423,10 @@ func expandObjectDlpDataTypeComment(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectDlpDataTypeFgdId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpDataTypeLookAhead(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -458,6 +480,15 @@ func getObjectObjectDlpDataType(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fgd_id"); ok || d.HasChange("fgd_id") {
+		t, err := expandObjectDlpDataTypeFgdId(d, v, "fgd_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgd-id"] = t
 		}
 	}
 

@@ -60,6 +60,9 @@ func (r *Request) Send() error {
 
 	r.HTTPRequest.Header.Set("Content-Type", "application/json")
 	u := r.buildURL()
+	if r.Config.Auth.Token != "" {
+		r.HTTPRequest.Header.Set("Authorization", "Bearer "+r.Config.Auth.Token)
+	}
 
 	var err error
 	r.HTTPRequest.URL, err = url.Parse(u)
@@ -100,11 +103,6 @@ func (r *Request) buildURL() string {
 	u := "https://"
 	u += r.Config.FwTarget
 	u += r.Path
-	u += "?"
-	if r.Config.Auth.Token != "" {
-		u += "access_token="
-		u += r.Config.Auth.Token
-	}
 
 	return u
 }

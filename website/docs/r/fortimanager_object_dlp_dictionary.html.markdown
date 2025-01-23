@@ -24,6 +24,7 @@ The following arguments are supported:
 
 * `comment` - Optional comments.
 * `entries` - Entries. The structure of `entries` block is documented below.
+* `fgd_id` - ID of object in FortiGuard database.
 * `match_around` - Enable/disable match-around support. Valid values: `disable`, `enable`.
 
 * `match_type` - Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`.

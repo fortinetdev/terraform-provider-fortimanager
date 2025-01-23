@@ -42,6 +42,7 @@ The following arguments are supported:
 * `name` - Password policy name.
 * `reuse_password` - Enable/disable reuse of password. If both reuse-password and min-change-characters are enabled, min-change-characters overrides. Valid values: `disable`, `enable`.
 
+* `reuse_password_limit` - Number of times passwords can be reused (0 - 20, default = 0. If set to 0, can reuse password an unlimited number of times.).
 * `warn_days` - Time in days before a password expiration warning message is displayed to the user upon login.
 
 

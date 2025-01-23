@@ -96,6 +96,10 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dedicated_lacp_queue": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dedicated_management_affinity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -717,6 +721,46 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"icmp_error_rate_ctrl": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"icmpv4_error_bucket_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmpv4_error_rate": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmpv4_error_rate_limit": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"icmpv6_error_bucket_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmpv6_error_rate": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"icmpv6_error_rate_limit": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"icmp_rate_ctrl": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -848,6 +892,36 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ipv4_session_quota": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv4_session_quota_high": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv4_session_quota_low": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_prefix_session_quota": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_prefix_session_quota_high": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_prefix_session_quota_low": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"ipsec_throughput_msg_frequency": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -918,6 +992,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"max_receive_unit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"max_session_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -2833,6 +2908,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"vxlan_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3024,6 +3100,10 @@ func flattenObjectSystemNpuBackgroundSseScanUdpQualDuration(v interface{}, d *sc
 }
 
 func flattenObjectSystemNpuCapwapOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuDedicatedLacpQueue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4104,6 +4184,73 @@ func flattenObjectSystemNpuHwHaScanInterval(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectSystemNpuIcmpErrorRateCtrl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "icmpv4_error_bucket_size"
+	if _, ok := i["icmpv4-error-bucket-size"]; ok {
+		result["icmpv4_error_bucket_size"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorBucketSize(i["icmpv4-error-bucket-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmpv4_error_rate"
+	if _, ok := i["icmpv4-error-rate"]; ok {
+		result["icmpv4_error_rate"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRate(i["icmpv4-error-rate"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmpv4_error_rate_limit"
+	if _, ok := i["icmpv4-error-rate-limit"]; ok {
+		result["icmpv4_error_rate_limit"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRateLimit(i["icmpv4-error-rate-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmpv6_error_bucket_size"
+	if _, ok := i["icmpv6-error-bucket-size"]; ok {
+		result["icmpv6_error_bucket_size"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorBucketSize(i["icmpv6-error-bucket-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmpv6_error_rate"
+	if _, ok := i["icmpv6-error-rate"]; ok {
+		result["icmpv6_error_rate"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRate(i["icmpv6-error-rate"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "icmpv6_error_rate_limit"
+	if _, ok := i["icmpv6-error-rate-limit"]; ok {
+		result["icmpv6_error_rate_limit"] = flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRateLimit(i["icmpv6-error-rate-limit"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorBucketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRateLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorBucketSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRateLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuIcmpRateCtrl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -4254,6 +4401,30 @@ func flattenObjectSystemNpuIpsecObNpSel(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectSystemNpuIpsecOverVlink(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv4SessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv4SessionQuotaHigh(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv4SessionQuotaLow(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv6PrefixSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv6PrefixSessionQuotaHigh(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpv6PrefixSessionQuotaLow(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -8157,6 +8328,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("dedicated_lacp_queue", flattenObjectSystemNpuDedicatedLacpQueue(o["dedicated-lacp-queue"], d, "dedicated_lacp_queue")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dedicated-lacp-queue"], "ObjectSystemNpu-DedicatedLacpQueue"); ok {
+			if err = d.Set("dedicated_lacp_queue", vv); err != nil {
+				return fmt.Errorf("Error reading dedicated_lacp_queue: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dedicated_lacp_queue: %v", err)
+		}
+	}
+
 	if err = d.Set("dedicated_management_affinity", flattenObjectSystemNpuDedicatedManagementAffinity(o["dedicated-management-affinity"], d, "dedicated_management_affinity")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dedicated-management-affinity"], "ObjectSystemNpu-DedicatedManagementAffinity"); ok {
 			if err = d.Set("dedicated_management_affinity", vv); err != nil {
@@ -8478,6 +8659,30 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 	}
 
 	if isImportTable() {
+		if err = d.Set("icmp_error_rate_ctrl", flattenObjectSystemNpuIcmpErrorRateCtrl(o["icmp-error-rate-ctrl"], d, "icmp_error_rate_ctrl")); err != nil {
+			if vv, ok := fortiAPIPatch(o["icmp-error-rate-ctrl"], "ObjectSystemNpu-IcmpErrorRateCtrl"); ok {
+				if err = d.Set("icmp_error_rate_ctrl", vv); err != nil {
+					return fmt.Errorf("Error reading icmp_error_rate_ctrl: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading icmp_error_rate_ctrl: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("icmp_error_rate_ctrl"); ok {
+			if err = d.Set("icmp_error_rate_ctrl", flattenObjectSystemNpuIcmpErrorRateCtrl(o["icmp-error-rate-ctrl"], d, "icmp_error_rate_ctrl")); err != nil {
+				if vv, ok := fortiAPIPatch(o["icmp-error-rate-ctrl"], "ObjectSystemNpu-IcmpErrorRateCtrl"); ok {
+					if err = d.Set("icmp_error_rate_ctrl", vv); err != nil {
+						return fmt.Errorf("Error reading icmp_error_rate_ctrl: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading icmp_error_rate_ctrl: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("icmp_rate_ctrl", flattenObjectSystemNpuIcmpRateCtrl(o["icmp-rate-ctrl"], d, "icmp_rate_ctrl")); err != nil {
 			if vv, ok := fortiAPIPatch(o["icmp-rate-ctrl"], "ObjectSystemNpu-IcmpRateCtrl"); ok {
 				if err = d.Set("icmp_rate_ctrl", vv); err != nil {
@@ -8682,6 +8887,66 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading ipsec_over_vlink: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv4_session_quota", flattenObjectSystemNpuIpv4SessionQuota(o["ipv4-session-quota"], d, "ipv4_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-session-quota"], "ObjectSystemNpu-Ipv4SessionQuota"); ok {
+			if err = d.Set("ipv4_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_session_quota: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv4_session_quota_high", flattenObjectSystemNpuIpv4SessionQuotaHigh(o["ipv4-session-quota-high"], d, "ipv4_session_quota_high")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-session-quota-high"], "ObjectSystemNpu-Ipv4SessionQuotaHigh"); ok {
+			if err = d.Set("ipv4_session_quota_high", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_session_quota_high: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_session_quota_high: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv4_session_quota_low", flattenObjectSystemNpuIpv4SessionQuotaLow(o["ipv4-session-quota-low"], d, "ipv4_session_quota_low")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-session-quota-low"], "ObjectSystemNpu-Ipv4SessionQuotaLow"); ok {
+			if err = d.Set("ipv4_session_quota_low", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_session_quota_low: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_session_quota_low: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_prefix_session_quota", flattenObjectSystemNpuIpv6PrefixSessionQuota(o["ipv6-prefix-session-quota"], d, "ipv6_prefix_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6-prefix-session-quota"], "ObjectSystemNpu-Ipv6PrefixSessionQuota"); ok {
+			if err = d.Set("ipv6_prefix_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_prefix_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_prefix_session_quota: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_prefix_session_quota_high", flattenObjectSystemNpuIpv6PrefixSessionQuotaHigh(o["ipv6-prefix-session-quota-high"], d, "ipv6_prefix_session_quota_high")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6-prefix-session-quota-high"], "ObjectSystemNpu-Ipv6PrefixSessionQuotaHigh"); ok {
+			if err = d.Set("ipv6_prefix_session_quota_high", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_prefix_session_quota_high: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_prefix_session_quota_high: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_prefix_session_quota_low", flattenObjectSystemNpuIpv6PrefixSessionQuotaLow(o["ipv6-prefix-session-quota-low"], d, "ipv6_prefix_session_quota_low")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6-prefix-session-quota-low"], "ObjectSystemNpu-Ipv6PrefixSessionQuotaLow"); ok {
+			if err = d.Set("ipv6_prefix_session_quota_low", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_prefix_session_quota_low: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_prefix_session_quota_low: %v", err)
 		}
 	}
 
@@ -9529,6 +9794,10 @@ func expandObjectSystemNpuBackgroundSseScanUdpQualDuration(d *schema.ResourceDat
 }
 
 func expandObjectSystemNpuCapwapOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuDedicatedLacpQueue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -10503,6 +10772,68 @@ func expandObjectSystemNpuHwHaScanInterval(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectSystemNpuIcmpErrorRateCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "icmpv4_error_bucket_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv4-error-bucket-size"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorBucketSize(d, i["icmpv4_error_bucket_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmpv4_error_rate"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv4-error-rate"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRate(d, i["icmpv4_error_rate"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmpv4_error_rate_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv4-error-rate-limit"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRateLimit(d, i["icmpv4_error_rate_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmpv6_error_bucket_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv6-error-bucket-size"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorBucketSize(d, i["icmpv6_error_bucket_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmpv6_error_rate"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv6-error-rate"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRate(d, i["icmpv6_error_rate"], pre_append)
+	}
+	pre_append = pre + ".0." + "icmpv6_error_rate_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["icmpv6-error-rate-limit"], _ = expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRateLimit(d, i["icmpv6_error_rate_limit"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorBucketSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv4ErrorRateLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorBucketSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRateLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuIcmpRateCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -10648,6 +10979,30 @@ func expandObjectSystemNpuIpsecObNpSel(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectSystemNpuIpsecOverVlink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv4SessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv4SessionQuotaHigh(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv4SessionQuotaLow(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv6PrefixSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv6PrefixSessionQuotaHigh(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpv6PrefixSessionQuotaLow(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14196,6 +14551,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("dedicated_lacp_queue"); ok || d.HasChange("dedicated_lacp_queue") {
+		t, err := expandObjectSystemNpuDedicatedLacpQueue(d, v, "dedicated_lacp_queue")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dedicated-lacp-queue"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dedicated_management_affinity"); ok || d.HasChange("dedicated_management_affinity") {
 		t, err := expandObjectSystemNpuDedicatedManagementAffinity(d, v, "dedicated_management_affinity")
 		if err != nil {
@@ -14421,6 +14785,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("icmp_error_rate_ctrl"); ok || d.HasChange("icmp_error_rate_ctrl") {
+		t, err := expandObjectSystemNpuIcmpErrorRateCtrl(d, v, "icmp_error_rate_ctrl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["icmp-error-rate-ctrl"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("icmp_rate_ctrl"); ok || d.HasChange("icmp_rate_ctrl") {
 		t, err := expandObjectSystemNpuIcmpRateCtrl(d, v, "icmp_rate_ctrl")
 		if err != nil {
@@ -14580,6 +14953,60 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["ipsec-over-vlink"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv4_session_quota"); ok || d.HasChange("ipv4_session_quota") {
+		t, err := expandObjectSystemNpuIpv4SessionQuota(d, v, "ipv4_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-session-quota"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv4_session_quota_high"); ok || d.HasChange("ipv4_session_quota_high") {
+		t, err := expandObjectSystemNpuIpv4SessionQuotaHigh(d, v, "ipv4_session_quota_high")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-session-quota-high"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv4_session_quota_low"); ok || d.HasChange("ipv4_session_quota_low") {
+		t, err := expandObjectSystemNpuIpv4SessionQuotaLow(d, v, "ipv4_session_quota_low")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-session-quota-low"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_prefix_session_quota"); ok || d.HasChange("ipv6_prefix_session_quota") {
+		t, err := expandObjectSystemNpuIpv6PrefixSessionQuota(d, v, "ipv6_prefix_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6-prefix-session-quota"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_prefix_session_quota_high"); ok || d.HasChange("ipv6_prefix_session_quota_high") {
+		t, err := expandObjectSystemNpuIpv6PrefixSessionQuotaHigh(d, v, "ipv6_prefix_session_quota_high")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6-prefix-session-quota-high"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_prefix_session_quota_low"); ok || d.HasChange("ipv6_prefix_session_quota_low") {
+		t, err := expandObjectSystemNpuIpv6PrefixSessionQuotaLow(d, v, "ipv6_prefix_session_quota_low")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6-prefix-session-quota-low"] = t
 		}
 	}
 

@@ -91,6 +91,14 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"priority_in_sla": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"priority_out_sla": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"priority6": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -314,6 +322,14 @@ func flattenWantempSystemSdwanMembersPriority2edl(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenWantempSystemSdwanMembersPriorityInSla2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersPriorityOutSla2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanMembersPriority62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -448,6 +464,26 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading priority: %v", err)
+		}
+	}
+
+	if err = d.Set("priority_in_sla", flattenWantempSystemSdwanMembersPriorityInSla2edl(o["priority-in-sla"], d, "priority_in_sla")); err != nil {
+		if vv, ok := fortiAPIPatch(o["priority-in-sla"], "WantempSystemSdwanMembers-PriorityInSla"); ok {
+			if err = d.Set("priority_in_sla", vv); err != nil {
+				return fmt.Errorf("Error reading priority_in_sla: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading priority_in_sla: %v", err)
+		}
+	}
+
+	if err = d.Set("priority_out_sla", flattenWantempSystemSdwanMembersPriorityOutSla2edl(o["priority-out-sla"], d, "priority_out_sla")); err != nil {
+		if vv, ok := fortiAPIPatch(o["priority-out-sla"], "WantempSystemSdwanMembers-PriorityOutSla"); ok {
+			if err = d.Set("priority_out_sla", vv); err != nil {
+				return fmt.Errorf("Error reading priority_out_sla: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading priority_out_sla: %v", err)
 		}
 	}
 
@@ -596,6 +632,14 @@ func expandWantempSystemSdwanMembersPriority2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandWantempSystemSdwanMembersPriorityInSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersPriorityOutSla2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanMembersPriority62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -717,6 +761,24 @@ func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["priority"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("priority_in_sla"); ok || d.HasChange("priority_in_sla") {
+		t, err := expandWantempSystemSdwanMembersPriorityInSla2edl(d, v, "priority_in_sla")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["priority-in-sla"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("priority_out_sla"); ok || d.HasChange("priority_out_sla") {
+		t, err := expandWantempSystemSdwanMembersPriorityOutSla2edl(d, v, "priority_out_sla")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["priority-out-sla"] = t
 		}
 	}
 

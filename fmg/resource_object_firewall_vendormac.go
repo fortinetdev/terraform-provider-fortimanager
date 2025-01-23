@@ -72,7 +72,7 @@ func resourceObjectFirewallVendorMacUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	cfg := m.(*FortiClient).Cfg
+		cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
@@ -105,7 +105,7 @@ func resourceObjectFirewallVendorMacDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	cfg := m.(*FortiClient).Cfg
+		cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
@@ -130,7 +130,7 @@ func resourceObjectFirewallVendorMacRead(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	cfg := m.(*FortiClient).Cfg
+		cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)

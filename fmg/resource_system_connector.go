@@ -39,6 +39,11 @@ func resourceSystemConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"conn_ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"faznotify_msg_queue_max": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -155,6 +160,10 @@ func flattenSystemConnectorConnRefreshInterval(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenSystemConnectorConnSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemConnectorFaznotifyMsgQueueMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -199,6 +208,16 @@ func refreshObjectSystemConnector(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading conn_refresh_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("conn_ssl_protocol", flattenSystemConnectorConnSslProtocol(o["conn-ssl-protocol"], d, "conn_ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["conn-ssl-protocol"], "SystemConnector-ConnSslProtocol"); ok {
+			if err = d.Set("conn_ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading conn_ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading conn_ssl_protocol: %v", err)
 		}
 	}
 
@@ -279,6 +298,10 @@ func expandSystemConnectorConnRefreshInterval(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandSystemConnectorConnSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemConnectorFaznotifyMsgQueueMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -321,6 +344,15 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["conn-refresh-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("conn_ssl_protocol"); ok || d.HasChange("conn_ssl_protocol") {
+		t, err := expandSystemConnectorConnSslProtocol(d, v, "conn_ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["conn-ssl-protocol"] = t
 		}
 	}
 

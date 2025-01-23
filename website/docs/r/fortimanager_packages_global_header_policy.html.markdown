@@ -126,6 +126,8 @@ The following arguments are supported:
 * `cgn_log_server_grp` - NP log server group name
 * `cgn_resource_quota` - resource quota
 * `cgn_session_quota` - session quota
+* `cgn_sw_eif_ctrl` - Enable/disable software endpoint independent filtering control. Valid values: `disable`, `enable`.
+
 * `cifs_profile` - Name of an existing CIFS profile.
 * `client_reputation` - Client-Reputation. Valid values: `disable`, `enable`.
 
@@ -186,6 +188,10 @@ The following arguments are supported:
 
 * `dynamic_profile_group` - Dynamic-Profile-Group.
 * `dynamic_shaping` - Dynamic-Shaping. Valid values: `disable`, `enable`.
+
+* `eif_check` - Enable/Disable check endpoint-independent-filtering pinhole. Valid values: `disable`, `enable`.
+
+* `eif_learn` - Enable/Disable learning of end-point-independent filtering pinhole. Valid values: `disable`, `enable`.
 
 * `email_collect` - Enable/disable email collection. Valid values: `disable`, `enable`.
 
@@ -366,6 +372,8 @@ The following arguments are supported:
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 
+* `radius_ip_auth_bypass` - Enable IP authentication bypass. The bypassed IP address must be received from RADIUS server. Valid values: `disable`, `enable`.
+
 * `radius_mac_auth_bypass` - Enable MAC authentication bypass. The bypassed MAC address must be received from RADIUS server. Valid values: `disable`, `enable`.
 
 * `redirect_profile` - Redirect-Profile.
@@ -455,6 +463,7 @@ The following arguments are supported:
 * `type` - Type. Valid values: `explicit-web`, `transparent`, `explicit-ftp`, `ssh-tunnel`, `ssh`, `wanopt`, `access-proxy`.
 
 * `udp_timeout_pid` - UDP timeout profile ID
+* `url_risk` - Url-Risk.
 * `url_category` - URL category ID list.
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_inspection_mode` - Utm-Inspection-Mode. Valid values: `proxy`, `flow`.

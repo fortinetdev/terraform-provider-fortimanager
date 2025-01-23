@@ -24,6 +24,7 @@ The following arguments are supported:
 * `nic` - Nic.
 
 * `name` - IP configuration name.
+* `private_ip` - Private IP address.
 * `public_ip` - Public IP name.
 * `resource_group` - Resource group of Azure public IP.
 

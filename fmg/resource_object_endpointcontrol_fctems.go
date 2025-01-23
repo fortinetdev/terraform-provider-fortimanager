@@ -95,6 +95,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			},
 			"ems_id": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"fortinetone_cloud_authentication": &schema.Schema{
@@ -118,7 +119,6 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
-				ForceNew: true,
 				Optional: true,
 			},
 			"out_of_sync_threshold": &schema.Schema{
@@ -233,7 +233,7 @@ func resourceObjectEndpointControlFctemsCreate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error creating ObjectEndpointControlFctems resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "name"))
+	d.SetId(strconv.Itoa(getIntKey(d, "ems_id")))
 
 	return resourceObjectEndpointControlFctemsRead(d, m)
 }
@@ -263,7 +263,7 @@ func resourceObjectEndpointControlFctemsUpdate(d *schema.ResourceData, m interfa
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "name"))
+	d.SetId(strconv.Itoa(getIntKey(d, "ems_id")))
 
 	return resourceObjectEndpointControlFctemsRead(d, m)
 }

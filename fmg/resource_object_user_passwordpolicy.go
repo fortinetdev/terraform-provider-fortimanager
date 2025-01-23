@@ -95,6 +95,10 @@ func resourceObjectUserPasswordPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"reuse_password_limit": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"warn_days": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -262,6 +266,10 @@ func flattenObjectUserPasswordPolicyReusePassword(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectUserPasswordPolicyReusePasswordLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserPasswordPolicyWarnDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -383,6 +391,16 @@ func refreshObjectObjectUserPasswordPolicy(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("reuse_password_limit", flattenObjectUserPasswordPolicyReusePasswordLimit(o["reuse-password-limit"], d, "reuse_password_limit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reuse-password-limit"], "ObjectUserPasswordPolicy-ReusePasswordLimit"); ok {
+			if err = d.Set("reuse_password_limit", vv); err != nil {
+				return fmt.Errorf("Error reading reuse_password_limit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reuse_password_limit: %v", err)
+		}
+	}
+
 	if err = d.Set("warn_days", flattenObjectUserPasswordPolicyWarnDays(o["warn-days"], d, "warn_days")); err != nil {
 		if vv, ok := fortiAPIPatch(o["warn-days"], "ObjectUserPasswordPolicy-WarnDays"); ok {
 			if err = d.Set("warn_days", vv); err != nil {
@@ -443,6 +461,10 @@ func expandObjectUserPasswordPolicyName(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectUserPasswordPolicyReusePassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyReusePasswordLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -549,6 +571,15 @@ func getObjectObjectUserPasswordPolicy(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["reuse-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reuse_password_limit"); ok || d.HasChange("reuse_password_limit") {
+		t, err := expandObjectUserPasswordPolicyReusePasswordLimit(d, v, "reuse_password_limit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reuse-password-limit"] = t
 		}
 	}
 

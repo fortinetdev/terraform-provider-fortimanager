@@ -975,6 +975,7 @@ func resourceObjectFspVlan() *schema.Resource {
 									"timezone": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"timezone_option": &schema.Schema{
 										Type:     schema.TypeString,

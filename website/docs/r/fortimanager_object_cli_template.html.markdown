@@ -30,6 +30,8 @@ The following arguments are supported:
 * `description` - Description.
 * `modification_time` - Modification-Time.
 * `name` - Name.
+* `option` - Option. Valid values: `sdwan-overlay`, `sdwan-manager`.
+
 * `position` - Position. Valid values: `post-vdom-copy`, `prep-vdom-copy`.
 
 * `provision` - Provision. Valid values: `disable`, `enable`.

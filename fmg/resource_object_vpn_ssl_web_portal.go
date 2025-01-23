@@ -264,6 +264,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dhcp_reservation": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dhcp6_ra_linkaddr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -520,6 +525,10 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 						},
 						"latest_patch_level": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"minor_version": &schema.Schema{
+							Type:     schema.TypeInt,
 							Optional: true,
 						},
 						"name": &schema.Schema{
@@ -1261,6 +1270,10 @@ func flattenObjectVpnSslWebPortalDhcpRaGiaddr(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectVpnSslWebPortalDhcpReservation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalDhcp6RaLinkaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1603,6 +1616,11 @@ func flattenObjectVpnSslWebPortalOsCheckList(v interface{}, d *schema.ResourceDa
 		result["latest_patch_level"] = flattenObjectVpnSslWebPortalOsCheckListLatestPatchLevel(i["latest-patch-level"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "minor_version"
+	if _, ok := i["minor-version"]; ok {
+		result["minor_version"] = flattenObjectVpnSslWebPortalOsCheckListMinorVersion(i["minor-version"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "name"
 	if _, ok := i["name"]; ok {
 		result["name"] = flattenObjectVpnSslWebPortalOsCheckListName(i["name"], d, pre_append)
@@ -1622,6 +1640,10 @@ func flattenObjectVpnSslWebPortalOsCheckListAction(v interface{}, d *schema.Reso
 }
 
 func flattenObjectVpnSslWebPortalOsCheckListLatestPatchLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalOsCheckListMinorVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1964,6 +1986,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading dhcp_ra_giaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("dhcp_reservation", flattenObjectVpnSslWebPortalDhcpReservation(o["dhcp-reservation"], d, "dhcp_reservation")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp-reservation"], "ObjectVpnSslWebPortal-DhcpReservation"); ok {
+			if err = d.Set("dhcp_reservation", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp_reservation: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp_reservation: %v", err)
 		}
 	}
 
@@ -3144,6 +3176,10 @@ func expandObjectVpnSslWebPortalDhcpRaGiaddr(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalDhcpReservation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalDhcp6RaLinkaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3478,6 +3514,10 @@ func expandObjectVpnSslWebPortalOsCheckList(d *schema.ResourceData, v interface{
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["latest-patch-level"], _ = expandObjectVpnSslWebPortalOsCheckListLatestPatchLevel(d, i["latest_patch_level"], pre_append)
 	}
+	pre_append = pre + ".0." + "minor_version"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["minor-version"], _ = expandObjectVpnSslWebPortalOsCheckListMinorVersion(d, i["minor_version"], pre_append)
+	}
 	pre_append = pre + ".0." + "name"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["name"], _ = expandObjectVpnSslWebPortalOsCheckListName(d, i["name"], pre_append)
@@ -3495,6 +3535,10 @@ func expandObjectVpnSslWebPortalOsCheckListAction(d *schema.ResourceData, v inte
 }
 
 func expandObjectVpnSslWebPortalOsCheckListLatestPatchLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalOsCheckListMinorVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3792,6 +3836,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["dhcp-ra-giaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dhcp_reservation"); ok || d.HasChange("dhcp_reservation") {
+		t, err := expandObjectVpnSslWebPortalDhcpReservation(d, v, "dhcp_reservation")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp-reservation"] = t
 		}
 	}
 

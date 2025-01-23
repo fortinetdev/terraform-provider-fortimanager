@@ -69,6 +69,11 @@ func resourceObjectFirewallScheduleGroup() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -207,6 +212,10 @@ func flattenObjectFirewallScheduleGroupName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFirewallScheduleGroupUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallScheduleGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -264,6 +273,16 @@ func refreshObjectObjectFirewallScheduleGroup(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallScheduleGroupUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallScheduleGroup-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -290,6 +309,10 @@ func expandObjectFirewallScheduleGroupMember(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallScheduleGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallScheduleGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -338,6 +361,15 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallScheduleGroupUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

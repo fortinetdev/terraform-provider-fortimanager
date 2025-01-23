@@ -150,6 +150,11 @@ func resourceSystempLogSyslogdFilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"http_transaction": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"local_traffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -524,6 +529,10 @@ func flattenSystempLogSyslogdFilterGtp(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenSystempLogSyslogdFilterHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystempLogSyslogdFilterLocalTraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -700,6 +709,16 @@ func refreshObjectSystempLogSyslogdFilter(d *schema.ResourceData, o map[string]i
 			}
 		} else {
 			return fmt.Errorf("Error reading gtp: %v", err)
+		}
+	}
+
+	if err = d.Set("http_transaction", flattenSystempLogSyslogdFilterHttpTransaction(o["http-transaction"], d, "http_transaction")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-transaction"], "SystempLogSyslogdFilter-HttpTransaction"); ok {
+			if err = d.Set("http_transaction", vv); err != nil {
+				return fmt.Errorf("Error reading http_transaction: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_transaction: %v", err)
 		}
 	}
 
@@ -1007,6 +1026,10 @@ func expandSystempLogSyslogdFilterGtp(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandSystempLogSyslogdFilterHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempLogSyslogdFilterLocalTraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1137,6 +1160,15 @@ func getObjectSystempLogSyslogdFilter(d *schema.ResourceData) (*map[string]inter
 			return &obj, err
 		} else if t != nil {
 			obj["gtp"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_transaction"); ok || d.HasChange("http_transaction") {
+		t, err := expandSystempLogSyslogdFilterHttpTransaction(d, v, "http_transaction")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-transaction"] = t
 		}
 	}
 

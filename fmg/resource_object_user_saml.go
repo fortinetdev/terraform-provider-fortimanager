@@ -150,6 +150,12 @@ func resourceObjectUserSaml() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"scim_client": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"single_logout_url": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -209,6 +215,12 @@ func resourceObjectUserSaml() *schema.Resource {
 			},
 			"reauth": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scim_client": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -480,6 +492,12 @@ func flattenObjectUserSamlDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["reauth"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-Reauth")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "scim_client"
+		if _, ok := i["scim-client"]; ok {
+			v := flattenObjectUserSamlDynamicMappingScimClient(i["scim-client"], d, pre_append)
+			tmp["scim_client"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-ScimClient")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
 		if _, ok := i["single-logout-url"]; ok {
 			v := flattenObjectUserSamlDynamicMappingSingleLogoutUrl(i["single-logout-url"], d, pre_append)
@@ -619,6 +637,10 @@ func flattenObjectUserSamlDynamicMappingReauth(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingScimClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectUserSamlDynamicMappingSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -673,6 +695,10 @@ func flattenObjectUserSamlName(v interface{}, d *schema.ResourceData, pre string
 
 func flattenObjectUserSamlReauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectUserSamlScimClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectUserSamlSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -876,6 +902,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("scim_client", flattenObjectUserSamlScimClient(o["scim-client"], d, "scim_client")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scim-client"], "ObjectUserSaml-ScimClient"); ok {
+			if err = d.Set("scim_client", vv); err != nil {
+				return fmt.Errorf("Error reading scim_client: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scim_client: %v", err)
+		}
+	}
+
 	if err = d.Set("single_logout_url", flattenObjectUserSamlSingleLogoutUrl(o["single-logout-url"], d, "single_logout_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["single-logout-url"], "ObjectUserSaml-SingleLogoutUrl"); ok {
 			if err = d.Set("single_logout_url", vv); err != nil {
@@ -1039,6 +1075,11 @@ func expandObjectUserSamlDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["reauth"], _ = expandObjectUserSamlDynamicMappingReauth(d, i["reauth"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "scim_client"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["scim-client"], _ = expandObjectUserSamlDynamicMappingScimClient(d, i["scim_client"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["single-logout-url"], _ = expandObjectUserSamlDynamicMappingSingleLogoutUrl(d, i["single_logout_url"], pre_append)
@@ -1167,6 +1208,10 @@ func expandObjectUserSamlDynamicMappingReauth(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingScimClient(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserSamlDynamicMappingSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1221,6 +1266,10 @@ func expandObjectUserSamlName(d *schema.ResourceData, v interface{}, pre string)
 
 func expandObjectUserSamlReauth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectUserSamlScimClient(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectUserSamlSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1383,6 +1432,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["reauth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scim_client"); ok || d.HasChange("scim_client") {
+		t, err := expandObjectUserSamlScimClient(d, v, "scim_client")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scim-client"] = t
 		}
 	}
 

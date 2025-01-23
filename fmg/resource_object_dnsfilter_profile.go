@@ -498,7 +498,7 @@ func flattenObjectDnsfilterProfileDomainFilter(v interface{}, d *schema.Resource
 }
 
 func flattenObjectDnsfilterProfileDomainFilterDomainFilterTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2num(v)
 }
 
 func flattenObjectDnsfilterProfileExternalIpBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {

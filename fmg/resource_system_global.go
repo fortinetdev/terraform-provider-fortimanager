@@ -29,6 +29,10 @@ func resourceSystemGlobal() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"admin_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"admin_lockout_duration": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -40,6 +44,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Computed: true,
 			},
 			"admin_lockout_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"admin_ssh_grace_time": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -150,7 +159,21 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_storage_pool_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"fabric_storage_pool_size": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"faz_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fcp_cfg_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -188,6 +211,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"global_ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"gui_curl_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -208,7 +236,18 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"httpd_ssl_protocol": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"import_ignore_addr_cmt": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"jsonapi_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -264,6 +303,11 @@ func resourceSystemGlobal() *schema.Resource {
 			},
 			"management_port": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"mapclient_ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -603,6 +647,10 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenSystemGlobalAdminHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalAdminLockoutDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -612,6 +660,10 @@ func flattenSystemGlobalAdminLockoutMethod(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemGlobalAdminLockoutThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalAdminSshGraceTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -699,7 +751,19 @@ func flattenSystemGlobalEncAlgorithm(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenSystemGlobalFabricStoragePoolQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalFabricStoragePoolSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalFazStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalFcpCfgService(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -731,6 +795,10 @@ func flattenSystemGlobalFortiservicePort(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenSystemGlobalGlobalSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalGuiCurlTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -747,7 +815,15 @@ func flattenSystemGlobalHostname(v interface{}, d *schema.ResourceData, pre stri
 	return v
 }
 
+func flattenSystemGlobalHttpdSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenSystemGlobalImportIgnoreAddrCmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalJsonapiLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -792,6 +868,10 @@ func flattenSystemGlobalManagementIp(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemGlobalManagementPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalMapclientSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1072,6 +1152,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("admin_host", flattenSystemGlobalAdminHost(o["admin-host"], d, "admin_host")); err != nil {
+		if vv, ok := fortiAPIPatch(o["admin-host"], "SystemGlobal-AdminHost"); ok {
+			if err = d.Set("admin_host", vv); err != nil {
+				return fmt.Errorf("Error reading admin_host: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading admin_host: %v", err)
+		}
+	}
+
 	if err = d.Set("admin_lockout_duration", flattenSystemGlobalAdminLockoutDuration(o["admin-lockout-duration"], d, "admin_lockout_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["admin-lockout-duration"], "SystemGlobal-AdminLockoutDuration"); ok {
 			if err = d.Set("admin_lockout_duration", vv); err != nil {
@@ -1099,6 +1189,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading admin_lockout_threshold: %v", err)
+		}
+	}
+
+	if err = d.Set("admin_ssh_grace_time", flattenSystemGlobalAdminSshGraceTime(o["admin-ssh-grace-time"], d, "admin_ssh_grace_time")); err != nil {
+		if vv, ok := fortiAPIPatch(o["admin-ssh-grace-time"], "SystemGlobal-AdminSshGraceTime"); ok {
+			if err = d.Set("admin_ssh_grace_time", vv); err != nil {
+				return fmt.Errorf("Error reading admin_ssh_grace_time: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading admin_ssh_grace_time: %v", err)
 		}
 	}
 
@@ -1312,6 +1412,26 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fabric_storage_pool_quota", flattenSystemGlobalFabricStoragePoolQuota(o["fabric-storage-pool-quota"], d, "fabric_storage_pool_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-storage-pool-quota"], "SystemGlobal-FabricStoragePoolQuota"); ok {
+			if err = d.Set("fabric_storage_pool_quota", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_storage_pool_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_storage_pool_quota: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_storage_pool_size", flattenSystemGlobalFabricStoragePoolSize(o["fabric-storage-pool-size"], d, "fabric_storage_pool_size")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-storage-pool-size"], "SystemGlobal-FabricStoragePoolSize"); ok {
+			if err = d.Set("fabric_storage_pool_size", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_storage_pool_size: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_storage_pool_size: %v", err)
+		}
+	}
+
 	if err = d.Set("faz_status", flattenSystemGlobalFazStatus(o["faz-status"], d, "faz_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["faz-status"], "SystemGlobal-FazStatus"); ok {
 			if err = d.Set("faz_status", vv); err != nil {
@@ -1319,6 +1439,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading faz_status: %v", err)
+		}
+	}
+
+	if err = d.Set("fcp_cfg_service", flattenSystemGlobalFcpCfgService(o["fcp-cfg-service"], d, "fcp_cfg_service")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fcp-cfg-service"], "SystemGlobal-FcpCfgService"); ok {
+			if err = d.Set("fcp_cfg_service", vv); err != nil {
+				return fmt.Errorf("Error reading fcp_cfg_service: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fcp_cfg_service: %v", err)
 		}
 	}
 
@@ -1392,6 +1522,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("global_ssl_protocol", flattenSystemGlobalGlobalSslProtocol(o["global-ssl-protocol"], d, "global_ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["global-ssl-protocol"], "SystemGlobal-GlobalSslProtocol"); ok {
+			if err = d.Set("global_ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading global_ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading global_ssl_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("gui_curl_timeout", flattenSystemGlobalGuiCurlTimeout(o["gui-curl-timeout"], d, "gui_curl_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-curl-timeout"], "SystemGlobal-GuiCurlTimeout"); ok {
 			if err = d.Set("gui_curl_timeout", vv); err != nil {
@@ -1432,6 +1572,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("httpd_ssl_protocol", flattenSystemGlobalHttpdSslProtocol(o["httpd-ssl-protocol"], d, "httpd_ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["httpd-ssl-protocol"], "SystemGlobal-HttpdSslProtocol"); ok {
+			if err = d.Set("httpd_ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading httpd_ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading httpd_ssl_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("import_ignore_addr_cmt", flattenSystemGlobalImportIgnoreAddrCmt(o["import-ignore-addr-cmt"], d, "import_ignore_addr_cmt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["import-ignore-addr-cmt"], "SystemGlobal-ImportIgnoreAddrCmt"); ok {
 			if err = d.Set("import_ignore_addr_cmt", vv); err != nil {
@@ -1439,6 +1589,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading import_ignore_addr_cmt: %v", err)
+		}
+	}
+
+	if err = d.Set("jsonapi_log", flattenSystemGlobalJsonapiLog(o["jsonapi-log"], d, "jsonapi_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["jsonapi-log"], "SystemGlobal-JsonapiLog"); ok {
+			if err = d.Set("jsonapi_log", vv); err != nil {
+				return fmt.Errorf("Error reading jsonapi_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading jsonapi_log: %v", err)
 		}
 	}
 
@@ -1549,6 +1709,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading management_port: %v", err)
+		}
+	}
+
+	if err = d.Set("mapclient_ssl_protocol", flattenSystemGlobalMapclientSslProtocol(o["mapclient-ssl-protocol"], d, "mapclient_ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mapclient-ssl-protocol"], "SystemGlobal-MapclientSslProtocol"); ok {
+			if err = d.Set("mapclient_ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading mapclient_ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mapclient_ssl_protocol: %v", err)
 		}
 	}
 
@@ -2039,6 +2209,10 @@ func flattenSystemGlobalFortiTestDebug(d *schema.ResourceData, fosdebugsn int, f
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemGlobalAdminHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalAdminLockoutDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2048,6 +2222,10 @@ func expandSystemGlobalAdminLockoutMethod(d *schema.ResourceData, v interface{},
 }
 
 func expandSystemGlobalAdminLockoutThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalAdminSshGraceTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2135,7 +2313,19 @@ func expandSystemGlobalEncAlgorithm(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandSystemGlobalFabricStoragePoolQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalFabricStoragePoolSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalFazStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalFcpCfgService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2167,6 +2357,10 @@ func expandSystemGlobalFortiservicePort(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandSystemGlobalGlobalSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalGuiCurlTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2183,7 +2377,15 @@ func expandSystemGlobalHostname(d *schema.ResourceData, v interface{}, pre strin
 	return v, nil
 }
 
+func expandSystemGlobalHttpdSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandSystemGlobalImportIgnoreAddrCmt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalJsonapiLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2228,6 +2430,10 @@ func expandSystemGlobalManagementIp(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemGlobalManagementPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalMapclientSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2490,6 +2696,15 @@ func expandSystemGlobalWorkspaceUnlockAfterInstall(d *schema.ResourceData, v int
 func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("admin_host"); ok || d.HasChange("admin_host") {
+		t, err := expandSystemGlobalAdminHost(d, v, "admin_host")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["admin-host"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("admin_lockout_duration"); ok || d.HasChange("admin_lockout_duration") {
 		t, err := expandSystemGlobalAdminLockoutDuration(d, v, "admin_lockout_duration")
 		if err != nil {
@@ -2514,6 +2729,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["admin-lockout-threshold"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("admin_ssh_grace_time"); ok || d.HasChange("admin_ssh_grace_time") {
+		t, err := expandSystemGlobalAdminSshGraceTime(d, v, "admin_ssh_grace_time")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["admin-ssh-grace-time"] = t
 		}
 	}
 
@@ -2706,12 +2930,39 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_storage_pool_quota"); ok || d.HasChange("fabric_storage_pool_quota") {
+		t, err := expandSystemGlobalFabricStoragePoolQuota(d, v, "fabric_storage_pool_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-storage-pool-quota"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_storage_pool_size"); ok || d.HasChange("fabric_storage_pool_size") {
+		t, err := expandSystemGlobalFabricStoragePoolSize(d, v, "fabric_storage_pool_size")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-storage-pool-size"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("faz_status"); ok || d.HasChange("faz_status") {
 		t, err := expandSystemGlobalFazStatus(d, v, "faz_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["faz-status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fcp_cfg_service"); ok || d.HasChange("fcp_cfg_service") {
+		t, err := expandSystemGlobalFcpCfgService(d, v, "fcp_cfg_service")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fcp-cfg-service"] = t
 		}
 	}
 
@@ -2778,6 +3029,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("global_ssl_protocol"); ok || d.HasChange("global_ssl_protocol") {
+		t, err := expandSystemGlobalGlobalSslProtocol(d, v, "global_ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["global-ssl-protocol"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("gui_curl_timeout"); ok || d.HasChange("gui_curl_timeout") {
 		t, err := expandSystemGlobalGuiCurlTimeout(d, v, "gui_curl_timeout")
 		if err != nil {
@@ -2814,12 +3074,30 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("httpd_ssl_protocol"); ok || d.HasChange("httpd_ssl_protocol") {
+		t, err := expandSystemGlobalHttpdSslProtocol(d, v, "httpd_ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["httpd-ssl-protocol"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("import_ignore_addr_cmt"); ok || d.HasChange("import_ignore_addr_cmt") {
 		t, err := expandSystemGlobalImportIgnoreAddrCmt(d, v, "import_ignore_addr_cmt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["import-ignore-addr-cmt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("jsonapi_log"); ok || d.HasChange("jsonapi_log") {
+		t, err := expandSystemGlobalJsonapiLog(d, v, "jsonapi_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["jsonapi-log"] = t
 		}
 	}
 
@@ -2919,6 +3197,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["management-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mapclient_ssl_protocol"); ok || d.HasChange("mapclient_ssl_protocol") {
+		t, err := expandSystemGlobalMapclientSslProtocol(d, v, "mapclient_ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mapclient-ssl-protocol"] = t
 		}
 	}
 

@@ -478,6 +478,37 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"downlinks": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"port": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"pvid": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"type": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"vap": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
 						"ipsec_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1515,6 +1546,11 @@ func flattenObjectExtensionControllerExtenderProfileLanExtension(v interface{}, 
 		result["backhaul_ip"] = flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp(i["backhaul-ip"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "downlinks"
+	if _, ok := i["downlinks"]; ok {
+		result["downlinks"] = flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinks(i["downlinks"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "ipsec_tunnel"
 	if _, ok := i["ipsec-tunnel"]; ok {
 		result["ipsec_tunnel"] = flattenObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(i["ipsec-tunnel"], d, pre_append)
@@ -1604,6 +1640,85 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulInterfac
 
 func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinks(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Downlinks-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := i["port"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksPort(i["port"], d, pre_append)
+			tmp["port"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Downlinks-Port")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pvid"
+		if _, ok := i["pvid"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksPvid(i["pvid"], d, pre_append)
+			tmp["pvid"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Downlinks-Pvid")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := i["type"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksType(i["type"], d, pre_append)
+			tmp["type"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Downlinks-Type")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vap"
+		if _, ok := i["vap"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksVap(i["vap"], d, pre_append)
+			tmp["vap"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Downlinks-Vap")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksPvid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionDownlinksVap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2872,6 +2987,15 @@ func expandObjectExtensionControllerExtenderProfileLanExtension(d *schema.Resour
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["backhaul-ip"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp(d, i["backhaul_ip"], pre_append)
 	}
+	pre_append = pre + ".0." + "downlinks"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionDownlinks(d, i["downlinks"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["downlinks"] = t
+		}
+	}
 	pre_append = pre + ".0." + "ipsec_tunnel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipsec-tunnel"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(d, i["ipsec_tunnel"], pre_append)
@@ -2950,6 +3074,75 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulInterface
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["port"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksPort(d, i["port"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pvid"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["pvid"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksPvid(d, i["pvid"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["type"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksType(d, i["type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vap"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vap"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksVap(d, i["vap"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksPvid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionDownlinksVap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

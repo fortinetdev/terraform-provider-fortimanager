@@ -40,6 +40,8 @@ The following arguments are supported:
 * `member` - Member.
 * `modification_time` - Modification-Time.
 * `name` - Name.
+* `option` - Option. Valid values: `sdwan-overlay`, `sdwan-manager`.
+
 * `variables` - Variables.
 
 

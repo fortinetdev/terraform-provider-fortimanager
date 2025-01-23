@@ -38,6 +38,7 @@ The following arguments are supported:
 * `global_object` - Global Object.
 * `name` - Recurring schedule name.
 * `start` - Time of day to start the schedule, format hh:mm.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

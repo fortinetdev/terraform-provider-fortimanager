@@ -53,6 +53,7 @@ The following arguments are supported:
 * `retry_max` - max retry times(0-100, default=10)
 * `revision_diff` - calculate diff script after upgrade disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `send_image_retry` - retry send image when failed(0-2, default=0(no retry))
 * `upgrade_timeout` - Upgrade-Timeout. The structure of `upgrade_timeout` block is documented below.
 
 The `upgrade_timeout` block supports:

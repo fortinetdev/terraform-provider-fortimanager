@@ -12,6 +12,7 @@ FortiExtender lan extension configuration.
 ~> This resource is a sub resource for variable `lan_extension` of resource `fortimanager_object_extensioncontroller_extenderprofile`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `backhaul`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_backhaul`
+>- `downlinks`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_downlinks`
 
 
 
@@ -27,6 +28,7 @@ The following arguments are supported:
 * `backhaul` - Backhaul. The structure of `backhaul` block is documented below.
 * `backhaul_interface` - IPsec phase1 interface.
 * `backhaul_ip` - IPsec phase1 IPv4/FQDN. Used to specify the external IP/FQDN when the FortiGate unit is behind a NAT device.
+* `downlinks` - Downlinks. The structure of `downlinks` block is documented below.
 * `ipsec_tunnel` - IPsec tunnel name.
 * `link_loadbalance` - LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
 
@@ -40,6 +42,16 @@ The `backhaul` block supports:
 * `role` - FortiExtender uplink port. Valid values: `primary`, `secondary`.
 
 * `weight` - WRR weight parameter.
+
+The `downlinks` block supports:
+
+* `name` - FortiExtender LAN extension downlink config entry name.
+* `port` - FortiExtender LAN extension downlink port. Valid values: `port1`, `port2`, `port3`, `port4`, `port5`, `lan1`, `lan2`.
+
+* `pvid` - FortiExtender LAN extension downlink PVID.
+* `type` - FortiExtender LAN extension downlink type [port/vap]. Valid values: `port`, `vap`.
+
+* `vap` - FortiExtender LAN extension downlink vap.
 
 
 ## Attribute Reference

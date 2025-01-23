@@ -50,11 +50,32 @@ func resourceSecurityconsoleInstallPreview() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"scope": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"vdom": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"vdoms": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -108,12 +129,65 @@ func flattenSecurityconsoleInstallPreviewFlags(v interface{}, d *schema.Resource
 	return flattenStringList(v)
 }
 
+func flattenSecurityconsoleInstallPreviewScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenSecurityconsoleInstallPreviewScopeName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "SecurityconsoleInstallPreview-Scope-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := i["vdom"]; ok {
+			v := flattenSecurityconsoleInstallPreviewScopeVdom(i["vdom"], d, pre_append)
+			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsoleInstallPreview-Scope-Vdom")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSecurityconsoleInstallPreviewScopeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSecurityconsoleInstallPreviewScopeVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSecurityconsoleInstallPreviewVdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
 func refreshObjectSecurityconsoleInstallPreview(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
 
 	if err = d.Set("fmgadom", flattenSecurityconsoleInstallPreviewAdom(o["adom"], d, "fmgadom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom"], "SecurityconsoleInstallPreview-Adom"); ok {
@@ -142,6 +216,30 @@ func refreshObjectSecurityconsoleInstallPreview(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading flags: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("scope", flattenSecurityconsoleInstallPreviewScope(o["scope"], d, "scope")); err != nil {
+			if vv, ok := fortiAPIPatch(o["scope"], "SecurityconsoleInstallPreview-Scope"); ok {
+				if err = d.Set("scope", vv); err != nil {
+					return fmt.Errorf("Error reading scope: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading scope: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("scope"); ok {
+			if err = d.Set("scope", flattenSecurityconsoleInstallPreviewScope(o["scope"], d, "scope")); err != nil {
+				if vv, ok := fortiAPIPatch(o["scope"], "SecurityconsoleInstallPreview-Scope"); ok {
+					if err = d.Set("scope", vv); err != nil {
+						return fmt.Errorf("Error reading scope: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading scope: %v", err)
+				}
+			}
 		}
 	}
 
@@ -176,6 +274,48 @@ func expandSecurityconsoleInstallPreviewFlags(d *schema.ResourceData, v interfac
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandSecurityconsoleInstallPreviewScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandSecurityconsoleInstallPreviewScopeName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vdom"], _ = expandSecurityconsoleInstallPreviewScopeVdom(d, i["vdom"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSecurityconsoleInstallPreviewScopeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSecurityconsoleInstallPreviewScopeVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSecurityconsoleInstallPreviewVdoms(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -207,6 +347,15 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["flags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+		t, err := expandSecurityconsoleInstallPreviewScope(d, v, "scope")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scope"] = t
 		}
 	}
 

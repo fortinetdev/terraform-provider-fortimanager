@@ -30,10 +30,12 @@ resource "fortimanager_system_global" "trname" {
 The following arguments are supported:
 
 
+* `admin_host` - Administrative host for HTTP and HTTPs. When set, will be used in lieu of the client&apos;s Host header for any redirection.
 * `admin_lockout_duration` - Lockout duration(sec) for administration.
 * `admin_lockout_method` - Lockout method for administration. ip - Lockout by IP user - Lockout by user Valid values: `ip`, `user`.
 
 * `admin_lockout_threshold` - Lockout threshold for administration.
+* `admin_ssh_grace_time` - Maximum time in seconds permitted between making an SSH connection to the FortiManager unit and authenticating (10 - 3600 sec (1 hour), default 120).
 * `adom_mode` - ADOM mode. normal - Normal ADOM mode. advanced - Advanced ADOM mode. Valid values: `normal`, `advanced`.
 
 * `adom_rev_auto_delete` - Auto delete features for old ADOM revisions. disable - Disable auto delete function for ADOM revision. by-revisions - Auto delete ADOM revisions by maximum number of revisions. by-days - Auto delete ADOM revisions by maximum days. Valid values: `disable`, `by-revisions`, `by-days`.
@@ -73,7 +75,11 @@ The following arguments are supported:
 
 * `enc_algorithm` - SSL communication encryption algorithms. low - SSL communication using all available encryption algorithms. medium - SSL communication using high and medium encryption algorithms. high - SSL communication using high encryption algorithms. Valid values: `low`, `medium`, `high`.
 
+* `fabric_storage_pool_quota` - Disk quota for Fabric (MB).
+* `fabric_storage_pool_size` - Max storage pooll size
 * `faz_status` - FAZ status. disable - Disable FAZ feature. enable - Enable FAZ feature. Valid values: `disable`, `enable`.
+
+* `fcp_cfg_service` - Enable/disable FCP service processing configuration requests disable - FCP service doesn&apos;t process configuration requests from web enable - FCP service processes configuration requests from web. Valid values: `disable`, `enable`.
 
 * `fgfm_ca_cert` - set the extra fgfm CA certificates.
 * `fgfm_cert_exclusive` - set if the local or CA certificates should be used exclusively. disable - Used certificate best-effort. enable - Used certificate exclusive. Valid values: `disable`, `enable`.
@@ -86,12 +92,18 @@ The following arguments are supported:
 * `fgfm_ssl_protocol` - set the lowest SSL protocols for fgfmsd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
 
 * `fortiservice_port` - FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
+* `global_ssl_protocol` - set the lowest SSL protocol version for all SSL connections. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
+
 * `gui_curl_timeout` - GUI curl timeout in seconds (5-300 default 30).
 * `gui_polling_interval` - GUI polling interval in seconds (1-288000 default 5).
 * `ha_member_auto_grouping` - Enable/disable automatically group HA members feature disable - Disable automatically grouping HA members feature. enable - Enable automatically grouping HA members only when group name is unique in your network. Valid values: `disable`, `enable`.
 
 * `hostname` - System hostname.
+* `httpd_ssl_protocol` - set SSL protocols for apache daemon (httpd) sslv3 - Enable SSLv3. tlsv1.0 - Enable TLSv1.0. tlsv1.1 - Enable TLSv1.1. tlsv1.2 - Enable TLSv1.2. tlsv1.3 - Enable TLSv1.3. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
+
 * `import_ignore_addr_cmt` - Enable/Disable import ignore of address comments. disable - Disable import ignore of address comments. enable - Enable import ignore of address comments. Valid values: `disable`, `enable`.
+
+* `jsonapi_log` - enable jsonapi log. disable - disable jsonapi log. request - logging jsonapi request. response - logging jsonapi response. all - logging both jsonapi request &amp; response. Valid values: `disable`, `request`, `response`, `all`.
 
 * `language` - System global language. english - English simch - Simplified Chinese japanese - Japanese korean - Korean spanish - Spanish trach - Traditional Chinese Valid values: `english`, `simch`, `japanese`, `korean`, `spanish`, `trach`.
 
@@ -108,6 +120,8 @@ The following arguments are supported:
 * `longitude` - fmg location longitude
 * `management_ip` - Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
 * `management_port` - Overriding port for management connection (Overrides admin port).
+* `mapclient_ssl_protocol` - set the lowest SSL protocol version for connection to mapserver. follow-global-ssl-protocol - Follow system.global.global-ssl-protocol setting (default). sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version. tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `follow-global-ssl-protocol`, `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
+
 * `max_log_forward` - Maximum number of log-forward and aggregation settings.
 * `max_running_reports` - Maximum number of reports generating at one time.
 * `mc_policy_disabled_adoms` - Mc-Policy-Disabled-Adoms. The structure of `mc_policy_disabled_adoms` block is documented below.

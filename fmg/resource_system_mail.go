@@ -80,6 +80,11 @@ func resourceSystemMail() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ssl_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -218,6 +223,10 @@ func flattenSystemMailServer(v interface{}, d *schema.ResourceData, pre string) 
 	return v
 }
 
+func flattenSystemMailSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemMailUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -305,6 +314,16 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
+	if err = d.Set("ssl_protocol", flattenSystemMailSslProtocol(o["ssl-protocol"], d, "ssl_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-protocol"], "SystemMail-SslProtocol"); ok {
+			if err = d.Set("ssl_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("user", flattenSystemMailUser(o["user"], d, "user")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user"], "SystemMail-User"); ok {
 			if err = d.Set("user", vv); err != nil {
@@ -361,6 +380,10 @@ func expandSystemMailSecureOption(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandSystemMailServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailSslProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -458,6 +481,15 @@ func getObjectSystemMail(d *schema.ResourceData) (*map[string]interface{}, error
 			return &obj, err
 		} else if t != nil {
 			obj["server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_protocol"); ok || d.HasChange("ssl_protocol") {
+		t, err := expandSystemMailSslProtocol(d, v, "ssl_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-protocol"] = t
 		}
 	}
 

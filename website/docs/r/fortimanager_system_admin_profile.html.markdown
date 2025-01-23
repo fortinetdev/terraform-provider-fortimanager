@@ -33,6 +33,8 @@ resource "fortimanager_system_admin_profile" "trname" {
 The following arguments are supported:
 
 
+* `adom_admin` - Enable Adom Admin. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `adom_lock` - ADOM locking none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `adom_policy_packages` - ADOM policy packages. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.

@@ -93,6 +93,7 @@ func resourceSystempSystemNtp() *schema.Resource {
 						"ip_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -116,6 +117,7 @@ func resourceSystempSystemNtp() *schema.Resource {
 						"key_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ntpv3": &schema.Schema{
 							Type:     schema.TypeString,

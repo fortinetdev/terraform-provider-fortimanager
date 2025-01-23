@@ -617,7 +617,7 @@ func flattenWantempSystemVirtualWanLinkServiceSla2edl(v interface{}, d *schema.R
 }
 
 func flattenWantempSystemVirtualWanLinkServiceSlaHealthCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenWantempSystemVirtualWanLinkServiceSlaId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1403,7 +1403,7 @@ func expandWantempSystemVirtualWanLinkServiceSla2edl(d *schema.ResourceData, v i
 }
 
 func expandWantempSystemVirtualWanLinkServiceSlaHealthCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandWantempSystemVirtualWanLinkServiceSlaId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

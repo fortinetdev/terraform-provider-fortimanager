@@ -159,6 +159,10 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"analytics_suspicious": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"cover_page": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1292,6 +1296,11 @@ func flattenObjectAntivirusProfileContentDisarm(v interface{}, d *schema.Resourc
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "analytics_suspicious"
+	if _, ok := i["analytics-suspicious"]; ok {
+		result["analytics_suspicious"] = flattenObjectAntivirusProfileContentDisarmAnalyticsSuspicious(i["analytics-suspicious"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "cover_page"
 	if _, ok := i["cover-page"]; ok {
 		result["cover_page"] = flattenObjectAntivirusProfileContentDisarmCoverPage(i["cover-page"], d, pre_append)
@@ -1389,6 +1398,10 @@ func flattenObjectAntivirusProfileContentDisarm(v interface{}, d *schema.Resourc
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
+}
+
+func flattenObjectAntivirusProfileContentDisarmAnalyticsSuspicious(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmCoverPage(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3442,6 +3455,10 @@ func expandObjectAntivirusProfileContentDisarm(d *schema.ResourceData, v interfa
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "analytics_suspicious"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["analytics-suspicious"], _ = expandObjectAntivirusProfileContentDisarmAnalyticsSuspicious(d, i["analytics_suspicious"], pre_append)
+	}
 	pre_append = pre + ".0." + "cover_page"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cover-page"], _ = expandObjectAntivirusProfileContentDisarmCoverPage(d, i["cover_page"], pre_append)
@@ -3520,6 +3537,10 @@ func expandObjectAntivirusProfileContentDisarm(d *schema.ResourceData, v interfa
 	}
 
 	return result, nil
+}
+
+func expandObjectAntivirusProfileContentDisarmAnalyticsSuspicious(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectAntivirusProfileContentDisarmCoverPage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

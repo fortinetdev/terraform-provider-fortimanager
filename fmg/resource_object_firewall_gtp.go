@@ -163,6 +163,10 @@ func resourceObjectFirewallGtp() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"gtpv0": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"half_close_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -1321,6 +1325,10 @@ func flattenObjectFirewallGtpGtpuForwardedLog(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallGtpGtpuLogFreq(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallGtpGtpv0(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3344,6 +3352,16 @@ func refreshObjectObjectFirewallGtp(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("gtpv0", flattenObjectFirewallGtpGtpv0(o["gtpv0"], d, "gtpv0")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gtpv0"], "ObjectFirewallGtp-Gtpv0"); ok {
+			if err = d.Set("gtpv0", vv); err != nil {
+				return fmt.Errorf("Error reading gtpv0: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gtpv0: %v", err)
+		}
+	}
+
 	if err = d.Set("half_close_timeout", flattenObjectFirewallGtpHalfCloseTimeout(o["half-close-timeout"], d, "half_close_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["half-close-timeout"], "ObjectFirewallGtp-HalfCloseTimeout"); ok {
 			if err = d.Set("half_close_timeout", vv); err != nil {
@@ -4300,6 +4318,10 @@ func expandObjectFirewallGtpGtpuForwardedLog(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallGtpGtpuLogFreq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallGtpGtpv0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6107,6 +6129,15 @@ func getObjectObjectFirewallGtp(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["gtpu-log-freq"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gtpv0"); ok || d.HasChange("gtpv0") {
+		t, err := expandObjectFirewallGtpGtpv0(d, v, "gtpv0")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gtpv0"] = t
 		}
 	}
 

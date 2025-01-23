@@ -172,6 +172,10 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"udplite_portrange": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -406,6 +410,10 @@ func flattenObjectFirewallServiceCustomUdpIdleTimer(v interface{}, d *schema.Res
 
 func flattenObjectFirewallServiceCustomUdpPortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallServiceCustomUdplitePortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallServiceCustomUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -693,6 +701,16 @@ func refreshObjectObjectFirewallServiceCustom(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("udplite_portrange", flattenObjectFirewallServiceCustomUdplitePortrange(o["udplite-portrange"], d, "udplite_portrange")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udplite-portrange"], "ObjectFirewallServiceCustom-UdplitePortrange"); ok {
+			if err = d.Set("udplite_portrange", vv); err != nil {
+				return fmt.Errorf("Error reading udplite_portrange: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udplite_portrange: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenObjectFirewallServiceCustomUuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallServiceCustom-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -828,6 +846,10 @@ func expandObjectFirewallServiceCustomUdpIdleTimer(d *schema.ResourceData, v int
 
 func expandObjectFirewallServiceCustomUdpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallServiceCustomUdplitePortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallServiceCustomUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1081,6 +1103,15 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["udp-portrange"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udplite_portrange"); ok || d.HasChange("udplite_portrange") {
+		t, err := expandObjectFirewallServiceCustomUdplitePortrange(d, v, "udplite_portrange")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udplite-portrange"] = t
 		}
 	}
 

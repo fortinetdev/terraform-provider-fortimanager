@@ -55,6 +55,7 @@ The following arguments are supported:
 * `end_mac` - Last MAC address in the range.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
 
+* `filter` - Match criteria filter.
 * `fqdn` - Fully qualified domain name.
 * `global_object` - Global Object.
 * `host` - Host Address.
@@ -67,6 +68,8 @@ The following arguments are supported:
 * `obj_id` - Object ID for NSX.
 * `route_tag` - route-tag address.
 * `sdn` - SDN.
+* `sdn_addr_type` - Type of addresses to collect. Valid values: `all`, `private`, `public`.
+
 * `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `start_mac` - First MAC address in the range.
@@ -94,6 +97,7 @@ The `dynamic_mapping` block supports:
 * `epg_name` - Endpoint group name.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
+* `filter` - Match criteria filter.
 * `fqdn` - Fully qualified domain name.
 * `global_object` - Global-Object.
 * `host` - Host Address.
@@ -104,6 +108,8 @@ The `dynamic_mapping` block supports:
 * `obj_id` - Object ID for NSX.
 * `route_tag` - route-tag address.
 * `sdn` - SDN.
+* `sdn_addr_type` - Type of addresses to collect. Valid values: `all`, `private`, `public`.
+
 * `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `start_mac` - First MAC address in the range.

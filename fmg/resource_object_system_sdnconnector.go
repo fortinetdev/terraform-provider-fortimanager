@@ -236,6 +236,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 										Type:     schema.TypeString,
 										Optional: true,
 									},
+									"private_ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
 									"public_ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -248,6 +252,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 							},
 						},
 						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"peer_nic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -948,6 +956,12 @@ func flattenObjectSystemSdnConnectorNic(v interface{}, d *schema.ResourceData, p
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-Nic-Name")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "peer_nic"
+		if _, ok := i["peer-nic"]; ok {
+			v := flattenObjectSystemSdnConnectorNicPeerNic(i["peer-nic"], d, pre_append)
+			tmp["peer_nic"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-Nic-PeerNic")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -983,6 +997,12 @@ func flattenObjectSystemSdnConnectorNicIp(v interface{}, d *schema.ResourceData,
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorNic-Ip-Name")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "private_ip"
+		if _, ok := i["private-ip"]; ok {
+			v := flattenObjectSystemSdnConnectorNicIpPrivateIp(i["private-ip"], d, pre_append)
+			tmp["private_ip"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorNic-Ip-PrivateIp")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "public_ip"
 		if _, ok := i["public-ip"]; ok {
 			v := flattenObjectSystemSdnConnectorNicIpPublicIp(i["public-ip"], d, pre_append)
@@ -1009,6 +1029,10 @@ func flattenObjectSystemSdnConnectorNicIpName(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectSystemSdnConnectorNicIpPrivateIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorNicIpPublicIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1018,6 +1042,10 @@ func flattenObjectSystemSdnConnectorNicIpResourceGroup(v interface{}, d *schema.
 }
 
 func flattenObjectSystemSdnConnectorNicName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorNicPeerNic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2409,6 +2437,11 @@ func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pr
 			tmp["name"], _ = expandObjectSystemSdnConnectorNicName(d, i["name"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "peer_nic"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["peer-nic"], _ = expandObjectSystemSdnConnectorNicPeerNic(d, i["peer_nic"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -2438,6 +2471,11 @@ func expandObjectSystemSdnConnectorNicIp(d *schema.ResourceData, v interface{}, 
 			tmp["name"], _ = expandObjectSystemSdnConnectorNicIpName(d, i["name"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "private_ip"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["private-ip"], _ = expandObjectSystemSdnConnectorNicIpPrivateIp(d, i["private_ip"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "public_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["public-ip"], _ = expandObjectSystemSdnConnectorNicIpPublicIp(d, i["public_ip"], pre_append)
@@ -2462,6 +2500,10 @@ func expandObjectSystemSdnConnectorNicIpName(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorNicIpPrivateIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorNicIpPublicIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2471,6 +2513,10 @@ func expandObjectSystemSdnConnectorNicIpResourceGroup(d *schema.ResourceData, v 
 }
 
 func expandObjectSystemSdnConnectorNicName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorNicPeerNic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

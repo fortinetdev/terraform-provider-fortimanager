@@ -132,6 +132,7 @@ The following arguments are supported:
 * `server_identity_check` - Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP address for communications to the RADIUS server.
+* `source_ip_interface` - Source interface for communication with the RADIUS server.
 * `sso_attribute` - RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `User-Password`, `CHAP-Password`, `NAS-IP-Address`, `NAS-Port`, `Service-Type`, `Framed-Protocol`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Framed-Routing`, `Filter-Id`, `Framed-MTU`, `Framed-Compression`, `Login-IP-Host`, `Login-Service`, `Login-TCP-Port`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `State`, `Class`, `Session-Timeout`, `Idle-Timeout`, `Termination-Action`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Link`, `Framed-AppleTalk-Network`, `Framed-AppleTalk-Zone`, `Acct-Status-Type`, `Acct-Delay-Time`, `Acct-Input-Octets`, `Acct-Output-Octets`, `Acct-Session-Id`, `Acct-Authentic`, `Acct-Session-Time`, `Acct-Input-Packets`, `Acct-Output-Packets`, `Acct-Terminate-Cause`, `Acct-Multi-Session-Id`, `Acct-Link-Count`, `CHAP-Challenge`, `NAS-Port-Type`, `Port-Limit`, `Login-LAT-Port`.
 
 * `sso_attribute_key` - Key prefix for SSO group value in the SSO attribute.
@@ -293,6 +294,7 @@ The `dynamic_mapping` block supports:
 * `server_identity_check` - Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP address for communications to the RADIUS server.
+* `source_ip_interface` - Source interface for communication with the RADIUS server.
 * `sso_attribute` - RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `User-Password`, `CHAP-Password`, `NAS-IP-Address`, `NAS-Port`, `Service-Type`, `Framed-Protocol`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Framed-Routing`, `Filter-Id`, `Framed-MTU`, `Framed-Compression`, `Login-IP-Host`, `Login-Service`, `Login-TCP-Port`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `State`, `Class`, `Session-Timeout`, `Idle-Timeout`, `Termination-Action`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Link`, `Framed-AppleTalk-Network`, `Framed-AppleTalk-Zone`, `Acct-Status-Type`, `Acct-Delay-Time`, `Acct-Input-Octets`, `Acct-Output-Octets`, `Acct-Session-Id`, `Acct-Authentic`, `Acct-Session-Time`, `Acct-Input-Packets`, `Acct-Output-Packets`, `Acct-Terminate-Cause`, `Acct-Multi-Session-Id`, `Acct-Link-Count`, `CHAP-Challenge`, `NAS-Port-Type`, `Port-Limit`, `Login-LAT-Port`.
 
 * `sso_attribute_key` - Key prefix for SSO group value in the SSO attribute.

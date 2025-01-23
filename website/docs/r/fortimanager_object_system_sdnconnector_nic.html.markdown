@@ -26,11 +26,13 @@ The following arguments are supported:
 
 * `ip` - Ip. The structure of `ip` block is documented below.
 * `name` - Network interface name.
+* `peer_nic` - Peer network interface name.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `ip` block supports:
 
 * `name` - IP configuration name.
+* `private_ip` - Private IP address.
 * `public_ip` - Public IP name.
 * `resource_group` - Resource group of Azure public IP.
 

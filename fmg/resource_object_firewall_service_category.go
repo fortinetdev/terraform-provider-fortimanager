@@ -63,6 +63,11 @@ func resourceObjectFirewallServiceCategory() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -197,6 +202,10 @@ func flattenObjectFirewallServiceCategoryName(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectFirewallServiceCategoryUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallServiceCategory(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -244,6 +253,16 @@ func refreshObjectObjectFirewallServiceCategory(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallServiceCategoryUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallServiceCategory-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -266,6 +285,10 @@ func expandObjectFirewallServiceCategoryGlobalObject(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallServiceCategoryName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallServiceCategoryUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -305,6 +328,15 @@ func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallServiceCategoryUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

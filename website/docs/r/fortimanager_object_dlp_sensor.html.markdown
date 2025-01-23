@@ -40,6 +40,7 @@ The following arguments are supported:
 * `comment` - Comment.
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `eval` - Expression to evaluate.
+* `fgd_id` - ID of object in FortiGuard database.
 * `match_type` - Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 
 * `dlp_log` - Enable/disable DLP logging. Valid values: `disable`, `enable`.

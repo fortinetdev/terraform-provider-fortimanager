@@ -70,6 +70,11 @@ func resourceObjectFirewallProfileProtocolOptionsHttp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"domain_fronting": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"h2c": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -339,6 +344,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval2edl(v interf
 	return v
 }
 
+func flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileProtocolOptionsHttpH2C2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -499,6 +508,16 @@ func refreshObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceDat
 			}
 		} else {
 			return fmt.Errorf("Error reading comfort_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("domain_fronting", flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting2edl(o["domain-fronting"], d, "domain_fronting")); err != nil {
+		if vv, ok := fortiAPIPatch(o["domain-fronting"], "ObjectFirewallProfileProtocolOptionsHttp-DomainFronting"); ok {
+			if err = d.Set("domain_fronting", vv); err != nil {
+				return fmt.Errorf("Error reading domain_fronting: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading domain_fronting: %v", err)
 		}
 	}
 
@@ -817,6 +836,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpComfortInterval2edl(d *schema
 	return v, nil
 }
 
+func expandObjectFirewallProfileProtocolOptionsHttpDomainFronting2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileProtocolOptionsHttpH2C2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -969,6 +992,15 @@ func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData) (
 			return &obj, err
 		} else if t != nil {
 			obj["comfort-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("domain_fronting"); ok || d.HasChange("domain_fronting") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpDomainFronting2edl(d, v, "domain_fronting")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["domain-fronting"] = t
 		}
 	}
 

@@ -52,8 +52,11 @@ func EscapeURLString(v string) string { // doesn't support "<>()"'#"
 }
 
 func escapeURLString(v string) string { // doesn't support "<>()"'#"
+	return strings.Replace(v, "/", "\\/", -1)
+}
+
+func escapeURLStringDMScope(v string) string { // doesn't support "<>()"'#"
 	return strings.Replace(strings.Replace(v, "/", "\\/", -1), " ", "/", -1)
-	// return strings.Replace(url.QueryEscape(v), "+", "%20", -1)
 }
 
 // NewClient initializes a new global plugin client

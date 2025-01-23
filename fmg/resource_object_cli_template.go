@@ -58,6 +58,12 @@ func resourceObjectCliTemplate() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"option": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"position": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -210,6 +216,10 @@ func flattenObjectCliTemplateName(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenObjectCliTemplateOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectCliTemplatePosition(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -264,6 +274,16 @@ func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("option", flattenObjectCliTemplateOption(o["option"], d, "option")); err != nil {
+		if vv, ok := fortiAPIPatch(o["option"], "ObjectCliTemplate-Option"); ok {
+			if err = d.Set("option", vv); err != nil {
+				return fmt.Errorf("Error reading option: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading option: %v", err)
 		}
 	}
 
@@ -338,6 +358,10 @@ func expandObjectCliTemplateName(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandObjectCliTemplateOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectCliTemplatePosition(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -385,6 +409,15 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("option"); ok || d.HasChange("option") {
+		t, err := expandObjectCliTemplateOption(d, v, "option")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["option"] = t
 		}
 	}
 

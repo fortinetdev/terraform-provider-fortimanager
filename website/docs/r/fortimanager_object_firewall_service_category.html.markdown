@@ -31,6 +31,7 @@ The following arguments are supported:
 
 * `global_object` - Global Object.
 * `name` - Service category name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

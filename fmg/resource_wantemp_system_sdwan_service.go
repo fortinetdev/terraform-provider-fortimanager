@@ -64,6 +64,10 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"comment": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"default": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -515,6 +519,10 @@ func flattenWantempSystemSdwanServiceBandwidthWeight2edl(v interface{}, d *schem
 	return v
 }
 
+func flattenWantempSystemSdwanServiceComment2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanServiceDefault2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -846,6 +854,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading bandwidth_weight: %v", err)
+		}
+	}
+
+	if err = d.Set("comment", flattenWantempSystemSdwanServiceComment2edl(o["comment"], d, "comment")); err != nil {
+		if vv, ok := fortiAPIPatch(o["comment"], "WantempSystemSdwanService-Comment"); ok {
+			if err = d.Set("comment", vv); err != nil {
+				return fmt.Errorf("Error reading comment: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading comment: %v", err)
 		}
 	}
 
@@ -1504,6 +1522,10 @@ func expandWantempSystemSdwanServiceBandwidthWeight2edl(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceComment2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceDefault2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1817,6 +1839,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["bandwidth-weight"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
+		t, err := expandWantempSystemSdwanServiceComment2edl(d, v, "comment")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["comment"] = t
 		}
 	}
 

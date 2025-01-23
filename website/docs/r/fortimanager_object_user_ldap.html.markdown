@@ -100,6 +100,7 @@ The following arguments are supported:
 * `server_identity_check` - Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP for communications to LDAP server.
+* `source_ip_interface` - Source interface for communication with the LDAP server.
 * `source_port` - Source port to be used for communication with the LDAP server.
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
@@ -169,7 +170,10 @@ The `dynamic_mapping` block supports:
 * `server_identity_check` - Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP for communications to LDAP server.
+* `source_ip_interface` - Source interface for communication with the LDAP server.
 * `source_port` - Source-Port.
+* `ssl_max_proto_version` - Ssl-Max-Proto-Version. Valid values: `TLSv1-1`, `TLSv1-2`, `SSLv3`, `TLSv1`, `TLSv1-3`.
+
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
 * `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).

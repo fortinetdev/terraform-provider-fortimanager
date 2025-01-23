@@ -69,6 +69,8 @@ The following arguments are supported:
 * `dhcp_ip_overlap` - Configure overlapping DHCP IP allocation assignment. Valid values: `use-old`, `use-new`.
 
 * `dhcp_ra_giaddr` - Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+* `dhcp_reservation` - Enable/disable dhcp reservation. Valid values: `disable`, `enable`.
+
 * `dhcp6_ra_linkaddr` - Relay agent IPv6 link address to use in DHCP6 requests.
 * `display_bookmark` - Enable to display the web portal bookmark widget. Valid values: `disable`, `enable`.
 
@@ -265,6 +267,7 @@ The `os_check_list` block supports:
 * `action` - OS check options. Valid values: `allow`, `check-up-to-date`, `deny`.
 
 * `latest_patch_level` - Latest OS patch level.
+* `minor_version` - Minor version number.
 * `name` - Name.
 * `tolerance` - OS patch level tolerance.
 

@@ -154,6 +154,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cgn_sw_eif_ctrl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -272,6 +277,14 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"eif_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"eif_learn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"email_collect": &schema.Schema{
 				Type:     schema.TypeString,
@@ -507,6 +520,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"log_http_transaction": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"learning_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -694,6 +712,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"profile_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"radius_ip_auth_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1333,6 +1356,10 @@ func flattenPackagesFirewallPolicyCgnSessionQuota(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenPackagesFirewallPolicyCgnSwEifCtrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -1434,6 +1461,14 @@ func flattenPackagesFirewallPolicyDstintf(v interface{}, d *schema.ResourceData,
 }
 
 func flattenPackagesFirewallPolicyDynamicShaping(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyEifCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyEifLearn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1637,6 +1672,10 @@ func flattenPackagesFirewallPolicyLabel(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenPackagesFirewallPolicyLogHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1794,6 +1833,10 @@ func flattenPackagesFirewallPolicyProfileProtocolOptions(v interface{}, d *schem
 }
 
 func flattenPackagesFirewallPolicyProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyRadiusIpAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2446,6 +2489,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("cgn_sw_eif_ctrl", flattenPackagesFirewallPolicyCgnSwEifCtrl(o["cgn-sw-eif-ctrl"], d, "cgn_sw_eif_ctrl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-sw-eif-ctrl"], "PackagesFirewallPolicy-CgnSwEifCtrl"); ok {
+			if err = d.Set("cgn_sw_eif_ctrl", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_sw_eif_ctrl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_sw_eif_ctrl: %v", err)
+		}
+	}
+
 	if err = d.Set("cifs_profile", flattenPackagesFirewallPolicyCifsProfile(o["cifs-profile"], d, "cifs_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs-profile"], "PackagesFirewallPolicy-CifsProfile"); ok {
 			if err = d.Set("cifs_profile", vv); err != nil {
@@ -2703,6 +2756,26 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading dynamic_shaping: %v", err)
+		}
+	}
+
+	if err = d.Set("eif_check", flattenPackagesFirewallPolicyEifCheck(o["eif-check"], d, "eif_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["eif-check"], "PackagesFirewallPolicy-EifCheck"); ok {
+			if err = d.Set("eif_check", vv); err != nil {
+				return fmt.Errorf("Error reading eif_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading eif_check: %v", err)
+		}
+	}
+
+	if err = d.Set("eif_learn", flattenPackagesFirewallPolicyEifLearn(o["eif-learn"], d, "eif_learn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["eif-learn"], "PackagesFirewallPolicy-EifLearn"); ok {
+			if err = d.Set("eif_learn", vv); err != nil {
+				return fmt.Errorf("Error reading eif_learn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading eif_learn: %v", err)
 		}
 	}
 
@@ -3206,6 +3279,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("log_http_transaction", flattenPackagesFirewallPolicyLogHttpTransaction(o["log-http-transaction"], d, "log_http_transaction")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-http-transaction"], "PackagesFirewallPolicy-LogHttpTransaction"); ok {
+			if err = d.Set("log_http_transaction", vv); err != nil {
+				return fmt.Errorf("Error reading log_http_transaction: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_http_transaction: %v", err)
+		}
+	}
+
 	if err = d.Set("learning_mode", flattenPackagesFirewallPolicyLearningMode(o["learning-mode"], d, "learning_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["learning-mode"], "PackagesFirewallPolicy-LearningMode"); ok {
 			if err = d.Set("learning_mode", vv); err != nil {
@@ -3603,6 +3686,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading profile_type: %v", err)
+		}
+	}
+
+	if err = d.Set("radius_ip_auth_bypass", flattenPackagesFirewallPolicyRadiusIpAuthBypass(o["radius-ip-auth-bypass"], d, "radius_ip_auth_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["radius-ip-auth-bypass"], "PackagesFirewallPolicy-RadiusIpAuthBypass"); ok {
+			if err = d.Set("radius_ip_auth_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading radius_ip_auth_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading radius_ip_auth_bypass: %v", err)
 		}
 	}
 
@@ -4501,6 +4594,10 @@ func expandPackagesFirewallPolicyCgnSessionQuota(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyCgnSwEifCtrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -4602,6 +4699,14 @@ func expandPackagesFirewallPolicyDstintf(d *schema.ResourceData, v interface{}, 
 }
 
 func expandPackagesFirewallPolicyDynamicShaping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyEifCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyEifLearn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4805,6 +4910,10 @@ func expandPackagesFirewallPolicyLabel(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyLogHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyLearningMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4962,6 +5071,10 @@ func expandPackagesFirewallPolicyProfileProtocolOptions(d *schema.ResourceData, 
 }
 
 func expandPackagesFirewallPolicyProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyRadiusIpAuthBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5568,6 +5681,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("cgn_sw_eif_ctrl"); ok || d.HasChange("cgn_sw_eif_ctrl") {
+		t, err := expandPackagesFirewallPolicyCgnSwEifCtrl(d, v, "cgn_sw_eif_ctrl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-sw-eif-ctrl"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesFirewallPolicyCifsProfile(d, v, "cifs_profile")
 		if err != nil {
@@ -5799,6 +5921,24 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic-shaping"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("eif_check"); ok || d.HasChange("eif_check") {
+		t, err := expandPackagesFirewallPolicyEifCheck(d, v, "eif_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["eif-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("eif_learn"); ok || d.HasChange("eif_learn") {
+		t, err := expandPackagesFirewallPolicyEifLearn(d, v, "eif_learn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["eif-learn"] = t
 		}
 	}
 
@@ -6252,6 +6392,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("log_http_transaction"); ok || d.HasChange("log_http_transaction") {
+		t, err := expandPackagesFirewallPolicyLogHttpTransaction(d, v, "log_http_transaction")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-http-transaction"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("learning_mode"); ok || d.HasChange("learning_mode") {
 		t, err := expandPackagesFirewallPolicyLearningMode(d, v, "learning_mode")
 		if err != nil {
@@ -6609,6 +6758,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["profile-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("radius_ip_auth_bypass"); ok || d.HasChange("radius_ip_auth_bypass") {
+		t, err := expandPackagesFirewallPolicyRadiusIpAuthBypass(d, v, "radius_ip_auth_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["radius-ip-auth-bypass"] = t
 		}
 	}
 

@@ -33,6 +33,8 @@ The following arguments are supported:
 
 * `query_filequery` - Enable/disable file query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `query_ioc` - Enable/disable the built-in FortiGuard to provide IoC query (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `query_iot` - Enable/disable file query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `query_iot_collection` - Enable/disable IoT Collection Query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

@@ -54,6 +54,11 @@ func resourceObjectFirewallShapingProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"npu_offloading": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"profile_name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -253,6 +258,10 @@ func flattenObjectFirewallShapingProfileDefaultClassId(v interface{}, d *schema.
 	return conv2str(v)
 }
 
+func flattenObjectFirewallShapingProfileNpuOffloading(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallShapingProfileProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -431,6 +440,16 @@ func refreshObjectObjectFirewallShapingProfile(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("npu_offloading", flattenObjectFirewallShapingProfileNpuOffloading(o["npu-offloading"], d, "npu_offloading")); err != nil {
+		if vv, ok := fortiAPIPatch(o["npu-offloading"], "ObjectFirewallShapingProfile-NpuOffloading"); ok {
+			if err = d.Set("npu_offloading", vv); err != nil {
+				return fmt.Errorf("Error reading npu_offloading: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading npu_offloading: %v", err)
+		}
+	}
+
 	if err = d.Set("profile_name", flattenObjectFirewallShapingProfileProfileName(o["profile-name"], d, "profile_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-name"], "ObjectFirewallShapingProfile-ProfileName"); ok {
 			if err = d.Set("profile_name", vv); err != nil {
@@ -489,6 +508,10 @@ func expandObjectFirewallShapingProfileComment(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallShapingProfileDefaultClassId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileNpuOffloading(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -641,6 +664,15 @@ func getObjectObjectFirewallShapingProfile(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["default-class-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("npu_offloading"); ok || d.HasChange("npu_offloading") {
+		t, err := expandObjectFirewallShapingProfileNpuOffloading(d, v, "npu_offloading")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["npu-offloading"] = t
 		}
 	}
 

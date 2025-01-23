@@ -323,10 +323,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"n80211k": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"n80211v": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"_centmgmt": &schema.Schema{
 							Type:     schema.TypeString,
@@ -876,6 +878,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"multicast_rate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nac": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1111,6 +1114,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"sae_h2e_only": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sae_hnp_only": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1126,6 +1130,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"sae_pk": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sae_private_key": &schema.Schema{
 							Type:     schema.TypeString,

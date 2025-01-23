@@ -51,6 +51,7 @@ The following arguments are supported:
 * `priority` - Set log transmission priority. Valid values: `low`, `default`.
 
 * `server` - Address of remote syslog server.
+* `source_ip_interface` - Source interface of syslog.
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1-1`, `TLSv1-2`, `SSLv3`, `TLSv1`.
 
 * `status` - Enable/disable remote syslog logging. Valid values: `disable`, `enable`.

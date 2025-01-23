@@ -116,6 +116,11 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"port_provisioning": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"prefer_img_ver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -129,6 +134,16 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 			"prov_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"sdwan_management": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"split_switch_port": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"template_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -310,6 +325,10 @@ func flattenObjectFmgDeviceBlueprintPlatform(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectFmgDeviceBlueprintPortProvisioning(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFmgDeviceBlueprintPreferImgVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -319,6 +338,14 @@ func flattenObjectFmgDeviceBlueprintPrerunCliprof(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFmgDeviceBlueprintProvType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintSdwanManagement(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintSplitSwitchPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -467,6 +494,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("port_provisioning", flattenObjectFmgDeviceBlueprintPortProvisioning(o["port-provisioning"], d, "port_provisioning")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-provisioning"], "ObjectFmgDeviceBlueprint-PortProvisioning"); ok {
+			if err = d.Set("port_provisioning", vv); err != nil {
+				return fmt.Errorf("Error reading port_provisioning: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_provisioning: %v", err)
+		}
+	}
+
 	if err = d.Set("prefer_img_ver", flattenObjectFmgDeviceBlueprintPreferImgVer(o["prefer-img-ver"], d, "prefer_img_ver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["prefer-img-ver"], "ObjectFmgDeviceBlueprint-PreferImgVer"); ok {
 			if err = d.Set("prefer_img_ver", vv); err != nil {
@@ -494,6 +531,26 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading prov_type: %v", err)
+		}
+	}
+
+	if err = d.Set("sdwan_management", flattenObjectFmgDeviceBlueprintSdwanManagement(o["sdwan-management"], d, "sdwan_management")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sdwan-management"], "ObjectFmgDeviceBlueprint-SdwanManagement"); ok {
+			if err = d.Set("sdwan_management", vv); err != nil {
+				return fmt.Errorf("Error reading sdwan_management: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sdwan_management: %v", err)
+		}
+	}
+
+	if err = d.Set("split_switch_port", flattenObjectFmgDeviceBlueprintSplitSwitchPort(o["split-switch-port"], d, "split_switch_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["split-switch-port"], "ObjectFmgDeviceBlueprint-SplitSwitchPort"); ok {
+			if err = d.Set("split_switch_port", vv); err != nil {
+				return fmt.Errorf("Error reading split_switch_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading split_switch_port: %v", err)
 		}
 	}
 
@@ -582,6 +639,10 @@ func expandObjectFmgDeviceBlueprintPlatform(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectFmgDeviceBlueprintPortProvisioning(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFmgDeviceBlueprintPreferImgVer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -591,6 +652,14 @@ func expandObjectFmgDeviceBlueprintPrerunCliprof(d *schema.ResourceData, v inter
 }
 
 func expandObjectFmgDeviceBlueprintProvType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintSdwanManagement(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintSplitSwitchPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -731,6 +800,15 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("port_provisioning"); ok || d.HasChange("port_provisioning") {
+		t, err := expandObjectFmgDeviceBlueprintPortProvisioning(d, v, "port_provisioning")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-provisioning"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("prefer_img_ver"); ok || d.HasChange("prefer_img_ver") {
 		t, err := expandObjectFmgDeviceBlueprintPreferImgVer(d, v, "prefer_img_ver")
 		if err != nil {
@@ -755,6 +833,24 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["prov-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sdwan_management"); ok || d.HasChange("sdwan_management") {
+		t, err := expandObjectFmgDeviceBlueprintSdwanManagement(d, v, "sdwan_management")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sdwan-management"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("split_switch_port"); ok || d.HasChange("split_switch_port") {
+		t, err := expandObjectFmgDeviceBlueprintSplitSwitchPort(d, v, "split_switch_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["split-switch-port"] = t
 		}
 	}
 

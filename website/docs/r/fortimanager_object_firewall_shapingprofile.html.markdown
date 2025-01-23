@@ -34,6 +34,8 @@ The following arguments are supported:
 
 * `comment` - Comment.
 * `default_class_id` - Default class ID to handle unclassified packets (including all local traffic).
+* `npu_offloading` - Enable/disable NPU offloading. Valid values: `disable`, `enable`.
+
 * `profile_name` - Shaping profile name.
 * `shaping_entries` - Shaping-Entries. The structure of `shaping_entries` block is documented below.
 * `type` - Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.

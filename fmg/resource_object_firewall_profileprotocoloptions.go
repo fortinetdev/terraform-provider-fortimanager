@@ -353,6 +353,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"domain_fronting": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"h2c": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1580,6 +1585,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["comfort_interval"] = flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval(i["comfort-interval"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "domain_fronting"
+	if _, ok := i["domain-fronting"]; ok {
+		result["domain_fronting"] = flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting(i["domain-fronting"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "h2c"
 	if _, ok := i["h2c"]; ok {
 		result["h2c"] = flattenObjectFirewallProfileProtocolOptionsHttpH2C(i["h2c"], d, pre_append)
@@ -1742,6 +1752,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpComfortAmount(v interface{},
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3398,6 +3412,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["comfort-interval"], _ = expandObjectFirewallProfileProtocolOptionsHttpComfortInterval(d, i["comfort_interval"], pre_append)
 	}
+	pre_append = pre + ".0." + "domain_fronting"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["domain-fronting"], _ = expandObjectFirewallProfileProtocolOptionsHttpDomainFronting(d, i["domain_fronting"], pre_append)
+	}
 	pre_append = pre + ".0." + "h2c"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["h2c"], _ = expandObjectFirewallProfileProtocolOptionsHttpH2C(d, i["h2c"], pre_append)
@@ -3531,6 +3549,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpComfortAmount(d *schema.Resou
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpComfortInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpDomainFronting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

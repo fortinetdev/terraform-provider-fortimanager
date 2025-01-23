@@ -776,6 +776,7 @@ func resourceObjectWafProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -784,14 +785,17 @@ func resourceObjectWafProfile() *schema.Resource {
 									"log": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"severity": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -2402,7 +2406,7 @@ func flattenObjectWafProfileSignatureMainClassAction(v interface{}, d *schema.Re
 }
 
 func flattenObjectWafProfileSignatureMainClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2num(v)
 }
 
 func flattenObjectWafProfileSignatureMainClassLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
