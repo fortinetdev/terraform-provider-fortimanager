@@ -100,6 +100,7 @@ func resourceObjectFirewallVipQuicUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +116,9 @@ func resourceObjectFirewallVipQuicUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectFirewallVipQuic resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipQuic(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVipQuic(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipQuic resource: %v", err)
 	}
@@ -134,6 +137,7 @@ func resourceObjectFirewallVipQuicDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +148,9 @@ func resourceObjectFirewallVipQuicDelete(d *schema.ResourceData, m interface{}) 
 	vip := d.Get("vip").(string)
 	paradict["vip"] = vip
 
-	err = c.DeleteObjectFirewallVipQuic(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVipQuic(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipQuic resource: %v", err)
 	}

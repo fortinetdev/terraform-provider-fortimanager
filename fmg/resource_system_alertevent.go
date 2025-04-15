@@ -124,6 +124,8 @@ func resourceSystemAlertEventCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -131,9 +133,9 @@ func resourceSystemAlertEventCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAlertEvent resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAlertEvent(obj, paradict)
-
+	_, err = c.CreateSystemAlertEvent(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAlertEvent resource: %v", err)
 	}
@@ -149,6 +151,8 @@ func resourceSystemAlertEventUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -157,7 +161,9 @@ func resourceSystemAlertEventUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating SystemAlertEvent resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAlertEvent(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAlertEvent(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertEvent resource: %v", err)
 	}
@@ -176,10 +182,14 @@ func resourceSystemAlertEventDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAlertEvent(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAlertEvent(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAlertEvent resource: %v", err)
 	}
@@ -196,6 +206,7 @@ func resourceSystemAlertEventRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

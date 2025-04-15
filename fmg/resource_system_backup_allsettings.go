@@ -90,6 +90,8 @@ func resourceSystemBackupAllSettingsUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -98,7 +100,9 @@ func resourceSystemBackupAllSettingsUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating SystemBackupAllSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemBackupAllSettings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemBackupAllSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemBackupAllSettings resource: %v", err)
 	}
@@ -117,10 +121,14 @@ func resourceSystemBackupAllSettingsDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemBackupAllSettings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemBackupAllSettings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemBackupAllSettings resource: %v", err)
 	}
@@ -137,6 +145,7 @@ func resourceSystemBackupAllSettingsRead(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

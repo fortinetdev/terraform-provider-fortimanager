@@ -68,6 +68,7 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchCustomCommand resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchCustomCommand(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerManagedSwitchCustomCommand(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchCustomCommand resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchCustomCommand resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerManagedSwitchCustomCommand(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerManagedSwitchCustomCommand(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchCustomCommand resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectSwitchControllerManagedSwitchCustomCommandDelete(d *schema.Re
 	managed_switch := d.Get("managed_switch").(string)
 	paradict["managed_switch"] = managed_switch
 
-	err = c.DeleteObjectSwitchControllerManagedSwitchCustomCommand(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerManagedSwitchCustomCommand(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerManagedSwitchCustomCommand resource: %v", err)
 	}

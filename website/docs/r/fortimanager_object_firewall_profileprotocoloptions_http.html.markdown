@@ -47,6 +47,8 @@ The following arguments are supported:
 
 * `h2c` - Enable/disable h2c HTTP connection upgrade. Valid values: `disable`, `enable`.
 
+* `http_09` - Configure action to take upon receipt of HTTP 0.9 request. Valid values: `block`, `allow`.
+
 * `fortinet_bar` - Enable/disable Fortinet bar on HTML content. Valid values: `disable`, `enable`.
 
 * `fortinet_bar_port` - Port for use by Fortinet Bar (1 - 65535, default = 8011).

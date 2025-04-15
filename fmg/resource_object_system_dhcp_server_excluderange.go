@@ -100,6 +100,7 @@ func resourceObjectSystemDhcpServerExcludeRangeCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectSystemDhcpServerExcludeRangeCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerExcludeRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemDhcpServerExcludeRange(obj, paradict)
-
+	_, err = c.CreateObjectSystemDhcpServerExcludeRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerExcludeRange resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectSystemDhcpServerExcludeRangeUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +149,9 @@ func resourceObjectSystemDhcpServerExcludeRangeUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerExcludeRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemDhcpServerExcludeRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemDhcpServerExcludeRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerExcludeRange resource: %v", err)
 	}
@@ -166,6 +170,7 @@ func resourceObjectSystemDhcpServerExcludeRangeDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +181,9 @@ func resourceObjectSystemDhcpServerExcludeRangeDelete(d *schema.ResourceData, m 
 	server := d.Get("server").(string)
 	paradict["server"] = server
 
-	err = c.DeleteObjectSystemDhcpServerExcludeRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemDhcpServerExcludeRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemDhcpServerExcludeRange resource: %v", err)
 	}

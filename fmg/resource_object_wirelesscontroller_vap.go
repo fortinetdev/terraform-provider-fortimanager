@@ -2055,6 +2055,7 @@ func resourceObjectWirelessControllerVapCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -2066,9 +2067,9 @@ func resourceObjectWirelessControllerVapCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerVap(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerVap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVap resource: %v", err)
 	}
@@ -2084,6 +2085,7 @@ func resourceObjectWirelessControllerVapUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -2096,7 +2098,9 @@ func resourceObjectWirelessControllerVapUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectWirelessControllerVap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerVap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVap resource: %v", err)
 	}
@@ -2115,6 +2119,7 @@ func resourceObjectWirelessControllerVapDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -2122,7 +2127,9 @@ func resourceObjectWirelessControllerVapDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerVap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerVap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVap resource: %v", err)
 	}

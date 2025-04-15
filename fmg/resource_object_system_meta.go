@@ -84,6 +84,7 @@ func resourceObjectSystemMetaCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectSystemMetaCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMeta resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemMeta(obj, paradict)
-
+	_, err = c.CreateObjectSystemMeta(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMeta resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectSystemMetaUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectSystemMetaUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectSystemMeta resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemMeta(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemMeta(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemMeta resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectSystemMetaDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectSystemMetaDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemMeta(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemMeta(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemMeta resource: %v", err)
 	}

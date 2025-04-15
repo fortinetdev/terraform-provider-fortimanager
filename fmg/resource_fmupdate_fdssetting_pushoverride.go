@@ -54,6 +54,8 @@ func resourceFmupdateFdsSettingPushOverrideUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,7 +64,9 @@ func resourceFmupdateFdsSettingPushOverrideUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverride resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSettingPushOverride(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFdsSettingPushOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverride resource: %v", err)
 	}
@@ -81,10 +85,14 @@ func resourceFmupdateFdsSettingPushOverrideDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingPushOverride(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFdsSettingPushOverride(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSettingPushOverride resource: %v", err)
 	}
@@ -101,6 +109,7 @@ func resourceFmupdateFdsSettingPushOverrideRead(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

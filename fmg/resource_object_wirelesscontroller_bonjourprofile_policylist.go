@@ -84,6 +84,7 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerBonjourProfilePolicyList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerBonjourProfilePolicyList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerBonjourProfilePolicyList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerBonjourProfilePolicyList resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectWirelessControllerBonjourProfilePolicyList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerBonjourProfilePolicyList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerBonjourProfilePolicyList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerBonjourProfilePolicyList resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectWirelessControllerBonjourProfilePolicyListDelete(d *schema.Re
 	bonjour_profile := d.Get("bonjour_profile").(string)
 	paradict["bonjour_profile"] = bonjour_profile
 
-	err = c.DeleteObjectWirelessControllerBonjourProfilePolicyList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerBonjourProfilePolicyList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerBonjourProfilePolicyList resource: %v", err)
 	}

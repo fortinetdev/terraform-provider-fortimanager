@@ -56,6 +56,8 @@ func resourceSystemLogMailDomainCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -63,9 +65,9 @@ func resourceSystemLogMailDomainCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogMailDomain resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogMailDomain(obj, paradict)
-
+	_, err = c.CreateSystemLogMailDomain(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogMailDomain resource: %v", err)
 	}
@@ -81,6 +83,8 @@ func resourceSystemLogMailDomainUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -89,7 +93,9 @@ func resourceSystemLogMailDomainUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystemLogMailDomain resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogMailDomain(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogMailDomain(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogMailDomain resource: %v", err)
 	}
@@ -108,10 +114,14 @@ func resourceSystemLogMailDomainDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogMailDomain(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogMailDomain(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogMailDomain resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemLogMailDomainRead(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

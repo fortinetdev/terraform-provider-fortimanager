@@ -98,6 +98,7 @@ func resourceObjectWirelessControllerWagProfileCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,9 +110,9 @@ func resourceObjectWirelessControllerWagProfileCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWagProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerWagProfile(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerWagProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWagProfile resource: %v", err)
 	}
@@ -127,6 +128,7 @@ func resourceObjectWirelessControllerWagProfileUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +141,9 @@ func resourceObjectWirelessControllerWagProfileUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectWirelessControllerWagProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWagProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerWagProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWagProfile resource: %v", err)
 	}
@@ -158,6 +162,7 @@ func resourceObjectWirelessControllerWagProfileDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +170,9 @@ func resourceObjectWirelessControllerWagProfileDelete(d *schema.ResourceData, m 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWagProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerWagProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWagProfile resource: %v", err)
 	}

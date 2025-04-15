@@ -132,6 +132,7 @@ func resourceObjectUserFssoPollingCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,9 +144,9 @@ func resourceObjectUserFssoPollingCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFssoPolling resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserFssoPolling(obj, paradict)
-
+	_, err = c.CreateObjectUserFssoPolling(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFssoPolling resource: %v", err)
 	}
@@ -161,6 +162,7 @@ func resourceObjectUserFssoPollingUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +175,9 @@ func resourceObjectUserFssoPollingUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectUserFssoPolling resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserFssoPolling(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserFssoPolling(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFssoPolling resource: %v", err)
 	}
@@ -192,6 +196,7 @@ func resourceObjectUserFssoPollingDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -199,7 +204,9 @@ func resourceObjectUserFssoPollingDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserFssoPolling(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserFssoPolling(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserFssoPolling resource: %v", err)
 	}

@@ -80,6 +80,11 @@ func resourceObjectFirewallProfileProtocolOptionsHttp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"http_09": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fortinet_bar": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -230,6 +235,7 @@ func resourceObjectFirewallProfileProtocolOptionsHttpUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -245,7 +251,9 @@ func resourceObjectFirewallProfileProtocolOptionsHttpUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsHttp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptionsHttp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsHttp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsHttp resource: %v", err)
 	}
@@ -264,6 +272,7 @@ func resourceObjectFirewallProfileProtocolOptionsHttpDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -274,7 +283,9 @@ func resourceObjectFirewallProfileProtocolOptionsHttpDelete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsHttp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProfileProtocolOptionsHttp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsHttp resource: %v", err)
 	}
@@ -349,6 +360,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting2edl(v interfa
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpH2C2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpHttp092edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -528,6 +543,16 @@ func refreshObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceDat
 			}
 		} else {
 			return fmt.Errorf("Error reading h2c: %v", err)
+		}
+	}
+
+	if err = d.Set("http_09", flattenObjectFirewallProfileProtocolOptionsHttpHttp092edl(o["http-0.9"], d, "http_09")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-0.9"], "ObjectFirewallProfileProtocolOptionsHttp-Http09"); ok {
+			if err = d.Set("http_09", vv); err != nil {
+				return fmt.Errorf("Error reading http_09: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_09: %v", err)
 		}
 	}
 
@@ -844,6 +869,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpH2C2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectFirewallProfileProtocolOptionsHttpHttp092edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileProtocolOptionsHttpFortinetBar2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1010,6 +1039,15 @@ func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData) (
 			return &obj, err
 		} else if t != nil {
 			obj["h2c"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_09"); ok || d.HasChange("http_09") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpHttp092edl(d, v, "http_09")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-0.9"] = t
 		}
 	}
 

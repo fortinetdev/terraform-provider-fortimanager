@@ -45,6 +45,16 @@ func resourceObjectFirewallAccessProxyVirtualHost() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"empty_cert_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"host": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -67,6 +77,11 @@ func resourceObjectFirewallAccessProxyVirtualHost() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"user_agent_detect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -76,6 +91,7 @@ func resourceObjectFirewallAccessProxyVirtualHostCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +103,9 @@ func resourceObjectFirewallAccessProxyVirtualHostCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyVirtualHost resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxyVirtualHost(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxyVirtualHost(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -105,6 +121,7 @@ func resourceObjectFirewallAccessProxyVirtualHostUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,7 +134,9 @@ func resourceObjectFirewallAccessProxyVirtualHostUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyVirtualHost resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyVirtualHost(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxyVirtualHost(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -136,6 +155,7 @@ func resourceObjectFirewallAccessProxyVirtualHostDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +163,9 @@ func resourceObjectFirewallAccessProxyVirtualHostDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxyVirtualHost(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxyVirtualHost(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -185,6 +207,14 @@ func resourceObjectFirewallAccessProxyVirtualHostRead(d *schema.ResourceData, m 
 	return nil
 }
 
+func flattenObjectFirewallAccessProxyVirtualHostClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxyVirtualHostEmptyCertAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAccessProxyVirtualHostHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -205,11 +235,35 @@ func flattenObjectFirewallAccessProxyVirtualHostSslCertificate(v interface{}, d 
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallAccessProxyVirtualHostUserAgentDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("client_cert", flattenObjectFirewallAccessProxyVirtualHostClientCert(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "ObjectFirewallAccessProxyVirtualHost-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("empty_cert_action", flattenObjectFirewallAccessProxyVirtualHostEmptyCertAction(o["empty-cert-action"], d, "empty_cert_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["empty-cert-action"], "ObjectFirewallAccessProxyVirtualHost-EmptyCertAction"); ok {
+			if err = d.Set("empty_cert_action", vv); err != nil {
+				return fmt.Errorf("Error reading empty_cert_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading empty_cert_action: %v", err)
+		}
 	}
 
 	if err = d.Set("host", flattenObjectFirewallAccessProxyVirtualHostHost(o["host"], d, "host")); err != nil {
@@ -262,6 +316,16 @@ func refreshObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("user_agent_detect", flattenObjectFirewallAccessProxyVirtualHostUserAgentDetect(o["user-agent-detect"], d, "user_agent_detect")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-agent-detect"], "ObjectFirewallAccessProxyVirtualHost-UserAgentDetect"); ok {
+			if err = d.Set("user_agent_detect", vv); err != nil {
+				return fmt.Errorf("Error reading user_agent_detect: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_agent_detect: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -269,6 +333,14 @@ func flattenObjectFirewallAccessProxyVirtualHostFortiTestDebug(d *schema.Resourc
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectFirewallAccessProxyVirtualHostClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxyVirtualHostEmptyCertAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallAccessProxyVirtualHostHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -291,8 +363,30 @@ func expandObjectFirewallAccessProxyVirtualHostSslCertificate(d *schema.Resource
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallAccessProxyVirtualHostUserAgentDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandObjectFirewallAccessProxyVirtualHostClientCert(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("empty_cert_action"); ok || d.HasChange("empty_cert_action") {
+		t, err := expandObjectFirewallAccessProxyVirtualHostEmptyCertAction(d, v, "empty_cert_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["empty-cert-action"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("host"); ok || d.HasChange("host") {
 		t, err := expandObjectFirewallAccessProxyVirtualHostHost(d, v, "host")
@@ -336,6 +430,15 @@ func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-certificate"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_agent_detect"); ok || d.HasChange("user_agent_detect") {
+		t, err := expandObjectFirewallAccessProxyVirtualHostUserAgentDetect(d, v, "user_agent_detect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-agent-detect"] = t
 		}
 	}
 

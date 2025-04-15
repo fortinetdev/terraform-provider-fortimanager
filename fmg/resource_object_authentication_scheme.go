@@ -49,6 +49,12 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"external_idp": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"ems_device_owner": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -120,6 +126,7 @@ func resourceObjectAuthenticationSchemeCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,9 +138,9 @@ func resourceObjectAuthenticationSchemeCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAuthenticationScheme(obj, paradict)
-
+	_, err = c.CreateObjectAuthenticationScheme(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource: %v", err)
 	}
@@ -149,6 +156,7 @@ func resourceObjectAuthenticationSchemeUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +169,9 @@ func resourceObjectAuthenticationSchemeUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAuthenticationScheme(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAuthenticationScheme(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource: %v", err)
 	}
@@ -180,6 +190,7 @@ func resourceObjectAuthenticationSchemeDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -187,7 +198,9 @@ func resourceObjectAuthenticationSchemeDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAuthenticationScheme(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAuthenticationScheme(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAuthenticationScheme resource: %v", err)
 	}
@@ -231,6 +244,10 @@ func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{
 
 func flattenObjectAuthenticationSchemeDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectAuthenticationSchemeExternalIdp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectAuthenticationSchemeEmsDeviceOwner(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -299,6 +316,16 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading domain_controller: %v", err)
+		}
+	}
+
+	if err = d.Set("external_idp", flattenObjectAuthenticationSchemeExternalIdp(o["external-idp"], d, "external_idp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["external-idp"], "ObjectAuthenticationScheme-ExternalIdp"); ok {
+			if err = d.Set("external_idp", vv); err != nil {
+				return fmt.Errorf("Error reading external_idp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading external_idp: %v", err)
 		}
 	}
 
@@ -445,6 +472,10 @@ func expandObjectAuthenticationSchemeDomainController(d *schema.ResourceData, v 
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectAuthenticationSchemeExternalIdp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectAuthenticationSchemeEmsDeviceOwner(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -506,6 +537,15 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["domain-controller"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("external_idp"); ok || d.HasChange("external_idp") {
+		t, err := expandObjectAuthenticationSchemeExternalIdp(d, v, "external_idp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["external-idp"] = t
 		}
 	}
 

@@ -113,6 +113,11 @@ func resourceWantempSystemSdwan() *schema.Resource {
 					},
 				},
 			},
+			"duplication_max_discrepancy": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"duplication_max_num": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -173,6 +178,17 @@ func resourceWantempSystemSdwan() *schema.Resource {
 						},
 						"failtime": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiguard": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiguard_name": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -775,6 +791,11 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"route_metric": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"service_id": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1180,6 +1201,7 @@ func resourceWantempSystemSdwanUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1195,7 +1217,9 @@ func resourceWantempSystemSdwanUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating WantempSystemSdwan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwan(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwan(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwan resource: %v", err)
 	}
@@ -1214,6 +1238,7 @@ func resourceWantempSystemSdwanDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1224,7 +1249,9 @@ func resourceWantempSystemSdwanDelete(d *schema.ResourceData, m interface{}) err
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	err = c.DeleteWantempSystemSdwan(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemSdwan(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemSdwan resource: %v", err)
 	}
@@ -1431,6 +1458,10 @@ func flattenWantempSystemSdwanDuplicationSrcintf(v interface{}, d *schema.Resour
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenWantempSystemSdwanDuplicationMaxDiscrepancy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanDuplicationMaxNum(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1514,6 +1545,18 @@ func flattenWantempSystemSdwanHealthCheck(v interface{}, d *schema.ResourceData,
 		if _, ok := i["failtime"]; ok {
 			v := flattenWantempSystemSdwanHealthCheckFailtime(i["failtime"], d, pre_append)
 			tmp["failtime"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Failtime")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortiguard"
+		if _, ok := i["fortiguard"]; ok {
+			v := flattenWantempSystemSdwanHealthCheckFortiguardU(i["fortiguard"], d, pre_append)
+			tmp["fortiguard"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Fortiguard")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortiguard_name"
+		if _, ok := i["fortiguard-name"]; ok {
+			v := flattenWantempSystemSdwanHealthCheckFortiguardName(i["fortiguard-name"], d, pre_append)
+			tmp["fortiguard_name"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-FortiguardName")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ftp_file"
@@ -1782,6 +1825,14 @@ func flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealth(v interface{}, d *s
 
 func flattenWantempSystemSdwanHealthCheckFailtime(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckFortiguardU(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckFortiguardName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckFtpFile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2919,6 +2970,12 @@ func flattenWantempSystemSdwanNeighbor(v interface{}, d *schema.ResourceData, pr
 			tmp["role"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Neighbor-Role")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_metric"
+		if _, ok := i["route-metric"]; ok {
+			v := flattenWantempSystemSdwanNeighborRouteMetric(i["route-metric"], d, pre_append)
+			tmp["route_metric"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Neighbor-RouteMetric")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_id"
 		if _, ok := i["service-id"]; ok {
 			v := flattenWantempSystemSdwanNeighborServiceId(i["service-id"], d, pre_append)
@@ -2962,6 +3019,10 @@ func flattenWantempSystemSdwanNeighborMode(v interface{}, d *schema.ResourceData
 }
 
 func flattenWantempSystemSdwanNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanNeighborRouteMetric(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3855,6 +3916,16 @@ func refreshObjectWantempSystemSdwan(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("duplication_max_discrepancy", flattenWantempSystemSdwanDuplicationMaxDiscrepancy(o["duplication-max-discrepancy"], d, "duplication_max_discrepancy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["duplication-max-discrepancy"], "WantempSystemSdwan-DuplicationMaxDiscrepancy"); ok {
+			if err = d.Set("duplication_max_discrepancy", vv); err != nil {
+				return fmt.Errorf("Error reading duplication_max_discrepancy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading duplication_max_discrepancy: %v", err)
+		}
+	}
+
 	if err = d.Set("duplication_max_num", flattenWantempSystemSdwanDuplicationMaxNum(o["duplication-max-num"], d, "duplication_max_num")); err != nil {
 		if vv, ok := fortiAPIPatch(o["duplication-max-num"], "WantempSystemSdwan-DuplicationMaxNum"); ok {
 			if err = d.Set("duplication_max_num", vv); err != nil {
@@ -4244,6 +4315,10 @@ func expandWantempSystemSdwanDuplicationSrcintf(d *schema.ResourceData, v interf
 	return convstr2list(v, nil), nil
 }
 
+func expandWantempSystemSdwanDuplicationMaxDiscrepancy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanDuplicationMaxNum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4313,6 +4388,16 @@ func expandWantempSystemSdwanHealthCheck(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "failtime"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["failtime"], _ = expandWantempSystemSdwanHealthCheckFailtime(d, i["failtime"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortiguard"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fortiguard"], _ = expandWantempSystemSdwanHealthCheckFortiguardU(d, i["fortiguard"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortiguard_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fortiguard-name"], _ = expandWantempSystemSdwanHealthCheckFortiguardName(d, i["fortiguard_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ftp_file"
@@ -4554,6 +4639,14 @@ func expandWantempSystemSdwanHealthCheckEmbedMeasuredHealth(d *schema.ResourceDa
 
 func expandWantempSystemSdwanHealthCheckFailtime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckFortiguardU(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckFortiguardName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandWantempSystemSdwanHealthCheckFtpFile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5596,6 +5689,11 @@ func expandWantempSystemSdwanNeighbor(d *schema.ResourceData, v interface{}, pre
 			tmp["role"], _ = expandWantempSystemSdwanNeighborRole(d, i["role"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_metric"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["route-metric"], _ = expandWantempSystemSdwanNeighborRouteMetric(d, i["route_metric"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["service-id"], _ = expandWantempSystemSdwanNeighborServiceId(d, i["service_id"], pre_append)
@@ -5637,6 +5735,10 @@ func expandWantempSystemSdwanNeighborMode(d *schema.ResourceData, v interface{},
 }
 
 func expandWantempSystemSdwanNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanNeighborRouteMetric(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6420,6 +6522,15 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["duplication"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("duplication_max_discrepancy"); ok || d.HasChange("duplication_max_discrepancy") {
+		t, err := expandWantempSystemSdwanDuplicationMaxDiscrepancy(d, v, "duplication_max_discrepancy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["duplication-max-discrepancy"] = t
 		}
 	}
 

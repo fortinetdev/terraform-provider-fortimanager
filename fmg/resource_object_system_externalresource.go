@@ -45,13 +45,67 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"address_comment_field": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"address_data_field": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"address_name_field": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"category": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"client_cert_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"dynamic_mapping": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"_scope": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vdom": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
+						},
+						"source_ip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -66,6 +120,15 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"namespace": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"object_array_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -122,6 +185,15 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
+			},
 		},
 	}
 }
@@ -131,6 +203,7 @@ func resourceObjectSystemExternalResourceCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,9 +215,9 @@ func resourceObjectSystemExternalResourceCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemExternalResource resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemExternalResource(obj, paradict)
-
+	_, err = c.CreateObjectSystemExternalResource(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemExternalResource resource: %v", err)
 	}
@@ -160,6 +233,7 @@ func resourceObjectSystemExternalResourceUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +246,9 @@ func resourceObjectSystemExternalResourceUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectSystemExternalResource resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemExternalResource(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemExternalResource(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemExternalResource resource: %v", err)
 	}
@@ -191,6 +267,7 @@ func resourceObjectSystemExternalResourceDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -198,7 +275,9 @@ func resourceObjectSystemExternalResourceDelete(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemExternalResource(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemExternalResource(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemExternalResource resource: %v", err)
 	}
@@ -240,11 +319,125 @@ func resourceObjectSystemExternalResourceRead(d *schema.ResourceData, m interfac
 	return nil
 }
 
+func flattenObjectSystemExternalResourceAddressCommentField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceAddressDataField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceAddressNameField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemExternalResourceCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectSystemExternalResourceClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectSystemExternalResourceClientCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemExternalResourceComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceDynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := i["_scope"]; ok {
+			v := flattenObjectSystemExternalResourceDynamicMappingScope(i["_scope"], d, pre_append)
+			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectSystemExternalResource-DynamicMapping-Scope")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
+		if _, ok := i["source-ip"]; ok {
+			v := flattenObjectSystemExternalResourceDynamicMappingSourceIp(i["source-ip"], d, pre_append)
+			tmp["source_ip"] = fortiAPISubPartPatch(v, "ObjectSystemExternalResource-DynamicMapping-SourceIp")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemExternalResourceDynamicMappingScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectSystemExternalResourceDynamicMappingScopeName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemExternalResourceDynamicMapping-Scope-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := i["vdom"]; ok {
+			v := flattenObjectSystemExternalResourceDynamicMappingScopeVdom(i["vdom"], d, pre_append)
+			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectSystemExternalResourceDynamicMapping-Scope-Vdom")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemExternalResourceDynamicMappingScopeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceDynamicMappingScopeVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceDynamicMappingSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -257,6 +450,14 @@ func flattenObjectSystemExternalResourceInterfaceSelectMethod(v interface{}, d *
 }
 
 func flattenObjectSystemExternalResourceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceNamespace(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceObjectArrayPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -300,11 +501,49 @@ func flattenObjectSystemExternalResourceUuid(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectSystemExternalResourceVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("address_comment_field", flattenObjectSystemExternalResourceAddressCommentField(o["address-comment-field"], d, "address_comment_field")); err != nil {
+		if vv, ok := fortiAPIPatch(o["address-comment-field"], "ObjectSystemExternalResource-AddressCommentField"); ok {
+			if err = d.Set("address_comment_field", vv); err != nil {
+				return fmt.Errorf("Error reading address_comment_field: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading address_comment_field: %v", err)
+		}
+	}
+
+	if err = d.Set("address_data_field", flattenObjectSystemExternalResourceAddressDataField(o["address-data-field"], d, "address_data_field")); err != nil {
+		if vv, ok := fortiAPIPatch(o["address-data-field"], "ObjectSystemExternalResource-AddressDataField"); ok {
+			if err = d.Set("address_data_field", vv); err != nil {
+				return fmt.Errorf("Error reading address_data_field: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading address_data_field: %v", err)
+		}
+	}
+
+	if err = d.Set("address_name_field", flattenObjectSystemExternalResourceAddressNameField(o["address-name-field"], d, "address_name_field")); err != nil {
+		if vv, ok := fortiAPIPatch(o["address-name-field"], "ObjectSystemExternalResource-AddressNameField"); ok {
+			if err = d.Set("address_name_field", vv); err != nil {
+				return fmt.Errorf("Error reading address_name_field: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading address_name_field: %v", err)
+		}
 	}
 
 	if err = d.Set("category", flattenObjectSystemExternalResourceCategory(o["category"], d, "category")); err != nil {
@@ -317,6 +556,26 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("client_cert", flattenObjectSystemExternalResourceClientCert(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "ObjectSystemExternalResource-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("client_cert_auth", flattenObjectSystemExternalResourceClientCertAuth(o["client-cert-auth"], d, "client_cert_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert-auth"], "ObjectSystemExternalResource-ClientCertAuth"); ok {
+			if err = d.Set("client_cert_auth", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert_auth: %v", err)
+		}
+	}
+
 	if err = d.Set("comments", flattenObjectSystemExternalResourceComments(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "ObjectSystemExternalResource-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {
@@ -324,6 +583,30 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("dynamic_mapping", flattenObjectSystemExternalResourceDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+			if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectSystemExternalResource-DynamicMapping"); ok {
+				if err = d.Set("dynamic_mapping", vv); err != nil {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("dynamic_mapping"); ok {
+			if err = d.Set("dynamic_mapping", flattenObjectSystemExternalResourceDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+				if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectSystemExternalResource-DynamicMapping"); ok {
+					if err = d.Set("dynamic_mapping", vv); err != nil {
+						return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			}
 		}
 	}
 
@@ -354,6 +637,26 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("namespace", flattenObjectSystemExternalResourceNamespace(o["namespace"], d, "namespace")); err != nil {
+		if vv, ok := fortiAPIPatch(o["namespace"], "ObjectSystemExternalResource-Namespace"); ok {
+			if err = d.Set("namespace", vv); err != nil {
+				return fmt.Errorf("Error reading namespace: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading namespace: %v", err)
+		}
+	}
+
+	if err = d.Set("object_array_path", flattenObjectSystemExternalResourceObjectArrayPath(o["object-array-path"], d, "object_array_path")); err != nil {
+		if vv, ok := fortiAPIPatch(o["object-array-path"], "ObjectSystemExternalResource-ObjectArrayPath"); ok {
+			if err = d.Set("object_array_path", vv); err != nil {
+				return fmt.Errorf("Error reading object_array_path: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading object_array_path: %v", err)
 		}
 	}
 
@@ -457,6 +760,16 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectSystemExternalResourceVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectSystemExternalResource-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -466,11 +779,116 @@ func flattenObjectSystemExternalResourceFortiTestDebug(d *schema.ResourceData, f
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectSystemExternalResourceAddressCommentField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceAddressDataField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceAddressNameField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemExternalResourceCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandObjectSystemExternalResourceClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemExternalResourceClientCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemExternalResourceComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectSystemExternalResourceDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source-ip"], _ = expandObjectSystemExternalResourceDynamicMappingSourceIp(d, i["source_ip"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemExternalResourceDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectSystemExternalResourceDynamicMappingScopeName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vdom"], _ = expandObjectSystemExternalResourceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemExternalResourceDynamicMappingScopeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceDynamicMappingScopeVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceDynamicMappingSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -483,6 +901,14 @@ func expandObjectSystemExternalResourceInterfaceSelectMethod(d *schema.ResourceD
 }
 
 func expandObjectSystemExternalResourceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceNamespace(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceObjectArrayPath(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -530,8 +956,39 @@ func expandObjectSystemExternalResourceUuid(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectSystemExternalResourceVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("address_comment_field"); ok || d.HasChange("address_comment_field") {
+		t, err := expandObjectSystemExternalResourceAddressCommentField(d, v, "address_comment_field")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["address-comment-field"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("address_data_field"); ok || d.HasChange("address_data_field") {
+		t, err := expandObjectSystemExternalResourceAddressDataField(d, v, "address_data_field")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["address-data-field"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("address_name_field"); ok || d.HasChange("address_name_field") {
+		t, err := expandObjectSystemExternalResourceAddressNameField(d, v, "address_name_field")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["address-name-field"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectSystemExternalResourceCategory(d, v, "category")
@@ -542,12 +999,39 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandObjectSystemExternalResourceClientCert(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("client_cert_auth"); ok || d.HasChange("client_cert_auth") {
+		t, err := expandObjectSystemExternalResourceClientCertAuth(d, v, "client_cert_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert-auth"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectSystemExternalResourceComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
+		t, err := expandObjectSystemExternalResourceDynamicMapping(d, v, "dynamic_mapping")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic_mapping"] = t
 		}
 	}
 
@@ -575,6 +1059,24 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("namespace"); ok || d.HasChange("namespace") {
+		t, err := expandObjectSystemExternalResourceNamespace(d, v, "namespace")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["namespace"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("object_array_path"); ok || d.HasChange("object_array_path") {
+		t, err := expandObjectSystemExternalResourceObjectArrayPath(d, v, "object_array_path")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["object-array-path"] = t
 		}
 	}
 
@@ -674,6 +1176,15 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectSystemExternalResourceVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

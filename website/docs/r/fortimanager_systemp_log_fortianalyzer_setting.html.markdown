@@ -64,6 +64,7 @@ The following arguments are supported:
 * `upload_option` - Enable/disable logging to hard disk and then uploading to FortiAnalyzer. Valid values: `store-and-upload`, `realtime`, `1-minute`, `5-minute`.
 
 * `upload_time` - Time to upload logs (hh:mm).
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

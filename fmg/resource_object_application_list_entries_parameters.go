@@ -98,6 +98,7 @@ func resourceObjectApplicationListEntriesParametersCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectApplicationListEntriesParametersCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListEntriesParameters resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationListEntriesParameters(obj, paradict)
-
+	_, err = c.CreateObjectApplicationListEntriesParameters(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListEntriesParameters resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectApplicationListEntriesParametersUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +151,9 @@ func resourceObjectApplicationListEntriesParametersUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectApplicationListEntriesParameters resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationListEntriesParameters(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationListEntriesParameters(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationListEntriesParameters resource: %v", err)
 	}
@@ -168,6 +172,7 @@ func resourceObjectApplicationListEntriesParametersDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectApplicationListEntriesParametersDelete(d *schema.ResourceData
 	paradict["list"] = list
 	paradict["entries"] = entries
 
-	err = c.DeleteObjectApplicationListEntriesParameters(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationListEntriesParameters(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationListEntriesParameters resource: %v", err)
 	}

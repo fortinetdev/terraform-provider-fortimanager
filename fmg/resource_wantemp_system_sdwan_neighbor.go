@@ -78,6 +78,11 @@ func resourceWantempSystemSdwanNeighbor() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"route_metric": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"service_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -95,6 +100,7 @@ func resourceWantempSystemSdwanNeighborCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,9 +115,9 @@ func resourceWantempSystemSdwanNeighborCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanNeighbor resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemSdwanNeighbor(obj, paradict)
-
+	_, err = c.CreateWantempSystemSdwanNeighbor(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanNeighbor resource: %v", err)
 	}
@@ -127,6 +133,7 @@ func resourceWantempSystemSdwanNeighborUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,7 +149,9 @@ func resourceWantempSystemSdwanNeighborUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating WantempSystemSdwanNeighbor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwanNeighbor(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwanNeighbor(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanNeighbor resource: %v", err)
 	}
@@ -161,6 +170,7 @@ func resourceWantempSystemSdwanNeighborDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +181,9 @@ func resourceWantempSystemSdwanNeighborDelete(d *schema.ResourceData, m interfac
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	err = c.DeleteWantempSystemSdwanNeighbor(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemSdwanNeighbor(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemSdwanNeighbor resource: %v", err)
 	}
@@ -246,6 +258,10 @@ func flattenWantempSystemSdwanNeighborMode2edl(v interface{}, d *schema.Resource
 }
 
 func flattenWantempSystemSdwanNeighborRole2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanNeighborRouteMetric2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -324,6 +340,16 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("route_metric", flattenWantempSystemSdwanNeighborRouteMetric2edl(o["route-metric"], d, "route_metric")); err != nil {
+		if vv, ok := fortiAPIPatch(o["route-metric"], "WantempSystemSdwanNeighbor-RouteMetric"); ok {
+			if err = d.Set("route_metric", vv); err != nil {
+				return fmt.Errorf("Error reading route_metric: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading route_metric: %v", err)
+		}
+	}
+
 	if err = d.Set("service_id", flattenWantempSystemSdwanNeighborServiceId2edl(o["service-id"], d, "service_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-id"], "WantempSystemSdwanNeighbor-ServiceId"); ok {
 			if err = d.Set("service_id", vv); err != nil {
@@ -374,6 +400,10 @@ func expandWantempSystemSdwanNeighborMode2edl(d *schema.ResourceData, v interfac
 }
 
 func expandWantempSystemSdwanNeighborRole2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanNeighborRouteMetric2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -439,6 +469,15 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["role"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("route_metric"); ok || d.HasChange("route_metric") {
+		t, err := expandWantempSystemSdwanNeighborRouteMetric2edl(d, v, "route_metric")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["route-metric"] = t
 		}
 	}
 

@@ -145,6 +145,8 @@ func resourceSystemSnmpCommunityCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -152,9 +154,9 @@ func resourceSystemSnmpCommunityCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunity resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSnmpCommunity(obj, paradict)
-
+	_, err = c.CreateSystemSnmpCommunity(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunity resource: %v", err)
 	}
@@ -170,6 +172,8 @@ func resourceSystemSnmpCommunityUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -178,7 +182,9 @@ func resourceSystemSnmpCommunityUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystemSnmpCommunity resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpCommunity(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSnmpCommunity(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpCommunity resource: %v", err)
 	}
@@ -197,10 +203,14 @@ func resourceSystemSnmpCommunityDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpCommunity(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSnmpCommunity(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpCommunity resource: %v", err)
 	}
@@ -217,6 +227,7 @@ func resourceSystemSnmpCommunityRead(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

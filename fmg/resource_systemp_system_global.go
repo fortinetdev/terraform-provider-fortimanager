@@ -143,6 +143,7 @@ func resourceSystempSystemGlobalUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +159,9 @@ func resourceSystempSystemGlobalUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystempSystemGlobal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemGlobal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemGlobal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemGlobal resource: %v", err)
 	}
@@ -177,6 +180,7 @@ func resourceSystempSystemGlobalDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -187,7 +191,9 @@ func resourceSystempSystemGlobalDelete(d *schema.ResourceData, m interface{}) er
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemGlobal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemGlobal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemGlobal resource: %v", err)
 	}

@@ -30,9 +30,13 @@ The following arguments are supported:
 
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
+* `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
+
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dns_mapping_ttl` - DNS mapping TTL (Set to zero to use TTL in DNS response, default = 0).
+* `empty_cert_action` - Action for an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
+
 * `extaddr` - External FQDN address name.
 * `extintf` - Interface connected to the source network that receives the packets that will be forwarded to the destination network.
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
@@ -161,6 +165,8 @@ The following arguments are supported:
 * `status` - Status. Valid values: `disable`, `enable`.
 
 * `type` - Configure a static NAT, load balance, server load balance, DNS translation, or FQDN VIP. Valid values: `static-nat`, `load-balance`, `server-load-balance`, `dns-translation`, `fqdn`.
+
+* `user_agent_detect` - Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `weblogic_server` - Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.

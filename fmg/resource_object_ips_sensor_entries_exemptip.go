@@ -77,6 +77,7 @@ func resourceObjectIpsSensorEntriesExemptIpCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectIpsSensorEntriesExemptIpCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensorEntriesExemptIp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIpsSensorEntriesExemptIp(obj, paradict)
-
+	_, err = c.CreateObjectIpsSensorEntriesExemptIp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensorEntriesExemptIp resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectIpsSensorEntriesExemptIpUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -128,7 +130,9 @@ func resourceObjectIpsSensorEntriesExemptIpUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectIpsSensorEntriesExemptIp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIpsSensorEntriesExemptIp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIpsSensorEntriesExemptIp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsSensorEntriesExemptIp resource: %v", err)
 	}
@@ -147,6 +151,7 @@ func resourceObjectIpsSensorEntriesExemptIpDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectIpsSensorEntriesExemptIpDelete(d *schema.ResourceData, m inte
 	paradict["sensor"] = sensor
 	paradict["entries"] = entries
 
-	err = c.DeleteObjectIpsSensorEntriesExemptIp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIpsSensorEntriesExemptIp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIpsSensorEntriesExemptIp resource: %v", err)
 	}

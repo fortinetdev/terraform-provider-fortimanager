@@ -23,11 +23,14 @@ The following arguments are supported:
 * `user_activity` - User Activity.
 * `match` - Match.
 
+* `body_type` - CASB user activity match rule body type. Valid values: `json`.
+
 * `case_sensitive` - CASB user activity match case sensitive. Valid values: `disable`, `enable`.
 
 * `domains` - CASB user activity domain list.
 * `header_name` - CASB user activity rule header name.
 * `fosid` - CASB user activity rule ID.
+* `jq` - CASB user activity rule match jq script.
 * `match_pattern` - CASB user activity rule match pattern. Valid values: `simple`, `substr`, `regexp`.
 
 * `match_value` - CASB user activity rule match value.

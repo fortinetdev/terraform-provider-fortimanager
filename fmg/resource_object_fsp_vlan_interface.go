@@ -2028,6 +2028,7 @@ func resourceObjectFspVlanInterfaceUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -2043,7 +2044,9 @@ func resourceObjectFspVlanInterfaceUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectFspVlanInterface resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanInterface(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanInterface(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterface resource: %v", err)
 	}
@@ -2062,6 +2065,7 @@ func resourceObjectFspVlanInterfaceDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -2072,7 +2076,9 @@ func resourceObjectFspVlanInterfaceDelete(d *schema.ResourceData, m interface{})
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	err = c.DeleteObjectFspVlanInterface(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanInterface(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanInterface resource: %v", err)
 	}

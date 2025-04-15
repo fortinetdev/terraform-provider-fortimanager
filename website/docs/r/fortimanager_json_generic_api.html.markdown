@@ -88,6 +88,9 @@ output name2 {
 
 The following arguments are supported:
 
+* `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
+* `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+
 * `force_recreate` - The argument is optional, if it is set, when its value changes, the resource will be re-created. It is usually used when the return value needs to be forced to update.
 * `json_content` - Body data in JSON format.
 * `comment` - Comment.

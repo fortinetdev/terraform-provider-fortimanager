@@ -72,6 +72,7 @@ func resourceObjectCloudOrchestrationCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -83,9 +84,9 @@ func resourceObjectCloudOrchestrationCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCloudOrchestration resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCloudOrchestration(obj, paradict)
-
+	_, err = c.CreateObjectCloudOrchestration(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCloudOrchestration resource: %v", err)
 	}
@@ -101,6 +102,7 @@ func resourceObjectCloudOrchestrationUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -113,7 +115,9 @@ func resourceObjectCloudOrchestrationUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectCloudOrchestration resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCloudOrchestration(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCloudOrchestration(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCloudOrchestration resource: %v", err)
 	}
@@ -132,6 +136,7 @@ func resourceObjectCloudOrchestrationDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceObjectCloudOrchestrationDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCloudOrchestration(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCloudOrchestration(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCloudOrchestration resource: %v", err)
 	}

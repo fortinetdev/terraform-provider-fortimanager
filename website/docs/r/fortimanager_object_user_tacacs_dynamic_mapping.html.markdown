@@ -39,6 +39,7 @@ The following arguments are supported:
 * `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `tertiary_key` - Key to access the tertiary server.
 * `tertiary_server` - Tertiary TACACS+ server CN domain name or IP address.
+* `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `_scope` block supports:

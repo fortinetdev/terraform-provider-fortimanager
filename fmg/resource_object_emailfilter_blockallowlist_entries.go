@@ -105,6 +105,7 @@ func resourceObjectEmailfilterBlockAllowListEntriesCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,9 +120,9 @@ func resourceObjectEmailfilterBlockAllowListEntriesCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowListEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterBlockAllowListEntries(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterBlockAllowListEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowListEntries resource: %v", err)
 	}
@@ -137,6 +138,7 @@ func resourceObjectEmailfilterBlockAllowListEntriesUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +154,9 @@ func resourceObjectEmailfilterBlockAllowListEntriesUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowListEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBlockAllowListEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterBlockAllowListEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowListEntries resource: %v", err)
 	}
@@ -171,6 +175,7 @@ func resourceObjectEmailfilterBlockAllowListEntriesDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -181,7 +186,9 @@ func resourceObjectEmailfilterBlockAllowListEntriesDelete(d *schema.ResourceData
 	block_allow_list := d.Get("block_allow_list").(string)
 	paradict["block_allow_list"] = block_allow_list
 
-	err = c.DeleteObjectEmailfilterBlockAllowListEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterBlockAllowListEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBlockAllowListEntries resource: %v", err)
 	}

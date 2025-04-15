@@ -58,6 +58,8 @@ func resourceSystemRouteCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -65,9 +67,9 @@ func resourceSystemRouteCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemRoute(obj, paradict)
-
+	_, err = c.CreateSystemRoute(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute resource: %v", err)
 	}
@@ -83,6 +85,8 @@ func resourceSystemRouteUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -91,7 +95,9 @@ func resourceSystemRouteUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemRoute resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemRoute(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemRoute(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemRoute resource: %v", err)
 	}
@@ -110,10 +116,14 @@ func resourceSystemRouteDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemRoute(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemRoute(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemRoute resource: %v", err)
 	}
@@ -130,6 +140,7 @@ func resourceSystemRouteRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

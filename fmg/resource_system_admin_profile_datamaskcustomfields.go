@@ -64,6 +64,8 @@ func resourceSystemAdminProfileDatamaskCustomFieldsCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -74,9 +76,9 @@ func resourceSystemAdminProfileDatamaskCustomFieldsCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfileDatamaskCustomFields resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminProfileDatamaskCustomFields(obj, paradict)
-
+	_, err = c.CreateSystemAdminProfileDatamaskCustomFields(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfileDatamaskCustomFields resource: %v", err)
 	}
@@ -92,6 +94,8 @@ func resourceSystemAdminProfileDatamaskCustomFieldsUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -103,7 +107,9 @@ func resourceSystemAdminProfileDatamaskCustomFieldsUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating SystemAdminProfileDatamaskCustomFields resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminProfileDatamaskCustomFields(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminProfileDatamaskCustomFields(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminProfileDatamaskCustomFields resource: %v", err)
 	}
@@ -122,13 +128,17 @@ func resourceSystemAdminProfileDatamaskCustomFieldsDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteSystemAdminProfileDatamaskCustomFields(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminProfileDatamaskCustomFields(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminProfileDatamaskCustomFields resource: %v", err)
 	}
@@ -145,6 +155,7 @@ func resourceSystemAdminProfileDatamaskCustomFieldsRead(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

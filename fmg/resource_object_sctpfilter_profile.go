@@ -94,6 +94,7 @@ func resourceObjectSctpFilterProfileCreate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -105,9 +106,9 @@ func resourceObjectSctpFilterProfileCreate(d *schema.ResourceData, m interface{}
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSctpFilterProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSctpFilterProfile(obj, paradict)
-
+	_, err = c.CreateObjectSctpFilterProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSctpFilterProfile resource: %v", err)
 	}
@@ -123,6 +124,7 @@ func resourceObjectSctpFilterProfileUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +137,9 @@ func resourceObjectSctpFilterProfileUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating ObjectSctpFilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSctpFilterProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSctpFilterProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSctpFilterProfile resource: %v", err)
 	}
@@ -154,6 +158,7 @@ func resourceObjectSctpFilterProfileDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +166,9 @@ func resourceObjectSctpFilterProfileDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSctpFilterProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSctpFilterProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSctpFilterProfile resource: %v", err)
 	}

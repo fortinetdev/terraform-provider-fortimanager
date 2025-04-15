@@ -47,6 +47,8 @@ func resourceSystemAdminUserPolicyBlockCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemAdminUserPolicyBlockCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserPolicyBlock resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminUserPolicyBlock(obj, paradict)
-
+	_, err = c.CreateSystemAdminUserPolicyBlock(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserPolicyBlock resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemAdminUserPolicyBlockUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemAdminUserPolicyBlockUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating SystemAdminUserPolicyBlock resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminUserPolicyBlock(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminUserPolicyBlock(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminUserPolicyBlock resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemAdminUserPolicyBlockDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	user := d.Get("user").(string)
 	paradict["user"] = user
 
-	err = c.DeleteSystemAdminUserPolicyBlock(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminUserPolicyBlock(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminUserPolicyBlock resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemAdminUserPolicyBlockRead(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

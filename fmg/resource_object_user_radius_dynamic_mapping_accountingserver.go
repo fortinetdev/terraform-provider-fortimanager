@@ -98,6 +98,10 @@ func resourceObjectUserRadiusDynamicMappingAccountingServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -107,6 +111,7 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerCreate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,9 +130,9 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerCreate(d *schema.Reso
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusDynamicMappingAccountingServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserRadiusDynamicMappingAccountingServer(obj, paradict)
-
+	_, err = c.CreateObjectUserRadiusDynamicMappingAccountingServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusDynamicMappingAccountingServer resource: %v", err)
 	}
@@ -143,6 +148,7 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerUpdate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +168,9 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerUpdate(d *schema.Reso
 		return fmt.Errorf("Error updating ObjectUserRadiusDynamicMappingAccountingServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserRadiusDynamicMappingAccountingServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserRadiusDynamicMappingAccountingServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserRadiusDynamicMappingAccountingServer resource: %v", err)
 	}
@@ -181,6 +189,7 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerDelete(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -195,7 +204,9 @@ func resourceObjectUserRadiusDynamicMappingAccountingServerDelete(d *schema.Reso
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectUserRadiusDynamicMappingAccountingServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserRadiusDynamicMappingAccountingServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserRadiusDynamicMappingAccountingServer resource: %v", err)
 	}
@@ -299,6 +310,10 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerStatus3rdl(v interface
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingAccountingServerVrfSelect3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -376,6 +391,16 @@ func refreshObjectObjectUserRadiusDynamicMappingAccountingServer(d *schema.Resou
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserRadiusDynamicMappingAccountingServerVrfSelect3rdl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserRadiusDynamicMappingAccountingServer-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -414,6 +439,10 @@ func expandObjectUserRadiusDynamicMappingAccountingServerSourceIp3rdl(d *schema.
 }
 
 func expandObjectUserRadiusDynamicMappingAccountingServerStatus3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingAccountingServerVrfSelect3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -489,6 +518,15 @@ func getObjectObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceD
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserRadiusDynamicMappingAccountingServerVrfSelect3rdl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

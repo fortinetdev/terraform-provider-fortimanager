@@ -45,6 +45,8 @@ func resourceFmupdateCustomUrlListUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -53,7 +55,9 @@ func resourceFmupdateCustomUrlListUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating FmupdateCustomUrlList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateCustomUrlList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateCustomUrlList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateCustomUrlList resource: %v", err)
 	}
@@ -72,10 +76,14 @@ func resourceFmupdateCustomUrlListDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateCustomUrlList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateCustomUrlList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateCustomUrlList resource: %v", err)
 	}
@@ -92,6 +100,7 @@ func resourceFmupdateCustomUrlListRead(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

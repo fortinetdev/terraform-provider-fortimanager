@@ -216,6 +216,7 @@ func resourceSystempLogSyslogdFilterUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -231,7 +232,9 @@ func resourceSystempLogSyslogdFilterUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating SystempLogSyslogdFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempLogSyslogdFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempLogSyslogdFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdFilter resource: %v", err)
 	}
@@ -250,6 +253,7 @@ func resourceSystempLogSyslogdFilterDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -260,7 +264,9 @@ func resourceSystempLogSyslogdFilterDelete(d *schema.ResourceData, m interface{}
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempLogSyslogdFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempLogSyslogdFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempLogSyslogdFilter resource: %v", err)
 	}

@@ -101,6 +101,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularModem1AutoSwitchUpda
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +117,9 @@ func resourceObjectExtenderControllerExtenderProfileCellularModem1AutoSwitchUpda
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch resource: %v", err)
 	}
@@ -135,6 +138,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularModem1AutoSwitchDele
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +149,9 @@ func resourceObjectExtenderControllerExtenderProfileCellularModem1AutoSwitchDele
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch resource: %v", err)
 	}

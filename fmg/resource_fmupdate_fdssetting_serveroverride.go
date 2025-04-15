@@ -81,6 +81,8 @@ func resourceFmupdateFdsSettingServerOverrideUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -89,7 +91,9 @@ func resourceFmupdateFdsSettingServerOverrideUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSettingServerOverride(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFdsSettingServerOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource: %v", err)
 	}
@@ -108,10 +112,14 @@ func resourceFmupdateFdsSettingServerOverrideDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingServerOverride(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFdsSettingServerOverride(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSettingServerOverride resource: %v", err)
 	}
@@ -128,6 +136,7 @@ func resourceFmupdateFdsSettingServerOverrideRead(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

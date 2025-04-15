@@ -86,6 +86,7 @@ func resourceDvmdbGroupCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -97,9 +98,9 @@ func resourceDvmdbGroupCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateDvmdbGroup(obj, paradict)
-
+	_, err = c.CreateDvmdbGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbGroup resource: %v", err)
 	}
@@ -115,6 +116,7 @@ func resourceDvmdbGroupUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -127,7 +129,9 @@ func resourceDvmdbGroupUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating DvmdbGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmdbGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbGroup resource: %v", err)
 	}
@@ -146,6 +150,7 @@ func resourceDvmdbGroupDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +158,9 @@ func resourceDvmdbGroupDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteDvmdbGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteDvmdbGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbGroup resource: %v", err)
 	}

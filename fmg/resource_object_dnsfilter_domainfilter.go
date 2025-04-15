@@ -103,6 +103,7 @@ func resourceObjectDnsfilterDomainFilterCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectDnsfilterDomainFilterCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterDomainFilter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDnsfilterDomainFilter(obj, paradict)
-
+	_, err = c.CreateObjectDnsfilterDomainFilter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterDomainFilter resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectDnsfilterDomainFilterUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +146,9 @@ func resourceObjectDnsfilterDomainFilterUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectDnsfilterDomainFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDnsfilterDomainFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDnsfilterDomainFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterDomainFilter resource: %v", err)
 	}
@@ -163,6 +167,7 @@ func resourceObjectDnsfilterDomainFilterDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceObjectDnsfilterDomainFilterDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDnsfilterDomainFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDnsfilterDomainFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDnsfilterDomainFilter resource: %v", err)
 	}

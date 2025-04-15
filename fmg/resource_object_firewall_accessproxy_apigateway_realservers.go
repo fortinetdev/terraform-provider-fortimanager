@@ -158,6 +158,7 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversCreate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,9 +175,9 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversCreate(d *schema.Reso
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGatewayRealservers resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxyApiGatewayRealservers(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxyApiGatewayRealservers(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGatewayRealservers resource: %v", err)
 	}
@@ -192,6 +193,7 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversUpdate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -209,7 +211,9 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversUpdate(d *schema.Reso
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewayRealservers resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyApiGatewayRealservers(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxyApiGatewayRealservers(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewayRealservers resource: %v", err)
 	}
@@ -228,6 +232,7 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversDelete(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -240,7 +245,9 @@ func resourceObjectFirewallAccessProxyApiGatewayRealserversDelete(d *schema.Reso
 	paradict["access_proxy"] = access_proxy
 	paradict["api_gateway"] = api_gateway
 
-	err = c.DeleteObjectFirewallAccessProxyApiGatewayRealservers(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxyApiGatewayRealservers(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyApiGatewayRealservers resource: %v", err)
 	}

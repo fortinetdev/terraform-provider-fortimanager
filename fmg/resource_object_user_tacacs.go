@@ -142,6 +142,10 @@ func resourceObjectUserTacacs() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"vrf_select": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -206,6 +210,10 @@ func resourceObjectUserTacacs() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -220,6 +228,7 @@ func resourceObjectUserTacacsCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -231,9 +240,9 @@ func resourceObjectUserTacacsCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacs resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserTacacs(obj, paradict)
-
+	_, err = c.CreateObjectUserTacacs(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacs resource: %v", err)
 	}
@@ -249,6 +258,7 @@ func resourceObjectUserTacacsUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -261,7 +271,9 @@ func resourceObjectUserTacacsUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectUserTacacs resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserTacacs(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserTacacs(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserTacacs resource: %v", err)
 	}
@@ -280,6 +292,7 @@ func resourceObjectUserTacacsDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -287,7 +300,9 @@ func resourceObjectUserTacacsDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserTacacs(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserTacacs(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserTacacs resource: %v", err)
 	}
@@ -422,6 +437,12 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["tertiary_server"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-TertiaryServer")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := i["vrf-select"]; ok {
+			v := flattenObjectUserTacacsDynamicMappingVrfSelect(i["vrf-select"], d, pre_append)
+			tmp["vrf_select"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-VrfSelect")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -521,6 +542,10 @@ func flattenObjectUserTacacsDynamicMappingTertiaryServer(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectUserTacacsDynamicMappingVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserTacacsInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -554,6 +579,10 @@ func flattenObjectUserTacacsStatusTtl(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserTacacsTertiaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserTacacsVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -702,6 +731,16 @@ func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserTacacsVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserTacacs-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -808,6 +847,11 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["tertiary-server"], _ = expandObjectUserTacacsDynamicMappingTertiaryServer(d, i["tertiary_server"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vrf-select"], _ = expandObjectUserTacacsDynamicMappingVrfSelect(d, i["vrf_select"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -912,6 +956,10 @@ func expandObjectUserTacacsDynamicMappingTertiaryServer(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectUserTacacsDynamicMappingVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserTacacsInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -957,6 +1005,10 @@ func expandObjectUserTacacsTertiaryKey(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectUserTacacsTertiaryServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserTacacsVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1095,6 +1147,15 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["tertiary-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserTacacsVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

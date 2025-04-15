@@ -114,6 +114,10 @@ func resourceSystempSystemEmailServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -124,6 +128,7 @@ func resourceSystempSystemEmailServerUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceSystempSystemEmailServerUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystempSystemEmailServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemEmailServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemEmailServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemEmailServer resource: %v", err)
 	}
@@ -158,6 +165,7 @@ func resourceSystempSystemEmailServerDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -168,7 +176,9 @@ func resourceSystempSystemEmailServerDelete(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemEmailServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemEmailServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemEmailServer resource: %v", err)
 	}
@@ -271,6 +281,10 @@ func flattenSystempSystemEmailServerUsername(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystempSystemEmailServerValidateServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemEmailServerVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -411,6 +425,16 @@ func refreshObjectSystempSystemEmailServer(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenSystempSystemEmailServerVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "SystempSystemEmailServer-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -473,6 +497,10 @@ func expandSystempSystemEmailServerUsername(d *schema.ResourceData, v interface{
 }
 
 func expandSystempSystemEmailServerValidateServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemEmailServerVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -602,6 +630,15 @@ func getObjectSystempSystemEmailServer(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["validate-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandSystempSystemEmailServerVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

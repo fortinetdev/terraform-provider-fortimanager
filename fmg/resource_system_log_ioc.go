@@ -69,6 +69,8 @@ func resourceSystemLogIocUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -77,7 +79,9 @@ func resourceSystemLogIocUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemLogIoc resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogIoc(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogIoc(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogIoc resource: %v", err)
 	}
@@ -96,10 +100,14 @@ func resourceSystemLogIocDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogIoc(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogIoc(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogIoc resource: %v", err)
 	}
@@ -116,6 +124,7 @@ func resourceSystemLogIocRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

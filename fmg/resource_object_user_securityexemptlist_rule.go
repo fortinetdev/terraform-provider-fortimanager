@@ -80,6 +80,7 @@ func resourceObjectUserSecurityExemptListRuleCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectUserSecurityExemptListRuleCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSecurityExemptListRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserSecurityExemptListRule(obj, paradict)
-
+	_, err = c.CreateObjectUserSecurityExemptListRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSecurityExemptListRule resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectUserSecurityExemptListRuleUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -127,7 +129,9 @@ func resourceObjectUserSecurityExemptListRuleUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectUserSecurityExemptListRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserSecurityExemptListRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserSecurityExemptListRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSecurityExemptListRule resource: %v", err)
 	}
@@ -146,6 +150,7 @@ func resourceObjectUserSecurityExemptListRuleDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectUserSecurityExemptListRuleDelete(d *schema.ResourceData, m in
 	security_exempt_list := d.Get("security_exempt_list").(string)
 	paradict["security_exempt_list"] = security_exempt_list
 
-	err = c.DeleteObjectUserSecurityExemptListRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserSecurityExemptListRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserSecurityExemptListRule resource: %v", err)
 	}

@@ -75,6 +75,11 @@ func resourceObjectFirewallVipDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -86,6 +91,11 @@ func resourceObjectFirewallVipDynamicMapping() *schema.Resource {
 			"dns_mapping_ttl": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+			},
+			"empty_cert_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"extaddr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -542,6 +552,11 @@ func resourceObjectFirewallVipDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_agent_detect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -569,6 +584,7 @@ func resourceObjectFirewallVipDynamicMappingCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -583,9 +599,9 @@ func resourceObjectFirewallVipDynamicMappingCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVipDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVipDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipDynamicMapping resource: %v", err)
 	}
@@ -601,6 +617,7 @@ func resourceObjectFirewallVipDynamicMappingUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -616,7 +633,9 @@ func resourceObjectFirewallVipDynamicMappingUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFirewallVipDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVipDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipDynamicMapping resource: %v", err)
 	}
@@ -635,6 +654,7 @@ func resourceObjectFirewallVipDynamicMappingDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -645,7 +665,9 @@ func resourceObjectFirewallVipDynamicMappingDelete(d *schema.ResourceData, m int
 	vip := d.Get("vip").(string)
 	paradict["vip"] = vip
 
-	err = c.DeleteObjectFirewallVipDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVipDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipDynamicMapping resource: %v", err)
 	}
@@ -759,6 +781,10 @@ func flattenObjectFirewallVipDynamicMappingArpReply2edl(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallVipDynamicMappingClientCert2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingColor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -768,6 +794,10 @@ func flattenObjectFirewallVipDynamicMappingComment2edl(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVipDynamicMappingDnsMappingTtl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingEmptyCertAction2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1357,6 +1387,10 @@ func flattenObjectFirewallVipDynamicMappingType2edl(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectFirewallVipDynamicMappingUserAgentDetect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1424,6 +1458,16 @@ func refreshObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("client_cert", flattenObjectFirewallVipDynamicMappingClientCert2edl(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "ObjectFirewallVipDynamicMapping-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
+		}
+	}
+
 	if err = d.Set("color", flattenObjectFirewallVipDynamicMappingColor2edl(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallVipDynamicMapping-Color"); ok {
 			if err = d.Set("color", vv); err != nil {
@@ -1451,6 +1495,16 @@ func refreshObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading dns_mapping_ttl: %v", err)
+		}
+	}
+
+	if err = d.Set("empty_cert_action", flattenObjectFirewallVipDynamicMappingEmptyCertAction2edl(o["empty-cert-action"], d, "empty_cert_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["empty-cert-action"], "ObjectFirewallVipDynamicMapping-EmptyCertAction"); ok {
+			if err = d.Set("empty_cert_action", vv); err != nil {
+				return fmt.Errorf("Error reading empty_cert_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading empty_cert_action: %v", err)
 		}
 	}
 
@@ -2322,6 +2376,16 @@ func refreshObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("user_agent_detect", flattenObjectFirewallVipDynamicMappingUserAgentDetect2edl(o["user-agent-detect"], d, "user_agent_detect")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-agent-detect"], "ObjectFirewallVipDynamicMapping-UserAgentDetect"); ok {
+			if err = d.Set("user_agent_detect", vv); err != nil {
+				return fmt.Errorf("Error reading user_agent_detect: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_agent_detect: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenObjectFirewallVipDynamicMappingUuid2edl(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallVipDynamicMapping-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -2411,6 +2475,10 @@ func expandObjectFirewallVipDynamicMappingArpReply2edl(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingClientCert2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingColor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2420,6 +2488,10 @@ func expandObjectFirewallVipDynamicMappingComment2edl(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVipDynamicMappingDnsMappingTtl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingEmptyCertAction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2979,6 +3051,10 @@ func expandObjectFirewallVipDynamicMappingType2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingUserAgentDetect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3021,6 +3097,15 @@ func getObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData) (*map[stri
 		}
 	}
 
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandObjectFirewallVipDynamicMappingClientCert2edl(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallVipDynamicMappingColor2edl(d, v, "color")
 		if err != nil {
@@ -3045,6 +3130,15 @@ func getObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["dns-mapping-ttl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("empty_cert_action"); ok || d.HasChange("empty_cert_action") {
+		t, err := expandObjectFirewallVipDynamicMappingEmptyCertAction2edl(d, v, "empty_cert_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["empty-cert-action"] = t
 		}
 	}
 
@@ -3801,6 +3895,15 @@ func getObjectObjectFirewallVipDynamicMapping(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_agent_detect"); ok || d.HasChange("user_agent_detect") {
+		t, err := expandObjectFirewallVipDynamicMappingUserAgentDetect2edl(d, v, "user_agent_detect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-agent-detect"] = t
 		}
 	}
 

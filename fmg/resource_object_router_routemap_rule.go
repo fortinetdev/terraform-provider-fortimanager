@@ -281,6 +281,7 @@ func resourceObjectRouterRouteMapRuleCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -295,9 +296,9 @@ func resourceObjectRouterRouteMapRuleCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMapRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterRouteMapRule(obj, paradict)
-
+	_, err = c.CreateObjectRouterRouteMapRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMapRule resource: %v", err)
 	}
@@ -313,6 +314,7 @@ func resourceObjectRouterRouteMapRuleUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -328,7 +330,9 @@ func resourceObjectRouterRouteMapRuleUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectRouterRouteMapRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterRouteMapRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterRouteMapRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterRouteMapRule resource: %v", err)
 	}
@@ -347,6 +351,7 @@ func resourceObjectRouterRouteMapRuleDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -357,7 +362,9 @@ func resourceObjectRouterRouteMapRuleDelete(d *schema.ResourceData, m interface{
 	route_map := d.Get("route_map").(string)
 	paradict["route_map"] = route_map
 
-	err = c.DeleteObjectRouterRouteMapRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterRouteMapRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterRouteMapRule resource: %v", err)
 	}

@@ -100,6 +100,7 @@ func resourceObjectSpamfilterIptrustCreate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -111,9 +112,9 @@ func resourceObjectSpamfilterIptrustCreate(d *schema.ResourceData, m interface{}
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterIptrust resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSpamfilterIptrust(obj, paradict)
-
+	_, err = c.CreateObjectSpamfilterIptrust(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterIptrust resource: %v", err)
 	}
@@ -129,6 +130,7 @@ func resourceObjectSpamfilterIptrustUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectSpamfilterIptrustUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating ObjectSpamfilterIptrust resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSpamfilterIptrust(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSpamfilterIptrust(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterIptrust resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectSpamfilterIptrustDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +172,9 @@ func resourceObjectSpamfilterIptrustDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSpamfilterIptrust(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSpamfilterIptrust(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSpamfilterIptrust resource: %v", err)
 	}

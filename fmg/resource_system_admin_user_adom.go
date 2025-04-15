@@ -47,6 +47,8 @@ func resourceSystemAdminUserAdomCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemAdminUserAdomCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserAdom resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminUserAdom(obj, paradict)
-
+	_, err = c.CreateSystemAdminUserAdom(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserAdom resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemAdminUserAdomUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemAdminUserAdomUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystemAdminUserAdom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminUserAdom(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminUserAdom(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminUserAdom resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemAdminUserAdomDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	user := d.Get("user").(string)
 	paradict["user"] = user
 
-	err = c.DeleteSystemAdminUserAdom(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminUserAdom(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminUserAdom resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemAdminUserAdomRead(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -82,6 +82,7 @@ func resourceObjectEmailfilterIptrustEntriesCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectEmailfilterIptrustEntriesCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterIptrustEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterIptrustEntries(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterIptrustEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterIptrustEntries resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectEmailfilterIptrustEntriesUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectEmailfilterIptrustEntriesUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectEmailfilterIptrustEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterIptrustEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterIptrustEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterIptrustEntries resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectEmailfilterIptrustEntriesDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +163,9 @@ func resourceObjectEmailfilterIptrustEntriesDelete(d *schema.ResourceData, m int
 	iptrust := d.Get("iptrust").(string)
 	paradict["iptrust"] = iptrust
 
-	err = c.DeleteObjectEmailfilterIptrustEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterIptrustEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterIptrustEntries resource: %v", err)
 	}

@@ -68,6 +68,7 @@ func resourceObjectWirelessControllerVapVlanNameCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectWirelessControllerVapVlanNameCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapVlanName resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerVapVlanName(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerVapVlanName(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapVlanName resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectWirelessControllerVapVlanNameUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectWirelessControllerVapVlanNameUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapVlanName resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVapVlanName(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerVapVlanName(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapVlanName resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectWirelessControllerVapVlanNameDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectWirelessControllerVapVlanNameDelete(d *schema.ResourceData, m
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
-	err = c.DeleteObjectWirelessControllerVapVlanName(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerVapVlanName(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVapVlanName resource: %v", err)
 	}

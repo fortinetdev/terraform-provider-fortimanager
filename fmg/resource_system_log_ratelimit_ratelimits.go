@@ -56,6 +56,8 @@ func resourceSystemLogRatelimitRatelimitsCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -63,9 +65,9 @@ func resourceSystemLogRatelimitRatelimitsCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitRatelimits resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogRatelimitRatelimits(obj, paradict)
-
+	_, err = c.CreateSystemLogRatelimitRatelimits(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitRatelimits resource: %v", err)
 	}
@@ -81,6 +83,8 @@ func resourceSystemLogRatelimitRatelimitsUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -89,7 +93,9 @@ func resourceSystemLogRatelimitRatelimitsUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating SystemLogRatelimitRatelimits resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogRatelimitRatelimits(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogRatelimitRatelimits(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitRatelimits resource: %v", err)
 	}
@@ -108,10 +114,14 @@ func resourceSystemLogRatelimitRatelimitsDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogRatelimitRatelimits(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogRatelimitRatelimits(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogRatelimitRatelimits resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemLogRatelimitRatelimitsRead(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -70,6 +70,7 @@ func resourceObjectSystemNpuPriorityProtocolUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,7 +83,9 @@ func resourceObjectSystemNpuPriorityProtocolUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectSystemNpuPriorityProtocol resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuPriorityProtocol(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuPriorityProtocol(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPriorityProtocol resource: %v", err)
 	}
@@ -101,6 +104,7 @@ func resourceObjectSystemNpuPriorityProtocolDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +112,9 @@ func resourceObjectSystemNpuPriorityProtocolDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuPriorityProtocol(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuPriorityProtocol(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuPriorityProtocol resource: %v", err)
 	}

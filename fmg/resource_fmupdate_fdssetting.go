@@ -309,6 +309,8 @@ func resourceFmupdateFdsSettingUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -317,7 +319,9 @@ func resourceFmupdateFdsSettingUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating FmupdateFdsSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFdsSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSetting resource: %v", err)
 	}
@@ -336,10 +340,14 @@ func resourceFmupdateFdsSettingDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFdsSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSetting resource: %v", err)
 	}
@@ -356,6 +364,7 @@ func resourceFmupdateFdsSettingRead(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

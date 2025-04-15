@@ -84,6 +84,7 @@ func resourceObjectDynamicVpntunnelDynamicMappingCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectDynamicVpntunnelDynamicMappingCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVpntunnelDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicVpntunnelDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectDynamicVpntunnelDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVpntunnelDynamicMapping resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectDynamicVpntunnelDynamicMappingUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectDynamicVpntunnelDynamicMappingUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectDynamicVpntunnelDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicVpntunnelDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicVpntunnelDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicVpntunnelDynamicMapping resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectDynamicVpntunnelDynamicMappingDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectDynamicVpntunnelDynamicMappingDelete(d *schema.ResourceData, 
 	vpntunnel := d.Get("vpntunnel").(string)
 	paradict["vpntunnel"] = vpntunnel
 
-	err = c.DeleteObjectDynamicVpntunnelDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicVpntunnelDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicVpntunnelDynamicMapping resource: %v", err)
 	}

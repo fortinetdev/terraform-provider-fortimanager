@@ -105,6 +105,7 @@ func resourceObjectFirewallAccessProxyApiGateway6QuicUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +123,9 @@ func resourceObjectFirewallAccessProxyApiGateway6QuicUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGateway6Quic resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyApiGateway6Quic(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxyApiGateway6Quic(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGateway6Quic resource: %v", err)
 	}
@@ -141,6 +144,7 @@ func resourceObjectFirewallAccessProxyApiGateway6QuicDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +157,9 @@ func resourceObjectFirewallAccessProxyApiGateway6QuicDelete(d *schema.ResourceDa
 	paradict["access_proxy"] = access_proxy
 	paradict["api_gateway6"] = api_gateway6
 
-	err = c.DeleteObjectFirewallAccessProxyApiGateway6Quic(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxyApiGateway6Quic(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyApiGateway6Quic resource: %v", err)
 	}

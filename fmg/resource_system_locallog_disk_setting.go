@@ -149,6 +149,8 @@ func resourceSystemLocallogDiskSettingUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -157,7 +159,9 @@ func resourceSystemLocallogDiskSettingUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogDiskSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLocallogDiskSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource: %v", err)
 	}
@@ -176,10 +180,14 @@ func resourceSystemLocallogDiskSettingDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogDiskSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLocallogDiskSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogDiskSetting resource: %v", err)
 	}
@@ -196,6 +204,7 @@ func resourceSystemLocallogDiskSettingRead(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

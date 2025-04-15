@@ -77,6 +77,7 @@ func resourceObjectEmailfilterDnsblEntriesCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,9 +92,9 @@ func resourceObjectEmailfilterDnsblEntriesCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterDnsblEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterDnsblEntries(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterDnsblEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterDnsblEntries resource: %v", err)
 	}
@@ -109,6 +110,7 @@ func resourceObjectEmailfilterDnsblEntriesUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectEmailfilterDnsblEntriesUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectEmailfilterDnsblEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterDnsblEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterDnsblEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterDnsblEntries resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectEmailfilterDnsblEntriesDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +158,9 @@ func resourceObjectEmailfilterDnsblEntriesDelete(d *schema.ResourceData, m inter
 	dnsbl := d.Get("dnsbl").(string)
 	paradict["dnsbl"] = dnsbl
 
-	err = c.DeleteObjectEmailfilterDnsblEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterDnsblEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterDnsblEntries resource: %v", err)
 	}

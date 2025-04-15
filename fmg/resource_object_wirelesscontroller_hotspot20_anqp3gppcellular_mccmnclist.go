@@ -72,6 +72,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListCreate(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListCreate(d
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListUpdate(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListUpdate(d
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListDelete(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListDelete(d
 	anqp_3gpp_cellular := d.Get("anqp_3gpp_cellular").(string)
 	paradict["anqp_3gpp_cellular"] = anqp_3gpp_cellular
 
-	err = c.DeleteObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList resource: %v", err)
 	}

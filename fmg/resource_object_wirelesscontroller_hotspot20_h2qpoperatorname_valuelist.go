@@ -73,6 +73,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListCreate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +88,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListCreate(d 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOperatorNameValueList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOperatorNameValueList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOperatorNameValueList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOperatorNameValueList resource: %v", err)
 	}
@@ -105,6 +106,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListUpdate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListUpdate(d 
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOperatorNameValueList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOperatorNameValueList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOperatorNameValueList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOperatorNameValueList resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListDelete(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorNameValueListDelete(d 
 	h2qp_operator_name := d.Get("h2qp_operator_name").(string)
 	paradict["h2qp_operator_name"] = h2qp_operator_name
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpOperatorNameValueList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpOperatorNameValueList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpOperatorNameValueList resource: %v", err)
 	}

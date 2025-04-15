@@ -85,6 +85,7 @@ func resourceObjectUserKrbKeytabCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectUserKrbKeytabCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserKrbKeytab resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserKrbKeytab(obj, paradict)
-
+	_, err = c.CreateObjectUserKrbKeytab(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserKrbKeytab resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectUserKrbKeytabUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectUserKrbKeytabUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectUserKrbKeytab resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserKrbKeytab(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserKrbKeytab(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserKrbKeytab resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectUserKrbKeytabDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectUserKrbKeytabDelete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserKrbKeytab(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserKrbKeytab(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserKrbKeytab resource: %v", err)
 	}

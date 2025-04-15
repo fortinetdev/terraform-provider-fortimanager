@@ -44,6 +44,8 @@ func resourceFmupdateAnalyzerVirusreportUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -52,7 +54,9 @@ func resourceFmupdateAnalyzerVirusreportUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateAnalyzerVirusreport(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateAnalyzerVirusreport(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource: %v", err)
 	}
@@ -71,10 +75,14 @@ func resourceFmupdateAnalyzerVirusreportDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateAnalyzerVirusreport(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateAnalyzerVirusreport(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateAnalyzerVirusreport resource: %v", err)
 	}
@@ -91,6 +99,7 @@ func resourceFmupdateAnalyzerVirusreportRead(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

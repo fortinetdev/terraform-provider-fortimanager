@@ -85,6 +85,7 @@ func resourceObjectWafProfileConstraintLineLengthUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,7 +101,9 @@ func resourceObjectWafProfileConstraintLineLengthUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintLineLength resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileConstraintLineLength(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileConstraintLineLength(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintLineLength resource: %v", err)
 	}
@@ -119,6 +122,7 @@ func resourceObjectWafProfileConstraintLineLengthDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +133,9 @@ func resourceObjectWafProfileConstraintLineLengthDelete(d *schema.ResourceData, 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileConstraintLineLength(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileConstraintLineLength(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileConstraintLineLength resource: %v", err)
 	}

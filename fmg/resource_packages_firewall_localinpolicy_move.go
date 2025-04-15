@@ -83,6 +83,7 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,7 +104,9 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating PackagesFirewallLocalInPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallLocalInPolicyMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallLocalInPolicyMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallLocalInPolicyMove resource: %v", err)
 	}

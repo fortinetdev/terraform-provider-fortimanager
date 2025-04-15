@@ -5,6 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
 func resourceJsonGenericAPI() *schema.Resource {
@@ -15,6 +16,22 @@ func resourceJsonGenericAPI() *schema.Resource {
 		Read:   schema.Noop,
 
 		Schema: map[string]*schema.Schema{
+			"scopetype": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "inherit",
+				ForceNew: true,
+				ValidateFunc: validation.StringInSlice([]string{
+					"adom",
+					"global",
+					"inherit",
+				}, false),
+			},
+			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"json_content": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -41,8 +58,12 @@ func createGeneric(d *schema.ResourceData, m interface{}) error {
 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
+	cfg := m.(*FortiClient).Cfg
 
-	res, err := c.JsonGenericAPI(data)
+	adomv, err := adomChecking(cfg, d)
+	wsParams := make(map[string]string)
+	wsParams["adom"] = adomv
+	res, err := c.JsonGenericAPI(data, wsParams)
 
 	if err != nil {
 		return fmt.Errorf("Error createGeneric: %v", err)
@@ -58,11 +79,14 @@ func createGeneric(d *schema.ResourceData, m interface{}) error {
 func updateGeneric(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
 	data := d.Get("json_content").(string)
-
+	cfg := m.(*FortiClient).Cfg
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
-	res, err := c.JsonGenericAPI(data)
+	adomv, err := adomChecking(cfg, d)
+	wsParams := make(map[string]string)
+	wsParams["adom"] = adomv
+	res, err := c.JsonGenericAPI(data, wsParams)
 
 	if err != nil {
 		return fmt.Errorf("Error updateGeneric: %v", err)

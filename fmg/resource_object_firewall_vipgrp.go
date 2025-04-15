@@ -132,6 +132,7 @@ func resourceObjectFirewallVipgrpCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,9 +144,9 @@ func resourceObjectFirewallVipgrpCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVipgrp(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVipgrp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrp resource: %v", err)
 	}
@@ -161,6 +162,7 @@ func resourceObjectFirewallVipgrpUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +175,9 @@ func resourceObjectFirewallVipgrpUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectFirewallVipgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipgrp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVipgrp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipgrp resource: %v", err)
 	}
@@ -192,6 +196,7 @@ func resourceObjectFirewallVipgrpDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -199,7 +204,9 @@ func resourceObjectFirewallVipgrpDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVipgrp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVipgrp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipgrp resource: %v", err)
 	}

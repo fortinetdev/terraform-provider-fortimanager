@@ -70,6 +70,7 @@ func resourceObjectSystemNpuIpReassemblyUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,7 +83,9 @@ func resourceObjectSystemNpuIpReassemblyUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectSystemNpuIpReassembly resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuIpReassembly(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuIpReassembly(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIpReassembly resource: %v", err)
 	}
@@ -101,6 +104,7 @@ func resourceObjectSystemNpuIpReassemblyDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +112,9 @@ func resourceObjectSystemNpuIpReassemblyDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIpReassembly(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuIpReassembly(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuIpReassembly resource: %v", err)
 	}

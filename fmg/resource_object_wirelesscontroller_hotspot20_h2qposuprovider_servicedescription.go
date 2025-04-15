@@ -73,6 +73,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionC
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +88,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionC
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription resource: %v", err)
 	}
@@ -105,6 +106,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionU
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionU
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionD
 	h2qp_osu_provider := d.Get("h2qp_osu_provider").(string)
 	paradict["h2qp_osu_provider"] = h2qp_osu_provider
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription resource: %v", err)
 	}

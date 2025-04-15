@@ -167,15 +167,17 @@ func resourceDvmCmdAddDeviceUpdate(d *schema.ResourceData, m interface{}) error 
 	}
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectDvmCmdAddDevice(d, deviceVersion)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmCmdAddDevice(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmCmdAddDevice(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevice resource: %v", err)
 	}

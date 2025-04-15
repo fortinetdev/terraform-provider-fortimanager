@@ -75,6 +75,8 @@ func resourceSystemAlertemailUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -83,7 +85,9 @@ func resourceSystemAlertemailUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating SystemAlertemail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAlertemail(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAlertemail(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertemail resource: %v", err)
 	}
@@ -102,10 +106,14 @@ func resourceSystemAlertemailDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAlertemail(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAlertemail(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAlertemail resource: %v", err)
 	}
@@ -122,6 +130,7 @@ func resourceSystemAlertemailRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

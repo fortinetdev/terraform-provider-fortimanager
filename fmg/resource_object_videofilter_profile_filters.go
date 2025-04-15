@@ -95,6 +95,7 @@ func resourceObjectVideofilterProfileFiltersCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,9 +110,9 @@ func resourceObjectVideofilterProfileFiltersCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterProfileFilters resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVideofilterProfileFilters(obj, paradict)
-
+	_, err = c.CreateObjectVideofilterProfileFilters(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterProfileFilters resource: %v", err)
 	}
@@ -127,6 +128,7 @@ func resourceObjectVideofilterProfileFiltersUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,7 +144,9 @@ func resourceObjectVideofilterProfileFiltersUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectVideofilterProfileFilters resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterProfileFilters(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVideofilterProfileFilters(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterProfileFilters resource: %v", err)
 	}
@@ -161,6 +165,7 @@ func resourceObjectVideofilterProfileFiltersDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +176,9 @@ func resourceObjectVideofilterProfileFiltersDelete(d *schema.ResourceData, m int
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectVideofilterProfileFilters(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVideofilterProfileFilters(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterProfileFilters resource: %v", err)
 	}

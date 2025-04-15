@@ -1,4 +1,25 @@
-## 1.14.0 (Unreleased)
+## 1.15.0 (Unreleased)
+
+## 1.14.0 (Apr 15, 2025)
+
+IMPROVEMENTS:
+* Support FortiManager version 7.2.9, 7.2.10, 7.4.6, 7.6.2;
+* Support lock/unlock on resource level;
+* Fix inconsistent result issue;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_casb_profile_saasapplication_accessrule_attributefilter`
+* **New Resource:** `fortimanager_object_casb_profile_saasapplication_advancedtenantcontrol`
+* **New Resource:** `fortimanager_object_casb_profile_saasapplication_advancedtenantcontrol_attribute`
+* **New Resource:** `fortimanager_object_casb_profile_saasapplication_customcontrol_attributefilter`
+* **New Resource:** `fortimanager_object_casb_saasapplication_inputattributes`
+* **New Resource:** `fortimanager_object_casb_saasapplication_outputattributes`
+* **New Resource:** `fortimanager_object_casb_useractivity_match_tenantextraction`
+* **New Resource:** `fortimanager_object_casb_useractivity_match_tenantextraction_filters`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_lanextension_trafficsplitservices`
+* **New Resource:** `fortimanager_object_ums_setting`
+* **New Resource:** `fortimanager_object_webproxy_isolatorserver`
+* **New Resource:** `fortimanager_object_webfilter_profile_ftgdwf_risk`
 
 ## 1.13.0 (Jan 23, 2025)
 

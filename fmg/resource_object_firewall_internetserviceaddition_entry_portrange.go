@@ -79,6 +79,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeCreate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeCreate(d *schema
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAdditionEntryPortRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceAdditionEntryPortRange(obj, paradict)
-
+	_, err = c.CreateObjectFirewallInternetServiceAdditionEntryPortRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAdditionEntryPortRange resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +132,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAdditionEntryPortRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceAdditionEntryPortRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallInternetServiceAdditionEntryPortRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAdditionEntryPortRange resource: %v", err)
 	}
@@ -149,6 +153,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +166,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryPortRangeDelete(d *schema
 	paradict["internet_service_addition"] = internet_service_addition
 	paradict["entry"] = entry
 
-	err = c.DeleteObjectFirewallInternetServiceAdditionEntryPortRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallInternetServiceAdditionEntryPortRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceAdditionEntryPortRange resource: %v", err)
 	}

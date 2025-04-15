@@ -288,6 +288,8 @@ func resourceSystemAdminSettingUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -296,7 +298,9 @@ func resourceSystemAdminSettingUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating SystemAdminSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminSetting resource: %v", err)
 	}
@@ -315,10 +319,14 @@ func resourceSystemAdminSettingDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminSetting resource: %v", err)
 	}
@@ -335,6 +343,7 @@ func resourceSystemAdminSettingRead(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

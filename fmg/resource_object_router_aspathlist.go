@@ -84,6 +84,7 @@ func resourceObjectRouterAspathListCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectRouterAspathListCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterAspathList(obj, paradict)
-
+	_, err = c.CreateObjectRouterAspathList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathList resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectRouterAspathListUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectRouterAspathListUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectRouterAspathList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterAspathList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterAspathList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterAspathList resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectRouterAspathListDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectRouterAspathListDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectRouterAspathList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterAspathList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterAspathList resource: %v", err)
 	}

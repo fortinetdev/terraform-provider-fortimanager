@@ -250,6 +250,7 @@ func resourceObjectFirewallIppoolDynamicMappingCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -264,9 +265,9 @@ func resourceObjectFirewallIppoolDynamicMappingCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppoolDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallIppoolDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectFirewallIppoolDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppoolDynamicMapping resource: %v", err)
 	}
@@ -282,6 +283,7 @@ func resourceObjectFirewallIppoolDynamicMappingUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -297,7 +299,9 @@ func resourceObjectFirewallIppoolDynamicMappingUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectFirewallIppoolDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallIppoolDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallIppoolDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppoolDynamicMapping resource: %v", err)
 	}
@@ -316,6 +320,7 @@ func resourceObjectFirewallIppoolDynamicMappingDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -326,7 +331,9 @@ func resourceObjectFirewallIppoolDynamicMappingDelete(d *schema.ResourceData, m 
 	ippool := d.Get("ippool").(string)
 	paradict["ippool"] = ippool
 
-	err = c.DeleteObjectFirewallIppoolDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallIppoolDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallIppoolDynamicMapping resource: %v", err)
 	}

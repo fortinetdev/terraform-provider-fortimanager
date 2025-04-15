@@ -203,6 +203,7 @@ func resourceObjectUserDomainControllerCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -214,9 +215,9 @@ func resourceObjectUserDomainControllerCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainController resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserDomainController(obj, paradict)
-
+	_, err = c.CreateObjectUserDomainController(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainController resource: %v", err)
 	}
@@ -232,6 +233,7 @@ func resourceObjectUserDomainControllerUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -244,7 +246,9 @@ func resourceObjectUserDomainControllerUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectUserDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDomainController(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserDomainController(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDomainController resource: %v", err)
 	}
@@ -263,6 +267,7 @@ func resourceObjectUserDomainControllerDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -270,7 +275,9 @@ func resourceObjectUserDomainControllerDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDomainController(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserDomainController(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDomainController resource: %v", err)
 	}

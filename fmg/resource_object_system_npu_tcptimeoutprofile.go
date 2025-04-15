@@ -83,6 +83,7 @@ func resourceObjectSystemNpuTcpTimeoutProfileCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectSystemNpuTcpTimeoutProfileCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuTcpTimeoutProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuTcpTimeoutProfile(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuTcpTimeoutProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuTcpTimeoutProfile resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectSystemNpuTcpTimeoutProfileUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectSystemNpuTcpTimeoutProfileUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSystemNpuTcpTimeoutProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuTcpTimeoutProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuTcpTimeoutProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuTcpTimeoutProfile resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectSystemNpuTcpTimeoutProfileDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectSystemNpuTcpTimeoutProfileDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuTcpTimeoutProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuTcpTimeoutProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuTcpTimeoutProfile resource: %v", err)
 	}

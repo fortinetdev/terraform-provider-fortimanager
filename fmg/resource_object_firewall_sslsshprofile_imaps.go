@@ -151,6 +151,7 @@ func resourceObjectFirewallSslSshProfileImapsUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -166,7 +167,9 @@ func resourceObjectFirewallSslSshProfileImapsUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileImaps resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSslSshProfileImaps(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallSslSshProfileImaps(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileImaps resource: %v", err)
 	}
@@ -185,6 +188,7 @@ func resourceObjectFirewallSslSshProfileImapsDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -195,7 +199,9 @@ func resourceObjectFirewallSslSshProfileImapsDelete(d *schema.ResourceData, m in
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	err = c.DeleteObjectFirewallSslSshProfileImaps(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallSslSshProfileImaps(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfileImaps resource: %v", err)
 	}

@@ -238,6 +238,7 @@ func resourceObjectIpsSensorCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -249,9 +250,9 @@ func resourceObjectIpsSensorCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensor resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIpsSensor(obj, paradict)
-
+	_, err = c.CreateObjectIpsSensor(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensor resource: %v", err)
 	}
@@ -267,6 +268,7 @@ func resourceObjectIpsSensorUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -279,7 +281,9 @@ func resourceObjectIpsSensorUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating ObjectIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIpsSensor(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIpsSensor(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsSensor resource: %v", err)
 	}
@@ -298,6 +302,7 @@ func resourceObjectIpsSensorDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -305,7 +310,9 @@ func resourceObjectIpsSensorDelete(d *schema.ResourceData, m interface{}) error 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIpsSensor(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIpsSensor(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIpsSensor resource: %v", err)
 	}

@@ -68,6 +68,7 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalLandingPageFormData resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebPortalLandingPageFormData(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebPortalLandingPageFormData(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalLandingPageFormData resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPageFormData resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalLandingPageFormData(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalLandingPageFormData(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPageFormData resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectVpnSslWebPortalLandingPageFormDataDelete(d *schema.ResourceDa
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
-	err = c.DeleteObjectVpnSslWebPortalLandingPageFormData(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortalLandingPageFormData(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalLandingPageFormData resource: %v", err)
 	}

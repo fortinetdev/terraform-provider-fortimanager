@@ -77,6 +77,8 @@ func resourceSystemLocallogSyslogd3SettingUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -85,7 +87,9 @@ func resourceSystemLocallogSyslogd3SettingUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating SystemLocallogSyslogd3Setting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogSyslogd3Setting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLocallogSyslogd3Setting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSyslogd3Setting resource: %v", err)
 	}
@@ -104,10 +108,14 @@ func resourceSystemLocallogSyslogd3SettingDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogSyslogd3Setting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLocallogSyslogd3Setting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogSyslogd3Setting resource: %v", err)
 	}
@@ -124,6 +132,7 @@ func resourceSystemLocallogSyslogd3SettingRead(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

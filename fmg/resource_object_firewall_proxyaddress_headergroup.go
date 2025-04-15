@@ -76,6 +76,7 @@ func resourceObjectFirewallProxyAddressHeaderGroupCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectFirewallProxyAddressHeaderGroupCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddressHeaderGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddressHeaderGroup(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProxyAddressHeaderGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddressHeaderGroup resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectFirewallProxyAddressHeaderGroupUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectFirewallProxyAddressHeaderGroupUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddressHeaderGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProxyAddressHeaderGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProxyAddressHeaderGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddressHeaderGroup resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectFirewallProxyAddressHeaderGroupDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectFirewallProxyAddressHeaderGroupDelete(d *schema.ResourceData,
 	proxy_address := d.Get("proxy_address").(string)
 	paradict["proxy_address"] = proxy_address
 
-	err = c.DeleteObjectFirewallProxyAddressHeaderGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProxyAddressHeaderGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProxyAddressHeaderGroup resource: %v", err)
 	}

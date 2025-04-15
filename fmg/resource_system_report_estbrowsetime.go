@@ -49,6 +49,8 @@ func resourceSystemReportEstBrowseTimeUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,7 +59,9 @@ func resourceSystemReportEstBrowseTimeUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportEstBrowseTime(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemReportEstBrowseTime(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource: %v", err)
 	}
@@ -76,10 +80,14 @@ func resourceSystemReportEstBrowseTimeDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportEstBrowseTime(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemReportEstBrowseTime(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportEstBrowseTime resource: %v", err)
 	}
@@ -96,6 +104,7 @@ func resourceSystemReportEstBrowseTimeRead(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

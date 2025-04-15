@@ -29,7 +29,7 @@ func resourceObjectFirewallVendorMac() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
-            "scopetype": &schema.Schema{
+			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "inherit",
@@ -39,32 +39,31 @@ func resourceObjectFirewallVendorMac() *schema.Resource {
 					"global",
 					"inherit",
 				}, false),
-            },
-            "adom": &schema.Schema{
+			},
+			"adom": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
 			},
 			"fosid": &schema.Schema{
-				Type: schema.TypeInt,
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"mac_number": &schema.Schema{
-				Type: schema.TypeInt,
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"name": &schema.Schema{
-				Type: schema.TypeString,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"obsolete": &schema.Schema{
-				Type: schema.TypeInt,
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 		},
 	}
 }
-
 
 func resourceObjectFirewallVendorMacUpdate(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
@@ -72,21 +71,22 @@ func resourceObjectFirewallVendorMacUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-		cfg := m.(*FortiClient).Cfg
+	wsParams := make(map[string]string)
+	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
-paradict["adom"] = adomv
-
-	
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallVendorMac(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVendorMac resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVendorMac(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVendorMac(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVendorMac resource: %v", err)
 	}
@@ -105,15 +105,17 @@ func resourceObjectFirewallVendorMacDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-		cfg := m.(*FortiClient).Cfg
+	wsParams := make(map[string]string)
+	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
-paradict["adom"] = adomv
+	paradict["adom"] = adomv
 
-	
-	err = c.DeleteObjectFirewallVendorMac(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVendorMac(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVendorMac resource: %v", err)
 	}
@@ -130,14 +132,13 @@ func resourceObjectFirewallVendorMacRead(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-		cfg := m.(*FortiClient).Cfg
+	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
-paradict["adom"] = adomv
+	paradict["adom"] = adomv
 
-	
 	o, err := c.ReadObjectFirewallVendorMac(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallVendorMac resource: %v", err)
@@ -156,7 +157,6 @@ paradict["adom"] = adomv
 	return nil
 }
 
-
 func flattenObjectFirewallVendorMacId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -173,8 +173,6 @@ func flattenObjectFirewallVendorMacObsolete(v interface{}, d *schema.ResourceDat
 	return v
 }
 
-
-
 func refreshObjectObjectFirewallVendorMac(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -182,47 +180,45 @@ func refreshObjectObjectFirewallVendorMac(d *schema.ResourceData, o map[string]i
 		d.Set("scopetype", "inherit")
 	}
 
-
 	if err = d.Set("fosid", flattenObjectFirewallVendorMacId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectFirewallVendorMac-Id"); ok {
-            if err = d.Set("fosid", vv); err != nil {
-                return fmt.Errorf("Error reading fosid: %v", err)
-            }
-        } else {
+			if err = d.Set("fosid", vv); err != nil {
+				return fmt.Errorf("Error reading fosid: %v", err)
+			}
+		} else {
 			return fmt.Errorf("Error reading fosid: %v", err)
 		}
 	}
 
 	if err = d.Set("mac_number", flattenObjectFirewallVendorMacMacNumber(o["mac-number"], d, "mac_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mac-number"], "ObjectFirewallVendorMac-MacNumber"); ok {
-            if err = d.Set("mac_number", vv); err != nil {
-                return fmt.Errorf("Error reading mac_number: %v", err)
-            }
-        } else {
+			if err = d.Set("mac_number", vv); err != nil {
+				return fmt.Errorf("Error reading mac_number: %v", err)
+			}
+		} else {
 			return fmt.Errorf("Error reading mac_number: %v", err)
 		}
 	}
 
 	if err = d.Set("name", flattenObjectFirewallVendorMacName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallVendorMac-Name"); ok {
-            if err = d.Set("name", vv); err != nil {
-                return fmt.Errorf("Error reading name: %v", err)
-            }
-        } else {
+			if err = d.Set("name", vv); err != nil {
+				return fmt.Errorf("Error reading name: %v", err)
+			}
+		} else {
 			return fmt.Errorf("Error reading name: %v", err)
 		}
 	}
 
 	if err = d.Set("obsolete", flattenObjectFirewallVendorMacObsolete(o["obsolete"], d, "obsolete")); err != nil {
 		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectFirewallVendorMac-Obsolete"); ok {
-            if err = d.Set("obsolete", vv); err != nil {
-                return fmt.Errorf("Error reading obsolete: %v", err)
-            }
-        } else {
+			if err = d.Set("obsolete", vv); err != nil {
+				return fmt.Errorf("Error reading obsolete: %v", err)
+			}
+		} else {
 			return fmt.Errorf("Error reading obsolete: %v", err)
 		}
 	}
-
 
 	return nil
 }
@@ -232,7 +228,6 @@ func flattenObjectFirewallVendorMacFortiTestDebug(d *schema.ResourceData, fosdeb
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
 }
-
 
 func expandObjectFirewallVendorMacId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
@@ -250,10 +245,8 @@ func expandObjectFirewallVendorMacObsolete(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-
 func getObjectObjectFirewallVendorMac(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
-	
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectFirewallVendorMacId(d, v, "fosid")
@@ -291,7 +284,5 @@ func getObjectObjectFirewallVendorMac(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-
 	return &obj, nil
 }
-

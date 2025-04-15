@@ -566,6 +566,8 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -578,9 +580,9 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, paradict)
-
+	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
@@ -605,6 +607,8 @@ func resourcePackagesGlobalHeaderPolicy6Update(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -618,7 +622,9 @@ func resourcePackagesGlobalHeaderPolicy6Update(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderPolicy6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesGlobalHeaderPolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
@@ -637,6 +643,8 @@ func resourcePackagesGlobalHeaderPolicy6Delete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -645,7 +653,9 @@ func resourcePackagesGlobalHeaderPolicy6Delete(d *schema.ResourceData, m interfa
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderPolicy6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesGlobalHeaderPolicy6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
@@ -662,6 +672,7 @@ func resourcePackagesGlobalHeaderPolicy6Read(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

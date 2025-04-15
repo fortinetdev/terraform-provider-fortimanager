@@ -44,6 +44,8 @@ func resourceFmupdateMultilayerUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -52,7 +54,9 @@ func resourceFmupdateMultilayerUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating FmupdateMultilayer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateMultilayer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateMultilayer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateMultilayer resource: %v", err)
 	}
@@ -71,10 +75,14 @@ func resourceFmupdateMultilayerDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateMultilayer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateMultilayer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateMultilayer resource: %v", err)
 	}
@@ -91,6 +99,7 @@ func resourceFmupdateMultilayerRead(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

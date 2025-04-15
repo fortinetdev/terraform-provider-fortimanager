@@ -118,6 +118,7 @@ func resourceObjectWafProfileUrlAccessCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,9 +133,9 @@ func resourceObjectWafProfileUrlAccessCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileUrlAccess resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafProfileUrlAccess(obj, paradict)
-
+	_, err = c.CreateObjectWafProfileUrlAccess(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileUrlAccess resource: %v", err)
 	}
@@ -150,6 +151,7 @@ func resourceObjectWafProfileUrlAccessUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +167,9 @@ func resourceObjectWafProfileUrlAccessUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectWafProfileUrlAccess resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileUrlAccess(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileUrlAccess(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileUrlAccess resource: %v", err)
 	}
@@ -184,6 +188,7 @@ func resourceObjectWafProfileUrlAccessDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -194,7 +199,9 @@ func resourceObjectWafProfileUrlAccessDelete(d *schema.ResourceData, m interface
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileUrlAccess(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileUrlAccess(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileUrlAccess resource: %v", err)
 	}

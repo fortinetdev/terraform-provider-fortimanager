@@ -63,6 +63,11 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"app_monitor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"app_category": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -720,6 +725,11 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"port_random": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"profile_group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1064,6 +1074,11 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ztna_ems_tag_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ztna_ems_tag_secondary": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1100,6 +1115,7 @@ func resourcePackagesPblockFirewallPolicyCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1114,9 +1130,9 @@ func resourcePackagesPblockFirewallPolicyCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesPblockFirewallPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy resource: %v", err)
 	}
@@ -1139,6 +1155,7 @@ func resourcePackagesPblockFirewallPolicyUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1154,7 +1171,9 @@ func resourcePackagesPblockFirewallPolicyUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating PackagesPblockFirewallPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPblockFirewallPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesPblockFirewallPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPblockFirewallPolicy resource: %v", err)
 	}
@@ -1173,6 +1192,7 @@ func resourcePackagesPblockFirewallPolicyDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1183,7 +1203,9 @@ func resourcePackagesPblockFirewallPolicyDelete(d *schema.ResourceData, m interf
 	pblock := d.Get("pblock").(string)
 	paradict["pblock"] = pblock
 
-	err = c.DeletePackagesPblockFirewallPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesPblockFirewallPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPblockFirewallPolicy resource: %v", err)
 	}
@@ -1246,6 +1268,10 @@ func flattenPackagesPblockFirewallPolicyAction2edl(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesPblockFirewallPolicyAntiReplay2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyAppMonitor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1789,6 +1815,10 @@ func flattenPackagesPblockFirewallPolicyPortPreserve2edl(v interface{}, d *schem
 	return v
 }
 
+func flattenPackagesPblockFirewallPolicyPortRandom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesPblockFirewallPolicyProfileGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -2085,6 +2115,10 @@ func flattenPackagesPblockFirewallPolicyZtnaEmsTag2edl(v interface{}, d *schema.
 	return flattenStringList(v)
 }
 
+func flattenPackagesPblockFirewallPolicyZtnaEmsTagNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesPblockFirewallPolicyZtnaEmsTagSecondary2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2139,6 +2173,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading anti_replay: %v", err)
+		}
+	}
+
+	if err = d.Set("app_monitor", flattenPackagesPblockFirewallPolicyAppMonitor2edl(o["app-monitor"], d, "app_monitor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-monitor"], "PackagesPblockFirewallPolicy-AppMonitor"); ok {
+			if err = d.Set("app_monitor", vv); err != nil {
+				return fmt.Errorf("Error reading app_monitor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_monitor: %v", err)
 		}
 	}
 
@@ -3492,6 +3536,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("port_random", flattenPackagesPblockFirewallPolicyPortRandom2edl(o["port-random"], d, "port_random")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-random"], "PackagesPblockFirewallPolicy-PortRandom"); ok {
+			if err = d.Set("port_random", vv); err != nil {
+				return fmt.Errorf("Error reading port_random: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_random: %v", err)
+		}
+	}
+
 	if err = d.Set("profile_group", flattenPackagesPblockFirewallPolicyProfileGroup2edl(o["profile-group"], d, "profile_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-group"], "PackagesPblockFirewallPolicy-ProfileGroup"); ok {
 			if err = d.Set("profile_group", vv); err != nil {
@@ -4232,6 +4286,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("ztna_ems_tag_negate", flattenPackagesPblockFirewallPolicyZtnaEmsTagNegate2edl(o["ztna-ems-tag-negate"], d, "ztna_ems_tag_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-negate"], "PackagesPblockFirewallPolicy-ZtnaEmsTagNegate"); ok {
+			if err = d.Set("ztna_ems_tag_negate", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("ztna_ems_tag_secondary", flattenPackagesPblockFirewallPolicyZtnaEmsTagSecondary2edl(o["ztna-ems-tag-secondary"], d, "ztna_ems_tag_secondary")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-secondary"], "PackagesPblockFirewallPolicy-ZtnaEmsTagSecondary"); ok {
 			if err = d.Set("ztna_ems_tag_secondary", vv); err != nil {
@@ -4300,6 +4364,10 @@ func expandPackagesPblockFirewallPolicyAction2edl(d *schema.ResourceData, v inte
 }
 
 func expandPackagesPblockFirewallPolicyAntiReplay2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyAppMonitor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4843,6 +4911,10 @@ func expandPackagesPblockFirewallPolicyPortPreserve2edl(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandPackagesPblockFirewallPolicyPortRandom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallPolicyProfileGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -5139,6 +5211,10 @@ func expandPackagesPblockFirewallPolicyZtnaEmsTag2edl(d *schema.ResourceData, v 
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesPblockFirewallPolicyZtnaEmsTagNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesPblockFirewallPolicyZtnaEmsTagSecondary2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -5186,6 +5262,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["anti-replay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("app_monitor"); ok || d.HasChange("app_monitor") {
+		t, err := expandPackagesPblockFirewallPolicyAppMonitor2edl(d, v, "app_monitor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-monitor"] = t
 		}
 	}
 
@@ -6404,6 +6489,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("port_random"); ok || d.HasChange("port_random") {
+		t, err := expandPackagesPblockFirewallPolicyPortRandom2edl(d, v, "port_random")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-random"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
 		t, err := expandPackagesPblockFirewallPolicyProfileGroup2edl(d, v, "profile_group")
 		if err != nil {
@@ -7067,6 +7161,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-ems-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_ems_tag_negate"); ok || d.HasChange("ztna_ems_tag_negate") {
+		t, err := expandPackagesPblockFirewallPolicyZtnaEmsTagNegate2edl(d, v, "ztna_ems_tag_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-ems-tag-negate"] = t
 		}
 	}
 

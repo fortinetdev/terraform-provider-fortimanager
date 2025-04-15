@@ -89,6 +89,7 @@ func resourceObjectSystemObjectTaggingCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,9 +101,9 @@ func resourceObjectSystemObjectTaggingCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemObjectTagging resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemObjectTagging(obj, paradict)
-
+	_, err = c.CreateObjectSystemObjectTagging(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemObjectTagging resource: %v", err)
 	}
@@ -118,6 +119,7 @@ func resourceObjectSystemObjectTaggingUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +132,9 @@ func resourceObjectSystemObjectTaggingUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectSystemObjectTagging resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemObjectTagging(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemObjectTagging(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemObjectTagging resource: %v", err)
 	}
@@ -149,6 +153,7 @@ func resourceObjectSystemObjectTaggingDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectSystemObjectTaggingDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemObjectTagging(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemObjectTagging(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemObjectTagging resource: %v", err)
 	}

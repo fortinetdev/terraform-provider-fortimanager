@@ -54,6 +54,8 @@ func resourceSystemFortiviewSettingUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,7 +64,9 @@ func resourceSystemFortiviewSettingUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating SystemFortiviewSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemFortiviewSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemFortiviewSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFortiviewSetting resource: %v", err)
 	}
@@ -81,10 +85,14 @@ func resourceSystemFortiviewSettingDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemFortiviewSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemFortiviewSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemFortiviewSetting resource: %v", err)
 	}
@@ -101,6 +109,7 @@ func resourceSystemFortiviewSettingRead(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

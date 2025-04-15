@@ -129,6 +129,7 @@ func resourceObjectFirewallAddress6TemplateCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,9 +141,9 @@ func resourceObjectFirewallAddress6TemplateCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6Template resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress6Template(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress6Template(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6Template resource: %v", err)
 	}
@@ -158,6 +159,7 @@ func resourceObjectFirewallAddress6TemplateUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +172,9 @@ func resourceObjectFirewallAddress6TemplateUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectFirewallAddress6Template resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6Template(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress6Template(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6Template resource: %v", err)
 	}
@@ -189,6 +193,7 @@ func resourceObjectFirewallAddress6TemplateDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -196,7 +201,9 @@ func resourceObjectFirewallAddress6TemplateDelete(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAddress6Template(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress6Template(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6Template resource: %v", err)
 	}

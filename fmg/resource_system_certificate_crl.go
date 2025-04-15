@@ -62,6 +62,8 @@ func resourceSystemCertificateCrlCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -69,9 +71,9 @@ func resourceSystemCertificateCrlCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCrl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemCertificateCrl(obj, paradict)
-
+	_, err = c.CreateSystemCertificateCrl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCrl resource: %v", err)
 	}
@@ -87,6 +89,8 @@ func resourceSystemCertificateCrlUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -95,7 +99,9 @@ func resourceSystemCertificateCrlUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating SystemCertificateCrl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateCrl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemCertificateCrl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateCrl resource: %v", err)
 	}
@@ -114,10 +120,14 @@ func resourceSystemCertificateCrlDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateCrl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemCertificateCrl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateCrl resource: %v", err)
 	}
@@ -134,6 +144,7 @@ func resourceSystemCertificateCrlRead(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

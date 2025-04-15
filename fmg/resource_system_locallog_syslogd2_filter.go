@@ -254,6 +254,8 @@ func resourceSystemLocallogSyslogd2FilterUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -262,7 +264,9 @@ func resourceSystemLocallogSyslogd2FilterUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating SystemLocallogSyslogd2Filter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogSyslogd2Filter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLocallogSyslogd2Filter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSyslogd2Filter resource: %v", err)
 	}
@@ -281,10 +285,14 @@ func resourceSystemLocallogSyslogd2FilterDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogSyslogd2Filter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLocallogSyslogd2Filter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogSyslogd2Filter resource: %v", err)
 	}
@@ -301,6 +309,7 @@ func resourceSystemLocallogSyslogd2FilterRead(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

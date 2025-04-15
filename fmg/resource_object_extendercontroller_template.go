@@ -83,6 +83,7 @@ func resourceObjectExtenderControllerTemplateCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectExtenderControllerTemplateCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtenderControllerTemplate(obj, paradict)
-
+	_, err = c.CreateObjectExtenderControllerTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerTemplate resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectExtenderControllerTemplateUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectExtenderControllerTemplateUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectExtenderControllerTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerTemplate resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectExtenderControllerTemplateDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectExtenderControllerTemplateDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerTemplate resource: %v", err)
 	}

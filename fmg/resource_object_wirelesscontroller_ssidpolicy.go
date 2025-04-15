@@ -67,6 +67,7 @@ func resourceObjectWirelessControllerSsidPolicyCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectWirelessControllerSsidPolicyCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSsidPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerSsidPolicy(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerSsidPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectWirelessControllerSsidPolicyUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectWirelessControllerSsidPolicyUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectWirelessControllerSsidPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerSsidPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerSsidPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectWirelessControllerSsidPolicyDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectWirelessControllerSsidPolicyDelete(d *schema.ResourceData, m 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerSsidPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerSsidPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}

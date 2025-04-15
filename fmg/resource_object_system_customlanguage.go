@@ -67,6 +67,7 @@ func resourceObjectSystemCustomLanguageCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectSystemCustomLanguageCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemCustomLanguage resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemCustomLanguage(obj, paradict)
-
+	_, err = c.CreateObjectSystemCustomLanguage(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemCustomLanguage resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectSystemCustomLanguageUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectSystemCustomLanguageUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectSystemCustomLanguage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemCustomLanguage(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemCustomLanguage(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemCustomLanguage resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectSystemCustomLanguageDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectSystemCustomLanguageDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemCustomLanguage(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemCustomLanguage(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemCustomLanguage resource: %v", err)
 	}

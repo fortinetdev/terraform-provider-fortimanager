@@ -262,6 +262,8 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -274,9 +276,9 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
@@ -301,6 +303,8 @@ func resourcePackagesGlobalFooterShapingPolicyUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -314,7 +318,9 @@ func resourcePackagesGlobalFooterShapingPolicyUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating PackagesGlobalFooterShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterShapingPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesGlobalFooterShapingPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
@@ -333,6 +339,8 @@ func resourcePackagesGlobalFooterShapingPolicyDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -341,7 +349,9 @@ func resourcePackagesGlobalFooterShapingPolicyDelete(d *schema.ResourceData, m i
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterShapingPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesGlobalFooterShapingPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
@@ -358,6 +368,7 @@ func resourcePackagesGlobalFooterShapingPolicyRead(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

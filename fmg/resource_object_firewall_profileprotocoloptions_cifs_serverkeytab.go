@@ -75,6 +75,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabCreate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -89,9 +90,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabCreate(d *schem
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptionsCifsServerKeytab resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProfileProtocolOptionsCifsServerKeytab(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProfileProtocolOptionsCifsServerKeytab(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptionsCifsServerKeytab resource: %v", err)
 	}
@@ -107,6 +108,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabUpdate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +124,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabUpdate(d *schem
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifsServerKeytab resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptionsCifsServerKeytab(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsCifsServerKeytab(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifsServerKeytab resource: %v", err)
 	}
@@ -141,6 +145,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabDelete(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsServerKeytabDelete(d *schem
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsCifsServerKeytab(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProfileProtocolOptionsCifsServerKeytab(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsCifsServerKeytab resource: %v", err)
 	}

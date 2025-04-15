@@ -75,15 +75,17 @@ func resourceSecurityconsoleSignCertificateTemplateUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectSecurityconsoleSignCertificateTemplate(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleSignCertificateTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleSignCertificateTemplate(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSecurityconsoleSignCertificateTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleSignCertificateTemplate resource: %v", err)
 	}

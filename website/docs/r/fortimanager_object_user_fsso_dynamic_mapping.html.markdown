@@ -60,6 +60,7 @@ The following arguments are supported:
 * `type` - Server type. Valid values: `default`, `fortiems`, `fortinac`, `fortiems-cloud`.
 
 * `user_info_server` - LDAP server to get user information.
+* `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `_scope` block supports:

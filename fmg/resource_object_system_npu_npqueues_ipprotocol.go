@@ -72,6 +72,7 @@ func resourceObjectSystemNpuNpQueuesIpProtocolCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -83,9 +84,9 @@ func resourceObjectSystemNpuNpQueuesIpProtocolCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpProtocol resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuNpQueuesIpProtocol(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuNpQueuesIpProtocol(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}
@@ -101,6 +102,7 @@ func resourceObjectSystemNpuNpQueuesIpProtocolUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -113,7 +115,9 @@ func resourceObjectSystemNpuNpQueuesIpProtocolUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpProtocol resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesIpProtocol(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpQueuesIpProtocol(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}
@@ -132,6 +136,7 @@ func resourceObjectSystemNpuNpQueuesIpProtocolDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceObjectSystemNpuNpQueuesIpProtocolDelete(d *schema.ResourceData, m i
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesIpProtocol(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpQueuesIpProtocol(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}

@@ -88,6 +88,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -102,9 +103,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftwareCheckItemList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebHostCheckSoftwareCheckItemList(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebHostCheckSoftwareCheckItemList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftwareCheckItemList resource: %v", err)
 	}
@@ -120,6 +121,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +137,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftwareCheckItemList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebHostCheckSoftwareCheckItemList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebHostCheckSoftwareCheckItemList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftwareCheckItemList resource: %v", err)
 	}
@@ -154,6 +158,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +169,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareCheckItemListDelete(d *schema.Resou
 	host_check_software := d.Get("host_check_software").(string)
 	paradict["host_check_software"] = host_check_software
 
-	err = c.DeleteObjectVpnSslWebHostCheckSoftwareCheckItemList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebHostCheckSoftwareCheckItemList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebHostCheckSoftwareCheckItemList resource: %v", err)
 	}

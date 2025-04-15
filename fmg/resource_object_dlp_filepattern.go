@@ -92,6 +92,7 @@ func resourceObjectDlpFilepatternCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectDlpFilepatternCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepattern resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpFilepattern(obj, paradict)
-
+	_, err = c.CreateObjectDlpFilepattern(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepattern resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectDlpFilepatternUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectDlpFilepatternUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectDlpFilepattern resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpFilepattern(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpFilepattern(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpFilepattern resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectDlpFilepatternDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectDlpFilepatternDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpFilepattern(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpFilepattern(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpFilepattern resource: %v", err)
 	}

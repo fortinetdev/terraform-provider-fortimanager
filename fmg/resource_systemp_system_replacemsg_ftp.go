@@ -79,6 +79,7 @@ func resourceSystempSystemReplacemsgFtpUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,7 +95,9 @@ func resourceSystempSystemReplacemsgFtpUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating SystempSystemReplacemsgFtp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgFtp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgFtp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgFtp resource: %v", err)
 	}
@@ -113,6 +116,7 @@ func resourceSystempSystemReplacemsgFtpDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +127,9 @@ func resourceSystempSystemReplacemsgFtpDelete(d *schema.ResourceData, m interfac
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgFtp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgFtp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgFtp resource: %v", err)
 	}

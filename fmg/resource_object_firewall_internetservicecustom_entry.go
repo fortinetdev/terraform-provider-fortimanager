@@ -111,6 +111,7 @@ func resourceObjectFirewallInternetServiceCustomEntryCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,9 +126,9 @@ func resourceObjectFirewallInternetServiceCustomEntryCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustomEntry resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceCustomEntry(obj, paradict)
-
+	_, err = c.CreateObjectFirewallInternetServiceCustomEntry(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustomEntry resource: %v", err)
 	}
@@ -143,6 +144,7 @@ func resourceObjectFirewallInternetServiceCustomEntryUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +160,9 @@ func resourceObjectFirewallInternetServiceCustomEntryUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceCustomEntry resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceCustomEntry(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallInternetServiceCustomEntry(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceCustomEntry resource: %v", err)
 	}
@@ -177,6 +181,7 @@ func resourceObjectFirewallInternetServiceCustomEntryDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -187,7 +192,9 @@ func resourceObjectFirewallInternetServiceCustomEntryDelete(d *schema.ResourceDa
 	internet_service_custom := d.Get("internet_service_custom").(string)
 	paradict["internet_service_custom"] = internet_service_custom
 
-	err = c.DeleteObjectFirewallInternetServiceCustomEntry(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallInternetServiceCustomEntry(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceCustomEntry resource: %v", err)
 	}

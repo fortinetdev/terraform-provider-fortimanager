@@ -69,6 +69,7 @@ func resourceObjectFirewallInternetServiceCustomGroupCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -80,9 +81,9 @@ func resourceObjectFirewallInternetServiceCustomGroupCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustomGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceCustomGroup(obj, paradict)
-
+	_, err = c.CreateObjectFirewallInternetServiceCustomGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustomGroup resource: %v", err)
 	}
@@ -98,6 +99,7 @@ func resourceObjectFirewallInternetServiceCustomGroupUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectFirewallInternetServiceCustomGroupUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceCustomGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceCustomGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallInternetServiceCustomGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceCustomGroup resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectFirewallInternetServiceCustomGroupDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +141,9 @@ func resourceObjectFirewallInternetServiceCustomGroupDelete(d *schema.ResourceDa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallInternetServiceCustomGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallInternetServiceCustomGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceCustomGroup resource: %v", err)
 	}

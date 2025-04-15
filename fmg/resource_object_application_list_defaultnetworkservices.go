@@ -79,6 +79,7 @@ func resourceObjectApplicationListDefaultNetworkServicesCreate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectApplicationListDefaultNetworkServicesCreate(d *schema.Resourc
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListDefaultNetworkServices resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationListDefaultNetworkServices(obj, paradict)
-
+	_, err = c.CreateObjectApplicationListDefaultNetworkServices(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListDefaultNetworkServices resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectApplicationListDefaultNetworkServicesUpdate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectApplicationListDefaultNetworkServicesUpdate(d *schema.Resourc
 		return fmt.Errorf("Error updating ObjectApplicationListDefaultNetworkServices resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationListDefaultNetworkServices(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationListDefaultNetworkServices(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationListDefaultNetworkServices resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectApplicationListDefaultNetworkServicesDelete(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectApplicationListDefaultNetworkServicesDelete(d *schema.Resourc
 	list := d.Get("list").(string)
 	paradict["list"] = list
 
-	err = c.DeleteObjectApplicationListDefaultNetworkServices(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationListDefaultNetworkServices(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationListDefaultNetworkServices resource: %v", err)
 	}

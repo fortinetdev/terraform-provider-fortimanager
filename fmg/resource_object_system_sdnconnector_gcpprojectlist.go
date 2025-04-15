@@ -70,6 +70,7 @@ func resourceObjectSystemSdnConnectorGcpProjectListCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -84,9 +85,9 @@ func resourceObjectSystemSdnConnectorGcpProjectListCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorGcpProjectList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorGcpProjectList(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorGcpProjectList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorGcpProjectList resource: %v", err)
 	}
@@ -102,6 +103,7 @@ func resourceObjectSystemSdnConnectorGcpProjectListUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,7 +119,9 @@ func resourceObjectSystemSdnConnectorGcpProjectListUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorGcpProjectList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorGcpProjectList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorGcpProjectList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorGcpProjectList resource: %v", err)
 	}
@@ -136,6 +140,7 @@ func resourceObjectSystemSdnConnectorGcpProjectListDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +151,9 @@ func resourceObjectSystemSdnConnectorGcpProjectListDelete(d *schema.ResourceData
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorGcpProjectList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorGcpProjectList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorGcpProjectList resource: %v", err)
 	}

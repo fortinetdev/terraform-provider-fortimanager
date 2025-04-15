@@ -93,6 +93,7 @@ func resourceObjectFirewallScheduleRecurringCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,9 +105,9 @@ func resourceObjectFirewallScheduleRecurringCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallScheduleRecurring(obj, paradict)
-
+	_, err = c.CreateObjectFirewallScheduleRecurring(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource: %v", err)
 	}
@@ -122,6 +123,7 @@ func resourceObjectFirewallScheduleRecurringUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +136,9 @@ func resourceObjectFirewallScheduleRecurringUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFirewallScheduleRecurring resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallScheduleRecurring(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallScheduleRecurring(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleRecurring resource: %v", err)
 	}
@@ -153,6 +157,7 @@ func resourceObjectFirewallScheduleRecurringDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectFirewallScheduleRecurringDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallScheduleRecurring(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallScheduleRecurring(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallScheduleRecurring resource: %v", err)
 	}

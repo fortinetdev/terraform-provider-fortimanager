@@ -203,6 +203,7 @@ The `ftgd_wf` block supports:
 
 * `rate_javascript_urls` - Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
 
+* `risk` - Risk. The structure of `risk` block is documented below.
 
 The `filters` block supports:
 
@@ -231,6 +232,15 @@ The `quota` block supports:
 * `unit` - Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
 
 * `value` - Traffic quota value.
+
+The `risk` block supports:
+
+* `action` - Action to take for matches. Valid values: `block`, `monitor`.
+
+* `id` - ID number.
+* `log` - Enable/disable logging. Valid values: `disable`, `enable`.
+
+* `risk_level` - Risk level to be examined.
 
 The `override` block supports:
 

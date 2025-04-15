@@ -97,6 +97,10 @@ func resourceSystempSystemNtpNtpserver() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -106,6 +110,7 @@ func resourceSystempSystemNtpNtpserverCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,9 +125,9 @@ func resourceSystempSystemNtpNtpserverCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemNtpNtpserver resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystempSystemNtpNtpserver(obj, paradict)
-
+	_, err = c.CreateSystempSystemNtpNtpserver(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemNtpNtpserver resource: %v", err)
 	}
@@ -138,6 +143,7 @@ func resourceSystempSystemNtpNtpserverUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +159,9 @@ func resourceSystempSystemNtpNtpserverUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating SystempSystemNtpNtpserver resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemNtpNtpserver(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemNtpNtpserver(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemNtpNtpserver resource: %v", err)
 	}
@@ -172,6 +180,7 @@ func resourceSystempSystemNtpNtpserverDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -182,7 +191,9 @@ func resourceSystempSystemNtpNtpserverDelete(d *schema.ResourceData, m interface
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemNtpNtpserver(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemNtpNtpserver(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemNtpNtpserver resource: %v", err)
 	}
@@ -269,6 +280,10 @@ func flattenSystempSystemNtpNtpserverNtpv32edl(v interface{}, d *schema.Resource
 }
 
 func flattenSystempSystemNtpNtpserverServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemNtpNtpserverVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -369,6 +384,16 @@ func refreshObjectSystempSystemNtpNtpserver(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenSystempSystemNtpNtpserverVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "SystempSystemNtpNtpserver-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -415,6 +440,10 @@ func expandSystempSystemNtpNtpserverNtpv32edl(d *schema.ResourceData, v interfac
 }
 
 func expandSystempSystemNtpNtpserverServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemNtpNtpserverVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -508,6 +537,15 @@ func getObjectSystempSystemNtpNtpserver(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandSystempSystemNtpNtpserverVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

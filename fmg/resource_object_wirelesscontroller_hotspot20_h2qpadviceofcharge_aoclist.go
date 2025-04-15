@@ -106,6 +106,7 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListCreate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,9 +121,9 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListCreate(d 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList resource: %v", err)
 	}
@@ -138,6 +139,7 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListUpdate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +155,9 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListUpdate(d 
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList resource: %v", err)
 	}
@@ -172,6 +176,7 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListDelete(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -182,7 +187,9 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListDelete(d 
 	h2qp_advice_of_charge := d.Get("h2qp_advice_of_charge").(string)
 	paradict["h2qp_advice_of_charge"] = h2qp_advice_of_charge
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList resource: %v", err)
 	}

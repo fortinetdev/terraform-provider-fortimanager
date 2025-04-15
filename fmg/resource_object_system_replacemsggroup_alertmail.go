@@ -82,6 +82,7 @@ func resourceObjectSystemReplacemsgGroupAlertmailCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectSystemReplacemsgGroupAlertmailCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupAlertmail resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupAlertmail(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgGroupAlertmail(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupAlertmail resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectSystemReplacemsgGroupAlertmailUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectSystemReplacemsgGroupAlertmailUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupAlertmail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgGroupAlertmail(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgGroupAlertmail(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupAlertmail resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectSystemReplacemsgGroupAlertmailDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +163,9 @@ func resourceObjectSystemReplacemsgGroupAlertmailDelete(d *schema.ResourceData, 
 	replacemsg_group := d.Get("replacemsg_group").(string)
 	paradict["replacemsg_group"] = replacemsg_group
 
-	err = c.DeleteObjectSystemReplacemsgGroupAlertmail(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgGroupAlertmail(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgGroupAlertmail resource: %v", err)
 	}

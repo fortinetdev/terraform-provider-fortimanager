@@ -68,6 +68,8 @@ func resourceSystemPasswordPolicyUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -76,7 +78,9 @@ func resourceSystemPasswordPolicyUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating SystemPasswordPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemPasswordPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemPasswordPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemPasswordPolicy resource: %v", err)
 	}
@@ -95,10 +99,14 @@ func resourceSystemPasswordPolicyDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemPasswordPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemPasswordPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemPasswordPolicy resource: %v", err)
 	}
@@ -115,6 +123,7 @@ func resourceSystemPasswordPolicyRead(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

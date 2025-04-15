@@ -71,6 +71,7 @@ func resourceObjectFirewallProfileProtocolOptionsDnsUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,7 +87,9 @@ func resourceObjectFirewallProfileProtocolOptionsDnsUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsDns resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptionsDns(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsDns(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsDns resource: %v", err)
 	}
@@ -105,6 +108,7 @@ func resourceObjectFirewallProfileProtocolOptionsDnsDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +119,9 @@ func resourceObjectFirewallProfileProtocolOptionsDnsDelete(d *schema.ResourceDat
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsDns(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProfileProtocolOptionsDns(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsDns resource: %v", err)
 	}

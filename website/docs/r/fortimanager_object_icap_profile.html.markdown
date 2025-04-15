@@ -59,6 +59,8 @@ The following arguments are supported:
 * `methods` - The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
 
 * `name` - ICAP profile name.
+* `ocr_only` - Enable/disable this FortiGate unit to submit only OCR interested content to the ICAP server. Valid values: `disable`, `enable`.
+
 * `preview` - Enable/disable preview of data to ICAP server. Valid values: `disable`, `enable`.
 
 * `preview_data_length` - Preview data length to be sent to ICAP server.

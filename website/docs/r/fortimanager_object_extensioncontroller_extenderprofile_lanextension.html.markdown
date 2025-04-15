@@ -13,6 +13,7 @@ FortiExtender lan extension configuration.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `backhaul`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_backhaul`
 >- `downlinks`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_downlinks`
+>- `traffic_split_services`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_trafficsplitservices`
 
 
 
@@ -32,6 +33,7 @@ The following arguments are supported:
 * `ipsec_tunnel` - IPsec tunnel name.
 * `link_loadbalance` - LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
 
+* `traffic_split_services` - Traffic-Split-Services. The structure of `traffic_split_services` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `backhaul` block supports:
@@ -52,6 +54,14 @@ The `downlinks` block supports:
 * `type` - FortiExtender LAN extension downlink type [port/vap]. Valid values: `port`, `vap`.
 
 * `vap` - FortiExtender LAN extension downlink vap.
+
+The `traffic_split_services` block supports:
+
+* `address` - Address selection.
+* `name` - FortiExtender LAN extension tunnel split entry name.
+* `service` - Service selection.
+* `vsdb` - Select vsdb [enable/disable]. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

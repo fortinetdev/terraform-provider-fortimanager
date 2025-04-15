@@ -125,6 +125,7 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,9 +140,9 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDynamicPortPolicyPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerDynamicPortPolicyPolicy(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerDynamicPortPolicyPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDynamicPortPolicyPolicy resource: %v", err)
 	}
@@ -157,6 +158,7 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +174,9 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectSwitchControllerDynamicPortPolicyPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerDynamicPortPolicyPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerDynamicPortPolicyPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerDynamicPortPolicyPolicy resource: %v", err)
 	}
@@ -191,6 +195,7 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -201,7 +206,9 @@ func resourceObjectSwitchControllerDynamicPortPolicyPolicyDelete(d *schema.Resou
 	dynamic_port_policy := d.Get("dynamic_port_policy").(string)
 	paradict["dynamic_port_policy"] = dynamic_port_policy
 
-	err = c.DeleteObjectSwitchControllerDynamicPortPolicyPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerDynamicPortPolicyPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerDynamicPortPolicyPolicy resource: %v", err)
 	}

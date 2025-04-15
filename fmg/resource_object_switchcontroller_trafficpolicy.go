@@ -96,6 +96,7 @@ func resourceObjectSwitchControllerTrafficPolicyCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -107,9 +108,9 @@ func resourceObjectSwitchControllerTrafficPolicyCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerTrafficPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerTrafficPolicy(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerTrafficPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}
@@ -125,6 +126,7 @@ func resourceObjectSwitchControllerTrafficPolicyUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,7 +139,9 @@ func resourceObjectSwitchControllerTrafficPolicyUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectSwitchControllerTrafficPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerTrafficPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerTrafficPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}
@@ -156,6 +160,7 @@ func resourceObjectSwitchControllerTrafficPolicyDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -163,7 +168,9 @@ func resourceObjectSwitchControllerTrafficPolicyDelete(d *schema.ResourceData, m
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerTrafficPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerTrafficPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}

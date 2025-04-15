@@ -68,6 +68,7 @@ func resourceObjectDynamicAddressDynamicAddrMappingCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectDynamicAddressDynamicAddrMappingCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicAddressDynamicAddrMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicAddressDynamicAddrMapping(obj, paradict)
-
+	_, err = c.CreateObjectDynamicAddressDynamicAddrMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicAddressDynamicAddrMapping resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectDynamicAddressDynamicAddrMappingUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectDynamicAddressDynamicAddrMappingUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectDynamicAddressDynamicAddrMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicAddressDynamicAddrMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicAddressDynamicAddrMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicAddressDynamicAddrMapping resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectDynamicAddressDynamicAddrMappingDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectDynamicAddressDynamicAddrMappingDelete(d *schema.ResourceData
 	address := d.Get("address").(string)
 	paradict["address"] = address
 
-	err = c.DeleteObjectDynamicAddressDynamicAddrMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicAddressDynamicAddrMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicAddressDynamicAddrMapping resource: %v", err)
 	}

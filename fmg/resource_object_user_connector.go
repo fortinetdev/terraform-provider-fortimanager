@@ -67,6 +67,7 @@ func resourceObjectUserConnectorCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectUserConnectorCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserConnector resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserConnector(obj, paradict)
-
+	_, err = c.CreateObjectUserConnector(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserConnector resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectUserConnectorUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectUserConnectorUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectUserConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserConnector(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserConnector(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserConnector resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectUserConnectorDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectUserConnectorDelete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserConnector(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserConnector(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserConnector resource: %v", err)
 	}

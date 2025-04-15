@@ -81,6 +81,7 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgFabricAuthorizationTemplatePlatforms resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFmgFabricAuthorizationTemplatePlatforms(obj, paradict)
-
+	_, err = c.CreateObjectFmgFabricAuthorizationTemplatePlatforms(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgFabricAuthorizationTemplatePlatforms resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -128,7 +130,9 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectFmgFabricAuthorizationTemplatePlatforms resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFmgFabricAuthorizationTemplatePlatforms(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFmgFabricAuthorizationTemplatePlatforms(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgFabricAuthorizationTemplatePlatforms resource: %v", err)
 	}
@@ -147,6 +151,7 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -157,7 +162,9 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatformsDelete(d *schema.Resou
 	template := d.Get("template").(string)
 	paradict["template"] = template
 
-	err = c.DeleteObjectFmgFabricAuthorizationTemplatePlatforms(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFmgFabricAuthorizationTemplatePlatforms(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFmgFabricAuthorizationTemplatePlatforms resource: %v", err)
 	}

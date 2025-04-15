@@ -85,6 +85,7 @@ func resourceObjectWafProfileConstraintMaxHeaderLineUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,7 +101,9 @@ func resourceObjectWafProfileConstraintMaxHeaderLineUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxHeaderLine resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileConstraintMaxHeaderLine(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileConstraintMaxHeaderLine(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxHeaderLine resource: %v", err)
 	}
@@ -119,6 +122,7 @@ func resourceObjectWafProfileConstraintMaxHeaderLineDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +133,9 @@ func resourceObjectWafProfileConstraintMaxHeaderLineDelete(d *schema.ResourceDat
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileConstraintMaxHeaderLine(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileConstraintMaxHeaderLine(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxHeaderLine resource: %v", err)
 	}

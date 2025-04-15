@@ -84,6 +84,7 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterfaceDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicMulticastInterfaceDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectDynamicMulticastInterfaceDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterfaceDynamicMapping resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterfaceDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicMulticastInterfaceDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicMulticastInterfaceDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterfaceDynamicMapping resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectDynamicMulticastInterfaceDynamicMappingDelete(d *schema.Resou
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
-	err = c.DeleteObjectDynamicMulticastInterfaceDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicMulticastInterfaceDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicMulticastInterfaceDynamicMapping resource: %v", err)
 	}

@@ -69,6 +69,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"app_monitor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"app_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -430,6 +435,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"internet_service_src_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -698,6 +704,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"port_preserve": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"port_random": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1075,6 +1086,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ztna_ems_tag_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ztna_ems_tag_secondary": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1118,6 +1134,7 @@ func resourcePackagesFirewallPolicyCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1134,9 +1151,9 @@ func resourcePackagesFirewallPolicyCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesFirewallPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1161,6 +1178,7 @@ func resourcePackagesFirewallPolicyUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1178,7 +1196,9 @@ func resourcePackagesFirewallPolicyUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1197,6 +1217,7 @@ func resourcePackagesFirewallPolicyDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1209,7 +1230,9 @@ func resourcePackagesFirewallPolicyDelete(d *schema.ResourceData, m interface{})
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1277,6 +1300,10 @@ func flattenPackagesFirewallPolicyAction(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenPackagesFirewallPolicyAntiReplay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyAppMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1824,6 +1851,10 @@ func flattenPackagesFirewallPolicyPortPreserve(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesFirewallPolicyPortRandom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -2234,6 +2265,10 @@ func flattenPackagesFirewallPolicyZtnaEmsTag(v interface{}, d *schema.ResourceDa
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenPackagesFirewallPolicyZtnaEmsTagNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyZtnaEmsTagSecondary(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2296,6 +2331,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading anti_replay: %v", err)
+		}
+	}
+
+	if err = d.Set("app_monitor", flattenPackagesFirewallPolicyAppMonitor(o["app-monitor"], d, "app_monitor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-monitor"], "PackagesFirewallPolicy-AppMonitor"); ok {
+			if err = d.Set("app_monitor", vv); err != nil {
+				return fmt.Errorf("Error reading app_monitor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_monitor: %v", err)
 		}
 	}
 
@@ -3659,6 +3704,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("port_random", flattenPackagesFirewallPolicyPortRandom(o["port-random"], d, "port_random")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-random"], "PackagesFirewallPolicy-PortRandom"); ok {
+			if err = d.Set("port_random", vv); err != nil {
+				return fmt.Errorf("Error reading port_random: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_random: %v", err)
+		}
+	}
+
 	if err = d.Set("profile_group", flattenPackagesFirewallPolicyProfileGroup(o["profile-group"], d, "profile_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-group"], "PackagesFirewallPolicy-ProfileGroup"); ok {
 			if err = d.Set("profile_group", vv); err != nil {
@@ -4437,6 +4492,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("ztna_ems_tag_negate", flattenPackagesFirewallPolicyZtnaEmsTagNegate(o["ztna-ems-tag-negate"], d, "ztna_ems_tag_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-negate"], "PackagesFirewallPolicy-ZtnaEmsTagNegate"); ok {
+			if err = d.Set("ztna_ems_tag_negate", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("ztna_ems_tag_secondary", flattenPackagesFirewallPolicyZtnaEmsTagSecondary(o["ztna-ems-tag-secondary"], d, "ztna_ems_tag_secondary")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-secondary"], "PackagesFirewallPolicy-ZtnaEmsTagSecondary"); ok {
 			if err = d.Set("ztna_ems_tag_secondary", vv); err != nil {
@@ -4515,6 +4580,10 @@ func expandPackagesFirewallPolicyAction(d *schema.ResourceData, v interface{}, p
 }
 
 func expandPackagesFirewallPolicyAntiReplay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyAppMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5062,6 +5131,10 @@ func expandPackagesFirewallPolicyPortPreserve(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyPortRandom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -5456,6 +5529,10 @@ func expandPackagesFirewallPolicyZtnaEmsTag(d *schema.ResourceData, v interface{
 	return convstr2list(v, nil), nil
 }
 
+func expandPackagesFirewallPolicyZtnaEmsTagNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyZtnaEmsTagSecondary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -5507,6 +5584,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["anti-replay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("app_monitor"); ok || d.HasChange("app_monitor") {
+		t, err := expandPackagesFirewallPolicyAppMonitor(d, v, "app_monitor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-monitor"] = t
 		}
 	}
 
@@ -6734,6 +6820,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("port_random"); ok || d.HasChange("port_random") {
+		t, err := expandPackagesFirewallPolicyPortRandom(d, v, "port_random")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-random"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
 		t, err := expandPackagesFirewallPolicyProfileGroup(d, v, "profile_group")
 		if err != nil {
@@ -7406,6 +7501,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-ems-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_ems_tag_negate"); ok || d.HasChange("ztna_ems_tag_negate") {
+		t, err := expandPackagesFirewallPolicyZtnaEmsTagNegate(d, v, "ztna_ems_tag_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-ems-tag-negate"] = t
 		}
 	}
 

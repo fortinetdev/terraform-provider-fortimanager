@@ -52,6 +52,8 @@ func resourceSystemCsfFabricConnectorCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -59,9 +61,9 @@ func resourceSystemCsfFabricConnectorCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCsfFabricConnector resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemCsfFabricConnector(obj, paradict)
-
+	_, err = c.CreateSystemCsfFabricConnector(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCsfFabricConnector resource: %v", err)
 	}
@@ -77,6 +79,8 @@ func resourceSystemCsfFabricConnectorUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -85,7 +89,9 @@ func resourceSystemCsfFabricConnectorUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystemCsfFabricConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCsfFabricConnector(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemCsfFabricConnector(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCsfFabricConnector resource: %v", err)
 	}
@@ -104,10 +110,14 @@ func resourceSystemCsfFabricConnectorDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCsfFabricConnector(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemCsfFabricConnector(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCsfFabricConnector resource: %v", err)
 	}
@@ -124,6 +134,7 @@ func resourceSystemCsfFabricConnectorRead(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

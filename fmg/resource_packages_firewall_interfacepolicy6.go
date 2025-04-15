@@ -161,6 +161,7 @@ func resourcePackagesFirewallInterfacePolicy6() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
@@ -214,6 +215,7 @@ func resourcePackagesFirewallInterfacePolicy6Create(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -230,11 +232,20 @@ func resourcePackagesFirewallInterfacePolicy6Create(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallInterfacePolicy6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallInterfacePolicy6(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallInterfacePolicy6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallInterfacePolicy6 resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallInterfacePolicy6Read(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallInterfacePolicy6 resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -248,6 +259,7 @@ func resourcePackagesFirewallInterfacePolicy6Update(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -265,7 +277,9 @@ func resourcePackagesFirewallInterfacePolicy6Update(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallInterfacePolicy6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallInterfacePolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy6 resource: %v", err)
 	}
@@ -284,6 +298,7 @@ func resourcePackagesFirewallInterfacePolicy6Delete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -296,7 +311,9 @@ func resourcePackagesFirewallInterfacePolicy6Delete(d *schema.ResourceData, m in
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallInterfacePolicy6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallInterfacePolicy6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallInterfacePolicy6 resource: %v", err)
 	}

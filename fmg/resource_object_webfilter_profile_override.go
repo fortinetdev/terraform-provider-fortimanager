@@ -102,6 +102,7 @@ func resourceObjectWebfilterProfileOverrideUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,7 +118,9 @@ func resourceObjectWebfilterProfileOverrideUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectWebfilterProfileOverride resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileOverride(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileOverride resource: %v", err)
 	}
@@ -136,6 +139,7 @@ func resourceObjectWebfilterProfileOverrideDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +150,9 @@ func resourceObjectWebfilterProfileOverrideDelete(d *schema.ResourceData, m inte
 	profile := d.Get("url_profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileOverride(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileOverride(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileOverride resource: %v", err)
 	}

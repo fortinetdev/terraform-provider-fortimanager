@@ -111,6 +111,7 @@ func resourceObjectVideofilterYoutubeChannelFilterCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,9 +123,9 @@ func resourceObjectVideofilterYoutubeChannelFilterCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeChannelFilter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVideofilterYoutubeChannelFilter(obj, paradict)
-
+	_, err = c.CreateObjectVideofilterYoutubeChannelFilter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}
@@ -140,6 +141,7 @@ func resourceObjectVideofilterYoutubeChannelFilterUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +154,9 @@ func resourceObjectVideofilterYoutubeChannelFilterUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeChannelFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterYoutubeChannelFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVideofilterYoutubeChannelFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}
@@ -171,6 +175,7 @@ func resourceObjectVideofilterYoutubeChannelFilterDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -178,7 +183,9 @@ func resourceObjectVideofilterYoutubeChannelFilterDelete(d *schema.ResourceData,
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterYoutubeChannelFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVideofilterYoutubeChannelFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}

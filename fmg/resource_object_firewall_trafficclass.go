@@ -63,6 +63,7 @@ func resourceObjectFirewallTrafficClassCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectFirewallTrafficClassCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallTrafficClass resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallTrafficClass(obj, paradict)
-
+	_, err = c.CreateObjectFirewallTrafficClass(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallTrafficClass resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectFirewallTrafficClassUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectFirewallTrafficClassUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectFirewallTrafficClass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallTrafficClass(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallTrafficClass(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallTrafficClass resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectFirewallTrafficClassDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectFirewallTrafficClassDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallTrafficClass(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallTrafficClass(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallTrafficClass resource: %v", err)
 	}

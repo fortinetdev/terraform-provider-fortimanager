@@ -132,6 +132,7 @@ func resourceObjectAntivirusProfileHttpUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +148,9 @@ func resourceObjectAntivirusProfileHttpUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectAntivirusProfileHttp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfileHttp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfileHttp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileHttp resource: %v", err)
 	}
@@ -166,6 +169,7 @@ func resourceObjectAntivirusProfileHttpDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +180,9 @@ func resourceObjectAntivirusProfileHttpDelete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfileHttp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfileHttp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfileHttp resource: %v", err)
 	}

@@ -285,6 +285,10 @@ func resourceObjectUserLdapDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -299,6 +303,7 @@ func resourceObjectUserLdapDynamicMappingCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -313,9 +318,9 @@ func resourceObjectUserLdapDynamicMappingCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdapDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserLdapDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectUserLdapDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdapDynamicMapping resource: %v", err)
 	}
@@ -331,6 +336,7 @@ func resourceObjectUserLdapDynamicMappingUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -346,7 +352,9 @@ func resourceObjectUserLdapDynamicMappingUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectUserLdapDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserLdapDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserLdapDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLdapDynamicMapping resource: %v", err)
 	}
@@ -365,6 +373,7 @@ func resourceObjectUserLdapDynamicMappingDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -375,7 +384,9 @@ func resourceObjectUserLdapDynamicMappingDelete(d *schema.ResourceData, m interf
 	ldap := d.Get("ldap").(string)
 	paradict["ldap"] = ldap
 
-	err = c.DeleteObjectUserLdapDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserLdapDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserLdapDynamicMapping resource: %v", err)
 	}
@@ -666,6 +677,10 @@ func flattenObjectUserLdapDynamicMappingUserInfoExchangeServer2edl(v interface{}
 }
 
 func flattenObjectUserLdapDynamicMappingUsername2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1174,6 +1189,16 @@ func refreshObjectObjectUserLdapDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserLdapDynamicMappingVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserLdapDynamicMapping-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1414,6 +1439,10 @@ func expandObjectUserLdapDynamicMappingUserInfoExchangeServer2edl(d *schema.Reso
 }
 
 func expandObjectUserLdapDynamicMappingUsername2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1858,6 +1887,15 @@ func getObjectObjectUserLdapDynamicMapping(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserLdapDynamicMappingVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

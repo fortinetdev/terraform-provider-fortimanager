@@ -138,6 +138,7 @@ func resourcePackagesFirewallDosPolicy6AnomalyCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,9 +157,9 @@ func resourcePackagesFirewallDosPolicy6AnomalyCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy6Anomaly resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallDosPolicy6Anomaly(obj, paradict)
-
+	_, err = c.CreatePackagesFirewallDosPolicy6Anomaly(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy6Anomaly resource: %v", err)
 	}
@@ -174,6 +175,7 @@ func resourcePackagesFirewallDosPolicy6AnomalyUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -193,7 +195,9 @@ func resourcePackagesFirewallDosPolicy6AnomalyUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy6Anomaly resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallDosPolicy6Anomaly(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallDosPolicy6Anomaly(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy6Anomaly resource: %v", err)
 	}
@@ -212,6 +216,7 @@ func resourcePackagesFirewallDosPolicy6AnomalyDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -226,7 +231,9 @@ func resourcePackagesFirewallDosPolicy6AnomalyDelete(d *schema.ResourceData, m i
 	paradict["pkg"] = pkg
 	paradict["dos_policy6"] = dos_policy6
 
-	err = c.DeletePackagesFirewallDosPolicy6Anomaly(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallDosPolicy6Anomaly(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallDosPolicy6Anomaly resource: %v", err)
 	}

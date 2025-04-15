@@ -74,6 +74,7 @@ func resourceObjectFirewallAddrgrp6TaggingCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectFirewallAddrgrp6TaggingCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp6Tagging resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddrgrp6Tagging(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddrgrp6Tagging(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp6Tagging resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectFirewallAddrgrp6TaggingUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectFirewallAddrgrp6TaggingUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp6Tagging resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddrgrp6Tagging(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddrgrp6Tagging(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp6Tagging resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectFirewallAddrgrp6TaggingDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectFirewallAddrgrp6TaggingDelete(d *schema.ResourceData, m inter
 	addrgrp6 := d.Get("addrgrp6").(string)
 	paradict["addrgrp6"] = addrgrp6
 
-	err = c.DeleteObjectFirewallAddrgrp6Tagging(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddrgrp6Tagging(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddrgrp6Tagging resource: %v", err)
 	}

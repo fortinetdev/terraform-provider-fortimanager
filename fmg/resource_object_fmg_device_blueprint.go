@@ -155,6 +155,11 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vm_log_disk": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -164,6 +169,7 @@ func resourceObjectFmgDeviceBlueprintCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -175,9 +181,9 @@ func resourceObjectFmgDeviceBlueprintCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgDeviceBlueprint resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFmgDeviceBlueprint(obj, paradict)
-
+	_, err = c.CreateObjectFmgDeviceBlueprint(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgDeviceBlueprint resource: %v", err)
 	}
@@ -193,6 +199,7 @@ func resourceObjectFmgDeviceBlueprintUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -205,7 +212,9 @@ func resourceObjectFmgDeviceBlueprintUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectFmgDeviceBlueprint resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFmgDeviceBlueprint(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFmgDeviceBlueprint(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgDeviceBlueprint resource: %v", err)
 	}
@@ -224,6 +233,7 @@ func resourceObjectFmgDeviceBlueprintDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -231,7 +241,9 @@ func resourceObjectFmgDeviceBlueprintDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFmgDeviceBlueprint(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFmgDeviceBlueprint(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFmgDeviceBlueprint resource: %v", err)
 	}
@@ -355,6 +367,10 @@ func flattenObjectFmgDeviceBlueprintTemplateGroup(v interface{}, d *schema.Resou
 
 func flattenObjectFmgDeviceBlueprintTemplates(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFmgDeviceBlueprintVmLogDisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]interface{}) error {
@@ -574,6 +590,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("vm_log_disk", flattenObjectFmgDeviceBlueprintVmLogDisk(o["vm-log-disk"], d, "vm_log_disk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vm-log-disk"], "ObjectFmgDeviceBlueprint-VmLogDisk"); ok {
+			if err = d.Set("vm_log_disk", vv); err != nil {
+				return fmt.Errorf("Error reading vm_log_disk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vm_log_disk: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -669,6 +695,10 @@ func expandObjectFmgDeviceBlueprintTemplateGroup(d *schema.ResourceData, v inter
 
 func expandObjectFmgDeviceBlueprintTemplates(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgDeviceBlueprintVmLogDisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -869,6 +899,15 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["templates"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vm_log_disk"); ok || d.HasChange("vm_log_disk") {
+		t, err := expandObjectFmgDeviceBlueprintVmLogDisk(d, v, "vm_log_disk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vm-log-disk"] = t
 		}
 	}
 

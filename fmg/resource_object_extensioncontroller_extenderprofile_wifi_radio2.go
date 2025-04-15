@@ -146,6 +146,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Update(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +162,9 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Update(d *schema.
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifiRadio2 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileWifiRadio2(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileWifiRadio2(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifiRadio2 resource: %v", err)
 	}
@@ -180,6 +183,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Delete(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -190,7 +194,9 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Delete(d *schema.
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileWifiRadio2(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileWifiRadio2(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileWifiRadio2 resource: %v", err)
 	}

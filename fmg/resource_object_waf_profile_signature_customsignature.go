@@ -104,6 +104,7 @@ func resourceObjectWafProfileSignatureCustomSignatureCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,9 +119,9 @@ func resourceObjectWafProfileSignatureCustomSignatureCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileSignatureCustomSignature resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafProfileSignatureCustomSignature(obj, paradict)
-
+	_, err = c.CreateObjectWafProfileSignatureCustomSignature(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileSignatureCustomSignature resource: %v", err)
 	}
@@ -136,6 +137,7 @@ func resourceObjectWafProfileSignatureCustomSignatureUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectWafProfileSignatureCustomSignatureUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectWafProfileSignatureCustomSignature resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileSignatureCustomSignature(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileSignatureCustomSignature(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileSignatureCustomSignature resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectWafProfileSignatureCustomSignatureDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectWafProfileSignatureCustomSignatureDelete(d *schema.ResourceDa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileSignatureCustomSignature(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileSignatureCustomSignature(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileSignatureCustomSignature resource: %v", err)
 	}

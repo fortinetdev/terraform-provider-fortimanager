@@ -82,6 +82,7 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientCreate(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientCreate(d
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientUpdate(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientUpdate(d
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientDelete(d
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +163,9 @@ func resourceObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientDelete(d
 	managed_switch := d.Get("managed_switch").(string)
 	paradict["managed_switch"] = managed_switch
 
-	err = c.DeleteObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient resource: %v", err)
 	}

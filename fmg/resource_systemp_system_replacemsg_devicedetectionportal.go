@@ -76,6 +76,7 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalUpdate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,7 +92,9 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalUpdate(d *schema.Resour
 		return fmt.Errorf("Error updating SystempSystemReplacemsgDeviceDetectionPortal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgDeviceDetectionPortal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgDeviceDetectionPortal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgDeviceDetectionPortal resource: %v", err)
 	}
@@ -110,6 +113,7 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalDelete(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +124,9 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalDelete(d *schema.Resour
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgDeviceDetectionPortal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgDeviceDetectionPortal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgDeviceDetectionPortal resource: %v", err)
 	}

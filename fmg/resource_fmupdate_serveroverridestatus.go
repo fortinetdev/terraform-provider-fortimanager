@@ -44,6 +44,8 @@ func resourceFmupdateServerOverrideStatusUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -52,7 +54,9 @@ func resourceFmupdateServerOverrideStatusUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating FmupdateServerOverrideStatus resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateServerOverrideStatus(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateServerOverrideStatus(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerOverrideStatus resource: %v", err)
 	}
@@ -71,10 +75,14 @@ func resourceFmupdateServerOverrideStatusDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateServerOverrideStatus(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateServerOverrideStatus(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateServerOverrideStatus resource: %v", err)
 	}
@@ -91,6 +99,7 @@ func resourceFmupdateServerOverrideStatusRead(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

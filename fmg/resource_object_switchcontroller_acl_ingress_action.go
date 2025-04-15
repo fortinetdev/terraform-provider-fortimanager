@@ -70,6 +70,7 @@ func resourceObjectSwitchControllerAclIngressActionUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -85,7 +86,9 @@ func resourceObjectSwitchControllerAclIngressActionUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressAction resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerAclIngressAction(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerAclIngressAction(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressAction resource: %v", err)
 	}
@@ -104,6 +107,7 @@ func resourceObjectSwitchControllerAclIngressActionDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,7 +118,9 @@ func resourceObjectSwitchControllerAclIngressActionDelete(d *schema.ResourceData
 	ingress := d.Get("ingress").(string)
 	paradict["ingress"] = ingress
 
-	err = c.DeleteObjectSwitchControllerAclIngressAction(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerAclIngressAction(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerAclIngressAction resource: %v", err)
 	}

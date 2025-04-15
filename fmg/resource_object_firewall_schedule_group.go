@@ -83,6 +83,7 @@ func resourceObjectFirewallScheduleGroupCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectFirewallScheduleGroupCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallScheduleGroup(obj, paradict)
-
+	_, err = c.CreateObjectFirewallScheduleGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleGroup resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectFirewallScheduleGroupUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectFirewallScheduleGroupUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectFirewallScheduleGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallScheduleGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallScheduleGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleGroup resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectFirewallScheduleGroupDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectFirewallScheduleGroupDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallScheduleGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallScheduleGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallScheduleGroup resource: %v", err)
 	}

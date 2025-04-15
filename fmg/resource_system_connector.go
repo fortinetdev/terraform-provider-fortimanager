@@ -84,6 +84,8 @@ func resourceSystemConnectorUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -92,7 +94,9 @@ func resourceSystemConnectorUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating SystemConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemConnector(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemConnector(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemConnector resource: %v", err)
 	}
@@ -111,10 +115,14 @@ func resourceSystemConnectorDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemConnector(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemConnector(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemConnector resource: %v", err)
 	}
@@ -131,6 +139,7 @@ func resourceSystemConnectorRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

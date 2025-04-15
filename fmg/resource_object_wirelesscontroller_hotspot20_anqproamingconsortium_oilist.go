@@ -72,6 +72,7 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListCreate(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListCreate(
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListUpdate(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListUpdate(
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListDelete(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListDelete(
 	anqp_roaming_consortium := d.Get("anqp_roaming_consortium").(string)
 	paradict["anqp_roaming_consortium"] = anqp_roaming_consortium
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList resource: %v", err)
 	}

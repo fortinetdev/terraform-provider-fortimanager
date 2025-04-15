@@ -262,6 +262,8 @@ func resourcePackagesGlobalHeaderShapingPolicyCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -274,9 +276,9 @@ func resourcePackagesGlobalHeaderShapingPolicyCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
@@ -301,6 +303,8 @@ func resourcePackagesGlobalHeaderShapingPolicyUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -314,7 +318,9 @@ func resourcePackagesGlobalHeaderShapingPolicyUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating PackagesGlobalHeaderShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderShapingPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesGlobalHeaderShapingPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
@@ -333,6 +339,8 @@ func resourcePackagesGlobalHeaderShapingPolicyDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -341,7 +349,9 @@ func resourcePackagesGlobalHeaderShapingPolicyDelete(d *schema.ResourceData, m i
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderShapingPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesGlobalHeaderShapingPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
@@ -358,6 +368,7 @@ func resourcePackagesGlobalHeaderShapingPolicyRead(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

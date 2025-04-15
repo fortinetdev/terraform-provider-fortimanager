@@ -93,6 +93,7 @@ func resourceObjectVpnIpsecFecMappingsCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -107,9 +108,9 @@ func resourceObjectVpnIpsecFecMappingsCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFecMappings resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnIpsecFecMappings(obj, paradict)
-
+	_, err = c.CreateObjectVpnIpsecFecMappings(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFecMappings resource: %v", err)
 	}
@@ -125,6 +126,7 @@ func resourceObjectVpnIpsecFecMappingsUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,7 +142,9 @@ func resourceObjectVpnIpsecFecMappingsUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectVpnIpsecFecMappings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnIpsecFecMappings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnIpsecFecMappings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnIpsecFecMappings resource: %v", err)
 	}
@@ -159,6 +163,7 @@ func resourceObjectVpnIpsecFecMappingsDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +174,9 @@ func resourceObjectVpnIpsecFecMappingsDelete(d *schema.ResourceData, m interface
 	fec := d.Get("fec").(string)
 	paradict["fec"] = fec
 
-	err = c.DeleteObjectVpnIpsecFecMappings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnIpsecFecMappings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnIpsecFecMappings resource: %v", err)
 	}

@@ -82,6 +82,7 @@ func resourceObjectApplicationListEntriesParametersMembersCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,9 +101,9 @@ func resourceObjectApplicationListEntriesParametersMembersCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListEntriesParametersMembers resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationListEntriesParametersMembers(obj, paradict)
-
+	_, err = c.CreateObjectApplicationListEntriesParametersMembers(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationListEntriesParametersMembers resource: %v", err)
 	}
@@ -118,6 +119,7 @@ func resourceObjectApplicationListEntriesParametersMembersUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,7 +139,9 @@ func resourceObjectApplicationListEntriesParametersMembersUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectApplicationListEntriesParametersMembers resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationListEntriesParametersMembers(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationListEntriesParametersMembers(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationListEntriesParametersMembers resource: %v", err)
 	}
@@ -156,6 +160,7 @@ func resourceObjectApplicationListEntriesParametersMembersDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceObjectApplicationListEntriesParametersMembersDelete(d *schema.Resou
 	paradict["entries"] = entries
 	paradict["parameters"] = parameters
 
-	err = c.DeleteObjectApplicationListEntriesParametersMembers(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationListEntriesParametersMembers(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationListEntriesParametersMembers resource: %v", err)
 	}

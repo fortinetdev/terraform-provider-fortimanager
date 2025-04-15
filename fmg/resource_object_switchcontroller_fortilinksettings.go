@@ -121,6 +121,7 @@ func resourceObjectSwitchControllerFortilinkSettingsCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,9 +133,9 @@ func resourceObjectSwitchControllerFortilinkSettingsCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerFortilinkSettings resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerFortilinkSettings(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerFortilinkSettings(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}
@@ -150,6 +151,7 @@ func resourceObjectSwitchControllerFortilinkSettingsUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +164,9 @@ func resourceObjectSwitchControllerFortilinkSettingsUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerFortilinkSettings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerFortilinkSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}
@@ -181,6 +185,7 @@ func resourceObjectSwitchControllerFortilinkSettingsDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -188,7 +193,9 @@ func resourceObjectSwitchControllerFortilinkSettingsDelete(d *schema.ResourceDat
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerFortilinkSettings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerFortilinkSettings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}

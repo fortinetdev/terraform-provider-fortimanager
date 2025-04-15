@@ -56,6 +56,7 @@ The following arguments are supported:
 
 * `status` - Enable/disable remote syslog logging. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `custom_field_name` block supports:

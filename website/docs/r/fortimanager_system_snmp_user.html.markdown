@@ -36,6 +36,7 @@ The following arguments are supported:
 * `name` - SNMP user name.
 * `notify_hosts` - Hosts to send notifications (traps) to.
 * `notify_hosts6` - IPv6 hosts to send notifications (traps) to.
+* `notify_port` - SNMPv3 trap remote port.
 * `priv_proto` - Privacy (encryption) protocol. aes - CFB128-AES-128 symmetric encryption protocol. des - CBC-DES symmetric encryption protocol. Valid values: `aes`, `des`.
 
 * `priv_pwd` - Password for privacy (encryption) protocol.

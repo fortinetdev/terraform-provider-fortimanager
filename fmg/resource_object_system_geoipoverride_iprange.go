@@ -74,6 +74,7 @@ func resourceObjectSystemGeoipOverrideIpRangeCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectSystemGeoipOverrideIpRangeCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipOverrideIpRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemGeoipOverrideIpRange(obj, paradict)
-
+	_, err = c.CreateObjectSystemGeoipOverrideIpRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipOverrideIpRange resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectSystemGeoipOverrideIpRangeUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectSystemGeoipOverrideIpRangeUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSystemGeoipOverrideIpRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemGeoipOverrideIpRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemGeoipOverrideIpRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemGeoipOverrideIpRange resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectSystemGeoipOverrideIpRangeDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectSystemGeoipOverrideIpRangeDelete(d *schema.ResourceData, m in
 	geoip_override := d.Get("geoip_override").(string)
 	paradict["geoip_override"] = geoip_override
 
-	err = c.DeleteObjectSystemGeoipOverrideIpRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemGeoipOverrideIpRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemGeoipOverrideIpRange resource: %v", err)
 	}

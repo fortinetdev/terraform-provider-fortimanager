@@ -81,6 +81,7 @@ func resourceObjectUserCertificateCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectUserCertificateCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserCertificate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserCertificate(obj, paradict)
-
+	_, err = c.CreateObjectUserCertificate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserCertificate resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectUserCertificateUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +124,9 @@ func resourceObjectUserCertificateUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectUserCertificate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserCertificate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserCertificate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserCertificate resource: %v", err)
 	}
@@ -141,6 +145,7 @@ func resourceObjectUserCertificateDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectUserCertificateDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserCertificate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserCertificate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserCertificate resource: %v", err)
 	}

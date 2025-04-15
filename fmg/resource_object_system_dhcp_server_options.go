@@ -105,6 +105,7 @@ func resourceObjectSystemDhcpServerOptionsCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,9 +120,9 @@ func resourceObjectSystemDhcpServerOptionsCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerOptions resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemDhcpServerOptions(obj, paradict)
-
+	_, err = c.CreateObjectSystemDhcpServerOptions(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerOptions resource: %v", err)
 	}
@@ -137,6 +138,7 @@ func resourceObjectSystemDhcpServerOptionsUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +154,9 @@ func resourceObjectSystemDhcpServerOptionsUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemDhcpServerOptions(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemDhcpServerOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerOptions resource: %v", err)
 	}
@@ -171,6 +175,7 @@ func resourceObjectSystemDhcpServerOptionsDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -181,7 +186,9 @@ func resourceObjectSystemDhcpServerOptionsDelete(d *schema.ResourceData, m inter
 	server := d.Get("server").(string)
 	paradict["server"] = server
 
-	err = c.DeleteObjectSystemDhcpServerOptions(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemDhcpServerOptions(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemDhcpServerOptions resource: %v", err)
 	}

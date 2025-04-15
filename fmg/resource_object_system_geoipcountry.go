@@ -63,6 +63,7 @@ func resourceObjectSystemGeoipCountryCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectSystemGeoipCountryCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipCountry resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemGeoipCountry(obj, paradict)
-
+	_, err = c.CreateObjectSystemGeoipCountry(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipCountry resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectSystemGeoipCountryUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectSystemGeoipCountryUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectSystemGeoipCountry resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemGeoipCountry(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemGeoipCountry(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemGeoipCountry resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectSystemGeoipCountryDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectSystemGeoipCountryDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemGeoipCountry(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemGeoipCountry(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemGeoipCountry resource: %v", err)
 	}

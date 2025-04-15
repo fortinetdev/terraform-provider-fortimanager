@@ -92,6 +92,17 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fortiguard": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fortiguard_name": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"ftp_file": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -323,6 +334,7 @@ func resourceWantempSystemSdwanHealthCheckCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -337,9 +349,9 @@ func resourceWantempSystemSdwanHealthCheckCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheck resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemSdwanHealthCheck(obj, paradict)
-
+	_, err = c.CreateWantempSystemSdwanHealthCheck(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheck resource: %v", err)
 	}
@@ -355,6 +367,7 @@ func resourceWantempSystemSdwanHealthCheckUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -370,7 +383,9 @@ func resourceWantempSystemSdwanHealthCheckUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating WantempSystemSdwanHealthCheck resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwanHealthCheck(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwanHealthCheck(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanHealthCheck resource: %v", err)
 	}
@@ -389,6 +404,7 @@ func resourceWantempSystemSdwanHealthCheckDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -399,7 +415,9 @@ func resourceWantempSystemSdwanHealthCheckDelete(d *schema.ResourceData, m inter
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	err = c.DeleteWantempSystemSdwanHealthCheck(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemSdwanHealthCheck(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemSdwanHealthCheck resource: %v", err)
 	}
@@ -487,6 +505,14 @@ func flattenWantempSystemSdwanHealthCheckEmbedMeasuredHealth2edl(v interface{}, 
 
 func flattenWantempSystemSdwanHealthCheckFailtime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckFortiguardU2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckFortiguardName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckFtpFile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -840,6 +866,26 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading failtime: %v", err)
+		}
+	}
+
+	if err = d.Set("fortiguard", flattenWantempSystemSdwanHealthCheckFortiguardU2edl(o["fortiguard"], d, "fortiguard")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiguard"], "WantempSystemSdwanHealthCheck-Fortiguard"); ok {
+			if err = d.Set("fortiguard", vv); err != nil {
+				return fmt.Errorf("Error reading fortiguard: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiguard: %v", err)
+		}
+	}
+
+	if err = d.Set("fortiguard_name", flattenWantempSystemSdwanHealthCheckFortiguardName2edl(o["fortiguard-name"], d, "fortiguard_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiguard-name"], "WantempSystemSdwanHealthCheck-FortiguardName"); ok {
+			if err = d.Set("fortiguard_name", vv); err != nil {
+				return fmt.Errorf("Error reading fortiguard_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiguard_name: %v", err)
 		}
 	}
 
@@ -1272,6 +1318,14 @@ func expandWantempSystemSdwanHealthCheckFailtime2edl(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandWantempSystemSdwanHealthCheckFortiguardU2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckFortiguardName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandWantempSystemSdwanHealthCheckFtpFile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1597,6 +1651,24 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["failtime"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortiguard"); ok || d.HasChange("fortiguard") {
+		t, err := expandWantempSystemSdwanHealthCheckFortiguardU2edl(d, v, "fortiguard")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiguard"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortiguard_name"); ok || d.HasChange("fortiguard_name") {
+		t, err := expandWantempSystemSdwanHealthCheckFortiguardName2edl(d, v, "fortiguard_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiguard-name"] = t
 		}
 	}
 

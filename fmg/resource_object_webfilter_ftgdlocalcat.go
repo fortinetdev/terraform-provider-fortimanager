@@ -69,6 +69,7 @@ func resourceObjectWebfilterFtgdLocalCatCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -80,9 +81,9 @@ func resourceObjectWebfilterFtgdLocalCatCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalCat resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterFtgdLocalCat(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterFtgdLocalCat(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}
@@ -98,6 +99,7 @@ func resourceObjectWebfilterFtgdLocalCatUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectWebfilterFtgdLocalCatUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalCat resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterFtgdLocalCat(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterFtgdLocalCat(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectWebfilterFtgdLocalCatDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +141,9 @@ func resourceObjectWebfilterFtgdLocalCatDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterFtgdLocalCat(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterFtgdLocalCat(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}

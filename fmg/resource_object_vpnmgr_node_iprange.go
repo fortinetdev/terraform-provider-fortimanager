@@ -72,6 +72,7 @@ func resourceObjectVpnmgrNodeIpRangeCreate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectVpnmgrNodeIpRangeCreate(d *schema.ResourceData, m interface{}
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNodeIpRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnmgrNodeIpRange(obj, paradict)
-
+	_, err = c.CreateObjectVpnmgrNodeIpRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNodeIpRange resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectVpnmgrNodeIpRangeUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectVpnmgrNodeIpRangeUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating ObjectVpnmgrNodeIpRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnmgrNodeIpRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnmgrNodeIpRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnmgrNodeIpRange resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectVpnmgrNodeIpRangeDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectVpnmgrNodeIpRangeDelete(d *schema.ResourceData, m interface{}
 	node := d.Get("node").(string)
 	paradict["node"] = node
 
-	err = c.DeleteObjectVpnmgrNodeIpRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnmgrNodeIpRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnmgrNodeIpRange resource: %v", err)
 	}

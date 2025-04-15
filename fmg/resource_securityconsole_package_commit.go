@@ -40,6 +40,12 @@ func resourceSecurityconsolePackageCommit() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"flags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -71,15 +77,17 @@ func resourceSecurityconsolePackageCommitUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectSecurityconsolePackageCommit(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCommit resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsolePackageCommit(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSecurityconsolePackageCommit(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCommit resource: %v", err)
 	}
@@ -103,6 +111,10 @@ func resourceSecurityconsolePackageCommitRead(d *schema.ResourceData, m interfac
 
 func flattenSecurityconsolePackageCommitAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenSecurityconsolePackageCommitFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenSecurityconsolePackageCommitScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -171,6 +183,16 @@ func refreshObjectSecurityconsolePackageCommit(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("flags", flattenSecurityconsolePackageCommitFlags(o["flags"], d, "flags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["flags"], "SecurityconsolePackageCommit-Flags"); ok {
+			if err = d.Set("flags", vv); err != nil {
+				return fmt.Errorf("Error reading flags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading flags: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("scope", flattenSecurityconsolePackageCommitScope(o["scope"], d, "scope")); err != nil {
 			if vv, ok := fortiAPIPatch(o["scope"], "SecurityconsolePackageCommit-Scope"); ok {
@@ -206,6 +228,10 @@ func flattenSecurityconsolePackageCommitFortiTestDebug(d *schema.ResourceData, f
 
 func expandSecurityconsolePackageCommitAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandSecurityconsolePackageCommitFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSecurityconsolePackageCommitScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -259,6 +285,15 @@ func getObjectSecurityconsolePackageCommit(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["adom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
+		t, err := expandSecurityconsolePackageCommitFlags(d, v, "flags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["flags"] = t
 		}
 	}
 

@@ -102,6 +102,7 @@ func resourceObjectWebProxyProfileHeadersCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,9 +117,9 @@ func resourceObjectWebProxyProfileHeadersCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyProfileHeaders resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyProfileHeaders(obj, paradict)
-
+	_, err = c.CreateObjectWebProxyProfileHeaders(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyProfileHeaders resource: %v", err)
 	}
@@ -134,6 +135,7 @@ func resourceObjectWebProxyProfileHeadersUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +151,9 @@ func resourceObjectWebProxyProfileHeadersUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectWebProxyProfileHeaders resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyProfileHeaders(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebProxyProfileHeaders(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyProfileHeaders resource: %v", err)
 	}
@@ -168,6 +172,7 @@ func resourceObjectWebProxyProfileHeadersDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -178,7 +183,9 @@ func resourceObjectWebProxyProfileHeadersDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebProxyProfileHeaders(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebProxyProfileHeaders(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyProfileHeaders resource: %v", err)
 	}

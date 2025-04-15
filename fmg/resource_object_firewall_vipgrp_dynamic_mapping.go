@@ -101,6 +101,7 @@ func resourceObjectFirewallVipgrpDynamicMappingCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,9 +116,9 @@ func resourceObjectFirewallVipgrpDynamicMappingCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrpDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVipgrpDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVipgrpDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrpDynamicMapping resource: %v", err)
 	}
@@ -133,6 +134,7 @@ func resourceObjectFirewallVipgrpDynamicMappingUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +150,9 @@ func resourceObjectFirewallVipgrpDynamicMappingUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectFirewallVipgrpDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipgrpDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVipgrpDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipgrpDynamicMapping resource: %v", err)
 	}
@@ -167,6 +171,7 @@ func resourceObjectFirewallVipgrpDynamicMappingDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,7 +182,9 @@ func resourceObjectFirewallVipgrpDynamicMappingDelete(d *schema.ResourceData, m 
 	vipgrp := d.Get("vipgrp").(string)
 	paradict["vipgrp"] = vipgrp
 
-	err = c.DeleteObjectFirewallVipgrpDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVipgrpDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipgrpDynamicMapping resource: %v", err)
 	}

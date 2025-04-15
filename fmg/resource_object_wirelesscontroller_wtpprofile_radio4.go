@@ -431,6 +431,7 @@ func resourceObjectWirelessControllerWtpProfileRadio4Update(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -446,7 +447,9 @@ func resourceObjectWirelessControllerWtpProfileRadio4Update(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileRadio4 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWtpProfileRadio4(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerWtpProfileRadio4(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileRadio4 resource: %v", err)
 	}
@@ -465,6 +468,7 @@ func resourceObjectWirelessControllerWtpProfileRadio4Delete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -475,7 +479,9 @@ func resourceObjectWirelessControllerWtpProfileRadio4Delete(d *schema.ResourceDa
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	err = c.DeleteObjectWirelessControllerWtpProfileRadio4(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerWtpProfileRadio4(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileRadio4 resource: %v", err)
 	}

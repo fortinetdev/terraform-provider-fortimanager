@@ -31,6 +31,12 @@ The following arguments are supported:
 * `gps` - FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 
 * `modem_id` - Modem ID.
+* `multiple_pdn` - Multiple-PDN enable/disable. Valid values: `disable`, `enable`.
+
+* `pdn1_dataplan` - PDN1-dataplan.
+* `pdn2_dataplan` - PDN2-dataplan.
+* `pdn3_dataplan` - PDN3-dataplan.
+* `pdn4_dataplan` - PDN4-dataplan.
 * `preferred_carrier` - Preferred carrier.
 * `redundant_intf` - Redundant interface.
 * `redundant_mode` - FortiExtender mode. Valid values: `disable`, `enable`.

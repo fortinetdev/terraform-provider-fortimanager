@@ -44,6 +44,8 @@ func resourceFmupdateDiskQuotaUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -52,7 +54,9 @@ func resourceFmupdateDiskQuotaUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating FmupdateDiskQuota resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateDiskQuota(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateDiskQuota(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateDiskQuota resource: %v", err)
 	}
@@ -71,10 +75,14 @@ func resourceFmupdateDiskQuotaDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateDiskQuota(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateDiskQuota(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateDiskQuota resource: %v", err)
 	}
@@ -91,6 +99,7 @@ func resourceFmupdateDiskQuotaRead(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

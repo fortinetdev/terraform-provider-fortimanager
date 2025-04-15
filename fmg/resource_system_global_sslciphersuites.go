@@ -52,6 +52,8 @@ func resourceSystemGlobalSslCipherSuitesCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -59,9 +61,9 @@ func resourceSystemGlobalSslCipherSuitesCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemGlobalSslCipherSuites(obj, paradict)
-
+	_, err = c.CreateSystemGlobalSslCipherSuites(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource: %v", err)
 	}
@@ -77,6 +79,8 @@ func resourceSystemGlobalSslCipherSuitesUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -85,7 +89,9 @@ func resourceSystemGlobalSslCipherSuitesUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating SystemGlobalSslCipherSuites resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemGlobalSslCipherSuites(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemGlobalSslCipherSuites(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobalSslCipherSuites resource: %v", err)
 	}
@@ -104,10 +110,14 @@ func resourceSystemGlobalSslCipherSuitesDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemGlobalSslCipherSuites(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemGlobalSslCipherSuites(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemGlobalSslCipherSuites resource: %v", err)
 	}
@@ -124,6 +134,7 @@ func resourceSystemGlobalSslCipherSuitesRead(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

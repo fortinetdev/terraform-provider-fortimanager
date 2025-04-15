@@ -69,6 +69,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListCreate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -83,9 +84,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListCreate(d 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList resource: %v", err)
 	}
@@ -101,6 +102,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListUpdate(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +118,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListUpdate(d 
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList resource: %v", err)
 	}
@@ -135,6 +139,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListDelete(d 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +150,9 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListDelete(d 
 	h2qp_osu_provider_nai := d.Get("h2qp_osu_provider_nai").(string)
 	paradict["h2qp_osu_provider_nai"] = h2qp_osu_provider_nai
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList resource: %v", err)
 	}

@@ -89,15 +89,17 @@ func resourceSecurityconsoleReinstallPackageUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectSecurityconsoleReinstallPackage(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleReinstallPackage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleReinstallPackage(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSecurityconsoleReinstallPackage(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleReinstallPackage resource: %v", err)
 	}

@@ -63,6 +63,7 @@ func resourceObjectWafSubClassCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectWafSubClassCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSubClass resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafSubClass(obj, paradict)
-
+	_, err = c.CreateObjectWafSubClass(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSubClass resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectWafSubClassUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectWafSubClassUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectWafSubClass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafSubClass(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafSubClass(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafSubClass resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectWafSubClassDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectWafSubClassDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWafSubClass(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafSubClass(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafSubClass resource: %v", err)
 	}

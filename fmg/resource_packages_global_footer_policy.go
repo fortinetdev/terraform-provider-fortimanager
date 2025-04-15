@@ -63,6 +63,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"app_monitor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"app_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -886,6 +891,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"port_random": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"profile_group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1304,6 +1314,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ztna_ems_tag_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ztna_ems_tag_secondary": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1340,6 +1355,8 @@ func resourcePackagesGlobalFooterPolicyCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -1352,9 +1369,9 @@ func resourcePackagesGlobalFooterPolicyCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalFooterPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesGlobalFooterPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy resource: %v", err)
 	}
@@ -1379,6 +1396,8 @@ func resourcePackagesGlobalFooterPolicyUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -1392,7 +1411,9 @@ func resourcePackagesGlobalFooterPolicyUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesGlobalFooterPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource: %v", err)
 	}
@@ -1411,6 +1432,8 @@ func resourcePackagesGlobalFooterPolicyDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -1419,7 +1442,9 @@ func resourcePackagesGlobalFooterPolicyDelete(d *schema.ResourceData, m interfac
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesGlobalFooterPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterPolicy resource: %v", err)
 	}
@@ -1436,6 +1461,7 @@ func resourcePackagesGlobalFooterPolicyRead(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -1491,6 +1517,10 @@ func flattenPackagesGlobalFooterPolicyActiveAuthMethod(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicyAntiReplay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyAppMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2218,6 +2248,10 @@ func flattenPackagesGlobalFooterPolicyPortPreserve(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyPortRandom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -2594,6 +2628,10 @@ func flattenPackagesGlobalFooterPolicyZtnaEmsTag(v interface{}, d *schema.Resour
 	return flattenStringList(v)
 }
 
+func flattenPackagesGlobalFooterPolicyZtnaEmsTagNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyZtnaEmsTagSecondary(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2664,6 +2702,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading anti_replay: %v", err)
+		}
+	}
+
+	if err = d.Set("app_monitor", flattenPackagesGlobalFooterPolicyAppMonitor(o["app-monitor"], d, "app_monitor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-monitor"], "PackagesGlobalFooterPolicy-AppMonitor"); ok {
+			if err = d.Set("app_monitor", vv); err != nil {
+				return fmt.Errorf("Error reading app_monitor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_monitor: %v", err)
 		}
 	}
 
@@ -4477,6 +4525,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("port_random", flattenPackagesGlobalFooterPolicyPortRandom(o["port-random"], d, "port_random")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-random"], "PackagesGlobalFooterPolicy-PortRandom"); ok {
+			if err = d.Set("port_random", vv); err != nil {
+				return fmt.Errorf("Error reading port_random: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_random: %v", err)
+		}
+	}
+
 	if err = d.Set("profile_group", flattenPackagesGlobalFooterPolicyProfileGroup(o["profile-group"], d, "profile_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-group"], "PackagesGlobalFooterPolicy-ProfileGroup"); ok {
 			if err = d.Set("profile_group", vv); err != nil {
@@ -5417,6 +5475,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ztna_ems_tag_negate", flattenPackagesGlobalFooterPolicyZtnaEmsTagNegate(o["ztna-ems-tag-negate"], d, "ztna_ems_tag_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-negate"], "PackagesGlobalFooterPolicy-ZtnaEmsTagNegate"); ok {
+			if err = d.Set("ztna_ems_tag_negate", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("ztna_ems_tag_secondary", flattenPackagesGlobalFooterPolicyZtnaEmsTagSecondary(o["ztna-ems-tag-secondary"], d, "ztna_ems_tag_secondary")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-secondary"], "PackagesGlobalFooterPolicy-ZtnaEmsTagSecondary"); ok {
 			if err = d.Set("ztna_ems_tag_secondary", vv); err != nil {
@@ -5493,6 +5561,10 @@ func expandPackagesGlobalFooterPolicyActiveAuthMethod(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicyAntiReplay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyAppMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6220,6 +6292,10 @@ func expandPackagesGlobalFooterPolicyPortPreserve(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyPortRandom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -6596,6 +6672,10 @@ func expandPackagesGlobalFooterPolicyZtnaEmsTag(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesGlobalFooterPolicyZtnaEmsTagNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyZtnaEmsTagSecondary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -6661,6 +6741,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["anti-replay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("app_monitor"); ok || d.HasChange("app_monitor") {
+		t, err := expandPackagesGlobalFooterPolicyAppMonitor(d, v, "app_monitor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-monitor"] = t
 		}
 	}
 
@@ -8293,6 +8382,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("port_random"); ok || d.HasChange("port_random") {
+		t, err := expandPackagesGlobalFooterPolicyPortRandom(d, v, "port_random")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-random"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
 		t, err := expandPackagesGlobalFooterPolicyProfileGroup(d, v, "profile_group")
 		if err != nil {
@@ -9136,6 +9234,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-ems-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_ems_tag_negate"); ok || d.HasChange("ztna_ems_tag_negate") {
+		t, err := expandPackagesGlobalFooterPolicyZtnaEmsTagNegate(d, v, "ztna_ems_tag_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-ems-tag-negate"] = t
 		}
 	}
 

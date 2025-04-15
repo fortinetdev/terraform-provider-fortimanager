@@ -101,6 +101,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodCreate
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,9 +118,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodCreate
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod resource: %v", err)
 	}
@@ -135,6 +136,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodUpdate
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +154,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodUpdate
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod resource: %v", err)
 	}
@@ -171,6 +175,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodDelete
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -183,7 +188,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodDelete
 	paradict["anqp_nai_realm"] = anqp_nai_realm
 	paradict["nai_list"] = nai_list
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod resource: %v", err)
 	}

@@ -47,6 +47,7 @@ The following arguments are supported:
 * `username` - SMTP server user name for authentication.
 * `validate_server` - Enable/disable validation of server certificate. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

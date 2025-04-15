@@ -121,6 +121,7 @@ func resourceObjectSwitchControllerQosQueuePolicyCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,9 +133,9 @@ func resourceObjectSwitchControllerQosQueuePolicyCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQueuePolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerQosQueuePolicy(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerQosQueuePolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQueuePolicy resource: %v", err)
 	}
@@ -150,6 +151,7 @@ func resourceObjectSwitchControllerQosQueuePolicyUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +164,9 @@ func resourceObjectSwitchControllerQosQueuePolicyUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQueuePolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosQueuePolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerQosQueuePolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQueuePolicy resource: %v", err)
 	}
@@ -181,6 +185,7 @@ func resourceObjectSwitchControllerQosQueuePolicyDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -188,7 +193,9 @@ func resourceObjectSwitchControllerQosQueuePolicyDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerQosQueuePolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerQosQueuePolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosQueuePolicy resource: %v", err)
 	}

@@ -363,6 +363,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"http_09": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"fortinet_bar": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -928,6 +933,7 @@ func resourceObjectFirewallProfileProtocolOptionsCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -939,9 +945,9 @@ func resourceObjectFirewallProfileProtocolOptionsCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptions resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProfileProtocolOptions(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProfileProtocolOptions(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -957,6 +963,7 @@ func resourceObjectFirewallProfileProtocolOptionsUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -969,7 +976,9 @@ func resourceObjectFirewallProfileProtocolOptionsUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptions(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProfileProtocolOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -988,6 +997,7 @@ func resourceObjectFirewallProfileProtocolOptionsDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -995,7 +1005,9 @@ func resourceObjectFirewallProfileProtocolOptionsDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptions(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProfileProtocolOptions(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -1595,6 +1607,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["h2c"] = flattenObjectFirewallProfileProtocolOptionsHttpH2C(i["h2c"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "http_09"
+	if _, ok := i["http-0.9"]; ok {
+		result["http_09"] = flattenObjectFirewallProfileProtocolOptionsHttpHttp09(i["http-0.9"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "fortinet_bar"
 	if _, ok := i["fortinet-bar"]; ok {
 		result["fortinet_bar"] = flattenObjectFirewallProfileProtocolOptionsHttpFortinetBar(i["fortinet-bar"], d, pre_append)
@@ -1760,6 +1777,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpDomainFronting(v interface{}
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpH2C(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpHttp09(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3420,6 +3441,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["h2c"], _ = expandObjectFirewallProfileProtocolOptionsHttpH2C(d, i["h2c"], pre_append)
 	}
+	pre_append = pre + ".0." + "http_09"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["http-0.9"], _ = expandObjectFirewallProfileProtocolOptionsHttpHttp09(d, i["http_09"], pre_append)
+	}
 	pre_append = pre + ".0." + "fortinet_bar"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortinet-bar"], _ = expandObjectFirewallProfileProtocolOptionsHttpFortinetBar(d, i["fortinet_bar"], pre_append)
@@ -3557,6 +3582,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpDomainFronting(d *schema.Reso
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpH2C(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpHttp09(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

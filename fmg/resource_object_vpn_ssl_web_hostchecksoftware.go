@@ -119,6 +119,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,9 +131,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftware resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebHostCheckSoftware(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebHostCheckSoftware(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}
@@ -148,6 +149,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +162,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftware resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebHostCheckSoftware(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebHostCheckSoftware(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}
@@ -179,6 +183,7 @@ func resourceObjectVpnSslWebHostCheckSoftwareDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -186,7 +191,9 @@ func resourceObjectVpnSslWebHostCheckSoftwareDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebHostCheckSoftware(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebHostCheckSoftware(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}

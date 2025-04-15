@@ -120,6 +120,7 @@ func resourceWantempSystemVirtualWanLinkMembersCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,9 +135,9 @@ func resourceWantempSystemVirtualWanLinkMembersCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkMembers resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemVirtualWanLinkMembers(obj, paradict)
-
+	_, err = c.CreateWantempSystemVirtualWanLinkMembers(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkMembers resource: %v", err)
 	}
@@ -152,6 +153,7 @@ func resourceWantempSystemVirtualWanLinkMembersUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +169,9 @@ func resourceWantempSystemVirtualWanLinkMembersUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating WantempSystemVirtualWanLinkMembers resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemVirtualWanLinkMembers(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemVirtualWanLinkMembers(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemVirtualWanLinkMembers resource: %v", err)
 	}
@@ -186,6 +190,7 @@ func resourceWantempSystemVirtualWanLinkMembersDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -196,7 +201,9 @@ func resourceWantempSystemVirtualWanLinkMembersDelete(d *schema.ResourceData, m 
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	err = c.DeleteWantempSystemVirtualWanLinkMembers(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemVirtualWanLinkMembers(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemVirtualWanLinkMembers resource: %v", err)
 	}

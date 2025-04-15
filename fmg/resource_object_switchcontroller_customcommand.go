@@ -67,6 +67,7 @@ func resourceObjectSwitchControllerCustomCommandCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectSwitchControllerCustomCommandCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerCustomCommand resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerCustomCommand(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerCustomCommand(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerCustomCommand resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectSwitchControllerCustomCommandUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectSwitchControllerCustomCommandUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectSwitchControllerCustomCommand resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerCustomCommand(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerCustomCommand(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerCustomCommand resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectSwitchControllerCustomCommandDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectSwitchControllerCustomCommandDelete(d *schema.ResourceData, m
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerCustomCommand(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerCustomCommand(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerCustomCommand resource: %v", err)
 	}

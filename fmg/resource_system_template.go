@@ -95,6 +95,7 @@ func resourceSystemTemplateCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -106,9 +107,9 @@ func resourceSystemTemplateCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemTemplate(obj, paradict)
-
+	_, err = c.CreateSystemTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemTemplate resource: %v", err)
 	}
@@ -124,6 +125,7 @@ func resourceSystemTemplateUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +138,9 @@ func resourceSystemTemplateUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemTemplate resource: %v", err)
 	}
@@ -155,6 +159,7 @@ func resourceSystemTemplateDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceSystemTemplateDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemTemplate resource: %v", err)
 	}

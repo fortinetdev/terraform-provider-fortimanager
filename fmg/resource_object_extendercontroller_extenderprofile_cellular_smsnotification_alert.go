@@ -95,6 +95,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +111,9 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert resource: %v", err)
 	}
@@ -129,6 +132,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +143,9 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert resource: %v", err)
 	}

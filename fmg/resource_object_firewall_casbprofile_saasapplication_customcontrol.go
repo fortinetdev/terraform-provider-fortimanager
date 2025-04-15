@@ -92,6 +92,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlCreate(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +109,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlCreate(d *sche
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationCustomControl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallCasbProfileSaasApplicationCustomControl(obj, paradict)
-
+	_, err = c.CreateObjectFirewallCasbProfileSaasApplicationCustomControl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}
@@ -126,6 +127,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlUpdate(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +145,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlUpdate(d *sche
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplicationCustomControl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallCasbProfileSaasApplicationCustomControl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallCasbProfileSaasApplicationCustomControl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}
@@ -162,6 +166,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlDelete(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +179,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlDelete(d *sche
 	paradict["casb_profile"] = casb_profile
 	paradict["saas_application"] = saas_application
 
-	err = c.DeleteObjectFirewallCasbProfileSaasApplicationCustomControl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallCasbProfileSaasApplicationCustomControl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}

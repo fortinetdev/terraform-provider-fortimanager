@@ -78,6 +78,7 @@ func resourceObjectSystemReplacemsgGroupFtpCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectSystemReplacemsgGroupFtpCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupFtp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupFtp(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgGroupFtp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupFtp resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectSystemReplacemsgGroupFtpUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectSystemReplacemsgGroupFtpUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupFtp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgGroupFtp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgGroupFtp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupFtp resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectSystemReplacemsgGroupFtpDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectSystemReplacemsgGroupFtpDelete(d *schema.ResourceData, m inte
 	replacemsg_group := d.Get("replacemsg_group").(string)
 	paradict["replacemsg_group"] = replacemsg_group
 
-	err = c.DeleteObjectSystemReplacemsgGroupFtp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgGroupFtp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgGroupFtp resource: %v", err)
 	}

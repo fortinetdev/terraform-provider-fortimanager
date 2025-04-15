@@ -47,6 +47,8 @@ func resourceSystemAdminProfileWritePasswdUserListCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemAdminProfileWritePasswdUserListCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfileWritePasswdUserList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminProfileWritePasswdUserList(obj, paradict)
-
+	_, err = c.CreateSystemAdminProfileWritePasswdUserList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfileWritePasswdUserList resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemAdminProfileWritePasswdUserListUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemAdminProfileWritePasswdUserListUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating SystemAdminProfileWritePasswdUserList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminProfileWritePasswdUserList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminProfileWritePasswdUserList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminProfileWritePasswdUserList resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemAdminProfileWritePasswdUserListDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteSystemAdminProfileWritePasswdUserList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminProfileWritePasswdUserList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminProfileWritePasswdUserList resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemAdminProfileWritePasswdUserListRead(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -95,6 +95,7 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesCreate(d *s
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,9 +110,9 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesCreate(d *s
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
 	}
@@ -127,6 +128,7 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesUpdate(d *s
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,7 +144,9 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesUpdate(d *s
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
 	}
@@ -161,6 +165,7 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesDelete(d *s
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +176,9 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesDelete(d *s
 	access_control_list := d.Get("access_control_list").(string)
 	paradict["access_control_list"] = access_control_list
 
-	err = c.DeleteObjectWirelessControllerAccessControlListLayer3Ipv6Rules(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerAccessControlListLayer3Ipv6Rules(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
 	}

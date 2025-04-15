@@ -76,6 +76,7 @@ func resourceObjectUserNsxServiceCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectUserNsxServiceCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsxService resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserNsxService(obj, paradict)
-
+	_, err = c.CreateObjectUserNsxService(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsxService resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectUserNsxServiceUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectUserNsxServiceUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectUserNsxService resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserNsxService(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserNsxService(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserNsxService resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectUserNsxServiceDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectUserNsxServiceDelete(d *schema.ResourceData, m interface{}) e
 	nsx := d.Get("nsx").(string)
 	paradict["nsx"] = nsx
 
-	err = c.DeleteObjectUserNsxService(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserNsxService(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserNsxService resource: %v", err)
 	}

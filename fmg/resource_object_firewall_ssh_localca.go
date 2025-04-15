@@ -79,6 +79,7 @@ func resourceObjectFirewallSshLocalCaCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectFirewallSshLocalCaCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSshLocalCa resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallSshLocalCa(obj, paradict)
-
+	_, err = c.CreateObjectFirewallSshLocalCa(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSshLocalCa resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectFirewallSshLocalCaUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectFirewallSshLocalCaUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectFirewallSshLocalCa resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSshLocalCa(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallSshLocalCa(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSshLocalCa resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectFirewallSshLocalCaDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +151,9 @@ func resourceObjectFirewallSshLocalCaDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallSshLocalCa(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallSshLocalCa(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSshLocalCa resource: %v", err)
 	}

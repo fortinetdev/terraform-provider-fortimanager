@@ -75,6 +75,7 @@ func resourceObjectFirewallNetworkServiceDynamicCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectFirewallNetworkServiceDynamicCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallNetworkServiceDynamic resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallNetworkServiceDynamic(obj, paradict)
-
+	_, err = c.CreateObjectFirewallNetworkServiceDynamic(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallNetworkServiceDynamic resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectFirewallNetworkServiceDynamicUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +118,9 @@ func resourceObjectFirewallNetworkServiceDynamicUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectFirewallNetworkServiceDynamic resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallNetworkServiceDynamic(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallNetworkServiceDynamic(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallNetworkServiceDynamic resource: %v", err)
 	}
@@ -135,6 +139,7 @@ func resourceObjectFirewallNetworkServiceDynamicDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,7 +147,9 @@ func resourceObjectFirewallNetworkServiceDynamicDelete(d *schema.ResourceData, m
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallNetworkServiceDynamic(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallNetworkServiceDynamic(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallNetworkServiceDynamic resource: %v", err)
 	}

@@ -538,6 +538,7 @@ func resourceObjectUserGroupCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -549,9 +550,9 @@ func resourceObjectUserGroupCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserGroup(obj, paradict)
-
+	_, err = c.CreateObjectUserGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroup resource: %v", err)
 	}
@@ -567,6 +568,7 @@ func resourceObjectUserGroupUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -579,7 +581,9 @@ func resourceObjectUserGroupUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating ObjectUserGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserGroup resource: %v", err)
 	}
@@ -598,6 +602,7 @@ func resourceObjectUserGroupDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -605,7 +610,9 @@ func resourceObjectUserGroupDelete(d *schema.ResourceData, m interface{}) error 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserGroup resource: %v", err)
 	}

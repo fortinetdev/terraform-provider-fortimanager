@@ -101,6 +101,10 @@ func resourceObjectUserExternalIdentityProvider() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -110,6 +114,7 @@ func resourceObjectUserExternalIdentityProviderCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,9 +126,9 @@ func resourceObjectUserExternalIdentityProviderCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserExternalIdentityProvider resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserExternalIdentityProvider(obj, paradict)
-
+	_, err = c.CreateObjectUserExternalIdentityProvider(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserExternalIdentityProvider resource: %v", err)
 	}
@@ -139,6 +144,7 @@ func resourceObjectUserExternalIdentityProviderUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +157,9 @@ func resourceObjectUserExternalIdentityProviderUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectUserExternalIdentityProvider resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserExternalIdentityProvider(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserExternalIdentityProvider(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserExternalIdentityProvider resource: %v", err)
 	}
@@ -170,6 +178,7 @@ func resourceObjectUserExternalIdentityProviderDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,7 +186,9 @@ func resourceObjectUserExternalIdentityProviderDelete(d *schema.ResourceData, m 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserExternalIdentityProvider(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserExternalIdentityProvider(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserExternalIdentityProvider resource: %v", err)
 	}
@@ -264,6 +275,10 @@ func flattenObjectUserExternalIdentityProviderUserAttrName(v interface{}, d *sch
 }
 
 func flattenObjectUserExternalIdentityProviderVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserExternalIdentityProviderVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -394,6 +409,16 @@ func refreshObjectObjectUserExternalIdentityProvider(d *schema.ResourceData, o m
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserExternalIdentityProviderVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserExternalIdentityProvider-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -448,6 +473,10 @@ func expandObjectUserExternalIdentityProviderUserAttrName(d *schema.ResourceData
 }
 
 func expandObjectUserExternalIdentityProviderVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserExternalIdentityProviderVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -559,6 +588,15 @@ func getObjectObjectUserExternalIdentityProvider(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["version"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserExternalIdentityProviderVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

@@ -92,6 +92,7 @@ func resourceObjectFirewallServiceGroupCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectFirewallServiceGroupCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallServiceGroup(obj, paradict)
-
+	_, err = c.CreateObjectFirewallServiceGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceGroup resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectFirewallServiceGroupUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectFirewallServiceGroupUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectFirewallServiceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallServiceGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallServiceGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceGroup resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectFirewallServiceGroupDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectFirewallServiceGroupDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallServiceGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallServiceGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallServiceGroup resource: %v", err)
 	}

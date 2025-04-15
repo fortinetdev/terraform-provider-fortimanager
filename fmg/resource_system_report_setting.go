@@ -93,6 +93,8 @@ func resourceSystemReportSettingUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -101,7 +103,9 @@ func resourceSystemReportSettingUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystemReportSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemReportSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportSetting resource: %v", err)
 	}
@@ -120,10 +124,14 @@ func resourceSystemReportSettingDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemReportSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportSetting resource: %v", err)
 	}
@@ -140,6 +148,7 @@ func resourceSystemReportSettingRead(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

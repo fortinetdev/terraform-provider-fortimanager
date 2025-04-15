@@ -99,6 +99,7 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueCreate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -113,9 +114,9 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueCreate(d *schema.Resour
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQueuePolicyCosQueue resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerQosQueuePolicyCosQueue(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerQosQueuePolicyCosQueue(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQueuePolicyCosQueue resource: %v", err)
 	}
@@ -131,6 +132,7 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueUpdate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +148,9 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueUpdate(d *schema.Resour
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQueuePolicyCosQueue resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosQueuePolicyCosQueue(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerQosQueuePolicyCosQueue(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQueuePolicyCosQueue resource: %v", err)
 	}
@@ -165,6 +169,7 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueDelete(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -175,7 +180,9 @@ func resourceObjectSwitchControllerQosQueuePolicyCosQueueDelete(d *schema.Resour
 	queue_policy := d.Get("queue_policy").(string)
 	paradict["queue_policy"] = queue_policy
 
-	err = c.DeleteObjectSwitchControllerQosQueuePolicyCosQueue(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerQosQueuePolicyCosQueue(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosQueuePolicyCosQueue resource: %v", err)
 	}

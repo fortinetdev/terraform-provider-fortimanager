@@ -85,6 +85,7 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentUpdate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,7 +101,9 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentUpdate(d *schema.ResourceD
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxRangeSegment resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileConstraintMaxRangeSegment(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileConstraintMaxRangeSegment(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxRangeSegment resource: %v", err)
 	}
@@ -119,6 +122,7 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentDelete(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +133,9 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentDelete(d *schema.ResourceD
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileConstraintMaxRangeSegment(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileConstraintMaxRangeSegment(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxRangeSegment resource: %v", err)
 	}

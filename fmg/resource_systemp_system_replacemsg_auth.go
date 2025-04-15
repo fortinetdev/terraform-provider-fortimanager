@@ -79,6 +79,7 @@ func resourceSystempSystemReplacemsgAuthUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,7 +95,9 @@ func resourceSystempSystemReplacemsgAuthUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating SystempSystemReplacemsgAuth resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgAuth(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgAuth(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgAuth resource: %v", err)
 	}
@@ -113,6 +116,7 @@ func resourceSystempSystemReplacemsgAuthDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +127,9 @@ func resourceSystempSystemReplacemsgAuthDelete(d *schema.ResourceData, m interfa
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgAuth(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgAuth(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgAuth resource: %v", err)
 	}

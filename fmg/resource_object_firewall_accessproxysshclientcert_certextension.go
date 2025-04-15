@@ -78,6 +78,7 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionCreate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionCreate(d *schema
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxySshClientCertCertExtension resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxySshClientCertCertExtension(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxySshClientCertCertExtension(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxySshClientCertCertExtension resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxySshClientCertCertExtension resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxySshClientCertCertExtension(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxySshClientCertCertExtension(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxySshClientCertCertExtension resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectFirewallAccessProxySshClientCertCertExtensionDelete(d *schema
 	access_proxy_ssh_client_cert := d.Get("access_proxy_ssh_client_cert").(string)
 	paradict["access_proxy_ssh_client_cert"] = access_proxy_ssh_client_cert
 
-	err = c.DeleteObjectFirewallAccessProxySshClientCertCertExtension(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxySshClientCertCertExtension(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxySshClientCertCertExtension resource: %v", err)
 	}

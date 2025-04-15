@@ -49,6 +49,8 @@ func resourceFmupdateAvIpsAdvancedLogUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,7 +59,9 @@ func resourceFmupdateAvIpsAdvancedLogUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateAvIpsAdvancedLog(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateAvIpsAdvancedLog(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
@@ -76,10 +80,14 @@ func resourceFmupdateAvIpsAdvancedLogDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateAvIpsAdvancedLog(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateAvIpsAdvancedLog(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
@@ -96,6 +104,7 @@ func resourceFmupdateAvIpsAdvancedLogRead(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

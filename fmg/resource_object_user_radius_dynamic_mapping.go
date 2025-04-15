@@ -118,6 +118,10 @@ func resourceObjectUserRadiusDynamicMapping() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"vrf_select": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -363,6 +367,11 @@ func resourceObjectUserRadiusDynamicMapping() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"require_message_authenticator": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"rsso": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -529,6 +538,10 @@ func resourceObjectUserRadiusDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -543,6 +556,7 @@ func resourceObjectUserRadiusDynamicMappingCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -557,9 +571,9 @@ func resourceObjectUserRadiusDynamicMappingCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserRadiusDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectUserRadiusDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusDynamicMapping resource: %v", err)
 	}
@@ -575,6 +589,7 @@ func resourceObjectUserRadiusDynamicMappingUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -590,7 +605,9 @@ func resourceObjectUserRadiusDynamicMappingUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectUserRadiusDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserRadiusDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserRadiusDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserRadiusDynamicMapping resource: %v", err)
 	}
@@ -609,6 +626,7 @@ func resourceObjectUserRadiusDynamicMappingDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -619,7 +637,9 @@ func resourceObjectUserRadiusDynamicMappingDelete(d *schema.ResourceData, m inte
 	radius := d.Get("radius").(string)
 	paradict["radius"] = radius
 
-	err = c.DeleteObjectUserRadiusDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserRadiusDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserRadiusDynamicMapping resource: %v", err)
 	}
@@ -794,6 +814,12 @@ func flattenObjectUserRadiusDynamicMappingAccountingServer2edl(v interface{}, d 
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := i["vrf-select"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingAccountingServerVrfSelect2edl(i["vrf-select"], d, pre_append)
+			tmp["vrf_select"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-VrfSelect")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -829,6 +855,10 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerSourceIp2edl(v interfa
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingAccountingServerVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1048,6 +1078,10 @@ func flattenObjectUserRadiusDynamicMappingRadiusPort2edl(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingRequireMessageAuthenticator2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusDynamicMappingRsso2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1165,6 +1199,10 @@ func flattenObjectUserRadiusDynamicMappingUseManagementVdom2edl(v interface{}, d
 }
 
 func flattenObjectUserRadiusDynamicMappingUsernameCaseSensitive2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1787,6 +1825,16 @@ func refreshObjectObjectUserRadiusDynamicMapping(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("require_message_authenticator", flattenObjectUserRadiusDynamicMappingRequireMessageAuthenticator2edl(o["require-message-authenticator"], d, "require_message_authenticator")); err != nil {
+		if vv, ok := fortiAPIPatch(o["require-message-authenticator"], "ObjectUserRadiusDynamicMapping-RequireMessageAuthenticator"); ok {
+			if err = d.Set("require_message_authenticator", vv); err != nil {
+				return fmt.Errorf("Error reading require_message_authenticator: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading require_message_authenticator: %v", err)
+		}
+	}
+
 	if err = d.Set("rsso", flattenObjectUserRadiusDynamicMappingRsso2edl(o["rsso"], d, "rsso")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rsso"], "ObjectUserRadiusDynamicMapping-Rsso"); ok {
 			if err = d.Set("rsso", vv); err != nil {
@@ -2087,6 +2135,16 @@ func refreshObjectObjectUserRadiusDynamicMapping(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserRadiusDynamicMappingVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserRadiusDynamicMapping-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -2200,6 +2258,11 @@ func expandObjectUserRadiusDynamicMappingAccountingServer2edl(d *schema.Resource
 			tmp["status"], _ = expandObjectUserRadiusDynamicMappingAccountingServerStatus2edl(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vrf-select"], _ = expandObjectUserRadiusDynamicMappingAccountingServerVrfSelect2edl(d, i["vrf_select"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -2239,6 +2302,10 @@ func expandObjectUserRadiusDynamicMappingAccountingServerSourceIp2edl(d *schema.
 }
 
 func expandObjectUserRadiusDynamicMappingAccountingServerStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingAccountingServerVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2462,6 +2529,10 @@ func expandObjectUserRadiusDynamicMappingRadiusPort2edl(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectUserRadiusDynamicMappingRequireMessageAuthenticator2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusDynamicMappingRsso2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2595,6 +2666,10 @@ func expandObjectUserRadiusDynamicMappingUseManagementVdom2edl(d *schema.Resourc
 }
 
 func expandObjectUserRadiusDynamicMappingUsernameCaseSensitive2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3132,6 +3207,15 @@ func getObjectObjectUserRadiusDynamicMapping(d *schema.ResourceData) (*map[strin
 		}
 	}
 
+	if v, ok := d.GetOk("require_message_authenticator"); ok || d.HasChange("require_message_authenticator") {
+		t, err := expandObjectUserRadiusDynamicMappingRequireMessageAuthenticator2edl(d, v, "require_message_authenticator")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["require-message-authenticator"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("rsso"); ok || d.HasChange("rsso") {
 		t, err := expandObjectUserRadiusDynamicMappingRsso2edl(d, v, "rsso")
 		if err != nil {
@@ -3435,6 +3519,15 @@ func getObjectObjectUserRadiusDynamicMapping(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["username-case-sensitive"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserRadiusDynamicMappingVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

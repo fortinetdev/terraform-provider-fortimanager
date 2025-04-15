@@ -76,6 +76,7 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,7 +92,9 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapPortalMessageOverrides resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVapPortalMessageOverrides(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerVapPortalMessageOverrides(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapPortalMessageOverrides resource: %v", err)
 	}
@@ -110,6 +113,7 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +124,9 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesDelete(d *schema.R
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
-	err = c.DeleteObjectWirelessControllerVapPortalMessageOverrides(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerVapPortalMessageOverrides(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVapPortalMessageOverrides resource: %v", err)
 	}

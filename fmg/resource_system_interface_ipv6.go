@@ -60,6 +60,8 @@ func resourceSystemInterfaceIpv6Update(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -71,7 +73,9 @@ func resourceSystemInterfaceIpv6Update(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating SystemInterfaceIpv6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemInterfaceIpv6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemInterfaceIpv6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemInterfaceIpv6 resource: %v", err)
 	}
@@ -90,13 +94,17 @@ func resourceSystemInterfaceIpv6Delete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
-	err = c.DeleteSystemInterfaceIpv6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemInterfaceIpv6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemInterfaceIpv6 resource: %v", err)
 	}
@@ -113,6 +121,7 @@ func resourceSystemInterfaceIpv6Read(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -221,6 +221,10 @@ func resourceObjectUserFssoDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -235,6 +239,7 @@ func resourceObjectUserFssoDynamicMappingCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -249,9 +254,9 @@ func resourceObjectUserFssoDynamicMappingCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFssoDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserFssoDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectUserFssoDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFssoDynamicMapping resource: %v", err)
 	}
@@ -267,6 +272,7 @@ func resourceObjectUserFssoDynamicMappingUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -282,7 +288,9 @@ func resourceObjectUserFssoDynamicMappingUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectUserFssoDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserFssoDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserFssoDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFssoDynamicMapping resource: %v", err)
 	}
@@ -301,6 +309,7 @@ func resourceObjectUserFssoDynamicMappingDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -311,7 +320,9 @@ func resourceObjectUserFssoDynamicMappingDelete(d *schema.ResourceData, m interf
 	fsso := d.Get("fsso").(string)
 	paradict["fsso"] = fsso
 
-	err = c.DeleteObjectUserFssoDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserFssoDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserFssoDynamicMapping resource: %v", err)
 	}
@@ -523,6 +534,10 @@ func flattenObjectUserFssoDynamicMappingType2edl(v interface{}, d *schema.Resour
 
 func flattenObjectUserFssoDynamicMappingUserInfoServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectUserFssoDynamicMappingVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectObjectUserFssoDynamicMapping(d *schema.ResourceData, o map[string]interface{}) error {
@@ -830,6 +845,16 @@ func refreshObjectObjectUserFssoDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserFssoDynamicMappingVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserFssoDynamicMapping-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1007,6 +1032,10 @@ func expandObjectUserFssoDynamicMappingType2edl(d *schema.ResourceData, v interf
 
 func expandObjectUserFssoDynamicMappingUserInfoServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectUserFssoDynamicMappingVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectUserFssoDynamicMapping(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -1306,6 +1335,15 @@ func getObjectObjectUserFssoDynamicMapping(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["user-info-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserFssoDynamicMappingVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

@@ -80,6 +80,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionCreate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionCreate(d *schema
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationCustomControlOption resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbProfileSaasApplicationCustomControlOption(obj, paradict)
-
+	_, err = c.CreateObjectCasbProfileSaasApplicationCustomControlOption(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationCustomControlOption resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +137,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationCustomControlOption resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbProfileSaasApplicationCustomControlOption(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbProfileSaasApplicationCustomControlOption(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationCustomControlOption resource: %v", err)
 	}
@@ -154,6 +158,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -168,7 +173,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlOptionDelete(d *schema
 	paradict["saas_application"] = saas_application
 	paradict["custom_control"] = custom_control
 
-	err = c.DeleteObjectCasbProfileSaasApplicationCustomControlOption(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbProfileSaasApplicationCustomControlOption(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbProfileSaasApplicationCustomControlOption resource: %v", err)
 	}

@@ -81,15 +81,17 @@ func resourceSecurityconsoleInstallDeviceUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectSecurityconsoleInstallDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleInstallDevice(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSecurityconsoleInstallDevice(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallDevice resource: %v", err)
 	}

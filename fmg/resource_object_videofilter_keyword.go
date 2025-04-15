@@ -103,6 +103,7 @@ func resourceObjectVideofilterKeywordCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectVideofilterKeywordCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterKeyword resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVideofilterKeyword(obj, paradict)
-
+	_, err = c.CreateObjectVideofilterKeyword(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterKeyword resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectVideofilterKeywordUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +146,9 @@ func resourceObjectVideofilterKeywordUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectVideofilterKeyword resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterKeyword(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVideofilterKeyword(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterKeyword resource: %v", err)
 	}
@@ -163,6 +167,7 @@ func resourceObjectVideofilterKeywordDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceObjectVideofilterKeywordDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterKeyword(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVideofilterKeyword(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterKeyword resource: %v", err)
 	}

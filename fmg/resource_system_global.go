@@ -93,6 +93,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"apache_wsgi_processes": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"api_ip_binding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -162,6 +167,7 @@ func resourceSystemGlobal() *schema.Resource {
 			"fabric_storage_pool_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"fabric_storage_pool_size": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -174,6 +180,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Computed: true,
 			},
 			"fcp_cfg_service": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fgfm_allow_vm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -579,6 +590,8 @@ func resourceSystemGlobalUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -587,7 +600,9 @@ func resourceSystemGlobalUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemGlobal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemGlobal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemGlobal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobal resource: %v", err)
 	}
@@ -606,10 +621,14 @@ func resourceSystemGlobalDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemGlobal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemGlobal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemGlobal resource: %v", err)
 	}
@@ -626,6 +645,7 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -699,6 +719,10 @@ func flattenSystemGlobalApacheMode(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
+func flattenSystemGlobalApacheWsgiProcesses(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalApiIpBinding(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -764,6 +788,10 @@ func flattenSystemGlobalFazStatus(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemGlobalFcpCfgService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalFgfmAllowVm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1282,6 +1310,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("apache_wsgi_processes", flattenSystemGlobalApacheWsgiProcesses(o["apache-wsgi-processes"], d, "apache_wsgi_processes")); err != nil {
+		if vv, ok := fortiAPIPatch(o["apache-wsgi-processes"], "SystemGlobal-ApacheWsgiProcesses"); ok {
+			if err = d.Set("apache_wsgi_processes", vv); err != nil {
+				return fmt.Errorf("Error reading apache_wsgi_processes: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading apache_wsgi_processes: %v", err)
+		}
+	}
+
 	if err = d.Set("api_ip_binding", flattenSystemGlobalApiIpBinding(o["api-ip-binding"], d, "api_ip_binding")); err != nil {
 		if vv, ok := fortiAPIPatch(o["api-ip-binding"], "SystemGlobal-ApiIpBinding"); ok {
 			if err = d.Set("api_ip_binding", vv); err != nil {
@@ -1449,6 +1487,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading fcp_cfg_service: %v", err)
+		}
+	}
+
+	if err = d.Set("fgfm_allow_vm", flattenSystemGlobalFgfmAllowVm(o["fgfm-allow-vm"], d, "fgfm_allow_vm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-allow-vm"], "SystemGlobal-FgfmAllowVm"); ok {
+			if err = d.Set("fgfm_allow_vm", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_allow_vm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_allow_vm: %v", err)
 		}
 	}
 
@@ -2261,6 +2309,10 @@ func expandSystemGlobalApacheMode(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
+func expandSystemGlobalApacheWsgiProcesses(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalApiIpBinding(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2326,6 +2378,10 @@ func expandSystemGlobalFazStatus(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandSystemGlobalFcpCfgService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalFgfmAllowVm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2813,6 +2869,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("apache_wsgi_processes"); ok || d.HasChange("apache_wsgi_processes") {
+		t, err := expandSystemGlobalApacheWsgiProcesses(d, v, "apache_wsgi_processes")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["apache-wsgi-processes"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("api_ip_binding"); ok || d.HasChange("api_ip_binding") {
 		t, err := expandSystemGlobalApiIpBinding(d, v, "api_ip_binding")
 		if err != nil {
@@ -2963,6 +3028,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["fcp-cfg-service"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fgfm_allow_vm"); ok || d.HasChange("fgfm_allow_vm") {
+		t, err := expandSystemGlobalFgfmAllowVm(d, v, "fgfm_allow_vm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-allow-vm"] = t
 		}
 	}
 

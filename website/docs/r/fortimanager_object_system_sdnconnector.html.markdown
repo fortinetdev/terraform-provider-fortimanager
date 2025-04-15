@@ -83,6 +83,7 @@ The following arguments are supported:
 * `key_passwd` - Private key password.
 * `last_update` - Last-Update.
 * `login_endpoint` - Azure Stack login endpoint.
+* `message_server_port` - HTTP port number of the SAP message server.
 * `name` - SDN connector name.
 * `nic` - Nic. The structure of `nic` block is documented below.
 * `nsx_cert_fingerprint` - NSX certificate fingerprint.

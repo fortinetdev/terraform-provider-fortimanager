@@ -257,6 +257,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"label": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -287,6 +293,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"poolname": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -393,6 +400,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"url_risk": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"users": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -452,6 +465,11 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ztna_ems_tag_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ztna_proxy": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -472,6 +490,7 @@ func resourcePackagesFirewallProxyPolicyCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -488,11 +507,20 @@ func resourcePackagesFirewallProxyPolicyCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallProxyPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallProxyPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallProxyPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -506,6 +534,7 @@ func resourcePackagesFirewallProxyPolicyUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -523,7 +552,9 @@ func resourcePackagesFirewallProxyPolicyUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource: %v", err)
 	}
@@ -542,6 +573,7 @@ func resourcePackagesFirewallProxyPolicyDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -554,7 +586,9 @@ func resourcePackagesFirewallProxyPolicyDelete(d *schema.ResourceData, m interfa
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallProxyPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallProxyPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallProxyPolicy resource: %v", err)
 	}
@@ -785,6 +819,10 @@ func flattenPackagesFirewallProxyPolicyIpsVoipFilter(v interface{}, d *schema.Re
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenPackagesFirewallProxyPolicyIsolatorServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallProxyPolicyLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -905,6 +943,10 @@ func flattenPackagesFirewallProxyPolicyTransparent(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesFirewallProxyPolicyUrlRisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallProxyPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -955,6 +997,10 @@ func flattenPackagesFirewallProxyPolicyWebproxyProfile(v interface{}, d *schema.
 
 func flattenPackagesFirewallProxyPolicyZtnaEmsTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyZtnaEmsTagNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesFirewallProxyPolicyZtnaProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1402,6 +1448,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("isolator_server", flattenPackagesFirewallProxyPolicyIsolatorServer(o["isolator-server"], d, "isolator_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-server"], "PackagesFirewallProxyPolicy-IsolatorServer"); ok {
+			if err = d.Set("isolator_server", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
 	if err = d.Set("label", flattenPackagesFirewallProxyPolicyLabel(o["label"], d, "label")); err != nil {
 		if vv, ok := fortiAPIPatch(o["label"], "PackagesFirewallProxyPolicy-Label"); ok {
 			if err = d.Set("label", vv); err != nil {
@@ -1702,6 +1758,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("url_risk", flattenPackagesFirewallProxyPolicyUrlRisk(o["url-risk"], d, "url_risk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-risk"], "PackagesFirewallProxyPolicy-UrlRisk"); ok {
+			if err = d.Set("url_risk", vv); err != nil {
+				return fmt.Errorf("Error reading url_risk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_risk: %v", err)
+		}
+	}
+
 	if err = d.Set("users", flattenPackagesFirewallProxyPolicyUsers(o["users"], d, "users")); err != nil {
 		if vv, ok := fortiAPIPatch(o["users"], "PackagesFirewallProxyPolicy-Users"); ok {
 			if err = d.Set("users", vv); err != nil {
@@ -1829,6 +1895,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ztna_ems_tag: %v", err)
+		}
+	}
+
+	if err = d.Set("ztna_ems_tag_negate", flattenPackagesFirewallProxyPolicyZtnaEmsTagNegate(o["ztna-ems-tag-negate"], d, "ztna_ems_tag_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-ems-tag-negate"], "PackagesFirewallProxyPolicy-ZtnaEmsTagNegate"); ok {
+			if err = d.Set("ztna_ems_tag_negate", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_ems_tag_negate: %v", err)
 		}
 	}
 
@@ -2033,6 +2109,10 @@ func expandPackagesFirewallProxyPolicyIpsVoipFilter(d *schema.ResourceData, v in
 	return convstr2list(v, nil), nil
 }
 
+func expandPackagesFirewallProxyPolicyIsolatorServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallProxyPolicyLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2153,6 +2233,10 @@ func expandPackagesFirewallProxyPolicyTransparent(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyUrlRisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallProxyPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -2203,6 +2287,10 @@ func expandPackagesFirewallProxyPolicyWebproxyProfile(d *schema.ResourceData, v 
 
 func expandPackagesFirewallProxyPolicyZtnaEmsTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyZtnaEmsTagNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesFirewallProxyPolicyZtnaProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2603,6 +2691,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("isolator_server"); ok || d.HasChange("isolator_server") {
+		t, err := expandPackagesFirewallProxyPolicyIsolatorServer(d, v, "isolator_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-server"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("label"); ok || d.HasChange("label") {
 		t, err := expandPackagesFirewallProxyPolicyLabel(d, v, "label")
 		if err != nil {
@@ -2873,6 +2970,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("url_risk"); ok || d.HasChange("url_risk") {
+		t, err := expandPackagesFirewallProxyPolicyUrlRisk(d, v, "url_risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-risk"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
 		t, err := expandPackagesFirewallProxyPolicyUsers(d, v, "users")
 		if err != nil {
@@ -2987,6 +3093,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-ems-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_ems_tag_negate"); ok || d.HasChange("ztna_ems_tag_negate") {
+		t, err := expandPackagesFirewallProxyPolicyZtnaEmsTagNegate(d, v, "ztna_ems_tag_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-ems-tag-negate"] = t
 		}
 	}
 

@@ -108,6 +108,7 @@ func resourceObjectSwitchControllerQosDot1PMapCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,9 +120,9 @@ func resourceObjectSwitchControllerQosDot1PMapCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosDot1PMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerQosDot1PMap(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerQosDot1PMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}
@@ -137,6 +138,7 @@ func resourceObjectSwitchControllerQosDot1PMapUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +151,9 @@ func resourceObjectSwitchControllerQosDot1PMapUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosDot1PMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosDot1PMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerQosDot1PMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}
@@ -168,6 +172,7 @@ func resourceObjectSwitchControllerQosDot1PMapDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -175,7 +180,9 @@ func resourceObjectSwitchControllerQosDot1PMapDelete(d *schema.ResourceData, m i
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerQosDot1PMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerQosDot1PMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}

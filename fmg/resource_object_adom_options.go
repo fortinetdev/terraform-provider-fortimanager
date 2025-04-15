@@ -67,6 +67,7 @@ func resourceObjectAdomOptionsUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -79,7 +80,9 @@ func resourceObjectAdomOptionsUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectAdomOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAdomOptions(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAdomOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAdomOptions resource: %v", err)
 	}
@@ -98,6 +101,7 @@ func resourceObjectAdomOptionsDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -105,7 +109,9 @@ func resourceObjectAdomOptionsDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAdomOptions(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAdomOptions(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAdomOptions resource: %v", err)
 	}

@@ -86,6 +86,7 @@ func resourceObjectWirelessControllerHotspot20IconIconListCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,9 +101,9 @@ func resourceObjectWirelessControllerHotspot20IconIconListCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20IconIconList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20IconIconList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20IconIconList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20IconIconList resource: %v", err)
 	}
@@ -118,6 +119,7 @@ func resourceObjectWirelessControllerHotspot20IconIconListUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectWirelessControllerHotspot20IconIconListUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20IconIconList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20IconIconList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20IconIconList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20IconIconList resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectWirelessControllerHotspot20IconIconListDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceObjectWirelessControllerHotspot20IconIconListDelete(d *schema.Resou
 	icon := d.Get("icon").(string)
 	paradict["icon"] = icon
 
-	err = c.DeleteObjectWirelessControllerHotspot20IconIconList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20IconIconList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20IconIconList resource: %v", err)
 	}

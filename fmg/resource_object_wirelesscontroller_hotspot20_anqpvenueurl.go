@@ -84,6 +84,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueUrl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueUrl(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueUrl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueUrl resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpVenueUrl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpVenueUrl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpVenueUrl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpVenueUrl resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlDelete(d *schema.Resou
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpVenueUrl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpVenueUrl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpVenueUrl resource: %v", err)
 	}

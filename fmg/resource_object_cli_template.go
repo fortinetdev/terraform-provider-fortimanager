@@ -95,6 +95,7 @@ func resourceObjectCliTemplateCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -106,9 +107,9 @@ func resourceObjectCliTemplateCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCliTemplate(obj, paradict)
-
+	_, err = c.CreateObjectCliTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplate resource: %v", err)
 	}
@@ -124,6 +125,7 @@ func resourceObjectCliTemplateUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +138,9 @@ func resourceObjectCliTemplateUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectCliTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCliTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCliTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplate resource: %v", err)
 	}
@@ -155,6 +159,7 @@ func resourceObjectCliTemplateDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceObjectCliTemplateDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCliTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCliTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCliTemplate resource: %v", err)
 	}

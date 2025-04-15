@@ -68,6 +68,7 @@ func resourcePackagesCentralDnatCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -84,9 +85,9 @@ func resourcePackagesCentralDnatCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesCentralDnat resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesCentralDnat(obj, paradict)
-
+	_, err = c.CreatePackagesCentralDnat(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesCentralDnat resource: %v", err)
 	}
@@ -102,6 +103,7 @@ func resourcePackagesCentralDnatUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourcePackagesCentralDnatUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating PackagesCentralDnat resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesCentralDnat(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesCentralDnat(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesCentralDnat resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourcePackagesCentralDnatDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourcePackagesCentralDnatDelete(d *schema.ResourceData, m interface{}) er
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesCentralDnat(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesCentralDnat(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesCentralDnat resource: %v", err)
 	}

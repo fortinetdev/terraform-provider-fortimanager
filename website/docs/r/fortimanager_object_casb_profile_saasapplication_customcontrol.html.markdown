@@ -11,6 +11,7 @@ CASB profile custom control.
 
 ~> This resource is a sub resource for variable `custom_control` of resource `fortimanager_object_casb_profile_saasapplication`. Conflict and overwrite may occur if use both of them.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+>- `attribute_filter`: `fortimanager_object_casb_profile_saasapplication_customcontrol_attributefilter`
 >- `option`: `fortimanager_object_casb_profile_saasapplication_customcontrol_option`
 
 
@@ -25,9 +26,17 @@ The following arguments are supported:
 * `profile` - Profile.
 * `saas_application` - Saas Application.
 
+* `attribute_filter` - Attribute-Filter. The structure of `attribute_filter` block is documented below.
 * `name` - CASB custom control user activity name.
 * `option` - Option. The structure of `option` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `attribute_filter` block supports:
+
+* `action` - CASB access rule tenant control action. Valid values: `block`, `monitor`, `bypass`.
+
+* `attribute_match` - CASB access rule tenant match.
+* `id` - CASB tenant control ID.
 
 The `option` block supports:
 

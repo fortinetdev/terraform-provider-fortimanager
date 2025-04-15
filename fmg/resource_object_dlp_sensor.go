@@ -230,6 +230,7 @@ func resourceObjectDlpSensorCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -241,9 +242,9 @@ func resourceObjectDlpSensorCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensor resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpSensor(obj, paradict)
-
+	_, err = c.CreateObjectDlpSensor(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensor resource: %v", err)
 	}
@@ -259,6 +260,7 @@ func resourceObjectDlpSensorUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -271,7 +273,9 @@ func resourceObjectDlpSensorUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating ObjectDlpSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpSensor(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpSensor(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpSensor resource: %v", err)
 	}
@@ -290,6 +294,7 @@ func resourceObjectDlpSensorDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -297,7 +302,9 @@ func resourceObjectDlpSensorDelete(d *schema.ResourceData, m interface{}) error 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpSensor(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpSensor(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpSensor resource: %v", err)
 	}

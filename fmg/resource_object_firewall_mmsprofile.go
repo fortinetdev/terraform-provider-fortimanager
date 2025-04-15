@@ -635,6 +635,7 @@ func resourceObjectFirewallMmsProfileCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -646,9 +647,9 @@ func resourceObjectFirewallMmsProfileCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMmsProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallMmsProfile(obj, paradict)
-
+	_, err = c.CreateObjectFirewallMmsProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMmsProfile resource: %v", err)
 	}
@@ -664,6 +665,7 @@ func resourceObjectFirewallMmsProfileUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -676,7 +678,9 @@ func resourceObjectFirewallMmsProfileUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectFirewallMmsProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallMmsProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallMmsProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallMmsProfile resource: %v", err)
 	}
@@ -695,6 +699,7 @@ func resourceObjectFirewallMmsProfileDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -702,7 +707,9 @@ func resourceObjectFirewallMmsProfileDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallMmsProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallMmsProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallMmsProfile resource: %v", err)
 	}

@@ -78,6 +78,7 @@ func resourceObjectDlpSensorEntriesCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectDlpSensorEntriesCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensorEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpSensorEntries(obj, paradict)
-
+	_, err = c.CreateObjectDlpSensorEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensorEntries resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectDlpSensorEntriesUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectDlpSensorEntriesUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectDlpSensorEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpSensorEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpSensorEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpSensorEntries resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectDlpSensorEntriesDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectDlpSensorEntriesDelete(d *schema.ResourceData, m interface{})
 	sensor := d.Get("sensor").(string)
 	paradict["sensor"] = sensor
 
-	err = c.DeleteObjectDlpSensorEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpSensorEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpSensorEntries resource: %v", err)
 	}

@@ -69,6 +69,7 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclCreate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -83,9 +84,9 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclCreate(d *schema
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfileSplitTunnelingAcl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerWtpProfileSplitTunnelingAcl(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerWtpProfileSplitTunnelingAcl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfileSplitTunnelingAcl resource: %v", err)
 	}
@@ -101,6 +102,7 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +118,9 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileSplitTunnelingAcl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWtpProfileSplitTunnelingAcl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerWtpProfileSplitTunnelingAcl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileSplitTunnelingAcl resource: %v", err)
 	}
@@ -135,6 +139,7 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +150,9 @@ func resourceObjectWirelessControllerWtpProfileSplitTunnelingAclDelete(d *schema
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	err = c.DeleteObjectWirelessControllerWtpProfileSplitTunnelingAcl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerWtpProfileSplitTunnelingAcl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileSplitTunnelingAcl resource: %v", err)
 	}

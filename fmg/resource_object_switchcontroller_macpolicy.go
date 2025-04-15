@@ -86,6 +86,7 @@ func resourceObjectSwitchControllerMacPolicyCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -97,9 +98,9 @@ func resourceObjectSwitchControllerMacPolicyCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerMacPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerMacPolicy(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerMacPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerMacPolicy resource: %v", err)
 	}
@@ -115,6 +116,7 @@ func resourceObjectSwitchControllerMacPolicyUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -127,7 +129,9 @@ func resourceObjectSwitchControllerMacPolicyUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectSwitchControllerMacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerMacPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerMacPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerMacPolicy resource: %v", err)
 	}
@@ -146,6 +150,7 @@ func resourceObjectSwitchControllerMacPolicyDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +158,9 @@ func resourceObjectSwitchControllerMacPolicyDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerMacPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerMacPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerMacPolicy resource: %v", err)
 	}

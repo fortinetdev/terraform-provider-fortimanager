@@ -104,6 +104,7 @@ func resourceObjectFirewallCarrierEndpointBwlCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,9 +116,9 @@ func resourceObjectFirewallCarrierEndpointBwlCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCarrierEndpointBwl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallCarrierEndpointBwl(obj, paradict)
-
+	_, err = c.CreateObjectFirewallCarrierEndpointBwl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCarrierEndpointBwl resource: %v", err)
 	}
@@ -133,6 +134,7 @@ func resourceObjectFirewallCarrierEndpointBwlUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +147,9 @@ func resourceObjectFirewallCarrierEndpointBwlUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectFirewallCarrierEndpointBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallCarrierEndpointBwl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallCarrierEndpointBwl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallCarrierEndpointBwl resource: %v", err)
 	}
@@ -164,6 +168,7 @@ func resourceObjectFirewallCarrierEndpointBwlDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +176,9 @@ func resourceObjectFirewallCarrierEndpointBwlDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallCarrierEndpointBwl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallCarrierEndpointBwl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallCarrierEndpointBwl resource: %v", err)
 	}

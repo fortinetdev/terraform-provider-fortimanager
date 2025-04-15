@@ -33,6 +33,7 @@ The following arguments are supported:
 * `user_attr_name` - User attribute name in authentication query.
 * `version` - External identity API version. Valid values: `beta`, `v1.0`.
 
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

@@ -289,6 +289,7 @@ func resourceObjectFirewallVip64Create(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -300,9 +301,9 @@ func resourceObjectFirewallVip64Create(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip64 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVip64(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVip64(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip64 resource: %v", err)
 	}
@@ -318,6 +319,7 @@ func resourceObjectFirewallVip64Update(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -330,7 +332,9 @@ func resourceObjectFirewallVip64Update(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectFirewallVip64 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVip64(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVip64(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip64 resource: %v", err)
 	}
@@ -349,6 +353,7 @@ func resourceObjectFirewallVip64Delete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -356,7 +361,9 @@ func resourceObjectFirewallVip64Delete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVip64(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVip64(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVip64 resource: %v", err)
 	}

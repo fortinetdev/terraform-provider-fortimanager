@@ -124,6 +124,7 @@ func resourceObjectFirewallAccessProxySshClientCertCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,9 +136,9 @@ func resourceObjectFirewallAccessProxySshClientCertCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxySshClientCert resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxySshClientCert(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxySshClientCert(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxySshClientCert resource: %v", err)
 	}
@@ -153,6 +154,7 @@ func resourceObjectFirewallAccessProxySshClientCertUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +167,9 @@ func resourceObjectFirewallAccessProxySshClientCertUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxySshClientCert resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxySshClientCert(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxySshClientCert(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxySshClientCert resource: %v", err)
 	}
@@ -184,6 +188,7 @@ func resourceObjectFirewallAccessProxySshClientCertDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -191,7 +196,9 @@ func resourceObjectFirewallAccessProxySshClientCertDelete(d *schema.ResourceData
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxySshClientCert(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxySshClientCert(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxySshClientCert resource: %v", err)
 	}

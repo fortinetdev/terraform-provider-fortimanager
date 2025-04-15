@@ -125,6 +125,35 @@ func resourceObjectExtensionControllerExtenderProfileLanExtension() *schema.Reso
 				Optional: true,
 				Computed: true,
 			},
+			"traffic_split_services": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"address": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"service": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"vsdb": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -140,6 +169,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionUpdate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +185,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionUpdate(d *schem
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtension resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtension(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtension(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtension resource: %v", err)
 	}
@@ -174,6 +206,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDelete(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -184,7 +217,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDelete(d *schem
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtension(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtension(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileLanExtension resource: %v", err)
 	}
@@ -402,6 +437,75 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance2
 	return v
 }
 
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address"
+		if _, ok := i["address"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress2edl(i["address"], d, pre_append)
+			tmp["address"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Address")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName2edl(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "service"
+		if _, ok := i["service"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService2edl(i["service"], d, pre_append)
+			tmp["service"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Service")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vsdb"
+		if _, ok := i["vsdb"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb2edl(i["vsdb"], d, pre_append)
+			tmp["vsdb"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Vsdb")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectExtensionControllerExtenderProfileLanExtension(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -498,6 +602,30 @@ func refreshObjectObjectExtensionControllerExtenderProfileLanExtension(d *schema
 			}
 		} else {
 			return fmt.Errorf("Error reading link_loadbalance: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("traffic_split_services", flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices2edl(o["traffic-split-services"], d, "traffic_split_services")); err != nil {
+			if vv, ok := fortiAPIPatch(o["traffic-split-services"], "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices"); ok {
+				if err = d.Set("traffic_split_services", vv); err != nil {
+					return fmt.Errorf("Error reading traffic_split_services: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading traffic_split_services: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("traffic_split_services"); ok {
+			if err = d.Set("traffic_split_services", flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices2edl(o["traffic-split-services"], d, "traffic_split_services")); err != nil {
+				if vv, ok := fortiAPIPatch(o["traffic-split-services"], "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices"); ok {
+					if err = d.Set("traffic_split_services", vv); err != nil {
+						return fmt.Errorf("Error reading traffic_split_services: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading traffic_split_services: %v", err)
+				}
+			}
 		}
 	}
 
@@ -655,6 +783,66 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance2e
 	return v, nil
 }
 
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["address"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress2edl(d, i["address"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName2edl(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "service"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["service"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService2edl(d, i["service"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vsdb"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vsdb"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb2edl(d, i["vsdb"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectExtensionControllerExtenderProfileLanExtension(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -709,6 +897,15 @@ func getObjectObjectExtensionControllerExtenderProfileLanExtension(d *schema.Res
 			return &obj, err
 		} else if t != nil {
 			obj["link-loadbalance"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("traffic_split_services"); ok || d.HasChange("traffic_split_services") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices2edl(d, v, "traffic_split_services")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["traffic-split-services"] = t
 		}
 	}
 

@@ -87,6 +87,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaCreate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaCreate(d *schema.ResourceD
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkHealthCheckSla resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemVirtualWanLinkHealthCheckSla(obj, paradict)
-
+	_, err = c.CreateWantempSystemVirtualWanLinkHealthCheckSla(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkHealthCheckSla resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaUpdate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +140,9 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaUpdate(d *schema.ResourceD
 		return fmt.Errorf("Error updating WantempSystemVirtualWanLinkHealthCheckSla resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemVirtualWanLinkHealthCheckSla(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemVirtualWanLinkHealthCheckSla(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemVirtualWanLinkHealthCheckSla resource: %v", err)
 	}
@@ -157,6 +161,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaDelete(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +174,9 @@ func resourceWantempSystemVirtualWanLinkHealthCheckSlaDelete(d *schema.ResourceD
 	paradict["wanprof"] = wanprof
 	paradict["health_check"] = health_check
 
-	err = c.DeleteWantempSystemVirtualWanLinkHealthCheckSla(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemVirtualWanLinkHealthCheckSla(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemVirtualWanLinkHealthCheckSla resource: %v", err)
 	}

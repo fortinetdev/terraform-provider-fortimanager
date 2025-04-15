@@ -79,6 +79,7 @@ func resourceSystempSystemReplacemsgWebproxyUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,7 +95,9 @@ func resourceSystempSystemReplacemsgWebproxyUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating SystempSystemReplacemsgWebproxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgWebproxy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgWebproxy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgWebproxy resource: %v", err)
 	}
@@ -113,6 +116,7 @@ func resourceSystempSystemReplacemsgWebproxyDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +127,9 @@ func resourceSystempSystemReplacemsgWebproxyDelete(d *schema.ResourceData, m int
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgWebproxy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgWebproxy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgWebproxy resource: %v", err)
 	}

@@ -80,6 +80,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleCreate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleCreate(d *schema.
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationAccessRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallCasbProfileSaasApplicationAccessRule(obj, paradict)
-
+	_, err = c.CreateObjectFirewallCasbProfileSaasApplicationAccessRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleUpdate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleUpdate(d *schema.
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplicationAccessRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallCasbProfileSaasApplicationAccessRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallCasbProfileSaasApplicationAccessRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleDelete(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationAccessRuleDelete(d *schema.
 	paradict["casb_profile"] = casb_profile
 	paradict["saas_application"] = saas_application
 
-	err = c.DeleteObjectFirewallCasbProfileSaasApplicationAccessRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallCasbProfileSaasApplicationAccessRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}

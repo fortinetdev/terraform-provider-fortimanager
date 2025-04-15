@@ -120,6 +120,7 @@ func resourceObjectWanoptProfileHttpUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +136,9 @@ func resourceObjectWanoptProfileHttpUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating ObjectWanoptProfileHttp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptProfileHttp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWanoptProfileHttp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptProfileHttp resource: %v", err)
 	}
@@ -154,6 +157,7 @@ func resourceObjectWanoptProfileHttpDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +168,9 @@ func resourceObjectWanoptProfileHttpDelete(d *schema.ResourceData, m interface{}
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWanoptProfileHttp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWanoptProfileHttp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptProfileHttp resource: %v", err)
 	}

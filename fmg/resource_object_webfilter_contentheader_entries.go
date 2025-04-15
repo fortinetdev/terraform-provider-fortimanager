@@ -73,6 +73,7 @@ func resourceObjectWebfilterContentHeaderEntriesCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +88,9 @@ func resourceObjectWebfilterContentHeaderEntriesCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterContentHeaderEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterContentHeaderEntries(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterContentHeaderEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterContentHeaderEntries resource: %v", err)
 	}
@@ -105,6 +106,7 @@ func resourceObjectWebfilterContentHeaderEntriesUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectWebfilterContentHeaderEntriesUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectWebfilterContentHeaderEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterContentHeaderEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterContentHeaderEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterContentHeaderEntries resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectWebfilterContentHeaderEntriesDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectWebfilterContentHeaderEntriesDelete(d *schema.ResourceData, m
 	content_header := d.Get("content_header").(string)
 	paradict["content_header"] = content_header
 
-	err = c.DeleteObjectWebfilterContentHeaderEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterContentHeaderEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterContentHeaderEntries resource: %v", err)
 	}

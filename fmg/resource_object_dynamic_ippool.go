@@ -63,6 +63,7 @@ func resourceObjectDynamicIppoolCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectDynamicIppoolCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicIppool resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicIppool(obj, paradict)
-
+	_, err = c.CreateObjectDynamicIppool(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicIppool resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectDynamicIppoolUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectDynamicIppoolUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectDynamicIppool resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicIppool(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicIppool(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicIppool resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectDynamicIppoolDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectDynamicIppoolDelete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicIppool(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicIppool(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicIppool resource: %v", err)
 	}

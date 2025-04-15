@@ -195,6 +195,7 @@ func resourceObjectFirewallServiceCustomCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -206,9 +207,9 @@ func resourceObjectFirewallServiceCustomCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCustom resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallServiceCustom(obj, paradict)
-
+	_, err = c.CreateObjectFirewallServiceCustom(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCustom resource: %v", err)
 	}
@@ -224,6 +225,7 @@ func resourceObjectFirewallServiceCustomUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -236,7 +238,9 @@ func resourceObjectFirewallServiceCustomUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectFirewallServiceCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallServiceCustom(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallServiceCustom(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCustom resource: %v", err)
 	}
@@ -255,6 +259,7 @@ func resourceObjectFirewallServiceCustomDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -262,7 +267,9 @@ func resourceObjectFirewallServiceCustomDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallServiceCustom(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallServiceCustom(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallServiceCustom resource: %v", err)
 	}

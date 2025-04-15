@@ -97,6 +97,7 @@ func resourceObjectSystemSdnConnectorNicCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -111,9 +112,9 @@ func resourceObjectSystemSdnConnectorNicCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorNic resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorNic(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorNic(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorNic resource: %v", err)
 	}
@@ -129,6 +130,7 @@ func resourceObjectSystemSdnConnectorNicUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +146,9 @@ func resourceObjectSystemSdnConnectorNicUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorNic resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorNic(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorNic(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorNic resource: %v", err)
 	}
@@ -163,6 +167,7 @@ func resourceObjectSystemSdnConnectorNicDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +178,9 @@ func resourceObjectSystemSdnConnectorNicDelete(d *schema.ResourceData, m interfa
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorNic(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorNic(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorNic resource: %v", err)
 	}

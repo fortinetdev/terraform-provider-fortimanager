@@ -3539,6 +3539,7 @@ func resourceObjectFspVlanCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -3550,9 +3551,9 @@ func resourceObjectFspVlanCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlan resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlan(obj, paradict)
-
+	_, err = c.CreateObjectFspVlan(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlan resource: %v", err)
 	}
@@ -3568,6 +3569,7 @@ func resourceObjectFspVlanUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -3580,7 +3582,9 @@ func resourceObjectFspVlanUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectFspVlan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlan(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlan(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlan resource: %v", err)
 	}
@@ -3599,6 +3603,7 @@ func resourceObjectFspVlanDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -3606,7 +3611,9 @@ func resourceObjectFspVlanDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFspVlan(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlan(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlan resource: %v", err)
 	}

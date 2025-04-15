@@ -79,6 +79,7 @@ func resourceSystempSystemReplacemsgNacQuarUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,7 +95,9 @@ func resourceSystempSystemReplacemsgNacQuarUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating SystempSystemReplacemsgNacQuar resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgNacQuar(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgNacQuar(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgNacQuar resource: %v", err)
 	}
@@ -113,6 +116,7 @@ func resourceSystempSystemReplacemsgNacQuarDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +127,9 @@ func resourceSystempSystemReplacemsgNacQuarDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgNacQuar(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgNacQuar(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgNacQuar resource: %v", err)
 	}

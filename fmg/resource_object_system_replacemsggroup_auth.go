@@ -78,6 +78,7 @@ func resourceObjectSystemReplacemsgGroupAuthCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectSystemReplacemsgGroupAuthCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupAuth resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupAuth(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgGroupAuth(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupAuth resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectSystemReplacemsgGroupAuthUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectSystemReplacemsgGroupAuthUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupAuth resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgGroupAuth(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgGroupAuth(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupAuth resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectSystemReplacemsgGroupAuthDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectSystemReplacemsgGroupAuthDelete(d *schema.ResourceData, m int
 	replacemsg_group := d.Get("replacemsg_group").(string)
 	paradict["replacemsg_group"] = replacemsg_group
 
-	err = c.DeleteObjectSystemReplacemsgGroupAuth(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgGroupAuth(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgGroupAuth resource: %v", err)
 	}

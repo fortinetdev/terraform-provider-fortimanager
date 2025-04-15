@@ -60,6 +60,8 @@ func resourceFmupdateFdsSettingUpdateScheduleUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -68,7 +70,9 @@ func resourceFmupdateFdsSettingUpdateScheduleUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating FmupdateFdsSettingUpdateSchedule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSettingUpdateSchedule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFdsSettingUpdateSchedule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingUpdateSchedule resource: %v", err)
 	}
@@ -87,10 +91,14 @@ func resourceFmupdateFdsSettingUpdateScheduleDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingUpdateSchedule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFdsSettingUpdateSchedule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSettingUpdateSchedule resource: %v", err)
 	}
@@ -107,6 +115,7 @@ func resourceFmupdateFdsSettingUpdateScheduleRead(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

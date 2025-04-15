@@ -107,6 +107,7 @@ func resourceObjectWebfilterUrlfilterEntriesCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,9 +122,9 @@ func resourceObjectWebfilterUrlfilterEntriesCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterUrlfilterEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterUrlfilterEntries(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterUrlfilterEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterUrlfilterEntries resource: %v", err)
 	}
@@ -139,6 +140,7 @@ func resourceObjectWebfilterUrlfilterEntriesUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +156,9 @@ func resourceObjectWebfilterUrlfilterEntriesUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectWebfilterUrlfilterEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterUrlfilterEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterUrlfilterEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterUrlfilterEntries resource: %v", err)
 	}
@@ -173,6 +177,7 @@ func resourceObjectWebfilterUrlfilterEntriesDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -183,7 +188,9 @@ func resourceObjectWebfilterUrlfilterEntriesDelete(d *schema.ResourceData, m int
 	urlfilter := d.Get("urlfilter").(string)
 	paradict["urlfilter"] = urlfilter
 
-	err = c.DeleteObjectWebfilterUrlfilterEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterUrlfilterEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterUrlfilterEntries resource: %v", err)
 	}

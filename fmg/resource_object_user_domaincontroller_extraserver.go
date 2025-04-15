@@ -85,6 +85,7 @@ func resourceObjectUserDomainControllerExtraServerCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectUserDomainControllerExtraServerCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainControllerExtraServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserDomainControllerExtraServer(obj, paradict)
-
+	_, err = c.CreateObjectUserDomainControllerExtraServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainControllerExtraServer resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectUserDomainControllerExtraServerUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,7 +134,9 @@ func resourceObjectUserDomainControllerExtraServerUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectUserDomainControllerExtraServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDomainControllerExtraServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserDomainControllerExtraServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDomainControllerExtraServer resource: %v", err)
 	}
@@ -151,6 +155,7 @@ func resourceObjectUserDomainControllerExtraServerDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +166,9 @@ func resourceObjectUserDomainControllerExtraServerDelete(d *schema.ResourceData,
 	domain_controller := d.Get("domain_controller").(string)
 	paradict["domain_controller"] = domain_controller
 
-	err = c.DeleteObjectUserDomainControllerExtraServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserDomainControllerExtraServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDomainControllerExtraServer resource: %v", err)
 	}

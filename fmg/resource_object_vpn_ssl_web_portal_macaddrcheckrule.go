@@ -74,6 +74,7 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalMacAddrCheckRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebPortalMacAddrCheckRule(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebPortalMacAddrCheckRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalMacAddrCheckRule resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalMacAddrCheckRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalMacAddrCheckRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalMacAddrCheckRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalMacAddrCheckRule resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectVpnSslWebPortalMacAddrCheckRuleDelete(d *schema.ResourceData,
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
-	err = c.DeleteObjectVpnSslWebPortalMacAddrCheckRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortalMacAddrCheckRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalMacAddrCheckRule resource: %v", err)
 	}

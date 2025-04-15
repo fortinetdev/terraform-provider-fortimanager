@@ -78,6 +78,7 @@ func resourceObjectEmailfilterBwordEntriesMoveUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,7 +97,9 @@ func resourceObjectEmailfilterBwordEntriesMoveUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectEmailfilterBwordEntriesMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBwordEntriesMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterBwordEntriesMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBwordEntriesMove resource: %v", err)
 	}

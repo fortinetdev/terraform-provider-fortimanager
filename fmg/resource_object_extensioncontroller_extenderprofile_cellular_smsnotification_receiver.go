@@ -79,6 +79,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(obj, paradict)
-
+	_, err = c.CreateObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularSmsNotificationRece
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiver resource: %v", err)
 	}

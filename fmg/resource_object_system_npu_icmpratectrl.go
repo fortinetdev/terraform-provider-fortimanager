@@ -74,6 +74,7 @@ func resourceObjectSystemNpuIcmpRateCtrlUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,7 +87,9 @@ func resourceObjectSystemNpuIcmpRateCtrlUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectSystemNpuIcmpRateCtrl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuIcmpRateCtrl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuIcmpRateCtrl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIcmpRateCtrl resource: %v", err)
 	}
@@ -105,6 +108,7 @@ func resourceObjectSystemNpuIcmpRateCtrlDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -112,7 +116,9 @@ func resourceObjectSystemNpuIcmpRateCtrlDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIcmpRateCtrl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuIcmpRateCtrl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuIcmpRateCtrl resource: %v", err)
 	}

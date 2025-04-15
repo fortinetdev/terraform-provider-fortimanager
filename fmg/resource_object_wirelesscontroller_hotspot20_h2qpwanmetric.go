@@ -96,6 +96,7 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricCreate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -107,9 +108,9 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricCreate(d *schema.Reso
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpWanMetric resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpWanMetric(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpWanMetric(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpWanMetric resource: %v", err)
 	}
@@ -125,6 +126,7 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricUpdate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,7 +139,9 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricUpdate(d *schema.Reso
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpWanMetric resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpWanMetric(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpWanMetric(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpWanMetric resource: %v", err)
 	}
@@ -156,6 +160,7 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricDelete(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -163,7 +168,9 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetricDelete(d *schema.Reso
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpWanMetric(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpWanMetric(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpWanMetric resource: %v", err)
 	}

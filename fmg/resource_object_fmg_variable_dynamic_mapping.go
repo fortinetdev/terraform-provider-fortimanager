@@ -84,6 +84,7 @@ func resourceObjectFmgVariableDynamicMappingCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectFmgVariableDynamicMappingCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgVariableDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFmgVariableDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectFmgVariableDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgVariableDynamicMapping resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectFmgVariableDynamicMappingUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectFmgVariableDynamicMappingUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFmgVariableDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFmgVariableDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFmgVariableDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgVariableDynamicMapping resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectFmgVariableDynamicMappingDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectFmgVariableDynamicMappingDelete(d *schema.ResourceData, m int
 	variable := d.Get("variable").(string)
 	paradict["variable"] = variable
 
-	err = c.DeleteObjectFmgVariableDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFmgVariableDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFmgVariableDynamicMapping resource: %v", err)
 	}

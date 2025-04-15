@@ -82,6 +82,7 @@ func resourceObjectFirewallWildcardFqdnGroupCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectFirewallWildcardFqdnGroupCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallWildcardFqdnGroup(obj, paradict)
-
+	_, err = c.CreateObjectFirewallWildcardFqdnGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectFirewallWildcardFqdnGroupUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectFirewallWildcardFqdnGroupUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallWildcardFqdnGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallWildcardFqdnGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectFirewallWildcardFqdnGroupDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectFirewallWildcardFqdnGroupDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallWildcardFqdnGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallWildcardFqdnGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}

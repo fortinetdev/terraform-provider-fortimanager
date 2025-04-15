@@ -92,6 +92,7 @@ func resourceObjectAntivirusMmsChecksumCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectAntivirusMmsChecksumCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusMmsChecksum resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAntivirusMmsChecksum(obj, paradict)
-
+	_, err = c.CreateObjectAntivirusMmsChecksum(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusMmsChecksum resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectAntivirusMmsChecksumUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectAntivirusMmsChecksumUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectAntivirusMmsChecksum resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusMmsChecksum(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusMmsChecksum(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusMmsChecksum resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectAntivirusMmsChecksumDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectAntivirusMmsChecksumDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusMmsChecksum(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusMmsChecksum(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusMmsChecksum resource: %v", err)
 	}

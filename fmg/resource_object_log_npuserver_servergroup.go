@@ -97,6 +97,7 @@ func resourceObjectLogNpuServerServerGroupCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +109,9 @@ func resourceObjectLogNpuServerServerGroupCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectLogNpuServerServerGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectLogNpuServerServerGroup(obj, paradict)
-
+	_, err = c.CreateObjectLogNpuServerServerGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectLogNpuServerServerGroup resource: %v", err)
 	}
@@ -126,6 +127,7 @@ func resourceObjectLogNpuServerServerGroupUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +140,9 @@ func resourceObjectLogNpuServerServerGroupUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectLogNpuServerServerGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectLogNpuServerServerGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectLogNpuServerServerGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectLogNpuServerServerGroup resource: %v", err)
 	}
@@ -157,6 +161,7 @@ func resourceObjectLogNpuServerServerGroupDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +169,9 @@ func resourceObjectLogNpuServerServerGroupDelete(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectLogNpuServerServerGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectLogNpuServerServerGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectLogNpuServerServerGroup resource: %v", err)
 	}

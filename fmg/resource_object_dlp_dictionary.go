@@ -126,6 +126,7 @@ func resourceObjectDlpDictionaryCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,9 +138,9 @@ func resourceObjectDlpDictionaryCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpDictionary resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpDictionary(obj, paradict)
-
+	_, err = c.CreateObjectDlpDictionary(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpDictionary resource: %v", err)
 	}
@@ -155,6 +156,7 @@ func resourceObjectDlpDictionaryUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +169,9 @@ func resourceObjectDlpDictionaryUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectDlpDictionary resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpDictionary(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpDictionary(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpDictionary resource: %v", err)
 	}
@@ -186,6 +190,7 @@ func resourceObjectDlpDictionaryDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -193,7 +198,9 @@ func resourceObjectDlpDictionaryDelete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpDictionary(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpDictionary(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpDictionary resource: %v", err)
 	}

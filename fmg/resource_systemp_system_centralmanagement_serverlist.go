@@ -89,6 +89,7 @@ func resourceSystempSystemCentralManagementServerListCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceSystempSystemCentralManagementServerListCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemCentralManagementServerList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystempSystemCentralManagementServerList(obj, paradict)
-
+	_, err = c.CreateSystempSystemCentralManagementServerList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemCentralManagementServerList resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceSystempSystemCentralManagementServerListUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +138,9 @@ func resourceSystempSystemCentralManagementServerListUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating SystempSystemCentralManagementServerList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemCentralManagementServerList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemCentralManagementServerList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemCentralManagementServerList resource: %v", err)
 	}
@@ -155,6 +159,7 @@ func resourceSystempSystemCentralManagementServerListDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +170,9 @@ func resourceSystempSystemCentralManagementServerListDelete(d *schema.ResourceDa
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemCentralManagementServerList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemCentralManagementServerList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemCentralManagementServerList resource: %v", err)
 	}

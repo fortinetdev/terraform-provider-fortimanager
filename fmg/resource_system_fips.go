@@ -54,6 +54,8 @@ func resourceSystemFipsUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,7 +64,9 @@ func resourceSystemFipsUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemFips resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemFips(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemFips(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFips resource: %v", err)
 	}
@@ -81,10 +85,14 @@ func resourceSystemFipsDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemFips(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemFips(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemFips resource: %v", err)
 	}
@@ -101,6 +109,7 @@ func resourceSystemFipsRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

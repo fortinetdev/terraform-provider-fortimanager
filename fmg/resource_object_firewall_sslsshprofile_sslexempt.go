@@ -94,6 +94,7 @@ func resourceObjectFirewallSslSshProfileSslExemptCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +109,9 @@ func resourceObjectFirewallSslSshProfileSslExemptCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfileSslExempt resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallSslSshProfileSslExempt(obj, paradict)
-
+	_, err = c.CreateObjectFirewallSslSshProfileSslExempt(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfileSslExempt resource: %v", err)
 	}
@@ -126,6 +127,7 @@ func resourceObjectFirewallSslSshProfileSslExemptUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectFirewallSslSshProfileSslExemptUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSslExempt resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSslSshProfileSslExempt(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallSslSshProfileSslExempt(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSslExempt resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectFirewallSslSshProfileSslExemptDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceObjectFirewallSslSshProfileSslExemptDelete(d *schema.ResourceData, 
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	err = c.DeleteObjectFirewallSslSshProfileSslExempt(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallSslSshProfileSslExempt(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfileSslExempt resource: %v", err)
 	}

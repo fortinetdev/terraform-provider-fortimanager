@@ -121,6 +121,7 @@ func resourceObjectEmailfilterBwlCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,9 +133,9 @@ func resourceObjectEmailfilterBwlCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBwl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterBwl(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterBwl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBwl resource: %v", err)
 	}
@@ -150,6 +151,7 @@ func resourceObjectEmailfilterBwlUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +164,9 @@ func resourceObjectEmailfilterBwlUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectEmailfilterBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBwl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterBwl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBwl resource: %v", err)
 	}
@@ -181,6 +185,7 @@ func resourceObjectEmailfilterBwlDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -188,7 +193,9 @@ func resourceObjectEmailfilterBwlDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterBwl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterBwl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBwl resource: %v", err)
 	}

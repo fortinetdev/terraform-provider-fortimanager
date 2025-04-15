@@ -65,6 +65,7 @@ func resourceSystempSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -80,7 +81,9 @@ func resourceSystempSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystempSystemSnmpSysinfo resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemSnmpSysinfo(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemSnmpSysinfo(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemSnmpSysinfo resource: %v", err)
 	}
@@ -99,6 +102,7 @@ func resourceSystempSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,7 +113,9 @@ func resourceSystempSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemSnmpSysinfo(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemSnmpSysinfo(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemSnmpSysinfo resource: %v", err)
 	}

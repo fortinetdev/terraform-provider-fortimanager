@@ -105,6 +105,8 @@ The following arguments are supported:
 * `radius_coa` - Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `disable`, `enable`.
 
 * `radius_port` - RADIUS service port number.
+* `require_message_authenticator` - Require message authenticator in authentication response. Valid values: `disable`, `enable`.
+
 * `rsso` - Enable/disable RADIUS based single sign on feature. Valid values: `disable`, `enable`.
 
 * `rsso_context_timeout` - Time in seconds before the logged out user is removed from the "user context list" of logged on users.
@@ -155,6 +157,7 @@ The following arguments are supported:
 
 * `username_case_sensitive` - Enable/disable case sensitive user names. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `accounting_server` block supports:
@@ -169,6 +172,7 @@ The `accounting_server` block supports:
 * `source_ip` - Source IP address for communications to the RADIUS server.
 * `status` - Status. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 
 The `dynamic_mapping` block supports:
 
@@ -267,6 +271,8 @@ The `dynamic_mapping` block supports:
 * `radius_coa` - Enable to allow a mechanism to change the attributes of an authentication, authorization, and accounting session after it is authenticated. Valid values: `disable`, `enable`.
 
 * `radius_port` - RADIUS service port number.
+* `require_message_authenticator` - Require message authenticator in authentication response. Valid values: `disable`, `enable`.
+
 * `rsso` - Enable/disable RADIUS based single sign on feature. Valid values: `disable`, `enable`.
 
 * `rsso_context_timeout` - Time in seconds before the logged out user is removed from the "user context list" of logged on users.
@@ -319,6 +325,7 @@ The `dynamic_mapping` block supports:
 
 * `username_case_sensitive` - Enable/disable case sensitive user names. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 
 The `_scope` block supports:
 
@@ -337,6 +344,7 @@ The `accounting_server` block supports:
 * `source_ip` - Source IP address for communications to the RADIUS server.
 * `status` - Status. Valid values: `disable`, `enable`.
 
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

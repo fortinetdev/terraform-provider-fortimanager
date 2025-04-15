@@ -58,6 +58,7 @@ func resourceObjectDlpSensitivityCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -69,9 +70,9 @@ func resourceObjectDlpSensitivityCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensitivity resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpSensitivity(obj, paradict)
-
+	_, err = c.CreateObjectDlpSensitivity(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensitivity resource: %v", err)
 	}
@@ -87,6 +88,7 @@ func resourceObjectDlpSensitivityUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,7 +101,9 @@ func resourceObjectDlpSensitivityUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectDlpSensitivity resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpSensitivity(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpSensitivity(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpSensitivity resource: %v", err)
 	}
@@ -118,6 +122,7 @@ func resourceObjectDlpSensitivityDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +130,9 @@ func resourceObjectDlpSensitivityDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpSensitivity(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpSensitivity(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpSensitivity resource: %v", err)
 	}

@@ -83,6 +83,7 @@ func resourceObjectSystemSdnProxyCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectSystemSdnProxyCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnProxy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnProxy(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnProxy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnProxy resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectSystemSdnProxyUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectSystemSdnProxyUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectSystemSdnProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnProxy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnProxy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnProxy resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectSystemSdnProxyDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectSystemSdnProxyDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemSdnProxy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnProxy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnProxy resource: %v", err)
 	}

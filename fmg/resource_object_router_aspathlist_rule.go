@@ -72,6 +72,7 @@ func resourceObjectRouterAspathListRuleCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectRouterAspathListRuleCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathListRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterAspathListRule(obj, paradict)
-
+	_, err = c.CreateObjectRouterAspathListRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathListRule resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectRouterAspathListRuleUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectRouterAspathListRuleUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectRouterAspathListRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterAspathListRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterAspathListRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterAspathListRule resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectRouterAspathListRuleDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectRouterAspathListRuleDelete(d *schema.ResourceData, m interfac
 	aspath_list := d.Get("aspath_list").(string)
 	paradict["aspath_list"] = aspath_list
 
-	err = c.DeleteObjectRouterAspathListRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterAspathListRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterAspathListRule resource: %v", err)
 	}

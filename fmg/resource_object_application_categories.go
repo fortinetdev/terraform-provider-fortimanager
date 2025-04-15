@@ -58,6 +58,7 @@ func resourceObjectApplicationCategoriesCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -69,9 +70,9 @@ func resourceObjectApplicationCategoriesCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCategories resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationCategories(obj, paradict)
-
+	_, err = c.CreateObjectApplicationCategories(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCategories resource: %v", err)
 	}
@@ -87,6 +88,7 @@ func resourceObjectApplicationCategoriesUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,7 +101,9 @@ func resourceObjectApplicationCategoriesUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectApplicationCategories resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationCategories(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationCategories(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationCategories resource: %v", err)
 	}
@@ -118,6 +122,7 @@ func resourceObjectApplicationCategoriesDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +130,9 @@ func resourceObjectApplicationCategoriesDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectApplicationCategories(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationCategories(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationCategories resource: %v", err)
 	}

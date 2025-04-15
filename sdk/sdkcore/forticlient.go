@@ -29,10 +29,11 @@ type MultValues []MultValue
 
 // FortiSDKClient describes the global FMG plugin client instance
 type FortiSDKClient struct {
-	Config  config.Config
-	Session string
-	Token   string
-	Retries int
+	Config        config.Config
+	Session       string
+	Token         string
+	WorkspaceMode string
+	Retries       int
 }
 
 // ExtractString extracts strings from result and put them into a string array,
@@ -61,17 +62,18 @@ func escapeURLStringDMScope(v string) string { // doesn't support "<>()"'#"
 
 // NewClient initializes a new global plugin client
 // It returns the created client object
-func NewClient(auth *auth.Auth, client *http.Client) (c *FortiSDKClient, err error) {
+func NewClient(auth *auth.Auth, client *http.Client, workspaceModeConfig string) (c *FortiSDKClient, err error) {
 	c = &FortiSDKClient{}
 
 	c.Session = ""
+	c.WorkspaceMode = workspaceModeConfig
 
 	c.Config.Auth = auth
 	c.Config.HTTPCon = client
 	c.Config.FwTarget = auth.Hostname
 
 	// CleanSession only works for workspace mode set to 'disabled'
-	if auth.CleanSession {
+	if auth.CleanSession && workspaceModeConfig == "disabled" {
 		workspaceMode, _ := c.GetWorkspaceMode()
 		if workspaceMode != "disabled" {
 			auth.CleanSession = false

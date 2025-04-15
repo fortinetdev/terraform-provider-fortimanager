@@ -110,6 +110,7 @@ func resourceObjectVpnSslWebPortalLandingPageUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +126,9 @@ func resourceObjectVpnSslWebPortalLandingPageUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalLandingPage(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalLandingPage(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPage resource: %v", err)
 	}
@@ -144,6 +147,7 @@ func resourceObjectVpnSslWebPortalLandingPageDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +158,9 @@ func resourceObjectVpnSslWebPortalLandingPageDelete(d *schema.ResourceData, m in
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
-	err = c.DeleteObjectVpnSslWebPortalLandingPage(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortalLandingPage(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalLandingPage resource: %v", err)
 	}

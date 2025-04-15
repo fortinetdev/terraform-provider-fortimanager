@@ -67,6 +67,7 @@ func resourceObjectUserDeviceCategoryCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectUserDeviceCategoryCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceCategory resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserDeviceCategory(obj, paradict)
-
+	_, err = c.CreateObjectUserDeviceCategory(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceCategory resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectUserDeviceCategoryUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectUserDeviceCategoryUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectUserDeviceCategory resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDeviceCategory(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserDeviceCategory(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceCategory resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectUserDeviceCategoryDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectUserDeviceCategoryDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDeviceCategory(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserDeviceCategory(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDeviceCategory resource: %v", err)
 	}

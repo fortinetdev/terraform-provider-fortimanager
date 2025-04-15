@@ -104,6 +104,7 @@ The following arguments are supported:
 
 * `ips_sensor` - Name of an existing IPS sensor.
 * `ips_voip_filter` - Name of an existing VoIP (ips) profile.
+* `isolator_server` - Isolator server name.
 * `label` - VDOM-specific GUI visible label.
 * `log_http_transaction` - Enable/disable HTTP transaction log. Valid values: `disable`, `enable`.
 
@@ -145,6 +146,7 @@ The following arguments are supported:
 
 * `transparent` - Enable to use the IP address of the client to connect to the server. Valid values: `disable`, `enable`.
 
+* `url_risk` - URL risk level name.
 * `users` - Names of user objects.
 * `utm_status` - Enable the use of UTM profiles/sensors/lists. Valid values: `disable`, `enable`.
 
@@ -161,6 +163,8 @@ The following arguments are supported:
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
 * `ztna_ems_tag` - ZTNA EMS Tag names.
+* `ztna_ems_tag_negate` - When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. Valid values: `disable`, `enable`.
+
 * `ztna_proxy` - IPv4 ZTNA traffic forward proxy.
 * `ztna_tags_match_logic` - ZTNA tag matching logic. Valid values: `or`, `and`.
 

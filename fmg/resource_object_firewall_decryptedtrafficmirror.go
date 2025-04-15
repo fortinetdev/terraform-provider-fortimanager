@@ -79,6 +79,7 @@ func resourceObjectFirewallDecryptedTrafficMirrorCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectFirewallDecryptedTrafficMirrorCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallDecryptedTrafficMirror resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallDecryptedTrafficMirror(obj, paradict)
-
+	_, err = c.CreateObjectFirewallDecryptedTrafficMirror(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectFirewallDecryptedTrafficMirrorUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectFirewallDecryptedTrafficMirrorUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallDecryptedTrafficMirror resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallDecryptedTrafficMirror(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallDecryptedTrafficMirror(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectFirewallDecryptedTrafficMirrorDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +151,9 @@ func resourceObjectFirewallDecryptedTrafficMirrorDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallDecryptedTrafficMirror(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallDecryptedTrafficMirror(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}

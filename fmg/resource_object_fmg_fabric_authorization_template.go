@@ -109,6 +109,7 @@ func resourceObjectFmgFabricAuthorizationTemplateCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,9 +121,9 @@ func resourceObjectFmgFabricAuthorizationTemplateCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgFabricAuthorizationTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFmgFabricAuthorizationTemplate(obj, paradict)
-
+	_, err = c.CreateObjectFmgFabricAuthorizationTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgFabricAuthorizationTemplate resource: %v", err)
 	}
@@ -138,6 +139,7 @@ func resourceObjectFmgFabricAuthorizationTemplateUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +152,9 @@ func resourceObjectFmgFabricAuthorizationTemplateUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFmgFabricAuthorizationTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFmgFabricAuthorizationTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFmgFabricAuthorizationTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgFabricAuthorizationTemplate resource: %v", err)
 	}
@@ -169,6 +173,7 @@ func resourceObjectFmgFabricAuthorizationTemplateDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +181,9 @@ func resourceObjectFmgFabricAuthorizationTemplateDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFmgFabricAuthorizationTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFmgFabricAuthorizationTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFmgFabricAuthorizationTemplate resource: %v", err)
 	}

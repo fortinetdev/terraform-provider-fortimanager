@@ -91,6 +91,7 @@ func resourceObjectVideofilterProfileFortiguardCategoryUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -106,7 +107,9 @@ func resourceObjectVideofilterProfileFortiguardCategoryUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectVideofilterProfileFortiguardCategory resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterProfileFortiguardCategory(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVideofilterProfileFortiguardCategory(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterProfileFortiguardCategory resource: %v", err)
 	}
@@ -125,6 +128,7 @@ func resourceObjectVideofilterProfileFortiguardCategoryDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +139,9 @@ func resourceObjectVideofilterProfileFortiguardCategoryDelete(d *schema.Resource
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectVideofilterProfileFortiguardCategory(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVideofilterProfileFortiguardCategory(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterProfileFortiguardCategory resource: %v", err)
 	}

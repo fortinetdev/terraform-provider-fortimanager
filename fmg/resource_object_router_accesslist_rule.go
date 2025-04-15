@@ -86,6 +86,7 @@ func resourceObjectRouterAccessListRuleCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,9 +101,9 @@ func resourceObjectRouterAccessListRuleCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAccessListRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterAccessListRule(obj, paradict)
-
+	_, err = c.CreateObjectRouterAccessListRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAccessListRule resource: %v", err)
 	}
@@ -118,6 +119,7 @@ func resourceObjectRouterAccessListRuleUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectRouterAccessListRuleUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectRouterAccessListRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterAccessListRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterAccessListRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterAccessListRule resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectRouterAccessListRuleDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceObjectRouterAccessListRuleDelete(d *schema.ResourceData, m interfac
 	access_list := d.Get("access_list").(string)
 	paradict["access_list"] = access_list
 
-	err = c.DeleteObjectRouterAccessListRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterAccessListRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterAccessListRule resource: %v", err)
 	}

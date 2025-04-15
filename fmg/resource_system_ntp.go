@@ -102,6 +102,8 @@ func resourceSystemNtpUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -110,7 +112,9 @@ func resourceSystemNtpUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemNtp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemNtp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemNtp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemNtp resource: %v", err)
 	}
@@ -129,10 +133,14 @@ func resourceSystemNtpDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemNtp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemNtp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemNtp resource: %v", err)
 	}
@@ -149,6 +157,7 @@ func resourceSystemNtpRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

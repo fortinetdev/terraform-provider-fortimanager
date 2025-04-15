@@ -75,6 +75,7 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -89,9 +90,9 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileAntiphishInspectionEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterProfileAntiphishInspectionEntries(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterProfileAntiphishInspectionEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileAntiphishInspectionEntries resource: %v", err)
 	}
@@ -107,6 +108,7 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +124,9 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphishInspectionEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileAntiphishInspectionEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileAntiphishInspectionEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphishInspectionEntries resource: %v", err)
 	}
@@ -141,6 +145,7 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectWebfilterProfileAntiphishInspectionEntriesDelete(d *schema.Re
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileAntiphishInspectionEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileAntiphishInspectionEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileAntiphishInspectionEntries resource: %v", err)
 	}

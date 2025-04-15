@@ -151,6 +151,7 @@ func resourceDvmdbScriptCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,9 +163,9 @@ func resourceDvmdbScriptCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbScript resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateDvmdbScript(obj, paradict)
-
+	_, err = c.CreateDvmdbScript(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbScript resource: %v", err)
 	}
@@ -180,6 +181,7 @@ func resourceDvmdbScriptUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -192,7 +194,9 @@ func resourceDvmdbScriptUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating DvmdbScript resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbScript(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmdbScript(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScript resource: %v", err)
 	}
@@ -211,6 +215,7 @@ func resourceDvmdbScriptDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -218,7 +223,9 @@ func resourceDvmdbScriptDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteDvmdbScript(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteDvmdbScript(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbScript resource: %v", err)
 	}

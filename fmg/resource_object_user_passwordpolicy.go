@@ -113,6 +113,7 @@ func resourceObjectUserPasswordPolicyCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,9 +125,9 @@ func resourceObjectUserPasswordPolicyCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPasswordPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserPasswordPolicy(obj, paradict)
-
+	_, err = c.CreateObjectUserPasswordPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPasswordPolicy resource: %v", err)
 	}
@@ -142,6 +143,7 @@ func resourceObjectUserPasswordPolicyUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +156,9 @@ func resourceObjectUserPasswordPolicyUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectUserPasswordPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPasswordPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserPasswordPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPasswordPolicy resource: %v", err)
 	}
@@ -173,6 +177,7 @@ func resourceObjectUserPasswordPolicyDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectUserPasswordPolicyDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPasswordPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserPasswordPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPasswordPolicy resource: %v", err)
 	}

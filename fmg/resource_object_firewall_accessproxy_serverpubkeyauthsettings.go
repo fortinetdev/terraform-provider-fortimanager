@@ -125,6 +125,7 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,7 +141,9 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyServerPubkeyAuthSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyServerPubkeyAuthSettings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxyServerPubkeyAuthSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyServerPubkeyAuthSettings resource: %v", err)
 	}
@@ -159,6 +162,7 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +173,9 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsDelete(d *schema.R
 	access_proxy := d.Get("access_proxy").(string)
 	paradict["access_proxy"] = access_proxy
 
-	err = c.DeleteObjectFirewallAccessProxyServerPubkeyAuthSettings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxyServerPubkeyAuthSettings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyServerPubkeyAuthSettings resource: %v", err)
 	}

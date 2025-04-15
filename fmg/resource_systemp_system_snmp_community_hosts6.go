@@ -89,6 +89,10 @@ func resourceSystempSystemSnmpCommunityHosts6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -98,6 +102,7 @@ func resourceSystempSystemSnmpCommunityHosts6Create(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +119,9 @@ func resourceSystempSystemSnmpCommunityHosts6Create(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemSnmpCommunityHosts6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystempSystemSnmpCommunityHosts6(obj, paradict)
-
+	_, err = c.CreateSystempSystemSnmpCommunityHosts6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystempSystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -132,6 +137,7 @@ func resourceSystempSystemSnmpCommunityHosts6Update(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +155,9 @@ func resourceSystempSystemSnmpCommunityHosts6Update(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating SystempSystemSnmpCommunityHosts6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemSnmpCommunityHosts6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemSnmpCommunityHosts6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -168,6 +176,7 @@ func resourceSystempSystemSnmpCommunityHosts6Delete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +189,9 @@ func resourceSystempSystemSnmpCommunityHosts6Delete(d *schema.ResourceData, m in
 	paradict["devprof"] = devprof
 	paradict["community"] = community
 
-	err = c.DeleteSystempSystemSnmpCommunityHosts6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemSnmpCommunityHosts6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -273,6 +284,10 @@ func flattenSystempSystemSnmpCommunityHosts6SourceIpv62edl(v interface{}, d *sch
 	return v
 }
 
+func flattenSystempSystemSnmpCommunityHosts6VrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystempSystemSnmpCommunityHosts6(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -350,6 +365,16 @@ func refreshObjectSystempSystemSnmpCommunityHosts6(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenSystempSystemSnmpCommunityHosts6VrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "SystempSystemSnmpCommunityHosts6-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -384,6 +409,10 @@ func expandSystempSystemSnmpCommunityHosts6Ipv62edl(d *schema.ResourceData, v in
 }
 
 func expandSystempSystemSnmpCommunityHosts6SourceIpv62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemSnmpCommunityHosts6VrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -450,6 +479,15 @@ func getObjectSystempSystemSnmpCommunityHosts6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["source-ipv6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandSystempSystemSnmpCommunityHosts6VrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

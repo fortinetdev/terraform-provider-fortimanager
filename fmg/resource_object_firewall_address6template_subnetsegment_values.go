@@ -73,6 +73,7 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesCreate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -89,9 +90,9 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesCreate(d *schema.R
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6TemplateSubnetSegmentValues resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress6TemplateSubnetSegmentValues(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress6TemplateSubnetSegmentValues(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6TemplateSubnetSegmentValues resource: %v", err)
 	}
@@ -107,6 +108,7 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectFirewallAddress6TemplateSubnetSegmentValues resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6TemplateSubnetSegmentValues(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress6TemplateSubnetSegmentValues(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6TemplateSubnetSegmentValues resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectFirewallAddress6TemplateSubnetSegmentValuesDelete(d *schema.R
 	paradict["address6_template"] = address6_template
 	paradict["subnet_segment"] = subnet_segment
 
-	err = c.DeleteObjectFirewallAddress6TemplateSubnetSegmentValues(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress6TemplateSubnetSegmentValues(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6TemplateSubnetSegmentValues resource: %v", err)
 	}

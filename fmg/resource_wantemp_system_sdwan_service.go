@@ -377,6 +377,7 @@ func resourceWantempSystemSdwanServiceCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -391,9 +392,9 @@ func resourceWantempSystemSdwanServiceCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanService resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemSdwanService(obj, paradict)
-
+	_, err = c.CreateWantempSystemSdwanService(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanService resource: %v", err)
 	}
@@ -409,6 +410,7 @@ func resourceWantempSystemSdwanServiceUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -424,7 +426,9 @@ func resourceWantempSystemSdwanServiceUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating WantempSystemSdwanService resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwanService(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwanService(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanService resource: %v", err)
 	}
@@ -443,6 +447,7 @@ func resourceWantempSystemSdwanServiceDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -453,7 +458,9 @@ func resourceWantempSystemSdwanServiceDelete(d *schema.ResourceData, m interface
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	err = c.DeleteWantempSystemSdwanService(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemSdwanService(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemSdwanService resource: %v", err)
 	}

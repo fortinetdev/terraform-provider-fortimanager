@@ -467,6 +467,8 @@ func resourcePackagesGlobalFooterConsolidatedPolicyCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -479,9 +481,9 @@ func resourcePackagesGlobalFooterConsolidatedPolicyCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
 	}
@@ -506,6 +508,8 @@ func resourcePackagesGlobalFooterConsolidatedPolicyUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -519,7 +523,9 @@ func resourcePackagesGlobalFooterConsolidatedPolicyUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating PackagesGlobalFooterConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterConsolidatedPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesGlobalFooterConsolidatedPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
 	}
@@ -538,6 +544,8 @@ func resourcePackagesGlobalFooterConsolidatedPolicyDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -546,7 +554,9 @@ func resourcePackagesGlobalFooterConsolidatedPolicyDelete(d *schema.ResourceData
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterConsolidatedPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesGlobalFooterConsolidatedPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
 	}
@@ -563,6 +573,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicyRead(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

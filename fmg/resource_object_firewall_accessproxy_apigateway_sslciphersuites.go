@@ -80,6 +80,7 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesCreate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesCreate(d *schema.
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGatewaySslCipherSuites resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxyApiGatewaySslCipherSuites(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxyApiGatewaySslCipherSuites(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGatewaySslCipherSuites resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesUpdate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesUpdate(d *schema.
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewaySslCipherSuites resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyApiGatewaySslCipherSuites(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxyApiGatewaySslCipherSuites(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewaySslCipherSuites resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesDelete(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +167,9 @@ func resourceObjectFirewallAccessProxyApiGatewaySslCipherSuitesDelete(d *schema.
 	paradict["access_proxy"] = access_proxy
 	paradict["api_gateway"] = api_gateway
 
-	err = c.DeleteObjectFirewallAccessProxyApiGatewaySslCipherSuites(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxyApiGatewaySslCipherSuites(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyApiGatewaySslCipherSuites resource: %v", err)
 	}

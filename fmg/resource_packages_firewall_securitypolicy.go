@@ -325,6 +325,7 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"profile_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -436,6 +437,7 @@ func resourcePackagesFirewallSecurityPolicyCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -452,11 +454,20 @@ func resourcePackagesFirewallSecurityPolicyCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallSecurityPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallSecurityPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallSecurityPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -470,6 +481,7 @@ func resourcePackagesFirewallSecurityPolicyUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -487,7 +499,9 @@ func resourcePackagesFirewallSecurityPolicyUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating PackagesFirewallSecurityPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallSecurityPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallSecurityPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallSecurityPolicy resource: %v", err)
 	}
@@ -506,6 +520,7 @@ func resourcePackagesFirewallSecurityPolicyDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -518,7 +533,9 @@ func resourcePackagesFirewallSecurityPolicyDelete(d *schema.ResourceData, m inte
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallSecurityPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallSecurityPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallSecurityPolicy resource: %v", err)
 	}

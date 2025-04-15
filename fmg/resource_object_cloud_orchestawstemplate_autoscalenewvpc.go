@@ -298,6 +298,7 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcCreate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -309,9 +310,9 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcCreate(d *schema.Resour
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCloudOrchestAwstemplateAutoscaleNewVpc resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCloudOrchestAwstemplateAutoscaleNewVpc(obj, paradict)
-
+	_, err = c.CreateObjectCloudOrchestAwstemplateAutoscaleNewVpc(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCloudOrchestAwstemplateAutoscaleNewVpc resource: %v", err)
 	}
@@ -327,6 +328,7 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcUpdate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -339,7 +341,9 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcUpdate(d *schema.Resour
 		return fmt.Errorf("Error updating ObjectCloudOrchestAwstemplateAutoscaleNewVpc resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCloudOrchestAwstemplateAutoscaleNewVpc(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCloudOrchestAwstemplateAutoscaleNewVpc(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCloudOrchestAwstemplateAutoscaleNewVpc resource: %v", err)
 	}
@@ -358,6 +362,7 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcDelete(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -365,7 +370,9 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleNewVpcDelete(d *schema.Resour
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCloudOrchestAwstemplateAutoscaleNewVpc(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCloudOrchestAwstemplateAutoscaleNewVpc(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCloudOrchestAwstemplateAutoscaleNewVpc resource: %v", err)
 	}

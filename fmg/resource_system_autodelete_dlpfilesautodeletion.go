@@ -59,6 +59,8 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,7 +69,9 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating SystemAutoDeleteDlpFilesAutoDeletion resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAutoDeleteDlpFilesAutoDeletion(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAutoDeleteDlpFilesAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteDlpFilesAutoDeletion resource: %v", err)
 	}
@@ -86,10 +90,14 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteDlpFilesAutoDeletion(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAutoDeleteDlpFilesAutoDeletion(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAutoDeleteDlpFilesAutoDeletion resource: %v", err)
 	}
@@ -106,6 +114,7 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionRead(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

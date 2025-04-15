@@ -81,15 +81,17 @@ func resourceSecurityconsoleAssignPackageUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectSecurityconsoleAssignPackage(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAssignPackage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleAssignPackage(obj, mkey, paradict)
+	adomv, err := "global", fmt.Errorf("")
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSecurityconsoleAssignPackage(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAssignPackage resource: %v", err)
 	}

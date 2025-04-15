@@ -74,6 +74,7 @@ func resourceObjectSystemSdnConnectorExternalAccountListCreate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectSystemSdnConnectorExternalAccountListCreate(d *schema.Resourc
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorExternalAccountList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorExternalAccountList(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorExternalAccountList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorExternalAccountList resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectSystemSdnConnectorExternalAccountListUpdate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectSystemSdnConnectorExternalAccountListUpdate(d *schema.Resourc
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorExternalAccountList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorExternalAccountList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorExternalAccountList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorExternalAccountList resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectSystemSdnConnectorExternalAccountListDelete(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectSystemSdnConnectorExternalAccountListDelete(d *schema.Resourc
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorExternalAccountList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorExternalAccountList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorExternalAccountList resource: %v", err)
 	}

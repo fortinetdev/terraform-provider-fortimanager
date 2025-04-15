@@ -79,6 +79,7 @@ func resourceSystempSystemReplacemsgAlertmailUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,7 +95,9 @@ func resourceSystempSystemReplacemsgAlertmailUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating SystempSystemReplacemsgAlertmail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemReplacemsgAlertmail(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemReplacemsgAlertmail(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgAlertmail resource: %v", err)
 	}
@@ -113,6 +116,7 @@ func resourceSystempSystemReplacemsgAlertmailDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +127,9 @@ func resourceSystempSystemReplacemsgAlertmailDelete(d *schema.ResourceData, m in
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemReplacemsgAlertmail(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemReplacemsgAlertmail(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemReplacemsgAlertmail resource: %v", err)
 	}

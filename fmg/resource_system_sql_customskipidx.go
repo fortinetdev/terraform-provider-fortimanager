@@ -57,6 +57,8 @@ func resourceSystemSqlCustomSkipidxCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -64,9 +66,9 @@ func resourceSystemSqlCustomSkipidxCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomSkipidx resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSqlCustomSkipidx(obj, paradict)
-
+	_, err = c.CreateSystemSqlCustomSkipidx(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomSkipidx resource: %v", err)
 	}
@@ -82,6 +84,8 @@ func resourceSystemSqlCustomSkipidxUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -90,7 +94,9 @@ func resourceSystemSqlCustomSkipidxUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating SystemSqlCustomSkipidx resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSqlCustomSkipidx(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSqlCustomSkipidx(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomSkipidx resource: %v", err)
 	}
@@ -109,10 +115,14 @@ func resourceSystemSqlCustomSkipidxDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSqlCustomSkipidx(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSqlCustomSkipidx(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSqlCustomSkipidx resource: %v", err)
 	}
@@ -129,6 +139,7 @@ func resourceSystemSqlCustomSkipidxRead(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -45,6 +45,8 @@ The following arguments are supported:
 
 * `template_group` - Template-Group.
 * `templates` - Templates.
+* `vm_log_disk` - Vm-Log-Disk. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

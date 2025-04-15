@@ -96,6 +96,7 @@ func resourceObjectWebfilterProfileFileFilterEntriesCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,9 +111,9 @@ func resourceObjectWebfilterProfileFileFilterEntriesCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileFileFilterEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterProfileFileFilterEntries(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterProfileFileFilterEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileFileFilterEntries resource: %v", err)
 	}
@@ -128,6 +129,7 @@ func resourceObjectWebfilterProfileFileFilterEntriesUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +145,9 @@ func resourceObjectWebfilterProfileFileFilterEntriesUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectWebfilterProfileFileFilterEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileFileFilterEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileFileFilterEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileFileFilterEntries resource: %v", err)
 	}
@@ -162,6 +166,7 @@ func resourceObjectWebfilterProfileFileFilterEntriesDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +177,9 @@ func resourceObjectWebfilterProfileFileFilterEntriesDelete(d *schema.ResourceDat
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileFileFilterEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileFileFilterEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileFileFilterEntries resource: %v", err)
 	}

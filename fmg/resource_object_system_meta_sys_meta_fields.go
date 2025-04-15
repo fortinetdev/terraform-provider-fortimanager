@@ -72,6 +72,7 @@ func resourceObjectSystemMetaSysMetaFieldsCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectSystemMetaSysMetaFieldsCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMetaSysMetaFields resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemMetaSysMetaFields(obj, paradict)
-
+	_, err = c.CreateObjectSystemMetaSysMetaFields(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMetaSysMetaFields resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectSystemMetaSysMetaFieldsUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectSystemMetaSysMetaFieldsUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectSystemMetaSysMetaFields resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemMetaSysMetaFields(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemMetaSysMetaFields(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemMetaSysMetaFields resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectSystemMetaSysMetaFieldsDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectSystemMetaSysMetaFieldsDelete(d *schema.ResourceData, m inter
 	meta := d.Get("meta").(string)
 	paradict["meta"] = meta
 
-	err = c.DeleteObjectSystemMetaSysMetaFields(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemMetaSysMetaFields(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemMetaSysMetaFields resource: %v", err)
 	}

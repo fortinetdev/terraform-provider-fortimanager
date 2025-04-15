@@ -113,6 +113,7 @@ func resourceObjectCasbUserActivityControlOptionsOperationsCreate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,9 +130,9 @@ func resourceObjectCasbUserActivityControlOptionsOperationsCreate(d *schema.Reso
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityControlOptionsOperations resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbUserActivityControlOptionsOperations(obj, paradict)
-
+	_, err = c.CreateObjectCasbUserActivityControlOptionsOperations(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityControlOptionsOperations resource: %v", err)
 	}
@@ -147,6 +148,7 @@ func resourceObjectCasbUserActivityControlOptionsOperationsUpdate(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +166,9 @@ func resourceObjectCasbUserActivityControlOptionsOperationsUpdate(d *schema.Reso
 		return fmt.Errorf("Error updating ObjectCasbUserActivityControlOptionsOperations resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbUserActivityControlOptionsOperations(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbUserActivityControlOptionsOperations(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbUserActivityControlOptionsOperations resource: %v", err)
 	}
@@ -183,6 +187,7 @@ func resourceObjectCasbUserActivityControlOptionsOperationsDelete(d *schema.Reso
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -195,7 +200,9 @@ func resourceObjectCasbUserActivityControlOptionsOperationsDelete(d *schema.Reso
 	paradict["user_activity"] = user_activity
 	paradict["control_options"] = control_options
 
-	err = c.DeleteObjectCasbUserActivityControlOptionsOperations(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbUserActivityControlOptionsOperations(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbUserActivityControlOptionsOperations resource: %v", err)
 	}

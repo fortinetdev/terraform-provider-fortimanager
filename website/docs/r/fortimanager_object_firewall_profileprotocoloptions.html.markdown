@@ -157,6 +157,8 @@ The `http` block supports:
 
 * `h2c` - Enable/disable h2c HTTP connection upgrade. Valid values: `disable`, `enable`.
 
+* `http_09` - Configure action to take upon receipt of HTTP 0.9 request. Valid values: `block`, `allow`.
+
 * `fortinet_bar` - Fortinet-Bar. Valid values: `disable`, `enable`.
 
 * `fortinet_bar_port` - Fortinet-Bar-Port.

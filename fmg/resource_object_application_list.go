@@ -338,6 +338,7 @@ func resourceObjectApplicationListCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -349,9 +350,9 @@ func resourceObjectApplicationListCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationList(obj, paradict)
-
+	_, err = c.CreateObjectApplicationList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationList resource: %v", err)
 	}
@@ -367,6 +368,7 @@ func resourceObjectApplicationListUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -379,7 +381,9 @@ func resourceObjectApplicationListUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectApplicationList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationList resource: %v", err)
 	}
@@ -398,6 +402,7 @@ func resourceObjectApplicationListDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -405,7 +410,9 @@ func resourceObjectApplicationListDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectApplicationList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationList resource: %v", err)
 	}

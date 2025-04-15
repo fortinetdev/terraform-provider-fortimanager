@@ -88,6 +88,8 @@ The following arguments are supported:
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
 
+* `app_monitor` - Enable/disable application TCP metrics in session logs.When enabled, auto-asic-offload is disabled. Valid values: `disable`, `enable`.
+
 * `app_category` - Application category ID list.
 * `app_group` - Application group names.
 * `application` - Application ID list.
@@ -368,6 +370,8 @@ The following arguments are supported:
 * `poolname6` - Poolname6.
 * `port_preserve` - Enable/disable preservation of the original source port from source NAT if it has not been used. Valid values: `disable`, `enable`.
 
+* `port_random` - Enable/disable random source port selection for source NAT. Valid values: `disable`, `enable`.
+
 * `profile_group` - Name of profile group.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
@@ -505,6 +509,8 @@ The following arguments are supported:
 * `ztna_device_ownership` - Enable/disable zero trust device ownership. Valid values: `disable`, `enable`.
 
 * `ztna_ems_tag` - Ztna-Ems-Tag.
+* `ztna_ems_tag_negate` - When enabled ztna-ems-tag specifies what the tags must NOT be. Valid values: `disable`, `enable`.
+
 * `ztna_ems_tag_secondary` - Source ztna-ems-tag-secondary names.
 * `ztna_geo_tag` - Ztna-Geo-Tag.
 * `ztna_policy_redirect` - Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `disable`, `enable`.

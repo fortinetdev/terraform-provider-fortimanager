@@ -107,6 +107,7 @@ func resourceSystempSystemCentralManagementUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +123,9 @@ func resourceSystempSystemCentralManagementUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating SystempSystemCentralManagement resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemCentralManagement(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemCentralManagement(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemCentralManagement resource: %v", err)
 	}
@@ -141,6 +144,7 @@ func resourceSystempSystemCentralManagementDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +155,9 @@ func resourceSystempSystemCentralManagementDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemCentralManagement(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemCentralManagement(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemCentralManagement resource: %v", err)
 	}

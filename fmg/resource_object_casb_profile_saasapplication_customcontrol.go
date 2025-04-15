@@ -55,6 +55,28 @@ func resourceObjectCasbProfileSaasApplicationCustomControl() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"attribute_filter": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"attribute_match": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -92,6 +114,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +131,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationCustomControl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbProfileSaasApplicationCustomControl(obj, paradict)
-
+	_, err = c.CreateObjectCasbProfileSaasApplicationCustomControl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}
@@ -126,6 +149,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +167,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationCustomControl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbProfileSaasApplicationCustomControl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbProfileSaasApplicationCustomControl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}
@@ -162,6 +188,7 @@ func resourceObjectCasbProfileSaasApplicationCustomControlDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +201,9 @@ func resourceObjectCasbProfileSaasApplicationCustomControlDelete(d *schema.Resou
 	paradict["profile"] = profile
 	paradict["saas_application"] = saas_application
 
-	err = c.DeleteObjectCasbProfileSaasApplicationCustomControl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbProfileSaasApplicationCustomControl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbProfileSaasApplicationCustomControl resource: %v", err)
 	}
@@ -237,6 +266,65 @@ func resourceObjectCasbProfileSaasApplicationCustomControlRead(d *schema.Resourc
 		return fmt.Errorf("Error reading ObjectCasbProfileSaasApplicationCustomControl resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilter3rdl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction3rdl(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := i["attribute-match"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch3rdl(i["attribute-match"], d, pre_append)
+			tmp["attribute_match"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-AttributeMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterId3rdl(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-Id")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -303,6 +391,30 @@ func refreshObjectObjectCasbProfileSaasApplicationCustomControl(d *schema.Resour
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if isImportTable() {
+		if err = d.Set("attribute_filter", flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilter3rdl(o["attribute-filter"], d, "attribute_filter")); err != nil {
+			if vv, ok := fortiAPIPatch(o["attribute-filter"], "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter"); ok {
+				if err = d.Set("attribute_filter", vv); err != nil {
+					return fmt.Errorf("Error reading attribute_filter: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading attribute_filter: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("attribute_filter"); ok {
+			if err = d.Set("attribute_filter", flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilter3rdl(o["attribute-filter"], d, "attribute_filter")); err != nil {
+				if vv, ok := fortiAPIPatch(o["attribute-filter"], "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter"); ok {
+					if err = d.Set("attribute_filter", vv); err != nil {
+						return fmt.Errorf("Error reading attribute_filter: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading attribute_filter: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("name", flattenObjectCasbProfileSaasApplicationCustomControlName3rdl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectCasbProfileSaasApplicationCustomControl-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -344,6 +456,57 @@ func flattenObjectCasbProfileSaasApplicationCustomControlFortiTestDebug(d *schem
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilter3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["action"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction3rdl(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attribute-match"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch3rdl(d, i["attribute_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterId3rdl(d, i["id"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -394,6 +557,15 @@ func expandObjectCasbProfileSaasApplicationCustomControlOptionUserInput3rdl(d *s
 
 func getObjectObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("attribute_filter"); ok || d.HasChange("attribute_filter") {
+		t, err := expandObjectCasbProfileSaasApplicationCustomControlAttributeFilter3rdl(d, v, "attribute_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["attribute-filter"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCasbProfileSaasApplicationCustomControlName3rdl(d, v, "name")

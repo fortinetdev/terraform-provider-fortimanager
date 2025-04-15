@@ -80,6 +80,7 @@ func resourceObjectFirewallGtpNoipPolicyCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectFirewallGtpNoipPolicyCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpNoipPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallGtpNoipPolicy(obj, paradict)
-
+	_, err = c.CreateObjectFirewallGtpNoipPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpNoipPolicy resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectFirewallGtpNoipPolicyUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -127,7 +129,9 @@ func resourceObjectFirewallGtpNoipPolicyUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectFirewallGtpNoipPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpNoipPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpNoipPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpNoipPolicy resource: %v", err)
 	}
@@ -146,6 +150,7 @@ func resourceObjectFirewallGtpNoipPolicyDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectFirewallGtpNoipPolicyDelete(d *schema.ResourceData, m interfa
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpNoipPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpNoipPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpNoipPolicy resource: %v", err)
 	}

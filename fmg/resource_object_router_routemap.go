@@ -297,6 +297,7 @@ func resourceObjectRouterRouteMapCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -308,9 +309,9 @@ func resourceObjectRouterRouteMapCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterRouteMap(obj, paradict)
-
+	_, err = c.CreateObjectRouterRouteMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMap resource: %v", err)
 	}
@@ -326,6 +327,7 @@ func resourceObjectRouterRouteMapUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -338,7 +340,9 @@ func resourceObjectRouterRouteMapUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectRouterRouteMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterRouteMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterRouteMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterRouteMap resource: %v", err)
 	}
@@ -357,6 +361,7 @@ func resourceObjectRouterRouteMapDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -364,7 +369,9 @@ func resourceObjectRouterRouteMapDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectRouterRouteMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterRouteMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterRouteMap resource: %v", err)
 	}

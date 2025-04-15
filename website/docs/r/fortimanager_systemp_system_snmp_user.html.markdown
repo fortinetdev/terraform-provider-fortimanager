@@ -59,6 +59,7 @@ The following arguments are supported:
 * `trap_status` - Enable/disable traps for this SNMP user. Valid values: `disable`, `enable`.
 
 * `vdoms` - SNMP access control VDOMs.
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

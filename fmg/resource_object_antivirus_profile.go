@@ -1030,6 +1030,7 @@ func resourceObjectAntivirusProfileCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1041,9 +1042,9 @@ func resourceObjectAntivirusProfileCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAntivirusProfile(obj, paradict)
-
+	_, err = c.CreateObjectAntivirusProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusProfile resource: %v", err)
 	}
@@ -1059,6 +1060,7 @@ func resourceObjectAntivirusProfileUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1071,7 +1073,9 @@ func resourceObjectAntivirusProfileUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectAntivirusProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfile resource: %v", err)
 	}
@@ -1090,6 +1094,7 @@ func resourceObjectAntivirusProfileDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1097,7 +1102,9 @@ func resourceObjectAntivirusProfileDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfile resource: %v", err)
 	}

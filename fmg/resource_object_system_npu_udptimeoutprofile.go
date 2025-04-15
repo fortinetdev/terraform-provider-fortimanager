@@ -63,6 +63,7 @@ func resourceObjectSystemNpuUdpTimeoutProfileCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectSystemNpuUdpTimeoutProfileCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuUdpTimeoutProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuUdpTimeoutProfile(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuUdpTimeoutProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectSystemNpuUdpTimeoutProfileUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectSystemNpuUdpTimeoutProfileUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSystemNpuUdpTimeoutProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuUdpTimeoutProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuUdpTimeoutProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectSystemNpuUdpTimeoutProfileDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectSystemNpuUdpTimeoutProfileDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuUdpTimeoutProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuUdpTimeoutProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}

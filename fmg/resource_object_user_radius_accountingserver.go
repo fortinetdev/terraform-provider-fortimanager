@@ -88,6 +88,10 @@ func resourceObjectUserRadiusAccountingServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -97,6 +101,7 @@ func resourceObjectUserRadiusAccountingServerCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -111,9 +116,9 @@ func resourceObjectUserRadiusAccountingServerCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusAccountingServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserRadiusAccountingServer(obj, paradict)
-
+	_, err = c.CreateObjectUserRadiusAccountingServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadiusAccountingServer resource: %v", err)
 	}
@@ -129,6 +134,7 @@ func resourceObjectUserRadiusAccountingServerUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +150,9 @@ func resourceObjectUserRadiusAccountingServerUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectUserRadiusAccountingServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserRadiusAccountingServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserRadiusAccountingServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserRadiusAccountingServer resource: %v", err)
 	}
@@ -163,6 +171,7 @@ func resourceObjectUserRadiusAccountingServerDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +182,9 @@ func resourceObjectUserRadiusAccountingServerDelete(d *schema.ResourceData, m in
 	radius := d.Get("radius").(string)
 	paradict["radius"] = radius
 
-	err = c.DeleteObjectUserRadiusAccountingServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserRadiusAccountingServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserRadiusAccountingServer resource: %v", err)
 	}
@@ -255,6 +266,10 @@ func flattenObjectUserRadiusAccountingServerStatus2edl(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectUserRadiusAccountingServerVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserRadiusAccountingServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -332,6 +347,16 @@ func refreshObjectObjectUserRadiusAccountingServer(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserRadiusAccountingServerVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserRadiusAccountingServer-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -370,6 +395,10 @@ func expandObjectUserRadiusAccountingServerSourceIp2edl(d *schema.ResourceData, 
 }
 
 func expandObjectUserRadiusAccountingServerStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusAccountingServerVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -445,6 +474,15 @@ func getObjectObjectUserRadiusAccountingServer(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserRadiusAccountingServerVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

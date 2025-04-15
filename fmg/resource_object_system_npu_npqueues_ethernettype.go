@@ -74,6 +74,7 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -85,9 +86,9 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesEthernetType resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuNpQueuesEthernetType(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuNpQueuesEthernetType(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}
@@ -103,6 +104,7 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesEthernetType resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesEthernetType(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpQueuesEthernetType(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +146,9 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeDelete(d *schema.ResourceData, m
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesEthernetType(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpQueuesEthernetType(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}

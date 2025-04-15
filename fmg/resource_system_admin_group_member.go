@@ -47,6 +47,8 @@ func resourceSystemAdminGroupMemberCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemAdminGroupMemberCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminGroupMember resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminGroupMember(obj, paradict)
-
+	_, err = c.CreateSystemAdminGroupMember(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminGroupMember resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemAdminGroupMemberUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemAdminGroupMemberUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating SystemAdminGroupMember resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminGroupMember(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminGroupMember(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminGroupMember resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemAdminGroupMemberDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	group := d.Get("group").(string)
 	paradict["group"] = group
 
-	err = c.DeleteSystemAdminGroupMember(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminGroupMember(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminGroupMember resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemAdminGroupMemberRead(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -232,6 +232,7 @@ func resourceObjectWirelessControllerWtpProfileLbsUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -247,7 +248,9 @@ func resourceObjectWirelessControllerWtpProfileLbsUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLbs resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWtpProfileLbs(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerWtpProfileLbs(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLbs resource: %v", err)
 	}
@@ -266,6 +269,7 @@ func resourceObjectWirelessControllerWtpProfileLbsDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -276,7 +280,9 @@ func resourceObjectWirelessControllerWtpProfileLbsDelete(d *schema.ResourceData,
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	err = c.DeleteObjectWirelessControllerWtpProfileLbs(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerWtpProfileLbs(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileLbs resource: %v", err)
 	}

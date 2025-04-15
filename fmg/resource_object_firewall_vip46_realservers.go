@@ -105,6 +105,7 @@ func resourceObjectFirewallVip46RealserversCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,9 +120,9 @@ func resourceObjectFirewallVip46RealserversCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip46Realservers resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVip46Realservers(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVip46Realservers(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip46Realservers resource: %v", err)
 	}
@@ -137,6 +138,7 @@ func resourceObjectFirewallVip46RealserversUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +154,9 @@ func resourceObjectFirewallVip46RealserversUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectFirewallVip46Realservers resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVip46Realservers(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVip46Realservers(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip46Realservers resource: %v", err)
 	}
@@ -171,6 +175,7 @@ func resourceObjectFirewallVip46RealserversDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -181,7 +186,9 @@ func resourceObjectFirewallVip46RealserversDelete(d *schema.ResourceData, m inte
 	vip46 := d.Get("vip46").(string)
 	paradict["vip46"] = vip46
 
-	err = c.DeleteObjectFirewallVip46Realservers(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVip46Realservers(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVip46Realservers resource: %v", err)
 	}

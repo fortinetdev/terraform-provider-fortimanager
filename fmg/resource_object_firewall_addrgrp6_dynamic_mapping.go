@@ -129,6 +129,7 @@ func resourceObjectFirewallAddrgrp6DynamicMappingCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,9 +144,9 @@ func resourceObjectFirewallAddrgrp6DynamicMappingCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp6DynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddrgrp6DynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddrgrp6DynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp6DynamicMapping resource: %v", err)
 	}
@@ -161,6 +162,7 @@ func resourceObjectFirewallAddrgrp6DynamicMappingUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +178,9 @@ func resourceObjectFirewallAddrgrp6DynamicMappingUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp6DynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddrgrp6DynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddrgrp6DynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp6DynamicMapping resource: %v", err)
 	}
@@ -195,6 +199,7 @@ func resourceObjectFirewallAddrgrp6DynamicMappingDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -205,7 +210,9 @@ func resourceObjectFirewallAddrgrp6DynamicMappingDelete(d *schema.ResourceData, 
 	addrgrp6 := d.Get("addrgrp6").(string)
 	paradict["addrgrp6"] = addrgrp6
 
-	err = c.DeleteObjectFirewallAddrgrp6DynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddrgrp6DynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddrgrp6DynamicMapping resource: %v", err)
 	}

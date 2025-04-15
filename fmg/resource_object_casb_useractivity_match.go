@@ -60,6 +60,11 @@ func resourceObjectCasbUserActivityMatch() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"body_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"case_sensitive": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -77,6 +82,10 @@ func resourceObjectCasbUserActivityMatch() *schema.Resource {
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"jq": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"match_pattern": &schema.Schema{
@@ -112,6 +121,57 @@ func resourceObjectCasbUserActivityMatch() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tenant_extraction": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"filters": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"body_type": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"direction": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"header_name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"id": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"place": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
+						},
+						"jq": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -126,6 +186,7 @@ func resourceObjectCasbUserActivityMatchCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,9 +201,9 @@ func resourceObjectCasbUserActivityMatchCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityMatch resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbUserActivityMatch(obj, paradict)
-
+	_, err = c.CreateObjectCasbUserActivityMatch(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityMatch resource: %v", err)
 	}
@@ -158,6 +219,7 @@ func resourceObjectCasbUserActivityMatchUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +235,9 @@ func resourceObjectCasbUserActivityMatchUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectCasbUserActivityMatch resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbUserActivityMatch(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbUserActivityMatch(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbUserActivityMatch resource: %v", err)
 	}
@@ -192,6 +256,7 @@ func resourceObjectCasbUserActivityMatchDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -202,7 +267,9 @@ func resourceObjectCasbUserActivityMatchDelete(d *schema.ResourceData, m interfa
 	user_activity := d.Get("user_activity").(string)
 	paradict["user_activity"] = user_activity
 
-	err = c.DeleteObjectCasbUserActivityMatch(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbUserActivityMatch(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbUserActivityMatch resource: %v", err)
 	}
@@ -279,6 +346,12 @@ func flattenObjectCasbUserActivityMatchRules2edl(v interface{}, d *schema.Resour
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "body_type"
+		if _, ok := i["body-type"]; ok {
+			v := flattenObjectCasbUserActivityMatchRulesBodyType2edl(i["body-type"], d, pre_append)
+			tmp["body_type"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatch-Rules-BodyType")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "case_sensitive"
 		if _, ok := i["case-sensitive"]; ok {
 			v := flattenObjectCasbUserActivityMatchRulesCaseSensitive2edl(i["case-sensitive"], d, pre_append)
@@ -301,6 +374,12 @@ func flattenObjectCasbUserActivityMatchRules2edl(v interface{}, d *schema.Resour
 		if _, ok := i["id"]; ok {
 			v := flattenObjectCasbUserActivityMatchRulesId2edl(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatch-Rules-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "jq"
+		if _, ok := i["jq"]; ok {
+			v := flattenObjectCasbUserActivityMatchRulesJq2edl(i["jq"], d, pre_append)
+			tmp["jq"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatch-Rules-Jq")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_pattern"
@@ -343,6 +422,10 @@ func flattenObjectCasbUserActivityMatchRules2edl(v interface{}, d *schema.Resour
 	return result
 }
 
+func flattenObjectCasbUserActivityMatchRulesBodyType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbUserActivityMatchRulesCaseSensitive2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -356,6 +439,10 @@ func flattenObjectCasbUserActivityMatchRulesHeaderName2edl(v interface{}, d *sch
 }
 
 func flattenObjectCasbUserActivityMatchRulesId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchRulesJq2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -380,6 +467,130 @@ func flattenObjectCasbUserActivityMatchRulesType2edl(v interface{}, d *schema.Re
 }
 
 func flattenObjectCasbUserActivityMatchStrategy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtraction2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "filters"
+	if _, ok := i["filters"]; ok {
+		result["filters"] = flattenObjectCasbUserActivityMatchTenantExtractionFilters2edl(i["filters"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "jq"
+	if _, ok := i["jq"]; ok {
+		result["jq"] = flattenObjectCasbUserActivityMatchTenantExtractionJq2edl(i["jq"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectCasbUserActivityMatchTenantExtractionStatus2edl(i["status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "type"
+	if _, ok := i["type"]; ok {
+		result["type"] = flattenObjectCasbUserActivityMatchTenantExtractionType2edl(i["type"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFilters2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "body_type"
+		if _, ok := i["body-type"]; ok {
+			v := flattenObjectCasbUserActivityMatchTenantExtractionFiltersBodyType2edl(i["body-type"], d, pre_append)
+			tmp["body_type"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatchTenantExtraction-Filters-BodyType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := i["direction"]; ok {
+			v := flattenObjectCasbUserActivityMatchTenantExtractionFiltersDirection2edl(i["direction"], d, pre_append)
+			tmp["direction"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatchTenantExtraction-Filters-Direction")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_name"
+		if _, ok := i["header-name"]; ok {
+			v := flattenObjectCasbUserActivityMatchTenantExtractionFiltersHeaderName2edl(i["header-name"], d, pre_append)
+			tmp["header_name"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatchTenantExtraction-Filters-HeaderName")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectCasbUserActivityMatchTenantExtractionFiltersId2edl(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatchTenantExtraction-Filters-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "place"
+		if _, ok := i["place"]; ok {
+			v := flattenObjectCasbUserActivityMatchTenantExtractionFiltersPlace2edl(i["place"], d, pre_append)
+			tmp["place"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatchTenantExtraction-Filters-Place")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFiltersBodyType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFiltersDirection2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFiltersHeaderName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFiltersId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionFiltersPlace2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionJq2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchTenantExtractionType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -438,6 +649,30 @@ func refreshObjectObjectCasbUserActivityMatch(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("tenant_extraction", flattenObjectCasbUserActivityMatchTenantExtraction2edl(o["tenant-extraction"], d, "tenant_extraction")); err != nil {
+			if vv, ok := fortiAPIPatch(o["tenant-extraction"], "ObjectCasbUserActivityMatch-TenantExtraction"); ok {
+				if err = d.Set("tenant_extraction", vv); err != nil {
+					return fmt.Errorf("Error reading tenant_extraction: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading tenant_extraction: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("tenant_extraction"); ok {
+			if err = d.Set("tenant_extraction", flattenObjectCasbUserActivityMatchTenantExtraction2edl(o["tenant-extraction"], d, "tenant_extraction")); err != nil {
+				if vv, ok := fortiAPIPatch(o["tenant-extraction"], "ObjectCasbUserActivityMatch-TenantExtraction"); ok {
+					if err = d.Set("tenant_extraction", vv); err != nil {
+						return fmt.Errorf("Error reading tenant_extraction: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading tenant_extraction: %v", err)
+				}
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -465,6 +700,11 @@ func expandObjectCasbUserActivityMatchRules2edl(d *schema.ResourceData, v interf
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "body_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["body-type"], _ = expandObjectCasbUserActivityMatchRulesBodyType2edl(d, i["body_type"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "case_sensitive"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["case-sensitive"], _ = expandObjectCasbUserActivityMatchRulesCaseSensitive2edl(d, i["case_sensitive"], pre_append)
@@ -483,6 +723,11 @@ func expandObjectCasbUserActivityMatchRules2edl(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectCasbUserActivityMatchRulesId2edl(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "jq"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["jq"], _ = expandObjectCasbUserActivityMatchRulesJq2edl(d, i["jq"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_pattern"
@@ -520,6 +765,10 @@ func expandObjectCasbUserActivityMatchRules2edl(d *schema.ResourceData, v interf
 	return result, nil
 }
 
+func expandObjectCasbUserActivityMatchRulesBodyType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbUserActivityMatchRulesCaseSensitive2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -533,6 +782,10 @@ func expandObjectCasbUserActivityMatchRulesHeaderName2edl(d *schema.ResourceData
 }
 
 func expandObjectCasbUserActivityMatchRulesId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchRulesJq2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -557,6 +810,122 @@ func expandObjectCasbUserActivityMatchRulesType2edl(d *schema.ResourceData, v in
 }
 
 func expandObjectCasbUserActivityMatchStrategy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtraction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "filters"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectCasbUserActivityMatchTenantExtractionFilters2edl(d, i["filters"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["filters"] = t
+		}
+	}
+	pre_append = pre + ".0." + "jq"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["jq"], _ = expandObjectCasbUserActivityMatchTenantExtractionJq2edl(d, i["jq"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["status"], _ = expandObjectCasbUserActivityMatchTenantExtractionStatus2edl(d, i["status"], pre_append)
+	}
+	pre_append = pre + ".0." + "type"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["type"], _ = expandObjectCasbUserActivityMatchTenantExtractionType2edl(d, i["type"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFilters2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "body_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["body-type"], _ = expandObjectCasbUserActivityMatchTenantExtractionFiltersBodyType2edl(d, i["body_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["direction"], _ = expandObjectCasbUserActivityMatchTenantExtractionFiltersDirection2edl(d, i["direction"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["header-name"], _ = expandObjectCasbUserActivityMatchTenantExtractionFiltersHeaderName2edl(d, i["header_name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectCasbUserActivityMatchTenantExtractionFiltersId2edl(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "place"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["place"], _ = expandObjectCasbUserActivityMatchTenantExtractionFiltersPlace2edl(d, i["place"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFiltersBodyType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFiltersDirection2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFiltersHeaderName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFiltersId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionFiltersPlace2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionJq2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchTenantExtractionType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -587,6 +956,15 @@ func getObjectObjectCasbUserActivityMatch(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["strategy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tenant_extraction"); ok || d.HasChange("tenant_extraction") {
+		t, err := expandObjectCasbUserActivityMatchTenantExtraction2edl(d, v, "tenant_extraction")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tenant-extraction"] = t
 		}
 	}
 

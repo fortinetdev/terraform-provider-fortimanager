@@ -199,6 +199,7 @@ func resourcePackagesPkgCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -213,9 +214,9 @@ func resourcePackagesPkgCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPkg resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesPkg(obj, paradict)
-
+	_, err = c.CreatePackagesPkg(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPkg resource: %v", err)
 	}
@@ -231,6 +232,7 @@ func resourcePackagesPkgUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -246,7 +248,9 @@ func resourcePackagesPkgUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating PackagesPkg resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPkg(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesPkg(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPkg resource: %v", err)
 	}
@@ -265,6 +269,7 @@ func resourcePackagesPkgDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -275,7 +280,9 @@ func resourcePackagesPkgDelete(d *schema.ResourceData, m interface{}) error {
 	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 
-	err = c.DeletePackagesPkg(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesPkg(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPkg resource: %v", err)
 	}

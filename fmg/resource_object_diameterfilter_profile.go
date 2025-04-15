@@ -113,6 +113,7 @@ func resourceObjectDiameterFilterProfileCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,9 +125,9 @@ func resourceObjectDiameterFilterProfileCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDiameterFilterProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDiameterFilterProfile(obj, paradict)
-
+	_, err = c.CreateObjectDiameterFilterProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDiameterFilterProfile resource: %v", err)
 	}
@@ -142,6 +143,7 @@ func resourceObjectDiameterFilterProfileUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +156,9 @@ func resourceObjectDiameterFilterProfileUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectDiameterFilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDiameterFilterProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDiameterFilterProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDiameterFilterProfile resource: %v", err)
 	}
@@ -173,6 +177,7 @@ func resourceObjectDiameterFilterProfileDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectDiameterFilterProfileDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDiameterFilterProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDiameterFilterProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDiameterFilterProfile resource: %v", err)
 	}

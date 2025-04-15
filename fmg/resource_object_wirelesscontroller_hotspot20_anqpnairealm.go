@@ -124,6 +124,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,9 +136,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealm resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealm(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealm(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealm resource: %v", err)
 	}
@@ -153,6 +154,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +167,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealm resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealm(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealm(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealm resource: %v", err)
 	}
@@ -184,6 +188,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -191,7 +196,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmDelete(d *schema.Resou
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealm(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealm(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNaiRealm resource: %v", err)
 	}

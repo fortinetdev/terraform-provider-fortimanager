@@ -125,6 +125,7 @@ func resourceObjectEmailfilterBlockAllowListCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,9 +137,9 @@ func resourceObjectEmailfilterBlockAllowListCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterBlockAllowList(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterBlockAllowList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowList resource: %v", err)
 	}
@@ -154,6 +155,7 @@ func resourceObjectEmailfilterBlockAllowListUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -166,7 +168,9 @@ func resourceObjectEmailfilterBlockAllowListUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBlockAllowList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterBlockAllowList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowList resource: %v", err)
 	}
@@ -185,6 +189,7 @@ func resourceObjectEmailfilterBlockAllowListDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -192,7 +197,9 @@ func resourceObjectEmailfilterBlockAllowListDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterBlockAllowList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterBlockAllowList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBlockAllowList resource: %v", err)
 	}

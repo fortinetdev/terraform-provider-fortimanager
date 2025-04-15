@@ -465,6 +465,7 @@ func resourceObjectSwitchControllerManagedSwitchPortsCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -479,9 +480,9 @@ func resourceObjectSwitchControllerManagedSwitchPortsCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchPorts resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchPorts(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerManagedSwitchPorts(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
 	}
@@ -497,6 +498,7 @@ func resourceObjectSwitchControllerManagedSwitchPortsUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -512,7 +514,9 @@ func resourceObjectSwitchControllerManagedSwitchPortsUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchPorts resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerManagedSwitchPorts(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerManagedSwitchPorts(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
 	}
@@ -531,6 +535,7 @@ func resourceObjectSwitchControllerManagedSwitchPortsDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -541,7 +546,9 @@ func resourceObjectSwitchControllerManagedSwitchPortsDelete(d *schema.ResourceDa
 	managed_switch := d.Get("managed_switch").(string)
 	paradict["managed_switch"] = managed_switch
 
-	err = c.DeleteObjectSwitchControllerManagedSwitchPorts(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerManagedSwitchPorts(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
 	}

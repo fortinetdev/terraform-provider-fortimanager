@@ -110,6 +110,7 @@ func resourceObjectIcapServerCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,9 +122,9 @@ func resourceObjectIcapServerCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapServer(obj, paradict)
-
+	_, err = c.CreateObjectIcapServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapServer resource: %v", err)
 	}
@@ -139,6 +140,7 @@ func resourceObjectIcapServerUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectIcapServerUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectIcapServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIcapServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapServer resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectIcapServerDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,7 +182,9 @@ func resourceObjectIcapServerDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIcapServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIcapServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapServer resource: %v", err)
 	}

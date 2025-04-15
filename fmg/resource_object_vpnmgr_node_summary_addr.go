@@ -72,6 +72,7 @@ func resourceObjectVpnmgrNodeSummaryAddrCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectVpnmgrNodeSummaryAddrCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNodeSummaryAddr resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnmgrNodeSummaryAddr(obj, paradict)
-
+	_, err = c.CreateObjectVpnmgrNodeSummaryAddr(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNodeSummaryAddr resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectVpnmgrNodeSummaryAddrUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectVpnmgrNodeSummaryAddrUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectVpnmgrNodeSummaryAddr resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnmgrNodeSummaryAddr(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnmgrNodeSummaryAddr(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnmgrNodeSummaryAddr resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectVpnmgrNodeSummaryAddrDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectVpnmgrNodeSummaryAddrDelete(d *schema.ResourceData, m interfa
 	node := d.Get("node").(string)
 	paradict["node"] = node
 
-	err = c.DeleteObjectVpnmgrNodeSummaryAddr(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnmgrNodeSummaryAddr(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnmgrNodeSummaryAddr resource: %v", err)
 	}

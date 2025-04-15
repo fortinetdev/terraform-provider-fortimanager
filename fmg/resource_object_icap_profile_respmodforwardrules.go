@@ -110,6 +110,7 @@ func resourceObjectIcapProfileRespmodForwardRulesCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,9 +125,9 @@ func resourceObjectIcapProfileRespmodForwardRulesCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRules resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapProfileRespmodForwardRules(obj, paradict)
-
+	_, err = c.CreateObjectIcapProfileRespmodForwardRules(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRules resource: %v", err)
 	}
@@ -142,6 +143,7 @@ func resourceObjectIcapProfileRespmodForwardRulesUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -157,7 +159,9 @@ func resourceObjectIcapProfileRespmodForwardRulesUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectIcapProfileRespmodForwardRules resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapProfileRespmodForwardRules(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIcapProfileRespmodForwardRules(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfileRespmodForwardRules resource: %v", err)
 	}
@@ -176,6 +180,7 @@ func resourceObjectIcapProfileRespmodForwardRulesDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -186,7 +191,9 @@ func resourceObjectIcapProfileRespmodForwardRulesDelete(d *schema.ResourceData, 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectIcapProfileRespmodForwardRules(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIcapProfileRespmodForwardRules(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapProfileRespmodForwardRules resource: %v", err)
 	}

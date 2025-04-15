@@ -142,6 +142,7 @@ func resourceObjectWafProfileConstraintExceptionCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,9 +157,9 @@ func resourceObjectWafProfileConstraintExceptionCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileConstraintException resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafProfileConstraintException(obj, paradict)
-
+	_, err = c.CreateObjectWafProfileConstraintException(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileConstraintException resource: %v", err)
 	}
@@ -174,6 +175,7 @@ func resourceObjectWafProfileConstraintExceptionUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -189,7 +191,9 @@ func resourceObjectWafProfileConstraintExceptionUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintException resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileConstraintException(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileConstraintException(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintException resource: %v", err)
 	}
@@ -208,6 +212,7 @@ func resourceObjectWafProfileConstraintExceptionDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -218,7 +223,9 @@ func resourceObjectWafProfileConstraintExceptionDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileConstraintException(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileConstraintException(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileConstraintException resource: %v", err)
 	}

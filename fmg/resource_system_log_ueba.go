@@ -49,6 +49,8 @@ func resourceSystemLogUebaUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,7 +59,9 @@ func resourceSystemLogUebaUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemLogUeba resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogUeba(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogUeba(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogUeba resource: %v", err)
 	}
@@ -76,10 +80,14 @@ func resourceSystemLogUebaDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogUeba(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogUeba(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogUeba resource: %v", err)
 	}
@@ -96,6 +104,7 @@ func resourceSystemLogUebaRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

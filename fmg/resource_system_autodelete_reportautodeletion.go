@@ -59,6 +59,8 @@ func resourceSystemAutoDeleteReportAutoDeletionUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,7 +69,9 @@ func resourceSystemAutoDeleteReportAutoDeletionUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating SystemAutoDeleteReportAutoDeletion resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAutoDeleteReportAutoDeletion(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAutoDeleteReportAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteReportAutoDeletion resource: %v", err)
 	}
@@ -86,10 +90,14 @@ func resourceSystemAutoDeleteReportAutoDeletionDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteReportAutoDeletion(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAutoDeleteReportAutoDeletion(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAutoDeleteReportAutoDeletion resource: %v", err)
 	}
@@ -106,6 +114,7 @@ func resourceSystemAutoDeleteReportAutoDeletionRead(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

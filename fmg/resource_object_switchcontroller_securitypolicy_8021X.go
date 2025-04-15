@@ -149,6 +149,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021XCreate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,9 +161,9 @@ func resourceObjectSwitchControllerSecurityPolicy8021XCreate(d *schema.ResourceD
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSecurityPolicy8021X resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerSecurityPolicy8021X(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerSecurityPolicy8021X(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}
@@ -178,6 +179,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021XUpdate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -190,7 +192,9 @@ func resourceObjectSwitchControllerSecurityPolicy8021XUpdate(d *schema.ResourceD
 		return fmt.Errorf("Error updating ObjectSwitchControllerSecurityPolicy8021X resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerSecurityPolicy8021X(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerSecurityPolicy8021X(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}
@@ -209,6 +213,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021XDelete(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -216,7 +221,9 @@ func resourceObjectSwitchControllerSecurityPolicy8021XDelete(d *schema.ResourceD
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerSecurityPolicy8021X(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerSecurityPolicy8021X(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}

@@ -104,6 +104,7 @@ func resourceObjectFspVlanDhcpServerReservedAddressCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,9 +119,9 @@ func resourceObjectFspVlanDhcpServerReservedAddressCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDhcpServerReservedAddress resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDhcpServerReservedAddress(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanDhcpServerReservedAddress(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDhcpServerReservedAddress resource: %v", err)
 	}
@@ -136,6 +137,7 @@ func resourceObjectFspVlanDhcpServerReservedAddressUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectFspVlanDhcpServerReservedAddressUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectFspVlanDhcpServerReservedAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanDhcpServerReservedAddress(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanDhcpServerReservedAddress(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDhcpServerReservedAddress resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectFspVlanDhcpServerReservedAddressDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectFspVlanDhcpServerReservedAddressDelete(d *schema.ResourceData
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	err = c.DeleteObjectFspVlanDhcpServerReservedAddress(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanDhcpServerReservedAddress(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanDhcpServerReservedAddress resource: %v", err)
 	}

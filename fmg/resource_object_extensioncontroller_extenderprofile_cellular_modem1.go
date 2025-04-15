@@ -119,6 +119,34 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1() *schema.Re
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"multiple_pdn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"pdn1_dataplan": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"pdn2_dataplan": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"pdn3_dataplan": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"pdn4_dataplan": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"preferred_carrier": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -166,6 +194,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Update(d *sch
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -181,7 +210,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Update(d *sch
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem1 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularModem1(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularModem1(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem1 resource: %v", err)
 	}
@@ -200,6 +231,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Delete(d *sch
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -210,7 +242,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Delete(d *sch
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellularModem1(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileCellularModem1(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellularModem1 resource: %v", err)
 	}
@@ -365,6 +399,26 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1ModemId3rdl(v 
 	return v
 }
 
+func flattenObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -453,6 +507,56 @@ func refreshObjectObjectExtensionControllerExtenderProfileCellularModem1(d *sche
 			}
 		} else {
 			return fmt.Errorf("Error reading modem_id: %v", err)
+		}
+	}
+
+	if err = d.Set("multiple_pdn", flattenObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn3rdl(o["multiple-PDN"], d, "multiple_pdn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["multiple-PDN"], "ObjectExtensionControllerExtenderProfileCellularModem1-MultiplePdn"); ok {
+			if err = d.Set("multiple_pdn", vv); err != nil {
+				return fmt.Errorf("Error reading multiple_pdn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading multiple_pdn: %v", err)
+		}
+	}
+
+	if err = d.Set("pdn1_dataplan", flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan3rdl(o["pdn1-dataplan"], d, "pdn1_dataplan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn1-dataplan"], "ObjectExtensionControllerExtenderProfileCellularModem1-Pdn1Dataplan"); ok {
+			if err = d.Set("pdn1_dataplan", vv); err != nil {
+				return fmt.Errorf("Error reading pdn1_dataplan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pdn1_dataplan: %v", err)
+		}
+	}
+
+	if err = d.Set("pdn2_dataplan", flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan3rdl(o["pdn2-dataplan"], d, "pdn2_dataplan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn2-dataplan"], "ObjectExtensionControllerExtenderProfileCellularModem1-Pdn2Dataplan"); ok {
+			if err = d.Set("pdn2_dataplan", vv); err != nil {
+				return fmt.Errorf("Error reading pdn2_dataplan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pdn2_dataplan: %v", err)
+		}
+	}
+
+	if err = d.Set("pdn3_dataplan", flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan3rdl(o["pdn3-dataplan"], d, "pdn3_dataplan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn3-dataplan"], "ObjectExtensionControllerExtenderProfileCellularModem1-Pdn3Dataplan"); ok {
+			if err = d.Set("pdn3_dataplan", vv); err != nil {
+				return fmt.Errorf("Error reading pdn3_dataplan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pdn3_dataplan: %v", err)
+		}
+	}
+
+	if err = d.Set("pdn4_dataplan", flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan3rdl(o["pdn4-dataplan"], d, "pdn4_dataplan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn4-dataplan"], "ObjectExtensionControllerExtenderProfileCellularModem1-Pdn4Dataplan"); ok {
+			if err = d.Set("pdn4_dataplan", vv); err != nil {
+				return fmt.Errorf("Error reading pdn4_dataplan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pdn4_dataplan: %v", err)
 		}
 	}
 
@@ -609,6 +713,26 @@ func expandObjectExtensionControllerExtenderProfileCellularModem1ModemId3rdl(d *
 	return v, nil
 }
 
+func expandObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -682,6 +806,51 @@ func getObjectObjectExtensionControllerExtenderProfileCellularModem1(d *schema.R
 			return &obj, err
 		} else if t != nil {
 			obj["modem-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("multiple_pdn"); ok || d.HasChange("multiple_pdn") {
+		t, err := expandObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn3rdl(d, v, "multiple_pdn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["multiple-PDN"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pdn1_dataplan"); ok || d.HasChange("pdn1_dataplan") {
+		t, err := expandObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan3rdl(d, v, "pdn1_dataplan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pdn1-dataplan"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pdn2_dataplan"); ok || d.HasChange("pdn2_dataplan") {
+		t, err := expandObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan3rdl(d, v, "pdn2_dataplan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pdn2-dataplan"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pdn3_dataplan"); ok || d.HasChange("pdn3_dataplan") {
+		t, err := expandObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan3rdl(d, v, "pdn3_dataplan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pdn3-dataplan"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pdn4_dataplan"); ok || d.HasChange("pdn4_dataplan") {
+		t, err := expandObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan3rdl(d, v, "pdn4_dataplan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pdn4-dataplan"] = t
 		}
 	}
 

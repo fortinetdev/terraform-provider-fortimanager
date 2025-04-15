@@ -63,6 +63,7 @@ func resourceObjectSystemSdnConnectorOciRegionListCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -77,9 +78,9 @@ func resourceObjectSystemSdnConnectorOciRegionListCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorOciRegionList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorOciRegionList(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorOciRegionList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorOciRegionList resource: %v", err)
 	}
@@ -95,6 +96,7 @@ func resourceObjectSystemSdnConnectorOciRegionListUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectSystemSdnConnectorOciRegionListUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorOciRegionList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorOciRegionList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorOciRegionList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorOciRegionList resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectSystemSdnConnectorOciRegionListDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceObjectSystemSdnConnectorOciRegionListDelete(d *schema.ResourceData,
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorOciRegionList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorOciRegionList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorOciRegionList resource: %v", err)
 	}

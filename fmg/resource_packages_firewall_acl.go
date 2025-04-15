@@ -82,6 +82,7 @@ func resourcePackagesFirewallAcl() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"service": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -114,6 +115,7 @@ func resourcePackagesFirewallAclCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,11 +132,20 @@ func resourcePackagesFirewallAclCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallAcl resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallAcl(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallAcl(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallAcl resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallAclRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallAcl resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -148,6 +159,7 @@ func resourcePackagesFirewallAclUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +177,9 @@ func resourcePackagesFirewallAclUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating PackagesFirewallAcl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallAcl(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallAcl(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallAcl resource: %v", err)
 	}
@@ -184,6 +198,7 @@ func resourcePackagesFirewallAclDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -196,7 +211,9 @@ func resourcePackagesFirewallAclDelete(d *schema.ResourceData, m interface{}) er
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallAcl(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallAcl(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallAcl resource: %v", err)
 	}

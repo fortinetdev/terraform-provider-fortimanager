@@ -73,6 +73,7 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +88,9 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileAntiphishCustomPatterns resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterProfileAntiphishCustomPatterns(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterProfileAntiphishCustomPatterns(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileAntiphishCustomPatterns resource: %v", err)
 	}
@@ -105,6 +106,7 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphishCustomPatterns resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileAntiphishCustomPatterns(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileAntiphishCustomPatterns(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphishCustomPatterns resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectWebfilterProfileAntiphishCustomPatternsDelete(d *schema.Resou
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileAntiphishCustomPatterns(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileAntiphishCustomPatterns(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileAntiphishCustomPatterns resource: %v", err)
 	}

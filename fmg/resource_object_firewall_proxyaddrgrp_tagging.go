@@ -74,6 +74,7 @@ func resourceObjectFirewallProxyAddrgrpTaggingCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectFirewallProxyAddrgrpTaggingCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrpTagging resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddrgrpTagging(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProxyAddrgrpTagging(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrpTagging resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectFirewallProxyAddrgrpTaggingUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectFirewallProxyAddrgrpTaggingUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddrgrpTagging resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProxyAddrgrpTagging(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProxyAddrgrpTagging(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddrgrpTagging resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectFirewallProxyAddrgrpTaggingDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectFirewallProxyAddrgrpTaggingDelete(d *schema.ResourceData, m i
 	proxy_addrgrp := d.Get("proxy_addrgrp").(string)
 	paradict["proxy_addrgrp"] = proxy_addrgrp
 
-	err = c.DeleteObjectFirewallProxyAddrgrpTagging(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProxyAddrgrpTagging(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProxyAddrgrpTagging resource: %v", err)
 	}

@@ -71,7 +71,7 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource with format {{ems_id}}.
+* `id` - an identifier for the resource with format {{name}}.
 
 ## Import
 
@@ -79,7 +79,7 @@ ObjectEndpointControl Fctems can be imported using any of these accepted formats
 ```
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_object_endpointcontrol_fctems.labelname {{ems_id}}
+$ terraform import fortimanager_object_endpointcontrol_fctems.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 -> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

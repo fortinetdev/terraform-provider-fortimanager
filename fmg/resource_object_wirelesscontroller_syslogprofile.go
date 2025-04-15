@@ -92,6 +92,7 @@ func resourceObjectWirelessControllerSyslogProfileCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectWirelessControllerSyslogProfileCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSyslogProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerSyslogProfile(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerSyslogProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectWirelessControllerSyslogProfileUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectWirelessControllerSyslogProfileUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectWirelessControllerSyslogProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerSyslogProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerSyslogProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectWirelessControllerSyslogProfileDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectWirelessControllerSyslogProfileDelete(d *schema.ResourceData,
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerSyslogProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerSyslogProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}

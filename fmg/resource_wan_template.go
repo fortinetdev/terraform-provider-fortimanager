@@ -93,6 +93,7 @@ func resourceWanTemplateCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,9 +105,9 @@ func resourceWanTemplateCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating WanTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWanTemplate(obj, paradict)
-
+	_, err = c.CreateWanTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WanTemplate resource: %v", err)
 	}
@@ -122,6 +123,7 @@ func resourceWanTemplateUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +136,9 @@ func resourceWanTemplateUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating WanTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWanTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWanTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WanTemplate resource: %v", err)
 	}
@@ -153,6 +157,7 @@ func resourceWanTemplateDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceWanTemplateDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteWanTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWanTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WanTemplate resource: %v", err)
 	}

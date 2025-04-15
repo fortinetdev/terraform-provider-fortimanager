@@ -106,6 +106,7 @@ func resourceObjectEmailfilterMheaderCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,9 +118,9 @@ func resourceObjectEmailfilterMheaderCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterMheader resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterMheader(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterMheader(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterMheader resource: %v", err)
 	}
@@ -135,6 +136,7 @@ func resourceObjectEmailfilterMheaderUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +149,9 @@ func resourceObjectEmailfilterMheaderUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectEmailfilterMheader resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterMheader(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterMheader(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterMheader resource: %v", err)
 	}
@@ -166,6 +170,7 @@ func resourceObjectEmailfilterMheaderDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -173,7 +178,9 @@ func resourceObjectEmailfilterMheaderDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterMheader(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterMheader(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterMheader resource: %v", err)
 	}

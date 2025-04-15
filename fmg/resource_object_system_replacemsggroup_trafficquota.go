@@ -78,6 +78,7 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupTrafficQuota resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupTrafficQuota(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgGroupTrafficQuota(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupTrafficQuota resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupTrafficQuota resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgGroupTrafficQuota(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgGroupTrafficQuota(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupTrafficQuota resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectSystemReplacemsgGroupTrafficQuotaDelete(d *schema.ResourceDat
 	replacemsg_group := d.Get("replacemsg_group").(string)
 	paradict["replacemsg_group"] = replacemsg_group
 
-	err = c.DeleteObjectSystemReplacemsgGroupTrafficQuota(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgGroupTrafficQuota(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgGroupTrafficQuota resource: %v", err)
 	}

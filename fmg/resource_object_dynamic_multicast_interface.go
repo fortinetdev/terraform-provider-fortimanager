@@ -109,6 +109,7 @@ func resourceObjectDynamicMulticastInterfaceCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,9 +121,9 @@ func resourceObjectDynamicMulticastInterfaceCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicMulticastInterface(obj, paradict)
-
+	_, err = c.CreateObjectDynamicMulticastInterface(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource: %v", err)
 	}
@@ -138,6 +139,7 @@ func resourceObjectDynamicMulticastInterfaceUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +152,9 @@ func resourceObjectDynamicMulticastInterfaceUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterface resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicMulticastInterface(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicMulticastInterface(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterface resource: %v", err)
 	}
@@ -169,6 +173,7 @@ func resourceObjectDynamicMulticastInterfaceDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +181,9 @@ func resourceObjectDynamicMulticastInterfaceDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicMulticastInterface(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicMulticastInterface(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicMulticastInterface resource: %v", err)
 	}

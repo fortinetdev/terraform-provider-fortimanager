@@ -184,6 +184,7 @@ func resourceObjectSshFilterProfileCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -195,9 +196,9 @@ func resourceObjectSshFilterProfileCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSshFilterProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSshFilterProfile(obj, paradict)
-
+	_, err = c.CreateObjectSshFilterProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSshFilterProfile resource: %v", err)
 	}
@@ -213,6 +214,7 @@ func resourceObjectSshFilterProfileUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -225,7 +227,9 @@ func resourceObjectSshFilterProfileUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectSshFilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSshFilterProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSshFilterProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSshFilterProfile resource: %v", err)
 	}
@@ -244,6 +248,7 @@ func resourceObjectSshFilterProfileDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -251,7 +256,9 @@ func resourceObjectSshFilterProfileDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSshFilterProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSshFilterProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSshFilterProfile resource: %v", err)
 	}

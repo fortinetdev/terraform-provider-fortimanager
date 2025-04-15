@@ -118,6 +118,7 @@ func resourceObjectAntivirusProfileNntpUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +134,9 @@ func resourceObjectAntivirusProfileNntpUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectAntivirusProfileNntp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfileNntp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfileNntp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileNntp resource: %v", err)
 	}
@@ -152,6 +155,7 @@ func resourceObjectAntivirusProfileNntpDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +166,9 @@ func resourceObjectAntivirusProfileNntpDelete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfileNntp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfileNntp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfileNntp resource: %v", err)
 	}

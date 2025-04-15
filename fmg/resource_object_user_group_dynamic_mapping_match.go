@@ -86,6 +86,7 @@ func resourceObjectUserGroupDynamicMappingMatchCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,9 +105,9 @@ func resourceObjectUserGroupDynamicMappingMatchCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroupDynamicMappingMatch resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserGroupDynamicMappingMatch(obj, paradict)
-
+	_, err = c.CreateObjectUserGroupDynamicMappingMatch(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroupDynamicMappingMatch resource: %v", err)
 	}
@@ -122,6 +123,7 @@ func resourceObjectUserGroupDynamicMappingMatchUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectUserGroupDynamicMappingMatchUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectUserGroupDynamicMappingMatch resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserGroupDynamicMappingMatch(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserGroupDynamicMappingMatch(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserGroupDynamicMappingMatch resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectUserGroupDynamicMappingMatchDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +179,9 @@ func resourceObjectUserGroupDynamicMappingMatchDelete(d *schema.ResourceData, m 
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectUserGroupDynamicMappingMatch(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserGroupDynamicMappingMatch(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserGroupDynamicMappingMatch resource: %v", err)
 	}

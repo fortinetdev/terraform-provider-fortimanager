@@ -205,6 +205,8 @@ func resourceSystemSamlUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -213,7 +215,9 @@ func resourceSystemSamlUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSaml(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSaml(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSaml resource: %v", err)
 	}
@@ -231,6 +235,8 @@ func resourceSystemSamlDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -240,7 +246,9 @@ func resourceSystemSamlDelete(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSaml(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSaml(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error clearing SystemSaml resource: %v", err)
 	}
@@ -257,6 +265,7 @@ func resourceSystemSamlRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

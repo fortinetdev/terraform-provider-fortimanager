@@ -115,6 +115,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsCreate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,9 +134,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsCreate(d *schema.Resour
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerOptions resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerOptions(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerOptions(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerOptions resource: %v", err)
 	}
@@ -151,6 +152,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsUpdate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +172,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsUpdate(d *schema.Resour
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerOptions(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerOptions resource: %v", err)
 	}
@@ -189,6 +193,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsDelete(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -203,7 +208,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerOptionsDelete(d *schema.Resour
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerOptions(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerOptions(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanDynamicMappingDhcpServerOptions resource: %v", err)
 	}

@@ -81,6 +81,7 @@ func resourceObjectFirewallWildcardFqdnCustomCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectFirewallWildcardFqdnCustomCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnCustom resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallWildcardFqdnCustom(obj, paradict)
-
+	_, err = c.CreateObjectFirewallWildcardFqdnCustom(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnCustom resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectFirewallWildcardFqdnCustomUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +124,9 @@ func resourceObjectFirewallWildcardFqdnCustomUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallWildcardFqdnCustom(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallWildcardFqdnCustom(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnCustom resource: %v", err)
 	}
@@ -141,6 +145,7 @@ func resourceObjectFirewallWildcardFqdnCustomDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectFirewallWildcardFqdnCustomDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallWildcardFqdnCustom(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallWildcardFqdnCustom(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallWildcardFqdnCustom resource: %v", err)
 	}

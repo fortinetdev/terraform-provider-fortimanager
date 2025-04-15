@@ -68,6 +68,7 @@ func resourceObjectSystemSdnConnectorForwardingRuleCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectSystemSdnConnectorForwardingRuleCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorForwardingRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorForwardingRule(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorForwardingRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorForwardingRule resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectSystemSdnConnectorForwardingRuleUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectSystemSdnConnectorForwardingRuleUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorForwardingRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorForwardingRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorForwardingRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorForwardingRule resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectSystemSdnConnectorForwardingRuleDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectSystemSdnConnectorForwardingRuleDelete(d *schema.ResourceData
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorForwardingRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorForwardingRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorForwardingRule resource: %v", err)
 	}

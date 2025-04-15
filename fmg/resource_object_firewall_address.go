@@ -252,6 +252,12 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"sso_attribute_value": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -447,6 +453,12 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sso_attribute_value": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"start_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -545,6 +557,7 @@ func resourceObjectFirewallAddressCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -556,9 +569,9 @@ func resourceObjectFirewallAddressCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress resource: %v", err)
 	}
@@ -574,6 +587,7 @@ func resourceObjectFirewallAddressUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -586,7 +600,9 @@ func resourceObjectFirewallAddressUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectFirewallAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress resource: %v", err)
 	}
@@ -605,6 +621,7 @@ func resourceObjectFirewallAddressDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -612,7 +629,9 @@ func resourceObjectFirewallAddressDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAddress(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress resource: %v", err)
 	}
@@ -919,6 +938,12 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["sdn_tag"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-SdnTag")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute_value"
+		if _, ok := i["sso-attribute-value"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingSsoAttributeValue(i["sso-attribute-value"], d, pre_append)
+			tmp["sso_attribute_value"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-SsoAttributeValue")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
 		if _, ok := i["start-ip"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingStartIp(i["start-ip"], d, pre_append)
@@ -1210,6 +1235,10 @@ func flattenObjectFirewallAddressDynamicMappingSdnTag(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingSsoAttributeValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddressDynamicMappingStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1427,6 +1456,10 @@ func flattenObjectFirewallAddressSdnAddrType(v interface{}, d *schema.ResourceDa
 
 func flattenObjectFirewallAddressSdnTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallAddressSsoAttributeValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddressStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1933,6 +1966,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("sso_attribute_value", flattenObjectFirewallAddressSsoAttributeValue(o["sso-attribute-value"], d, "sso_attribute_value")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sso-attribute-value"], "ObjectFirewallAddress-SsoAttributeValue"); ok {
+			if err = d.Set("sso_attribute_value", vv); err != nil {
+				return fmt.Errorf("Error reading sso_attribute_value: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sso_attribute_value: %v", err)
+		}
+	}
+
 	if err = d.Set("start_ip", flattenObjectFirewallAddressStartIp(o["start-ip"], d, "start_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["start-ip"], "ObjectFirewallAddress-StartIp"); ok {
 			if err = d.Set("start_ip", vv); err != nil {
@@ -2336,6 +2379,11 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["sdn-tag"], _ = expandObjectFirewallAddressDynamicMappingSdnTag(d, i["sdn_tag"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute_value"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sso-attribute-value"], _ = expandObjectFirewallAddressDynamicMappingSsoAttributeValue(d, i["sso_attribute_value"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFirewallAddressDynamicMappingStartIp(d, i["start_ip"], pre_append)
@@ -2604,6 +2652,10 @@ func expandObjectFirewallAddressDynamicMappingSdnTag(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingSsoAttributeValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddressDynamicMappingStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2813,6 +2865,10 @@ func expandObjectFirewallAddressSdnAddrType(d *schema.ResourceData, v interface{
 
 func expandObjectFirewallAddressSdnTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallAddressSsoAttributeValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAddressStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3237,6 +3293,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["sdn-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sso_attribute_value"); ok || d.HasChange("sso_attribute_value") {
+		t, err := expandObjectFirewallAddressSsoAttributeValue(d, v, "sso_attribute_value")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sso-attribute-value"] = t
 		}
 	}
 

@@ -47,6 +47,8 @@ func resourceSystemInterfaceMemberCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemInterfaceMemberCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemInterfaceMember resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemInterfaceMember(obj, paradict)
-
+	_, err = c.CreateSystemInterfaceMember(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemInterfaceMember resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemInterfaceMemberUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemInterfaceMemberUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating SystemInterfaceMember resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemInterfaceMember(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemInterfaceMember(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemInterfaceMember resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemInterfaceMemberDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
-	err = c.DeleteSystemInterfaceMember(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemInterfaceMember(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemInterfaceMember resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemInterfaceMemberRead(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

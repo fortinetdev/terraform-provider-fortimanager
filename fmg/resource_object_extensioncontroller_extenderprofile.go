@@ -175,6 +175,34 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 										Type:     schema.TypeInt,
 										Optional: true,
 									},
+									"multiple_pdn": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"pdn1_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn2_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn3_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn4_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
 									"preferred_carrier": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -289,6 +317,34 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"multiple_pdn": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"pdn1_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn2_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn3_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"pdn4_dataplan": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
 										Computed: true,
 									},
@@ -517,6 +573,35 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"traffic_split_services": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"address": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"service": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"vsdb": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
 						},
 					},
 				},
@@ -762,6 +847,7 @@ func resourceObjectExtensionControllerExtenderProfileCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -773,9 +859,9 @@ func resourceObjectExtensionControllerExtenderProfileCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfile(obj, paradict)
-
+	_, err = c.CreateObjectExtensionControllerExtenderProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfile resource: %v", err)
 	}
@@ -791,6 +877,7 @@ func resourceObjectExtensionControllerExtenderProfileUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -803,7 +890,9 @@ func resourceObjectExtensionControllerExtenderProfileUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfile resource: %v", err)
 	}
@@ -822,6 +911,7 @@ func resourceObjectExtensionControllerExtenderProfileDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -829,7 +919,9 @@ func resourceObjectExtensionControllerExtenderProfileDelete(d *schema.ResourceDa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfile resource: %v", err)
 	}
@@ -999,6 +1091,31 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1(v interface{}
 		result["modem_id"] = flattenObjectExtensionControllerExtenderProfileCellularModem1ModemId(i["modem-id"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "multiple_pdn"
+	if _, ok := i["multiple-PDN"]; ok {
+		result["multiple_pdn"] = flattenObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn(i["multiple-PDN"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn1_dataplan"
+	if _, ok := i["pdn1-dataplan"]; ok {
+		result["pdn1_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan(i["pdn1-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn2_dataplan"
+	if _, ok := i["pdn2-dataplan"]; ok {
+		result["pdn2_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan(i["pdn2-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn3_dataplan"
+	if _, ok := i["pdn3-dataplan"]; ok {
+		result["pdn3_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan(i["pdn3-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn4_dataplan"
+	if _, ok := i["pdn4-dataplan"]; ok {
+		result["pdn4_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan(i["pdn4-dataplan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "preferred_carrier"
 	if _, ok := i["preferred-carrier"]; ok {
 		result["preferred_carrier"] = flattenObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier(i["preferred-carrier"], d, pre_append)
@@ -1129,6 +1246,26 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem1ModemId(v inte
 	return v
 }
 
+func flattenObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1181,6 +1318,31 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem2(v interface{}
 	pre_append = pre + ".0." + "modem_id"
 	if _, ok := i["modem-id"]; ok {
 		result["modem_id"] = flattenObjectExtensionControllerExtenderProfileCellularModem2ModemId(i["modem-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "multiple_pdn"
+	if _, ok := i["multiple-PDN"]; ok {
+		result["multiple_pdn"] = flattenObjectExtensionControllerExtenderProfileCellularModem2MultiplePdn(i["multiple-PDN"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn1_dataplan"
+	if _, ok := i["pdn1-dataplan"]; ok {
+		result["pdn1_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn1Dataplan(i["pdn1-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn2_dataplan"
+	if _, ok := i["pdn2-dataplan"]; ok {
+		result["pdn2_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn2Dataplan(i["pdn2-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn3_dataplan"
+	if _, ok := i["pdn3-dataplan"]; ok {
+		result["pdn3_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn3Dataplan(i["pdn3-dataplan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pdn4_dataplan"
+	if _, ok := i["pdn4-dataplan"]; ok {
+		result["pdn4_dataplan"] = flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn4Dataplan(i["pdn4-dataplan"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "preferred_carrier"
@@ -1311,6 +1473,26 @@ func flattenObjectExtensionControllerExtenderProfileCellularModem2Gps(v interfac
 
 func flattenObjectExtensionControllerExtenderProfileCellularModem2ModemId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem2MultiplePdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn1Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn2Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn3Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileCellularModem2Pdn4Dataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectExtensionControllerExtenderProfileCellularModem2PreferredCarrier(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1561,6 +1743,11 @@ func flattenObjectExtensionControllerExtenderProfileLanExtension(v interface{}, 
 		result["link_loadbalance"] = flattenObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance(i["link-loadbalance"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "traffic_split_services"
+	if _, ok := i["traffic-split-services"]; ok {
+		result["traffic_split_services"] = flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices(i["traffic-split-services"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1726,6 +1913,75 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(v in
 }
 
 func flattenObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address"
+		if _, ok := i["address"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress(i["address"], d, pre_append)
+			tmp["address"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Address")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "service"
+		if _, ok := i["service"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService(i["service"], d, pre_append)
+			tmp["service"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Service")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vsdb"
+		if _, ok := i["vsdb"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb(i["vsdb"], d, pre_append)
+			tmp["vsdb"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-TrafficSplitServices-Vsdb")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2435,6 +2691,26 @@ func expandObjectExtensionControllerExtenderProfileCellularModem1(d *schema.Reso
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["modem-id"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1ModemId(d, i["modem_id"], pre_append)
 	}
+	pre_append = pre + ".0." + "multiple_pdn"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["multiple-PDN"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn(d, i["multiple_pdn"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn1_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn1-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan(d, i["pdn1_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn2_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn2-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan(d, i["pdn2_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn3_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn3-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan(d, i["pdn3_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn4_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn4-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan(d, i["pdn4_dataplan"], pre_append)
+	}
 	pre_append = pre + ".0." + "preferred_carrier"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["preferred-carrier"], _ = expandObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier(d, i["preferred_carrier"], pre_append)
@@ -2561,6 +2837,26 @@ func expandObjectExtensionControllerExtenderProfileCellularModem1ModemId(d *sche
 	return v, nil
 }
 
+func expandObjectExtensionControllerExtenderProfileCellularModem1MultiplePdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn1Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn2Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn3Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem1Pdn4Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectExtensionControllerExtenderProfileCellularModem1PreferredCarrier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2623,6 +2919,26 @@ func expandObjectExtensionControllerExtenderProfileCellularModem2(d *schema.Reso
 	pre_append = pre + ".0." + "modem_id"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["modem-id"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2ModemId(d, i["modem_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "multiple_pdn"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["multiple-PDN"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2MultiplePdn(d, i["multiple_pdn"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn1_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn1-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2Pdn1Dataplan(d, i["pdn1_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn2_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn2-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2Pdn2Dataplan(d, i["pdn2_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn3_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn3-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2Pdn3Dataplan(d, i["pdn3_dataplan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pdn4_dataplan"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["pdn4-dataplan"], _ = expandObjectExtensionControllerExtenderProfileCellularModem2Pdn4Dataplan(d, i["pdn4_dataplan"], pre_append)
 	}
 	pre_append = pre + ".0." + "preferred_carrier"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2748,6 +3064,26 @@ func expandObjectExtensionControllerExtenderProfileCellularModem2Gps(d *schema.R
 
 func expandObjectExtensionControllerExtenderProfileCellularModem2ModemId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem2MultiplePdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem2Pdn1Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem2Pdn2Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem2Pdn3Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileCellularModem2Pdn4Dataplan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectExtensionControllerExtenderProfileCellularModem2PreferredCarrier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3004,6 +3340,15 @@ func expandObjectExtensionControllerExtenderProfileLanExtension(d *schema.Resour
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["link-loadbalance"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance(d, i["link_loadbalance"], pre_append)
 	}
+	pre_append = pre + ".0." + "traffic_split_services"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices(d, i["traffic_split_services"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["traffic-split-services"] = t
+		}
+	}
 
 	return result, nil
 }
@@ -3150,6 +3495,66 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionIpsecTunnel(d *sc
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionLinkLoadbalance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["address"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress(d, i["address"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "service"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["service"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService(d, i["service"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vsdb"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vsdb"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb(d, i["vsdb"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionTrafficSplitServicesVsdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

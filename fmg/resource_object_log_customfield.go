@@ -67,6 +67,7 @@ func resourceObjectLogCustomFieldCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -78,9 +79,9 @@ func resourceObjectLogCustomFieldCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectLogCustomField resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectLogCustomField(obj, paradict)
-
+	_, err = c.CreateObjectLogCustomField(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectLogCustomField resource: %v", err)
 	}
@@ -96,6 +97,7 @@ func resourceObjectLogCustomFieldUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +110,9 @@ func resourceObjectLogCustomFieldUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectLogCustomField resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectLogCustomField(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectLogCustomField(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectLogCustomField resource: %v", err)
 	}
@@ -127,6 +131,7 @@ func resourceObjectLogCustomFieldDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +139,9 @@ func resourceObjectLogCustomFieldDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectLogCustomField(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectLogCustomField(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectLogCustomField resource: %v", err)
 	}

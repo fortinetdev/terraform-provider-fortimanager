@@ -399,6 +399,7 @@ func resourceObjectGlobalIpsSensorCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -410,9 +411,9 @@ func resourceObjectGlobalIpsSensorCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensor resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectGlobalIpsSensor(obj, paradict)
-
+	_, err = c.CreateObjectGlobalIpsSensor(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensor resource: %v", err)
 	}
@@ -428,6 +429,7 @@ func resourceObjectGlobalIpsSensorUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -440,7 +442,9 @@ func resourceObjectGlobalIpsSensorUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectGlobalIpsSensor(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectGlobalIpsSensor(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensor resource: %v", err)
 	}
@@ -459,6 +463,7 @@ func resourceObjectGlobalIpsSensorDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -466,7 +471,9 @@ func resourceObjectGlobalIpsSensorDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectGlobalIpsSensor(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectGlobalIpsSensor(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectGlobalIpsSensor resource: %v", err)
 	}

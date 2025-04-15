@@ -70,6 +70,7 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListCreate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -84,9 +85,9 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListCreate(d *schema.Resou
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfileDenyMacList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerWtpProfileDenyMacList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerWtpProfileDenyMacList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfileDenyMacList resource: %v", err)
 	}
@@ -102,6 +103,7 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListUpdate(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -117,7 +119,9 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListUpdate(d *schema.Resou
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileDenyMacList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWtpProfileDenyMacList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerWtpProfileDenyMacList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileDenyMacList resource: %v", err)
 	}
@@ -136,6 +140,7 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListDelete(d *schema.Resou
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +151,9 @@ func resourceObjectWirelessControllerWtpProfileDenyMacListDelete(d *schema.Resou
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	err = c.DeleteObjectWirelessControllerWtpProfileDenyMacList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerWtpProfileDenyMacList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileDenyMacList resource: %v", err)
 	}

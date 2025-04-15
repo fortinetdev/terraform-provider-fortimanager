@@ -104,6 +104,7 @@ func resourceObjectSystemDhcpServerReservedAddressCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,9 +119,9 @@ func resourceObjectSystemDhcpServerReservedAddressCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerReservedAddress resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemDhcpServerReservedAddress(obj, paradict)
-
+	_, err = c.CreateObjectSystemDhcpServerReservedAddress(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemDhcpServerReservedAddress resource: %v", err)
 	}
@@ -136,6 +137,7 @@ func resourceObjectSystemDhcpServerReservedAddressUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectSystemDhcpServerReservedAddressUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerReservedAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemDhcpServerReservedAddress(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemDhcpServerReservedAddress(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemDhcpServerReservedAddress resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectSystemDhcpServerReservedAddressDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectSystemDhcpServerReservedAddressDelete(d *schema.ResourceData,
 	server := d.Get("server").(string)
 	paradict["server"] = server
 
-	err = c.DeleteObjectSystemDhcpServerReservedAddress(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemDhcpServerReservedAddress(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemDhcpServerReservedAddress resource: %v", err)
 	}

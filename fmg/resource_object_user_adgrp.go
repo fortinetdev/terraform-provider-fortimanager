@@ -71,6 +71,7 @@ func resourceObjectUserAdgrpCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectUserAdgrpCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserAdgrp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserAdgrp(obj, paradict)
-
+	_, err = c.CreateObjectUserAdgrp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserAdgrp resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectUserAdgrpUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -112,7 +114,9 @@ func resourceObjectUserAdgrpUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating ObjectUserAdgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserAdgrp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserAdgrp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserAdgrp resource: %v", err)
 	}
@@ -131,6 +135,7 @@ func resourceObjectUserAdgrpDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +143,9 @@ func resourceObjectUserAdgrpDelete(d *schema.ResourceData, m interface{}) error 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserAdgrp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserAdgrp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserAdgrp resource: %v", err)
 	}

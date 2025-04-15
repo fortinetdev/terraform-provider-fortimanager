@@ -123,6 +123,7 @@ func resourceObjectFirewallSslSshProfileSslServerCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,9 +138,9 @@ func resourceObjectFirewallSslSshProfileSslServerCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfileSslServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallSslSshProfileSslServer(obj, paradict)
-
+	_, err = c.CreateObjectFirewallSslSshProfileSslServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfileSslServer resource: %v", err)
 	}
@@ -155,6 +156,7 @@ func resourceObjectFirewallSslSshProfileSslServerUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +172,9 @@ func resourceObjectFirewallSslSshProfileSslServerUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSslServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSslSshProfileSslServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallSslSshProfileSslServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSslServer resource: %v", err)
 	}
@@ -189,6 +193,7 @@ func resourceObjectFirewallSslSshProfileSslServerDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -199,7 +204,9 @@ func resourceObjectFirewallSslSshProfileSslServerDelete(d *schema.ResourceData, 
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	err = c.DeleteObjectFirewallSslSshProfileSslServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallSslSshProfileSslServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfileSslServer resource: %v", err)
 	}

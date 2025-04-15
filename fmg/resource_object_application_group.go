@@ -112,6 +112,7 @@ func resourceObjectApplicationGroupCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,9 +124,9 @@ func resourceObjectApplicationGroupCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationGroup(obj, paradict)
-
+	_, err = c.CreateObjectApplicationGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationGroup resource: %v", err)
 	}
@@ -141,6 +142,7 @@ func resourceObjectApplicationGroupUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +155,9 @@ func resourceObjectApplicationGroupUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectApplicationGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectApplicationGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationGroup resource: %v", err)
 	}
@@ -172,6 +176,7 @@ func resourceObjectApplicationGroupDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -179,7 +184,9 @@ func resourceObjectApplicationGroupDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectApplicationGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectApplicationGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationGroup resource: %v", err)
 	}

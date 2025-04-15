@@ -164,7 +164,9 @@ The following arguments are supported:
 
 * `presession` - (String | Optional) The session saved earlier and within the validity period, used to reuse the previous session and assist fortimanager_exec_workspace_action resource. See `Guides -> To Lock for Restricting Configuration Changes` for details. Default is empty.
 
-* `clean_session` - (Bool | Optional) Whether clean sessions. **Only works on workspace mode set to `disabled`.** If set to `true`, the provider will generate and logout the session for each HTTPS request. If set to `false`, the provider will generate a session for each Terraform operation. But the session will stay exist until it expires. Default is `false`.
+* `clean_session` - (Bool | Optional) Whether clean sessions. **Only works on workspace mode set to `disabled` if using resource fortimanager_exec_workspace_action.** If set to `true`, the provider will generate and logout the session for each HTTPS request. If set to `false`, the provider will generate a session for each Terraform operation. But the session will stay exist until it expires. Default is `false`.
+
+* `workspace_mode` - (String | Optional) FortiManger workspace mode. If set to `normal`, FortiManager will be locked/unlocked for each resource operation. Conflict with resource `fortimanager_exec_workspace_action`. Valid opeions: `normal`, `disabled`. Default is `disabled`.
 
 
 ## Release

@@ -77,6 +77,7 @@ func resourceObjectFirewallIdentityBasedRouteRuleCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,9 +92,9 @@ func resourceObjectFirewallIdentityBasedRouteRuleCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIdentityBasedRouteRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallIdentityBasedRouteRule(obj, paradict)
-
+	_, err = c.CreateObjectFirewallIdentityBasedRouteRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIdentityBasedRouteRule resource: %v", err)
 	}
@@ -109,6 +110,7 @@ func resourceObjectFirewallIdentityBasedRouteRuleUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectFirewallIdentityBasedRouteRuleUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectFirewallIdentityBasedRouteRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallIdentityBasedRouteRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallIdentityBasedRouteRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIdentityBasedRouteRule resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectFirewallIdentityBasedRouteRuleDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +158,9 @@ func resourceObjectFirewallIdentityBasedRouteRuleDelete(d *schema.ResourceData, 
 	identity_based_route := d.Get("identity_based_route").(string)
 	paradict["identity_based_route"] = identity_based_route
 
-	err = c.DeleteObjectFirewallIdentityBasedRouteRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallIdentityBasedRouteRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallIdentityBasedRouteRule resource: %v", err)
 	}

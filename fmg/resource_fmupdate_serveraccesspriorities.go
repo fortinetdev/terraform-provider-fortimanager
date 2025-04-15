@@ -86,6 +86,8 @@ func resourceFmupdateServerAccessPrioritiesUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -94,7 +96,9 @@ func resourceFmupdateServerAccessPrioritiesUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateServerAccessPriorities(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateServerAccessPriorities(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource: %v", err)
 	}
@@ -113,10 +117,14 @@ func resourceFmupdateServerAccessPrioritiesDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateServerAccessPriorities(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateServerAccessPriorities(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateServerAccessPriorities resource: %v", err)
 	}
@@ -133,6 +141,7 @@ func resourceFmupdateServerAccessPrioritiesRead(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

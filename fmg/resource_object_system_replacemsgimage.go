@@ -68,6 +68,7 @@ func resourceObjectSystemReplacemsgImageCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -79,9 +80,9 @@ func resourceObjectSystemReplacemsgImageCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgImage resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgImage(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgImage(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgImage resource: %v", err)
 	}
@@ -97,6 +98,7 @@ func resourceObjectSystemReplacemsgImageUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,7 +111,9 @@ func resourceObjectSystemReplacemsgImageUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgImage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgImage(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgImage(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgImage resource: %v", err)
 	}
@@ -128,6 +132,7 @@ func resourceObjectSystemReplacemsgImageDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +140,9 @@ func resourceObjectSystemReplacemsgImageDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemReplacemsgImage(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgImage(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgImage resource: %v", err)
 	}

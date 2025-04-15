@@ -78,6 +78,7 @@ func resourceSystempLogSyslogdFilterFreeStyleCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceSystempLogSyslogdFilterFreeStyleCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating SystempLogSyslogdFilterFreeStyle resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystempLogSyslogdFilterFreeStyle(obj, paradict)
-
+	_, err = c.CreateSystempLogSyslogdFilterFreeStyle(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystempLogSyslogdFilterFreeStyle resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceSystempLogSyslogdFilterFreeStyleUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceSystempLogSyslogdFilterFreeStyleUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating SystempLogSyslogdFilterFreeStyle resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempLogSyslogdFilterFreeStyle(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempLogSyslogdFilterFreeStyle(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdFilterFreeStyle resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceSystempLogSyslogdFilterFreeStyleDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceSystempLogSyslogdFilterFreeStyleDelete(d *schema.ResourceData, m in
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempLogSyslogdFilterFreeStyle(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempLogSyslogdFilterFreeStyle(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempLogSyslogdFilterFreeStyle resource: %v", err)
 	}

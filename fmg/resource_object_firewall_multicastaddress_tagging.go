@@ -75,6 +75,7 @@ func resourceObjectFirewallMulticastAddressTaggingCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -89,9 +90,9 @@ func resourceObjectFirewallMulticastAddressTaggingCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddressTagging resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallMulticastAddressTagging(obj, paradict)
-
+	_, err = c.CreateObjectFirewallMulticastAddressTagging(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddressTagging resource: %v", err)
 	}
@@ -107,6 +108,7 @@ func resourceObjectFirewallMulticastAddressTaggingUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +124,9 @@ func resourceObjectFirewallMulticastAddressTaggingUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddressTagging resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallMulticastAddressTagging(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallMulticastAddressTagging(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddressTagging resource: %v", err)
 	}
@@ -141,6 +145,7 @@ func resourceObjectFirewallMulticastAddressTaggingDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectFirewallMulticastAddressTaggingDelete(d *schema.ResourceData,
 	multicast_address := d.Get("multicast_address").(string)
 	paradict["multicast_address"] = multicast_address
 
-	err = c.DeleteObjectFirewallMulticastAddressTagging(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallMulticastAddressTagging(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallMulticastAddressTagging resource: %v", err)
 	}

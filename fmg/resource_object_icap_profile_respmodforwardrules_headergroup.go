@@ -83,6 +83,7 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupCreate(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupCreate(d *schema.Res
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, paradict)
-
+	_, err = c.CreateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupUpdate(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +136,9 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupUpdate(d *schema.Res
 		return fmt.Errorf("Error updating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
 	}
@@ -153,6 +157,7 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupDelete(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +170,9 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupDelete(d *schema.Res
 	paradict["profile"] = profile
 	paradict["respmod_forward_rules"] = respmod_forward_rules
 
-	err = c.DeleteObjectIcapProfileRespmodForwardRulesHeaderGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIcapProfileRespmodForwardRulesHeaderGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
 	}

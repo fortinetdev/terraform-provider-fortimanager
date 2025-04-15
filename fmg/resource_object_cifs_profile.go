@@ -150,6 +150,7 @@ func resourceObjectCifsProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,9 +162,9 @@ func resourceObjectCifsProfileCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCifsProfile(obj, paradict)
-
+	_, err = c.CreateObjectCifsProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsProfile resource: %v", err)
 	}
@@ -179,6 +180,7 @@ func resourceObjectCifsProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -191,7 +193,9 @@ func resourceObjectCifsProfileUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectCifsProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCifsProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCifsProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsProfile resource: %v", err)
 	}
@@ -210,6 +214,7 @@ func resourceObjectCifsProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -217,7 +222,9 @@ func resourceObjectCifsProfileDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCifsProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCifsProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCifsProfile resource: %v", err)
 	}

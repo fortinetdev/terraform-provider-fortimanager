@@ -77,6 +77,7 @@ func resourceObjectFirewallServiceCategoryCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectFirewallServiceCategoryCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCategory resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallServiceCategory(obj, paradict)
-
+	_, err = c.CreateObjectFirewallServiceCategory(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCategory resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectFirewallServiceCategoryUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,7 +120,9 @@ func resourceObjectFirewallServiceCategoryUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallServiceCategory resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallServiceCategory(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallServiceCategory(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCategory resource: %v", err)
 	}
@@ -137,6 +141,7 @@ func resourceObjectFirewallServiceCategoryDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectFirewallServiceCategoryDelete(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallServiceCategory(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallServiceCategory(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallServiceCategory resource: %v", err)
 	}

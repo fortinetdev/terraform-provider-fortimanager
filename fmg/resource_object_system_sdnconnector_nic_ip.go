@@ -81,6 +81,7 @@ func resourceObjectSystemSdnConnectorNicIpCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -97,9 +98,9 @@ func resourceObjectSystemSdnConnectorNicIpCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorNicIp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorNicIp(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorNicIp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorNicIp resource: %v", err)
 	}
@@ -115,6 +116,7 @@ func resourceObjectSystemSdnConnectorNicIpUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,7 +134,9 @@ func resourceObjectSystemSdnConnectorNicIpUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorNicIp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorNicIp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorNicIp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorNicIp resource: %v", err)
 	}
@@ -151,6 +155,7 @@ func resourceObjectSystemSdnConnectorNicIpDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -163,7 +168,9 @@ func resourceObjectSystemSdnConnectorNicIpDelete(d *schema.ResourceData, m inter
 	paradict["sdn_connector"] = sdn_connector
 	paradict["nic"] = nic
 
-	err = c.DeleteObjectSystemSdnConnectorNicIp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorNicIp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorNicIp resource: %v", err)
 	}

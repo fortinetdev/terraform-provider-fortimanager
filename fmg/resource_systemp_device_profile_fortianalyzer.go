@@ -78,6 +78,7 @@ func resourceSystempDeviceProfileFortianalyzerUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,7 +94,9 @@ func resourceSystempDeviceProfileFortianalyzerUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating SystempDeviceProfileFortianalyzer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempDeviceProfileFortianalyzer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempDeviceProfileFortianalyzer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempDeviceProfileFortianalyzer resource: %v", err)
 	}
@@ -112,6 +115,7 @@ func resourceSystempDeviceProfileFortianalyzerDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -122,7 +126,9 @@ func resourceSystempDeviceProfileFortianalyzerDelete(d *schema.ResourceData, m i
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempDeviceProfileFortianalyzer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempDeviceProfileFortianalyzer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempDeviceProfileFortianalyzer resource: %v", err)
 	}

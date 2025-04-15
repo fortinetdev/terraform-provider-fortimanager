@@ -375,6 +375,7 @@ func resourceObjectEmailfilterProfileCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -386,9 +387,9 @@ func resourceObjectEmailfilterProfileCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterProfile(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterProfile resource: %v", err)
 	}
@@ -404,6 +405,7 @@ func resourceObjectEmailfilterProfileUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -416,7 +418,9 @@ func resourceObjectEmailfilterProfileUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectEmailfilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterProfile resource: %v", err)
 	}
@@ -435,6 +439,7 @@ func resourceObjectEmailfilterProfileDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -442,7 +447,9 @@ func resourceObjectEmailfilterProfileDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterProfile resource: %v", err)
 	}

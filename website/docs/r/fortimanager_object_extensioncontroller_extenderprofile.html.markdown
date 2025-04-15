@@ -68,6 +68,12 @@ The `modem1` block supports:
 * `gps` - FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 
 * `modem_id` - Modem ID.
+* `multiple_pdn` - Multiple-PDN enable/disable. Valid values: `disable`, `enable`.
+
+* `pdn1_dataplan` - PDN1-dataplan.
+* `pdn2_dataplan` - PDN2-dataplan.
+* `pdn3_dataplan` - PDN3-dataplan.
+* `pdn4_dataplan` - PDN4-dataplan.
 * `preferred_carrier` - Preferred carrier.
 * `redundant_intf` - Redundant interface.
 * `redundant_mode` - FortiExtender mode. Valid values: `disable`, `enable`.
@@ -103,6 +109,12 @@ The `modem2` block supports:
 * `gps` - FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
 
 * `modem_id` - Modem ID.
+* `multiple_pdn` - Multiple-PDN enable/disable. Valid values: `disable`, `enable`.
+
+* `pdn1_dataplan` - PDN1-dataplan.
+* `pdn2_dataplan` - PDN2-dataplan.
+* `pdn3_dataplan` - PDN3-dataplan.
+* `pdn4_dataplan` - PDN4-dataplan.
 * `preferred_carrier` - Preferred carrier.
 * `redundant_intf` - Redundant interface.
 * `redundant_mode` - FortiExtender mode. Valid values: `disable`, `enable`.
@@ -164,6 +176,7 @@ The `lan_extension` block supports:
 * `ipsec_tunnel` - IPsec tunnel name.
 * `link_loadbalance` - LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
 
+* `traffic_split_services` - Traffic-Split-Services. The structure of `traffic_split_services` block is documented below.
 
 The `backhaul` block supports:
 
@@ -183,6 +196,14 @@ The `downlinks` block supports:
 * `type` - FortiExtender LAN extension downlink type [port/vap]. Valid values: `port`, `vap`.
 
 * `vap` - FortiExtender LAN extension downlink vap.
+
+The `traffic_split_services` block supports:
+
+* `address` - Address selection.
+* `name` - FortiExtender LAN extension tunnel split entry name.
+* `service` - Service selection.
+* `vsdb` - Select vsdb [enable/disable]. Valid values: `disable`, `enable`.
+
 
 The `wifi` block supports:
 

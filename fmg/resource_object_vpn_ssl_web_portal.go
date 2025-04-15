@@ -698,6 +698,7 @@ func resourceObjectVpnSslWebPortalCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -709,9 +710,9 @@ func resourceObjectVpnSslWebPortalCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortal resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebPortal(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebPortal(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortal resource: %v", err)
 	}
@@ -727,6 +728,7 @@ func resourceObjectVpnSslWebPortalUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -739,7 +741,9 @@ func resourceObjectVpnSslWebPortalUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortal resource: %v", err)
 	}
@@ -758,6 +762,7 @@ func resourceObjectVpnSslWebPortalDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -765,7 +770,9 @@ func resourceObjectVpnSslWebPortalDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebPortal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortal resource: %v", err)
 	}

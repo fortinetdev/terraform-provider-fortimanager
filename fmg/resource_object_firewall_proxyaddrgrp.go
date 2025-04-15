@@ -118,6 +118,7 @@ func resourceObjectFirewallProxyAddrgrpCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,9 +130,9 @@ func resourceObjectFirewallProxyAddrgrpCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddrgrp(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProxyAddrgrp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrp resource: %v", err)
 	}
@@ -147,6 +148,7 @@ func resourceObjectFirewallProxyAddrgrpUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +161,9 @@ func resourceObjectFirewallProxyAddrgrpUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddrgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProxyAddrgrp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProxyAddrgrp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddrgrp resource: %v", err)
 	}
@@ -178,6 +182,7 @@ func resourceObjectFirewallProxyAddrgrpDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -185,7 +190,9 @@ func resourceObjectFirewallProxyAddrgrpDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProxyAddrgrp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProxyAddrgrp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProxyAddrgrp resource: %v", err)
 	}

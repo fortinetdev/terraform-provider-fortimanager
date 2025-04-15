@@ -100,6 +100,11 @@ func resourceObjectFirewallSslSshProfileDot() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"udp_not_quic": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"unsupported_ssl_cipher": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -130,6 +135,7 @@ func resourceObjectFirewallSslSshProfileDotUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +151,9 @@ func resourceObjectFirewallSslSshProfileDotUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileDot resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSslSshProfileDot(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallSslSshProfileDot(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileDot resource: %v", err)
 	}
@@ -164,6 +172,7 @@ func resourceObjectFirewallSslSshProfileDotDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +183,9 @@ func resourceObjectFirewallSslSshProfileDotDelete(d *schema.ResourceData, m inte
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	err = c.DeleteObjectFirewallSslSshProfileDot(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallSslSshProfileDot(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfileDot resource: %v", err)
 	}
@@ -265,6 +276,10 @@ func flattenObjectFirewallSslSshProfileDotSniServerCertCheck2edl(v interface{}, 
 }
 
 func flattenObjectFirewallSslSshProfileDotStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotUdpNotQuic2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -391,6 +406,16 @@ func refreshObjectObjectFirewallSslSshProfileDot(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("udp_not_quic", flattenObjectFirewallSslSshProfileDotUdpNotQuic2edl(o["udp-not-quic"], d, "udp_not_quic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udp-not-quic"], "ObjectFirewallSslSshProfileDot-UdpNotQuic"); ok {
+			if err = d.Set("udp_not_quic", vv); err != nil {
+				return fmt.Errorf("Error reading udp_not_quic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udp_not_quic: %v", err)
+		}
+	}
+
 	if err = d.Set("unsupported_ssl_cipher", flattenObjectFirewallSslSshProfileDotUnsupportedSslCipher2edl(o["unsupported-ssl-cipher"], d, "unsupported_ssl_cipher")); err != nil {
 		if vv, ok := fortiAPIPatch(o["unsupported-ssl-cipher"], "ObjectFirewallSslSshProfileDot-UnsupportedSslCipher"); ok {
 			if err = d.Set("unsupported_ssl_cipher", vv); err != nil {
@@ -477,6 +502,10 @@ func expandObjectFirewallSslSshProfileDotSniServerCertCheck2edl(d *schema.Resour
 }
 
 func expandObjectFirewallSslSshProfileDotStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotUdpNotQuic2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -586,6 +615,15 @@ func getObjectObjectFirewallSslSshProfileDot(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udp_not_quic"); ok || d.HasChange("udp_not_quic") {
+		t, err := expandObjectFirewallSslSshProfileDotUdpNotQuic2edl(d, v, "udp_not_quic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udp-not-quic"] = t
 		}
 	}
 

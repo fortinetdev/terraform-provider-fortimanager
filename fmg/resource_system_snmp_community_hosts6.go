@@ -57,6 +57,8 @@ func resourceSystemSnmpCommunityHosts6Create(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,9 +69,9 @@ func resourceSystemSnmpCommunityHosts6Create(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunityHosts6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSnmpCommunityHosts6(obj, paradict)
-
+	_, err = c.CreateSystemSnmpCommunityHosts6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -85,6 +87,8 @@ func resourceSystemSnmpCommunityHosts6Update(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -96,7 +100,9 @@ func resourceSystemSnmpCommunityHosts6Update(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating SystemSnmpCommunityHosts6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpCommunityHosts6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSnmpCommunityHosts6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -115,13 +121,17 @@ func resourceSystemSnmpCommunityHosts6Delete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	community := d.Get("community").(string)
 	paradict["community"] = community
 
-	err = c.DeleteSystemSnmpCommunityHosts6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSnmpCommunityHosts6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpCommunityHosts6 resource: %v", err)
 	}
@@ -138,6 +148,7 @@ func resourceSystemSnmpCommunityHosts6Read(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

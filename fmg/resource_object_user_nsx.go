@@ -142,6 +142,7 @@ func resourceObjectUserNsxCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,9 +154,9 @@ func resourceObjectUserNsxCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsx resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserNsx(obj, paradict)
-
+	_, err = c.CreateObjectUserNsx(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsx resource: %v", err)
 	}
@@ -171,6 +172,7 @@ func resourceObjectUserNsxUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -183,7 +185,9 @@ func resourceObjectUserNsxUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectUserNsx resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserNsx(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserNsx(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserNsx resource: %v", err)
 	}
@@ -202,6 +206,7 @@ func resourceObjectUserNsxDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -209,7 +214,9 @@ func resourceObjectUserNsxDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserNsx(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserNsx(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserNsx resource: %v", err)
 	}

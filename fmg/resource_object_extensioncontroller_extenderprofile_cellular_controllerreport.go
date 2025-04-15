@@ -75,6 +75,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularControllerReportUpd
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,7 +91,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularControllerReportUpd
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularControllerReport resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularControllerReport(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularControllerReport(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularControllerReport resource: %v", err)
 	}
@@ -109,6 +112,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularControllerReportDel
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +123,9 @@ func resourceObjectExtensionControllerExtenderProfileCellularControllerReportDel
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellularControllerReport(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileCellularControllerReport(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellularControllerReport resource: %v", err)
 	}

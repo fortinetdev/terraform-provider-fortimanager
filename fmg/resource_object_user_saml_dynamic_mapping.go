@@ -163,6 +163,7 @@ func resourceObjectUserSamlDynamicMappingCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,9 +178,9 @@ func resourceObjectUserSamlDynamicMappingCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSamlDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserSamlDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectUserSamlDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSamlDynamicMapping resource: %v", err)
 	}
@@ -195,6 +196,7 @@ func resourceObjectUserSamlDynamicMappingUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -210,7 +212,9 @@ func resourceObjectUserSamlDynamicMappingUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectUserSamlDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserSamlDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserSamlDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSamlDynamicMapping resource: %v", err)
 	}
@@ -229,6 +233,7 @@ func resourceObjectUserSamlDynamicMappingDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -239,7 +244,9 @@ func resourceObjectUserSamlDynamicMappingDelete(d *schema.ResourceData, m interf
 	saml := d.Get("saml").(string)
 	paradict["saml"] = saml
 
-	err = c.DeleteObjectUserSamlDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserSamlDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserSamlDynamicMapping resource: %v", err)
 	}

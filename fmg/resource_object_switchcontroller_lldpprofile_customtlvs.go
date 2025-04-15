@@ -77,6 +77,7 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsCreate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,9 +92,9 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsCreate(d *schema.Resourc
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfileCustomTlvs resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerLldpProfileCustomTlvs(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerLldpProfileCustomTlvs(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfileCustomTlvs resource: %v", err)
 	}
@@ -109,6 +110,7 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsUpdate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +126,9 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsUpdate(d *schema.Resourc
 		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfileCustomTlvs resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerLldpProfileCustomTlvs(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerLldpProfileCustomTlvs(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfileCustomTlvs resource: %v", err)
 	}
@@ -143,6 +147,7 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsDelete(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +158,9 @@ func resourceObjectSwitchControllerLldpProfileCustomTlvsDelete(d *schema.Resourc
 	lldp_profile := d.Get("lldp_profile").(string)
 	paradict["lldp_profile"] = lldp_profile
 
-	err = c.DeleteObjectSwitchControllerLldpProfileCustomTlvs(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerLldpProfileCustomTlvs(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerLldpProfileCustomTlvs resource: %v", err)
 	}

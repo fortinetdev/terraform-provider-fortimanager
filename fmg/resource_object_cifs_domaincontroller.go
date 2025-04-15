@@ -88,6 +88,7 @@ func resourceObjectCifsDomainControllerCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectCifsDomainControllerCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsDomainController resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCifsDomainController(obj, paradict)
-
+	_, err = c.CreateObjectCifsDomainController(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsDomainController resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectCifsDomainControllerUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectCifsDomainControllerUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectCifsDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCifsDomainController(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCifsDomainController(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsDomainController resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectCifsDomainControllerDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectCifsDomainControllerDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCifsDomainController(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCifsDomainController(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCifsDomainController resource: %v", err)
 	}

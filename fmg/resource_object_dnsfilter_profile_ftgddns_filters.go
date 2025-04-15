@@ -79,6 +79,7 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfileFtgdDnsFilters resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDnsfilterProfileFtgdDnsFilters(obj, paradict)
-
+	_, err = c.CreateObjectDnsfilterProfileFtgdDnsFilters(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfileFtgdDnsFilters resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileFtgdDnsFilters resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDnsfilterProfileFtgdDnsFilters(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDnsfilterProfileFtgdDnsFilters(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileFtgdDnsFilters resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectDnsfilterProfileFtgdDnsFiltersDelete(d *schema.ResourceData, 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectDnsfilterProfileFtgdDnsFilters(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDnsfilterProfileFtgdDnsFilters(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDnsfilterProfileFtgdDnsFilters resource: %v", err)
 	}

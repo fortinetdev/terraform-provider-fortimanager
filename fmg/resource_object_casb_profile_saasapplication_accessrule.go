@@ -60,6 +60,29 @@ func resourceObjectCasbProfileSaasApplicationAccessRule() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"attribute_filter": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"attribute_match": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"bypass": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -71,6 +94,11 @@ func resourceObjectCasbProfileSaasApplicationAccessRule() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
+			},
 		},
 	}
 }
@@ -80,6 +108,7 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleCreate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +125,9 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleCreate(d *schema.Resource
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationAccessRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbProfileSaasApplicationAccessRule(obj, paradict)
-
+	_, err = c.CreateObjectCasbProfileSaasApplicationAccessRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}
@@ -114,6 +143,7 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +161,9 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationAccessRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbProfileSaasApplicationAccessRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbProfileSaasApplicationAccessRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}
@@ -150,6 +182,7 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -162,7 +195,9 @@ func resourceObjectCasbProfileSaasApplicationAccessRuleDelete(d *schema.Resource
 	paradict["profile"] = profile
 	paradict["saas_application"] = saas_application
 
-	err = c.DeleteObjectCasbProfileSaasApplicationAccessRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbProfileSaasApplicationAccessRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbProfileSaasApplicationAccessRule resource: %v", err)
 	}
@@ -231,6 +266,65 @@ func flattenObjectCasbProfileSaasApplicationAccessRuleAction3rdl(v interface{}, 
 	return v
 }
 
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilter3rdl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction3rdl(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := i["attribute-match"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch3rdl(i["attribute-match"], d, pre_append)
+			tmp["attribute_match"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-AttributeMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId3rdl(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-Id")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbProfileSaasApplicationAccessRuleBypass3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -246,6 +340,10 @@ func refreshObjectObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceD
 		d.Set("scopetype", "inherit")
 	}
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("action", flattenObjectCasbProfileSaasApplicationAccessRuleAction3rdl(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "ObjectCasbProfileSaasApplicationAccessRule-Action"); ok {
 			if err = d.Set("action", vv); err != nil {
@@ -253,6 +351,30 @@ func refreshObjectObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceD
 			}
 		} else {
 			return fmt.Errorf("Error reading action: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("attribute_filter", flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilter3rdl(o["attribute-filter"], d, "attribute_filter")); err != nil {
+			if vv, ok := fortiAPIPatch(o["attribute-filter"], "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter"); ok {
+				if err = d.Set("attribute_filter", vv); err != nil {
+					return fmt.Errorf("Error reading attribute_filter: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading attribute_filter: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("attribute_filter"); ok {
+			if err = d.Set("attribute_filter", flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilter3rdl(o["attribute-filter"], d, "attribute_filter")); err != nil {
+				if vv, ok := fortiAPIPatch(o["attribute-filter"], "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter"); ok {
+					if err = d.Set("attribute_filter", vv); err != nil {
+						return fmt.Errorf("Error reading attribute_filter: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading attribute_filter: %v", err)
+				}
+			}
 		}
 	}
 
@@ -289,6 +411,57 @@ func expandObjectCasbProfileSaasApplicationAccessRuleAction3rdl(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilter3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["action"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction3rdl(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attribute-match"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch3rdl(d, i["attribute_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId3rdl(d, i["id"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbProfileSaasApplicationAccessRuleBypass3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -306,6 +479,15 @@ func getObjectObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceData)
 			return &obj, err
 		} else if t != nil {
 			obj["action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("attribute_filter"); ok || d.HasChange("attribute_filter") {
+		t, err := expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilter3rdl(d, v, "attribute_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["attribute-filter"] = t
 		}
 	}
 

@@ -84,6 +84,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -102,9 +103,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam resource: %v", err)
 	}
@@ -120,6 +121,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +141,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam resource: %v", err)
 	}
@@ -158,6 +162,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +177,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPa
 	paradict["nai_list"] = nai_list
 	paradict["eap_method"] = eap_method
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam resource: %v", err)
 	}

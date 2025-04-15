@@ -117,6 +117,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListCreate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,9 +132,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListCreate(d *schem
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList resource: %v", err)
 	}
@@ -149,6 +150,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListUpdate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +166,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListUpdate(d *schem
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList resource: %v", err)
 	}
@@ -183,6 +187,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListDelete(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -193,7 +198,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealmNaiListDelete(d *schem
 	anqp_nai_realm := d.Get("anqp_nai_realm").(string)
 	paradict["anqp_nai_realm"] = anqp_nai_realm
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList resource: %v", err)
 	}

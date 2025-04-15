@@ -191,6 +191,7 @@ func resourceObjectUserLocalCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -202,9 +203,9 @@ func resourceObjectUserLocalCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLocal resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserLocal(obj, paradict)
-
+	_, err = c.CreateObjectUserLocal(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLocal resource: %v", err)
 	}
@@ -220,6 +221,7 @@ func resourceObjectUserLocalUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -232,7 +234,9 @@ func resourceObjectUserLocalUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating ObjectUserLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserLocal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserLocal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLocal resource: %v", err)
 	}
@@ -251,6 +255,7 @@ func resourceObjectUserLocalDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -258,7 +263,9 @@ func resourceObjectUserLocalDelete(d *schema.ResourceData, m interface{}) error 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserLocal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserLocal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserLocal resource: %v", err)
 	}

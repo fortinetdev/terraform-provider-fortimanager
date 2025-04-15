@@ -90,6 +90,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesCreate(d *
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,9 +105,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesCreate(d *
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptionsCifsFileFilterEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(obj, paradict)
-
+	_, err = c.CreateObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptionsCifsFileFilterEntries resource: %v", err)
 	}
@@ -122,6 +123,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesUpdate(d *
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -137,7 +139,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesUpdate(d *
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifsFileFilterEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifsFileFilterEntries resource: %v", err)
 	}
@@ -156,6 +160,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesDelete(d *
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -166,7 +171,9 @@ func resourceObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesDelete(d *
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsCifsFileFilterEntries resource: %v", err)
 	}

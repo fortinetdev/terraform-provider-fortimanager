@@ -590,6 +590,7 @@ func resourceObjectWafProfileConstraintUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -605,7 +606,9 @@ func resourceObjectWafProfileConstraintUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectWafProfileConstraint resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileConstraint(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileConstraint(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraint resource: %v", err)
 	}
@@ -624,6 +627,7 @@ func resourceObjectWafProfileConstraintDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -634,7 +638,9 @@ func resourceObjectWafProfileConstraintDelete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileConstraint(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileConstraint(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileConstraint resource: %v", err)
 	}

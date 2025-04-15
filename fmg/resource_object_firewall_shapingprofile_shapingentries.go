@@ -110,6 +110,7 @@ func resourceObjectFirewallShapingProfileShapingEntriesCreate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,9 +125,9 @@ func resourceObjectFirewallShapingProfileShapingEntriesCreate(d *schema.Resource
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShapingProfileShapingEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallShapingProfileShapingEntries(obj, paradict)
-
+	_, err = c.CreateObjectFirewallShapingProfileShapingEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShapingProfileShapingEntries resource: %v", err)
 	}
@@ -142,6 +143,7 @@ func resourceObjectFirewallShapingProfileShapingEntriesUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -157,7 +159,9 @@ func resourceObjectFirewallShapingProfileShapingEntriesUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectFirewallShapingProfileShapingEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallShapingProfileShapingEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallShapingProfileShapingEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallShapingProfileShapingEntries resource: %v", err)
 	}
@@ -176,6 +180,7 @@ func resourceObjectFirewallShapingProfileShapingEntriesDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -186,7 +191,9 @@ func resourceObjectFirewallShapingProfileShapingEntriesDelete(d *schema.Resource
 	shaping_profile := d.Get("shaping_profile").(string)
 	paradict["shaping_profile"] = shaping_profile
 
-	err = c.DeleteObjectFirewallShapingProfileShapingEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallShapingProfileShapingEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallShapingProfileShapingEntries resource: %v", err)
 	}

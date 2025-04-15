@@ -13,6 +13,7 @@ FortiGuard Web Filter settings.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `filters`: `fortimanager_object_webfilter_profile_ftgdwf_filters`
 >- `quota`: `fortimanager_object_webfilter_profile_ftgdwf_quota`
+>- `risk`: `fortimanager_object_webfilter_profile_ftgdwf_risk`
 
 
 
@@ -55,6 +56,7 @@ The following arguments are supported:
 
 * `rate_javascript_urls` - Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
 
+* `risk` - Risk. The structure of `risk` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `filters` block supports:
@@ -84,6 +86,15 @@ The `quota` block supports:
 * `unit` - Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
 
 * `value` - Traffic quota value.
+
+The `risk` block supports:
+
+* `action` - Action to take for matches. Valid values: `block`, `monitor`.
+
+* `id` - ID number.
+* `log` - Enable/disable logging. Valid values: `disable`, `enable`.
+
+* `risk_level` - Risk level to be examined.
 
 
 ## Attribute Reference

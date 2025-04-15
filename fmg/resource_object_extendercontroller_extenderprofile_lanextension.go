@@ -109,6 +109,7 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,7 +125,9 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileLanExtension resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerExtenderProfileLanExtension(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileLanExtension(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileLanExtension resource: %v", err)
 	}
@@ -143,6 +146,7 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +157,9 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionDelete(d *schema
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileLanExtension(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerExtenderProfileLanExtension(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileLanExtension resource: %v", err)
 	}

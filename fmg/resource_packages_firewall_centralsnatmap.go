@@ -128,8 +128,14 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"port_preserve": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"port_random": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -167,6 +173,7 @@ func resourcePackagesFirewallCentralSnatMapCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -183,11 +190,20 @@ func resourcePackagesFirewallCentralSnatMapCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallCentralSnatMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallCentralSnatMap(obj, paradict)
-
+	v, err := c.CreatePackagesFirewallCentralSnatMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallCentralSnatMap resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallCentralSnatMapRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallCentralSnatMap resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -201,6 +217,7 @@ func resourcePackagesFirewallCentralSnatMapUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -218,7 +235,9 @@ func resourcePackagesFirewallCentralSnatMapUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallCentralSnatMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallCentralSnatMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource: %v", err)
 	}
@@ -237,6 +256,7 @@ func resourcePackagesFirewallCentralSnatMapDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -249,7 +269,9 @@ func resourcePackagesFirewallCentralSnatMapDelete(d *schema.ResourceData, m inte
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallCentralSnatMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallCentralSnatMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallCentralSnatMap resource: %v", err)
 	}
@@ -369,6 +391,10 @@ func flattenPackagesFirewallCentralSnatMapPolicyid(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallCentralSnatMapPortPreserve(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapPortRandom(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -559,6 +585,16 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("port_random", flattenPackagesFirewallCentralSnatMapPortRandom(o["port-random"], d, "port_random")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port-random"], "PackagesFirewallCentralSnatMap-PortRandom"); ok {
+			if err = d.Set("port_random", vv); err != nil {
+				return fmt.Errorf("Error reading port_random: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port_random: %v", err)
+		}
+	}
+
 	if err = d.Set("protocol", flattenPackagesFirewallCentralSnatMapProtocol(o["protocol"], d, "protocol")); err != nil {
 		if vv, ok := fortiAPIPatch(o["protocol"], "PackagesFirewallCentralSnatMap-Protocol"); ok {
 			if err = d.Set("protocol", vv); err != nil {
@@ -679,6 +715,10 @@ func expandPackagesFirewallCentralSnatMapPolicyid(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallCentralSnatMapPortPreserve(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapPortRandom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -846,6 +886,15 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["port-preserve"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("port_random"); ok || d.HasChange("port_random") {
+		t, err := expandPackagesFirewallCentralSnatMapPortRandom(d, v, "port_random")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port-random"] = t
 		}
 	}
 

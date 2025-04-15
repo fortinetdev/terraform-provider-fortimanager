@@ -515,6 +515,7 @@ func resourceObjectExtenderControllerExtenderProfileCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -526,9 +527,9 @@ func resourceObjectExtenderControllerExtenderProfileCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerExtenderProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtenderControllerExtenderProfile(obj, paradict)
-
+	_, err = c.CreateObjectExtenderControllerExtenderProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}
@@ -544,6 +545,7 @@ func resourceObjectExtenderControllerExtenderProfileUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -556,7 +558,9 @@ func resourceObjectExtenderControllerExtenderProfileUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerExtenderProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerExtenderProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}
@@ -575,6 +579,7 @@ func resourceObjectExtenderControllerExtenderProfileDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -582,7 +587,9 @@ func resourceObjectExtenderControllerExtenderProfileDelete(d *schema.ResourceDat
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerExtenderProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerExtenderProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}

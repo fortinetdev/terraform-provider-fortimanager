@@ -1008,6 +1008,7 @@ func resourceObjectWirelessControllerVapDynamicMappingCreate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1022,9 +1023,9 @@ func resourceObjectWirelessControllerVapDynamicMappingCreate(d *schema.ResourceD
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerVapDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerVapDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapDynamicMapping resource: %v", err)
 	}
@@ -1040,6 +1041,7 @@ func resourceObjectWirelessControllerVapDynamicMappingUpdate(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1055,7 +1057,9 @@ func resourceObjectWirelessControllerVapDynamicMappingUpdate(d *schema.ResourceD
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVapDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerVapDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapDynamicMapping resource: %v", err)
 	}
@@ -1074,6 +1078,7 @@ func resourceObjectWirelessControllerVapDynamicMappingDelete(d *schema.ResourceD
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1084,7 +1089,9 @@ func resourceObjectWirelessControllerVapDynamicMappingDelete(d *schema.ResourceD
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
-	err = c.DeleteObjectWirelessControllerVapDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerVapDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVapDynamicMapping resource: %v", err)
 	}

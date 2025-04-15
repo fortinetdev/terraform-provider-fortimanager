@@ -131,6 +131,11 @@ func resourceObjectIcapProfile() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"ocr_only": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"preview": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -270,6 +275,7 @@ func resourceObjectIcapProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -281,9 +287,9 @@ func resourceObjectIcapProfileCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapProfile(obj, paradict)
-
+	_, err = c.CreateObjectIcapProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfile resource: %v", err)
 	}
@@ -299,6 +305,7 @@ func resourceObjectIcapProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -311,7 +318,9 @@ func resourceObjectIcapProfileUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectIcapProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIcapProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfile resource: %v", err)
 	}
@@ -330,6 +339,7 @@ func resourceObjectIcapProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -337,7 +347,9 @@ func resourceObjectIcapProfileDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIcapProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIcapProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapProfile resource: %v", err)
 	}
@@ -493,6 +505,10 @@ func flattenObjectIcapProfileMethods(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectIcapProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileOcrOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -859,6 +875,16 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("ocr_only", flattenObjectIcapProfileOcrOnly(o["ocr-only"], d, "ocr_only")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ocr-only"], "ObjectIcapProfile-OcrOnly"); ok {
+			if err = d.Set("ocr_only", vv); err != nil {
+				return fmt.Errorf("Error reading ocr_only: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ocr_only: %v", err)
+		}
+	}
+
 	if err = d.Set("preview", flattenObjectIcapProfilePreview(o["preview"], d, "preview")); err != nil {
 		if vv, ok := fortiAPIPatch(o["preview"], "ObjectIcapProfile-Preview"); ok {
 			if err = d.Set("preview", vv); err != nil {
@@ -1157,6 +1183,10 @@ func expandObjectIcapProfileMethods(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectIcapProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileOcrOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1471,6 +1501,15 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ocr_only"); ok || d.HasChange("ocr_only") {
+		t, err := expandObjectIcapProfileOcrOnly(d, v, "ocr_only")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ocr-only"] = t
 		}
 	}
 

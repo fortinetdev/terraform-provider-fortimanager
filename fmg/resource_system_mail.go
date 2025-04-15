@@ -98,6 +98,8 @@ func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -105,9 +107,9 @@ func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMail resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemMail(obj, paradict)
-
+	_, err = c.CreateSystemMail(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMail resource: %v", err)
 	}
@@ -123,6 +125,8 @@ func resourceSystemMailUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -131,7 +135,9 @@ func resourceSystemMailUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemMail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemMail(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemMail(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemMail resource: %v", err)
 	}
@@ -150,10 +156,14 @@ func resourceSystemMailDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemMail(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemMail(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemMail resource: %v", err)
 	}
@@ -170,6 +180,7 @@ func resourceSystemMailRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -63,6 +63,7 @@ func resourceObjectWafMainClassCreate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectWafMainClassCreate(d *schema.ResourceData, m interface{}) err
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafMainClass resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafMainClass(obj, paradict)
-
+	_, err = c.CreateObjectWafMainClass(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafMainClass resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectWafMainClassUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectWafMainClassUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating ObjectWafMainClass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafMainClass(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafMainClass(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafMainClass resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectWafMainClassDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectWafMainClassDelete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWafMainClass(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafMainClass(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafMainClass resource: %v", err)
 	}

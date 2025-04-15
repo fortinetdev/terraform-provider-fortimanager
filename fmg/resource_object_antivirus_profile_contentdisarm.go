@@ -159,6 +159,7 @@ func resourceObjectAntivirusProfileContentDisarmUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +175,9 @@ func resourceObjectAntivirusProfileContentDisarmUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectAntivirusProfileContentDisarm resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfileContentDisarm(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfileContentDisarm(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileContentDisarm resource: %v", err)
 	}
@@ -193,6 +196,7 @@ func resourceObjectAntivirusProfileContentDisarmDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -203,7 +207,9 @@ func resourceObjectAntivirusProfileContentDisarmDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfileContentDisarm(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfileContentDisarm(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfileContentDisarm resource: %v", err)
 	}

@@ -125,6 +125,7 @@ func resourceObjectWirelessControllerApcfgProfileCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,9 +137,9 @@ func resourceObjectWirelessControllerApcfgProfileCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerApcfgProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerApcfgProfile(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerApcfgProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerApcfgProfile resource: %v", err)
 	}
@@ -154,6 +155,7 @@ func resourceObjectWirelessControllerApcfgProfileUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -166,7 +168,9 @@ func resourceObjectWirelessControllerApcfgProfileUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectWirelessControllerApcfgProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerApcfgProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerApcfgProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerApcfgProfile resource: %v", err)
 	}
@@ -185,6 +189,7 @@ func resourceObjectWirelessControllerApcfgProfileDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -192,7 +197,9 @@ func resourceObjectWirelessControllerApcfgProfileDelete(d *schema.ResourceData, 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerApcfgProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerApcfgProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerApcfgProfile resource: %v", err)
 	}

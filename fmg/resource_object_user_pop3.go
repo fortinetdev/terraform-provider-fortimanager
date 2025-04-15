@@ -78,6 +78,7 @@ func resourceObjectUserPop3Create(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -89,9 +90,9 @@ func resourceObjectUserPop3Create(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPop3 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserPop3(obj, paradict)
-
+	_, err = c.CreateObjectUserPop3(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPop3 resource: %v", err)
 	}
@@ -107,6 +108,7 @@ func resourceObjectUserPop3Update(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectUserPop3Update(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectUserPop3 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPop3(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserPop3(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPop3 resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectUserPop3Delete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +150,9 @@ func resourceObjectUserPop3Delete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPop3(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserPop3(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPop3 resource: %v", err)
 	}

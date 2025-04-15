@@ -84,6 +84,7 @@ func resourceObjectFirewallGtpIpPolicyCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectFirewallGtpIpPolicyCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpIpPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallGtpIpPolicy(obj, paradict)
-
+	_, err = c.CreateObjectFirewallGtpIpPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpIpPolicy resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectFirewallGtpIpPolicyUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectFirewallGtpIpPolicyUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectFirewallGtpIpPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpIpPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpIpPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpIpPolicy resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectFirewallGtpIpPolicyDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectFirewallGtpIpPolicyDelete(d *schema.ResourceData, m interface
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpIpPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpIpPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpIpPolicy resource: %v", err)
 	}

@@ -62,6 +62,8 @@ func resourceSystemSqlCustomIndexCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -69,9 +71,9 @@ func resourceSystemSqlCustomIndexCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomIndex resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSqlCustomIndex(obj, paradict)
-
+	_, err = c.CreateSystemSqlCustomIndex(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomIndex resource: %v", err)
 	}
@@ -87,6 +89,8 @@ func resourceSystemSqlCustomIndexUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -95,7 +99,9 @@ func resourceSystemSqlCustomIndexUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating SystemSqlCustomIndex resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSqlCustomIndex(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSqlCustomIndex(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomIndex resource: %v", err)
 	}
@@ -114,10 +120,14 @@ func resourceSystemSqlCustomIndexDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSqlCustomIndex(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSqlCustomIndex(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSqlCustomIndex resource: %v", err)
 	}
@@ -134,6 +144,7 @@ func resourceSystemSqlCustomIndexRead(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

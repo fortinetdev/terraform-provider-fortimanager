@@ -69,6 +69,7 @@ func resourceObjectWebProxyForwardServerGroupServerListCreate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -83,9 +84,9 @@ func resourceObjectWebProxyForwardServerGroupServerListCreate(d *schema.Resource
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroupServerList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyForwardServerGroupServerList(obj, paradict)
-
+	_, err = c.CreateObjectWebProxyForwardServerGroupServerList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroupServerList resource: %v", err)
 	}
@@ -101,6 +102,7 @@ func resourceObjectWebProxyForwardServerGroupServerListUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +118,9 @@ func resourceObjectWebProxyForwardServerGroupServerListUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServerGroupServerList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyForwardServerGroupServerList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebProxyForwardServerGroupServerList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServerGroupServerList resource: %v", err)
 	}
@@ -135,6 +139,7 @@ func resourceObjectWebProxyForwardServerGroupServerListDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +150,9 @@ func resourceObjectWebProxyForwardServerGroupServerListDelete(d *schema.Resource
 	forward_server_group := d.Get("forward_server_group").(string)
 	paradict["forward_server_group"] = forward_server_group
 
-	err = c.DeleteObjectWebProxyForwardServerGroupServerList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebProxyForwardServerGroupServerList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyForwardServerGroupServerList resource: %v", err)
 	}

@@ -78,6 +78,8 @@ func resourceSystemSnifferCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -85,9 +87,9 @@ func resourceSystemSnifferCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSniffer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSniffer(obj, paradict)
-
+	_, err = c.CreateSystemSniffer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSniffer resource: %v", err)
 	}
@@ -103,6 +105,8 @@ func resourceSystemSnifferUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -111,7 +115,9 @@ func resourceSystemSnifferUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSniffer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSniffer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSniffer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSniffer resource: %v", err)
 	}
@@ -130,10 +136,14 @@ func resourceSystemSnifferDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSniffer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSniffer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSniffer resource: %v", err)
 	}
@@ -150,6 +160,7 @@ func resourceSystemSnifferRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

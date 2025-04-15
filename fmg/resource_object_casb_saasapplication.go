@@ -59,10 +59,82 @@ func resourceObjectCasbSaasApplication() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"input_attributes": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"attr_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"default": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"description": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fallback_input": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"required": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"output_attributes": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"attr_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"description": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"required": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -79,6 +151,11 @@ func resourceObjectCasbSaasApplication() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
+			},
 		},
 	}
 }
@@ -88,6 +165,7 @@ func resourceObjectCasbSaasApplicationCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +177,9 @@ func resourceObjectCasbSaasApplicationCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbSaasApplication resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbSaasApplication(obj, paradict)
-
+	_, err = c.CreateObjectCasbSaasApplication(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbSaasApplication resource: %v", err)
 	}
@@ -117,6 +195,7 @@ func resourceObjectCasbSaasApplicationUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +208,9 @@ func resourceObjectCasbSaasApplicationUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectCasbSaasApplication resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbSaasApplication(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbSaasApplication(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbSaasApplication resource: %v", err)
 	}
@@ -148,6 +229,7 @@ func resourceObjectCasbSaasApplicationDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +237,9 @@ func resourceObjectCasbSaasApplicationDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCasbSaasApplication(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbSaasApplication(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbSaasApplication resource: %v", err)
 	}
@@ -209,7 +293,185 @@ func flattenObjectCasbSaasApplicationDomains(v interface{}, d *schema.ResourceDa
 	return flattenStringList(v)
 }
 
+func flattenObjectCasbSaasApplicationInputAttributes(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attr_type"
+		if _, ok := i["attr-type"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesAttrType(i["attr-type"], d, pre_append)
+			tmp["attr_type"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-AttrType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default"
+		if _, ok := i["default"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesDefault(i["default"], d, pre_append)
+			tmp["default"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-Default")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
+		if _, ok := i["description"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesDescription(i["description"], d, pre_append)
+			tmp["description"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-Description")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fallback_input"
+		if _, ok := i["fallback-input"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesFallbackInput(i["fallback-input"], d, pre_append)
+			tmp["fallback_input"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-FallbackInput")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "required"
+		if _, ok := i["required"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesRequired(i["required"], d, pre_append)
+			tmp["required"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-Required")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := i["type"]; ok {
+			v := flattenObjectCasbSaasApplicationInputAttributesType(i["type"], d, pre_append)
+			tmp["type"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-InputAttributes-Type")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesAttrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesDefault(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesFallbackInput(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesRequired(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationInputAttributesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbSaasApplicationName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributes(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attr_type"
+		if _, ok := i["attr-type"]; ok {
+			v := flattenObjectCasbSaasApplicationOutputAttributesAttrType(i["attr-type"], d, pre_append)
+			tmp["attr_type"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-OutputAttributes-AttrType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
+		if _, ok := i["description"]; ok {
+			v := flattenObjectCasbSaasApplicationOutputAttributesDescription(i["description"], d, pre_append)
+			tmp["description"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-OutputAttributes-Description")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectCasbSaasApplicationOutputAttributesName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-OutputAttributes-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "required"
+		if _, ok := i["required"]; ok {
+			v := flattenObjectCasbSaasApplicationOutputAttributesRequired(i["required"], d, pre_append)
+			tmp["required"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-OutputAttributes-Required")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := i["type"]; ok {
+			v := flattenObjectCasbSaasApplicationOutputAttributesType(i["type"], d, pre_append)
+			tmp["type"] = fortiAPISubPartPatch(v, "ObjectCasbSaasApplication-OutputAttributes-Type")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributesAttrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributesDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributesName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributesRequired(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbSaasApplicationOutputAttributesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -230,6 +492,10 @@ func refreshObjectObjectCasbSaasApplication(d *schema.ResourceData, o map[string
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
 	}
 
 	if err = d.Set("casb_name", flattenObjectCasbSaasApplicationCasbName(o["casb-name"], d, "casb_name")); err != nil {
@@ -262,6 +528,30 @@ func refreshObjectObjectCasbSaasApplication(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("input_attributes", flattenObjectCasbSaasApplicationInputAttributes(o["input-attributes"], d, "input_attributes")); err != nil {
+			if vv, ok := fortiAPIPatch(o["input-attributes"], "ObjectCasbSaasApplication-InputAttributes"); ok {
+				if err = d.Set("input_attributes", vv); err != nil {
+					return fmt.Errorf("Error reading input_attributes: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading input_attributes: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("input_attributes"); ok {
+			if err = d.Set("input_attributes", flattenObjectCasbSaasApplicationInputAttributes(o["input-attributes"], d, "input_attributes")); err != nil {
+				if vv, ok := fortiAPIPatch(o["input-attributes"], "ObjectCasbSaasApplication-InputAttributes"); ok {
+					if err = d.Set("input_attributes", vv); err != nil {
+						return fmt.Errorf("Error reading input_attributes: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading input_attributes: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("name", flattenObjectCasbSaasApplicationName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectCasbSaasApplication-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -269,6 +559,30 @@ func refreshObjectObjectCasbSaasApplication(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("output_attributes", flattenObjectCasbSaasApplicationOutputAttributes(o["output-attributes"], d, "output_attributes")); err != nil {
+			if vv, ok := fortiAPIPatch(o["output-attributes"], "ObjectCasbSaasApplication-OutputAttributes"); ok {
+				if err = d.Set("output_attributes", vv); err != nil {
+					return fmt.Errorf("Error reading output_attributes: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading output_attributes: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("output_attributes"); ok {
+			if err = d.Set("output_attributes", flattenObjectCasbSaasApplicationOutputAttributes(o["output-attributes"], d, "output_attributes")); err != nil {
+				if vv, ok := fortiAPIPatch(o["output-attributes"], "ObjectCasbSaasApplication-OutputAttributes"); ok {
+					if err = d.Set("output_attributes", vv); err != nil {
+						return fmt.Errorf("Error reading output_attributes: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading output_attributes: %v", err)
+				}
+			}
 		}
 	}
 
@@ -323,7 +637,163 @@ func expandObjectCasbSaasApplicationDomains(d *schema.ResourceData, v interface{
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectCasbSaasApplicationInputAttributes(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attr_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attr-type"], _ = expandObjectCasbSaasApplicationInputAttributesAttrType(d, i["attr_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["default"], _ = expandObjectCasbSaasApplicationInputAttributesDefault(d, i["default"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["description"], _ = expandObjectCasbSaasApplicationInputAttributesDescription(d, i["description"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fallback_input"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fallback-input"], _ = expandObjectCasbSaasApplicationInputAttributesFallbackInput(d, i["fallback_input"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectCasbSaasApplicationInputAttributesName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "required"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["required"], _ = expandObjectCasbSaasApplicationInputAttributesRequired(d, i["required"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["type"], _ = expandObjectCasbSaasApplicationInputAttributesType(d, i["type"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesAttrType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesDefault(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesFallbackInput(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesRequired(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationInputAttributesType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbSaasApplicationName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributes(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attr_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attr-type"], _ = expandObjectCasbSaasApplicationOutputAttributesAttrType(d, i["attr_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["description"], _ = expandObjectCasbSaasApplicationOutputAttributesDescription(d, i["description"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectCasbSaasApplicationOutputAttributesName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "required"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["required"], _ = expandObjectCasbSaasApplicationOutputAttributesRequired(d, i["required"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["type"], _ = expandObjectCasbSaasApplicationOutputAttributesType(d, i["type"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributesAttrType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributesDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributesName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributesRequired(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbSaasApplicationOutputAttributesType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -369,12 +839,30 @@ func getObjectObjectCasbSaasApplication(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("input_attributes"); ok || d.HasChange("input_attributes") {
+		t, err := expandObjectCasbSaasApplicationInputAttributes(d, v, "input_attributes")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["input-attributes"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCasbSaasApplicationName(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("output_attributes"); ok || d.HasChange("output_attributes") {
+		t, err := expandObjectCasbSaasApplicationOutputAttributes(d, v, "output_attributes")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["output-attributes"] = t
 		}
 	}
 

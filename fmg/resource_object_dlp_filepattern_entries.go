@@ -72,6 +72,7 @@ func resourceObjectDlpFilepatternEntriesCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectDlpFilepatternEntriesCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepatternEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpFilepatternEntries(obj, paradict)
-
+	_, err = c.CreateObjectDlpFilepatternEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepatternEntries resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectDlpFilepatternEntriesUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectDlpFilepatternEntriesUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectDlpFilepatternEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpFilepatternEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpFilepatternEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpFilepatternEntries resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectDlpFilepatternEntriesDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectDlpFilepatternEntriesDelete(d *schema.ResourceData, m interfa
 	filepattern := d.Get("filepattern").(string)
 	paradict["filepattern"] = filepattern
 
-	err = c.DeleteObjectDlpFilepatternEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpFilepatternEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpFilepatternEntries resource: %v", err)
 	}

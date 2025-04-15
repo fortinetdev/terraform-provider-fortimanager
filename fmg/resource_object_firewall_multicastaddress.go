@@ -122,6 +122,7 @@ func resourceObjectFirewallMulticastAddressCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,9 +134,9 @@ func resourceObjectFirewallMulticastAddressCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddress resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallMulticastAddress(obj, paradict)
-
+	_, err = c.CreateObjectFirewallMulticastAddress(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddress resource: %v", err)
 	}
@@ -151,6 +152,7 @@ func resourceObjectFirewallMulticastAddressUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -163,7 +165,9 @@ func resourceObjectFirewallMulticastAddressUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallMulticastAddress(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallMulticastAddress(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddress resource: %v", err)
 	}
@@ -182,6 +186,7 @@ func resourceObjectFirewallMulticastAddressDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -189,7 +194,9 @@ func resourceObjectFirewallMulticastAddressDelete(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallMulticastAddress(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallMulticastAddress(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallMulticastAddress resource: %v", err)
 	}

@@ -179,6 +179,8 @@ func resourceSystemLogFetchClientProfileCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -186,9 +188,9 @@ func resourceSystemLogFetchClientProfileCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogFetchClientProfile(obj, paradict)
-
+	_, err = c.CreateSystemLogFetchClientProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfile resource: %v", err)
 	}
@@ -204,6 +206,8 @@ func resourceSystemLogFetchClientProfileUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -212,7 +216,9 @@ func resourceSystemLogFetchClientProfileUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating SystemLogFetchClientProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogFetchClientProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogFetchClientProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchClientProfile resource: %v", err)
 	}
@@ -231,10 +237,14 @@ func resourceSystemLogFetchClientProfileDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogFetchClientProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogFetchClientProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogFetchClientProfile resource: %v", err)
 	}
@@ -251,6 +261,7 @@ func resourceSystemLogFetchClientProfileRead(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

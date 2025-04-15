@@ -152,6 +152,7 @@ func resourceObjectWebfilterProfileAntiphishUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +168,9 @@ func resourceObjectWebfilterProfileAntiphishUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphish resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileAntiphish(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileAntiphish(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphish resource: %v", err)
 	}
@@ -186,6 +189,7 @@ func resourceObjectWebfilterProfileAntiphishDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -196,7 +200,9 @@ func resourceObjectWebfilterProfileAntiphishDelete(d *schema.ResourceData, m int
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileAntiphish(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileAntiphish(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileAntiphish resource: %v", err)
 	}

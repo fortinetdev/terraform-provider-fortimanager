@@ -72,6 +72,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListCreate(d *sch
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListCreate(d *sch
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueUrlValueList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueUrlValueList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueUrlValueList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueUrlValueList resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListUpdate(d *sch
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListUpdate(d *sch
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpVenueUrlValueList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpVenueUrlValueList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpVenueUrlValueList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpVenueUrlValueList resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListDelete(d *sch
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueUrlValueListDelete(d *sch
 	anqp_venue_url := d.Get("anqp_venue_url").(string)
 	paradict["anqp_venue_url"] = anqp_venue_url
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpVenueUrlValueList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpVenueUrlValueList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpVenueUrlValueList resource: %v", err)
 	}

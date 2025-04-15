@@ -143,6 +143,7 @@ func resourceObjectExtensionControllerDataplanCreate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,9 +155,9 @@ func resourceObjectExtensionControllerDataplanCreate(d *schema.ResourceData, m i
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerDataplan resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerDataplan(obj, paradict)
-
+	_, err = c.CreateObjectExtensionControllerDataplan(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerDataplan resource: %v", err)
 	}
@@ -172,6 +173,7 @@ func resourceObjectExtensionControllerDataplanUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -184,7 +186,9 @@ func resourceObjectExtensionControllerDataplanUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectExtensionControllerDataplan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerDataplan(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerDataplan(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerDataplan resource: %v", err)
 	}
@@ -203,6 +207,7 @@ func resourceObjectExtensionControllerDataplanDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -210,7 +215,9 @@ func resourceObjectExtensionControllerDataplanDelete(d *schema.ResourceData, m i
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerDataplan(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerDataplan(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerDataplan resource: %v", err)
 	}

@@ -78,6 +78,7 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv4RulesMoveUpdate(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,7 +97,9 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv4RulesMoveUpdate(
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlListLayer3Ipv4RulesMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerAccessControlListLayer3Ipv4RulesMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerAccessControlListLayer3Ipv4RulesMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlListLayer3Ipv4RulesMove resource: %v", err)
 	}

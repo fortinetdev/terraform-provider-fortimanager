@@ -82,6 +82,7 @@ func resourceObjectSystemReplacemsgGroupNacQuarCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectSystemReplacemsgGroupNacQuarCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupNacQuar resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupNacQuar(obj, paradict)
-
+	_, err = c.CreateObjectSystemReplacemsgGroupNacQuar(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupNacQuar resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectSystemReplacemsgGroupNacQuarUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectSystemReplacemsgGroupNacQuarUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupNacQuar resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgGroupNacQuar(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemReplacemsgGroupNacQuar(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupNacQuar resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectSystemReplacemsgGroupNacQuarDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -158,7 +163,9 @@ func resourceObjectSystemReplacemsgGroupNacQuarDelete(d *schema.ResourceData, m 
 	replacemsg_group := d.Get("replacemsg_group").(string)
 	paradict["replacemsg_group"] = replacemsg_group
 
-	err = c.DeleteObjectSystemReplacemsgGroupNacQuar(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemReplacemsgGroupNacQuar(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgGroupNacQuar resource: %v", err)
 	}

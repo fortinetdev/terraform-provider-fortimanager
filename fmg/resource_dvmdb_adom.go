@@ -183,16 +183,16 @@ func resourceDvmdbAdomCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectDvmdbAdom(d)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbAdom resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateDvmdbAdom(obj, paradict)
+	wsParams["lockMode"] = "skip_lock"
 
+	_, err = c.CreateDvmdbAdom(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbAdom resource: %v", err)
 	}
@@ -208,15 +208,17 @@ func resourceDvmdbAdomUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectDvmdbAdom(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbAdom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbAdom(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("name").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmdbAdom(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbAdom resource: %v", err)
 	}
@@ -235,10 +237,13 @@ func resourceDvmdbAdomDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
-	err = c.DeleteDvmdbAdom(mkey, paradict)
+	adomv, err := "adom/"+d.Get("name").(string), fmt.Errorf("")
+	wsParams["adom"] = adomv
+	wsParams["lockMode"] = "skip_unlock"
+
+	err = c.DeleteDvmdbAdom(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbAdom resource: %v", err)
 	}
@@ -255,8 +260,6 @@ func resourceDvmdbAdomRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
 
 	o, err := c.ReadDvmdbAdom(mkey, paradict)
 	if err != nil {

@@ -132,6 +132,10 @@ func resourceObjectUserTacacsDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -146,6 +150,7 @@ func resourceObjectUserTacacsDynamicMappingCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,9 +165,9 @@ func resourceObjectUserTacacsDynamicMappingCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacsDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserTacacsDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectUserTacacsDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacsDynamicMapping resource: %v", err)
 	}
@@ -178,6 +183,7 @@ func resourceObjectUserTacacsDynamicMappingUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -193,7 +199,9 @@ func resourceObjectUserTacacsDynamicMappingUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectUserTacacsDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserTacacsDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserTacacsDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserTacacsDynamicMapping resource: %v", err)
 	}
@@ -212,6 +220,7 @@ func resourceObjectUserTacacsDynamicMappingDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -222,7 +231,9 @@ func resourceObjectUserTacacsDynamicMappingDelete(d *schema.ResourceData, m inte
 	tacacs := d.Get("tacacs").(string)
 	paradict["tacacs"] = tacacs
 
-	err = c.DeleteObjectUserTacacsDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserTacacsDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserTacacsDynamicMapping resource: %v", err)
 	}
@@ -368,6 +379,10 @@ func flattenObjectUserTacacsDynamicMappingTertiaryServer2edl(v interface{}, d *s
 	return v
 }
 
+func flattenObjectUserTacacsDynamicMappingVrfSelect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserTacacsDynamicMapping(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -503,6 +518,16 @@ func refreshObjectObjectUserTacacsDynamicMapping(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserTacacsDynamicMappingVrfSelect2edl(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserTacacsDynamicMapping-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -603,6 +628,10 @@ func expandObjectUserTacacsDynamicMappingTertiaryKey2edl(d *schema.ResourceData,
 }
 
 func expandObjectUserTacacsDynamicMappingTertiaryServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserTacacsDynamicMappingVrfSelect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -732,6 +761,15 @@ func getObjectObjectUserTacacsDynamicMapping(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["tertiary-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserTacacsDynamicMappingVrfSelect2edl(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

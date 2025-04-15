@@ -84,6 +84,7 @@ func resourceObjectWirelessControllerApcfgProfileCommandListCreate(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectWirelessControllerApcfgProfileCommandListCreate(d *schema.Res
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerApcfgProfileCommandList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerApcfgProfileCommandList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerApcfgProfileCommandList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerApcfgProfileCommandList resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectWirelessControllerApcfgProfileCommandListUpdate(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectWirelessControllerApcfgProfileCommandListUpdate(d *schema.Res
 		return fmt.Errorf("Error updating ObjectWirelessControllerApcfgProfileCommandList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerApcfgProfileCommandList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerApcfgProfileCommandList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerApcfgProfileCommandList resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectWirelessControllerApcfgProfileCommandListDelete(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectWirelessControllerApcfgProfileCommandListDelete(d *schema.Res
 	apcfg_profile := d.Get("apcfg_profile").(string)
 	paradict["apcfg_profile"] = apcfg_profile
 
-	err = c.DeleteObjectWirelessControllerApcfgProfileCommandList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerApcfgProfileCommandList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerApcfgProfileCommandList resource: %v", err)
 	}

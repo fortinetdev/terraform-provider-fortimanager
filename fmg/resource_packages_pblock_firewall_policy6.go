@@ -482,6 +482,7 @@ func resourcePackagesPblockFirewallPolicy6Create(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -496,9 +497,9 @@ func resourcePackagesPblockFirewallPolicy6Create(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallPolicy6(obj, paradict)
-
+	v, err := c.CreatePackagesPblockFirewallPolicy6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy6 resource: %v", err)
 	}
@@ -521,6 +522,7 @@ func resourcePackagesPblockFirewallPolicy6Update(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -536,7 +538,9 @@ func resourcePackagesPblockFirewallPolicy6Update(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating PackagesPblockFirewallPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPblockFirewallPolicy6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesPblockFirewallPolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPblockFirewallPolicy6 resource: %v", err)
 	}
@@ -555,6 +559,7 @@ func resourcePackagesPblockFirewallPolicy6Delete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -565,7 +570,9 @@ func resourcePackagesPblockFirewallPolicy6Delete(d *schema.ResourceData, m inter
 	pblock := d.Get("pblock").(string)
 	paradict["pblock"] = pblock
 
-	err = c.DeletePackagesPblockFirewallPolicy6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesPblockFirewallPolicy6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPblockFirewallPolicy6 resource: %v", err)
 	}

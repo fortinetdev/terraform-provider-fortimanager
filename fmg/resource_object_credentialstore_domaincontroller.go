@@ -92,6 +92,7 @@ func resourceObjectCredentialStoreDomainControllerCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectCredentialStoreDomainControllerCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCredentialStoreDomainController resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCredentialStoreDomainController(obj, paradict)
-
+	_, err = c.CreateObjectCredentialStoreDomainController(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCredentialStoreDomainController resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectCredentialStoreDomainControllerUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectCredentialStoreDomainControllerUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectCredentialStoreDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCredentialStoreDomainController(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCredentialStoreDomainController(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCredentialStoreDomainController resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectCredentialStoreDomainControllerDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectCredentialStoreDomainControllerDelete(d *schema.ResourceData,
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCredentialStoreDomainController(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCredentialStoreDomainController(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCredentialStoreDomainController resource: %v", err)
 	}

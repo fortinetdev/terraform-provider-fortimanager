@@ -70,6 +70,7 @@ func resourceObjectFirewallVipGslbPublicIpsCreate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -84,9 +85,9 @@ func resourceObjectFirewallVipGslbPublicIpsCreate(d *schema.ResourceData, m inte
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipGslbPublicIps resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectFirewallVipGslbPublicIps(obj, paradict)
-
+	v, err := c.CreateObjectFirewallVipGslbPublicIps(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipGslbPublicIps resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectFirewallVipGslbPublicIpsUpdate(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectFirewallVipGslbPublicIpsUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating ObjectFirewallVipGslbPublicIps resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipGslbPublicIps(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVipGslbPublicIps(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipGslbPublicIps resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectFirewallVipGslbPublicIpsDelete(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectFirewallVipGslbPublicIpsDelete(d *schema.ResourceData, m inte
 	vip := d.Get("vip").(string)
 	paradict["vip"] = vip
 
-	err = c.DeleteObjectFirewallVipGslbPublicIps(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVipGslbPublicIps(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipGslbPublicIps resource: %v", err)
 	}

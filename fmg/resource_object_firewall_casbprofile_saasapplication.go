@@ -160,6 +160,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,9 +175,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplication resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallCasbProfileSaasApplication(obj, paradict)
-
+	_, err = c.CreateObjectFirewallCasbProfileSaasApplication(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplication resource: %v", err)
 	}
@@ -192,6 +193,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -207,7 +209,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplication resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallCasbProfileSaasApplication(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallCasbProfileSaasApplication(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplication resource: %v", err)
 	}
@@ -226,6 +230,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -236,7 +241,9 @@ func resourceObjectFirewallCasbProfileSaasApplicationDelete(d *schema.ResourceDa
 	casb_profile := d.Get("casb_profile").(string)
 	paradict["casb_profile"] = casb_profile
 
-	err = c.DeleteObjectFirewallCasbProfileSaasApplication(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallCasbProfileSaasApplication(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallCasbProfileSaasApplication resource: %v", err)
 	}

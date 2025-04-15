@@ -118,6 +118,7 @@ func resourceObjectEmailfilterBwordCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,9 +130,9 @@ func resourceObjectEmailfilterBwordCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBword resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEmailfilterBword(obj, paradict)
-
+	_, err = c.CreateObjectEmailfilterBword(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBword resource: %v", err)
 	}
@@ -147,6 +148,7 @@ func resourceObjectEmailfilterBwordUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +161,9 @@ func resourceObjectEmailfilterBwordUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectEmailfilterBword resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBword(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterBword(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBword resource: %v", err)
 	}
@@ -178,6 +182,7 @@ func resourceObjectEmailfilterBwordDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -185,7 +190,9 @@ func resourceObjectEmailfilterBwordDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterBword(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterBword(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBword resource: %v", err)
 	}

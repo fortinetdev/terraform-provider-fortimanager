@@ -75,6 +75,7 @@ func resourceObjectAntivirusProfileNacQuarUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,7 +91,9 @@ func resourceObjectAntivirusProfileNacQuarUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectAntivirusProfileNacQuar resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfileNacQuar(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfileNacQuar(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileNacQuar resource: %v", err)
 	}
@@ -109,6 +112,7 @@ func resourceObjectAntivirusProfileNacQuarDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +123,9 @@ func resourceObjectAntivirusProfileNacQuarDelete(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfileNacQuar(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfileNacQuar(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfileNacQuar resource: %v", err)
 	}

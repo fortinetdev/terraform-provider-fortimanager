@@ -84,6 +84,7 @@ func resourceObjectSwitchControllerQosIpDscpMapMapCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectSwitchControllerQosIpDscpMapMapCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosIpDscpMapMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerQosIpDscpMapMap(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerQosIpDscpMapMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosIpDscpMapMap resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectSwitchControllerQosIpDscpMapMapUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectSwitchControllerQosIpDscpMapMapUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosIpDscpMapMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosIpDscpMapMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerQosIpDscpMapMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosIpDscpMapMap resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectSwitchControllerQosIpDscpMapMapDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectSwitchControllerQosIpDscpMapMapDelete(d *schema.ResourceData,
 	ip_dscp_map := d.Get("ip_dscp_map").(string)
 	paradict["ip_dscp_map"] = ip_dscp_map
 
-	err = c.DeleteObjectSwitchControllerQosIpDscpMapMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerQosIpDscpMapMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosIpDscpMapMap resource: %v", err)
 	}

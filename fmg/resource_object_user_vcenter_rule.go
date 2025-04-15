@@ -68,6 +68,7 @@ func resourceObjectUserVcenterRuleCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectUserVcenterRuleCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenterRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserVcenterRule(obj, paradict)
-
+	_, err = c.CreateObjectUserVcenterRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenterRule resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectUserVcenterRuleUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectUserVcenterRuleUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectUserVcenterRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserVcenterRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserVcenterRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserVcenterRule resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectUserVcenterRuleDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectUserVcenterRuleDelete(d *schema.ResourceData, m interface{}) 
 	vcenter := d.Get("vcenter").(string)
 	paradict["vcenter"] = vcenter
 
-	err = c.DeleteObjectUserVcenterRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserVcenterRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserVcenterRule resource: %v", err)
 	}

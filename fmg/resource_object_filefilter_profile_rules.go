@@ -96,6 +96,7 @@ func resourceObjectFileFilterProfileRulesCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,9 +111,9 @@ func resourceObjectFileFilterProfileRulesCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFileFilterProfileRules resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFileFilterProfileRules(obj, paradict)
-
+	_, err = c.CreateObjectFileFilterProfileRules(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFileFilterProfileRules resource: %v", err)
 	}
@@ -128,6 +129,7 @@ func resourceObjectFileFilterProfileRulesUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +145,9 @@ func resourceObjectFileFilterProfileRulesUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectFileFilterProfileRules resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFileFilterProfileRules(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFileFilterProfileRules(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFileFilterProfileRules resource: %v", err)
 	}
@@ -162,6 +166,7 @@ func resourceObjectFileFilterProfileRulesDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +177,9 @@ func resourceObjectFileFilterProfileRulesDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectFileFilterProfileRules(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFileFilterProfileRules(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFileFilterProfileRules resource: %v", err)
 	}

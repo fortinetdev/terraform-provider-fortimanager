@@ -53,6 +53,9 @@ The following arguments are supported:
 * `embed_measured_health` - Enable/disable embedding measured health information. Valid values: `disable`, `enable`.
 
 * `failtime` - Number of failures before server is considered lost (1 - 3600, default = 5).
+* `fortiguard` - Enable/disable use of FortiGuard predefined server. Valid values: `disable`, `enable`.
+
+* `fortiguard_name` - Predefined health-check target name.
 * `ftp_file` - Full path and file name on the FTP server to download for FTP health-check to probe.
 * `ftp_mode` - FTP mode. Valid values: `passive`, `port`.
 

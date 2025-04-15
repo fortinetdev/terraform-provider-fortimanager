@@ -47,6 +47,8 @@ func resourceSystemSocFabricTrustedListCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -54,9 +56,9 @@ func resourceSystemSocFabricTrustedListCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSocFabricTrustedList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSocFabricTrustedList(obj, paradict)
-
+	_, err = c.CreateSystemSocFabricTrustedList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSocFabricTrustedList resource: %v", err)
 	}
@@ -72,6 +74,8 @@ func resourceSystemSocFabricTrustedListUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -80,7 +84,9 @@ func resourceSystemSocFabricTrustedListUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating SystemSocFabricTrustedList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSocFabricTrustedList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSocFabricTrustedList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSocFabricTrustedList resource: %v", err)
 	}
@@ -99,10 +105,14 @@ func resourceSystemSocFabricTrustedListDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSocFabricTrustedList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSocFabricTrustedList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSocFabricTrustedList resource: %v", err)
 	}
@@ -119,6 +129,7 @@ func resourceSystemSocFabricTrustedListRead(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

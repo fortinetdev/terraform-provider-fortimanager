@@ -63,6 +63,7 @@ func resourceObjectDynamicVipCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectDynamicVipCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVip resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicVip(obj, paradict)
-
+	_, err = c.CreateObjectDynamicVip(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVip resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectDynamicVipUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectDynamicVipUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectDynamicVip resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicVip(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicVip(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicVip resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectDynamicVipDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectDynamicVipDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicVip(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicVip(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicVip resource: %v", err)
 	}

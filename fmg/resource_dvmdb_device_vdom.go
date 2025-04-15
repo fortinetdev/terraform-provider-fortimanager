@@ -94,6 +94,7 @@ func resourceDvmdbDeviceVdomCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +109,9 @@ func resourceDvmdbDeviceVdomCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbDeviceVdom resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateDvmdbDeviceVdom(obj, paradict)
-
+	_, err = c.CreateDvmdbDeviceVdom(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbDeviceVdom resource: %v", err)
 	}
@@ -126,6 +127,7 @@ func resourceDvmdbDeviceVdomUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceDvmdbDeviceVdomUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating DvmdbDeviceVdom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbDeviceVdom(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmdbDeviceVdom(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbDeviceVdom resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceDvmdbDeviceVdomDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceDvmdbDeviceVdomDelete(d *schema.ResourceData, m interface{}) error 
 	device_name := d.Get("device_name").(string)
 	paradict["device"] = device_name
 
-	err = c.DeleteDvmdbDeviceVdom(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteDvmdbDeviceVdom(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbDeviceVdom resource: %v", err)
 	}

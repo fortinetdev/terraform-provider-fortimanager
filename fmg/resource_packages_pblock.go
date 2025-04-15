@@ -110,6 +110,7 @@ func resourcePackagesPblockCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,9 +122,9 @@ func resourcePackagesPblockCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblock resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesPblock(obj, paradict)
-
+	_, err = c.CreatePackagesPblock(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblock resource: %v", err)
 	}
@@ -139,6 +140,7 @@ func resourcePackagesPblockUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourcePackagesPblockUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating PackagesPblock resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPblock(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesPblock(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPblock resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourcePackagesPblockDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,7 +182,9 @@ func resourcePackagesPblockDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeletePackagesPblock(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesPblock(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPblock resource: %v", err)
 	}

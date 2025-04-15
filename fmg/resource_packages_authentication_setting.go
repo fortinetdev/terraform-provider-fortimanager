@@ -165,6 +165,7 @@ func resourcePackagesAuthenticationSettingUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -182,7 +183,9 @@ func resourcePackagesAuthenticationSettingUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesAuthenticationSetting(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesAuthenticationSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource: %v", err)
 	}
@@ -201,6 +204,7 @@ func resourcePackagesAuthenticationSettingDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -213,7 +217,9 @@ func resourcePackagesAuthenticationSettingDelete(d *schema.ResourceData, m inter
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesAuthenticationSetting(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesAuthenticationSetting(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesAuthenticationSetting resource: %v", err)
 	}

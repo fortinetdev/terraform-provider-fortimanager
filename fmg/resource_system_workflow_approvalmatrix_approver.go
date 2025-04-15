@@ -52,6 +52,8 @@ func resourceSystemWorkflowApprovalMatrixApproverCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,9 +64,9 @@ func resourceSystemWorkflowApprovalMatrixApproverCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemWorkflowApprovalMatrixApprover resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemWorkflowApprovalMatrixApprover(obj, paradict)
-
+	_, err = c.CreateSystemWorkflowApprovalMatrixApprover(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemWorkflowApprovalMatrixApprover resource: %v", err)
 	}
@@ -80,6 +82,8 @@ func resourceSystemWorkflowApprovalMatrixApproverUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -91,7 +95,9 @@ func resourceSystemWorkflowApprovalMatrixApproverUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating SystemWorkflowApprovalMatrixApprover resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemWorkflowApprovalMatrixApprover(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemWorkflowApprovalMatrixApprover(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWorkflowApprovalMatrixApprover resource: %v", err)
 	}
@@ -110,13 +116,17 @@ func resourceSystemWorkflowApprovalMatrixApproverDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	approval_matrix := d.Get("approval_matrix").(string)
 	paradict["approval_matrix"] = approval_matrix
 
-	err = c.DeleteSystemWorkflowApprovalMatrixApprover(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemWorkflowApprovalMatrixApprover(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemWorkflowApprovalMatrixApprover resource: %v", err)
 	}
@@ -133,6 +143,7 @@ func resourceSystemWorkflowApprovalMatrixApproverRead(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

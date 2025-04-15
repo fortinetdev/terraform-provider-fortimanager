@@ -100,6 +100,7 @@ func resourceObjectFspVlanDhcpServerExcludeRangeCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectFspVlanDhcpServerExcludeRangeCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDhcpServerExcludeRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDhcpServerExcludeRange(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanDhcpServerExcludeRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDhcpServerExcludeRange resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectFspVlanDhcpServerExcludeRangeUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +149,9 @@ func resourceObjectFspVlanDhcpServerExcludeRangeUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectFspVlanDhcpServerExcludeRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanDhcpServerExcludeRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanDhcpServerExcludeRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDhcpServerExcludeRange resource: %v", err)
 	}
@@ -166,6 +170,7 @@ func resourceObjectFspVlanDhcpServerExcludeRangeDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +181,9 @@ func resourceObjectFspVlanDhcpServerExcludeRangeDelete(d *schema.ResourceData, m
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	err = c.DeleteObjectFspVlanDhcpServerExcludeRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanDhcpServerExcludeRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanDhcpServerExcludeRange resource: %v", err)
 	}

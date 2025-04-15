@@ -84,6 +84,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularCreate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularCreate(d *schema.R
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Anqp3GppCellular resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20Anqp3GppCellular(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20Anqp3GppCellular(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Anqp3GppCellular resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20Anqp3GppCellular resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20Anqp3GppCellular(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20Anqp3GppCellular(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20Anqp3GppCellular resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectWirelessControllerHotspot20Anqp3GppCellularDelete(d *schema.R
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20Anqp3GppCellular(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20Anqp3GppCellular(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20Anqp3GppCellular resource: %v", err)
 	}

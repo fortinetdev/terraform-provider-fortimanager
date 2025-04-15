@@ -64,6 +64,7 @@ func resourceObjectSystemNpuNpuTcamMirActUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -79,7 +80,9 @@ func resourceObjectSystemNpuNpuTcamMirActUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamMirAct resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpuTcamMirAct(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpuTcamMirAct(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamMirAct resource: %v", err)
 	}
@@ -98,6 +101,7 @@ func resourceObjectSystemNpuNpuTcamMirActDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,7 +112,9 @@ func resourceObjectSystemNpuNpuTcamMirActDelete(d *schema.ResourceData, m interf
 	npu_tcam := d.Get("npu_tcam").(string)
 	paradict["npu_tcam"] = npu_tcam
 
-	err = c.DeleteObjectSystemNpuNpuTcamMirAct(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpuTcamMirAct(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpuTcamMirAct resource: %v", err)
 	}

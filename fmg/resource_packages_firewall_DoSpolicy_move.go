@@ -83,6 +83,7 @@ func resourcePackagesFirewallDosPolicyMoveUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,7 +104,9 @@ func resourcePackagesFirewallDosPolicyMoveUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallDosPolicyMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallDosPolicyMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicyMove resource: %v", err)
 	}

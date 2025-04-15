@@ -76,6 +76,8 @@ func resourceSystemSyslogCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -83,9 +85,9 @@ func resourceSystemSyslogCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSyslog resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSyslog(obj, paradict)
-
+	_, err = c.CreateSystemSyslog(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSyslog resource: %v", err)
 	}
@@ -101,6 +103,8 @@ func resourceSystemSyslogUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -109,7 +113,9 @@ func resourceSystemSyslogUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSyslog resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSyslog(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSyslog(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSyslog resource: %v", err)
 	}
@@ -128,10 +134,14 @@ func resourceSystemSyslogDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSyslog(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSyslog(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSyslog resource: %v", err)
 	}
@@ -148,6 +158,7 @@ func resourceSystemSyslogRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

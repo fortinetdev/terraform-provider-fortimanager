@@ -84,6 +84,7 @@ func resourceObjectVpnSslWebPortalSplitDnsCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectVpnSslWebPortalSplitDnsCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalSplitDns resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebPortalSplitDns(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebPortalSplitDns(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalSplitDns resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectVpnSslWebPortalSplitDnsUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectVpnSslWebPortalSplitDnsUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalSplitDns resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalSplitDns(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalSplitDns(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalSplitDns resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectVpnSslWebPortalSplitDnsDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectVpnSslWebPortalSplitDnsDelete(d *schema.ResourceData, m inter
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
-	err = c.DeleteObjectVpnSslWebPortalSplitDns(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortalSplitDns(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalSplitDns resource: %v", err)
 	}

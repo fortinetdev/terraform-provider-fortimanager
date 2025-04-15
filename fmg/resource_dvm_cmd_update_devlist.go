@@ -77,15 +77,17 @@ func resourceDvmCmdUpdateDevListUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
-	adomv, err := "", fmt.Errorf("")
-	paradict["adom"] = adomv
+	wsParams := make(map[string]string)
 
 	obj, err := getObjectDvmCmdUpdateDevList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdUpdateDevList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmCmdUpdateDevList(obj, mkey, paradict)
+	adomv := "adom/" + d.Get("fmgadom").(string)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateDvmCmdUpdateDevList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdUpdateDevList resource: %v", err)
 	}

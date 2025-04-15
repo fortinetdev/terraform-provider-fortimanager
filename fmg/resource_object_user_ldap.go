@@ -332,6 +332,10 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"vrf_select": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -484,6 +488,10 @@ func resourceObjectUserLdap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -498,6 +506,7 @@ func resourceObjectUserLdapCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -509,9 +518,9 @@ func resourceObjectUserLdapCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserLdap(obj, paradict)
-
+	_, err = c.CreateObjectUserLdap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdap resource: %v", err)
 	}
@@ -527,6 +536,7 @@ func resourceObjectUserLdapUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -539,7 +549,9 @@ func resourceObjectUserLdapUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectUserLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserLdap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserLdap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLdap resource: %v", err)
 	}
@@ -558,6 +570,7 @@ func resourceObjectUserLdapDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -565,7 +578,9 @@ func resourceObjectUserLdapDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserLdap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserLdap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserLdap resource: %v", err)
 	}
@@ -954,6 +969,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["username"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-Username")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := i["vrf-select"]; ok {
+			v := flattenObjectUserLdapDynamicMappingVrfSelect(i["vrf-select"], d, pre_append)
+			tmp["vrf_select"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-VrfSelect")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -1201,6 +1222,10 @@ func flattenObjectUserLdapDynamicMappingUsername(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectUserLdapDynamicMappingVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapGroupFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1322,6 +1347,10 @@ func flattenObjectUserLdapUserInfoExchangeServer(v interface{}, d *schema.Resour
 }
 
 func flattenObjectUserLdapUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1770,6 +1799,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserLdapVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserLdap-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -2083,6 +2122,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["username"], _ = expandObjectUserLdapDynamicMappingUsername(d, i["username"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vrf-select"], _ = expandObjectUserLdapDynamicMappingVrfSelect(d, i["vrf_select"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -2327,6 +2371,10 @@ func expandObjectUserLdapDynamicMappingUsername(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectUserLdapDynamicMappingVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapGroupFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2452,6 +2500,10 @@ func expandObjectUserLdapUserInfoExchangeServer(d *schema.ResourceData, v interf
 }
 
 func expandObjectUserLdapUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2842,6 +2894,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserLdapVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

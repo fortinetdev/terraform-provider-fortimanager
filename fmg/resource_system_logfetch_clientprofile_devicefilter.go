@@ -63,6 +63,8 @@ func resourceSystemLogFetchClientProfileDeviceFilterCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -73,9 +75,9 @@ func resourceSystemLogFetchClientProfileDeviceFilterCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfileDeviceFilter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogFetchClientProfileDeviceFilter(obj, paradict)
-
+	_, err = c.CreateSystemLogFetchClientProfileDeviceFilter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfileDeviceFilter resource: %v", err)
 	}
@@ -91,6 +93,8 @@ func resourceSystemLogFetchClientProfileDeviceFilterUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -102,7 +106,9 @@ func resourceSystemLogFetchClientProfileDeviceFilterUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating SystemLogFetchClientProfileDeviceFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogFetchClientProfileDeviceFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogFetchClientProfileDeviceFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchClientProfileDeviceFilter resource: %v", err)
 	}
@@ -121,13 +127,17 @@ func resourceSystemLogFetchClientProfileDeviceFilterDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	client_profile := d.Get("client_profile").(string)
 	paradict["client_profile"] = client_profile
 
-	err = c.DeleteSystemLogFetchClientProfileDeviceFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogFetchClientProfileDeviceFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogFetchClientProfileDeviceFilter resource: %v", err)
 	}
@@ -144,6 +154,7 @@ func resourceSystemLogFetchClientProfileDeviceFilterRead(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

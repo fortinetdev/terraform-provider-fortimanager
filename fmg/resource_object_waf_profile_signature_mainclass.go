@@ -84,6 +84,7 @@ func resourceObjectWafProfileSignatureMainClassUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,7 +100,9 @@ func resourceObjectWafProfileSignatureMainClassUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectWafProfileSignatureMainClass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileSignatureMainClass(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileSignatureMainClass(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileSignatureMainClass resource: %v", err)
 	}
@@ -118,6 +121,7 @@ func resourceObjectWafProfileSignatureMainClassDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -128,7 +132,9 @@ func resourceObjectWafProfileSignatureMainClassDelete(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWafProfileSignatureMainClass(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileSignatureMainClass(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileSignatureMainClass resource: %v", err)
 	}

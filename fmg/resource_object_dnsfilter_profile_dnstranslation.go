@@ -104,6 +104,7 @@ func resourceObjectDnsfilterProfileDnsTranslationCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,9 +119,9 @@ func resourceObjectDnsfilterProfileDnsTranslationCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfileDnsTranslation resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDnsfilterProfileDnsTranslation(obj, paradict)
-
+	_, err = c.CreateObjectDnsfilterProfileDnsTranslation(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfileDnsTranslation resource: %v", err)
 	}
@@ -136,6 +137,7 @@ func resourceObjectDnsfilterProfileDnsTranslationUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectDnsfilterProfileDnsTranslationUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileDnsTranslation resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDnsfilterProfileDnsTranslation(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDnsfilterProfileDnsTranslation(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileDnsTranslation resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectDnsfilterProfileDnsTranslationDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectDnsfilterProfileDnsTranslationDelete(d *schema.ResourceData, 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectDnsfilterProfileDnsTranslation(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDnsfilterProfileDnsTranslation(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDnsfilterProfileDnsTranslation resource: %v", err)
 	}

@@ -142,6 +142,7 @@ The following arguments are supported:
 * `update_uwdb` - Enable/disable allowlist update. Valid values: `disable`, `enable`.
 
 * `vdom` - FortiGuard Service virtual domain name.
+* `vrf_select` - VRF ID used for connection to server.
 * `videofilter_expiration` - Videofilter-Expiration.
 * `videofilter_license` - Videofilter-License.
 * `webfilter_cache` - Enable/disable FortiGuard web filter caching. Valid values: `disable`, `enable`.

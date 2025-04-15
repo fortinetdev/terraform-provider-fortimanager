@@ -47,6 +47,8 @@ func resourceSystemAdminUserIpsFilterCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,9 +59,9 @@ func resourceSystemAdminUserIpsFilterCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserIpsFilter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminUserIpsFilter(obj, paradict)
-
+	_, err = c.CreateSystemAdminUserIpsFilter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUserIpsFilter resource: %v", err)
 	}
@@ -75,6 +77,8 @@ func resourceSystemAdminUserIpsFilterUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -86,7 +90,9 @@ func resourceSystemAdminUserIpsFilterUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystemAdminUserIpsFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminUserIpsFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminUserIpsFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminUserIpsFilter resource: %v", err)
 	}
@@ -105,13 +111,17 @@ func resourceSystemAdminUserIpsFilterDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
 	user := d.Get("user").(string)
 	paradict["user"] = user
 
-	err = c.DeleteSystemAdminUserIpsFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminUserIpsFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminUserIpsFilter resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemAdminUserIpsFilterRead(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

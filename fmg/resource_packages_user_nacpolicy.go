@@ -186,6 +186,7 @@ func resourcePackagesUserNacPolicyCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -202,9 +203,9 @@ func resourcePackagesUserNacPolicyCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesUserNacPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesUserNacPolicy(obj, paradict)
-
+	_, err = c.CreatePackagesUserNacPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesUserNacPolicy resource: %v", err)
 	}
@@ -220,6 +221,7 @@ func resourcePackagesUserNacPolicyUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -237,7 +239,9 @@ func resourcePackagesUserNacPolicyUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating PackagesUserNacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesUserNacPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesUserNacPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesUserNacPolicy resource: %v", err)
 	}
@@ -256,6 +260,7 @@ func resourcePackagesUserNacPolicyDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -268,7 +273,9 @@ func resourcePackagesUserNacPolicyDelete(d *schema.ResourceData, m interface{}) 
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesUserNacPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesUserNacPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesUserNacPolicy resource: %v", err)
 	}

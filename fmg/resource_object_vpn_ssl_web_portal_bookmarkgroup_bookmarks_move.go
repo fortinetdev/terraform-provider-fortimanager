@@ -83,6 +83,7 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksMoveUpdate(d *schema.Res
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,7 +104,9 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksMoveUpdate(d *schema.Res
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalBookmarkGroupBookmarksMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalBookmarkGroupBookmarksMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalBookmarkGroupBookmarksMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalBookmarkGroupBookmarksMove resource: %v", err)
 	}

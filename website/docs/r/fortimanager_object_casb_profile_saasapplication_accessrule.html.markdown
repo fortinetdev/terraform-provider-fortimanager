@@ -10,6 +10,8 @@ description: |-
 CASB profile access rule.
 
 ~> This resource is a sub resource for variable `access_rule` of resource `fortimanager_object_casb_profile_saasapplication`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+>- `attribute_filter`: `fortimanager_object_casb_profile_saasapplication_accessrule_attributefilter`
 
 
 
@@ -25,9 +27,18 @@ The following arguments are supported:
 
 * `action` - CASB access rule action. Valid values: `block`, `bypass`, `monitor`.
 
+* `attribute_filter` - Attribute-Filter. The structure of `attribute_filter` block is documented below.
 * `bypass` - CASB bypass options. Valid values: `av`, `dlp`, `web-filter`, `file-filter`, `video-filter`.
 
 * `name` - CASB access rule activity name.
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `attribute_filter` block supports:
+
+* `action` - CASB access rule tenant control action. Valid values: `block`, `monitor`, `bypass`.
+
+* `attribute_match` - CASB access rule tenant match.
+* `id` - CASB tenant control ID.
 
 
 ## Attribute Reference

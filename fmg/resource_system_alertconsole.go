@@ -50,6 +50,8 @@ func resourceSystemAlertConsoleUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -58,7 +60,9 @@ func resourceSystemAlertConsoleUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating SystemAlertConsole resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAlertConsole(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAlertConsole(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertConsole resource: %v", err)
 	}
@@ -77,10 +81,14 @@ func resourceSystemAlertConsoleDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAlertConsole(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAlertConsole(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAlertConsole resource: %v", err)
 	}
@@ -97,6 +105,7 @@ func resourceSystemAlertConsoleRead(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

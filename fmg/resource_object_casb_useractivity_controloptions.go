@@ -129,6 +129,7 @@ func resourceObjectCasbUserActivityControlOptionsCreate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,9 +144,9 @@ func resourceObjectCasbUserActivityControlOptionsCreate(d *schema.ResourceData, 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityControlOptions resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbUserActivityControlOptions(obj, paradict)
-
+	_, err = c.CreateObjectCasbUserActivityControlOptions(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityControlOptions resource: %v", err)
 	}
@@ -161,6 +162,7 @@ func resourceObjectCasbUserActivityControlOptionsUpdate(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +178,9 @@ func resourceObjectCasbUserActivityControlOptionsUpdate(d *schema.ResourceData, 
 		return fmt.Errorf("Error updating ObjectCasbUserActivityControlOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbUserActivityControlOptions(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbUserActivityControlOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbUserActivityControlOptions resource: %v", err)
 	}
@@ -195,6 +199,7 @@ func resourceObjectCasbUserActivityControlOptionsDelete(d *schema.ResourceData, 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -205,7 +210,9 @@ func resourceObjectCasbUserActivityControlOptionsDelete(d *schema.ResourceData, 
 	user_activity := d.Get("user_activity").(string)
 	paradict["user_activity"] = user_activity
 
-	err = c.DeleteObjectCasbUserActivityControlOptions(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbUserActivityControlOptions(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbUserActivityControlOptions resource: %v", err)
 	}

@@ -78,6 +78,7 @@ func resourceObjectIcapProfileIcapHeadersCreate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectIcapProfileIcapHeadersCreate(d *schema.ResourceData, m interf
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileIcapHeaders resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectIcapProfileIcapHeaders(obj, paradict)
-
+	v, err := c.CreateObjectIcapProfileIcapHeaders(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfileIcapHeaders resource: %v", err)
 	}
@@ -119,6 +120,7 @@ func resourceObjectIcapProfileIcapHeadersUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +136,9 @@ func resourceObjectIcapProfileIcapHeadersUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectIcapProfileIcapHeaders resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapProfileIcapHeaders(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIcapProfileIcapHeaders(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfileIcapHeaders resource: %v", err)
 	}
@@ -153,6 +157,7 @@ func resourceObjectIcapProfileIcapHeadersDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -163,7 +168,9 @@ func resourceObjectIcapProfileIcapHeadersDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectIcapProfileIcapHeaders(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIcapProfileIcapHeaders(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapProfileIcapHeaders resource: %v", err)
 	}

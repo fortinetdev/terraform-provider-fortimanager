@@ -78,6 +78,7 @@ func resourceWantempSystemSdwanServiceMoveUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,7 +97,9 @@ func resourceWantempSystemSdwanServiceMoveUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating WantempSystemSdwanServiceMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwanServiceMove(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwanServiceMove(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanServiceMove resource: %v", err)
 	}

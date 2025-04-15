@@ -254,6 +254,8 @@ func resourceSystemLocallogMemoryFilterUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -262,7 +264,9 @@ func resourceSystemLocallogMemoryFilterUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating SystemLocallogMemoryFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogMemoryFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLocallogMemoryFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogMemoryFilter resource: %v", err)
 	}
@@ -281,10 +285,14 @@ func resourceSystemLocallogMemoryFilterDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogMemoryFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLocallogMemoryFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogMemoryFilter resource: %v", err)
 	}
@@ -301,6 +309,7 @@ func resourceSystemLocallogMemoryFilterRead(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

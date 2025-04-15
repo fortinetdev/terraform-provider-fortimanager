@@ -59,6 +59,8 @@ func resourceSystemReportAutoCacheUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,7 +69,9 @@ func resourceSystemReportAutoCacheUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating SystemReportAutoCache resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportAutoCache(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemReportAutoCache(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportAutoCache resource: %v", err)
 	}
@@ -86,10 +90,14 @@ func resourceSystemReportAutoCacheDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportAutoCache(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemReportAutoCache(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportAutoCache resource: %v", err)
 	}
@@ -106,6 +114,7 @@ func resourceSystemReportAutoCacheRead(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

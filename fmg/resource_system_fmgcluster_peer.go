@@ -55,6 +55,8 @@ func resourceSystemFmgClusterPeerCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,9 +64,9 @@ func resourceSystemFmgClusterPeerCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating SystemFmgClusterPeer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemFmgClusterPeer(obj, paradict)
-
+	_, err = c.CreateSystemFmgClusterPeer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemFmgClusterPeer resource: %v", err)
 	}
@@ -80,6 +82,8 @@ func resourceSystemFmgClusterPeerUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -88,7 +92,9 @@ func resourceSystemFmgClusterPeerUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating SystemFmgClusterPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemFmgClusterPeer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemFmgClusterPeer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFmgClusterPeer resource: %v", err)
 	}
@@ -107,10 +113,14 @@ func resourceSystemFmgClusterPeerDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemFmgClusterPeer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemFmgClusterPeer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemFmgClusterPeer resource: %v", err)
 	}
@@ -127,6 +137,7 @@ func resourceSystemFmgClusterPeerRead(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

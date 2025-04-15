@@ -83,6 +83,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksCreate
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -97,9 +98,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksCreate
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionDownlinks resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionDownlinks(obj, paradict)
-
+	_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionDownlinks(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionDownlinks resource: %v", err)
 	}
@@ -115,6 +116,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksUpdate
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +132,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksUpdate
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtensionDownlinks resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtensionDownlinks(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtensionDownlinks(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtensionDownlinks resource: %v", err)
 	}
@@ -149,6 +153,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksDelete
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionDownlinksDelete
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtensionDownlinks(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtensionDownlinks(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileLanExtensionDownlinks resource: %v", err)
 	}

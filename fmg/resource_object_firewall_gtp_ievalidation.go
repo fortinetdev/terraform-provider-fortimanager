@@ -136,6 +136,7 @@ func resourceObjectFirewallGtpIeValidationUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +152,9 @@ func resourceObjectFirewallGtpIeValidationUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallGtpIeValidation resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpIeValidation(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpIeValidation(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpIeValidation resource: %v", err)
 	}
@@ -170,6 +173,7 @@ func resourceObjectFirewallGtpIeValidationDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +184,9 @@ func resourceObjectFirewallGtpIeValidationDelete(d *schema.ResourceData, m inter
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpIeValidation(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpIeValidation(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpIeValidation resource: %v", err)
 	}

@@ -31,6 +31,7 @@ The following arguments are supported:
 
 * `app_perf_log_period` - Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
 * `duplication` - Duplication. The structure of `duplication` block is documented below.
+* `duplication_max_discrepancy` - Maximum discrepancy between two packets for deduplication in milliseconds (250 - 1000, default = 250).
 * `duplication_max_num` - Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
 * `fail_alert_interfaces` - Physical interfaces that will be alerted.
 * `fail_detect` - Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `disable`, `enable`.
@@ -87,6 +88,9 @@ The `health_check` block supports:
 * `embed_measured_health` - Enable/disable embedding measured health information. Valid values: `disable`, `enable`.
 
 * `failtime` - Number of failures before server is considered lost (1 - 3600, default = 5).
+* `fortiguard` - Enable/disable use of FortiGuard predefined server. Valid values: `disable`, `enable`.
+
+* `fortiguard_name` - Predefined health-check target name.
 * `ftp_file` - Full path and file name on the FTP server to download for FTP health-check to probe.
 * `ftp_mode` - FTP mode. Valid values: `passive`, `port`.
 
@@ -254,6 +258,8 @@ The `neighbor` block supports:
 * `mode` - What metric to select the neighbor. Valid values: `sla`, `speedtest`.
 
 * `role` - Role of neighbor. Valid values: `primary`, `secondary`, `standalone`.
+
+* `route_metric` - Route-metric of neighbor. Valid values: `preferable`, `priority`.
 
 * `service_id` - SD-WAN service ID to work with the neighbor.
 * `sla_id` - SLA ID.

@@ -74,6 +74,7 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceVrrpProxyArp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanInterfaceVrrpProxyArp(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanInterfaceVrrpProxyArp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceVrrpProxyArp resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceVrrpProxyArp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanInterfaceVrrpProxyArp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanInterfaceVrrpProxyArp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceVrrpProxyArp resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectFspVlanInterfaceVrrpProxyArpDelete(d *schema.ResourceData, m 
 	paradict["vlan"] = vlan
 	paradict["vrrp"] = vrrp
 
-	err = c.DeleteObjectFspVlanInterfaceVrrpProxyArp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanInterfaceVrrpProxyArp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanInterfaceVrrpProxyArp resource: %v", err)
 	}

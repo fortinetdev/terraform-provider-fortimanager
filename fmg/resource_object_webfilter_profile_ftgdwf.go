@@ -176,6 +176,34 @@ func resourceObjectWebfilterProfileFtgdWf() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"risk": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"risk_level": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -191,6 +219,7 @@ func resourceObjectWebfilterProfileFtgdWfUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -206,7 +235,9 @@ func resourceObjectWebfilterProfileFtgdWfUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectWebfilterProfileFtgdWf resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileFtgdWf(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileFtgdWf(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileFtgdWf resource: %v", err)
 	}
@@ -225,6 +256,7 @@ func resourceObjectWebfilterProfileFtgdWfDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -235,7 +267,9 @@ func resourceObjectWebfilterProfileFtgdWfDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileFtgdWf(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileFtgdWf(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileFtgdWf resource: %v", err)
 	}
@@ -539,6 +573,75 @@ func flattenObjectWebfilterProfileFtgdWfRateJavascriptUrls2edl(v interface{}, d 
 	return v
 }
 
+func flattenObjectWebfilterProfileFtgdWfRisk2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectWebfilterProfileFtgdWfRiskAction2edl(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Risk-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectWebfilterProfileFtgdWfRiskId2edl(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Risk-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
+		if _, ok := i["log"]; ok {
+			v := flattenObjectWebfilterProfileFtgdWfRiskLog2edl(i["log"], d, pre_append)
+			tmp["log"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Risk-Log")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "risk_level"
+		if _, ok := i["risk-level"]; ok {
+			v := flattenObjectWebfilterProfileFtgdWfRiskRiskLevel2edl(i["risk-level"], d, pre_append)
+			tmp["risk_level"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Risk-RiskLevel")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectWebfilterProfileFtgdWfRiskAction2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFtgdWfRiskId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFtgdWfRiskLog2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFtgdWfRiskRiskLevel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func refreshObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -675,6 +778,30 @@ func refreshObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading rate_javascript_urls: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("risk", flattenObjectWebfilterProfileFtgdWfRisk2edl(o["risk"], d, "risk")); err != nil {
+			if vv, ok := fortiAPIPatch(o["risk"], "ObjectWebfilterProfileFtgdWf-Risk"); ok {
+				if err = d.Set("risk", vv); err != nil {
+					return fmt.Errorf("Error reading risk: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading risk: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("risk"); ok {
+			if err = d.Set("risk", flattenObjectWebfilterProfileFtgdWfRisk2edl(o["risk"], d, "risk")); err != nil {
+				if vv, ok := fortiAPIPatch(o["risk"], "ObjectWebfilterProfileFtgdWf-Risk"); ok {
+					if err = d.Set("risk", vv); err != nil {
+						return fmt.Errorf("Error reading risk: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading risk: %v", err)
+				}
+			}
 		}
 	}
 
@@ -911,6 +1038,66 @@ func expandObjectWebfilterProfileFtgdWfRateJavascriptUrls2edl(d *schema.Resource
 	return v, nil
 }
 
+func expandObjectWebfilterProfileFtgdWfRisk2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["action"], _ = expandObjectWebfilterProfileFtgdWfRiskAction2edl(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectWebfilterProfileFtgdWfRiskId2edl(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["log"], _ = expandObjectWebfilterProfileFtgdWfRiskLog2edl(d, i["log"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "risk_level"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["risk-level"], _ = expandObjectWebfilterProfileFtgdWfRiskRiskLevel2edl(d, i["risk_level"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectWebfilterProfileFtgdWfRiskAction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFtgdWfRiskId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFtgdWfRiskLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFtgdWfRiskRiskLevel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1001,6 +1188,15 @@ func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["rate-javascript-urls"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("risk"); ok || d.HasChange("risk") {
+		t, err := expandObjectWebfilterProfileFtgdWfRisk2edl(d, v, "risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["risk"] = t
 		}
 	}
 

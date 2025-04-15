@@ -153,6 +153,8 @@ func resourceSystemAdminLdapCreate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -160,9 +162,9 @@ func resourceSystemAdminLdapCreate(d *schema.ResourceData, m interface{}) error 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminLdap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminLdap(obj, paradict)
-
+	_, err = c.CreateSystemAdminLdap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminLdap resource: %v", err)
 	}
@@ -178,6 +180,8 @@ func resourceSystemAdminLdapUpdate(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -186,7 +190,9 @@ func resourceSystemAdminLdapUpdate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error updating SystemAdminLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminLdap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminLdap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminLdap resource: %v", err)
 	}
@@ -205,10 +211,14 @@ func resourceSystemAdminLdapDelete(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminLdap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminLdap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminLdap resource: %v", err)
 	}
@@ -225,6 +235,7 @@ func resourceSystemAdminLdapRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -109,6 +109,8 @@ func resourceFmupdateFwmSettingUpgradeTimeoutUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -117,7 +119,9 @@ func resourceFmupdateFwmSettingUpgradeTimeoutUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating FmupdateFwmSettingUpgradeTimeout resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFwmSettingUpgradeTimeout(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFwmSettingUpgradeTimeout(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFwmSettingUpgradeTimeout resource: %v", err)
 	}
@@ -136,10 +140,14 @@ func resourceFmupdateFwmSettingUpgradeTimeoutDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFwmSettingUpgradeTimeout(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFwmSettingUpgradeTimeout(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFwmSettingUpgradeTimeout resource: %v", err)
 	}
@@ -156,6 +164,7 @@ func resourceFmupdateFwmSettingUpgradeTimeoutRead(d *schema.ResourceData, m inte
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

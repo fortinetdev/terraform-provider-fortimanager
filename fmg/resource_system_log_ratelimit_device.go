@@ -56,6 +56,8 @@ func resourceSystemLogRatelimitDeviceCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -63,9 +65,9 @@ func resourceSystemLogRatelimitDeviceCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitDevice resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogRatelimitDevice(obj, paradict)
-
+	_, err = c.CreateSystemLogRatelimitDevice(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitDevice resource: %v", err)
 	}
@@ -81,6 +83,8 @@ func resourceSystemLogRatelimitDeviceUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -89,7 +93,9 @@ func resourceSystemLogRatelimitDeviceUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystemLogRatelimitDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogRatelimitDevice(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogRatelimitDevice(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitDevice resource: %v", err)
 	}
@@ -108,10 +114,14 @@ func resourceSystemLogRatelimitDeviceDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogRatelimitDevice(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogRatelimitDevice(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogRatelimitDevice resource: %v", err)
 	}
@@ -128,6 +138,7 @@ func resourceSystemLogRatelimitDeviceRead(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

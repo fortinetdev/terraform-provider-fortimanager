@@ -34,6 +34,19 @@ func resourceSystemAdminRadius() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ca_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"message_authenticator": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -46,6 +59,11 @@ func resourceSystemAdminRadius() *schema.Resource {
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"protocol": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -80,6 +98,8 @@ func resourceSystemAdminRadiusCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -87,9 +107,9 @@ func resourceSystemAdminRadiusCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminRadius resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminRadius(obj, paradict)
-
+	_, err = c.CreateSystemAdminRadius(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminRadius resource: %v", err)
 	}
@@ -105,6 +125,8 @@ func resourceSystemAdminRadiusUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -113,7 +135,9 @@ func resourceSystemAdminRadiusUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating SystemAdminRadius resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminRadius(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemAdminRadius(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminRadius resource: %v", err)
 	}
@@ -132,10 +156,14 @@ func resourceSystemAdminRadiusDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminRadius(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemAdminRadius(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminRadius resource: %v", err)
 	}
@@ -152,6 +180,7 @@ func resourceSystemAdminRadiusRead(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -177,6 +206,18 @@ func flattenSystemAdminRadiusAuthType(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenSystemAdminRadiusCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminRadiusClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminRadiusMessageAuthenticator(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminRadiusName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -186,6 +227,10 @@ func flattenSystemAdminRadiusNasIp(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenSystemAdminRadiusPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminRadiusProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -207,6 +252,36 @@ func refreshObjectSystemAdminRadius(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading auth_type: %v", err)
+		}
+	}
+
+	if err = d.Set("ca_cert", flattenSystemAdminRadiusCaCert(o["ca-cert"], d, "ca_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ca-cert"], "SystemAdminRadius-CaCert"); ok {
+			if err = d.Set("ca_cert", vv); err != nil {
+				return fmt.Errorf("Error reading ca_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ca_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("client_cert", flattenSystemAdminRadiusClientCert(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "SystemAdminRadius-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("message_authenticator", flattenSystemAdminRadiusMessageAuthenticator(o["message-authenticator"], d, "message_authenticator")); err != nil {
+		if vv, ok := fortiAPIPatch(o["message-authenticator"], "SystemAdminRadius-MessageAuthenticator"); ok {
+			if err = d.Set("message_authenticator", vv); err != nil {
+				return fmt.Errorf("Error reading message_authenticator: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading message_authenticator: %v", err)
 		}
 	}
 
@@ -237,6 +312,16 @@ func refreshObjectSystemAdminRadius(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading port: %v", err)
+		}
+	}
+
+	if err = d.Set("protocol", flattenSystemAdminRadiusProtocol(o["protocol"], d, "protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["protocol"], "SystemAdminRadius-Protocol"); ok {
+			if err = d.Set("protocol", vv); err != nil {
+				return fmt.Errorf("Error reading protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading protocol: %v", err)
 		}
 	}
 
@@ -273,6 +358,18 @@ func expandSystemAdminRadiusAuthType(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandSystemAdminRadiusCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminRadiusClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminRadiusMessageAuthenticator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminRadiusName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -282,6 +379,10 @@ func expandSystemAdminRadiusNasIp(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandSystemAdminRadiusPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminRadiusProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -313,6 +414,33 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("ca_cert"); ok || d.HasChange("ca_cert") {
+		t, err := expandSystemAdminRadiusCaCert(d, v, "ca_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ca-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandSystemAdminRadiusClientCert(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("message_authenticator"); ok || d.HasChange("message_authenticator") {
+		t, err := expandSystemAdminRadiusMessageAuthenticator(d, v, "message_authenticator")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["message-authenticator"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemAdminRadiusName(d, v, "name")
 		if err != nil {
@@ -337,6 +465,15 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
+		t, err := expandSystemAdminRadiusProtocol(d, v, "protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["protocol"] = t
 		}
 	}
 

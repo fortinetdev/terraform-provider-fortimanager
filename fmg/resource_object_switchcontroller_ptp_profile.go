@@ -88,6 +88,7 @@ func resourceObjectSwitchControllerPtpProfileCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectSwitchControllerPtpProfileCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerPtpProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerPtpProfile(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerPtpProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerPtpProfile resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectSwitchControllerPtpProfileUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectSwitchControllerPtpProfileUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSwitchControllerPtpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerPtpProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerPtpProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerPtpProfile resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectSwitchControllerPtpProfileDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectSwitchControllerPtpProfileDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerPtpProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerPtpProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerPtpProfile resource: %v", err)
 	}

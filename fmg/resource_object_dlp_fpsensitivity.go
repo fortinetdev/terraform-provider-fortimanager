@@ -58,6 +58,7 @@ func resourceObjectDlpFpSensitivityCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -69,9 +70,9 @@ func resourceObjectDlpFpSensitivityCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFpSensitivity resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpFpSensitivity(obj, paradict)
-
+	_, err = c.CreateObjectDlpFpSensitivity(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFpSensitivity resource: %v", err)
 	}
@@ -87,6 +88,7 @@ func resourceObjectDlpFpSensitivityUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,7 +101,9 @@ func resourceObjectDlpFpSensitivityUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectDlpFpSensitivity resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpFpSensitivity(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpFpSensitivity(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpFpSensitivity resource: %v", err)
 	}
@@ -118,6 +122,7 @@ func resourceObjectDlpFpSensitivityDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +130,9 @@ func resourceObjectDlpFpSensitivityDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpFpSensitivity(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpFpSensitivity(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpFpSensitivity resource: %v", err)
 	}

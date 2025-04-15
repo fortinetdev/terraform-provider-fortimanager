@@ -63,6 +63,7 @@ func resourceObjectWanoptPeerCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -74,9 +75,9 @@ func resourceObjectWanoptPeerCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptPeer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWanoptPeer(obj, paradict)
-
+	_, err = c.CreateObjectWanoptPeer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptPeer resource: %v", err)
 	}
@@ -92,6 +93,7 @@ func resourceObjectWanoptPeerUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,7 +106,9 @@ func resourceObjectWanoptPeerUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectWanoptPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptPeer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWanoptPeer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptPeer resource: %v", err)
 	}
@@ -123,6 +127,7 @@ func resourceObjectWanoptPeerDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +135,9 @@ func resourceObjectWanoptPeerDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptPeer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWanoptPeer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptPeer resource: %v", err)
 	}

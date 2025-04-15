@@ -49,6 +49,7 @@ The following arguments are supported:
 
 * `apache_mode` - Set apache mode. event - Apache event mode. prefork - Apache prefork mode. Valid values: `event`, `prefork`.
 
+* `apache_wsgi_processes` - Set apache wsgi processes(5-250 default 10).
 * `api_ip_binding` - Enable/disable source IP check for JSON API request. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `clone_name_option` - set the clone object names option. default - Add a prefix of 'Clone of' to the clone name. keep - Keep the original name for user to edit. Valid values: `default`, `keep`.
@@ -80,6 +81,8 @@ The following arguments are supported:
 * `faz_status` - FAZ status. disable - Disable FAZ feature. enable - Enable FAZ feature. Valid values: `disable`, `enable`.
 
 * `fcp_cfg_service` - Enable/disable FCP service processing configuration requests disable - FCP service doesn&apos;t process configuration requests from web enable - FCP service processes configuration requests from web. Valid values: `disable`, `enable`.
+
+* `fgfm_allow_vm` - Enable/disable VM platform FGFM connect restriction. disable - Don&apos;t allow VM platform connection in FGFM. enable - Allow VM platform connection in FGFM. Valid values: `disable`, `enable`.
 
 * `fgfm_ca_cert` - set the extra fgfm CA certificates.
 * `fgfm_cert_exclusive` - set if the local or CA certificates should be used exclusively. disable - Used certificate best-effort. enable - Used certificate exclusive. Valid values: `disable`, `enable`.

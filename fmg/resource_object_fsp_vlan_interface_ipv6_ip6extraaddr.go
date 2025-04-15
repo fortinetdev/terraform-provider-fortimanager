@@ -63,6 +63,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -77,9 +78,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
 	}
@@ -95,6 +96,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrDelete(d *schema.ResourceData
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	err = c.DeleteObjectFspVlanInterfaceIpv6Ip6ExtraAddr(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanInterfaceIpv6Ip6ExtraAddr(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
 	}

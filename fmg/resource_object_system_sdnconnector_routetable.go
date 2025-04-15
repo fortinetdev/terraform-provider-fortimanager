@@ -93,6 +93,7 @@ func resourceObjectSystemSdnConnectorRouteTableCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -107,9 +108,9 @@ func resourceObjectSystemSdnConnectorRouteTableCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorRouteTable resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorRouteTable(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorRouteTable(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorRouteTable resource: %v", err)
 	}
@@ -125,6 +126,7 @@ func resourceObjectSystemSdnConnectorRouteTableUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,7 +142,9 @@ func resourceObjectSystemSdnConnectorRouteTableUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorRouteTable resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorRouteTable(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorRouteTable(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorRouteTable resource: %v", err)
 	}
@@ -159,6 +163,7 @@ func resourceObjectSystemSdnConnectorRouteTableDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +174,9 @@ func resourceObjectSystemSdnConnectorRouteTableDelete(d *schema.ResourceData, m 
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorRouteTable(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorRouteTable(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorRouteTable resource: %v", err)
 	}

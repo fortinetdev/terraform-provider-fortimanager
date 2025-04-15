@@ -160,6 +160,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,9 +177,9 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGateway6Realservers resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxy6ApiGateway6Realservers(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAccessProxy6ApiGateway6Realservers(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGateway6Realservers resource: %v", err)
 	}
@@ -194,6 +195,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -211,7 +213,9 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGateway6Realservers resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxy6ApiGateway6Realservers(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAccessProxy6ApiGateway6Realservers(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGateway6Realservers resource: %v", err)
 	}
@@ -230,6 +234,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -242,7 +247,9 @@ func resourceObjectFirewallAccessProxy6ApiGateway6RealserversDelete(d *schema.Re
 	paradict["access_proxy6"] = access_proxy6
 	paradict["api_gateway6"] = api_gateway6
 
-	err = c.DeleteObjectFirewallAccessProxy6ApiGateway6Realservers(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAccessProxy6ApiGateway6Realservers(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxy6ApiGateway6Realservers resource: %v", err)
 	}

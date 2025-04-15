@@ -64,6 +64,7 @@ The following arguments are supported:
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `private`, `public`, `all`.
 
 * `sdn_tag` - SDN Tag.
+* `sso_attribute_value` - Name(s) of the RADIUS user groups that this address includes.
 * `start_ip` - First IP address (inclusive) in the range for the address.
 * `start_mac` - First MAC address in the range.
 * `sub_type` - Sub-type of address. Valid values: `sdn`, `clearpass-spt`, `fsso`, `ems-tag`.

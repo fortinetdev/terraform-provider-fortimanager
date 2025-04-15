@@ -27,12 +27,18 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
+
+* `empty_cert_action` - Action for an empty client certificate. Valid values: `block`, `accept`, `accept-unmanageable`.
+
 * `host` - The host name.
 * `host_type` - Type of host pattern. Valid values: `sub-string`, `wildcard`.
 
 * `name` - Virtual host name.
 * `replacemsg_group` - Access-proxy-virtual-host replacement message override group.
 * `ssl_certificate` - SSL certificate for this host.
+* `user_agent_detect` - Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

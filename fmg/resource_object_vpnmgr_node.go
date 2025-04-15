@@ -449,6 +449,7 @@ func resourceObjectVpnmgrNodeCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -460,9 +461,9 @@ func resourceObjectVpnmgrNodeCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNode resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnmgrNode(obj, paradict)
-
+	_, err = c.CreateObjectVpnmgrNode(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnmgrNode resource: %v", err)
 	}
@@ -478,6 +479,7 @@ func resourceObjectVpnmgrNodeUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -490,7 +492,9 @@ func resourceObjectVpnmgrNodeUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectVpnmgrNode resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnmgrNode(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnmgrNode(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnmgrNode resource: %v", err)
 	}
@@ -509,6 +513,7 @@ func resourceObjectVpnmgrNodeDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -516,7 +521,9 @@ func resourceObjectVpnmgrNodeDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnmgrNode(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnmgrNode(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnmgrNode resource: %v", err)
 	}

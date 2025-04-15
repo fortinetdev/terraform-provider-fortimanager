@@ -104,6 +104,7 @@ func resourceObjectSpamfilterMheaderCreate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,9 +116,9 @@ func resourceObjectSpamfilterMheaderCreate(d *schema.ResourceData, m interface{}
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterMheader resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSpamfilterMheader(obj, paradict)
-
+	_, err = c.CreateObjectSpamfilterMheader(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterMheader resource: %v", err)
 	}
@@ -133,6 +134,7 @@ func resourceObjectSpamfilterMheaderUpdate(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,7 +147,9 @@ func resourceObjectSpamfilterMheaderUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating ObjectSpamfilterMheader resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSpamfilterMheader(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSpamfilterMheader(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterMheader resource: %v", err)
 	}
@@ -164,6 +168,7 @@ func resourceObjectSpamfilterMheaderDelete(d *schema.ResourceData, m interface{}
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +176,9 @@ func resourceObjectSpamfilterMheaderDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSpamfilterMheader(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSpamfilterMheader(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSpamfilterMheader resource: %v", err)
 	}

@@ -50,6 +50,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"arp_reply": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -94,6 +99,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"client_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"color": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -103,6 +113,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 						},
 						"embedded_ipv4_address": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"empty_cert_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -499,6 +514,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"user_agent_detect": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -518,6 +538,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				},
 			},
 			"embedded_ipv4_address": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"empty_cert_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -994,6 +1019,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_agent_detect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1023,6 +1053,7 @@ func resourceObjectFirewallVip6Create(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1034,9 +1065,9 @@ func resourceObjectFirewallVip6Create(d *schema.ResourceData, m interface{}) err
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVip6(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVip6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6 resource: %v", err)
 	}
@@ -1052,6 +1083,7 @@ func resourceObjectFirewallVip6Update(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1064,7 +1096,9 @@ func resourceObjectFirewallVip6Update(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating ObjectFirewallVip6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVip6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVip6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip6 resource: %v", err)
 	}
@@ -1083,6 +1117,7 @@ func resourceObjectFirewallVip6Delete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1090,7 +1125,9 @@ func resourceObjectFirewallVip6Delete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVip6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVip6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVip6 resource: %v", err)
 	}
@@ -1133,6 +1170,10 @@ func resourceObjectFirewallVip6Read(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenObjectFirewallVip6AddNat64Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6ClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1185,6 +1226,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["arp_reply"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-ArpReply")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert"
+		if _, ok := i["client-cert"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingClientCert(i["client-cert"], d, pre_append)
+			tmp["client_cert"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-ClientCert")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "color"
 		if _, ok := i["color"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingColor(i["color"], d, pre_append)
@@ -1201,6 +1248,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["embedded-ipv4-address"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(i["embedded-ipv4-address"], d, pre_append)
 			tmp["embedded_ipv4_address"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-EmbeddedIpv4Address")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "empty_cert_action"
+		if _, ok := i["empty-cert-action"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingEmptyCertAction(i["empty-cert-action"], d, pre_append)
+			tmp["empty_cert_action"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-EmptyCertAction")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
@@ -1623,6 +1676,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Type")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_agent_detect"
+		if _, ok := i["user-agent-detect"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingUserAgentDetect(i["user-agent-detect"], d, pre_append)
+			tmp["user_agent_detect"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-UserAgentDetect")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
 		if _, ok := i["uuid"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingUuid(i["uuid"], d, pre_append)
@@ -1708,6 +1767,10 @@ func flattenObjectFirewallVip6DynamicMappingArpReply(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingColor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1717,6 +1780,10 @@ func flattenObjectFirewallVip6DynamicMappingComment(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingEmptyCertAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2200,6 +2267,10 @@ func flattenObjectFirewallVip6DynamicMappingType(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingUserAgentDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2213,6 +2284,10 @@ func flattenObjectFirewallVip6DynamicMappingWebsphereServer(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVip6EmbeddedIpv4Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6EmptyCertAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2844,6 +2919,10 @@ func flattenObjectFirewallVip6Type(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
+func flattenObjectFirewallVip6UserAgentDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2874,6 +2953,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading add_nat64_route: %v", err)
+		}
+	}
+
+	if err = d.Set("client_cert", flattenObjectFirewallVip6ClientCert(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "ObjectFirewallVip6-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
 		}
 	}
 
@@ -2938,6 +3027,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading embedded_ipv4_address: %v", err)
+		}
+	}
+
+	if err = d.Set("empty_cert_action", flattenObjectFirewallVip6EmptyCertAction(o["empty-cert-action"], d, "empty_cert_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["empty-cert-action"], "ObjectFirewallVip6-EmptyCertAction"); ok {
+			if err = d.Set("empty_cert_action", vv); err != nil {
+				return fmt.Errorf("Error reading empty_cert_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading empty_cert_action: %v", err)
 		}
 	}
 
@@ -3727,6 +3826,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("user_agent_detect", flattenObjectFirewallVip6UserAgentDetect(o["user-agent-detect"], d, "user_agent_detect")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-agent-detect"], "ObjectFirewallVip6-UserAgentDetect"); ok {
+			if err = d.Set("user_agent_detect", vv); err != nil {
+				return fmt.Errorf("Error reading user_agent_detect: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_agent_detect: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenObjectFirewallVip6Uuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallVip6-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -3767,6 +3876,10 @@ func flattenObjectFirewallVip6FortiTestDebug(d *schema.ResourceData, fosdebugsn 
 }
 
 func expandObjectFirewallVip6AddNat64Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6ClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3816,6 +3929,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["arp-reply"], _ = expandObjectFirewallVip6DynamicMappingArpReply(d, i["arp_reply"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["client-cert"], _ = expandObjectFirewallVip6DynamicMappingClientCert(d, i["client_cert"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "color"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["color"], _ = expandObjectFirewallVip6DynamicMappingColor(d, i["color"], pre_append)
@@ -3829,6 +3947,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "embedded_ipv4_address"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["embedded-ipv4-address"], _ = expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d, i["embedded_ipv4_address"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "empty_cert_action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["empty-cert-action"], _ = expandObjectFirewallVip6DynamicMappingEmptyCertAction(d, i["empty_cert_action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
@@ -4191,6 +4314,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["type"], _ = expandObjectFirewallVip6DynamicMappingType(d, i["type"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_agent_detect"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["user-agent-detect"], _ = expandObjectFirewallVip6DynamicMappingUserAgentDetect(d, i["user_agent_detect"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["uuid"], _ = expandObjectFirewallVip6DynamicMappingUuid(d, i["uuid"], pre_append)
@@ -4266,6 +4394,10 @@ func expandObjectFirewallVip6DynamicMappingArpReply(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingColor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4275,6 +4407,10 @@ func expandObjectFirewallVip6DynamicMappingComment(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingEmptyCertAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4733,6 +4869,10 @@ func expandObjectFirewallVip6DynamicMappingType(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingUserAgentDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4746,6 +4886,10 @@ func expandObjectFirewallVip6DynamicMappingWebsphereServer(d *schema.ResourceDat
 }
 
 func expandObjectFirewallVip6EmbeddedIpv4Address(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6EmptyCertAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5337,6 +5481,10 @@ func expandObjectFirewallVip6Type(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
+func expandObjectFirewallVip6UserAgentDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5358,6 +5506,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["add-nat64-route"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandObjectFirewallVip6ClientCert(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
 		}
 	}
 
@@ -5403,6 +5560,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["embedded-ipv4-address"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("empty_cert_action"); ok || d.HasChange("empty_cert_action") {
+		t, err := expandObjectFirewallVip6EmptyCertAction(d, v, "empty_cert_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["empty-cert-action"] = t
 		}
 	}
 
@@ -6060,6 +6226,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_agent_detect"); ok || d.HasChange("user_agent_detect") {
+		t, err := expandObjectFirewallVip6UserAgentDetect(d, v, "user_agent_detect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-agent-detect"] = t
 		}
 	}
 

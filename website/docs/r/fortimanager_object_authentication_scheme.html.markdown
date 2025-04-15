@@ -29,6 +29,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `domain_controller` - Domain controller setting.
+* `external_idp` - External identity provider configuration.
 * `ems_device_owner` - Enable/disable SSH public-key authentication with device owner (default = disable). Valid values: `disable`, `enable`.
 
 * `fsso_agent_for_ntlm` - FSSO agent to use for NTLM authentication.

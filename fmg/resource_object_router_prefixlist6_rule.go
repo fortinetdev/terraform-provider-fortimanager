@@ -85,6 +85,7 @@ func resourceObjectRouterPrefixList6RuleCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectRouterPrefixList6RuleCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterPrefixList6Rule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterPrefixList6Rule(obj, paradict)
-
+	_, err = c.CreateObjectRouterPrefixList6Rule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterPrefixList6Rule resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectRouterPrefixList6RuleUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,7 +134,9 @@ func resourceObjectRouterPrefixList6RuleUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectRouterPrefixList6Rule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterPrefixList6Rule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterPrefixList6Rule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterPrefixList6Rule resource: %v", err)
 	}
@@ -151,6 +155,7 @@ func resourceObjectRouterPrefixList6RuleDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -161,7 +166,9 @@ func resourceObjectRouterPrefixList6RuleDelete(d *schema.ResourceData, m interfa
 	prefix_list6 := d.Get("prefix_list6").(string)
 	paradict["prefix_list6"] = prefix_list6
 
-	err = c.DeleteObjectRouterPrefixList6Rule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterPrefixList6Rule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterPrefixList6Rule resource: %v", err)
 	}

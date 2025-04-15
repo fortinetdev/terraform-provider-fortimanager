@@ -134,6 +134,7 @@ func resourceObjectCertificateTemplateCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,9 +146,9 @@ func resourceObjectCertificateTemplateCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCertificateTemplate resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCertificateTemplate(obj, paradict)
-
+	_, err = c.CreateObjectCertificateTemplate(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCertificateTemplate resource: %v", err)
 	}
@@ -163,6 +164,7 @@ func resourceObjectCertificateTemplateUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -175,7 +177,9 @@ func resourceObjectCertificateTemplateUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectCertificateTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCertificateTemplate(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCertificateTemplate(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCertificateTemplate resource: %v", err)
 	}
@@ -194,6 +198,7 @@ func resourceObjectCertificateTemplateDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -201,7 +206,9 @@ func resourceObjectCertificateTemplateDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCertificateTemplate(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCertificateTemplate(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCertificateTemplate resource: %v", err)
 	}

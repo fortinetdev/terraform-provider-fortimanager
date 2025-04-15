@@ -88,6 +88,7 @@ func resourceObjectWebProxyWispCreate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectWebProxyWispCreate(d *schema.ResourceData, m interface{}) err
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyWisp resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyWisp(obj, paradict)
-
+	_, err = c.CreateObjectWebProxyWisp(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyWisp resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectWebProxyWispUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectWebProxyWispUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating ObjectWebProxyWisp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyWisp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebProxyWisp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyWisp resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectWebProxyWispDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectWebProxyWispDelete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebProxyWisp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebProxyWisp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyWisp resource: %v", err)
 	}

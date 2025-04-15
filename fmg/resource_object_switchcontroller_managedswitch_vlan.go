@@ -68,6 +68,7 @@ func resourceObjectSwitchControllerManagedSwitchVlanCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectSwitchControllerManagedSwitchVlanCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchVlan resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchVlan(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerManagedSwitchVlan(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchVlan resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectSwitchControllerManagedSwitchVlanUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectSwitchControllerManagedSwitchVlanUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchVlan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerManagedSwitchVlan(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerManagedSwitchVlan(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchVlan resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectSwitchControllerManagedSwitchVlanDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectSwitchControllerManagedSwitchVlanDelete(d *schema.ResourceDat
 	managed_switch := d.Get("managed_switch").(string)
 	paradict["managed_switch"] = managed_switch
 
-	err = c.DeleteObjectSwitchControllerManagedSwitchVlan(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerManagedSwitchVlan(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerManagedSwitchVlan resource: %v", err)
 	}

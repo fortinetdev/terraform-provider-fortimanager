@@ -189,6 +189,7 @@ func resourceObjectLogNpuServerUpdate(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -201,7 +202,9 @@ func resourceObjectLogNpuServerUpdate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error updating ObjectLogNpuServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectLogNpuServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectLogNpuServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectLogNpuServer resource: %v", err)
 	}
@@ -220,6 +223,7 @@ func resourceObjectLogNpuServerDelete(d *schema.ResourceData, m interface{}) err
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -227,7 +231,9 @@ func resourceObjectLogNpuServerDelete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectLogNpuServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectLogNpuServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectLogNpuServer resource: %v", err)
 	}

@@ -239,6 +239,7 @@ func resourceObjectDnsfilterProfileCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -250,9 +251,9 @@ func resourceObjectDnsfilterProfileCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDnsfilterProfile(obj, paradict)
-
+	_, err = c.CreateObjectDnsfilterProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterProfile resource: %v", err)
 	}
@@ -268,6 +269,7 @@ func resourceObjectDnsfilterProfileUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -280,7 +282,9 @@ func resourceObjectDnsfilterProfileUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectDnsfilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDnsfilterProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDnsfilterProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterProfile resource: %v", err)
 	}
@@ -299,6 +303,7 @@ func resourceObjectDnsfilterProfileDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -306,7 +311,9 @@ func resourceObjectDnsfilterProfileDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDnsfilterProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDnsfilterProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDnsfilterProfile resource: %v", err)
 	}

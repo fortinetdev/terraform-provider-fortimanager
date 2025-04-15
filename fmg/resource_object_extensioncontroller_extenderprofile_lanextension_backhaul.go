@@ -79,6 +79,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulCreate(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -93,9 +94,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulCreate(
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, paradict)
-
+	_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
 	}
@@ -111,6 +112,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulUpdate(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulUpdate(
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulDelete(
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulDelete(
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtensionBackhaul(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtensionControllerExtenderProfileLanExtensionBackhaul(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
 	}

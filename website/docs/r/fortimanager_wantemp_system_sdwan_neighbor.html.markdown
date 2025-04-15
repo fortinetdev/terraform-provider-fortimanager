@@ -30,6 +30,8 @@ The following arguments are supported:
 
 * `role` - Role of neighbor. Valid values: `primary`, `secondary`, `standalone`.
 
+* `route_metric` - Route-metric of neighbor. Valid values: `preferable`, `priority`.
+
 * `service_id` - SD-WAN service ID to work with the neighbor.
 * `sla_id` - SLA ID.
 

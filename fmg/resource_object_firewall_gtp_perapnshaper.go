@@ -76,6 +76,7 @@ func resourceObjectFirewallGtpPerApnShaperCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectFirewallGtpPerApnShaperCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpPerApnShaper resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallGtpPerApnShaper(obj, paradict)
-
+	_, err = c.CreateObjectFirewallGtpPerApnShaper(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpPerApnShaper resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectFirewallGtpPerApnShaperUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectFirewallGtpPerApnShaperUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallGtpPerApnShaper resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpPerApnShaper(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpPerApnShaper(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpPerApnShaper resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectFirewallGtpPerApnShaperDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectFirewallGtpPerApnShaperDelete(d *schema.ResourceData, m inter
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpPerApnShaper(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpPerApnShaper(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpPerApnShaper resource: %v", err)
 	}

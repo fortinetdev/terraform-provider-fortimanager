@@ -100,6 +100,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryCreate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -114,9 +115,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryCreate(d *schema.Resource
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAdditionEntry resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceAdditionEntry(obj, paradict)
-
+	_, err = c.CreateObjectFirewallInternetServiceAdditionEntry(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAdditionEntry resource: %v", err)
 	}
@@ -132,6 +133,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +149,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAdditionEntry resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceAdditionEntry(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallInternetServiceAdditionEntry(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAdditionEntry resource: %v", err)
 	}
@@ -166,6 +170,7 @@ func resourceObjectFirewallInternetServiceAdditionEntryDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -176,7 +181,9 @@ func resourceObjectFirewallInternetServiceAdditionEntryDelete(d *schema.Resource
 	internet_service_addition := d.Get("internet_service_addition").(string)
 	paradict["internet_service_addition"] = internet_service_addition
 
-	err = c.DeleteObjectFirewallInternetServiceAdditionEntry(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallInternetServiceAdditionEntry(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceAdditionEntry resource: %v", err)
 	}

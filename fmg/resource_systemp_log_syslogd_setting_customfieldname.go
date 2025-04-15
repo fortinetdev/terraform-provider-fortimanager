@@ -72,6 +72,7 @@ func resourceSystempLogSyslogdSettingCustomFieldNameCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceSystempLogSyslogdSettingCustomFieldNameCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating SystempLogSyslogdSettingCustomFieldName resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystempLogSyslogdSettingCustomFieldName(obj, paradict)
-
+	_, err = c.CreateSystempLogSyslogdSettingCustomFieldName(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystempLogSyslogdSettingCustomFieldName resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceSystempLogSyslogdSettingCustomFieldNameUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceSystempLogSyslogdSettingCustomFieldNameUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating SystempLogSyslogdSettingCustomFieldName resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempLogSyslogdSettingCustomFieldName(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempLogSyslogdSettingCustomFieldName(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdSettingCustomFieldName resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceSystempLogSyslogdSettingCustomFieldNameDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceSystempLogSyslogdSettingCustomFieldNameDelete(d *schema.ResourceDat
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempLogSyslogdSettingCustomFieldName(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempLogSyslogdSettingCustomFieldName(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempLogSyslogdSettingCustomFieldName resource: %v", err)
 	}

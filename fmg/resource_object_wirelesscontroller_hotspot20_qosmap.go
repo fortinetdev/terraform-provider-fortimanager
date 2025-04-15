@@ -110,6 +110,7 @@ func resourceObjectWirelessControllerHotspot20QosMapCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,9 +122,9 @@ func resourceObjectWirelessControllerHotspot20QosMapCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20QosMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20QosMap(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20QosMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20QosMap resource: %v", err)
 	}
@@ -139,6 +140,7 @@ func resourceObjectWirelessControllerHotspot20QosMapUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +153,9 @@ func resourceObjectWirelessControllerHotspot20QosMapUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20QosMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20QosMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20QosMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20QosMap resource: %v", err)
 	}
@@ -170,6 +174,7 @@ func resourceObjectWirelessControllerHotspot20QosMapDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -177,7 +182,9 @@ func resourceObjectWirelessControllerHotspot20QosMapDelete(d *schema.ResourceDat
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20QosMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20QosMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20QosMap resource: %v", err)
 	}

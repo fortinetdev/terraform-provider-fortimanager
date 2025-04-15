@@ -72,6 +72,7 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterCreate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterCreate(d *schema.Resource
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileYoutubeChannelFilter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterProfileYoutubeChannelFilter(obj, paradict)
-
+	_, err = c.CreateObjectWebfilterProfileYoutubeChannelFilter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterProfileYoutubeChannelFilter resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterUpdate(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterUpdate(d *schema.Resource
 		return fmt.Errorf("Error updating ObjectWebfilterProfileYoutubeChannelFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterProfileYoutubeChannelFilter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebfilterProfileYoutubeChannelFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileYoutubeChannelFilter resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterDelete(d *schema.Resource
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectWebfilterProfileYoutubeChannelFilterDelete(d *schema.Resource
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectWebfilterProfileYoutubeChannelFilter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebfilterProfileYoutubeChannelFilter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterProfileYoutubeChannelFilter resource: %v", err)
 	}

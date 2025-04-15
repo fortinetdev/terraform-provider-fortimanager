@@ -100,6 +100,7 @@ func resourceObjectFmgVariableCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -111,9 +112,9 @@ func resourceObjectFmgVariableCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgVariable resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFmgVariable(obj, paradict)
-
+	_, err = c.CreateObjectFmgVariable(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFmgVariable resource: %v", err)
 	}
@@ -129,6 +130,7 @@ func resourceObjectFmgVariableUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectFmgVariableUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectFmgVariable resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFmgVariable(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFmgVariable(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgVariable resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectFmgVariableDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +172,9 @@ func resourceObjectFmgVariableDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFmgVariable(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFmgVariable(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFmgVariable resource: %v", err)
 	}

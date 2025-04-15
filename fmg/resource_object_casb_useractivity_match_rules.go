@@ -55,6 +55,11 @@ func resourceObjectCasbUserActivityMatchRules() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"body_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"case_sensitive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -73,6 +78,10 @@ func resourceObjectCasbUserActivityMatchRules() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
+				Optional: true,
+			},
+			"jq": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"match_pattern": &schema.Schema{
@@ -109,6 +118,7 @@ func resourceObjectCasbUserActivityMatchRulesCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,9 +135,9 @@ func resourceObjectCasbUserActivityMatchRulesCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityMatchRules resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbUserActivityMatchRules(obj, paradict)
-
+	_, err = c.CreateObjectCasbUserActivityMatchRules(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbUserActivityMatchRules resource: %v", err)
 	}
@@ -143,6 +153,7 @@ func resourceObjectCasbUserActivityMatchRulesUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +171,9 @@ func resourceObjectCasbUserActivityMatchRulesUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectCasbUserActivityMatchRules resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbUserActivityMatchRules(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbUserActivityMatchRules(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbUserActivityMatchRules resource: %v", err)
 	}
@@ -179,6 +192,7 @@ func resourceObjectCasbUserActivityMatchRulesDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -191,7 +205,9 @@ func resourceObjectCasbUserActivityMatchRulesDelete(d *schema.ResourceData, m in
 	paradict["user_activity"] = user_activity
 	paradict["match"] = match
 
-	err = c.DeleteObjectCasbUserActivityMatchRules(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbUserActivityMatchRules(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbUserActivityMatchRules resource: %v", err)
 	}
@@ -256,6 +272,10 @@ func resourceObjectCasbUserActivityMatchRulesRead(d *schema.ResourceData, m inte
 	return nil
 }
 
+func flattenObjectCasbUserActivityMatchRulesBodyType3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbUserActivityMatchRulesCaseSensitive3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -269,6 +289,10 @@ func flattenObjectCasbUserActivityMatchRulesHeaderName3rdl(v interface{}, d *sch
 }
 
 func flattenObjectCasbUserActivityMatchRulesId3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbUserActivityMatchRulesJq3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -297,6 +321,16 @@ func refreshObjectObjectCasbUserActivityMatchRules(d *schema.ResourceData, o map
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("body_type", flattenObjectCasbUserActivityMatchRulesBodyType3rdl(o["body-type"], d, "body_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["body-type"], "ObjectCasbUserActivityMatchRules-BodyType"); ok {
+			if err = d.Set("body_type", vv); err != nil {
+				return fmt.Errorf("Error reading body_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading body_type: %v", err)
+		}
 	}
 
 	if err = d.Set("case_sensitive", flattenObjectCasbUserActivityMatchRulesCaseSensitive3rdl(o["case-sensitive"], d, "case_sensitive")); err != nil {
@@ -336,6 +370,16 @@ func refreshObjectObjectCasbUserActivityMatchRules(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading fosid: %v", err)
+		}
+	}
+
+	if err = d.Set("jq", flattenObjectCasbUserActivityMatchRulesJq3rdl(o["jq"], d, "jq")); err != nil {
+		if vv, ok := fortiAPIPatch(o["jq"], "ObjectCasbUserActivityMatchRules-Jq"); ok {
+			if err = d.Set("jq", vv); err != nil {
+				return fmt.Errorf("Error reading jq: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading jq: %v", err)
 		}
 	}
 
@@ -398,6 +442,10 @@ func flattenObjectCasbUserActivityMatchRulesFortiTestDebug(d *schema.ResourceDat
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectCasbUserActivityMatchRulesBodyType3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbUserActivityMatchRulesCaseSensitive3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -411,6 +459,10 @@ func expandObjectCasbUserActivityMatchRulesHeaderName3rdl(d *schema.ResourceData
 }
 
 func expandObjectCasbUserActivityMatchRulesId3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbUserActivityMatchRulesJq3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -436,6 +488,15 @@ func expandObjectCasbUserActivityMatchRulesType3rdl(d *schema.ResourceData, v in
 
 func getObjectObjectCasbUserActivityMatchRules(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("body_type"); ok || d.HasChange("body_type") {
+		t, err := expandObjectCasbUserActivityMatchRulesBodyType3rdl(d, v, "body_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["body-type"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("case_sensitive"); ok || d.HasChange("case_sensitive") {
 		t, err := expandObjectCasbUserActivityMatchRulesCaseSensitive3rdl(d, v, "case_sensitive")
@@ -470,6 +531,15 @@ func getObjectObjectCasbUserActivityMatchRules(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("jq"); ok || d.HasChange("jq") {
+		t, err := expandObjectCasbUserActivityMatchRulesJq3rdl(d, v, "jq")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["jq"] = t
 		}
 	}
 

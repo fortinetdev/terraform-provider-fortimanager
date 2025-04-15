@@ -72,6 +72,7 @@ func resourceObjectFirewallAddress6ListCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectFirewallAddress6ListCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6List resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress6List(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress6List(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6List resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectFirewallAddress6ListUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -119,7 +121,9 @@ func resourceObjectFirewallAddress6ListUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectFirewallAddress6List resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6List(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress6List(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6List resource: %v", err)
 	}
@@ -138,6 +142,7 @@ func resourceObjectFirewallAddress6ListDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -148,7 +153,9 @@ func resourceObjectFirewallAddress6ListDelete(d *schema.ResourceData, m interfac
 	address6 := d.Get("address6").(string)
 	paradict["address6"] = address6
 
-	err = c.DeleteObjectFirewallAddress6List(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress6List(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6List resource: %v", err)
 	}

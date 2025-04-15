@@ -346,6 +346,7 @@ func resourceObjectWanoptProfileCreate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -357,9 +358,9 @@ func resourceObjectWanoptProfileCreate(d *schema.ResourceData, m interface{}) er
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWanoptProfile(obj, paradict)
-
+	_, err = c.CreateObjectWanoptProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptProfile resource: %v", err)
 	}
@@ -375,6 +376,7 @@ func resourceObjectWanoptProfileUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -387,7 +389,9 @@ func resourceObjectWanoptProfileUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating ObjectWanoptProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWanoptProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptProfile resource: %v", err)
 	}
@@ -406,6 +410,7 @@ func resourceObjectWanoptProfileDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -413,7 +418,9 @@ func resourceObjectWanoptProfileDelete(d *schema.ResourceData, m interface{}) er
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWanoptProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptProfile resource: %v", err)
 	}

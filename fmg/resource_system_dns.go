@@ -59,6 +59,8 @@ func resourceSystemDnsUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,7 +69,9 @@ func resourceSystemDnsUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemDns resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemDns(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemDns(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDns resource: %v", err)
 	}
@@ -86,10 +90,14 @@ func resourceSystemDnsDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemDns(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemDns(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemDns resource: %v", err)
 	}
@@ -106,6 +114,7 @@ func resourceSystemDnsRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

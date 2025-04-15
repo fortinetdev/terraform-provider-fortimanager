@@ -129,6 +129,7 @@ func resourceObjectVpnCertificateCaCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,9 +141,9 @@ func resourceObjectVpnCertificateCaCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateCa resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnCertificateCa(obj, paradict)
-
+	_, err = c.CreateObjectVpnCertificateCa(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateCa resource: %v", err)
 	}
@@ -158,6 +159,7 @@ func resourceObjectVpnCertificateCaUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +172,9 @@ func resourceObjectVpnCertificateCaUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectVpnCertificateCa resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnCertificateCa(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnCertificateCa(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnCertificateCa resource: %v", err)
 	}
@@ -189,6 +193,7 @@ func resourceObjectVpnCertificateCaDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -196,7 +201,9 @@ func resourceObjectVpnCertificateCaDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnCertificateCa(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnCertificateCa(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnCertificateCa resource: %v", err)
 	}

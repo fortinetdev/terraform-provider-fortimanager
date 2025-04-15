@@ -134,6 +134,7 @@ func resourceObjectUserDeviceGroupCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -145,9 +146,9 @@ func resourceObjectUserDeviceGroupCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserDeviceGroup(obj, paradict)
-
+	_, err = c.CreateObjectUserDeviceGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceGroup resource: %v", err)
 	}
@@ -163,6 +164,7 @@ func resourceObjectUserDeviceGroupUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -175,7 +177,9 @@ func resourceObjectUserDeviceGroupUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectUserDeviceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDeviceGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserDeviceGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceGroup resource: %v", err)
 	}
@@ -194,6 +198,7 @@ func resourceObjectUserDeviceGroupDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -201,7 +206,9 @@ func resourceObjectUserDeviceGroupDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDeviceGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserDeviceGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDeviceGroup resource: %v", err)
 	}

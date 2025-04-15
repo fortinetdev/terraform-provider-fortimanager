@@ -68,6 +68,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeCreate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -79,9 +80,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeCreate(d *schem
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}
@@ -97,6 +98,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUpdate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,7 +111,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUpdate(d *schem
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}
@@ -128,6 +132,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeDelete(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +140,9 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeDelete(d *schem
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNetworkAuthType(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNetworkAuthType(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}

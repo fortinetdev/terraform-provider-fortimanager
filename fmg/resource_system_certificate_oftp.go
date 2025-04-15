@@ -72,6 +72,8 @@ func resourceSystemCertificateOftpUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -80,7 +82,9 @@ func resourceSystemCertificateOftpUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating SystemCertificateOftp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateOftp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemCertificateOftp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateOftp resource: %v", err)
 	}
@@ -99,10 +103,14 @@ func resourceSystemCertificateOftpDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateOftp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemCertificateOftp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateOftp resource: %v", err)
 	}
@@ -119,6 +127,7 @@ func resourceSystemCertificateOftpRead(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

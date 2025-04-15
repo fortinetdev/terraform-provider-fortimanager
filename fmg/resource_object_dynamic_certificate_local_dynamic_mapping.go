@@ -84,6 +84,7 @@ func resourceObjectDynamicCertificateLocalDynamicMappingCreate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -98,9 +99,9 @@ func resourceObjectDynamicCertificateLocalDynamicMappingCreate(d *schema.Resourc
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicCertificateLocalDynamicMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicCertificateLocalDynamicMapping(obj, paradict)
-
+	_, err = c.CreateObjectDynamicCertificateLocalDynamicMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicCertificateLocalDynamicMapping resource: %v", err)
 	}
@@ -116,6 +117,7 @@ func resourceObjectDynamicCertificateLocalDynamicMappingUpdate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,7 +133,9 @@ func resourceObjectDynamicCertificateLocalDynamicMappingUpdate(d *schema.Resourc
 		return fmt.Errorf("Error updating ObjectDynamicCertificateLocalDynamicMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicCertificateLocalDynamicMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicCertificateLocalDynamicMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicCertificateLocalDynamicMapping resource: %v", err)
 	}
@@ -150,6 +154,7 @@ func resourceObjectDynamicCertificateLocalDynamicMappingDelete(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectDynamicCertificateLocalDynamicMappingDelete(d *schema.Resourc
 	local := d.Get("local").(string)
 	paradict["local"] = local
 
-	err = c.DeleteObjectDynamicCertificateLocalDynamicMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicCertificateLocalDynamicMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicCertificateLocalDynamicMapping resource: %v", err)
 	}

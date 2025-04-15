@@ -83,6 +83,8 @@ func resourceSystemSamlServiceProvidersCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -90,9 +92,9 @@ func resourceSystemSamlServiceProvidersCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlServiceProviders resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSamlServiceProviders(obj, paradict)
-
+	_, err = c.CreateSystemSamlServiceProviders(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlServiceProviders resource: %v", err)
 	}
@@ -108,6 +110,8 @@ func resourceSystemSamlServiceProvidersUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -116,7 +120,9 @@ func resourceSystemSamlServiceProvidersUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating SystemSamlServiceProviders resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSamlServiceProviders(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSamlServiceProviders(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSamlServiceProviders resource: %v", err)
 	}
@@ -135,10 +141,14 @@ func resourceSystemSamlServiceProvidersDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSamlServiceProviders(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSamlServiceProviders(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSamlServiceProviders resource: %v", err)
 	}
@@ -155,6 +165,7 @@ func resourceSystemSamlServiceProvidersRead(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

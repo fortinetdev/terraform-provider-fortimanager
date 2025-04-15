@@ -91,6 +91,7 @@ func resourceObjectDlpDictionaryEntriesCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -105,9 +106,9 @@ func resourceObjectDlpDictionaryEntriesCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpDictionaryEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpDictionaryEntries(obj, paradict)
-
+	_, err = c.CreateObjectDlpDictionaryEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpDictionaryEntries resource: %v", err)
 	}
@@ -123,6 +124,7 @@ func resourceObjectDlpDictionaryEntriesUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +140,9 @@ func resourceObjectDlpDictionaryEntriesUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectDlpDictionaryEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpDictionaryEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpDictionaryEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpDictionaryEntries resource: %v", err)
 	}
@@ -157,6 +161,7 @@ func resourceObjectDlpDictionaryEntriesDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +172,9 @@ func resourceObjectDlpDictionaryEntriesDelete(d *schema.ResourceData, m interfac
 	dictionary := d.Get("dictionary").(string)
 	paradict["dictionary"] = dictionary
 
-	err = c.DeleteObjectDlpDictionaryEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpDictionaryEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpDictionaryEntries resource: %v", err)
 	}

@@ -49,6 +49,8 @@ func resourceSystemLogTopologyUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,7 +59,9 @@ func resourceSystemLogTopologyUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating SystemLogTopology resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogTopology(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogTopology(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogTopology resource: %v", err)
 	}
@@ -76,10 +80,14 @@ func resourceSystemLogTopologyDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogTopology(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogTopology(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogTopology resource: %v", err)
 	}
@@ -96,6 +104,7 @@ func resourceSystemLogTopologyRead(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

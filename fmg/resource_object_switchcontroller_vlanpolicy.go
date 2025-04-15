@@ -89,6 +89,7 @@ func resourceObjectSwitchControllerVlanPolicyCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -100,9 +101,9 @@ func resourceObjectSwitchControllerVlanPolicyCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerVlanPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerVlanPolicy(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerVlanPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerVlanPolicy resource: %v", err)
 	}
@@ -118,6 +119,7 @@ func resourceObjectSwitchControllerVlanPolicyUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -130,7 +132,9 @@ func resourceObjectSwitchControllerVlanPolicyUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSwitchControllerVlanPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerVlanPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerVlanPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerVlanPolicy resource: %v", err)
 	}
@@ -149,6 +153,7 @@ func resourceObjectSwitchControllerVlanPolicyDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectSwitchControllerVlanPolicyDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerVlanPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerVlanPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerVlanPolicy resource: %v", err)
 	}

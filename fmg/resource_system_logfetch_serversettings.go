@@ -54,6 +54,8 @@ func resourceSystemLogFetchServerSettingsUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -62,7 +64,9 @@ func resourceSystemLogFetchServerSettingsUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating SystemLogFetchServerSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogFetchServerSettings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogFetchServerSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchServerSettings resource: %v", err)
 	}
@@ -81,10 +85,14 @@ func resourceSystemLogFetchServerSettingsDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogFetchServerSettings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogFetchServerSettings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogFetchServerSettings resource: %v", err)
 	}
@@ -101,6 +109,7 @@ func resourceSystemLogFetchServerSettingsRead(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

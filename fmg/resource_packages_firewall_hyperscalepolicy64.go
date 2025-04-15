@@ -166,6 +166,7 @@ func resourcePackagesFirewallHyperscalePolicy64Create(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -182,9 +183,9 @@ func resourcePackagesFirewallHyperscalePolicy64Create(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy64 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallHyperscalePolicy64(obj, paradict)
-
+	_, err = c.CreatePackagesFirewallHyperscalePolicy64(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}
@@ -200,6 +201,7 @@ func resourcePackagesFirewallHyperscalePolicy64Update(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -217,7 +219,9 @@ func resourcePackagesFirewallHyperscalePolicy64Update(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating PackagesFirewallHyperscalePolicy64 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallHyperscalePolicy64(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallHyperscalePolicy64(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}
@@ -236,6 +240,7 @@ func resourcePackagesFirewallHyperscalePolicy64Delete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -248,7 +253,9 @@ func resourcePackagesFirewallHyperscalePolicy64Delete(d *schema.ResourceData, m 
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallHyperscalePolicy64(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallHyperscalePolicy64(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}

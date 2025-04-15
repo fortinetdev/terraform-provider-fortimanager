@@ -204,6 +204,7 @@ func resourceObjectIpsSensorEntriesCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -218,9 +219,9 @@ func resourceObjectIpsSensorEntriesCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensorEntries resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIpsSensorEntries(obj, paradict)
-
+	_, err = c.CreateObjectIpsSensorEntries(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensorEntries resource: %v", err)
 	}
@@ -236,6 +237,7 @@ func resourceObjectIpsSensorEntriesUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -251,7 +253,9 @@ func resourceObjectIpsSensorEntriesUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectIpsSensorEntries resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIpsSensorEntries(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectIpsSensorEntries(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsSensorEntries resource: %v", err)
 	}
@@ -270,6 +274,7 @@ func resourceObjectIpsSensorEntriesDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -280,7 +285,9 @@ func resourceObjectIpsSensorEntriesDelete(d *schema.ResourceData, m interface{})
 	sensor := d.Get("sensor").(string)
 	paradict["sensor"] = sensor
 
-	err = c.DeleteObjectIpsSensorEntries(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectIpsSensorEntries(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIpsSensorEntries resource: %v", err)
 	}

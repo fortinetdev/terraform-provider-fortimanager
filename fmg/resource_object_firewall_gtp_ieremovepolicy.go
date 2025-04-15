@@ -78,6 +78,7 @@ func resourceObjectFirewallGtpIeRemovePolicyCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectFirewallGtpIeRemovePolicyCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpIeRemovePolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallGtpIeRemovePolicy(obj, paradict)
-
+	_, err = c.CreateObjectFirewallGtpIeRemovePolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallGtpIeRemovePolicy resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectFirewallGtpIeRemovePolicyUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectFirewallGtpIeRemovePolicyUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFirewallGtpIeRemovePolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpIeRemovePolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpIeRemovePolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpIeRemovePolicy resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectFirewallGtpIeRemovePolicyDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectFirewallGtpIeRemovePolicyDelete(d *schema.ResourceData, m int
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpIeRemovePolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpIeRemovePolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpIeRemovePolicy resource: %v", err)
 	}

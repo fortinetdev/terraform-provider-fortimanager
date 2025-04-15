@@ -33,6 +33,7 @@ The following arguments are supported:
 
 * `ipv6` - SNMP manager IPv6 address prefix.
 * `source_ipv6` - Source IPv6 address for SNMP traps.
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

@@ -217,6 +217,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"message_server_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -513,6 +517,7 @@ func resourceObjectSystemSdnConnectorCreate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -524,9 +529,9 @@ func resourceObjectSystemSdnConnectorCreate(d *schema.ResourceData, m interface{
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnector resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnector(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnector(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -542,6 +547,7 @@ func resourceObjectSystemSdnConnectorUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -554,7 +560,9 @@ func resourceObjectSystemSdnConnectorUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating ObjectSystemSdnConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnector(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnector(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -573,6 +581,7 @@ func resourceObjectSystemSdnConnectorDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -580,7 +589,9 @@ func resourceObjectSystemSdnConnectorDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemSdnConnector(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnector(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -918,6 +929,10 @@ func flattenObjectSystemSdnConnectorLastUpdate(v interface{}, d *schema.Resource
 }
 
 func flattenObjectSystemSdnConnectorLoginEndpoint(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorMessageServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1659,6 +1674,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading login_endpoint: %v", err)
+		}
+	}
+
+	if err = d.Set("message_server_port", flattenObjectSystemSdnConnectorMessageServerPort(o["message-server-port"], d, "message_server_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["message-server-port"], "ObjectSystemSdnConnector-MessageServerPort"); ok {
+			if err = d.Set("message_server_port", vv); err != nil {
+				return fmt.Errorf("Error reading message_server_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading message_server_port: %v", err)
 		}
 	}
 
@@ -2404,6 +2429,10 @@ func expandObjectSystemSdnConnectorLoginEndpoint(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorMessageServerPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3061,6 +3090,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["login-endpoint"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("message_server_port"); ok || d.HasChange("message_server_port") {
+		t, err := expandObjectSystemSdnConnectorMessageServerPort(d, v, "message_server_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["message-server-port"] = t
 		}
 	}
 

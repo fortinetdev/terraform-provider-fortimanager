@@ -93,6 +93,7 @@ func resourceObjectVpnSslWebRealmCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -104,9 +105,9 @@ func resourceObjectVpnSslWebRealmCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebRealm resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebRealm(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebRealm(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebRealm resource: %v", err)
 	}
@@ -122,6 +123,7 @@ func resourceObjectVpnSslWebRealmUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -134,7 +136,9 @@ func resourceObjectVpnSslWebRealmUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectVpnSslWebRealm resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebRealm(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebRealm(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebRealm resource: %v", err)
 	}
@@ -153,6 +157,7 @@ func resourceObjectVpnSslWebRealmDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -160,7 +165,9 @@ func resourceObjectVpnSslWebRealmDelete(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebRealm(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebRealm(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebRealm resource: %v", err)
 	}

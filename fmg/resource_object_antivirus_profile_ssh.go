@@ -110,6 +110,7 @@ func resourceObjectAntivirusProfileSshUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +126,9 @@ func resourceObjectAntivirusProfileSshUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectAntivirusProfileSsh resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfileSsh(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfileSsh(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileSsh resource: %v", err)
 	}
@@ -144,6 +147,7 @@ func resourceObjectAntivirusProfileSshDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +158,9 @@ func resourceObjectAntivirusProfileSshDelete(d *schema.ResourceData, m interface
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfileSsh(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfileSsh(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfileSsh resource: %v", err)
 	}

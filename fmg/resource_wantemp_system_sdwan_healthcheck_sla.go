@@ -102,6 +102,7 @@ func resourceWantempSystemSdwanHealthCheckSlaCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,9 +119,9 @@ func resourceWantempSystemSdwanHealthCheckSlaCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheckSla resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemSdwanHealthCheckSla(obj, paradict)
-
+	_, err = c.CreateWantempSystemSdwanHealthCheckSla(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheckSla resource: %v", err)
 	}
@@ -136,6 +137,7 @@ func resourceWantempSystemSdwanHealthCheckSlaUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -153,7 +155,9 @@ func resourceWantempSystemSdwanHealthCheckSlaUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating WantempSystemSdwanHealthCheckSla resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateWantempSystemSdwanHealthCheckSla(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateWantempSystemSdwanHealthCheckSla(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanHealthCheckSla resource: %v", err)
 	}
@@ -172,6 +176,7 @@ func resourceWantempSystemSdwanHealthCheckSlaDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -184,7 +189,9 @@ func resourceWantempSystemSdwanHealthCheckSlaDelete(d *schema.ResourceData, m in
 	paradict["wanprof"] = wanprof
 	paradict["health_check"] = health_check
 
-	err = c.DeleteWantempSystemSdwanHealthCheckSla(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteWantempSystemSdwanHealthCheckSla(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting WantempSystemSdwanHealthCheckSla resource: %v", err)
 	}

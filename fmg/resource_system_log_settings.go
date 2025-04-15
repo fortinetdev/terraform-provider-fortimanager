@@ -108,6 +108,11 @@ func resourceSystemLogSettings() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"legacy_auth_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"log_file_archive_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -602,6 +607,8 @@ func resourceSystemLogSettingsUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -610,7 +617,9 @@ func resourceSystemLogSettingsUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating SystemLogSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogSettings(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettings resource: %v", err)
 	}
@@ -629,10 +638,14 @@ func resourceSystemLogSettingsDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogSettings(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogSettings(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogSettings resource: %v", err)
 	}
@@ -649,6 +662,7 @@ func resourceSystemLogSettingsRead(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -739,6 +753,10 @@ func flattenSystemLogSettingsImportMaxLogfiles(v interface{}, d *schema.Resource
 }
 
 func flattenSystemLogSettingsKeepDevLogs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsLegacyAuthMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1713,6 +1731,16 @@ func refreshObjectSystemLogSettings(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("legacy_auth_mode", flattenSystemLogSettingsLegacyAuthMode(o["legacy-auth-mode"], d, "legacy_auth_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["legacy-auth-mode"], "SystemLogSettings-LegacyAuthMode"); ok {
+			if err = d.Set("legacy_auth_mode", vv); err != nil {
+				return fmt.Errorf("Error reading legacy_auth_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading legacy_auth_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("log_file_archive_name", flattenSystemLogSettingsLogFileArchiveName(o["log-file-archive-name"], d, "log_file_archive_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-file-archive-name"], "SystemLogSettings-LogFileArchiveName"); ok {
 			if err = d.Set("log_file_archive_name", vv); err != nil {
@@ -1913,6 +1941,10 @@ func expandSystemLogSettingsImportMaxLogfiles(d *schema.ResourceData, v interfac
 }
 
 func expandSystemLogSettingsKeepDevLogs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsLegacyAuthMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2860,6 +2892,15 @@ func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["keep-dev-logs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("legacy_auth_mode"); ok || d.HasChange("legacy_auth_mode") {
+		t, err := expandSystemLogSettingsLegacyAuthMode(d, v, "legacy_auth_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["legacy-auth-mode"] = t
 		}
 	}
 

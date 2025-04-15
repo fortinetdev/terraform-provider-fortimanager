@@ -80,6 +80,7 @@ func resourceObjectDynamicInterfacePlatformMappingCreate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -94,9 +95,9 @@ func resourceObjectDynamicInterfacePlatformMappingCreate(d *schema.ResourceData,
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicInterfacePlatformMapping resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicInterfacePlatformMapping(obj, paradict)
-
+	_, err = c.CreateObjectDynamicInterfacePlatformMapping(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicInterfacePlatformMapping resource: %v", err)
 	}
@@ -112,6 +113,7 @@ func resourceObjectDynamicInterfacePlatformMappingUpdate(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -127,7 +129,9 @@ func resourceObjectDynamicInterfacePlatformMappingUpdate(d *schema.ResourceData,
 		return fmt.Errorf("Error updating ObjectDynamicInterfacePlatformMapping resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicInterfacePlatformMapping(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDynamicInterfacePlatformMapping(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicInterfacePlatformMapping resource: %v", err)
 	}
@@ -146,6 +150,7 @@ func resourceObjectDynamicInterfacePlatformMappingDelete(d *schema.ResourceData,
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -156,7 +161,9 @@ func resourceObjectDynamicInterfacePlatformMappingDelete(d *schema.ResourceData,
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
-	err = c.DeleteObjectDynamicInterfacePlatformMapping(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDynamicInterfacePlatformMapping(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicInterfacePlatformMapping resource: %v", err)
 	}

@@ -114,6 +114,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressCreate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,9 +133,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressCreate(d *schem
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
 	}
@@ -150,6 +151,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressUpdate(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +171,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressUpdate(d *schem
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
 	}
@@ -188,6 +192,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressDelete(d *schem
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -202,7 +207,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressDelete(d *schem
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerReservedAddress(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerReservedAddress(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
 	}

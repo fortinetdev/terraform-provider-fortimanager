@@ -28,9 +28,15 @@ The following arguments are supported:
 
 * `auth_type` - Authentication protocol. any - Use any supported authentication protocol. pap - PAP. chap - CHAP. mschap2 - MSCHAPv2. Valid values: `any`, `pap`, `chap`, `mschap2`.
 
+* `ca_cert` - CA of server certificate.
+* `client_cert` - Client certificate.
+* `message_authenticator` - Require Message-Authenticator attribute. optional - Message-Authenticator attribute is optional (default). require - Message-Authenticator attribute is required. Valid values: `optional`, `require`.
+
 * `name` - Name.
 * `nas_ip` - NAS IP address and called station ID.
 * `port` - Server port.
+* `protocol` - Transport protocol. udp - UDP (default). tls - TLS over TCP (RadSec). Valid values: `udp`, `tls`.
+
 * `secondary_secret` - Secondary server secret.
 * `secondary_server` - Secondary server name/IP.
 * `secret` - Server secret.

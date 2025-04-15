@@ -40,6 +40,9 @@ The following arguments are supported:
 * `fqdn` - Forward server Fully Qualified Domain Name (FQDN).
 * `healthcheck` - Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
 
+* `interface` - Specify outgoing interface to reach server.
+* `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+
 * `ip` - Forward proxy server IP address.
 * `ipv6` - Forward proxy server IPv6 address.
 * `masquerade` - Enable/disable use of the of the IP address of the outgoing interface as the client IP address (default = enable) Valid values: `disable`, `enable`.
@@ -51,6 +54,7 @@ The following arguments are supported:
 * `server_down_option` - Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
 
 * `username` - HTTP authentication user name.
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

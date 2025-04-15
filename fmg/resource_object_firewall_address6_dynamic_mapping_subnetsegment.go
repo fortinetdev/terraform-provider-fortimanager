@@ -83,6 +83,7 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentCreate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -101,9 +102,9 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentCreate(d *schema.R
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6DynamicMappingSubnetSegment resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress6DynamicMappingSubnetSegment(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress6DynamicMappingSubnetSegment(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6DynamicMappingSubnetSegment resource: %v", err)
 	}
@@ -119,6 +120,7 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +140,9 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectFirewallAddress6DynamicMappingSubnetSegment resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6DynamicMappingSubnetSegment(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress6DynamicMappingSubnetSegment(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6DynamicMappingSubnetSegment resource: %v", err)
 	}
@@ -157,6 +161,7 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -171,7 +176,9 @@ func resourceObjectFirewallAddress6DynamicMappingSubnetSegmentDelete(d *schema.R
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectFirewallAddress6DynamicMappingSubnetSegment(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress6DynamicMappingSubnetSegment(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6DynamicMappingSubnetSegment resource: %v", err)
 	}

@@ -494,6 +494,7 @@ func resourcePackagesPblockFirewallConsolidatedPolicyCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -508,9 +509,9 @@ func resourcePackagesPblockFirewallConsolidatedPolicyCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallConsolidatedPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallConsolidatedPolicy(obj, paradict)
-
+	v, err := c.CreatePackagesPblockFirewallConsolidatedPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
 	}
@@ -533,6 +534,7 @@ func resourcePackagesPblockFirewallConsolidatedPolicyUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -548,7 +550,9 @@ func resourcePackagesPblockFirewallConsolidatedPolicyUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating PackagesPblockFirewallConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPblockFirewallConsolidatedPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesPblockFirewallConsolidatedPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
 	}
@@ -567,6 +571,7 @@ func resourcePackagesPblockFirewallConsolidatedPolicyDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -577,7 +582,9 @@ func resourcePackagesPblockFirewallConsolidatedPolicyDelete(d *schema.ResourceDa
 	pblock := d.Get("pblock").(string)
 	paradict["pblock"] = pblock
 
-	err = c.DeletePackagesPblockFirewallConsolidatedPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesPblockFirewallConsolidatedPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
 	}

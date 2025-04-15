@@ -60,6 +60,11 @@ func resourceSystemSnmpUser() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"notify_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"priv_proto": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -96,6 +101,8 @@ func resourceSystemSnmpUserCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -103,9 +110,9 @@ func resourceSystemSnmpUserCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpUser resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSnmpUser(obj, paradict)
-
+	_, err = c.CreateSystemSnmpUser(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpUser resource: %v", err)
 	}
@@ -121,6 +128,8 @@ func resourceSystemSnmpUserUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -129,7 +138,9 @@ func resourceSystemSnmpUserUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSnmpUser resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpUser(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSnmpUser(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpUser resource: %v", err)
 	}
@@ -148,10 +159,14 @@ func resourceSystemSnmpUserDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpUser(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSnmpUser(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpUser resource: %v", err)
 	}
@@ -168,6 +183,7 @@ func resourceSystemSnmpUserRead(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -206,6 +222,10 @@ func flattenSystemSnmpUserNotifyHosts(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemSnmpUserNotifyHosts6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSnmpUserNotifyPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -275,6 +295,16 @@ func refreshObjectSystemSnmpUser(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading notify_hosts6: %v", err)
+		}
+	}
+
+	if err = d.Set("notify_port", flattenSystemSnmpUserNotifyPort(o["notify-port"], d, "notify_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["notify-port"], "SystemSnmpUser-NotifyPort"); ok {
+			if err = d.Set("notify_port", vv); err != nil {
+				return fmt.Errorf("Error reading notify_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading notify_port: %v", err)
 		}
 	}
 
@@ -348,6 +378,10 @@ func expandSystemSnmpUserNotifyHosts(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandSystemSnmpUserNotifyHosts6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSnmpUserNotifyPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -425,6 +459,15 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["notify-hosts6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("notify_port"); ok || d.HasChange("notify_port") {
+		t, err := expandSystemSnmpUserNotifyPort(d, v, "notify_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["notify-port"] = t
 		}
 	}
 

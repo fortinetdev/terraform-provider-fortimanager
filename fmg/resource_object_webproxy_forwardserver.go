@@ -63,6 +63,17 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"interface": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"interface_select_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -109,6 +120,10 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -118,6 +133,7 @@ func resourceObjectWebProxyForwardServerCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,9 +145,9 @@ func resourceObjectWebProxyForwardServerCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServer resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyForwardServer(obj, paradict)
-
+	_, err = c.CreateObjectWebProxyForwardServer(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServer resource: %v", err)
 	}
@@ -147,6 +163,7 @@ func resourceObjectWebProxyForwardServerUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +176,9 @@ func resourceObjectWebProxyForwardServerUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyForwardServer(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWebProxyForwardServer(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServer resource: %v", err)
 	}
@@ -178,6 +197,7 @@ func resourceObjectWebProxyForwardServerDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -185,7 +205,9 @@ func resourceObjectWebProxyForwardServerDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebProxyForwardServer(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWebProxyForwardServer(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyForwardServer resource: %v", err)
 	}
@@ -243,6 +265,14 @@ func flattenObjectWebProxyForwardServerHealthcheck(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectWebProxyForwardServerInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebProxyForwardServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -272,6 +302,10 @@ func flattenObjectWebProxyForwardServerServerDownOption(v interface{}, d *schema
 }
 
 func flattenObjectWebProxyForwardServerUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyForwardServerVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -319,6 +353,26 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading healthcheck: %v", err)
+		}
+	}
+
+	if err = d.Set("interface", flattenObjectWebProxyForwardServerInterface(o["interface"], d, "interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface"], "ObjectWebProxyForwardServer-Interface"); ok {
+			if err = d.Set("interface", vv); err != nil {
+				return fmt.Errorf("Error reading interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading interface: %v", err)
+		}
+	}
+
+	if err = d.Set("interface_select_method", flattenObjectWebProxyForwardServerInterfaceSelectMethod(o["interface-select-method"], d, "interface_select_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface-select-method"], "ObjectWebProxyForwardServer-InterfaceSelectMethod"); ok {
+			if err = d.Set("interface_select_method", vv); err != nil {
+				return fmt.Errorf("Error reading interface_select_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading interface_select_method: %v", err)
 		}
 	}
 
@@ -402,6 +456,16 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectWebProxyForwardServerVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectWebProxyForwardServer-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -424,6 +488,14 @@ func expandObjectWebProxyForwardServerFqdn(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectWebProxyForwardServerHealthcheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebProxyForwardServerInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -463,6 +535,10 @@ func expandObjectWebProxyForwardServerUsername(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectWebProxyForwardServerVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -499,6 +575,24 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["healthcheck"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
+		t, err := expandObjectWebProxyForwardServerInterface(d, v, "interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
+		t, err := expandObjectWebProxyForwardServerInterfaceSelectMethod(d, v, "interface_select_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface-select-method"] = t
 		}
 	}
 
@@ -580,6 +674,15 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectWebProxyForwardServerVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

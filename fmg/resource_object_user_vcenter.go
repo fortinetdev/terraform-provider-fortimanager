@@ -105,6 +105,7 @@ func resourceObjectUserVcenterCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,9 +117,9 @@ func resourceObjectUserVcenterCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserVcenter(obj, paradict)
-
+	_, err = c.CreateObjectUserVcenter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenter resource: %v", err)
 	}
@@ -134,6 +135,7 @@ func resourceObjectUserVcenterUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +148,9 @@ func resourceObjectUserVcenterUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectUserVcenter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserVcenter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserVcenter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserVcenter resource: %v", err)
 	}
@@ -165,6 +169,7 @@ func resourceObjectUserVcenterDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +177,9 @@ func resourceObjectUserVcenterDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserVcenter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserVcenter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserVcenter resource: %v", err)
 	}

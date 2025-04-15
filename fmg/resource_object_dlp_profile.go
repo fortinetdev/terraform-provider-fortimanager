@@ -184,6 +184,7 @@ func resourceObjectDlpProfileCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -195,9 +196,9 @@ func resourceObjectDlpProfileCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDlpProfile(obj, paradict)
-
+	_, err = c.CreateObjectDlpProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpProfile resource: %v", err)
 	}
@@ -213,6 +214,7 @@ func resourceObjectDlpProfileUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -225,7 +227,9 @@ func resourceObjectDlpProfileUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectDlpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectDlpProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpProfile resource: %v", err)
 	}
@@ -244,6 +248,7 @@ func resourceObjectDlpProfileDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -251,7 +256,9 @@ func resourceObjectDlpProfileDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectDlpProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpProfile resource: %v", err)
 	}

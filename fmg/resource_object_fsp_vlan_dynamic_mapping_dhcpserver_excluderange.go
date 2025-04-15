@@ -110,6 +110,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeCreate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -128,9 +129,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeCreate(d *schema.R
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
 	}
@@ -146,6 +147,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeUpdate(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -165,7 +167,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeUpdate(d *schema.R
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
 	}
@@ -184,6 +188,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeDelete(d *schema.R
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -198,7 +203,9 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeDelete(d *schema.R
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerExcludeRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanDynamicMappingDhcpServerExcludeRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
 	}

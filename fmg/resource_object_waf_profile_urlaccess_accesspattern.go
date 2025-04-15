@@ -87,6 +87,7 @@ func resourceObjectWafProfileUrlAccessAccessPatternCreate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectWafProfileUrlAccessAccessPatternCreate(d *schema.ResourceData
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileUrlAccessAccessPattern resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafProfileUrlAccessAccessPattern(obj, paradict)
-
+	_, err = c.CreateObjectWafProfileUrlAccessAccessPattern(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectWafProfileUrlAccessAccessPatternUpdate(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -138,7 +140,9 @@ func resourceObjectWafProfileUrlAccessAccessPatternUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating ObjectWafProfileUrlAccessAccessPattern resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfileUrlAccessAccessPattern(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWafProfileUrlAccessAccessPattern(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
 	}
@@ -157,6 +161,7 @@ func resourceObjectWafProfileUrlAccessAccessPatternDelete(d *schema.ResourceData
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,7 +174,9 @@ func resourceObjectWafProfileUrlAccessAccessPatternDelete(d *schema.ResourceData
 	paradict["profile"] = profile
 	paradict["url_access"] = url_access
 
-	err = c.DeleteObjectWafProfileUrlAccessAccessPattern(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWafProfileUrlAccessAccessPattern(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
 	}

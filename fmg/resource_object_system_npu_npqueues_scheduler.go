@@ -65,6 +65,7 @@ func resourceObjectSystemNpuNpQueuesSchedulerCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -76,9 +77,9 @@ func resourceObjectSystemNpuNpQueuesSchedulerCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesScheduler resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuNpQueuesScheduler(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuNpQueuesScheduler(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesScheduler resource: %v", err)
 	}
@@ -94,6 +95,7 @@ func resourceObjectSystemNpuNpQueuesSchedulerUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -106,7 +108,9 @@ func resourceObjectSystemNpuNpQueuesSchedulerUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesScheduler resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesScheduler(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpQueuesScheduler(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesScheduler resource: %v", err)
 	}
@@ -125,6 +129,7 @@ func resourceObjectSystemNpuNpQueuesSchedulerDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,7 +137,9 @@ func resourceObjectSystemNpuNpQueuesSchedulerDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesScheduler(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpQueuesScheduler(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesScheduler resource: %v", err)
 	}

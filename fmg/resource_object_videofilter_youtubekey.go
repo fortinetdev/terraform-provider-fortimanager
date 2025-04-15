@@ -68,6 +68,7 @@ func resourceObjectVideofilterYoutubeKeyCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -79,9 +80,9 @@ func resourceObjectVideofilterYoutubeKeyCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeKey resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVideofilterYoutubeKey(obj, paradict)
-
+	_, err = c.CreateObjectVideofilterYoutubeKey(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeKey resource: %v", err)
 	}
@@ -97,6 +98,7 @@ func resourceObjectVideofilterYoutubeKeyUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -109,7 +111,9 @@ func resourceObjectVideofilterYoutubeKeyUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeKey resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterYoutubeKey(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVideofilterYoutubeKey(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeKey resource: %v", err)
 	}
@@ -128,6 +132,7 @@ func resourceObjectVideofilterYoutubeKeyDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -135,7 +140,9 @@ func resourceObjectVideofilterYoutubeKeyDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterYoutubeKey(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVideofilterYoutubeKey(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterYoutubeKey resource: %v", err)
 	}

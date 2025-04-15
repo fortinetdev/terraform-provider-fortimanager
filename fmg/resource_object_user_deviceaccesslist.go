@@ -88,6 +88,7 @@ func resourceObjectUserDeviceAccessListCreate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -99,9 +100,9 @@ func resourceObjectUserDeviceAccessListCreate(d *schema.ResourceData, m interfac
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceAccessList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserDeviceAccessList(obj, paradict)
-
+	_, err = c.CreateObjectUserDeviceAccessList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceAccessList resource: %v", err)
 	}
@@ -117,6 +118,7 @@ func resourceObjectUserDeviceAccessListUpdate(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -129,7 +131,9 @@ func resourceObjectUserDeviceAccessListUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectUserDeviceAccessList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDeviceAccessList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserDeviceAccessList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceAccessList resource: %v", err)
 	}
@@ -148,6 +152,7 @@ func resourceObjectUserDeviceAccessListDelete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -155,7 +160,9 @@ func resourceObjectUserDeviceAccessListDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDeviceAccessList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserDeviceAccessList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDeviceAccessList resource: %v", err)
 	}

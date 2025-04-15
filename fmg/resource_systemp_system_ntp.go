@@ -128,6 +128,10 @@ func resourceSystempSystemNtp() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"vrf_select": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -176,6 +180,7 @@ func resourceSystempSystemNtpUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -191,7 +196,9 @@ func resourceSystempSystemNtpUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating SystempSystemNtp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystempSystemNtp(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystempSystemNtp(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemNtp resource: %v", err)
 	}
@@ -210,6 +217,7 @@ func resourceSystempSystemNtpDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -220,7 +228,9 @@ func resourceSystempSystemNtpDelete(d *schema.ResourceData, m interface{}) error
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	err = c.DeleteSystempSystemNtp(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystempSystemNtp(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystempSystemNtp resource: %v", err)
 	}
@@ -363,6 +373,12 @@ func flattenSystempSystemNtpNtpserver(v interface{}, d *schema.ResourceData, pre
 			tmp["server"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-Server")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := i["vrf-select"]; ok {
+			v := flattenSystempSystemNtpNtpserverVrfSelect(i["vrf-select"], d, pre_append)
+			tmp["vrf_select"] = fortiAPISubPartPatch(v, "SystempSystemNtp-Ntpserver-VrfSelect")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -406,6 +422,10 @@ func flattenSystempSystemNtpNtpserverNtpv3(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystempSystemNtpNtpserverServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemNtpNtpserverVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -661,6 +681,11 @@ func expandSystempSystemNtpNtpserver(d *schema.ResourceData, v interface{}, pre 
 			tmp["server"], _ = expandSystempSystemNtpNtpserverServer(d, i["server"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vrf-select"], _ = expandSystempSystemNtpNtpserverVrfSelect(d, i["vrf_select"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -708,6 +733,10 @@ func expandSystempSystemNtpNtpserverNtpv3(d *schema.ResourceData, v interface{},
 }
 
 func expandSystempSystemNtpNtpserverServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempSystemNtpNtpserverVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

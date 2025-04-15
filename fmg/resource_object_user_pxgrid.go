@@ -75,6 +75,7 @@ func resourceObjectUserPxgridCreate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -86,9 +87,9 @@ func resourceObjectUserPxgridCreate(d *schema.ResourceData, m interface{}) error
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPxgrid resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserPxgrid(obj, paradict)
-
+	_, err = c.CreateObjectUserPxgrid(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPxgrid resource: %v", err)
 	}
@@ -104,6 +105,7 @@ func resourceObjectUserPxgridUpdate(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +118,9 @@ func resourceObjectUserPxgridUpdate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error updating ObjectUserPxgrid resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPxgrid(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserPxgrid(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPxgrid resource: %v", err)
 	}
@@ -135,6 +139,7 @@ func resourceObjectUserPxgridDelete(d *schema.ResourceData, m interface{}) error
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -142,7 +147,9 @@ func resourceObjectUserPxgridDelete(d *schema.ResourceData, m interface{}) error
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPxgrid(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserPxgrid(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPxgrid resource: %v", err)
 	}

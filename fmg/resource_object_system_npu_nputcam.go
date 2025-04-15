@@ -1049,6 +1049,7 @@ func resourceObjectSystemNpuNpuTcamCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1060,9 +1061,9 @@ func resourceObjectSystemNpuNpuTcamCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpuTcam resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuNpuTcam(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuNpuTcam(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpuTcam resource: %v", err)
 	}
@@ -1078,6 +1079,7 @@ func resourceObjectSystemNpuNpuTcamUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1090,7 +1092,9 @@ func resourceObjectSystemNpuNpuTcamUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcam resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpuTcam(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpuTcam(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcam resource: %v", err)
 	}
@@ -1109,6 +1113,7 @@ func resourceObjectSystemNpuNpuTcamDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -1116,7 +1121,9 @@ func resourceObjectSystemNpuNpuTcamDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpuTcam(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpuTcam(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpuTcam resource: %v", err)
 	}

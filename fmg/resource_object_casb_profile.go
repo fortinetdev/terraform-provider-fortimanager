@@ -69,6 +69,29 @@ func resourceObjectCasbProfile() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"attribute_filter": &schema.Schema{
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"action": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+													Computed: true,
+												},
+												"attribute_match": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Optional: true,
+													Computed: true,
+												},
+												"id": &schema.Schema{
+													Type:     schema.TypeInt,
+													Optional: true,
+												},
+											},
+										},
+									},
 									"bypass": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
@@ -82,11 +105,65 @@ func resourceObjectCasbProfile() *schema.Resource {
 								},
 							},
 						},
+						"advanced_tenant_control": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"attribute": &schema.Schema{
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"input": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Optional: true,
+													Computed: true,
+												},
+												"name": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+											},
+										},
+									},
+									"name": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
 						"custom_control": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"attribute_filter": &schema.Schema{
+										Type:     schema.TypeList,
+										Optional: true,
+										Elem: &schema.Resource{
+											Schema: map[string]*schema.Schema{
+												"action": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"attribute_match": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Optional: true,
+													Computed: true,
+												},
+												"id": &schema.Schema{
+													Type:     schema.TypeInt,
+													Optional: true,
+												},
+											},
+										},
+									},
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -176,6 +253,7 @@ func resourceObjectCasbProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -187,9 +265,9 @@ func resourceObjectCasbProfileCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbProfile(obj, paradict)
-
+	_, err = c.CreateObjectCasbProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCasbProfile resource: %v", err)
 	}
@@ -205,6 +283,7 @@ func resourceObjectCasbProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -217,7 +296,9 @@ func resourceObjectCasbProfileUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectCasbProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCasbProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCasbProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbProfile resource: %v", err)
 	}
@@ -236,6 +317,7 @@ func resourceObjectCasbProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -243,7 +325,9 @@ func resourceObjectCasbProfileDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCasbProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCasbProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCasbProfile resource: %v", err)
 	}
@@ -316,6 +400,12 @@ func flattenObjectCasbProfileSaasApplication(v interface{}, d *schema.ResourceDa
 		if _, ok := i["access-rule"]; ok {
 			v := flattenObjectCasbProfileSaasApplicationAccessRule(i["access-rule"], d, pre_append)
 			tmp["access_rule"] = fortiAPISubPartPatch(v, "ObjectCasbProfile-SaasApplication-AccessRule")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "advanced_tenant_control"
+		if _, ok := i["advanced-tenant-control"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAdvancedTenantControl(i["advanced-tenant-control"], d, pre_append)
+			tmp["advanced_tenant_control"] = fortiAPISubPartPatch(v, "ObjectCasbProfile-SaasApplication-AdvancedTenantControl")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "custom_control"
@@ -413,6 +503,12 @@ func flattenObjectCasbProfileSaasApplicationAccessRule(v interface{}, d *schema.
 			tmp["action"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AccessRule-Action")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_filter"
+		if _, ok := i["attribute-filter"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilter(i["attribute-filter"], d, pre_append)
+			tmp["attribute_filter"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AccessRule-AttributeFilter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bypass"
 		if _, ok := i["bypass"]; ok {
 			v := flattenObjectCasbProfileSaasApplicationAccessRuleBypass(i["bypass"], d, pre_append)
@@ -439,12 +535,165 @@ func flattenObjectCasbProfileSaasApplicationAccessRuleAction(v interface{}, d *s
 	return v
 }
 
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := i["attribute-match"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch(i["attribute-match"], d, pre_append)
+			tmp["attribute_match"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-AttributeMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAccessRule-AttributeFilter-Id")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCasbProfileSaasApplicationAccessRuleBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
 func flattenObjectCasbProfileSaasApplicationAccessRuleName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectCasbProfileSaasApplicationAdvancedTenantControl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute"
+		if _, ok := i["attribute"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttribute(i["attribute"], d, pre_append)
+			tmp["attribute"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AdvancedTenantControl-Attribute")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAdvancedTenantControlName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AdvancedTenantControl-Name")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttribute(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "input"
+		if _, ok := i["input"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeInput(i["input"], d, pre_append)
+			tmp["input"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAdvancedTenantControl-Attribute-Input")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationAdvancedTenantControl-Attribute-Name")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeInput(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -466,6 +715,12 @@ func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *sche
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_filter"
+		if _, ok := i["attribute-filter"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilter(i["attribute-filter"], d, pre_append)
+			tmp["attribute_filter"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-CustomControl-AttributeFilter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
 			v := flattenObjectCasbProfileSaasApplicationCustomControlName(i["name"], d, pre_append)
@@ -486,6 +741,65 @@ func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *sche
 	}
 
 	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := i["attribute-match"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch(i["attribute-match"], d, pre_append)
+			tmp["attribute_match"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-AttributeMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-AttributeFilter-Id")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCasbProfileSaasApplicationCustomControlAttributeFilterId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectCasbProfileSaasApplicationCustomControlName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -673,6 +987,16 @@ func expandObjectCasbProfileSaasApplication(d *schema.ResourceData, v interface{
 			}
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "advanced_tenant_control"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectCasbProfileSaasApplicationAdvancedTenantControl(d, i["advanced_tenant_control"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["advanced-tenant-control"] = t
+			}
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "custom_control"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			t, err := expandObjectCasbProfileSaasApplicationCustomControl(d, i["custom_control"], pre_append)
@@ -757,6 +1081,16 @@ func expandObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceData, v 
 			tmp["action"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAction(d, i["action"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_filter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilter(d, i["attribute_filter"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["attribute-filter"] = t
+			}
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bypass"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bypass"], _ = expandObjectCasbProfileSaasApplicationAccessRuleBypass(d, i["bypass"], pre_append)
@@ -781,12 +1115,148 @@ func expandObjectCasbProfileSaasApplicationAccessRuleAction(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["action"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attribute-match"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch(d, i["attribute_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId(d, i["id"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterAttributeMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationAccessRuleAttributeFilterId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCasbProfileSaasApplicationAccessRuleBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectCasbProfileSaasApplicationAccessRuleName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectCasbProfileSaasApplicationAdvancedTenantControl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttribute(d, i["attribute"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["attribute"] = t
+			}
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectCasbProfileSaasApplicationAdvancedTenantControlName(d, i["name"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "input"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["input"], _ = expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeInput(d, i["input"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeName(d, i["name"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeInput(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbProfileSaasApplicationAdvancedTenantControlName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -802,6 +1272,16 @@ func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData,
 		tmp := make(map[string]interface{})
 		i := r.(map[string]interface{})
 		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_filter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectCasbProfileSaasApplicationCustomControlAttributeFilter(d, i["attribute_filter"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["attribute-filter"] = t
+			}
+		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -826,6 +1306,57 @@ func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData,
 	}
 
 	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["action"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "attribute_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["attribute-match"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch(d, i["attribute_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterId(d, i["id"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterAttributeMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCasbProfileSaasApplicationCustomControlAttributeFilterId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCasbProfileSaasApplicationCustomControlName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

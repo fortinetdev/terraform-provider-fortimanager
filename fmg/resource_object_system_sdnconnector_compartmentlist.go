@@ -63,6 +63,7 @@ func resourceObjectSystemSdnConnectorCompartmentListCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -77,9 +78,9 @@ func resourceObjectSystemSdnConnectorCompartmentListCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorCompartmentList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnectorCompartmentList(obj, paradict)
-
+	_, err = c.CreateObjectSystemSdnConnectorCompartmentList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnectorCompartmentList resource: %v", err)
 	}
@@ -95,6 +96,7 @@ func resourceObjectSystemSdnConnectorCompartmentListUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectSystemSdnConnectorCompartmentListUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorCompartmentList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnectorCompartmentList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemSdnConnectorCompartmentList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnectorCompartmentList resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectSystemSdnConnectorCompartmentListDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -139,7 +144,9 @@ func resourceObjectSystemSdnConnectorCompartmentListDelete(d *schema.ResourceDat
 	sdn_connector := d.Get("sdn_connector").(string)
 	paradict["sdn_connector"] = sdn_connector
 
-	err = c.DeleteObjectSystemSdnConnectorCompartmentList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemSdnConnectorCompartmentList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnectorCompartmentList resource: %v", err)
 	}

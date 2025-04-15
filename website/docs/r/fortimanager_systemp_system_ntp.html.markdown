@@ -68,6 +68,7 @@ The `ntpserver` block supports:
 * `ntpv3` - Enable to use NTPv3 instead of NTPv4. Valid values: `disable`, `enable`.
 
 * `server` - IP address or hostname of the NTP Server.
+* `vrf_select` - VRF ID used for connection to server.
 
 
 ## Attribute Reference

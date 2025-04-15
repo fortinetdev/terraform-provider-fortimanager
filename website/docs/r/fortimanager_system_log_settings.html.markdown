@@ -54,6 +54,8 @@ The following arguments are supported:
 * `import_max_logfiles` - Maximum number of log files for each log import attempt.
 * `keep_dev_logs` - Enable/Disable keeping the dev logs after the device has been deleted. disable - Disable keeping the dev logs after the device has been deleted. enable - Enable keeping the dev logs after the device has been deleted. Valid values: `disable`, `enable`.
 
+* `legacy_auth_mode` - Enable/Disable legacy mode of device authentication by username/password. disable - Disable legacy authentication mode support. enable - Enable legacy authentication mode support. Valid values: `disable`, `enable`.
+
 * `log_file_archive_name` - Log file name format for archiving, such as backup, upload or download. basic - Basic format for log archive file name, e.g. FGT20C0000000001.tlog.1417797247.log. extended - Extended format for log archive file name, e.g. FGT20C0000000001.2014-12-05-08:34:58.tlog.1417797247.log. Valid values: `basic`, `extended`.
 
 * `log_interval_dev_no_logging` - Interval in minute of no log received from a device when considering the device down.

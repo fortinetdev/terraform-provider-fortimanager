@@ -76,6 +76,7 @@ func resourceObjectRouterCommunityListRuleCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectRouterCommunityListRuleCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterCommunityListRule resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterCommunityListRule(obj, paradict)
-
+	_, err = c.CreateObjectRouterCommunityListRule(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterCommunityListRule resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectRouterCommunityListRuleUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectRouterCommunityListRuleUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectRouterCommunityListRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterCommunityListRule(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectRouterCommunityListRule(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterCommunityListRule resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectRouterCommunityListRuleDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectRouterCommunityListRuleDelete(d *schema.ResourceData, m inter
 	community_list := d.Get("community_list").(string)
 	paradict["community_list"] = community_list
 
-	err = c.DeleteObjectRouterCommunityListRule(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectRouterCommunityListRule(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterCommunityListRule resource: %v", err)
 	}

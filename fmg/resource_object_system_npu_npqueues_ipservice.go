@@ -80,6 +80,7 @@ func resourceObjectSystemNpuNpQueuesIpServiceCreate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -91,9 +92,9 @@ func resourceObjectSystemNpuNpQueuesIpServiceCreate(d *schema.ResourceData, m in
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpService resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuNpQueuesIpService(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuNpQueuesIpService(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpService resource: %v", err)
 	}
@@ -109,6 +110,7 @@ func resourceObjectSystemNpuNpQueuesIpServiceUpdate(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectSystemNpuNpQueuesIpServiceUpdate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpService resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesIpService(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuNpQueuesIpService(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpService resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectSystemNpuNpQueuesIpServiceDelete(d *schema.ResourceData, m in
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -147,7 +152,9 @@ func resourceObjectSystemNpuNpQueuesIpServiceDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesIpService(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuNpQueuesIpService(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesIpService resource: %v", err)
 	}

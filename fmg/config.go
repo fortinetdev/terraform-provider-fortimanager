@@ -10,21 +10,41 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-func validateConvIPMask2CIDR(oNewIP, oOldIP string) string {
-	if oNewIP != oOldIP && strings.Contains(oNewIP, "/") && strings.Contains(oOldIP, " ") {
-		line := strings.Split(oOldIP, " ")
-		if len(line) >= 2 {
-			ip := line[0]
-			mask := line[1]
-			prefixSize, _ := net.IPMask(net.ParseIP(mask).To4()).Size()
-			return ip + "/" + strconv.Itoa(prefixSize)
+func validateConvIPMask2CIDR(oOldIP, oNewIP string) string {
+	if oNewIP != oOldIP {
+		newCvt := convertIP(oNewIP)
+		oldCvt := convertIP(oOldIP)
+		if newCvt == oldCvt {
+			return oOldIP
+		} else {
+			return oNewIP
 		}
 	}
 	return oOldIP
+}
+
+func convertIP(inputIP string) string {
+	if inputIP == "" {
+		return ""
+	}
+	f := func(c rune) bool {
+		return c != '.' && c != '/' && !unicode.IsNumber(c)
+	}
+	line := strings.FieldsFunc(inputIP, f)
+	if len(line) == 1 {
+		return line[0]
+	} else if len(line) == 2 {
+		ip := line[0]
+		mask := line[1]
+		prefixSize, _ := net.IPMask(net.ParseIP(mask).To4()).Size()
+		return ip + "/" + strconv.Itoa(prefixSize)
+	}
+	return inputIP
 }
 
 func fortiStringValue(t interface{}) string {

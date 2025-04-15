@@ -77,6 +77,7 @@ func resourceObjectFirewallInternetServiceEntryCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectFirewallInternetServiceEntryCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceEntry resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceEntry(obj, paradict)
-
+	_, err = c.CreateObjectFirewallInternetServiceEntry(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceEntry resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectFirewallInternetServiceEntryUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -118,7 +120,9 @@ func resourceObjectFirewallInternetServiceEntryUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceEntry resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceEntry(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallInternetServiceEntry(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceEntry resource: %v", err)
 	}
@@ -137,6 +141,7 @@ func resourceObjectFirewallInternetServiceEntryDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectFirewallInternetServiceEntryDelete(d *schema.ResourceData, m 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallInternetServiceEntry(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallInternetServiceEntry(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceEntry resource: %v", err)
 	}

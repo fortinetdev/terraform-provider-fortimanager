@@ -113,6 +113,7 @@ func resourceObjectVirtualPatchProfileCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -124,9 +125,9 @@ func resourceObjectVirtualPatchProfileCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVirtualPatchProfile resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVirtualPatchProfile(obj, paradict)
-
+	_, err = c.CreateObjectVirtualPatchProfile(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVirtualPatchProfile resource: %v", err)
 	}
@@ -142,6 +143,7 @@ func resourceObjectVirtualPatchProfileUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +156,9 @@ func resourceObjectVirtualPatchProfileUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectVirtualPatchProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVirtualPatchProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVirtualPatchProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVirtualPatchProfile resource: %v", err)
 	}
@@ -173,6 +177,7 @@ func resourceObjectVirtualPatchProfileDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -180,7 +185,9 @@ func resourceObjectVirtualPatchProfileDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVirtualPatchProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVirtualPatchProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVirtualPatchProfile resource: %v", err)
 	}

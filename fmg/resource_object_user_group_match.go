@@ -76,6 +76,7 @@ func resourceObjectUserGroupMatchCreate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -90,9 +91,9 @@ func resourceObjectUserGroupMatchCreate(d *schema.ResourceData, m interface{}) e
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroupMatch resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserGroupMatch(obj, paradict)
-
+	_, err = c.CreateObjectUserGroupMatch(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserGroupMatch resource: %v", err)
 	}
@@ -108,6 +109,7 @@ func resourceObjectUserGroupMatchUpdate(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -123,7 +125,9 @@ func resourceObjectUserGroupMatchUpdate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error updating ObjectUserGroupMatch resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserGroupMatch(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserGroupMatch(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserGroupMatch resource: %v", err)
 	}
@@ -142,6 +146,7 @@ func resourceObjectUserGroupMatchDelete(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectUserGroupMatchDelete(d *schema.ResourceData, m interface{}) e
 	group := d.Get("group").(string)
 	paradict["group"] = group
 
-	err = c.DeleteObjectUserGroupMatch(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserGroupMatch(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserGroupMatch resource: %v", err)
 	}

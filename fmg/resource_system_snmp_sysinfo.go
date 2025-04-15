@@ -75,6 +75,8 @@ func resourceSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -83,7 +85,9 @@ func resourceSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating SystemSnmpSysinfo resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpSysinfo(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemSnmpSysinfo(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpSysinfo resource: %v", err)
 	}
@@ -102,10 +106,14 @@ func resourceSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpSysinfo(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemSnmpSysinfo(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpSysinfo resource: %v", err)
 	}
@@ -122,6 +130,7 @@ func resourceSystemSnmpSysinfoRead(d *schema.ResourceData, m interface{}) error 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

@@ -118,6 +118,8 @@ The `dot` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `udp_not_quic` - Action to be taken when matched UDP packet is not QUIC. Valid values: `block`, `allow`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `block`, `allow`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `block`, `allow`.
@@ -202,6 +204,8 @@ The `https` block supports:
 * `sni_server_cert_check` - Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `disable`, `enable`, `strict`.
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
+
+* `udp_not_quic` - Action to be taken when matched UDP packet is not QUIC. Valid values: `block`, `allow`.
 
 * `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
 

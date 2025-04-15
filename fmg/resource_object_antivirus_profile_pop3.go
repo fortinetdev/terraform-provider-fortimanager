@@ -128,6 +128,7 @@ func resourceObjectAntivirusProfilePop3Update(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -143,7 +144,9 @@ func resourceObjectAntivirusProfilePop3Update(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating ObjectAntivirusProfilePop3 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfilePop3(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusProfilePop3(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfilePop3 resource: %v", err)
 	}
@@ -162,6 +165,7 @@ func resourceObjectAntivirusProfilePop3Delete(d *schema.ResourceData, m interfac
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +176,9 @@ func resourceObjectAntivirusProfilePop3Delete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectAntivirusProfilePop3(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusProfilePop3(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfilePop3 resource: %v", err)
 	}

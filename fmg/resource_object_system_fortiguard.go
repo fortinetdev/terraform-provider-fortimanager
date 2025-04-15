@@ -321,6 +321,10 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"videofilter_expiration": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -369,6 +373,7 @@ func resourceObjectSystemFortiguardUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -381,7 +386,9 @@ func resourceObjectSystemFortiguardUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectSystemFortiguard resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemFortiguard(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemFortiguard(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemFortiguard resource: %v", err)
 	}
@@ -400,6 +407,7 @@ func resourceObjectSystemFortiguardDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -407,7 +415,9 @@ func resourceObjectSystemFortiguardDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemFortiguard(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemFortiguard(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemFortiguard resource: %v", err)
 	}
@@ -667,6 +677,10 @@ func flattenObjectSystemFortiguardUpdateUwdb(v interface{}, d *schema.ResourceDa
 
 func flattenObjectSystemFortiguardVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectSystemFortiguardVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectSystemFortiguardVideofilterExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1258,6 +1272,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectSystemFortiguardVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectSystemFortiguard-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	if err = d.Set("videofilter_expiration", flattenObjectSystemFortiguardVideofilterExpiration(o["videofilter-expiration"], d, "videofilter_expiration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["videofilter-expiration"], "ObjectSystemFortiguard-VideofilterExpiration"); ok {
 			if err = d.Set("videofilter_expiration", vv); err != nil {
@@ -1569,6 +1593,10 @@ func expandObjectSystemFortiguardUpdateUwdb(d *schema.ResourceData, v interface{
 
 func expandObjectSystemFortiguardVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectSystemFortiguardVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemFortiguardVideofilterExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2107,6 +2135,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["vdom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectSystemFortiguardVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

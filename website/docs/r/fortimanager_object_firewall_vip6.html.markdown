@@ -69,12 +69,16 @@ The following arguments are supported:
 
 * `add_nat64_route` - Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
 
+* `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
+
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `embedded_ipv4_address` - Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+
+* `empty_cert_action` - Action for an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
 
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
@@ -191,6 +195,8 @@ The following arguments are supported:
 
 * `type` - Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
 
+* `user_agent_detect` - Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. Valid values: `disable`, `enable`.
+
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `weblogic_server` - Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
 
@@ -205,9 +211,13 @@ The `dynamic_mapping` block supports:
 
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
+* `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
+
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `embedded_ipv4_address` - Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+
+* `empty_cert_action` - Action for an empty client certificate. Valid values: `accept`, `block`, `accept-unmanageable`.
 
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
@@ -320,6 +330,8 @@ The `dynamic_mapping` block supports:
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 
 * `type` - Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+
+* `user_agent_detect` - Enable/disable detecting device type by HTTP user-agent if no client certificate is provided. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `weblogic_server` - Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.

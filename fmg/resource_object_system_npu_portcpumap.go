@@ -65,6 +65,7 @@ func resourceObjectSystemNpuPortCpuMapCreate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -76,9 +77,9 @@ func resourceObjectSystemNpuPortCpuMapCreate(d *schema.ResourceData, m interface
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuPortCpuMap resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemNpuPortCpuMap(obj, paradict)
-
+	_, err = c.CreateObjectSystemNpuPortCpuMap(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuPortCpuMap resource: %v", err)
 	}
@@ -94,6 +95,7 @@ func resourceObjectSystemNpuPortCpuMapUpdate(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -106,7 +108,9 @@ func resourceObjectSystemNpuPortCpuMapUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating ObjectSystemNpuPortCpuMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuPortCpuMap(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSystemNpuPortCpuMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPortCpuMap resource: %v", err)
 	}
@@ -125,6 +129,7 @@ func resourceObjectSystemNpuPortCpuMapDelete(d *schema.ResourceData, m interface
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -132,7 +137,9 @@ func resourceObjectSystemNpuPortCpuMapDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuPortCpuMap(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSystemNpuPortCpuMap(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuPortCpuMap resource: %v", err)
 	}

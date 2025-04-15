@@ -51,6 +51,8 @@ func resourceSystemLogDeviceDisableCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -58,9 +60,9 @@ func resourceSystemLogDeviceDisableCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogDeviceDisable resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemLogDeviceDisable(obj, paradict)
-
+	_, err = c.CreateSystemLogDeviceDisable(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogDeviceDisable resource: %v", err)
 	}
@@ -76,6 +78,8 @@ func resourceSystemLogDeviceDisableUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -84,7 +88,9 @@ func resourceSystemLogDeviceDisableUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating SystemLogDeviceDisable resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogDeviceDisable(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogDeviceDisable(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogDeviceDisable resource: %v", err)
 	}
@@ -103,10 +109,14 @@ func resourceSystemLogDeviceDisableDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogDeviceDisable(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogDeviceDisable(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogDeviceDisable resource: %v", err)
 	}
@@ -123,6 +133,7 @@ func resourceSystemLogDeviceDisableRead(d *schema.ResourceData, m interface{}) e
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

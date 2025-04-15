@@ -296,6 +296,7 @@ func resourceObjectFirewallGtpMessageRateLimitUpdate(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -311,7 +312,9 @@ func resourceObjectFirewallGtpMessageRateLimitUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimit resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallGtpMessageRateLimit(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallGtpMessageRateLimit(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimit resource: %v", err)
 	}
@@ -330,6 +333,7 @@ func resourceObjectFirewallGtpMessageRateLimitDelete(d *schema.ResourceData, m i
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -340,7 +344,9 @@ func resourceObjectFirewallGtpMessageRateLimitDelete(d *schema.ResourceData, m i
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	err = c.DeleteObjectFirewallGtpMessageRateLimit(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallGtpMessageRateLimit(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallGtpMessageRateLimit resource: %v", err)
 	}

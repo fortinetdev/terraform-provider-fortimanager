@@ -74,6 +74,7 @@ func resourceObjectFirewallVip6SslServerCipherSuitesCreate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectFirewallVip6SslServerCipherSuitesCreate(d *schema.ResourceDat
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6SslServerCipherSuites resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVip6SslServerCipherSuites(obj, paradict)
-
+	_, err = c.CreateObjectFirewallVip6SslServerCipherSuites(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6SslServerCipherSuites resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectFirewallVip6SslServerCipherSuitesUpdate(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectFirewallVip6SslServerCipherSuitesUpdate(d *schema.ResourceDat
 		return fmt.Errorf("Error updating ObjectFirewallVip6SslServerCipherSuites resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVip6SslServerCipherSuites(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallVip6SslServerCipherSuites(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip6SslServerCipherSuites resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectFirewallVip6SslServerCipherSuitesDelete(d *schema.ResourceDat
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectFirewallVip6SslServerCipherSuitesDelete(d *schema.ResourceDat
 	vip6 := d.Get("vip6").(string)
 	paradict["vip6"] = vip6
 
-	err = c.DeleteObjectFirewallVip6SslServerCipherSuites(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallVip6SslServerCipherSuites(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVip6SslServerCipherSuites resource: %v", err)
 	}

@@ -117,6 +117,7 @@ func resourceObjectGlobalIpsSensorOverrideCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -131,9 +132,9 @@ func resourceObjectGlobalIpsSensorOverrideCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensorOverride resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectGlobalIpsSensorOverride(obj, paradict)
-
+	_, err = c.CreateObjectGlobalIpsSensorOverride(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensorOverride resource: %v", err)
 	}
@@ -149,6 +150,7 @@ func resourceObjectGlobalIpsSensorOverrideUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -164,7 +166,9 @@ func resourceObjectGlobalIpsSensorOverrideUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensorOverride resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectGlobalIpsSensorOverride(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectGlobalIpsSensorOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensorOverride resource: %v", err)
 	}
@@ -183,6 +187,7 @@ func resourceObjectGlobalIpsSensorOverrideDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -193,7 +198,9 @@ func resourceObjectGlobalIpsSensorOverrideDelete(d *schema.ResourceData, m inter
 	sensor := d.Get("sensor").(string)
 	paradict["sensor"] = sensor
 
-	err = c.DeleteObjectGlobalIpsSensorOverride(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectGlobalIpsSensorOverride(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectGlobalIpsSensorOverride resource: %v", err)
 	}

@@ -87,6 +87,11 @@ func execMain(d *schema.ResourceData, m interface{}, action string) (string, err
 }
 
 func resourceExecWorkspaceActionCreateUpdate(d *schema.ResourceData, m interface{}) error {
+	cfg := m.(*FortiClient).Cfg
+	workspaceMode := cfg.WorkspaceMode
+	if workspaceMode == "normal" {
+		return fmt.Errorf("Provider variable workspace_mode is set to normal, which is conflict with this resource. Please do not configure workspace_mode or do not use this resource.")
+	}
 	action := d.Get("action").(string)
 
 	if action == "lockbegin" {
@@ -115,6 +120,11 @@ func resourceExecWorkspaceActionCreateUpdate(d *schema.ResourceData, m interface
 }
 
 func resourceExecWorkspaceActionDelete(d *schema.ResourceData, m interface{}) error {
+	cfg := m.(*FortiClient).Cfg
+	workspaceMode := cfg.WorkspaceMode
+	if workspaceMode == "normal" {
+		return fmt.Errorf("Provider variable workspace_mode is set to normal, which is conflict with this resource. Please do not configure workspace_mode or do not use this resource.")
+	}
 	action := d.Get("action").(string)
 
 	if action == "lockbegin" {

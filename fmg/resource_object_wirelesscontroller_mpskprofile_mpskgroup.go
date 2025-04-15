@@ -127,6 +127,7 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupCreate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,9 +142,9 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupCreate(d *schema.Resour
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerMpskProfileMpskGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerMpskProfileMpskGroup(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerMpskProfileMpskGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerMpskProfileMpskGroup resource: %v", err)
 	}
@@ -159,6 +160,7 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupUpdate(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -174,7 +176,9 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupUpdate(d *schema.Resour
 		return fmt.Errorf("Error updating ObjectWirelessControllerMpskProfileMpskGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerMpskProfileMpskGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerMpskProfileMpskGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerMpskProfileMpskGroup resource: %v", err)
 	}
@@ -193,6 +197,7 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupDelete(d *schema.Resour
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -203,7 +208,9 @@ func resourceObjectWirelessControllerMpskProfileMpskGroupDelete(d *schema.Resour
 	mpsk_profile := d.Get("mpsk_profile").(string)
 	paradict["mpsk_profile"] = mpsk_profile
 
-	err = c.DeleteObjectWirelessControllerMpskProfileMpskGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerMpskProfileMpskGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerMpskProfileMpskGroup resource: %v", err)
 	}

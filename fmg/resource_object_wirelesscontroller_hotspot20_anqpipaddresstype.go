@@ -69,6 +69,7 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeCreate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -80,9 +81,9 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeCreate(d *schema.
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpIpAddressType resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpIpAddressType(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpIpAddressType(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpIpAddressType resource: %v", err)
 	}
@@ -98,6 +99,7 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeUpdate(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,7 +112,9 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeUpdate(d *schema.
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpIpAddressType resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpIpAddressType(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpIpAddressType(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpIpAddressType resource: %v", err)
 	}
@@ -129,6 +133,7 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeDelete(d *schema.
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -136,7 +141,9 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeDelete(d *schema.
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpIpAddressType(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpIpAddressType(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpIpAddressType resource: %v", err)
 	}

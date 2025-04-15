@@ -49,6 +49,8 @@ func resourceFmupdateFctServicesUpdate(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -57,7 +59,9 @@ func resourceFmupdateFctServicesUpdate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error updating FmupdateFctServices resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFctServices(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdateFctServices(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFctServices resource: %v", err)
 	}
@@ -76,10 +80,14 @@ func resourceFmupdateFctServicesDelete(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFctServices(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdateFctServices(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFctServices resource: %v", err)
 	}
@@ -96,6 +104,7 @@ func resourceFmupdateFctServicesRead(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

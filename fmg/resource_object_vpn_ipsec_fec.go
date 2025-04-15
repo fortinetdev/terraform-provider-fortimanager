@@ -105,6 +105,7 @@ func resourceObjectVpnIpsecFecCreate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,9 +117,9 @@ func resourceObjectVpnIpsecFecCreate(d *schema.ResourceData, m interface{}) erro
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFec resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnIpsecFec(obj, paradict)
-
+	_, err = c.CreateObjectVpnIpsecFec(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFec resource: %v", err)
 	}
@@ -134,6 +135,7 @@ func resourceObjectVpnIpsecFecUpdate(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -146,7 +148,9 @@ func resourceObjectVpnIpsecFecUpdate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error updating ObjectVpnIpsecFec resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnIpsecFec(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnIpsecFec(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnIpsecFec resource: %v", err)
 	}
@@ -165,6 +169,7 @@ func resourceObjectVpnIpsecFecDelete(d *schema.ResourceData, m interface{}) erro
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -172,7 +177,9 @@ func resourceObjectVpnIpsecFecDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnIpsecFec(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnIpsecFec(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnIpsecFec resource: %v", err)
 	}

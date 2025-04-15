@@ -99,6 +99,7 @@ func resourceObjectFirewallShaperPerIpShaperCreate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -110,9 +111,9 @@ func resourceObjectFirewallShaperPerIpShaperCreate(d *schema.ResourceData, m int
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShaperPerIpShaper resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallShaperPerIpShaper(obj, paradict)
-
+	_, err = c.CreateObjectFirewallShaperPerIpShaper(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShaperPerIpShaper resource: %v", err)
 	}
@@ -128,6 +129,7 @@ func resourceObjectFirewallShaperPerIpShaperUpdate(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -140,7 +142,9 @@ func resourceObjectFirewallShaperPerIpShaperUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating ObjectFirewallShaperPerIpShaper resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallShaperPerIpShaper(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallShaperPerIpShaper(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallShaperPerIpShaper resource: %v", err)
 	}
@@ -159,6 +163,7 @@ func resourceObjectFirewallShaperPerIpShaperDelete(d *schema.ResourceData, m int
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -166,7 +171,9 @@ func resourceObjectFirewallShaperPerIpShaperDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallShaperPerIpShaper(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallShaperPerIpShaper(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallShaperPerIpShaper resource: %v", err)
 	}

@@ -68,6 +68,7 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterCreate(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -82,9 +83,9 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterCreate(d *sche
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchRouteOffloadRouter resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchRouteOffloadRouter(obj, paradict)
-
+	_, err = c.CreateObjectSwitchControllerManagedSwitchRouteOffloadRouter(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchRouteOffloadRouter resource: %v", err)
 	}
@@ -100,6 +101,7 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterUpdate(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -115,7 +117,9 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterUpdate(d *sche
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchRouteOffloadRouter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerManagedSwitchRouteOffloadRouter(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectSwitchControllerManagedSwitchRouteOffloadRouter(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchRouteOffloadRouter resource: %v", err)
 	}
@@ -134,6 +138,7 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterDelete(d *sche
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -144,7 +149,9 @@ func resourceObjectSwitchControllerManagedSwitchRouteOffloadRouterDelete(d *sche
 	managed_switch := d.Get("managed_switch").(string)
 	paradict["managed_switch"] = managed_switch
 
-	err = c.DeleteObjectSwitchControllerManagedSwitchRouteOffloadRouter(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectSwitchControllerManagedSwitchRouteOffloadRouter(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerManagedSwitchRouteOffloadRouter resource: %v", err)
 	}

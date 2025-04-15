@@ -58,6 +58,8 @@ The following arguments are supported:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `udp_not_quic` - Action to be taken when matched UDP packet is not QUIC. Valid values: `block`, `allow`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `block`, `allow`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `block`, `allow`.

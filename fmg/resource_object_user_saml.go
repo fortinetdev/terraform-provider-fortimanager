@@ -254,6 +254,7 @@ func resourceObjectUserSamlCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -265,9 +266,9 @@ func resourceObjectUserSamlCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSaml resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserSaml(obj, paradict)
-
+	_, err = c.CreateObjectUserSaml(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSaml resource: %v", err)
 	}
@@ -283,6 +284,7 @@ func resourceObjectUserSamlUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -295,7 +297,9 @@ func resourceObjectUserSamlUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectUserSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserSaml(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserSaml(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSaml resource: %v", err)
 	}
@@ -314,6 +318,7 @@ func resourceObjectUserSamlDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -321,7 +326,9 @@ func resourceObjectUserSamlDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserSaml(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserSaml(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserSaml resource: %v", err)
 	}

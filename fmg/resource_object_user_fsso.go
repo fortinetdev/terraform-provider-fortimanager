@@ -225,6 +225,10 @@ func resourceObjectUserFsso() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"vrf_select": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -384,6 +388,10 @@ func resourceObjectUserFsso() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vrf_select": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -398,6 +406,7 @@ func resourceObjectUserFssoCreate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -409,9 +418,9 @@ func resourceObjectUserFssoCreate(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFsso resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserFsso(obj, paradict)
-
+	_, err = c.CreateObjectUserFsso(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFsso resource: %v", err)
 	}
@@ -427,6 +436,7 @@ func resourceObjectUserFssoUpdate(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -439,7 +449,9 @@ func resourceObjectUserFssoUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating ObjectUserFsso resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserFsso(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectUserFsso(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFsso resource: %v", err)
 	}
@@ -458,6 +470,7 @@ func resourceObjectUserFssoDelete(d *schema.ResourceData, m interface{}) error {
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -465,7 +478,9 @@ func resourceObjectUserFssoDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserFsso(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectUserFsso(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserFsso resource: %v", err)
 	}
@@ -698,6 +713,12 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["user_info_server"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-UserInfoServer")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := i["vrf-select"]; ok {
+			v := flattenObjectUserFssoDynamicMappingVrfSelect(i["vrf-select"], d, pre_append)
+			tmp["vrf_select"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-VrfSelect")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -865,6 +886,10 @@ func flattenObjectUserFssoDynamicMappingUserInfoServer(v interface{}, d *schema.
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectUserFssoDynamicMappingVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserFssoGroupPollInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -971,6 +996,10 @@ func flattenObjectUserFssoType(v interface{}, d *schema.ResourceData, pre string
 
 func flattenObjectUserFssoUserInfoServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectUserFssoVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1288,6 +1317,16 @@ func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("vrf_select", flattenObjectUserFssoVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserFsso-VrfSelect"); ok {
+			if err = d.Set("vrf_select", vv); err != nil {
+				return fmt.Errorf("Error reading vrf_select: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1485,6 +1524,11 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["user-info-server"], _ = expandObjectUserFssoDynamicMappingUserInfoServer(d, i["user_info_server"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vrf-select"], _ = expandObjectUserFssoDynamicMappingVrfSelect(d, i["vrf_select"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -1665,6 +1709,10 @@ func expandObjectUserFssoDynamicMappingUserInfoServer(d *schema.ResourceData, v 
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectUserFssoDynamicMappingVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserFssoGroupPollInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1791,6 +1839,10 @@ func expandObjectUserFssoType(d *schema.ResourceData, v interface{}, pre string)
 
 func expandObjectUserFssoUserInfoServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectUserFssoVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -2099,6 +2151,15 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["user-info-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
+		t, err := expandObjectUserFssoVrfSelect(d, v, "vrf_select")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrf-select"] = t
 		}
 	}
 

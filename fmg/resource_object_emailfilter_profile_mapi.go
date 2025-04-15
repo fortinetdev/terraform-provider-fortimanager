@@ -72,6 +72,7 @@ func resourceObjectEmailfilterProfileMapiUpdate(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,7 +88,9 @@ func resourceObjectEmailfilterProfileMapiUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating ObjectEmailfilterProfileMapi resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterProfileMapi(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEmailfilterProfileMapi(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterProfileMapi resource: %v", err)
 	}
@@ -106,6 +109,7 @@ func resourceObjectEmailfilterProfileMapiDelete(d *schema.ResourceData, m interf
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -116,7 +120,9 @@ func resourceObjectEmailfilterProfileMapiDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectEmailfilterProfileMapi(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEmailfilterProfileMapi(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterProfileMapi resource: %v", err)
 	}

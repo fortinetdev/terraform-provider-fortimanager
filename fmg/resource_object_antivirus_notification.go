@@ -92,6 +92,7 @@ func resourceObjectAntivirusNotificationCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -103,9 +104,9 @@ func resourceObjectAntivirusNotificationCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusNotification resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAntivirusNotification(obj, paradict)
-
+	_, err = c.CreateObjectAntivirusNotification(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusNotification resource: %v", err)
 	}
@@ -121,6 +122,7 @@ func resourceObjectAntivirusNotificationUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -133,7 +135,9 @@ func resourceObjectAntivirusNotificationUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectAntivirusNotification resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusNotification(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectAntivirusNotification(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusNotification resource: %v", err)
 	}
@@ -152,6 +156,7 @@ func resourceObjectAntivirusNotificationDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -159,7 +164,9 @@ func resourceObjectAntivirusNotificationDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusNotification(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectAntivirusNotification(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusNotification resource: %v", err)
 	}

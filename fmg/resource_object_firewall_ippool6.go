@@ -158,6 +158,7 @@ func resourceObjectFirewallIppool6Create(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -169,9 +170,9 @@ func resourceObjectFirewallIppool6Create(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppool6 resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallIppool6(obj, paradict)
-
+	_, err = c.CreateObjectFirewallIppool6(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppool6 resource: %v", err)
 	}
@@ -187,6 +188,7 @@ func resourceObjectFirewallIppool6Update(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -199,7 +201,9 @@ func resourceObjectFirewallIppool6Update(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectFirewallIppool6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallIppool6(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallIppool6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppool6 resource: %v", err)
 	}
@@ -218,6 +222,7 @@ func resourceObjectFirewallIppool6Delete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -225,7 +230,9 @@ func resourceObjectFirewallIppool6Delete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallIppool6(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallIppool6(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallIppool6 resource: %v", err)
 	}

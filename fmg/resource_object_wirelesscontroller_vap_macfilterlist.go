@@ -74,6 +74,7 @@ func resourceObjectWirelessControllerVapMacFilterListCreate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -88,9 +89,9 @@ func resourceObjectWirelessControllerVapMacFilterListCreate(d *schema.ResourceDa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapMacFilterList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerVapMacFilterList(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerVapMacFilterList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapMacFilterList resource: %v", err)
 	}
@@ -106,6 +107,7 @@ func resourceObjectWirelessControllerVapMacFilterListUpdate(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +123,9 @@ func resourceObjectWirelessControllerVapMacFilterListUpdate(d *schema.ResourceDa
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapMacFilterList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVapMacFilterList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerVapMacFilterList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapMacFilterList resource: %v", err)
 	}
@@ -140,6 +144,7 @@ func resourceObjectWirelessControllerVapMacFilterListDelete(d *schema.ResourceDa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +155,9 @@ func resourceObjectWirelessControllerVapMacFilterListDelete(d *schema.ResourceDa
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
-	err = c.DeleteObjectWirelessControllerVapMacFilterList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerVapMacFilterList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVapMacFilterList resource: %v", err)
 	}

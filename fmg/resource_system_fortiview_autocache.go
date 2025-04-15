@@ -59,6 +59,8 @@ func resourceSystemFortiviewAutoCacheUpdate(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -67,7 +69,9 @@ func resourceSystemFortiviewAutoCacheUpdate(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error updating SystemFortiviewAutoCache resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemFortiviewAutoCache(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemFortiviewAutoCache(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFortiviewAutoCache resource: %v", err)
 	}
@@ -86,10 +90,14 @@ func resourceSystemFortiviewAutoCacheDelete(d *schema.ResourceData, m interface{
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemFortiviewAutoCache(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemFortiviewAutoCache(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemFortiviewAutoCache resource: %v", err)
 	}
@@ -106,6 +114,7 @@ func resourceSystemFortiviewAutoCacheRead(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

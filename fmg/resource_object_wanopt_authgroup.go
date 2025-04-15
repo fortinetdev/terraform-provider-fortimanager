@@ -84,6 +84,7 @@ func resourceObjectWanoptAuthGroupCreate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectWanoptAuthGroupCreate(d *schema.ResourceData, m interface{}) 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptAuthGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWanoptAuthGroup(obj, paradict)
-
+	_, err = c.CreateObjectWanoptAuthGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptAuthGroup resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectWanoptAuthGroupUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectWanoptAuthGroupUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating ObjectWanoptAuthGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptAuthGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWanoptAuthGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptAuthGroup resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectWanoptAuthGroupDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -151,7 +156,9 @@ func resourceObjectWanoptAuthGroupDelete(d *schema.ResourceData, m interface{}) 
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptAuthGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWanoptAuthGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptAuthGroup resource: %v", err)
 	}

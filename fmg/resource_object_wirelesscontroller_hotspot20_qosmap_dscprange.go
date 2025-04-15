@@ -78,6 +78,7 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -92,9 +93,9 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20QosMapDscpRange resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20QosMapDscpRange(obj, paradict)
-
+	_, err = c.CreateObjectWirelessControllerHotspot20QosMapDscpRange(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20QosMapDscpRange resource: %v", err)
 	}
@@ -110,6 +111,7 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -125,7 +127,9 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20QosMapDscpRange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20QosMapDscpRange(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectWirelessControllerHotspot20QosMapDscpRange(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20QosMapDscpRange resource: %v", err)
 	}
@@ -144,6 +148,7 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -154,7 +159,9 @@ func resourceObjectWirelessControllerHotspot20QosMapDscpRangeDelete(d *schema.Re
 	qos_map := d.Get("qos_map").(string)
 	paradict["qos_map"] = qos_map
 
-	err = c.DeleteObjectWirelessControllerHotspot20QosMapDscpRange(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectWirelessControllerHotspot20QosMapDscpRange(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20QosMapDscpRange resource: %v", err)
 	}

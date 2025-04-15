@@ -428,6 +428,7 @@ func resourcePackagesFirewallConsolidatedPolicyCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -444,9 +445,9 @@ func resourcePackagesFirewallConsolidatedPolicyCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallConsolidatedPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallConsolidatedPolicy(obj, paradict)
-
+	_, err = c.CreatePackagesFirewallConsolidatedPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallConsolidatedPolicy resource: %v", err)
 	}
@@ -462,6 +463,7 @@ func resourcePackagesFirewallConsolidatedPolicyUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -479,7 +481,9 @@ func resourcePackagesFirewallConsolidatedPolicyUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating PackagesFirewallConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallConsolidatedPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallConsolidatedPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallConsolidatedPolicy resource: %v", err)
 	}
@@ -498,6 +502,7 @@ func resourcePackagesFirewallConsolidatedPolicyDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -510,7 +515,9 @@ func resourcePackagesFirewallConsolidatedPolicyDelete(d *schema.ResourceData, m 
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallConsolidatedPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallConsolidatedPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallConsolidatedPolicy resource: %v", err)
 	}

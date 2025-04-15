@@ -100,6 +100,7 @@ func resourceObjectFirewallScheduleOnetimeCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -111,9 +112,9 @@ func resourceObjectFirewallScheduleOnetimeCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleOnetime resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallScheduleOnetime(obj, paradict)
-
+	_, err = c.CreateObjectFirewallScheduleOnetime(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleOnetime resource: %v", err)
 	}
@@ -129,6 +130,7 @@ func resourceObjectFirewallScheduleOnetimeUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectFirewallScheduleOnetimeUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallScheduleOnetime resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallScheduleOnetime(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallScheduleOnetime(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleOnetime resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectFirewallScheduleOnetimeDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -167,7 +172,9 @@ func resourceObjectFirewallScheduleOnetimeDelete(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallScheduleOnetime(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallScheduleOnetime(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallScheduleOnetime resource: %v", err)
 	}

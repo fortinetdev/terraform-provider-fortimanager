@@ -81,6 +81,7 @@ func resourceObjectVirtualPatchProfileExemptionCreate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -95,9 +96,9 @@ func resourceObjectVirtualPatchProfileExemptionCreate(d *schema.ResourceData, m 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVirtualPatchProfileExemption resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVirtualPatchProfileExemption(obj, paradict)
-
+	_, err = c.CreateObjectVirtualPatchProfileExemption(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVirtualPatchProfileExemption resource: %v", err)
 	}
@@ -113,6 +114,7 @@ func resourceObjectVirtualPatchProfileExemptionUpdate(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -128,7 +130,9 @@ func resourceObjectVirtualPatchProfileExemptionUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating ObjectVirtualPatchProfileExemption resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVirtualPatchProfileExemption(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVirtualPatchProfileExemption(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVirtualPatchProfileExemption resource: %v", err)
 	}
@@ -147,6 +151,7 @@ func resourceObjectVirtualPatchProfileExemptionDelete(d *schema.ResourceData, m 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -157,7 +162,9 @@ func resourceObjectVirtualPatchProfileExemptionDelete(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	err = c.DeleteObjectVirtualPatchProfileExemption(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVirtualPatchProfileExemption(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVirtualPatchProfileExemption resource: %v", err)
 	}

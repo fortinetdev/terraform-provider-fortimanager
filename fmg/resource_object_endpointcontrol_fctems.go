@@ -82,6 +82,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"cloud_authentication_access_key": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cloud_server_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,7 +96,6 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			},
 			"ems_id": &schema.Schema{
 				Type:     schema.TypeInt,
-				ForceNew: true,
 				Optional: true,
 			},
 			"fortinetone_cloud_authentication": &schema.Schema{
@@ -119,6 +119,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 			},
 			"out_of_sync_threshold": &schema.Schema{
@@ -215,6 +216,7 @@ func resourceObjectEndpointControlFctemsCreate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -226,14 +228,14 @@ func resourceObjectEndpointControlFctemsCreate(d *schema.ResourceData, m interfa
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEndpointControlFctems resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectEndpointControlFctems(obj, paradict)
-
+	_, err = c.CreateObjectEndpointControlFctems(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEndpointControlFctems resource: %v", err)
 	}
 
-	d.SetId(strconv.Itoa(getIntKey(d, "ems_id")))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceObjectEndpointControlFctemsRead(d, m)
 }
@@ -244,6 +246,7 @@ func resourceObjectEndpointControlFctemsUpdate(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -256,14 +259,16 @@ func resourceObjectEndpointControlFctemsUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating ObjectEndpointControlFctems resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEndpointControlFctems(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectEndpointControlFctems(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEndpointControlFctems resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "ems_id")))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceObjectEndpointControlFctemsRead(d, m)
 }
@@ -275,6 +280,7 @@ func resourceObjectEndpointControlFctemsDelete(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -282,7 +288,9 @@ func resourceObjectEndpointControlFctemsDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEndpointControlFctems(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectEndpointControlFctems(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEndpointControlFctems resource: %v", err)
 	}
@@ -349,7 +357,7 @@ func flattenObjectEndpointControlFctemsCertificateFingerprint(v interface{}, d *
 }
 
 func flattenObjectEndpointControlFctemsCloudAuthenticationAccessKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectEndpointControlFctemsCloudServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -831,7 +839,7 @@ func expandObjectEndpointControlFctemsCertificateFingerprint(d *schema.ResourceD
 }
 
 func expandObjectEndpointControlFctemsCloudAuthenticationAccessKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectEndpointControlFctemsCloudServerType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

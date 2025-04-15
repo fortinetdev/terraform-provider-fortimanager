@@ -293,6 +293,7 @@ func resourcePackagesFirewallShapingPolicyCreate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -309,9 +310,9 @@ func resourcePackagesFirewallShapingPolicyCreate(d *schema.ResourceData, m inter
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallShapingPolicy resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallShapingPolicy(obj, paradict)
-
+	_, err = c.CreatePackagesFirewallShapingPolicy(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallShapingPolicy resource: %v", err)
 	}
@@ -327,6 +328,7 @@ func resourcePackagesFirewallShapingPolicyUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -344,7 +346,9 @@ func resourcePackagesFirewallShapingPolicyUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating PackagesFirewallShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallShapingPolicy(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdatePackagesFirewallShapingPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallShapingPolicy resource: %v", err)
 	}
@@ -363,6 +367,7 @@ func resourcePackagesFirewallShapingPolicyDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -375,7 +380,9 @@ func resourcePackagesFirewallShapingPolicyDelete(d *schema.ResourceData, m inter
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallShapingPolicy(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeletePackagesFirewallShapingPolicy(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallShapingPolicy resource: %v", err)
 	}

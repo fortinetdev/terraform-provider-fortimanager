@@ -216,6 +216,7 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksCreate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -232,9 +233,9 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksCreate(d *schema.Resourc
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalBookmarkGroupBookmarks resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectVpnSslWebPortalBookmarkGroupBookmarks(obj, paradict)
-
+	_, err = c.CreateObjectVpnSslWebPortalBookmarkGroupBookmarks(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortalBookmarkGroupBookmarks resource: %v", err)
 	}
@@ -250,6 +251,7 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksUpdate(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -267,7 +269,9 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksUpdate(d *schema.Resourc
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalBookmarkGroupBookmarks resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortalBookmarkGroupBookmarks(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectVpnSslWebPortalBookmarkGroupBookmarks(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalBookmarkGroupBookmarks resource: %v", err)
 	}
@@ -286,6 +290,7 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksDelete(d *schema.Resourc
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -298,7 +303,9 @@ func resourceObjectVpnSslWebPortalBookmarkGroupBookmarksDelete(d *schema.Resourc
 	paradict["portal"] = portal
 	paradict["bookmark_group"] = bookmark_group
 
-	err = c.DeleteObjectVpnSslWebPortalBookmarkGroupBookmarks(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectVpnSslWebPortalBookmarkGroupBookmarks(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalBookmarkGroupBookmarks resource: %v", err)
 	}

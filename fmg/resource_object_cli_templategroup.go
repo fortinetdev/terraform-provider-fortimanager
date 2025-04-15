@@ -85,6 +85,7 @@ func resourceObjectCliTemplateGroupCreate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -96,9 +97,9 @@ func resourceObjectCliTemplateGroupCreate(d *schema.ResourceData, m interface{})
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplateGroup resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCliTemplateGroup(obj, paradict)
-
+	_, err = c.CreateObjectCliTemplateGroup(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplateGroup resource: %v", err)
 	}
@@ -114,6 +115,7 @@ func resourceObjectCliTemplateGroupUpdate(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -126,7 +128,9 @@ func resourceObjectCliTemplateGroupUpdate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error updating ObjectCliTemplateGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCliTemplateGroup(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectCliTemplateGroup(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplateGroup resource: %v", err)
 	}
@@ -145,6 +149,7 @@ func resourceObjectCliTemplateGroupDelete(d *schema.ResourceData, m interface{})
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -152,7 +157,9 @@ func resourceObjectCliTemplateGroupDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCliTemplateGroup(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectCliTemplateGroup(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCliTemplateGroup resource: %v", err)
 	}

@@ -44,6 +44,8 @@ func resourceFmupdatePublicnetworkUpdate(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -52,7 +54,9 @@ func resourceFmupdatePublicnetworkUpdate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error updating FmupdatePublicnetwork resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdatePublicnetwork(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateFmupdatePublicnetwork(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdatePublicnetwork resource: %v", err)
 	}
@@ -71,10 +75,14 @@ func resourceFmupdatePublicnetworkDelete(d *schema.ResourceData, m interface{}) 
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdatePublicnetwork(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteFmupdatePublicnetwork(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdatePublicnetwork resource: %v", err)
 	}
@@ -91,6 +99,7 @@ func resourceFmupdatePublicnetworkRead(d *schema.ResourceData, m interface{}) er
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

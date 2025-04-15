@@ -73,6 +73,7 @@ func resourceObjectFirewallAddress6SubnetSegmentCreate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -87,9 +88,9 @@ func resourceObjectFirewallAddress6SubnetSegmentCreate(d *schema.ResourceData, m
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6SubnetSegment resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAddress6SubnetSegment(obj, paradict)
-
+	_, err = c.CreateObjectFirewallAddress6SubnetSegment(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6SubnetSegment resource: %v", err)
 	}
@@ -105,6 +106,7 @@ func resourceObjectFirewallAddress6SubnetSegmentUpdate(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -120,7 +122,9 @@ func resourceObjectFirewallAddress6SubnetSegmentUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating ObjectFirewallAddress6SubnetSegment resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6SubnetSegment(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFirewallAddress6SubnetSegment(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6SubnetSegment resource: %v", err)
 	}
@@ -139,6 +143,7 @@ func resourceObjectFirewallAddress6SubnetSegmentDelete(d *schema.ResourceData, m
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -149,7 +154,9 @@ func resourceObjectFirewallAddress6SubnetSegmentDelete(d *schema.ResourceData, m
 	address6 := d.Get("address6").(string)
 	paradict["address6"] = address6
 
-	err = c.DeleteObjectFirewallAddress6SubnetSegment(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFirewallAddress6SubnetSegment(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6SubnetSegment resource: %v", err)
 	}

@@ -182,6 +182,8 @@ func resourceSystemLogSettingsRollingLocalUpdate(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
@@ -190,7 +192,9 @@ func resourceSystemLogSettingsRollingLocalUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating SystemLogSettingsRollingLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogSettingsRollingLocal(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateSystemLogSettingsRollingLocal(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettingsRollingLocal resource: %v", err)
 	}
@@ -209,10 +213,14 @@ func resourceSystemLogSettingsRollingLocalDelete(d *schema.ResourceData, m inter
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogSettingsRollingLocal(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteSystemLogSettingsRollingLocal(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogSettingsRollingLocal resource: %v", err)
 	}
@@ -229,6 +237,7 @@ func resourceSystemLogSettingsRollingLocalRead(d *schema.ResourceData, m interfa
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 

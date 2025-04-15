@@ -106,6 +106,7 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileUpdate(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -121,7 +122,9 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileUpdate(d *schema
 		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfileAutoSwitchProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerSimProfileAutoSwitchProfile(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectExtenderControllerSimProfileAutoSwitchProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfileAutoSwitchProfile resource: %v", err)
 	}
@@ -140,6 +143,7 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileDelete(d *schema
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -150,7 +154,9 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileDelete(d *schema
 	sim_profile := d.Get("sim_profile").(string)
 	paradict["sim_profile"] = sim_profile
 
-	err = c.DeleteObjectExtenderControllerSimProfileAutoSwitchProfile(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectExtenderControllerSimProfileAutoSwitchProfile(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerSimProfileAutoSwitchProfile resource: %v", err)
 	}

@@ -94,6 +94,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListCreate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -108,9 +109,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListCreate(d *schema.Re
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList resource while getting object: %v", err)
 	}
+	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(obj, paradict)
-
+	_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(obj, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList resource: %v", err)
 	}
@@ -126,6 +127,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpdate(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -141,7 +143,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpdate(d *schema.Re
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(obj, mkey, paradict)
+	wsParams["adom"] = adomv
+
+	_, err = c.UpdateObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList resource: %v", err)
 	}
@@ -160,6 +164,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelete(d *schema.Re
 	c.Retries = 1
 
 	paradict := make(map[string]string)
+	wsParams := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
@@ -170,7 +175,9 @@ func resourceObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelete(d *schema.Re
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	err = c.DeleteObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(mkey, paradict)
+	wsParams["adom"] = adomv
+
+	err = c.DeleteObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList resource: %v", err)
 	}
