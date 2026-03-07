@@ -80,6 +80,7 @@ The following arguments are supported:
 * `type` - Type of IPv6 address object (default = ipprefix). Valid values: `ipprefix`, `iprange`, `nsx`, `dynamic`, `fqdn`, `template`, `mac`, `geography`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `tags` - Tags.
 * `wildcard` - IPv6 address and wildcard netmask.
 * `visibility` - Enable/disable the visibility of the object in the GUI. Valid values: `disable`, `enable`.
 

@@ -32,6 +32,39 @@ The following arguments are supported:
 * `app_category` - Application category ID list.
 * `app_group` - Application group names.
 * `application` - Application ID list.
+* `detect_https_in_http_request` - Detect-Https-In-Http-Request. Valid values: `disable`, `enable`.
+
+* `device_ownership` - Device-Ownership. Valid values: `disable`, `enable`.
+
+* `dynamic_bypass` - Dynamic-Bypass. Valid values: `disable`, `enable`.
+
+* `explicit_web_proxy` - Explicit-Web-Proxy.
+* `extended_log` - Extended-Log. Valid values: `disable`, `enable`.
+
+* `force_proxy` - Force-Proxy. Valid values: `disable`, `enable`.
+
+* `http_tunnel_auth` - Http-Tunnel-Auth. Valid values: `disable`, `enable`.
+
+* `https_sub_category` - Https-Sub-Category. Valid values: `disable`, `enable`.
+
+* `ia_profile` - Ia-Profile.
+* `implicit_proxy_detection` - Implicit-Proxy-Detection. Valid values: `disable`, `enable`.
+
+* `isolator_profile` - Isolator-Profile.
+* `isolator_server` - Isolator-Server.
+* `max_session_per_user` - Max-Session-Per-User.
+* `pass_through` - Pass-Through. Valid values: `disable`, `enable`.
+
+* `redirect_profile` - Redirect-Profile.
+* `reverse_cache` - Reverse-Cache. Valid values: `disable`, `enable`.
+
+* `service_connector` - Service-Connector.
+* `ssh_policy_check` - Ssh-Policy-Check. Valid values: `disable`, `enable`.
+
+* `transparent` - Transparent. Valid values: `disable`, `enable`.
+
+* `type` - Type. Valid values: `explicit-web`, `transparent`, `explicit-ftp`, `ssh-tunnel`, `ssh`, `wanopt`, `access-proxy`, `ztna-proxy`.
+
 * `application_list` - Name of an existing Application list.
 * `auth_cert` - HTTPS server certificate for policy authentication.
 * `auth_path` - Enable/disable authentication-based routing. Valid values: `disable`, `enable`.
@@ -308,6 +341,8 @@ The following arguments are supported:
 * `traffic_shaper` - Traffic shaper.
 * `traffic_shaper_reverse` - Reverse traffic shaper.
 * `url_category` - URL category ID list.
+* `url_risk` - Url-Risk.
+* `ztna_proxy` - Ztna-Proxy.
 * `udp_timeout_pid` - UDP timeout profile ID
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `disable`, `enable`.
@@ -353,6 +388,7 @@ The following arguments are supported:
 
 * `ztna_tags_match_logic` - ZTNA tag matching logic. Valid values: `or`, `and`.
 
+* `access_proxy` - Access-Proxy.
 
 
 ## Attribute Reference

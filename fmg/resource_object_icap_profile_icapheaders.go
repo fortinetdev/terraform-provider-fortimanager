@@ -69,6 +69,18 @@ func resourceObjectIcapProfileIcapHeaders() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"http_header": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"sesson_info_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -240,6 +252,18 @@ func flattenObjectIcapProfileIcapHeadersName2edl(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectIcapProfileIcapHeadersHttpHeader2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileIcapHeadersSessonInfoType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileIcapHeadersSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectIcapProfileIcapHeaders(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -287,6 +311,36 @@ func refreshObjectObjectIcapProfileIcapHeaders(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("http_header", flattenObjectIcapProfileIcapHeadersHttpHeader2edl(o["http-header"], d, "http_header")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-header"], "ObjectIcapProfileIcapHeaders-HttpHeader"); ok {
+			if err = d.Set("http_header", vv); err != nil {
+				return fmt.Errorf("Error reading http_header: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_header: %v", err)
+		}
+	}
+
+	if err = d.Set("sesson_info_type", flattenObjectIcapProfileIcapHeadersSessonInfoType2edl(o["sesson-info-type"], d, "sesson_info_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sesson-info-type"], "ObjectIcapProfileIcapHeaders-SessonInfoType"); ok {
+			if err = d.Set("sesson_info_type", vv); err != nil {
+				return fmt.Errorf("Error reading sesson_info_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sesson_info_type: %v", err)
+		}
+	}
+
+	if err = d.Set("source", flattenObjectIcapProfileIcapHeadersSource2edl(o["source"], d, "source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source"], "ObjectIcapProfileIcapHeaders-Source"); ok {
+			if err = d.Set("source", vv); err != nil {
+				return fmt.Errorf("Error reading source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -309,6 +363,18 @@ func expandObjectIcapProfileIcapHeadersId2edl(d *schema.ResourceData, v interfac
 }
 
 func expandObjectIcapProfileIcapHeadersName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersHttpHeader2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersSessonInfoType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -348,6 +414,33 @@ func getObjectObjectIcapProfileIcapHeaders(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_header"); ok || d.HasChange("http_header") {
+		t, err := expandObjectIcapProfileIcapHeadersHttpHeader2edl(d, v, "http_header")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-header"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sesson_info_type"); ok || d.HasChange("sesson_info_type") {
+		t, err := expandObjectIcapProfileIcapHeadersSessonInfoType2edl(d, v, "sesson_info_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sesson-info-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source"); ok || d.HasChange("source") {
+		t, err := expandObjectIcapProfileIcapHeadersSource2edl(d, v, "source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source"] = t
 		}
 	}
 

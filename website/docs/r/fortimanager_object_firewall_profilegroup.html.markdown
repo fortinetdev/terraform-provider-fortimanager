@@ -53,6 +53,9 @@ The following arguments are supported:
 * `voip_profile` - Name of an existing VoIP profile.
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webfilter_profile` - Name of an existing Web filter profile.
+* `ia_profile` - Ia-Profile.
+* `isolator_profile` - Isolator-Profile.
+* `redirect_profile` - Redirect-Profile.
 
 
 ## Attribute Reference

@@ -225,6 +225,18 @@ func resourceObjectFirewallProfileProtocolOptionsHttp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dns_protection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"encrypted_file": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"encrypted_file_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -476,6 +488,18 @@ func flattenObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion2edl(v int
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpDnsProtection2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -836,6 +860,36 @@ func refreshObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("dns_protection", flattenObjectFirewallProfileProtocolOptionsHttpDnsProtection2edl(o["dns-protection"], d, "dns_protection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dns-protection"], "ObjectFirewallProfileProtocolOptionsHttp-DnsProtection"); ok {
+			if err = d.Set("dns_protection", vv); err != nil {
+				return fmt.Errorf("Error reading dns_protection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dns_protection: %v", err)
+		}
+	}
+
+	if err = d.Set("encrypted_file", flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFile2edl(o["encrypted-file"], d, "encrypted_file")); err != nil {
+		if vv, ok := fortiAPIPatch(o["encrypted-file"], "ObjectFirewallProfileProtocolOptionsHttp-EncryptedFile"); ok {
+			if err = d.Set("encrypted_file", vv); err != nil {
+				return fmt.Errorf("Error reading encrypted_file: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading encrypted_file: %v", err)
+		}
+	}
+
+	if err = d.Set("encrypted_file_log", flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog2edl(o["encrypted-file-log"], d, "encrypted_file_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["encrypted-file-log"], "ObjectFirewallProfileProtocolOptionsHttp-EncryptedFileLog"); ok {
+			if err = d.Set("encrypted_file_log", vv); err != nil {
+				return fmt.Errorf("Error reading encrypted_file_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading encrypted_file_log: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -982,6 +1036,18 @@ func expandObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion2edl(d *sch
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpDnsProtection2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpEncryptedFile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1300,6 +1366,33 @@ func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData) (
 			return &obj, err
 		} else if t != nil {
 			obj["verify-dns-for-policy-matching"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dns_protection"); ok || d.HasChange("dns_protection") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpDnsProtection2edl(d, v, "dns_protection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dns-protection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("encrypted_file"); ok || d.HasChange("encrypted_file") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpEncryptedFile2edl(d, v, "encrypted_file")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["encrypted-file"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("encrypted_file_log"); ok || d.HasChange("encrypted_file_log") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog2edl(d, v, "encrypted_file_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["encrypted-file-log"] = t
 		}
 	}
 

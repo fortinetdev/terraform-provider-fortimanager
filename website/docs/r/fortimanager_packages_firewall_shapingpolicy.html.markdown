@@ -97,6 +97,11 @@ The following arguments are supported:
 * `url_category` - IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to.
 * `users` - Apply this traffic shaping policy to individual users that have authenticated with the FortiGate.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `class_id_reverse` - Class-Id-Reverse.
+* `http_response_match` - Http-Response-Match. Valid values: `disable`, `enable`.
+
+* `service_type` - Service-Type. Valid values: `service`, `internet-service`.
+
 
 
 ## Attribute Reference

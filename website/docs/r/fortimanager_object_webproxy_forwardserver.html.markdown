@@ -55,6 +55,9 @@ The following arguments are supported:
 
 * `username` - HTTP authentication user name.
 * `vrf_select` - VRF ID used for connection to server.
+* `ippool` - Ippool.
+* `protocol` - Protocol. Valid values: `http`, `ftp`, `socks`.
+
 
 
 ## Attribute Reference

@@ -82,6 +82,12 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"explicit_web_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"application_charts": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1025,6 +1031,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"scim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scim_groups": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -1537,6 +1544,9 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -1602,6 +1612,10 @@ func flattenPackagesGlobalHeaderPolicyAppGroup(v interface{}, d *schema.Resource
 
 func flattenPackagesGlobalHeaderPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
+}
+
+func flattenPackagesGlobalHeaderPolicyExplicitWebProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalHeaderPolicyApplicationCharts(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2858,6 +2872,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading application: %v", err)
+		}
+	}
+
+	if err = d.Set("explicit_web_proxy", flattenPackagesGlobalHeaderPolicyExplicitWebProxy(o["explicit-web-proxy"], d, "explicit_web_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["explicit-web-proxy"], "PackagesGlobalHeaderPolicy-ExplicitWebProxy"); ok {
+			if err = d.Set("explicit_web_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
 		}
 	}
 
@@ -5816,6 +5840,10 @@ func expandPackagesGlobalHeaderPolicyApplication(d *schema.ResourceData, v inter
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesGlobalHeaderPolicyExplicitWebProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalHeaderPolicyApplicationCharts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -7061,6 +7089,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["application"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("explicit_web_proxy"); ok || d.HasChange("explicit_web_proxy") {
+		t, err := expandPackagesGlobalHeaderPolicyExplicitWebProxy(d, v, "explicit_web_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["explicit-web-proxy"] = t
 		}
 	}
 

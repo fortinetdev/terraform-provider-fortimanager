@@ -67,6 +67,7 @@ func resourceObjectDlpProfile() *schema.Resource {
 			"fortidata_error_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"full_archive_proto": &schema.Schema{
 				Type:     schema.TypeSet,

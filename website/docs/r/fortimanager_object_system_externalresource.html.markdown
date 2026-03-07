@@ -64,6 +64,10 @@ The following arguments are supported:
 * `username` - HTTP basic authentication user name.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
+* `proxy` - Proxy.
+* `proxy_password` - Proxy-Password.
+* `proxy_port` - Proxy-Port.
+* `proxy_username` - Proxy-Username.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:

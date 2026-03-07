@@ -408,6 +408,12 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"wildcard": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1012,7 +1018,7 @@ func flattenObjectFirewallAddress6DynamicMappingVisibility(v interface{}, d *sch
 }
 
 func flattenObjectFirewallAddress6DynamicMappingWildcard(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallAddress6EndIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1284,8 +1290,12 @@ func flattenObjectFirewallAddress6Uuid(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectFirewallAddress6Tags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddress6Wildcard(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallAddress6Visibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1676,6 +1686,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
+	if err = d.Set("tags", flattenObjectFirewallAddress6Tags(o["tags"], d, "tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tags"], "ObjectFirewallAddress6-Tags"); ok {
+			if err = d.Set("tags", vv); err != nil {
+				return fmt.Errorf("Error reading tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tags: %v", err)
 		}
 	}
 
@@ -2380,6 +2400,10 @@ func expandObjectFirewallAddress6Uuid(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectFirewallAddress6Tags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddress6Wildcard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2676,6 +2700,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tags"); ok || d.HasChange("tags") {
+		t, err := expandObjectFirewallAddress6Tags(d, v, "tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tags"] = t
 		}
 	}
 

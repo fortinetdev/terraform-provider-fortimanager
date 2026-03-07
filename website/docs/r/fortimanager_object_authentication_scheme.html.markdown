@@ -55,6 +55,10 @@ The following arguments are supported:
 * `user_cert` - Enable/disable authentication with user certificate (default = disable). Valid values: `disable`, `enable`.
 
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
+* `oidc_server` - Oidc-Server.
+* `oidc_timeout` - Oidc-Timeout.
+* `search_all_ldap_databases` - Search-All-Ldap-Databases. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

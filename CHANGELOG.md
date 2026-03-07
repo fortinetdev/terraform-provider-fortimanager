@@ -1,4 +1,42 @@
-## 1.16.0 (Unreleased)
+## 1.17.0 (Unreleased)
+
+## 1.16.0 (Mar 07, 2026)
+
+IMPROVEMENTS:
+* Fix issue of missing pkg_folder_path after import the resource;
+* Support FortiProxy APIs;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_firewall_profileprotocoloptions_proxyredirect`
+* **New Resource:** `fortimanager_object_firewall_proxyaddress6`
+* **New Resource:** `fortimanager_object_firewall_proxyaddress6_headergroup`
+* **New Resource:** `fortimanager_object_firewall_proxyaddress6_tagging`
+* **New Resource:** `fortimanager_object_firewall_proxyaddrgrp6`
+* **New Resource:** `fortimanager_object_firewall_proxyaddrgrp6_tagging`
+* **New Resource:** `fortimanager_object_firewall_shapingprofile_classes`
+* **New Resource:** `fortimanager_object_firewall_shapingprofile_classes_move`
+* **New Resource:** `fortimanager_object_firewall_sslsshprofile_sslclientcertificate`
+* **New Resource:** `fortimanager_object_icap_remoteserver`
+* **New Resource:** `fortimanager_object_icap_remoteservergroup`
+* **New Resource:** `fortimanager_object_icap_remoteservergroup_serverlist`
+* **New Resource:** `fortimanager_object_imageanalyzer_profile`
+* **New Resource:** `fortimanager_object_isolator_profile`
+* **New Resource:** `fortimanager_object_isolator_profile_entries`
+* **New Resource:** `fortimanager_object_isolator_profile_entries_move`
+* **New Resource:** `fortimanager_object_user_oidc`
+* **New Resource:** `fortimanager_object_webproxy_explicitproxy`
+* **New Resource:** `fortimanager_object_webproxy_redirectprofile`
+* **New Resource:** `fortimanager_object_webproxy_redirectprofile_entries`
+* **New Resource:** `fortimanager_object_webproxy_redirectprofile_entries_move`
+* **New Resource:** `fortimanager_object_webfilter_domainlist`
+* **New Resource:** `fortimanager_object_webfilter_domainlist_entries`
+* **New Resource:** `fortimanager_object_webfilter_urllist`
+* **New Resource:** `fortimanager_object_webfilter_urllist_entries`
+* **New Resource:** `fortimanager_object_ztna_serviceconnector`
+* **New Resource:** `fortimanager_object_ztna_trafficforwardproxy_urlroute`
+* **New Resource:** `fortimanager_packages_firewall_responseshapingpolicy`
+* **New Resource:** `fortimanager_packages_firewall_responseshapingpolicy_move`
+* **New Resource:** `fortimanager_systemp_log_syslogd_setting_logtemplates`
 
 ## 1.15.0 (Nov 12, 2025)
 

@@ -110,8 +110,8 @@ func resourceObjectWebfilterProfileOverrideUpdate(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
-	profile := d.Get("url_profile").(string)
-	paradict["profile"] = profile
+	parent_profile := d.Get("url_profile").(string)
+	paradict["profile"] = parent_profile
 
 	obj, err := getObjectObjectWebfilterProfileOverride(d)
 	if err != nil {
@@ -147,8 +147,8 @@ func resourceObjectWebfilterProfileOverrideDelete(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
-	profile := d.Get("url_profile").(string)
-	paradict["profile"] = profile
+	parent_profile := d.Get("url_profile").(string)
+	paradict["profile"] = parent_profile
 
 	wsParams["adom"] = adomv
 
@@ -176,17 +176,17 @@ func resourceObjectWebfilterProfileOverrideRead(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
-	profile := d.Get("url_profile").(string)
-	if profile == "" {
-		profile = importOptionChecking(m.(*FortiClient).Cfg, "url_profile")
-		if profile == "" {
+	parent_profile := d.Get("url_profile").(string)
+	if parent_profile == "" {
+		parent_profile = importOptionChecking(m.(*FortiClient).Cfg, "url_profile")
+		if parent_profile == "" {
 			return fmt.Errorf("Parameter url_profile is missing")
 		}
-		if err = d.Set("url_profile", profile); err != nil {
+		if err = d.Set("url_profile", parent_profile); err != nil {
 			return fmt.Errorf("Error set params url_profile: %v", err)
 		}
 	}
-	paradict["profile"] = profile
+	paradict["profile"] = parent_profile
 
 	o, err := c.ReadObjectWebfilterProfileOverride(mkey, paradict)
 	if err != nil {

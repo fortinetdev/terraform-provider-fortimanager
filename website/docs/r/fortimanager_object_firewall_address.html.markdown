@@ -102,6 +102,8 @@ The following arguments are supported:
 
 * `wildcard` - IP address and wildcard netmask.
 * `wildcard_fqdn` - Fully Qualified Domain Name with wildcard characters.
+* `pattern_end` - Pattern-End.
+* `pattern_start` - Pattern-Start.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:

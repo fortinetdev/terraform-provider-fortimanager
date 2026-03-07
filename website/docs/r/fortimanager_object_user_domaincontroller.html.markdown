@@ -61,6 +61,8 @@ The following arguments are supported:
 * `source_ip6` - FortiGate IPv6 address to be used for communication with the domain controller.
 * `source_port` - Source port to be used for communication with the domain controller.
 * `username` - User name to sign in with. Must have proper permissions for service.
+* `domain_name_src` - Domain-Name-Src. Valid values: `server`, `client`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `extra_server` block supports:

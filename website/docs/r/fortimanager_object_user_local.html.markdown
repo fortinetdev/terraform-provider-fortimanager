@@ -46,6 +46,24 @@ The following arguments are supported:
 * `fortitoken` - Two-factor recipient's FortiToken serial number.
 * `history0` - History0.
 * `history1` - History1.
+* `history10` - History10.
+* `history11` - History11.
+* `history12` - History12.
+* `history13` - History13.
+* `history14` - History14.
+* `history15` - History15.
+* `history16` - History16.
+* `history17` - History17.
+* `history18` - History18.
+* `history19` - History19.
+* `history2` - History2.
+* `history3` - History3.
+* `history4` - History4.
+* `history5` - History5.
+* `history6` - History6.
+* `history7` - History7.
+* `history8` - History8.
+* `history9` - History9.
 * `fosid` - Id.
 * `ldap_server` - Name of LDAP server with which the user must authenticate.
 * `name` - User name.

@@ -80,6 +80,132 @@ func resourceObjectUserLocal() *schema.Resource {
 				Sensitive: true,
 				Computed:  true,
 			},
+			"history10": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history11": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history12": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history13": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history14": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history15": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history16": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history17": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history18": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history19": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history2": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history3": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history4": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history5": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history6": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history7": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history8": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"history9": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -721,6 +847,78 @@ func expandObjectUserLocalHistory1(d *schema.ResourceData, v interface{}, pre st
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectUserLocalHistory10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory11(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory12(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory13(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory14(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory15(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory17(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory18(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory19(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserLocalId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -876,6 +1074,168 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["history1"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history10"); ok || d.HasChange("history10") {
+		t, err := expandObjectUserLocalHistory10(d, v, "history10")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history10"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history11"); ok || d.HasChange("history11") {
+		t, err := expandObjectUserLocalHistory11(d, v, "history11")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history11"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history12"); ok || d.HasChange("history12") {
+		t, err := expandObjectUserLocalHistory12(d, v, "history12")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history12"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history13"); ok || d.HasChange("history13") {
+		t, err := expandObjectUserLocalHistory13(d, v, "history13")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history13"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history14"); ok || d.HasChange("history14") {
+		t, err := expandObjectUserLocalHistory14(d, v, "history14")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history14"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history15"); ok || d.HasChange("history15") {
+		t, err := expandObjectUserLocalHistory15(d, v, "history15")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history15"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history16"); ok || d.HasChange("history16") {
+		t, err := expandObjectUserLocalHistory16(d, v, "history16")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history16"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history17"); ok || d.HasChange("history17") {
+		t, err := expandObjectUserLocalHistory17(d, v, "history17")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history17"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history18"); ok || d.HasChange("history18") {
+		t, err := expandObjectUserLocalHistory18(d, v, "history18")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history18"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history19"); ok || d.HasChange("history19") {
+		t, err := expandObjectUserLocalHistory19(d, v, "history19")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history19"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history2"); ok || d.HasChange("history2") {
+		t, err := expandObjectUserLocalHistory2(d, v, "history2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history3"); ok || d.HasChange("history3") {
+		t, err := expandObjectUserLocalHistory3(d, v, "history3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history4"); ok || d.HasChange("history4") {
+		t, err := expandObjectUserLocalHistory4(d, v, "history4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history4"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history5"); ok || d.HasChange("history5") {
+		t, err := expandObjectUserLocalHistory5(d, v, "history5")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history5"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history6"); ok || d.HasChange("history6") {
+		t, err := expandObjectUserLocalHistory6(d, v, "history6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history7"); ok || d.HasChange("history7") {
+		t, err := expandObjectUserLocalHistory7(d, v, "history7")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history7"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history8"); ok || d.HasChange("history8") {
+		t, err := expandObjectUserLocalHistory8(d, v, "history8")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history8"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history9"); ok || d.HasChange("history9") {
+		t, err := expandObjectUserLocalHistory9(d, v, "history9")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history9"] = t
 		}
 	}
 

@@ -58,6 +58,9 @@ The following arguments are supported:
 
 * `web_portal` - Enable/disable web portal for proxy transparent policy (default = enable). Valid values: `disable`, `enable`.
 
+* `form_auth_fallback` - Form-Auth-Fallback. Valid values: `disable`, `enable`.
+
+* `web_proxy` - Web-Proxy.
 
 
 ## Attribute Reference

@@ -39,6 +39,9 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `scan_oversize_log` - Scan-Oversize-Log. Valid values: `disable`, `enable`.
+
+* `scan_size_limit` - Scan-Size-Limit.
 * `n204_response` - Enable/disable allowance of 204 response from ICAP server. Valid values: `disable`, `enable`.
 
 * `n204_size_limit` - 204 response size limit to be saved by ICAP client in megabytes (1 - 10, default = 1 MB).
@@ -86,6 +89,8 @@ The following arguments are supported:
 * `streaming_content_bypass` - Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 
 * `timeout` - Time (in seconds) that ICAP client waits for the response from ICAP server.
+* `allow_204_response` - Allow-204-Response. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `icap_headers` block supports:
@@ -95,6 +100,11 @@ The `icap_headers` block supports:
 * `content` - HTTP header content.
 * `id` - HTTP forwarded header ID.
 * `name` - HTTP forwarded header name.
+* `http_header` - Http-Header.
+* `sesson_info_type` - Sesson-Info-Type. Valid values: `client-ip`, `user`, `upn`, `domain`, `local-grp`, `remote-grp`, `proxy-name`, `auth-user-uri`, `auth-group-uri`.
+
+* `source` - Source. Valid values: `content`, `http-header`, `session`.
+
 
 The `respmod_forward_rules` block supports:
 

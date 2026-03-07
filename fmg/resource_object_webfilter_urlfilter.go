@@ -116,6 +116,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 			"include_subdomains": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_addr_block": &schema.Schema{
 				Type:     schema.TypeString,

@@ -154,6 +154,24 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ia_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"isolator_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"redirect_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -381,6 +399,18 @@ func flattenObjectFirewallProfileGroupWafProfile(v interface{}, d *schema.Resour
 
 func flattenObjectFirewallProfileGroupWebfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectFirewallProfileGroupIaProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallProfileGroupIsolatorProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallProfileGroupRedirectProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[string]interface{}) error {
@@ -650,6 +680,36 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ia_profile", flattenObjectFirewallProfileGroupIaProfile(o["ia-profile"], d, "ia_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-profile"], "ObjectFirewallProfileGroup-IaProfile"); ok {
+			if err = d.Set("ia_profile", vv); err != nil {
+				return fmt.Errorf("Error reading ia_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("isolator_profile", flattenObjectFirewallProfileGroupIsolatorProfile(o["isolator-profile"], d, "isolator_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-profile"], "ObjectFirewallProfileGroup-IsolatorProfile"); ok {
+			if err = d.Set("isolator_profile", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("redirect_profile", flattenObjectFirewallProfileGroupRedirectProfile(o["redirect-profile"], d, "redirect_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["redirect-profile"], "ObjectFirewallProfileGroup-RedirectProfile"); ok {
+			if err = d.Set("redirect_profile", vv); err != nil {
+				return fmt.Errorf("Error reading redirect_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading redirect_profile: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -761,6 +821,18 @@ func expandObjectFirewallProfileGroupWafProfile(d *schema.ResourceData, v interf
 
 func expandObjectFirewallProfileGroupWebfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectFirewallProfileGroupIaProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProfileGroupIsolatorProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProfileGroupRedirectProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -997,6 +1069,33 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["webfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_profile"); ok || d.HasChange("ia_profile") {
+		t, err := expandObjectFirewallProfileGroupIaProfile(d, v, "ia_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isolator_profile"); ok || d.HasChange("isolator_profile") {
+		t, err := expandObjectFirewallProfileGroupIsolatorProfile(d, v, "isolator_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("redirect_profile"); ok || d.HasChange("redirect_profile") {
+		t, err := expandObjectFirewallProfileGroupRedirectProfile(d, v, "redirect_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["redirect-profile"] = t
 		}
 	}
 

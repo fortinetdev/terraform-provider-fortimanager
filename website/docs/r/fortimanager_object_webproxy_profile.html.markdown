@@ -61,6 +61,7 @@ The following arguments are supported:
 * `name` - Profile name.
 * `strip_encoding` - Enable/disable stripping unsupported encoding from the request header. Valid values: `disable`, `enable`.
 
+* `max_cache_object_size` - Max-Cache-Object-Size.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `headers` block supports:

@@ -54,6 +54,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"digest_rfc2069": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"domain_controller": &schema.Schema{
 				Type:     schema.TypeString,
@@ -82,6 +83,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"group_attr_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"kerberos_keytab": &schema.Schema{
 				Type:     schema.TypeString,
@@ -130,6 +132,20 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"oidc_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"oidc_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"search_all_ldap_databases": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 		},
 	}
@@ -328,6 +344,18 @@ func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.Reso
 	return flattenStringList(v)
 }
 
+func flattenObjectAuthenticationSchemeOidcServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectAuthenticationSchemeOidcTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeSearchAllLdapDatabases(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -515,6 +543,36 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("oidc_server", flattenObjectAuthenticationSchemeOidcServer(o["oidc-server"], d, "oidc_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["oidc-server"], "ObjectAuthenticationScheme-OidcServer"); ok {
+			if err = d.Set("oidc_server", vv); err != nil {
+				return fmt.Errorf("Error reading oidc_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading oidc_server: %v", err)
+		}
+	}
+
+	if err = d.Set("oidc_timeout", flattenObjectAuthenticationSchemeOidcTimeout(o["oidc-timeout"], d, "oidc_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["oidc-timeout"], "ObjectAuthenticationScheme-OidcTimeout"); ok {
+			if err = d.Set("oidc_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading oidc_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading oidc_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("search_all_ldap_databases", flattenObjectAuthenticationSchemeSearchAllLdapDatabases(o["search-all-ldap-databases"], d, "search_all_ldap_databases")); err != nil {
+		if vv, ok := fortiAPIPatch(o["search-all-ldap-databases"], "ObjectAuthenticationScheme-SearchAllLdapDatabases"); ok {
+			if err = d.Set("search_all_ldap_databases", vv); err != nil {
+				return fmt.Errorf("Error reading search_all_ldap_databases: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading search_all_ldap_databases: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -594,6 +652,18 @@ func expandObjectAuthenticationSchemeUserCert(d *schema.ResourceData, v interfac
 
 func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAuthenticationSchemeOidcServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAuthenticationSchemeOidcTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeSearchAllLdapDatabases(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -758,6 +828,33 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["user-database"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("oidc_server"); ok || d.HasChange("oidc_server") {
+		t, err := expandObjectAuthenticationSchemeOidcServer(d, v, "oidc_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["oidc-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("oidc_timeout"); ok || d.HasChange("oidc_timeout") {
+		t, err := expandObjectAuthenticationSchemeOidcTimeout(d, v, "oidc_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["oidc-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("search_all_ldap_databases"); ok || d.HasChange("search_all_ldap_databases") {
+		t, err := expandObjectAuthenticationSchemeSearchAllLdapDatabases(d, v, "search_all_ldap_databases")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["search-all-ldap-databases"] = t
 		}
 	}
 

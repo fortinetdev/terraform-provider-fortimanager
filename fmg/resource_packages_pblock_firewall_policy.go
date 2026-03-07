@@ -86,6 +86,98 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"detect_https_in_http_request": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"device_ownership": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"dynamic_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"explicit_web_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"extended_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"force_proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"http_tunnel_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"https_sub_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ia_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"implicit_proxy_detection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"isolator_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"max_session_per_user": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"pass_through": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"redirect_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"reverse_cache": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"service_connector": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_policy_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"transparent": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -840,6 +932,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 			"scim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scim_groups": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -1011,6 +1104,18 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"url_risk": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ztna_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"udp_timeout_pid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1155,6 +1260,12 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 			},
 			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"access_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1337,6 +1448,86 @@ func flattenPackagesPblockFirewallPolicyAppGroup2edl(v interface{}, d *schema.Re
 
 func flattenPackagesPblockFirewallPolicyApplication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyDetectHttpsInHttpRequest2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyDeviceOwnership2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyDynamicBypass2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyExplicitWebProxy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyExtendedLog2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyForceProxy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyHttpTunnelAuth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyHttpsSubCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyIaProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyImplicitProxyDetection2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyIsolatorProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyIsolatorServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyMaxSessionPerUser2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyPassThrough2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyRedirectProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyReverseCache2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyServiceConnector2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicySshPolicyCheck2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyTransparent2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPblockFirewallPolicyType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesPblockFirewallPolicyApplicationList2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2099,6 +2290,14 @@ func flattenPackagesPblockFirewallPolicyUrlCategory2edl(v interface{}, d *schema
 	return flattenStringList(v)
 }
 
+func flattenPackagesPblockFirewallPolicyUrlRisk2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyZtnaProxy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesPblockFirewallPolicyUdpTimeoutPid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -2227,6 +2426,10 @@ func flattenPackagesPblockFirewallPolicyZtnaTagsMatchLogic2edl(v interface{}, d 
 	return v
 }
 
+func flattenPackagesPblockFirewallPolicyAccessProxy2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -2301,6 +2504,206 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading application: %v", err)
+		}
+	}
+
+	if err = d.Set("detect_https_in_http_request", flattenPackagesPblockFirewallPolicyDetectHttpsInHttpRequest2edl(o["detect-https-in-http-request"], d, "detect_https_in_http_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["detect-https-in-http-request"], "PackagesPblockFirewallPolicy-DetectHttpsInHttpRequest"); ok {
+			if err = d.Set("detect_https_in_http_request", vv); err != nil {
+				return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+		}
+	}
+
+	if err = d.Set("device_ownership", flattenPackagesPblockFirewallPolicyDeviceOwnership2edl(o["device-ownership"], d, "device_ownership")); err != nil {
+		if vv, ok := fortiAPIPatch(o["device-ownership"], "PackagesPblockFirewallPolicy-DeviceOwnership"); ok {
+			if err = d.Set("device_ownership", vv); err != nil {
+				return fmt.Errorf("Error reading device_ownership: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading device_ownership: %v", err)
+		}
+	}
+
+	if err = d.Set("dynamic_bypass", flattenPackagesPblockFirewallPolicyDynamicBypass2edl(o["dynamic-bypass"], d, "dynamic_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dynamic-bypass"], "PackagesPblockFirewallPolicy-DynamicBypass"); ok {
+			if err = d.Set("dynamic_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+		}
+	}
+
+	if err = d.Set("explicit_web_proxy", flattenPackagesPblockFirewallPolicyExplicitWebProxy2edl(o["explicit-web-proxy"], d, "explicit_web_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["explicit-web-proxy"], "PackagesPblockFirewallPolicy-ExplicitWebProxy"); ok {
+			if err = d.Set("explicit_web_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("extended_log", flattenPackagesPblockFirewallPolicyExtendedLog2edl(o["extended-log"], d, "extended_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["extended-log"], "PackagesPblockFirewallPolicy-ExtendedLog"); ok {
+			if err = d.Set("extended_log", vv); err != nil {
+				return fmt.Errorf("Error reading extended_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading extended_log: %v", err)
+		}
+	}
+
+	if err = d.Set("force_proxy", flattenPackagesPblockFirewallPolicyForceProxy2edl(o["force-proxy"], d, "force_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["force-proxy"], "PackagesPblockFirewallPolicy-ForceProxy"); ok {
+			if err = d.Set("force_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading force_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading force_proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("http_tunnel_auth", flattenPackagesPblockFirewallPolicyHttpTunnelAuth2edl(o["http-tunnel-auth"], d, "http_tunnel_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-tunnel-auth"], "PackagesPblockFirewallPolicy-HttpTunnelAuth"); ok {
+			if err = d.Set("http_tunnel_auth", vv); err != nil {
+				return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("https_sub_category", flattenPackagesPblockFirewallPolicyHttpsSubCategory2edl(o["https-sub-category"], d, "https_sub_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["https-sub-category"], "PackagesPblockFirewallPolicy-HttpsSubCategory"); ok {
+			if err = d.Set("https_sub_category", vv); err != nil {
+				return fmt.Errorf("Error reading https_sub_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading https_sub_category: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_profile", flattenPackagesPblockFirewallPolicyIaProfile2edl(o["ia-profile"], d, "ia_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-profile"], "PackagesPblockFirewallPolicy-IaProfile"); ok {
+			if err = d.Set("ia_profile", vv); err != nil {
+				return fmt.Errorf("Error reading ia_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("implicit_proxy_detection", flattenPackagesPblockFirewallPolicyImplicitProxyDetection2edl(o["implicit-proxy-detection"], d, "implicit_proxy_detection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["implicit-proxy-detection"], "PackagesPblockFirewallPolicy-ImplicitProxyDetection"); ok {
+			if err = d.Set("implicit_proxy_detection", vv); err != nil {
+				return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
+		}
+	}
+
+	if err = d.Set("isolator_profile", flattenPackagesPblockFirewallPolicyIsolatorProfile2edl(o["isolator-profile"], d, "isolator_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-profile"], "PackagesPblockFirewallPolicy-IsolatorProfile"); ok {
+			if err = d.Set("isolator_profile", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("isolator_server", flattenPackagesPblockFirewallPolicyIsolatorServer2edl(o["isolator-server"], d, "isolator_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-server"], "PackagesPblockFirewallPolicy-IsolatorServer"); ok {
+			if err = d.Set("isolator_server", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
+	if err = d.Set("max_session_per_user", flattenPackagesPblockFirewallPolicyMaxSessionPerUser2edl(o["max-session-per-user"], d, "max_session_per_user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-session-per-user"], "PackagesPblockFirewallPolicy-MaxSessionPerUser"); ok {
+			if err = d.Set("max_session_per_user", vv); err != nil {
+				return fmt.Errorf("Error reading max_session_per_user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_session_per_user: %v", err)
+		}
+	}
+
+	if err = d.Set("pass_through", flattenPackagesPblockFirewallPolicyPassThrough2edl(o["pass-through"], d, "pass_through")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pass-through"], "PackagesPblockFirewallPolicy-PassThrough"); ok {
+			if err = d.Set("pass_through", vv); err != nil {
+				return fmt.Errorf("Error reading pass_through: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pass_through: %v", err)
+		}
+	}
+
+	if err = d.Set("redirect_profile", flattenPackagesPblockFirewallPolicyRedirectProfile2edl(o["redirect-profile"], d, "redirect_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["redirect-profile"], "PackagesPblockFirewallPolicy-RedirectProfile"); ok {
+			if err = d.Set("redirect_profile", vv); err != nil {
+				return fmt.Errorf("Error reading redirect_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading redirect_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("reverse_cache", flattenPackagesPblockFirewallPolicyReverseCache2edl(o["reverse-cache"], d, "reverse_cache")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reverse-cache"], "PackagesPblockFirewallPolicy-ReverseCache"); ok {
+			if err = d.Set("reverse_cache", vv); err != nil {
+				return fmt.Errorf("Error reading reverse_cache: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reverse_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("service_connector", flattenPackagesPblockFirewallPolicyServiceConnector2edl(o["service-connector"], d, "service_connector")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-connector"], "PackagesPblockFirewallPolicy-ServiceConnector"); ok {
+			if err = d.Set("service_connector", vv); err != nil {
+				return fmt.Errorf("Error reading service_connector: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_connector: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_policy_check", flattenPackagesPblockFirewallPolicySshPolicyCheck2edl(o["ssh-policy-check"], d, "ssh_policy_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-policy-check"], "PackagesPblockFirewallPolicy-SshPolicyCheck"); ok {
+			if err = d.Set("ssh_policy_check", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_policy_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_policy_check: %v", err)
+		}
+	}
+
+	if err = d.Set("transparent", flattenPackagesPblockFirewallPolicyTransparent2edl(o["transparent"], d, "transparent")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transparent"], "PackagesPblockFirewallPolicy-Transparent"); ok {
+			if err = d.Set("transparent", vv); err != nil {
+				return fmt.Errorf("Error reading transparent: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transparent: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenPackagesPblockFirewallPolicyType2edl(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "PackagesPblockFirewallPolicy-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
 		}
 	}
 
@@ -4204,6 +4607,26 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("url_risk", flattenPackagesPblockFirewallPolicyUrlRisk2edl(o["url-risk"], d, "url_risk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-risk"], "PackagesPblockFirewallPolicy-UrlRisk"); ok {
+			if err = d.Set("url_risk", vv); err != nil {
+				return fmt.Errorf("Error reading url_risk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_risk: %v", err)
+		}
+	}
+
+	if err = d.Set("ztna_proxy", flattenPackagesPblockFirewallPolicyZtnaProxy2edl(o["ztna-proxy"], d, "ztna_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-proxy"], "PackagesPblockFirewallPolicy-ZtnaProxy"); ok {
+			if err = d.Set("ztna_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_proxy: %v", err)
+		}
+	}
+
 	if err = d.Set("udp_timeout_pid", flattenPackagesPblockFirewallPolicyUdpTimeoutPid2edl(o["udp-timeout-pid"], d, "udp_timeout_pid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["udp-timeout-pid"], "PackagesPblockFirewallPolicy-UdpTimeoutPid"); ok {
 			if err = d.Set("udp_timeout_pid", vv); err != nil {
@@ -4524,6 +4947,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("access_proxy", flattenPackagesPblockFirewallPolicyAccessProxy2edl(o["access-proxy"], d, "access_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["access-proxy"], "PackagesPblockFirewallPolicy-AccessProxy"); ok {
+			if err = d.Set("access_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading access_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading access_proxy: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -4559,6 +4992,86 @@ func expandPackagesPblockFirewallPolicyAppGroup2edl(d *schema.ResourceData, v in
 
 func expandPackagesPblockFirewallPolicyApplication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyDetectHttpsInHttpRequest2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyDeviceOwnership2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyDynamicBypass2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyExplicitWebProxy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyExtendedLog2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyForceProxy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyHttpTunnelAuth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyHttpsSubCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyIaProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyImplicitProxyDetection2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyIsolatorProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyIsolatorServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyMaxSessionPerUser2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyPassThrough2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyRedirectProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyReverseCache2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyServiceConnector2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicySshPolicyCheck2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyTransparent2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPblockFirewallPolicyType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesPblockFirewallPolicyApplicationList2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5321,6 +5834,14 @@ func expandPackagesPblockFirewallPolicyUrlCategory2edl(d *schema.ResourceData, v
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesPblockFirewallPolicyUrlRisk2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesPblockFirewallPolicyZtnaProxy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesPblockFirewallPolicyUdpTimeoutPid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -5449,6 +5970,10 @@ func expandPackagesPblockFirewallPolicyZtnaTagsMatchLogic2edl(d *schema.Resource
 	return v, nil
 }
 
+func expandPackagesPblockFirewallPolicyAccessProxy2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -5512,6 +6037,186 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["application"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("detect_https_in_http_request"); ok || d.HasChange("detect_https_in_http_request") {
+		t, err := expandPackagesPblockFirewallPolicyDetectHttpsInHttpRequest2edl(d, v, "detect_https_in_http_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["detect-https-in-http-request"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("device_ownership"); ok || d.HasChange("device_ownership") {
+		t, err := expandPackagesPblockFirewallPolicyDeviceOwnership2edl(d, v, "device_ownership")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["device-ownership"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dynamic_bypass"); ok || d.HasChange("dynamic_bypass") {
+		t, err := expandPackagesPblockFirewallPolicyDynamicBypass2edl(d, v, "dynamic_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic-bypass"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("explicit_web_proxy"); ok || d.HasChange("explicit_web_proxy") {
+		t, err := expandPackagesPblockFirewallPolicyExplicitWebProxy2edl(d, v, "explicit_web_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["explicit-web-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
+		t, err := expandPackagesPblockFirewallPolicyExtendedLog2edl(d, v, "extended_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["extended-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("force_proxy"); ok || d.HasChange("force_proxy") {
+		t, err := expandPackagesPblockFirewallPolicyForceProxy2edl(d, v, "force_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["force-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_tunnel_auth"); ok || d.HasChange("http_tunnel_auth") {
+		t, err := expandPackagesPblockFirewallPolicyHttpTunnelAuth2edl(d, v, "http_tunnel_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-tunnel-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("https_sub_category"); ok || d.HasChange("https_sub_category") {
+		t, err := expandPackagesPblockFirewallPolicyHttpsSubCategory2edl(d, v, "https_sub_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["https-sub-category"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_profile"); ok || d.HasChange("ia_profile") {
+		t, err := expandPackagesPblockFirewallPolicyIaProfile2edl(d, v, "ia_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("implicit_proxy_detection"); ok || d.HasChange("implicit_proxy_detection") {
+		t, err := expandPackagesPblockFirewallPolicyImplicitProxyDetection2edl(d, v, "implicit_proxy_detection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["implicit-proxy-detection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isolator_profile"); ok || d.HasChange("isolator_profile") {
+		t, err := expandPackagesPblockFirewallPolicyIsolatorProfile2edl(d, v, "isolator_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isolator_server"); ok || d.HasChange("isolator_server") {
+		t, err := expandPackagesPblockFirewallPolicyIsolatorServer2edl(d, v, "isolator_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_session_per_user"); ok || d.HasChange("max_session_per_user") {
+		t, err := expandPackagesPblockFirewallPolicyMaxSessionPerUser2edl(d, v, "max_session_per_user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-session-per-user"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pass_through"); ok || d.HasChange("pass_through") {
+		t, err := expandPackagesPblockFirewallPolicyPassThrough2edl(d, v, "pass_through")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pass-through"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("redirect_profile"); ok || d.HasChange("redirect_profile") {
+		t, err := expandPackagesPblockFirewallPolicyRedirectProfile2edl(d, v, "redirect_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["redirect-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reverse_cache"); ok || d.HasChange("reverse_cache") {
+		t, err := expandPackagesPblockFirewallPolicyReverseCache2edl(d, v, "reverse_cache")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reverse-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_connector"); ok || d.HasChange("service_connector") {
+		t, err := expandPackagesPblockFirewallPolicyServiceConnector2edl(d, v, "service_connector")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-connector"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_policy_check"); ok || d.HasChange("ssh_policy_check") {
+		t, err := expandPackagesPblockFirewallPolicySshPolicyCheck2edl(d, v, "ssh_policy_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-policy-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("transparent"); ok || d.HasChange("transparent") {
+		t, err := expandPackagesPblockFirewallPolicyTransparent2edl(d, v, "transparent")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transparent"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandPackagesPblockFirewallPolicyType2edl(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
 		}
 	}
 
@@ -7225,6 +7930,24 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("url_risk"); ok || d.HasChange("url_risk") {
+		t, err := expandPackagesPblockFirewallPolicyUrlRisk2edl(d, v, "url_risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-risk"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_proxy"); ok || d.HasChange("ztna_proxy") {
+		t, err := expandPackagesPblockFirewallPolicyZtnaProxy2edl(d, v, "ztna_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-proxy"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("udp_timeout_pid"); ok || d.HasChange("udp_timeout_pid") {
 		t, err := expandPackagesPblockFirewallPolicyUdpTimeoutPid2edl(d, v, "udp_timeout_pid")
 		if err != nil {
@@ -7510,6 +8233,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-tags-match-logic"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("access_proxy"); ok || d.HasChange("access_proxy") {
+		t, err := expandPackagesPblockFirewallPolicyAccessProxy2edl(d, v, "access_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["access-proxy"] = t
 		}
 	}
 

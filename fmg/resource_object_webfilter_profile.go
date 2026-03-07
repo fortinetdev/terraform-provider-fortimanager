@@ -580,6 +580,10 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"qwant_restrict": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -674,6 +678,10 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Computed: true,
 			},
 			"wisp_servers": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ia_categorization": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -1856,6 +1864,11 @@ func flattenObjectWebfilterProfileWeb(v interface{}, d *schema.ResourceData, pre
 		result["youtube_restrict"] = flattenObjectWebfilterProfileWebYoutubeRestrict(i["youtube-restrict"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "qwant_restrict"
+	if _, ok := i["qwant-restrict"]; ok {
+		result["qwant_restrict"] = flattenObjectWebfilterProfileWebQwantRestrict(i["qwant-restrict"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1909,6 +1922,10 @@ func flattenObjectWebfilterProfileWebWhitelist(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWebfilterProfileWebYoutubeRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileWebQwantRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1994,6 +2011,10 @@ func flattenObjectWebfilterProfileWispAlgorithm(v interface{}, d *schema.Resourc
 
 func flattenObjectWebfilterProfileWispServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectWebfilterProfileIaCategorization(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectWebfilterProfileYoutubeChannelFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -2531,6 +2552,16 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading wisp_servers: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_categorization", flattenObjectWebfilterProfileIaCategorization(o["ia-categorization"], d, "ia_categorization")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-categorization"], "ObjectWebfilterProfile-IaCategorization"); ok {
+			if err = d.Set("ia_categorization", vv); err != nil {
+				return fmt.Errorf("Error reading ia_categorization: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_categorization: %v", err)
 		}
 	}
 
@@ -3521,6 +3552,10 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["youtube-restrict"], _ = expandObjectWebfilterProfileWebYoutubeRestrict(d, i["youtube_restrict"], pre_append)
 	}
+	pre_append = pre + ".0." + "qwant_restrict"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["qwant-restrict"], _ = expandObjectWebfilterProfileWebQwantRestrict(d, i["qwant_restrict"], pre_append)
+	}
 
 	return result, nil
 }
@@ -3574,6 +3609,10 @@ func expandObjectWebfilterProfileWebWhitelist(d *schema.ResourceData, v interfac
 }
 
 func expandObjectWebfilterProfileWebYoutubeRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileWebQwantRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3659,6 +3698,10 @@ func expandObjectWebfilterProfileWispAlgorithm(d *schema.ResourceData, v interfa
 
 func expandObjectWebfilterProfileWispServers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectWebfilterProfileIaCategorization(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWebfilterProfileYoutubeChannelFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4058,6 +4101,15 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["wisp-servers"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_categorization"); ok || d.HasChange("ia_categorization") {
+		t, err := expandObjectWebfilterProfileIaCategorization(d, v, "ia_categorization")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-categorization"] = t
 		}
 	}
 

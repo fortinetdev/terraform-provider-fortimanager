@@ -262,6 +262,9 @@ func resourcePackagesFirewallDosPolicy6AnomalyRead(d *schema.ResourceData, m int
 	dos_policy6 := d.Get("dos_policy6").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")

@@ -95,6 +95,12 @@ The following arguments are supported:
 
 * `verify_dns_for_policy_matching` - Enable/disable verification of DNS for policy matching. Valid values: `disable`, `enable`.
 
+* `dns_protection` - Dns-Protection. Valid values: `disable`, `enable`.
+
+* `encrypted_file` - Encrypted-File. Valid values: `block`, `pass`, `inspect`.
+
+* `encrypted_file_log` - Encrypted-File-Log. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

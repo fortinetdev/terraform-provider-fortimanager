@@ -185,6 +185,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"https_sub_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icap_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -638,6 +639,9 @@ func resourcePackagesFirewallProxyPolicyRead(d *schema.ResourceData, m interface
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")

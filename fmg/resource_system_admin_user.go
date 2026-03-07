@@ -354,6 +354,7 @@ func resourceSystemAdminUser() *schema.Resource {
 			"old_password": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pager_number": &schema.Schema{
 				Type:     schema.TypeString,

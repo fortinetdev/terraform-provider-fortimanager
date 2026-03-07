@@ -55,6 +55,8 @@ The following arguments are supported:
 
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+* `explicit_ftp_tls` - Explicit-Ftp-Tls. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

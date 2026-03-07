@@ -58,6 +58,7 @@ func resourceSystempLogSyslogdFilter() *schema.Resource {
 			"debug": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"forti_switch": &schema.Schema{
 				Type:     schema.TypeString,

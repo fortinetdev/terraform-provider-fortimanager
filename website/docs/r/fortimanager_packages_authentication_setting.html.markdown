@@ -58,6 +58,8 @@ The following arguments are supported:
 * `sso_auth_scheme` - Single-Sign-On authentication method (scheme name).
 * `update_time` - Time of the last update.
 * `user_cert_ca` - CA certificate used for client certificate verification.
+* `log_auth_request` - Log-Auth-Request. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

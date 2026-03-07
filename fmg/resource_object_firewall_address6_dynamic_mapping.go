@@ -597,7 +597,7 @@ func flattenObjectFirewallAddress6DynamicMappingVisibility2edl(v interface{}, d 
 }
 
 func flattenObjectFirewallAddress6DynamicMappingWildcard2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o map[string]interface{}) error {

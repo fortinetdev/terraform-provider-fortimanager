@@ -496,6 +496,18 @@ func resourceObjectUserLdap() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"max_connections": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"ssl_max_proto_version": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"validate_server_certificate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1368,6 +1380,18 @@ func flattenObjectUserLdapVrfSelect(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
+func flattenObjectUserLdapMaxConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapSslMaxProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapValidateServerCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -1820,6 +1844,36 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading vrf_select: %v", err)
+		}
+	}
+
+	if err = d.Set("max_connections", flattenObjectUserLdapMaxConnections(o["max-connections"], d, "max_connections")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-connections"], "ObjectUserLdap-MaxConnections"); ok {
+			if err = d.Set("max_connections", vv); err != nil {
+				return fmt.Errorf("Error reading max_connections: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_connections: %v", err)
+		}
+	}
+
+	if err = d.Set("ssl_max_proto_version", flattenObjectUserLdapSslMaxProtoVersion(o["ssl-max-proto-version"], d, "ssl_max_proto_version")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-max-proto-version"], "ObjectUserLdap-SslMaxProtoVersion"); ok {
+			if err = d.Set("ssl_max_proto_version", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_max_proto_version: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_max_proto_version: %v", err)
+		}
+	}
+
+	if err = d.Set("validate_server_certificate", flattenObjectUserLdapValidateServerCertificate(o["validate-server-certificate"], d, "validate_server_certificate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["validate-server-certificate"], "ObjectUserLdap-ValidateServerCertificate"); ok {
+			if err = d.Set("validate_server_certificate", vv); err != nil {
+				return fmt.Errorf("Error reading validate_server_certificate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading validate_server_certificate: %v", err)
 		}
 	}
 
@@ -2530,6 +2584,18 @@ func expandObjectUserLdapVrfSelect(d *schema.ResourceData, v interface{}, pre st
 	return v, nil
 }
 
+func expandObjectUserLdapMaxConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapSslMaxProtoVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapValidateServerCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -2926,6 +2992,33 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["vrf-select"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_connections"); ok || d.HasChange("max_connections") {
+		t, err := expandObjectUserLdapMaxConnections(d, v, "max_connections")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-connections"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_max_proto_version"); ok || d.HasChange("ssl_max_proto_version") {
+		t, err := expandObjectUserLdapSslMaxProtoVersion(d, v, "ssl_max_proto_version")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-max-proto-version"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("validate_server_certificate"); ok || d.HasChange("validate_server_certificate") {
+		t, err := expandObjectUserLdapValidateServerCertificate(d, v, "validate_server_certificate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["validate-server-certificate"] = t
 		}
 	}
 

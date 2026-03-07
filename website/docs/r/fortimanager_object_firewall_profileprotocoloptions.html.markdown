@@ -19,6 +19,7 @@ Configure protocol options.
 >- `mapi`: `fortimanager_object_firewall_profileprotocoloptions_mapi`
 >- `nntp`: `fortimanager_object_firewall_profileprotocoloptions_nntp`
 >- `pop3`: `fortimanager_object_firewall_profileprotocoloptions_pop3`
+>- `proxy_redirect`: `fortimanager_object_firewall_profileprotocoloptions_proxyredirect`
 >- `smtp`: `fortimanager_object_firewall_profileprotocoloptions_smtp`
 >- `ssh`: `fortimanager_object_firewall_profileprotocoloptions_ssh`
 
@@ -63,6 +64,7 @@ The following arguments are supported:
 * `ssh` - Ssh. The structure of `ssh` block is documented below.
 * `switching_protocols_log` - Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
 
+* `proxy_redirect` - Proxy-Redirect. The structure of `proxy_redirect` block is documented below.
 
 The `cifs` block supports:
 
@@ -205,6 +207,12 @@ The `http` block supports:
 
 * `verify_dns_for_policy_matching` - Enable/disable verification of DNS for policy matching. Valid values: `disable`, `enable`.
 
+* `dns_protection` - Dns-Protection. Valid values: `disable`, `enable`.
+
+* `encrypted_file` - Encrypted-File. Valid values: `block`, `pass`, `inspect`.
+
+* `encrypted_file_log` - Encrypted-File-Log. Valid values: `disable`, `enable`.
+
 
 The `imap` block supports:
 
@@ -224,6 +232,8 @@ The `imap` block supports:
 
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+* `address_ip_rating` - Address-Ip-Rating. Valid values: `disable`, `enable`.
+
 
 The `mail_signature` block supports:
 
@@ -320,6 +330,14 @@ The `ssh` block supports:
 
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
+* `explicit_ftp_tls` - Explicit-Ftp-Tls. Valid values: `disable`, `enable`.
+
+
+The `proxy_redirect` block supports:
+
+* `ports` - Ports.
+* `status` - Status. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

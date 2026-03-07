@@ -155,6 +155,10 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"log_auth_request": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -247,6 +251,9 @@ func resourcePackagesAuthenticationSettingRead(d *schema.ResourceData, m interfa
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -364,6 +371,10 @@ func flattenPackagesAuthenticationSettingUpdateTime(v interface{}, d *schema.Res
 
 func flattenPackagesAuthenticationSettingUserCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenPackagesAuthenticationSettingLogAuthRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[string]interface{}) error {
@@ -593,6 +604,16 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("log_auth_request", flattenPackagesAuthenticationSettingLogAuthRequest(o["log-auth-request"], d, "log_auth_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-auth-request"], "PackagesAuthenticationSetting-LogAuthRequest"); ok {
+			if err = d.Set("log_auth_request", vv); err != nil {
+				return fmt.Errorf("Error reading log_auth_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_auth_request: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -688,6 +709,10 @@ func expandPackagesAuthenticationSettingUpdateTime(d *schema.ResourceData, v int
 
 func expandPackagesAuthenticationSettingUserCertCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandPackagesAuthenticationSettingLogAuthRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -888,6 +913,15 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["user-cert-ca"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_auth_request"); ok || d.HasChange("log_auth_request") {
+		t, err := expandPackagesAuthenticationSettingLogAuthRequest(d, v, "log_auth_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-auth-request"] = t
 		}
 	}
 

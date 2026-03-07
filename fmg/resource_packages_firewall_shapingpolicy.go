@@ -297,6 +297,18 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"class_id_reverse": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"http_response_match": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"service_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -432,6 +444,9 @@ func resourcePackagesFirewallShapingPolicyRead(d *schema.ResourceData, m interfa
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -652,6 +667,18 @@ func flattenPackagesFirewallShapingPolicyUsers(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesFirewallShapingPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallShapingPolicyClassIdReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallShapingPolicyHttpResponseMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallShapingPolicyServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1142,6 +1169,36 @@ func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("class_id_reverse", flattenPackagesFirewallShapingPolicyClassIdReverse(o["class-id-reverse"], d, "class_id_reverse")); err != nil {
+		if vv, ok := fortiAPIPatch(o["class-id-reverse"], "PackagesFirewallShapingPolicy-ClassIdReverse"); ok {
+			if err = d.Set("class_id_reverse", vv); err != nil {
+				return fmt.Errorf("Error reading class_id_reverse: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading class_id_reverse: %v", err)
+		}
+	}
+
+	if err = d.Set("http_response_match", flattenPackagesFirewallShapingPolicyHttpResponseMatch(o["http-response-match"], d, "http_response_match")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-response-match"], "PackagesFirewallShapingPolicy-HttpResponseMatch"); ok {
+			if err = d.Set("http_response_match", vv); err != nil {
+				return fmt.Errorf("Error reading http_response_match: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_response_match: %v", err)
+		}
+	}
+
+	if err = d.Set("service_type", flattenPackagesFirewallShapingPolicyServiceType(o["service-type"], d, "service_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-type"], "PackagesFirewallShapingPolicy-ServiceType"); ok {
+			if err = d.Set("service_type", vv); err != nil {
+				return fmt.Errorf("Error reading service_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_type: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1340,6 +1397,18 @@ func expandPackagesFirewallShapingPolicyUsers(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallShapingPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyClassIdReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyHttpResponseMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1775,6 +1844,33 @@ func getObjectPackagesFirewallShapingPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("class_id_reverse"); ok || d.HasChange("class_id_reverse") {
+		t, err := expandPackagesFirewallShapingPolicyClassIdReverse(d, v, "class_id_reverse")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["class-id-reverse"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_response_match"); ok || d.HasChange("http_response_match") {
+		t, err := expandPackagesFirewallShapingPolicyHttpResponseMatch(d, v, "http_response_match")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-response-match"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_type"); ok || d.HasChange("service_type") {
+		t, err := expandPackagesFirewallShapingPolicyServiceType(d, v, "service_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-type"] = t
 		}
 	}
 

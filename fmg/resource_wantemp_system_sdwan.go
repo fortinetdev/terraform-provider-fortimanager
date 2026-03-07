@@ -926,6 +926,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 						"fib_best_match_force": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gateway": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1113,6 +1114,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 						"sla_compare_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sla_stickiness": &schema.Schema{
 							Type:     schema.TypeString,

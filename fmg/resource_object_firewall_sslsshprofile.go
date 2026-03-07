@@ -908,6 +908,10 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"finger_print_category": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -1026,6 +1030,39 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"ssl_client_certificate": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"caname": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"cert": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"keyring_list": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"whitelist": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2467,7 +2504,7 @@ func flattenObjectFirewallSslSshProfileSsl(v interface{}, d *schema.ResourceData
 
 	pre_append = pre + ".0." + "client_certificate"
 	if _, ok := i["client-certificate"]; ok {
-		result["client_certificate"] = flattenObjectFirewallSslSshProfileSslClientCertificate(i["client-certificate"], d, pre_append)
+		result["client_certificate"] = flattenObjectFirewallSslSshProfileSslClientCertificateU(i["client-certificate"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "encrypted_client_hello"
@@ -2559,7 +2596,7 @@ func flattenObjectFirewallSslSshProfileSslCertValidationTimeout(v interface{}, d
 	return v
 }
 
-func flattenObjectFirewallSslSshProfileSslClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallSslSshProfileSslClientCertificateU(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2684,6 +2721,12 @@ func flattenObjectFirewallSslSshProfileSslExempt(v interface{}, d *schema.Resour
 			tmp["wildcard_fqdn"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslExempt-WildcardFqdn")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "finger_print_category"
+		if _, ok := i["finger-print-category"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslExemptFingerPrintCategory(i["finger-print-category"], d, pre_append)
+			tmp["finger_print_category"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslExempt-FingerPrintCategory")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -2720,6 +2763,10 @@ func flattenObjectFirewallSslSshProfileSslExemptType(v interface{}, d *schema.Re
 
 func flattenObjectFirewallSslSshProfileSslExemptWildcardFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallSslSshProfileSslExemptFingerPrintCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptionIpRating(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2924,6 +2971,55 @@ func flattenObjectFirewallSslSshProfileUntrustedCaname(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallSslSshProfileUseSslServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslClientCertificate(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "caname"
+	if _, ok := i["caname"]; ok {
+		result["caname"] = flattenObjectFirewallSslSshProfileSslClientCertificateCaname(i["caname"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "cert"
+	if _, ok := i["cert"]; ok {
+		result["cert"] = flattenObjectFirewallSslSshProfileSslClientCertificateCert(i["cert"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "keyring_list"
+	if _, ok := i["keyring-list"]; ok {
+		result["keyring_list"] = flattenObjectFirewallSslSshProfileSslClientCertificateKeyringList(i["keyring-list"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectFirewallSslSshProfileSslClientCertificateStatus(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallSslSshProfileSslClientCertificateCaname(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallSslSshProfileSslClientCertificateCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallSslSshProfileSslClientCertificateKeyringList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallSslSshProfileSslClientCertificateStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3413,6 +3509,30 @@ func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading use_ssl_server: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("ssl_client_certificate", flattenObjectFirewallSslSshProfileSslClientCertificate(o["ssl-client-certificate"], d, "ssl_client_certificate")); err != nil {
+			if vv, ok := fortiAPIPatch(o["ssl-client-certificate"], "ObjectFirewallSslSshProfile-SslClientCertificate"); ok {
+				if err = d.Set("ssl_client_certificate", vv); err != nil {
+					return fmt.Errorf("Error reading ssl_client_certificate: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading ssl_client_certificate: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("ssl_client_certificate"); ok {
+			if err = d.Set("ssl_client_certificate", flattenObjectFirewallSslSshProfileSslClientCertificate(o["ssl-client-certificate"], d, "ssl_client_certificate")); err != nil {
+				if vv, ok := fortiAPIPatch(o["ssl-client-certificate"], "ObjectFirewallSslSshProfile-SslClientCertificate"); ok {
+					if err = d.Set("ssl_client_certificate", vv); err != nil {
+						return fmt.Errorf("Error reading ssl_client_certificate: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading ssl_client_certificate: %v", err)
+				}
+			}
 		}
 	}
 
@@ -4615,7 +4735,7 @@ func expandObjectFirewallSslSshProfileSsl(d *schema.ResourceData, v interface{},
 	}
 	pre_append = pre + ".0." + "client_certificate"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["client-certificate"], _ = expandObjectFirewallSslSshProfileSslClientCertificate(d, i["client_certificate"], pre_append)
+		result["client-certificate"], _ = expandObjectFirewallSslSshProfileSslClientCertificateU(d, i["client_certificate"], pre_append)
 	}
 	pre_append = pre + ".0." + "encrypted_client_hello"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4693,7 +4813,7 @@ func expandObjectFirewallSslSshProfileSslCertValidationTimeout(d *schema.Resourc
 	return v, nil
 }
 
-func expandObjectFirewallSslSshProfileSslClientCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallSslSshProfileSslClientCertificateU(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4806,6 +4926,11 @@ func expandObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData, v interf
 			tmp["wildcard-fqdn"], _ = expandObjectFirewallSslSshProfileSslExemptWildcardFqdn(d, i["wildcard_fqdn"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "finger_print_category"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["finger-print-category"], _ = expandObjectFirewallSslSshProfileSslExemptFingerPrintCategory(d, i["finger_print_category"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -4842,6 +4967,10 @@ func expandObjectFirewallSslSshProfileSslExemptType(d *schema.ResourceData, v in
 
 func expandObjectFirewallSslSshProfileSslExemptWildcardFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallSslSshProfileSslExemptFingerPrintCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptionIpRating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5027,6 +5156,52 @@ func expandObjectFirewallSslSshProfileUntrustedCaname(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallSslSshProfileUseSslServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSslClientCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "caname"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["caname"], _ = expandObjectFirewallSslSshProfileSslClientCertificateCaname(d, i["caname"], pre_append)
+	}
+	pre_append = pre + ".0." + "cert"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["cert"], _ = expandObjectFirewallSslSshProfileSslClientCertificateCert(d, i["cert"], pre_append)
+	}
+	pre_append = pre + ".0." + "keyring_list"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["keyring-list"], _ = expandObjectFirewallSslSshProfileSslClientCertificateKeyringList(d, i["keyring_list"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["status"], _ = expandObjectFirewallSslSshProfileSslClientCertificateStatus(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallSslSshProfileSslClientCertificateCaname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallSslSshProfileSslClientCertificateCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallSslSshProfileSslClientCertificateKeyringList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallSslSshProfileSslClientCertificateStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5322,6 +5497,15 @@ func getObjectObjectFirewallSslSshProfile(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["use-ssl-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_client_certificate"); ok || d.HasChange("ssl_client_certificate") {
+		t, err := expandObjectFirewallSslSshProfileSslClientCertificate(d, v, "ssl_client_certificate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-client-certificate"] = t
 		}
 	}
 

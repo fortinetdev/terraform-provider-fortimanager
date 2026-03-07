@@ -107,6 +107,7 @@ func resourcePackagesUserNacPolicy() *schema.Resource {
 			"match_remove": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"match_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -307,6 +308,9 @@ func resourcePackagesUserNacPolicyRead(d *schema.ResourceData, m interface{}) er
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")

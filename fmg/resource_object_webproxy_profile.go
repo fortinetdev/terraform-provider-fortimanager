@@ -150,6 +150,10 @@ func resourceObjectWebProxyProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"max_cache_object_size": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -443,6 +447,10 @@ func flattenObjectWebProxyProfileStripEncoding(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectWebProxyProfileMaxCacheObjectSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectWebProxyProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -585,6 +593,16 @@ func refreshObjectObjectWebProxyProfile(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading strip_encoding: %v", err)
+		}
+	}
+
+	if err = d.Set("max_cache_object_size", flattenObjectWebProxyProfileMaxCacheObjectSize(o["max-cache-object-size"], d, "max_cache_object_size")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-cache-object-size"], "ObjectWebProxyProfile-MaxCacheObjectSize"); ok {
+			if err = d.Set("max_cache_object_size", vv); err != nil {
+				return fmt.Errorf("Error reading max_cache_object_size: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_cache_object_size: %v", err)
 		}
 	}
 
@@ -746,6 +764,10 @@ func expandObjectWebProxyProfileStripEncoding(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectWebProxyProfileMaxCacheObjectSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -854,6 +876,15 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["strip-encoding"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_cache_object_size"); ok || d.HasChange("max_cache_object_size") {
+		t, err := expandObjectWebProxyProfileMaxCacheObjectSize(d, v, "max_cache_object_size")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-cache-object-size"] = t
 		}
 	}
 

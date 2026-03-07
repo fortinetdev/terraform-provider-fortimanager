@@ -159,10 +159,12 @@ func resourceObjectUserSaml() *schema.Resource {
 						"scim_group_attr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scim_user_attr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"single_logout_url": &schema.Schema{
 							Type:     schema.TypeString,
@@ -235,10 +237,12 @@ func resourceObjectUserSaml() *schema.Resource {
 			"scim_group_attr_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scim_user_attr_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"single_logout_url": &schema.Schema{
 				Type:     schema.TypeString,

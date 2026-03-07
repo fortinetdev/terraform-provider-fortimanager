@@ -85,6 +85,10 @@ func resourceObjectFirewallSslSshProfileSslExempt() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"finger_print_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -259,6 +263,10 @@ func flattenObjectFirewallSslSshProfileSslExemptWildcardFqdn2edl(v interface{}, 
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallSslSshProfileSslExemptFingerPrintCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -336,6 +344,16 @@ func refreshObjectObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("finger_print_category", flattenObjectFirewallSslSshProfileSslExemptFingerPrintCategory2edl(o["finger-print-category"], d, "finger_print_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["finger-print-category"], "ObjectFirewallSslSshProfileSslExempt-FingerPrintCategory"); ok {
+			if err = d.Set("finger_print_category", vv); err != nil {
+				return fmt.Errorf("Error reading finger_print_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading finger_print_category: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -371,6 +389,10 @@ func expandObjectFirewallSslSshProfileSslExemptType2edl(d *schema.ResourceData, 
 
 func expandObjectFirewallSslSshProfileSslExemptWildcardFqdn2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallSslSshProfileSslExemptFingerPrintCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -436,6 +458,15 @@ func getObjectObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["wildcard-fqdn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("finger_print_category"); ok || d.HasChange("finger_print_category") {
+		t, err := expandObjectFirewallSslSshProfileSslExemptFingerPrintCategory2edl(d, v, "finger_print_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["finger-print-category"] = t
 		}
 	}
 

@@ -63,6 +63,14 @@ func resourceObjectUserFortitoken() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"os_ver": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"reg_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -204,6 +212,14 @@ func flattenObjectUserFortitokenStatus(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectUserFortitokenOsVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserFortitokenRegId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserFortitoken(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -251,6 +267,26 @@ func refreshObjectObjectUserFortitoken(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("os_ver", flattenObjectUserFortitokenOsVer(o["os-ver"], d, "os_ver")); err != nil {
+		if vv, ok := fortiAPIPatch(o["os-ver"], "ObjectUserFortitoken-OsVer"); ok {
+			if err = d.Set("os_ver", vv); err != nil {
+				return fmt.Errorf("Error reading os_ver: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading os_ver: %v", err)
+		}
+	}
+
+	if err = d.Set("reg_id", flattenObjectUserFortitokenRegId(o["reg-id"], d, "reg_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reg-id"], "ObjectUserFortitoken-RegId"); ok {
+			if err = d.Set("reg_id", vv); err != nil {
+				return fmt.Errorf("Error reading reg_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reg_id: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -273,6 +309,14 @@ func expandObjectUserFortitokenSerialNumber(d *schema.ResourceData, v interface{
 }
 
 func expandObjectUserFortitokenStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserFortitokenOsVer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserFortitokenRegId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -312,6 +356,24 @@ func getObjectObjectUserFortitoken(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("os_ver"); ok || d.HasChange("os_ver") {
+		t, err := expandObjectUserFortitokenOsVer(d, v, "os_ver")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["os-ver"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reg_id"); ok || d.HasChange("reg_id") {
+		t, err := expandObjectUserFortitokenRegId(d, v, "reg_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reg-id"] = t
 		}
 	}
 

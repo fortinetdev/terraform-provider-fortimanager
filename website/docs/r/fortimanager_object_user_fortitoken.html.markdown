@@ -32,6 +32,8 @@ The following arguments are supported:
 * `serial_number` - Serial number.
 * `status` - Status Valid values: `lock`, `active`.
 
+* `os_ver` - Device Mobile Version.
+* `reg_id` - Device Reg ID.
 
 
 ## Attribute Reference

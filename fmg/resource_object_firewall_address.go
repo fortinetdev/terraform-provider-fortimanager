@@ -130,6 +130,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"associated_interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"cache_ttl": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -561,6 +562,14 @@ func resourceObjectFirewallAddress() *schema.Resource {
 			},
 			"wildcard_fqdn": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"pattern_end": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"pattern_start": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
@@ -1625,6 +1634,14 @@ func flattenObjectFirewallAddressWildcardFqdn(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectFirewallAddressPatternEnd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressPatternStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -2205,6 +2222,26 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading wildcard_fqdn: %v", err)
+		}
+	}
+
+	if err = d.Set("pattern_end", flattenObjectFirewallAddressPatternEnd(o["pattern-end"], d, "pattern_end")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pattern-end"], "ObjectFirewallAddress-PatternEnd"); ok {
+			if err = d.Set("pattern_end", vv); err != nil {
+				return fmt.Errorf("Error reading pattern_end: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pattern_end: %v", err)
+		}
+	}
+
+	if err = d.Set("pattern_start", flattenObjectFirewallAddressPatternStart(o["pattern-start"], d, "pattern_start")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pattern-start"], "ObjectFirewallAddress-PatternStart"); ok {
+			if err = d.Set("pattern_start", vv); err != nil {
+				return fmt.Errorf("Error reading pattern_start: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pattern_start: %v", err)
 		}
 	}
 
@@ -3072,6 +3109,14 @@ func expandObjectFirewallAddressWildcardFqdn(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectFirewallAddressPatternEnd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressPatternStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -3549,6 +3594,24 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["wildcard-fqdn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pattern_end"); ok || d.HasChange("pattern_end") {
+		t, err := expandObjectFirewallAddressPatternEnd(d, v, "pattern_end")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pattern-end"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pattern_start"); ok || d.HasChange("pattern_start") {
+		t, err := expandObjectFirewallAddressPatternStart(d, v, "pattern_start")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pattern-start"] = t
 		}
 	}
 

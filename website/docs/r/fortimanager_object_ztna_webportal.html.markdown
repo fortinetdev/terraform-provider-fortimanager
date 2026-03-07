@@ -54,6 +54,7 @@ The following arguments are supported:
 * `vip` - Virtual IP name.
 * `vip6` - Virtual IPv6 name.
 * `windows_forticlient_download_url` - Download URL for Windows FortiClient.
+* `bookmarks` - Bookmarks.
 
 
 ## Attribute Reference

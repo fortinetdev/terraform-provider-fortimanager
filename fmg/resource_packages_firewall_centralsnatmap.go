@@ -164,6 +164,26 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ipv6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"src_addr": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"src_addr6": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -299,6 +319,9 @@ func resourcePackagesFirewallCentralSnatMapRead(d *schema.ResourceData, m interf
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -416,6 +439,22 @@ func flattenPackagesFirewallCentralSnatMapType(v interface{}, d *schema.Resource
 
 func flattenPackagesFirewallCentralSnatMapUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapIpv6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapSrcAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallCentralSnatMapSrcAddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[string]interface{}) error {
@@ -645,6 +684,46 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("action", flattenPackagesFirewallCentralSnatMapAction(o["action"], d, "action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["action"], "PackagesFirewallCentralSnatMap-Action"); ok {
+			if err = d.Set("action", vv); err != nil {
+				return fmt.Errorf("Error reading action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading action: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6", flattenPackagesFirewallCentralSnatMapIpv6(o["ipv6"], d, "ipv6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6"], "PackagesFirewallCentralSnatMap-Ipv6"); ok {
+			if err = d.Set("ipv6", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6: %v", err)
+		}
+	}
+
+	if err = d.Set("src_addr", flattenPackagesFirewallCentralSnatMapSrcAddr(o["src-addr"], d, "src_addr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["src-addr"], "PackagesFirewallCentralSnatMap-SrcAddr"); ok {
+			if err = d.Set("src_addr", vv); err != nil {
+				return fmt.Errorf("Error reading src_addr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading src_addr: %v", err)
+		}
+	}
+
+	if err = d.Set("src_addr6", flattenPackagesFirewallCentralSnatMapSrcAddr6(o["src-addr6"], d, "src_addr6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["src-addr6"], "PackagesFirewallCentralSnatMap-SrcAddr6"); ok {
+			if err = d.Set("src_addr6", vv); err != nil {
+				return fmt.Errorf("Error reading src_addr6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading src_addr6: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -740,6 +819,22 @@ func expandPackagesFirewallCentralSnatMapType(d *schema.ResourceData, v interfac
 
 func expandPackagesFirewallCentralSnatMapUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapSrcAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallCentralSnatMapSrcAddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -940,6 +1035,42 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
+		t, err := expandPackagesFirewallCentralSnatMapAction(d, v, "action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6"); ok || d.HasChange("ipv6") {
+		t, err := expandPackagesFirewallCentralSnatMapIpv6(d, v, "ipv6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("src_addr"); ok || d.HasChange("src_addr") {
+		t, err := expandPackagesFirewallCentralSnatMapSrcAddr(d, v, "src_addr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["src-addr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("src_addr6"); ok || d.HasChange("src_addr6") {
+		t, err := expandPackagesFirewallCentralSnatMapSrcAddr6(d, v, "src_addr6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["src-addr6"] = t
 		}
 	}
 

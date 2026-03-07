@@ -31,6 +31,9 @@ The following arguments are supported:
 * `name` - Server name.
 * `port` - Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
 * `vrf_select` - VRF ID used for connection to server.
+* `ippool` - Ippool.
+* `protocol` - Protocol. Valid values: `http`, `socks`.
+
 
 
 ## Attribute Reference

@@ -265,7 +265,7 @@ func flattenObjectFirewallSslSshProfileSslCertValidationTimeout2edl(v interface{
 	return v
 }
 
-func flattenObjectFirewallSslSshProfileSslClientCertificate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallSslSshProfileSslClientCertificateU2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -372,7 +372,7 @@ func refreshObjectObjectFirewallSslSshProfileSsl(d *schema.ResourceData, o map[s
 		}
 	}
 
-	if err = d.Set("client_certificate", flattenObjectFirewallSslSshProfileSslClientCertificate2edl(o["client-certificate"], d, "client_certificate")); err != nil {
+	if err = d.Set("client_certificate", flattenObjectFirewallSslSshProfileSslClientCertificateU2edl(o["client-certificate"], d, "client_certificate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["client-certificate"], "ObjectFirewallSslSshProfileSsl-ClientCertificate"); ok {
 			if err = d.Set("client_certificate", vv); err != nil {
 				return fmt.Errorf("Error reading client_certificate: %v", err)
@@ -547,7 +547,7 @@ func expandObjectFirewallSslSshProfileSslCertValidationTimeout2edl(d *schema.Res
 	return v, nil
 }
 
-func expandObjectFirewallSslSshProfileSslClientCertificate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallSslSshProfileSslClientCertificateU2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -647,7 +647,7 @@ func getObjectObjectFirewallSslSshProfileSsl(d *schema.ResourceData) (*map[strin
 	}
 
 	if v, ok := d.GetOk("client_certificate"); ok || d.HasChange("client_certificate") {
-		t, err := expandObjectFirewallSslSshProfileSslClientCertificate2edl(d, v, "client_certificate")
+		t, err := expandObjectFirewallSslSshProfileSslClientCertificateU2edl(d, v, "client_certificate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

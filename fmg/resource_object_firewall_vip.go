@@ -936,6 +936,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"health_check_proto": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -3053,6 +3057,12 @@ func flattenObjectFirewallVipRealservers(v interface{}, d *schema.ResourceData, 
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-Weight")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_proto"
+		if _, ok := i["health-check-proto"]; ok {
+			v := flattenObjectFirewallVipRealserversHealthCheckProto(i["health-check-proto"], d, pre_append)
+			tmp["health_check_proto"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-HealthCheckProto")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -3124,6 +3134,10 @@ func flattenObjectFirewallVipRealserversVerifyCert(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVipRealserversWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipRealserversHealthCheckProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -6119,6 +6133,11 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 			tmp["weight"], _ = expandObjectFirewallVipRealserversWeight(d, i["weight"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_proto"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-proto"], _ = expandObjectFirewallVipRealserversHealthCheckProto(d, i["health_check_proto"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -6190,6 +6209,10 @@ func expandObjectFirewallVipRealserversVerifyCert(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallVipRealserversWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipRealserversHealthCheckProto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

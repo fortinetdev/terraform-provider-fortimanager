@@ -102,6 +102,10 @@ func resourceObjectFirewallProfileProtocolOptionsImap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"address_ip_rating": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -256,6 +260,10 @@ func flattenObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit2ed
 	return v
 }
 
+func flattenObjectFirewallProfileProtocolOptionsImapAddressIpRating2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -363,6 +371,16 @@ func refreshObjectObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("address_ip_rating", flattenObjectFirewallProfileProtocolOptionsImapAddressIpRating2edl(o["address-ip-rating"], d, "address_ip_rating")); err != nil {
+		if vv, ok := fortiAPIPatch(o["address-ip-rating"], "ObjectFirewallProfileProtocolOptionsImap-AddressIpRating"); ok {
+			if err = d.Set("address_ip_rating", vv); err != nil {
+				return fmt.Errorf("Error reading address_ip_rating: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading address_ip_rating: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -409,6 +427,10 @@ func expandObjectFirewallProfileProtocolOptionsImapUncompressedNestLimit2edl(d *
 }
 
 func expandObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsImapAddressIpRating2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -502,6 +524,15 @@ func getObjectObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData) (
 			return &obj, err
 		} else if t != nil {
 			obj["uncompressed-oversize-limit"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("address_ip_rating"); ok || d.HasChange("address_ip_rating") {
+		t, err := expandObjectFirewallProfileProtocolOptionsImapAddressIpRating2edl(d, v, "address_ip_rating")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["address-ip-rating"] = t
 		}
 	}
 

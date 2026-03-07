@@ -88,6 +88,106 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"detect_https_in_http_request": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"device_ownership": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dynamic_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"explicit_web_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"extended_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"force_proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"http_tunnel_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"https_sub_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ia_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"implicit_proxy_detection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"isolator_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"max_session_per_user": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"pass_through": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"redirect_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"reverse_cache": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"service_connector": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_policy_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"transparent": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -821,6 +921,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"scim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scim_groups": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -993,6 +1094,18 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"url_risk": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ztna_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"users": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1111,6 +1224,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"webcache": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webcache_https": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1165,6 +1279,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			},
 			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"access_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1312,6 +1432,9 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -1369,6 +1492,86 @@ func flattenPackagesFirewallPolicyAppGroup(v interface{}, d *schema.ResourceData
 
 func flattenPackagesFirewallPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
+}
+
+func flattenPackagesFirewallPolicyDetectHttpsInHttpRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyDeviceOwnership(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyDynamicBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyExplicitWebProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyForceProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyHttpTunnelAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyHttpsSubCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyIaProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyImplicitProxyDetection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyIsolatorProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyIsolatorServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyMaxSessionPerUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyPassThrough(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyRedirectProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyReverseCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyServiceConnector(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicySshPolicyCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyTransparent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesFirewallPolicyApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2139,6 +2342,14 @@ func flattenPackagesFirewallPolicyUrlCategory(v interface{}, d *schema.ResourceD
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenPackagesFirewallPolicyUrlRisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallPolicyZtnaProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2377,6 +2588,10 @@ func flattenPackagesFirewallPolicyZtnaTagsMatchLogic(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesFirewallPolicyAccessProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallPolicyWsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2459,6 +2674,206 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading application: %v", err)
+		}
+	}
+
+	if err = d.Set("detect_https_in_http_request", flattenPackagesFirewallPolicyDetectHttpsInHttpRequest(o["detect-https-in-http-request"], d, "detect_https_in_http_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["detect-https-in-http-request"], "PackagesFirewallPolicy-DetectHttpsInHttpRequest"); ok {
+			if err = d.Set("detect_https_in_http_request", vv); err != nil {
+				return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading detect_https_in_http_request: %v", err)
+		}
+	}
+
+	if err = d.Set("device_ownership", flattenPackagesFirewallPolicyDeviceOwnership(o["device-ownership"], d, "device_ownership")); err != nil {
+		if vv, ok := fortiAPIPatch(o["device-ownership"], "PackagesFirewallPolicy-DeviceOwnership"); ok {
+			if err = d.Set("device_ownership", vv); err != nil {
+				return fmt.Errorf("Error reading device_ownership: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading device_ownership: %v", err)
+		}
+	}
+
+	if err = d.Set("dynamic_bypass", flattenPackagesFirewallPolicyDynamicBypass(o["dynamic-bypass"], d, "dynamic_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dynamic-bypass"], "PackagesFirewallPolicy-DynamicBypass"); ok {
+			if err = d.Set("dynamic_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+		}
+	}
+
+	if err = d.Set("explicit_web_proxy", flattenPackagesFirewallPolicyExplicitWebProxy(o["explicit-web-proxy"], d, "explicit_web_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["explicit-web-proxy"], "PackagesFirewallPolicy-ExplicitWebProxy"); ok {
+			if err = d.Set("explicit_web_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading explicit_web_proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("extended_log", flattenPackagesFirewallPolicyExtendedLog(o["extended-log"], d, "extended_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["extended-log"], "PackagesFirewallPolicy-ExtendedLog"); ok {
+			if err = d.Set("extended_log", vv); err != nil {
+				return fmt.Errorf("Error reading extended_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading extended_log: %v", err)
+		}
+	}
+
+	if err = d.Set("force_proxy", flattenPackagesFirewallPolicyForceProxy(o["force-proxy"], d, "force_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["force-proxy"], "PackagesFirewallPolicy-ForceProxy"); ok {
+			if err = d.Set("force_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading force_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading force_proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("http_tunnel_auth", flattenPackagesFirewallPolicyHttpTunnelAuth(o["http-tunnel-auth"], d, "http_tunnel_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-tunnel-auth"], "PackagesFirewallPolicy-HttpTunnelAuth"); ok {
+			if err = d.Set("http_tunnel_auth", vv); err != nil {
+				return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("https_sub_category", flattenPackagesFirewallPolicyHttpsSubCategory(o["https-sub-category"], d, "https_sub_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["https-sub-category"], "PackagesFirewallPolicy-HttpsSubCategory"); ok {
+			if err = d.Set("https_sub_category", vv); err != nil {
+				return fmt.Errorf("Error reading https_sub_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading https_sub_category: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_profile", flattenPackagesFirewallPolicyIaProfile(o["ia-profile"], d, "ia_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-profile"], "PackagesFirewallPolicy-IaProfile"); ok {
+			if err = d.Set("ia_profile", vv); err != nil {
+				return fmt.Errorf("Error reading ia_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("implicit_proxy_detection", flattenPackagesFirewallPolicyImplicitProxyDetection(o["implicit-proxy-detection"], d, "implicit_proxy_detection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["implicit-proxy-detection"], "PackagesFirewallPolicy-ImplicitProxyDetection"); ok {
+			if err = d.Set("implicit_proxy_detection", vv); err != nil {
+				return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
+		}
+	}
+
+	if err = d.Set("isolator_profile", flattenPackagesFirewallPolicyIsolatorProfile(o["isolator-profile"], d, "isolator_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-profile"], "PackagesFirewallPolicy-IsolatorProfile"); ok {
+			if err = d.Set("isolator_profile", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("isolator_server", flattenPackagesFirewallPolicyIsolatorServer(o["isolator-server"], d, "isolator_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-server"], "PackagesFirewallPolicy-IsolatorServer"); ok {
+			if err = d.Set("isolator_server", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
+	if err = d.Set("max_session_per_user", flattenPackagesFirewallPolicyMaxSessionPerUser(o["max-session-per-user"], d, "max_session_per_user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-session-per-user"], "PackagesFirewallPolicy-MaxSessionPerUser"); ok {
+			if err = d.Set("max_session_per_user", vv); err != nil {
+				return fmt.Errorf("Error reading max_session_per_user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_session_per_user: %v", err)
+		}
+	}
+
+	if err = d.Set("pass_through", flattenPackagesFirewallPolicyPassThrough(o["pass-through"], d, "pass_through")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pass-through"], "PackagesFirewallPolicy-PassThrough"); ok {
+			if err = d.Set("pass_through", vv); err != nil {
+				return fmt.Errorf("Error reading pass_through: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pass_through: %v", err)
+		}
+	}
+
+	if err = d.Set("redirect_profile", flattenPackagesFirewallPolicyRedirectProfile(o["redirect-profile"], d, "redirect_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["redirect-profile"], "PackagesFirewallPolicy-RedirectProfile"); ok {
+			if err = d.Set("redirect_profile", vv); err != nil {
+				return fmt.Errorf("Error reading redirect_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading redirect_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("reverse_cache", flattenPackagesFirewallPolicyReverseCache(o["reverse-cache"], d, "reverse_cache")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reverse-cache"], "PackagesFirewallPolicy-ReverseCache"); ok {
+			if err = d.Set("reverse_cache", vv); err != nil {
+				return fmt.Errorf("Error reading reverse_cache: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reverse_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("service_connector", flattenPackagesFirewallPolicyServiceConnector(o["service-connector"], d, "service_connector")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-connector"], "PackagesFirewallPolicy-ServiceConnector"); ok {
+			if err = d.Set("service_connector", vv); err != nil {
+				return fmt.Errorf("Error reading service_connector: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_connector: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_policy_check", flattenPackagesFirewallPolicySshPolicyCheck(o["ssh-policy-check"], d, "ssh_policy_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-policy-check"], "PackagesFirewallPolicy-SshPolicyCheck"); ok {
+			if err = d.Set("ssh_policy_check", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_policy_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_policy_check: %v", err)
+		}
+	}
+
+	if err = d.Set("transparent", flattenPackagesFirewallPolicyTransparent(o["transparent"], d, "transparent")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transparent"], "PackagesFirewallPolicy-Transparent"); ok {
+			if err = d.Set("transparent", vv); err != nil {
+				return fmt.Errorf("Error reading transparent: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transparent: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenPackagesFirewallPolicyType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "PackagesFirewallPolicy-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
 		}
 	}
 
@@ -4382,6 +4797,26 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("url_risk", flattenPackagesFirewallPolicyUrlRisk(o["url-risk"], d, "url_risk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-risk"], "PackagesFirewallPolicy-UrlRisk"); ok {
+			if err = d.Set("url_risk", vv); err != nil {
+				return fmt.Errorf("Error reading url_risk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_risk: %v", err)
+		}
+	}
+
+	if err = d.Set("ztna_proxy", flattenPackagesFirewallPolicyZtnaProxy(o["ztna-proxy"], d, "ztna_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-proxy"], "PackagesFirewallPolicy-ZtnaProxy"); ok {
+			if err = d.Set("ztna_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_proxy: %v", err)
+		}
+	}
+
 	if err = d.Set("users", flattenPackagesFirewallPolicyUsers(o["users"], d, "users")); err != nil {
 		if vv, ok := fortiAPIPatch(o["users"], "PackagesFirewallPolicy-Users"); ok {
 			if err = d.Set("users", vv); err != nil {
@@ -4730,6 +5165,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("access_proxy", flattenPackagesFirewallPolicyAccessProxy(o["access-proxy"], d, "access_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["access-proxy"], "PackagesFirewallPolicy-AccessProxy"); ok {
+			if err = d.Set("access_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading access_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading access_proxy: %v", err)
+		}
+	}
+
 	if err = d.Set("wsso", flattenPackagesFirewallPolicyWsso(o["wsso"], d, "wsso")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wsso"], "PackagesFirewallPolicy-Wsso"); ok {
 			if err = d.Set("wsso", vv); err != nil {
@@ -4775,6 +5220,86 @@ func expandPackagesFirewallPolicyAppGroup(d *schema.ResourceData, v interface{},
 
 func expandPackagesFirewallPolicyApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyDetectHttpsInHttpRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyDeviceOwnership(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyDynamicBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyExplicitWebProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyForceProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyHttpTunnelAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyHttpsSubCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyIaProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyImplicitProxyDetection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyIsolatorProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyIsolatorServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyMaxSessionPerUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyPassThrough(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyRedirectProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyReverseCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyServiceConnector(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicySshPolicyCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyTransparent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesFirewallPolicyApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5545,6 +6070,14 @@ func expandPackagesFirewallPolicyUrlCategory(d *schema.ResourceData, v interface
 	return convstr2list(v, nil), nil
 }
 
+func expandPackagesFirewallPolicyUrlRisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicyZtnaProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -5767,6 +6300,10 @@ func expandPackagesFirewallPolicyZtnaTagsMatchLogic(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyAccessProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallPolicyWsso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5834,6 +6371,186 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["application"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("detect_https_in_http_request"); ok || d.HasChange("detect_https_in_http_request") {
+		t, err := expandPackagesFirewallPolicyDetectHttpsInHttpRequest(d, v, "detect_https_in_http_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["detect-https-in-http-request"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("device_ownership"); ok || d.HasChange("device_ownership") {
+		t, err := expandPackagesFirewallPolicyDeviceOwnership(d, v, "device_ownership")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["device-ownership"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dynamic_bypass"); ok || d.HasChange("dynamic_bypass") {
+		t, err := expandPackagesFirewallPolicyDynamicBypass(d, v, "dynamic_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic-bypass"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("explicit_web_proxy"); ok || d.HasChange("explicit_web_proxy") {
+		t, err := expandPackagesFirewallPolicyExplicitWebProxy(d, v, "explicit_web_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["explicit-web-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
+		t, err := expandPackagesFirewallPolicyExtendedLog(d, v, "extended_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["extended-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("force_proxy"); ok || d.HasChange("force_proxy") {
+		t, err := expandPackagesFirewallPolicyForceProxy(d, v, "force_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["force-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_tunnel_auth"); ok || d.HasChange("http_tunnel_auth") {
+		t, err := expandPackagesFirewallPolicyHttpTunnelAuth(d, v, "http_tunnel_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-tunnel-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("https_sub_category"); ok || d.HasChange("https_sub_category") {
+		t, err := expandPackagesFirewallPolicyHttpsSubCategory(d, v, "https_sub_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["https-sub-category"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_profile"); ok || d.HasChange("ia_profile") {
+		t, err := expandPackagesFirewallPolicyIaProfile(d, v, "ia_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("implicit_proxy_detection"); ok || d.HasChange("implicit_proxy_detection") {
+		t, err := expandPackagesFirewallPolicyImplicitProxyDetection(d, v, "implicit_proxy_detection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["implicit-proxy-detection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isolator_profile"); ok || d.HasChange("isolator_profile") {
+		t, err := expandPackagesFirewallPolicyIsolatorProfile(d, v, "isolator_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isolator_server"); ok || d.HasChange("isolator_server") {
+		t, err := expandPackagesFirewallPolicyIsolatorServer(d, v, "isolator_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_session_per_user"); ok || d.HasChange("max_session_per_user") {
+		t, err := expandPackagesFirewallPolicyMaxSessionPerUser(d, v, "max_session_per_user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-session-per-user"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pass_through"); ok || d.HasChange("pass_through") {
+		t, err := expandPackagesFirewallPolicyPassThrough(d, v, "pass_through")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pass-through"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("redirect_profile"); ok || d.HasChange("redirect_profile") {
+		t, err := expandPackagesFirewallPolicyRedirectProfile(d, v, "redirect_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["redirect-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reverse_cache"); ok || d.HasChange("reverse_cache") {
+		t, err := expandPackagesFirewallPolicyReverseCache(d, v, "reverse_cache")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reverse-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_connector"); ok || d.HasChange("service_connector") {
+		t, err := expandPackagesFirewallPolicyServiceConnector(d, v, "service_connector")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-connector"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_policy_check"); ok || d.HasChange("ssh_policy_check") {
+		t, err := expandPackagesFirewallPolicySshPolicyCheck(d, v, "ssh_policy_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-policy-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("transparent"); ok || d.HasChange("transparent") {
+		t, err := expandPackagesFirewallPolicyTransparent(d, v, "transparent")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transparent"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandPackagesFirewallPolicyType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
 		}
 	}
 
@@ -7565,6 +8282,24 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("url_risk"); ok || d.HasChange("url_risk") {
+		t, err := expandPackagesFirewallPolicyUrlRisk(d, v, "url_risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-risk"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_proxy"); ok || d.HasChange("ztna_proxy") {
+		t, err := expandPackagesFirewallPolicyZtnaProxy(d, v, "ztna_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-proxy"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
 		t, err := expandPackagesFirewallPolicyUsers(d, v, "users")
 		if err != nil {
@@ -7850,6 +8585,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-tags-match-logic"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("access_proxy"); ok || d.HasChange("access_proxy") {
+		t, err := expandPackagesFirewallPolicyAccessProxy(d, v, "access_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["access-proxy"] = t
 		}
 	}
 

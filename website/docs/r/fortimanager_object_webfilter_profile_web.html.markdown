@@ -57,6 +57,8 @@ The following arguments are supported:
 
 * `youtube_restrict` - YouTube EDU filter level. Valid values: `strict`, `none`, `moderate`.
 
+* `qwant_restrict` - Qwant-Restrict. Valid values: `strict`, `none`, `moderate`.
+
 
 
 ## Attribute Reference

@@ -66,6 +66,12 @@ The following arguments are supported:
 * `type` - IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `action` - Action. Valid values: `bypass`, `masquerade`, `ippool`.
+
+* `ipv6` - Ipv6. Valid values: `disable`, `enable`.
+
+* `src_addr` - Src-Addr.
+* `src_addr6` - Src-Addr6.
 
 
 ## Attribute Reference

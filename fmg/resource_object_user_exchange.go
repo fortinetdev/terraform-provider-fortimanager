@@ -121,6 +121,7 @@ func resourceObjectUserExchange() *schema.Resource {
 			"validate_server_certificate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

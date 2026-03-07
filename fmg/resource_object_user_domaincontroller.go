@@ -189,6 +189,10 @@ func resourceObjectUserDomainController() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"domain_name_src": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -486,6 +490,10 @@ func flattenObjectUserDomainControllerUsername(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserDomainControllerDomainNameSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserDomainController(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -741,6 +749,16 @@ func refreshObjectObjectUserDomainController(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("domain_name_src", flattenObjectUserDomainControllerDomainNameSrc(o["domain-name-src"], d, "domain_name_src")); err != nil {
+		if vv, ok := fortiAPIPatch(o["domain-name-src"], "ObjectUserDomainController-DomainNameSrc"); ok {
+			if err = d.Set("domain_name_src", vv); err != nil {
+				return fmt.Errorf("Error reading domain_name_src: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading domain_name_src: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -908,6 +926,10 @@ func expandObjectUserDomainControllerSourcePort(d *schema.ResourceData, v interf
 }
 
 func expandObjectUserDomainControllerUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserDomainControllerDomainNameSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1127,6 +1149,15 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("domain_name_src"); ok || d.HasChange("domain_name_src") {
+		t, err := expandObjectUserDomainControllerDomainNameSrc(d, v, "domain_name_src")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["domain-name-src"] = t
 		}
 	}
 

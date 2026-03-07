@@ -508,6 +508,18 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"dns_protection": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"encrypted_file": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"encrypted_file_log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -569,6 +581,10 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
+						},
+						"address_ip_rating": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 					},
 				},
@@ -916,6 +932,10 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"explicit_ftp_tls": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 					},
 				},
 			},
@@ -923,6 +943,27 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"proxy_redirect": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ports": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeInt},
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 		},
 	}
@@ -1752,6 +1793,21 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["verify_dns_for_policy_matching"] = flattenObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(i["verify-dns-for-policy-matching"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dns_protection"
+	if _, ok := i["dns-protection"]; ok {
+		result["dns_protection"] = flattenObjectFirewallProfileProtocolOptionsHttpDnsProtection(i["dns-protection"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "encrypted_file"
+	if _, ok := i["encrypted-file"]; ok {
+		result["encrypted_file"] = flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFile(i["encrypted-file"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "encrypted_file_log"
+	if _, ok := i["encrypted-file-log"]; ok {
+		result["encrypted_file_log"] = flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog(i["encrypted-file-log"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1896,6 +1952,18 @@ func flattenObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(v
 	return v
 }
 
+func flattenObjectFirewallProfileProtocolOptionsHttpDnsProtection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileProtocolOptionsImap(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -1955,6 +2023,11 @@ func flattenObjectFirewallProfileProtocolOptionsImap(v interface{}, d *schema.Re
 		result["uncompressed_oversize_limit"] = flattenObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit(i["uncompressed-oversize-limit"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "address_ip_rating"
+	if _, ok := i["address-ip-rating"]; ok {
+		result["address_ip_rating"] = flattenObjectFirewallProfileProtocolOptionsImapAddressIpRating(i["address-ip-rating"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1996,6 +2069,10 @@ func flattenObjectFirewallProfileProtocolOptionsImapUncompressedNestLimit(v inte
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsImapAddressIpRating(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2505,6 +2582,11 @@ func flattenObjectFirewallProfileProtocolOptionsSsh(v interface{}, d *schema.Res
 		result["uncompressed_oversize_limit"] = flattenObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit(i["uncompressed-oversize-limit"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "explicit_ftp_tls"
+	if _, ok := i["explicit-ftp-tls"]; ok {
+		result["explicit_ftp_tls"] = flattenObjectFirewallProfileProtocolOptionsSshExplicitFtpTls(i["explicit-ftp-tls"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -2561,7 +2643,42 @@ func flattenObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit(v i
 	return v
 }
 
+func flattenObjectFirewallProfileProtocolOptionsSshExplicitFtpTls(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileProtocolOptionsSwitchingProtocolsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsProxyRedirect(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ports"
+	if _, ok := i["ports"]; ok {
+		result["ports"] = flattenObjectFirewallProfileProtocolOptionsProxyRedirectPorts(i["ports"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectFirewallProfileProtocolOptionsProxyRedirectStatus(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallProfileProtocolOptionsProxyRedirectPorts(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectFirewallProfileProtocolOptionsProxyRedirectStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2903,6 +3020,30 @@ func refreshObjectObjectFirewallProfileProtocolOptions(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading switching_protocols_log: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("proxy_redirect", flattenObjectFirewallProfileProtocolOptionsProxyRedirect(o["proxy-redirect"], d, "proxy_redirect")); err != nil {
+			if vv, ok := fortiAPIPatch(o["proxy-redirect"], "ObjectFirewallProfileProtocolOptions-ProxyRedirect"); ok {
+				if err = d.Set("proxy_redirect", vv); err != nil {
+					return fmt.Errorf("Error reading proxy_redirect: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading proxy_redirect: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("proxy_redirect"); ok {
+			if err = d.Set("proxy_redirect", flattenObjectFirewallProfileProtocolOptionsProxyRedirect(o["proxy-redirect"], d, "proxy_redirect")); err != nil {
+				if vv, ok := fortiAPIPatch(o["proxy-redirect"], "ObjectFirewallProfileProtocolOptions-ProxyRedirect"); ok {
+					if err = d.Set("proxy_redirect", vv); err != nil {
+						return fmt.Errorf("Error reading proxy_redirect: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading proxy_redirect: %v", err)
+				}
+			}
 		}
 	}
 
@@ -3557,6 +3698,18 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["verify-dns-for-policy-matching"], _ = expandObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(d, i["verify_dns_for_policy_matching"], pre_append)
 	}
+	pre_append = pre + ".0." + "dns_protection"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dns-protection"], _ = expandObjectFirewallProfileProtocolOptionsHttpDnsProtection(d, i["dns_protection"], pre_append)
+	}
+	pre_append = pre + ".0." + "encrypted_file"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["encrypted-file"], _ = expandObjectFirewallProfileProtocolOptionsHttpEncryptedFile(d, i["encrypted_file"], pre_append)
+	}
+	pre_append = pre + ".0." + "encrypted_file_log"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["encrypted-file-log"], _ = expandObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog(d, i["encrypted_file_log"], pre_append)
+	}
 
 	return result, nil
 }
@@ -3701,6 +3854,18 @@ func expandObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(d 
 	return v, nil
 }
 
+func expandObjectFirewallProfileProtocolOptionsHttpDnsProtection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpEncryptedFile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -3751,6 +3916,10 @@ func expandObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["uncompressed-oversize-limit"], _ = expandObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit(d, i["uncompressed_oversize_limit"], pre_append)
 	}
+	pre_append = pre + ".0." + "address_ip_rating"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["address-ip-rating"], _ = expandObjectFirewallProfileProtocolOptionsImapAddressIpRating(d, i["address_ip_rating"], pre_append)
+	}
 
 	return result, nil
 }
@@ -3792,6 +3961,10 @@ func expandObjectFirewallProfileProtocolOptionsImapUncompressedNestLimit(d *sche
 }
 
 func expandObjectFirewallProfileProtocolOptionsImapUncompressedOversizeLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsImapAddressIpRating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4255,6 +4428,10 @@ func expandObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData, v int
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["uncompressed-oversize-limit"], _ = expandObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit(d, i["uncompressed_oversize_limit"], pre_append)
 	}
+	pre_append = pre + ".0." + "explicit_ftp_tls"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["explicit-ftp-tls"], _ = expandObjectFirewallProfileProtocolOptionsSshExplicitFtpTls(d, i["explicit_ftp_tls"], pre_append)
+	}
 
 	return result, nil
 }
@@ -4311,7 +4488,41 @@ func expandObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit(d *s
 	return v, nil
 }
 
+func expandObjectFirewallProfileProtocolOptionsSshExplicitFtpTls(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileProtocolOptionsSwitchingProtocolsLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsProxyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ports"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsProxyRedirectPorts(d, i["ports"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["status"], _ = expandObjectFirewallProfileProtocolOptionsProxyRedirectStatus(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsProxyRedirectPorts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsProxyRedirectStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4477,6 +4688,15 @@ func getObjectObjectFirewallProfileProtocolOptions(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["switching-protocols-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy_redirect"); ok || d.HasChange("proxy_redirect") {
+		t, err := expandObjectFirewallProfileProtocolOptionsProxyRedirect(d, v, "proxy_redirect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy-redirect"] = t
 		}
 	}
 

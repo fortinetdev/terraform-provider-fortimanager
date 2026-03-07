@@ -524,6 +524,10 @@ func resourceObjectUserGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"logic_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1719,6 +1723,10 @@ func flattenObjectUserGroupUserName(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
+func flattenObjectUserGroupLogicType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -2019,6 +2027,16 @@ func refreshObjectObjectUserGroup(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading user_name: %v", err)
+		}
+	}
+
+	if err = d.Set("logic_type", flattenObjectUserGroupLogicType(o["logic-type"], d, "logic_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["logic-type"], "ObjectUserGroup-LogicType"); ok {
+			if err = d.Set("logic_type", vv); err != nil {
+				return fmt.Errorf("Error reading logic_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading logic_type: %v", err)
 		}
 	}
 
@@ -3024,6 +3042,10 @@ func expandObjectUserGroupUserName(d *schema.ResourceData, v interface{}, pre st
 	return v, nil
 }
 
+func expandObjectUserGroupLogicType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -3249,6 +3271,15 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["user-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("logic_type"); ok || d.HasChange("logic_type") {
+		t, err := expandObjectUserGroupLogicType(d, v, "logic_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["logic-type"] = t
 		}
 	}
 

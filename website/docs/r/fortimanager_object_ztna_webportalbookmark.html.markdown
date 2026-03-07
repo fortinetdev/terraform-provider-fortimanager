@@ -26,6 +26,8 @@ The following arguments are supported:
 * `groups` - User groups.
 * `name` - Bookmark name.
 * `users` - User name.
+* `type` - Type. Valid values: `user`, `ldap-dynamic`, `saml-dynamic`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `bookmarks` block supports:

@@ -144,6 +144,16 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"form_auth_fallback": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"web_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -270,6 +280,9 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 	pkg := d.Get("pkg").(string)
 	if pkg_folder_path == "" {
 		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+		if err = d.Set("pkg_folder_path", pkg_folder_path); err != nil {
+			return fmt.Errorf("Error set params pkg_folder_path: %v", err)
+		}
 	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
@@ -371,6 +384,14 @@ func flattenPackagesAuthenticationRuleWebAuthCookie(v interface{}, d *schema.Res
 
 func flattenPackagesAuthenticationRuleWebPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesAuthenticationRuleFormAuthFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationRuleWebProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[string]interface{}) error {
@@ -560,6 +581,26 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("form_auth_fallback", flattenPackagesAuthenticationRuleFormAuthFallback(o["form-auth-fallback"], d, "form_auth_fallback")); err != nil {
+		if vv, ok := fortiAPIPatch(o["form-auth-fallback"], "PackagesAuthenticationRule-FormAuthFallback"); ok {
+			if err = d.Set("form_auth_fallback", vv); err != nil {
+				return fmt.Errorf("Error reading form_auth_fallback: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading form_auth_fallback: %v", err)
+		}
+	}
+
+	if err = d.Set("web_proxy", flattenPackagesAuthenticationRuleWebProxy(o["web-proxy"], d, "web_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["web-proxy"], "PackagesAuthenticationRule-WebProxy"); ok {
+			if err = d.Set("web_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading web_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading web_proxy: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -639,6 +680,14 @@ func expandPackagesAuthenticationRuleWebAuthCookie(d *schema.ResourceData, v int
 
 func expandPackagesAuthenticationRuleWebPortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesAuthenticationRuleFormAuthFallback(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationRuleWebProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -803,6 +852,24 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["web-portal"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("form_auth_fallback"); ok || d.HasChange("form_auth_fallback") {
+		t, err := expandPackagesAuthenticationRuleFormAuthFallback(d, v, "form_auth_fallback")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["form-auth-fallback"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("web_proxy"); ok || d.HasChange("web_proxy") {
+		t, err := expandPackagesAuthenticationRuleWebProxy(d, v, "web_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["web-proxy"] = t
 		}
 	}
 

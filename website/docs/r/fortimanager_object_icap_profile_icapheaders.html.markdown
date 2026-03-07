@@ -27,6 +27,11 @@ The following arguments are supported:
 * `content` - HTTP header content.
 * `fosid` - HTTP forwarded header ID.
 * `name` - HTTP forwarded header name.
+* `http_header` - Http-Header.
+* `sesson_info_type` - Sesson-Info-Type. Valid values: `client-ip`, `user`, `upn`, `domain`, `local-grp`, `remote-grp`, `proxy-name`, `auth-user-uri`, `auth-group-uri`.
+
+* `source` - Source. Valid values: `content`, `http-header`, `session`.
+
 
 
 ## Attribute Reference

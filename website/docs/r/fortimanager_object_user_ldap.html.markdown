@@ -118,6 +118,11 @@ The following arguments are supported:
 * `user_info_exchange_server` - MS Exchange server from which to fetch user information.
 * `username` - Username (full DN) for initial binding.
 * `vrf_select` - VRF ID used for connection to server.
+* `max_connections` - Max-Connections.
+* `ssl_max_proto_version` - Ssl-Max-Proto-Version. Valid values: `TLSv1-1`, `TLSv1-2`, `SSLv3`, `TLSv1`, `TLSv1-3`.
+
+* `validate_server_certificate` - Validate-Server-Certificate. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:

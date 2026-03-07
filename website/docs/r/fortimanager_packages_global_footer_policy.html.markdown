@@ -93,6 +93,7 @@ The following arguments are supported:
 * `app_category` - Application category ID list.
 * `app_group` - Application group names.
 * `application` - Application ID list.
+* `explicit_web_proxy` - Explicit-Web-Proxy.
 * `application_charts` - Application-Charts. Valid values: `top10-app`, `top10-p2p-user`, `top10-media-user`.
 
 * `application_list` - Name of an existing Application list.

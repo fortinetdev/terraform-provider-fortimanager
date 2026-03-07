@@ -13,6 +13,7 @@ Configure ZTNA traffic forward proxy.
 >- `quic`: `fortimanager_object_ztna_trafficforwardproxy_quic`
 >- `ssl_cipher_suites`: `fortimanager_object_ztna_trafficforwardproxy_sslciphersuites`
 >- `ssl_server_cipher_suites`: `fortimanager_object_ztna_trafficforwardproxy_sslserverciphersuites`
+>- `url_route`: `fortimanager_object_ztna_trafficforwardproxy_urlroute`
 
 
 
@@ -110,6 +111,7 @@ The following arguments are supported:
 
 * `vip` - Virtual IP name.
 * `vip6` - Virtual IPv6 name.
+* `url_route` - Url-Route. The structure of `url_route` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `quic` block supports:
@@ -140,6 +142,12 @@ The `ssl_server_cipher_suites` block supports:
 * `priority` - Priority.
 * `versions` - Versions. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+
+The `url_route` block supports:
+
+* `name` - Name.
+* `service_connector` - Service-Connector.
+* `url_pattern` - Url-Pattern.
 
 
 ## Attribute Reference

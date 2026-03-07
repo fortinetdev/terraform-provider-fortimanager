@@ -69,6 +69,8 @@ The following arguments are supported:
 
 * `antispam_cache_mpermille` - Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 * `antispam_cache_mpercent` - Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+* `dlp_expiration` - Dlp-Expiration.
+* `dlp_license` - Dlp-License.
 * `antispam_cache_ttl` - Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 * `antispam_expiration` - Antispam-Expiration.
 * `antispam_force_off` - Enable/disable turning off the FortiGuard antispam service. Valid values: `disable`, `enable`.
@@ -95,6 +97,8 @@ The following arguments are supported:
 
 * `gui_prompt_auto_upgrade` - Enable/disable prompting of automatic patch-level firmware upgrade recommendation. Valid values: `disable`, `enable`.
 
+* `ia_expiration` - Ia-Expiration.
+* `ia_license` - Ia-License.
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
@@ -155,6 +159,8 @@ The following arguments are supported:
 
 * `webfilter_license` - Webfilter-License.
 * `webfilter_timeout` - Web filter query time out (1 - 30 sec, default = 7).
+* `fnbi_expiration` - Fnbi-Expiration.
+* `fnbi_license` - Fnbi-License.
 
 
 ## Attribute Reference

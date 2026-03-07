@@ -84,6 +84,7 @@ func resourceObjectFirewallAddressDynamicMapping() *schema.Resource {
 			"associated_interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cache_ttl": &schema.Schema{
 				Type:     schema.TypeInt,

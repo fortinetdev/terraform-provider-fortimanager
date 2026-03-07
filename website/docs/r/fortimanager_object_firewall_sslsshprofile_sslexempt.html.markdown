@@ -46,6 +46,8 @@ The following arguments are supported:
 * `type` - Type of address object (IPv4 or IPv6) or FortiGuard category. Valid values: `fortiguard-category`, `address`, `address6`, `wildcard-fqdn`, `regex`.
 
 * `wildcard_fqdn` - Exempt servers by wildcard FQDN.
+* `finger_print_category` - Finger-Print-Category. Valid values: `unknown`, `firefox`, `chrome`, `safari`, `edge`, `ie`, `android`, `ios`, `windows`.
+
 
 
 ## Attribute Reference

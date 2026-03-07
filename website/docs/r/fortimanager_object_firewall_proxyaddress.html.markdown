@@ -62,6 +62,9 @@ The following arguments are supported:
 * `ua_max_ver` - Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
 * `ua_min_ver` - Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `post_arg` - Post-Arg. Valid values: `disable`, `enable`.
+
+* `url_list` - Url-List.
 * `visibility` - Enable/disable visibility of the object in the GUI. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

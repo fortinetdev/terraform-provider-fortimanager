@@ -195,6 +195,25 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"proxy_password": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"proxy_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"proxy_username": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -515,6 +534,18 @@ func flattenObjectSystemExternalResourceVrfSelect(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectSystemExternalResourceProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceProxyPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceProxyUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -790,6 +821,36 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("proxy", flattenObjectSystemExternalResourceProxy(o["proxy"], d, "proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["proxy"], "ObjectSystemExternalResource-Proxy"); ok {
+			if err = d.Set("proxy", vv); err != nil {
+				return fmt.Errorf("Error reading proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("proxy_port", flattenObjectSystemExternalResourceProxyPort(o["proxy-port"], d, "proxy_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["proxy-port"], "ObjectSystemExternalResource-ProxyPort"); ok {
+			if err = d.Set("proxy_port", vv); err != nil {
+				return fmt.Errorf("Error reading proxy_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading proxy_port: %v", err)
+		}
+	}
+
+	if err = d.Set("proxy_username", flattenObjectSystemExternalResourceProxyUsername(o["proxy-username"], d, "proxy_username")); err != nil {
+		if vv, ok := fortiAPIPatch(o["proxy-username"], "ObjectSystemExternalResource-ProxyUsername"); ok {
+			if err = d.Set("proxy_username", vv); err != nil {
+				return fmt.Errorf("Error reading proxy_username: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading proxy_username: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -981,6 +1042,22 @@ func expandObjectSystemExternalResourceUuid(d *schema.ResourceData, v interface{
 }
 
 func expandObjectSystemExternalResourceVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceProxyPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemExternalResourceProxyPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceProxyUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1218,6 +1295,42 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["vrf-select"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy"); ok || d.HasChange("proxy") {
+		t, err := expandObjectSystemExternalResourceProxy(d, v, "proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy_password"); ok || d.HasChange("proxy_password") {
+		t, err := expandObjectSystemExternalResourceProxyPassword(d, v, "proxy_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy_port"); ok || d.HasChange("proxy_port") {
+		t, err := expandObjectSystemExternalResourceProxyPort(d, v, "proxy_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy_username"); ok || d.HasChange("proxy_username") {
+		t, err := expandObjectSystemExternalResourceProxyUsername(d, v, "proxy_username")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy-username"] = t
 		}
 	}
 

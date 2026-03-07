@@ -45,6 +45,14 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"scan_oversize_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"scan_size_limit": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"n204_response": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -114,6 +122,18 @@ func resourceObjectIcapProfile() *schema.Resource {
 							Computed: true,
 						},
 						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"http_header": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"sesson_info_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"source": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -261,6 +281,10 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"allow_204_response": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -391,6 +415,14 @@ func resourceObjectIcapProfileRead(d *schema.ResourceData, m interface{}) error 
 	return nil
 }
 
+func flattenObjectIcapProfileScanOversizeLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileScanSizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectIcapProfile204Response(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -474,6 +506,24 @@ func flattenObjectIcapProfileIcapHeaders(v interface{}, d *schema.ResourceData, 
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-IcapHeaders-Name")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_header"
+		if _, ok := i["http-header"]; ok {
+			v := flattenObjectIcapProfileIcapHeadersHttpHeader(i["http-header"], d, pre_append)
+			tmp["http_header"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-IcapHeaders-HttpHeader")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sesson_info_type"
+		if _, ok := i["sesson-info-type"]; ok {
+			v := flattenObjectIcapProfileIcapHeadersSessonInfoType(i["sesson-info-type"], d, pre_append)
+			tmp["sesson_info_type"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-IcapHeaders-SessonInfoType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source"
+		if _, ok := i["source"]; ok {
+			v := flattenObjectIcapProfileIcapHeadersSource(i["source"], d, pre_append)
+			tmp["source"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-IcapHeaders-Source")
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -497,6 +547,18 @@ func flattenObjectIcapProfileIcapHeadersId(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIcapProfileIcapHeadersName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileIcapHeadersHttpHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileIcapHeadersSessonInfoType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileIcapHeadersSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -720,6 +782,10 @@ func flattenObjectIcapProfileTimeout(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectIcapProfileAllow204Response(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -729,6 +795,26 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("scan_oversize_log", flattenObjectIcapProfileScanOversizeLog(o["scan-oversize-log"], d, "scan_oversize_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-oversize-log"], "ObjectIcapProfile-ScanOversizeLog"); ok {
+			if err = d.Set("scan_oversize_log", vv); err != nil {
+				return fmt.Errorf("Error reading scan_oversize_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_oversize_log: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_size_limit", flattenObjectIcapProfileScanSizeLimit(o["scan-size-limit"], d, "scan_size_limit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-size-limit"], "ObjectIcapProfile-ScanSizeLimit"); ok {
+			if err = d.Set("scan_size_limit", vv); err != nil {
+				return fmt.Errorf("Error reading scan_size_limit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_size_limit: %v", err)
+		}
 	}
 
 	if err = d.Set("n204_response", flattenObjectIcapProfile204Response(o["204-response"], d, "n204_response")); err != nil {
@@ -1069,6 +1155,16 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("allow_204_response", flattenObjectIcapProfileAllow204Response(o["allow-204-response"], d, "allow_204_response")); err != nil {
+		if vv, ok := fortiAPIPatch(o["allow-204-response"], "ObjectIcapProfile-Allow204Response"); ok {
+			if err = d.Set("allow_204_response", vv); err != nil {
+				return fmt.Errorf("Error reading allow_204_response: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading allow_204_response: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1076,6 +1172,14 @@ func flattenObjectIcapProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn i
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectIcapProfileScanOversizeLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileScanSizeLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectIcapProfile204Response(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1152,6 +1256,21 @@ func expandObjectIcapProfileIcapHeaders(d *schema.ResourceData, v interface{}, p
 			tmp["name"], _ = expandObjectIcapProfileIcapHeadersName(d, i["name"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_header"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["http-header"], _ = expandObjectIcapProfileIcapHeadersHttpHeader(d, i["http_header"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sesson_info_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sesson-info-type"], _ = expandObjectIcapProfileIcapHeadersSessonInfoType(d, i["sesson_info_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source"], _ = expandObjectIcapProfileIcapHeadersSource(d, i["source"], pre_append)
+		}
+
 		if len(tmp) > 0 {
 			result = append(result, tmp)
 		}
@@ -1175,6 +1294,18 @@ func expandObjectIcapProfileIcapHeadersId(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectIcapProfileIcapHeadersName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersHttpHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersSessonInfoType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileIcapHeadersSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1384,8 +1515,30 @@ func expandObjectIcapProfileTimeout(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectIcapProfileAllow204Response(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("scan_oversize_log"); ok || d.HasChange("scan_oversize_log") {
+		t, err := expandObjectIcapProfileScanOversizeLog(d, v, "scan_oversize_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-oversize-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_size_limit"); ok || d.HasChange("scan_size_limit") {
+		t, err := expandObjectIcapProfileScanSizeLimit(d, v, "scan_size_limit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-size-limit"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("n204_response"); ok || d.HasChange("n204_response") {
 		t, err := expandObjectIcapProfile204Response(d, v, "n204_response")
@@ -1663,6 +1816,15 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("allow_204_response"); ok || d.HasChange("allow_204_response") {
+		t, err := expandObjectIcapProfileAllow204Response(d, v, "allow_204_response")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["allow-204-response"] = t
 		}
 	}
 

@@ -48,8 +48,7 @@ The `device` block supports:
 * `deviceblueprint` - <i>add model device only</i>. Device blueprint to apply to the new model device.
 * `fazquota` - <i>available for all operations</i>.
 * `ip` - <i>add real device only</i>. Add device will probe with this IP using the log in credential specified.
-* `metafields` - <i>add real and model device. The type of `metafields` has changed to map since FortiManager v6.4.7. We keep `metafields` as string to keep forward compatible. Please use `metafields_map` for FortiManager version above 6.4.7(included).</i>.
-* `metafields_map` - <i>add real and model device. This argument is only available for FortiManager v6.4.7 and above.</i>.
+* `metafields` - <i>add real and model device</i>.
 * `mgmt_mode` - <i>add real and model device</i>. Valid values: `unreg`, `fmg`, `faz`, `fmgfaz`.
 
 * `mr` - <i>add model device only</i>.

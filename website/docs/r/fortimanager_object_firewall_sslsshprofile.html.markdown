@@ -19,6 +19,7 @@ Configure SSL/SSH protocol options.
 >- `smtps`: `fortimanager_object_firewall_sslsshprofile_smtps`
 >- `ssh`: `fortimanager_object_firewall_sslsshprofile_ssh`
 >- `ssl`: `fortimanager_object_firewall_sslsshprofile_ssl`
+>- `ssl_client_certificate`: `fortimanager_object_firewall_sslsshprofile_sslclientcertificate`
 >- `ssl_exempt`: `fortimanager_object_firewall_sslsshprofile_sslexempt`
 >- `ssl_server`: `fortimanager_object_firewall_sslsshprofile_sslserver`
 
@@ -92,6 +93,7 @@ The following arguments are supported:
 * `untrusted_caname` - Untrusted CA certificate used by SSL Inspection.
 * `use_ssl_server` - Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
 
+* `ssl_client_certificate` - Ssl-Client-Certificate. The structure of `ssl_client_certificate` block is documented below.
 * `whitelist` - Enable/disable exempting servers by FortiGuard whitelist. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -409,6 +411,8 @@ The `ssl_exempt` block supports:
 * `type` - Type of address object (IPv4 or IPv6) or FortiGuard category. Valid values: `fortiguard-category`, `address`, `address6`, `wildcard-fqdn`, `regex`.
 
 * `wildcard_fqdn` - Exempt servers by wildcard FQDN.
+* `finger_print_category` - Finger-Print-Category. Valid values: `unknown`, `firefox`, `chrome`, `safari`, `edge`, `ie`, `android`, `ios`, `windows`.
+
 
 The `ssl_server` block supports:
 
@@ -437,6 +441,14 @@ The `ssl_server` block supports:
 * `smtps_client_cert_request` - Action based on client certificate request during the SMTPS handshake. Valid values: `bypass`, `inspect`, `block`.
 
 * `ssl_other_client_cert_request` - Action based on client certificate request during an SSL protocol handshake. Valid values: `bypass`, `inspect`, `block`.
+
+
+The `ssl_client_certificate` block supports:
+
+* `caname` - Caname.
+* `cert` - Cert.
+* `keyring_list` - Keyring-List.
+* `status` - Status. Valid values: `do-not-offer`, `keyring-list`, `ca-sign`, `static`.
 
 
 

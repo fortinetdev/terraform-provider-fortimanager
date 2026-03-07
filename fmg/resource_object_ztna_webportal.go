@@ -173,6 +173,12 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"bookmarks": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -396,6 +402,10 @@ func flattenObjectZtnaWebPortalVip6(v interface{}, d *schema.ResourceData, pre s
 
 func flattenObjectZtnaWebPortalWindowsForticlientDownloadUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectZtnaWebPortalBookmarks(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectZtnaWebPortal(d *schema.ResourceData, o map[string]interface{}) error {
@@ -655,6 +665,16 @@ func refreshObjectObjectZtnaWebPortal(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("bookmarks", flattenObjectZtnaWebPortalBookmarks(o["bookmarks"], d, "bookmarks")); err != nil {
+		if vv, ok := fortiAPIPatch(o["bookmarks"], "ObjectZtnaWebPortal-Bookmarks"); ok {
+			if err = d.Set("bookmarks", vv); err != nil {
+				return fmt.Errorf("Error reading bookmarks: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading bookmarks: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -762,6 +782,10 @@ func expandObjectZtnaWebPortalVip6(d *schema.ResourceData, v interface{}, pre st
 
 func expandObjectZtnaWebPortalWindowsForticlientDownloadUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectZtnaWebPortalBookmarks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectZtnaWebPortal(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -989,6 +1013,15 @@ func getObjectObjectZtnaWebPortal(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["windows-forticlient-download-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("bookmarks"); ok || d.HasChange("bookmarks") {
+		t, err := expandObjectZtnaWebPortalBookmarks(d, v, "bookmarks")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["bookmarks"] = t
 		}
 	}
 

@@ -97,6 +97,18 @@ func resourceObjectWebProxyIsolatorServer() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"ippool": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"protocol": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -266,6 +278,14 @@ func flattenObjectWebProxyIsolatorServerVrfSelect(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectWebProxyIsolatorServerIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebProxyIsolatorServerProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func refreshObjectObjectWebProxyIsolatorServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -383,6 +403,26 @@ func refreshObjectObjectWebProxyIsolatorServer(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("ippool", flattenObjectWebProxyIsolatorServerIppool(o["ippool"], d, "ippool")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ippool"], "ObjectWebProxyIsolatorServer-Ippool"); ok {
+			if err = d.Set("ippool", vv); err != nil {
+				return fmt.Errorf("Error reading ippool: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ippool: %v", err)
+		}
+	}
+
+	if err = d.Set("protocol", flattenObjectWebProxyIsolatorServerProtocol(o["protocol"], d, "protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["protocol"], "ObjectWebProxyIsolatorServer-Protocol"); ok {
+			if err = d.Set("protocol", vv); err != nil {
+				return fmt.Errorf("Error reading protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading protocol: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -434,6 +474,14 @@ func expandObjectWebProxyIsolatorServerPort(d *schema.ResourceData, v interface{
 
 func expandObjectWebProxyIsolatorServerVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectWebProxyIsolatorServerIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebProxyIsolatorServerProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectWebProxyIsolatorServer(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -535,6 +583,24 @@ func getObjectObjectWebProxyIsolatorServer(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["vrf-select"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ippool"); ok || d.HasChange("ippool") {
+		t, err := expandObjectWebProxyIsolatorServerIppool(d, v, "ippool")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ippool"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
+		t, err := expandObjectWebProxyIsolatorServerProtocol(d, v, "protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["protocol"] = t
 		}
 	}
 

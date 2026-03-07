@@ -115,6 +115,10 @@ func resourceObjectFirewallProfileProtocolOptionsSsh() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"explicit_ftp_tls": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -281,6 +285,10 @@ func flattenObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit2edl
 	return v
 }
 
+func flattenObjectFirewallProfileProtocolOptionsSshExplicitFtpTls2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -418,6 +426,16 @@ func refreshObjectObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData
 		}
 	}
 
+	if err = d.Set("explicit_ftp_tls", flattenObjectFirewallProfileProtocolOptionsSshExplicitFtpTls2edl(o["explicit-ftp-tls"], d, "explicit_ftp_tls")); err != nil {
+		if vv, ok := fortiAPIPatch(o["explicit-ftp-tls"], "ObjectFirewallProfileProtocolOptionsSsh-ExplicitFtpTls"); ok {
+			if err = d.Set("explicit_ftp_tls", vv); err != nil {
+				return fmt.Errorf("Error reading explicit_ftp_tls: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading explicit_ftp_tls: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -476,6 +494,10 @@ func expandObjectFirewallProfileProtocolOptionsSshUncompressedNestLimit2edl(d *s
 }
 
 func expandObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshExplicitFtpTls2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -596,6 +618,15 @@ func getObjectObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData) (*
 			return &obj, err
 		} else if t != nil {
 			obj["uncompressed-oversize-limit"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("explicit_ftp_tls"); ok || d.HasChange("explicit_ftp_tls") {
+		t, err := expandObjectFirewallProfileProtocolOptionsSshExplicitFtpTls2edl(d, v, "explicit_ftp_tls")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["explicit-ftp-tls"] = t
 		}
 	}
 

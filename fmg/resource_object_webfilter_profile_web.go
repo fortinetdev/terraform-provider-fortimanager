@@ -115,6 +115,10 @@ func resourceObjectWebfilterProfileWeb() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"qwant_restrict": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -281,6 +285,10 @@ func flattenObjectWebfilterProfileWebYoutubeRestrict2edl(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectWebfilterProfileWebQwantRestrict2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectWebfilterProfileWeb(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -418,6 +426,16 @@ func refreshObjectObjectWebfilterProfileWeb(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("qwant_restrict", flattenObjectWebfilterProfileWebQwantRestrict2edl(o["qwant-restrict"], d, "qwant_restrict")); err != nil {
+		if vv, ok := fortiAPIPatch(o["qwant-restrict"], "ObjectWebfilterProfileWeb-QwantRestrict"); ok {
+			if err = d.Set("qwant_restrict", vv); err != nil {
+				return fmt.Errorf("Error reading qwant_restrict: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading qwant_restrict: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -476,6 +494,10 @@ func expandObjectWebfilterProfileWebWhitelist2edl(d *schema.ResourceData, v inte
 }
 
 func expandObjectWebfilterProfileWebYoutubeRestrict2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileWebQwantRestrict2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -596,6 +618,15 @@ func getObjectObjectWebfilterProfileWeb(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["youtube-restrict"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("qwant_restrict"); ok || d.HasChange("qwant_restrict") {
+		t, err := expandObjectWebfilterProfileWebQwantRestrict2edl(d, v, "qwant_restrict")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["qwant-restrict"] = t
 		}
 	}
 

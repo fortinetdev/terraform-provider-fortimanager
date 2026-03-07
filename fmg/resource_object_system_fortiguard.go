@@ -65,6 +65,14 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dlp_expiration": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"dlp_license": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"antispam_cache_ttl": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -158,6 +166,14 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"ia_expiration": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"ia_license": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -367,6 +383,14 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fnbi_expiration": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"fnbi_license": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -479,6 +503,14 @@ func flattenObjectSystemFortiguardAntispamCacheMpercent(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectSystemFortiguardDlpExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardDlpLicense(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardAntispamCacheTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -552,6 +584,14 @@ func flattenObjectSystemFortiguardFortiguardAnycastSource(v interface{}, d *sche
 }
 
 func flattenObjectSystemFortiguardGuiPromptAutoUpgrade(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardIaExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardIaLicense(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -723,6 +763,14 @@ func flattenObjectSystemFortiguardWebfilterTimeout(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemFortiguardFnbiExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardFnbiLicense(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -767,6 +815,26 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading antispam_cache_mpercent: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_expiration", flattenObjectSystemFortiguardDlpExpiration(o["dlp-expiration"], d, "dlp_expiration")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-expiration"], "ObjectSystemFortiguard-DlpExpiration"); ok {
+			if err = d.Set("dlp_expiration", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_expiration: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_expiration: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_license", flattenObjectSystemFortiguardDlpLicense(o["dlp-license"], d, "dlp_license")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-license"], "ObjectSystemFortiguard-DlpLicense"); ok {
+			if err = d.Set("dlp_license", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_license: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_license: %v", err)
 		}
 	}
 
@@ -957,6 +1025,26 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading gui_prompt_auto_upgrade: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_expiration", flattenObjectSystemFortiguardIaExpiration(o["ia-expiration"], d, "ia_expiration")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-expiration"], "ObjectSystemFortiguard-IaExpiration"); ok {
+			if err = d.Set("ia_expiration", vv); err != nil {
+				return fmt.Errorf("Error reading ia_expiration: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_expiration: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_license", flattenObjectSystemFortiguardIaLicense(o["ia-license"], d, "ia_license")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-license"], "ObjectSystemFortiguard-IaLicense"); ok {
+			if err = d.Set("ia_license", vv); err != nil {
+				return fmt.Errorf("Error reading ia_license: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_license: %v", err)
 		}
 	}
 
@@ -1380,6 +1468,26 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fnbi_expiration", flattenObjectSystemFortiguardFnbiExpiration(o["fnbi-expiration"], d, "fnbi_expiration")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fnbi-expiration"], "ObjectSystemFortiguard-FnbiExpiration"); ok {
+			if err = d.Set("fnbi_expiration", vv); err != nil {
+				return fmt.Errorf("Error reading fnbi_expiration: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fnbi_expiration: %v", err)
+		}
+	}
+
+	if err = d.Set("fnbi_license", flattenObjectSystemFortiguardFnbiLicense(o["fnbi-license"], d, "fnbi_license")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fnbi-license"], "ObjectSystemFortiguard-FnbiLicense"); ok {
+			if err = d.Set("fnbi_license", vv); err != nil {
+				return fmt.Errorf("Error reading fnbi_license: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fnbi_license: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1402,6 +1510,14 @@ func expandObjectSystemFortiguardAntispamCacheMpermille(d *schema.ResourceData, 
 }
 
 func expandObjectSystemFortiguardAntispamCacheMpercent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardDlpExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardDlpLicense(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1478,6 +1594,14 @@ func expandObjectSystemFortiguardFortiguardAnycastSource(d *schema.ResourceData,
 }
 
 func expandObjectSystemFortiguardGuiPromptAutoUpgrade(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardIaExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardIaLicense(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1653,6 +1777,14 @@ func expandObjectSystemFortiguardWebfilterTimeout(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectSystemFortiguardFnbiExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardFnbiLicense(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1689,6 +1821,24 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["antispam-cache-mpercent"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_expiration"); ok || d.HasChange("dlp_expiration") {
+		t, err := expandObjectSystemFortiguardDlpExpiration(d, v, "dlp_expiration")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-expiration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_license"); ok || d.HasChange("dlp_license") {
+		t, err := expandObjectSystemFortiguardDlpLicense(d, v, "dlp_license")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-license"] = t
 		}
 	}
 
@@ -1860,6 +2010,24 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["gui-prompt-auto-upgrade"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_expiration"); ok || d.HasChange("ia_expiration") {
+		t, err := expandObjectSystemFortiguardIaExpiration(d, v, "ia_expiration")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-expiration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_license"); ok || d.HasChange("ia_license") {
+		t, err := expandObjectSystemFortiguardIaLicense(d, v, "ia_license")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-license"] = t
 		}
 	}
 
@@ -2247,6 +2415,24 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["webfilter-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fnbi_expiration"); ok || d.HasChange("fnbi_expiration") {
+		t, err := expandObjectSystemFortiguardFnbiExpiration(d, v, "fnbi_expiration")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fnbi-expiration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fnbi_license"); ok || d.HasChange("fnbi_license") {
+		t, err := expandObjectSystemFortiguardFnbiLicense(d, v, "fnbi_license")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fnbi-license"] = t
 		}
 	}
 

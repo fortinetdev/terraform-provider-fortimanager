@@ -127,6 +127,39 @@ func resourceObjectFirewallShapingProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"classes": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"class_id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"guaranteed_bandwidth": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"maximum_bandwidth": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"priority": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
+			"default_class": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -416,6 +449,89 @@ func flattenObjectFirewallShapingProfileType(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectFirewallShapingProfileClasses(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "class_id"
+		if _, ok := i["class-id"]; ok {
+			v := flattenObjectFirewallShapingProfileClassesClassId(i["class-id"], d, pre_append)
+			tmp["class_id"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-Classes-ClassId")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "guaranteed_bandwidth"
+		if _, ok := i["guaranteed-bandwidth"]; ok {
+			v := flattenObjectFirewallShapingProfileClassesGuaranteedBandwidth(i["guaranteed-bandwidth"], d, pre_append)
+			tmp["guaranteed_bandwidth"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-Classes-GuaranteedBandwidth")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "maximum_bandwidth"
+		if _, ok := i["maximum-bandwidth"]; ok {
+			v := flattenObjectFirewallShapingProfileClassesMaximumBandwidth(i["maximum-bandwidth"], d, pre_append)
+			tmp["maximum_bandwidth"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-Classes-MaximumBandwidth")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectFirewallShapingProfileClassesName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-Classes-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := i["priority"]; ok {
+			v := flattenObjectFirewallShapingProfileClassesPriority(i["priority"], d, pre_append)
+			tmp["priority"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-Classes-Priority")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallShapingProfileClassesClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShapingProfileClassesGuaranteedBandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShapingProfileClassesMaximumBandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShapingProfileClassesName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShapingProfileClassesPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShapingProfileDefaultClass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallShapingProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -498,6 +614,40 @@ func refreshObjectObjectFirewallShapingProfile(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("classes", flattenObjectFirewallShapingProfileClasses(o["classes"], d, "classes")); err != nil {
+			if vv, ok := fortiAPIPatch(o["classes"], "ObjectFirewallShapingProfile-Classes"); ok {
+				if err = d.Set("classes", vv); err != nil {
+					return fmt.Errorf("Error reading classes: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading classes: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("classes"); ok {
+			if err = d.Set("classes", flattenObjectFirewallShapingProfileClasses(o["classes"], d, "classes")); err != nil {
+				if vv, ok := fortiAPIPatch(o["classes"], "ObjectFirewallShapingProfile-Classes"); ok {
+					if err = d.Set("classes", vv); err != nil {
+						return fmt.Errorf("Error reading classes: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading classes: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("default_class", flattenObjectFirewallShapingProfileDefaultClass(o["default-class"], d, "default_class")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-class"], "ObjectFirewallShapingProfile-DefaultClass"); ok {
+			if err = d.Set("default_class", vv); err != nil {
+				return fmt.Errorf("Error reading default_class: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_class: %v", err)
 		}
 	}
 
@@ -653,6 +803,79 @@ func expandObjectFirewallShapingProfileType(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectFirewallShapingProfileClasses(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "class_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["class-id"], _ = expandObjectFirewallShapingProfileClassesClassId(d, i["class_id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "guaranteed_bandwidth"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["guaranteed-bandwidth"], _ = expandObjectFirewallShapingProfileClassesGuaranteedBandwidth(d, i["guaranteed_bandwidth"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "maximum_bandwidth"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["maximum-bandwidth"], _ = expandObjectFirewallShapingProfileClassesMaximumBandwidth(d, i["maximum_bandwidth"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectFirewallShapingProfileClassesName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["priority"], _ = expandObjectFirewallShapingProfileClassesPriority(d, i["priority"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallShapingProfileClassesClassId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileClassesGuaranteedBandwidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileClassesMaximumBandwidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileClassesName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileClassesPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShapingProfileDefaultClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallShapingProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -707,6 +930,24 @@ func getObjectObjectFirewallShapingProfile(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("classes"); ok || d.HasChange("classes") {
+		t, err := expandObjectFirewallShapingProfileClasses(d, v, "classes")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["classes"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("default_class"); ok || d.HasChange("default_class") {
+		t, err := expandObjectFirewallShapingProfileDefaultClass(d, v, "default_class")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-class"] = t
 		}
 	}
 

@@ -10,6 +10,7 @@ description: |-
 Configure shaping profiles.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+>- `classes`: `fortimanager_object_firewall_shapingprofile_classes`
 >- `shaping_entries`: `fortimanager_object_firewall_shapingprofile_shapingentries`
 
 
@@ -40,6 +41,8 @@ The following arguments are supported:
 * `shaping_entries` - Shaping-Entries. The structure of `shaping_entries` block is documented below.
 * `type` - Select shaping profile type: policing / queuing. Valid values: `policing`, `queuing`.
 
+* `classes` - Classes. The structure of `classes` block is documented below.
+* `default_class` - Default-Class.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `shaping_entries` block supports:
@@ -56,6 +59,15 @@ The `shaping_entries` block supports:
 * `priority` - Priority. Valid values: `low`, `medium`, `high`, `critical`, `top`.
 
 * `red_probability` - Maximum probability (in percentage) for RED marking.
+
+The `classes` block supports:
+
+* `class_id` - Class-Id.
+* `guaranteed_bandwidth` - Guaranteed-Bandwidth.
+* `maximum_bandwidth` - Maximum-Bandwidth.
+* `name` - Name.
+* `priority` - Priority. Valid values: `top`, `critical`, `high`, `medium`, `low`.
+
 
 
 ## Attribute Reference

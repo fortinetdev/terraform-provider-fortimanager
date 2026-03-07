@@ -149,6 +149,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6Realservers() *schema.Resource
 			"verify_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"weight": &schema.Schema{
 				Type:     schema.TypeInt,

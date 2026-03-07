@@ -182,6 +182,16 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"post_arg": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"url_list": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -524,6 +534,14 @@ func flattenObjectFirewallProxyAddressUuid(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectFirewallProxyAddressPostArg(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProxyAddressUrlList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallProxyAddressVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -787,6 +805,26 @@ func refreshObjectObjectFirewallProxyAddress(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("post_arg", flattenObjectFirewallProxyAddressPostArg(o["post-arg"], d, "post_arg")); err != nil {
+		if vv, ok := fortiAPIPatch(o["post-arg"], "ObjectFirewallProxyAddress-PostArg"); ok {
+			if err = d.Set("post_arg", vv); err != nil {
+				return fmt.Errorf("Error reading post_arg: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading post_arg: %v", err)
+		}
+	}
+
+	if err = d.Set("url_list", flattenObjectFirewallProxyAddressUrlList(o["url-list"], d, "url_list")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-list"], "ObjectFirewallProxyAddress-UrlList"); ok {
+			if err = d.Set("url_list", vv); err != nil {
+				return fmt.Errorf("Error reading url_list: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_list: %v", err)
+		}
+	}
+
 	if err = d.Set("visibility", flattenObjectFirewallProxyAddressVisibility(o["visibility"], d, "visibility")); err != nil {
 		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallProxyAddress-Visibility"); ok {
 			if err = d.Set("visibility", vv); err != nil {
@@ -997,6 +1035,14 @@ func expandObjectFirewallProxyAddressUuid(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddressPostArg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProxyAddressUrlList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallProxyAddressVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1199,6 +1245,24 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("post_arg"); ok || d.HasChange("post_arg") {
+		t, err := expandObjectFirewallProxyAddressPostArg(d, v, "post_arg")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["post-arg"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("url_list"); ok || d.HasChange("url_list") {
+		t, err := expandObjectFirewallProxyAddressUrlList(d, v, "url_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-list"] = t
 		}
 	}
 

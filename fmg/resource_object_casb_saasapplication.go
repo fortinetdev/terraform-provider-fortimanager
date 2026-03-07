@@ -126,6 +126,7 @@ func resourceObjectCasbSaasApplication() *schema.Resource {
 						"optional": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"required": &schema.Schema{
 							Type:     schema.TypeString,

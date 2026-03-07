@@ -71,6 +71,8 @@ The following arguments are supported:
 
 * `user_name` - Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
 
+* `logic_type` - Logic-Type. Valid values: `or`, `and`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:

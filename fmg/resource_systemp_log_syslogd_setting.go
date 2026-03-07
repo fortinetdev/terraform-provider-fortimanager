@@ -141,6 +141,31 @@ func resourceSystempLogSyslogdSetting() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"log_templates": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"category": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"empty_value_indicator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"template": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -379,6 +404,75 @@ func flattenSystempLogSyslogdSettingVrfSelect(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenSystempLogSyslogdSettingLogTemplates(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
+		if _, ok := i["category"]; ok {
+			v := flattenSystempLogSyslogdSettingLogTemplatesCategory(i["category"], d, pre_append)
+			tmp["category"] = fortiAPISubPartPatch(v, "SystempLogSyslogdSetting-LogTemplates-Category")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "empty_value_indicator"
+		if _, ok := i["empty-value-indicator"]; ok {
+			v := flattenSystempLogSyslogdSettingLogTemplatesEmptyValueIndicator(i["empty-value-indicator"], d, pre_append)
+			tmp["empty_value_indicator"] = fortiAPISubPartPatch(v, "SystempLogSyslogdSetting-LogTemplates-EmptyValueIndicator")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenSystempLogSyslogdSettingLogTemplatesId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "SystempLogSyslogdSetting-LogTemplates-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "template"
+		if _, ok := i["template"]; ok {
+			v := flattenSystempLogSyslogdSettingLogTemplatesTemplate(i["template"], d, pre_append)
+			tmp["template"] = fortiAPISubPartPatch(v, "SystempLogSyslogdSetting-LogTemplates-Template")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSystempLogSyslogdSettingLogTemplatesCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempLogSyslogdSettingLogTemplatesEmptyValueIndicator(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempLogSyslogdSettingLogTemplatesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempLogSyslogdSettingLogTemplatesTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystempLogSyslogdSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -564,6 +658,30 @@ func refreshObjectSystempLogSyslogdSetting(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("log_templates", flattenSystempLogSyslogdSettingLogTemplates(o["log-templates"], d, "log_templates")); err != nil {
+			if vv, ok := fortiAPIPatch(o["log-templates"], "SystempLogSyslogdSetting-LogTemplates"); ok {
+				if err = d.Set("log_templates", vv); err != nil {
+					return fmt.Errorf("Error reading log_templates: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading log_templates: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("log_templates"); ok {
+			if err = d.Set("log_templates", flattenSystempLogSyslogdSettingLogTemplates(o["log-templates"], d, "log_templates")); err != nil {
+				if vv, ok := fortiAPIPatch(o["log-templates"], "SystempLogSyslogdSetting-LogTemplates"); ok {
+					if err = d.Set("log_templates", vv); err != nil {
+						return fmt.Errorf("Error reading log_templates: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading log_templates: %v", err)
+				}
+			}
+		}
+	}
+
 	return nil
 }
 
@@ -681,6 +799,66 @@ func expandSystempLogSyslogdSettingStatus(d *schema.ResourceData, v interface{},
 }
 
 func expandSystempLogSyslogdSettingVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogSyslogdSettingLogTemplates(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["category"], _ = expandSystempLogSyslogdSettingLogTemplatesCategory(d, i["category"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "empty_value_indicator"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["empty-value-indicator"], _ = expandSystempLogSyslogdSettingLogTemplatesEmptyValueIndicator(d, i["empty_value_indicator"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandSystempLogSyslogdSettingLogTemplatesId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "template"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["template"], _ = expandSystempLogSyslogdSettingLogTemplatesTemplate(d, i["template"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSystempLogSyslogdSettingLogTemplatesCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogSyslogdSettingLogTemplatesEmptyValueIndicator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogSyslogdSettingLogTemplatesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystempLogSyslogdSettingLogTemplatesTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -828,6 +1006,15 @@ func getObjectSystempLogSyslogdSetting(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["vrf-select"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_templates"); ok || d.HasChange("log_templates") {
+		t, err := expandSystempLogSyslogdSettingLogTemplates(d, v, "log_templates")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-templates"] = t
 		}
 	}
 

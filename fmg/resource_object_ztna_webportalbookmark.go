@@ -168,6 +168,10 @@ func resourceObjectZtnaWebPortalBookmark() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -549,6 +553,10 @@ func flattenObjectZtnaWebPortalBookmarkUsers(v interface{}, d *schema.ResourceDa
 	return flattenStringList(v)
 }
 
+func flattenObjectZtnaWebPortalBookmarkType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectZtnaWebPortalBookmark(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -611,6 +619,16 @@ func refreshObjectObjectZtnaWebPortalBookmark(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading users: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenObjectZtnaWebPortalBookmarkType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "ObjectZtnaWebPortalBookmark-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
 		}
 	}
 
@@ -857,6 +875,10 @@ func expandObjectZtnaWebPortalBookmarkUsers(d *schema.ResourceData, v interface{
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectZtnaWebPortalBookmarkType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectZtnaWebPortalBookmark(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -893,6 +915,15 @@ func getObjectObjectZtnaWebPortalBookmark(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["users"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandObjectZtnaWebPortalBookmarkType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
 		}
 	}
 

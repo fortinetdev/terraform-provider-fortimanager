@@ -120,6 +120,8 @@ The following arguments are supported:
 * `wisp_algorithm` - WISP server selection algorithm. Valid values: `auto-learning`, `primary-secondary`, `round-robin`.
 
 * `wisp_servers` - WISP servers.
+* `ia_categorization` - Ia-Categorization. Valid values: `disable`, `enable`.
+
 * `youtube_channel_filter` - Youtube-Channel-Filter. The structure of `youtube_channel_filter` block is documented below.
 * `youtube_channel_status` - YouTube channel filter status. Valid values: `disable`, `blacklist`, `whitelist`.
 
@@ -289,6 +291,8 @@ The `web` block supports:
 * `whitelist` - FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
 
 * `youtube_restrict` - YouTube EDU filter level. Valid values: `strict`, `none`, `moderate`.
+
+* `qwant_restrict` - Qwant-Restrict. Valid values: `strict`, `none`, `moderate`.
 
 
 The `youtube_channel_filter` block supports:
