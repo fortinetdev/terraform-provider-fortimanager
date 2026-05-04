@@ -95,7 +95,7 @@ func resourceSecurityconsoleInstallPackageUpdate(d *schema.ResourceData, m inter
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleInstallPackage(d)
+	obj, err := getObjectSecurityconsoleInstallPackage(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallPackage resource while getting object: %v", err)
 	}
@@ -364,7 +364,7 @@ func expandSecurityconsoleInstallPackageScopeVdom(d *schema.ResourceData, v inte
 	return v, nil
 }
 
-func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -421,12 +421,16 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsoleInstallPackageScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsoleInstallPackageScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

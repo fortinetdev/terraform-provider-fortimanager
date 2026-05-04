@@ -29,6 +29,11 @@ func resourceObjectIcapServerGroup() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -61,10 +66,8 @@ func resourceObjectIcapServerGroup() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"name": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
+							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -102,9 +105,31 @@ func resourceObjectIcapServerGroupCreate(d *schema.ResourceData, m interface{}) 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapServerGroup(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapServerGroup resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapServerGroup(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapServerGroup(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapServerGroup resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIcapServerGroup(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIcapServerGroup resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -188,6 +213,7 @@ func resourceObjectIcapServerGroupRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadObjectIcapServerGroup(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapServerGroup resource: %v", err)
 	}
 
@@ -254,7 +280,7 @@ func flattenObjectIcapServerGroupServerList(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectIcapServerGroupServerListName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return conv2str(v)
 }
 
 func flattenObjectIcapServerGroupServerListWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -368,7 +394,7 @@ func expandObjectIcapServerGroupServerList(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectIcapServerGroupServerListName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return v, nil
 }
 
 func expandObjectIcapServerGroupServerListWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

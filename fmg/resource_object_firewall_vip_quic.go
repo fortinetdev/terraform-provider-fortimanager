@@ -111,7 +111,7 @@ func resourceObjectFirewallVipQuicUpdate(d *schema.ResourceData, m interface{}) 
 	vip := d.Get("vip").(string)
 	paradict["vip"] = vip
 
-	obj, err := getObjectObjectFirewallVipQuic(d)
+	obj, err := getObjectObjectFirewallVipQuic(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipQuic resource while getting object: %v", err)
 	}
@@ -132,7 +132,6 @@ func resourceObjectFirewallVipQuicUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceObjectFirewallVipQuicDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -148,11 +147,17 @@ func resourceObjectFirewallVipQuicDelete(d *schema.ResourceData, m interface{}) 
 	vip := d.Get("vip").(string)
 	paradict["vip"] = vip
 
+	obj, err := getObjectObjectFirewallVipQuic(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallVipQuic resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVipQuic(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallVipQuic(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallVipQuic resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallVipQuic resource: %v", err)
 	}
 
 	d.SetId("")
@@ -188,6 +193,7 @@ func resourceObjectFirewallVipQuicRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadObjectFirewallVipQuic(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallVipQuic resource: %v", err)
 	}
 
@@ -364,7 +370,7 @@ func expandObjectFirewallVipQuicMaxUdpPayloadSize2edl(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectObjectFirewallVipQuic(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallVipQuic(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_delay_exponent"); ok || d.HasChange("ack_delay_exponent") {

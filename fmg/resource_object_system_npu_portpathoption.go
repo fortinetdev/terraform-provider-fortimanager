@@ -69,7 +69,7 @@ func resourceObjectSystemNpuPortPathOptionUpdate(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuPortPathOption(d)
+	obj, err := getObjectObjectSystemNpuPortPathOption(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPortPathOption resource while getting object: %v", err)
 	}
@@ -90,7 +90,6 @@ func resourceObjectSystemNpuPortPathOptionUpdate(d *schema.ResourceData, m inter
 
 func resourceObjectSystemNpuPortPathOptionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -103,11 +102,17 @@ func resourceObjectSystemNpuPortPathOptionDelete(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuPortPathOption(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuPortPathOption resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuPortPathOption(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuPortPathOption(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuPortPathOption resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuPortPathOption resource: %v", err)
 	}
 
 	d.SetId("")
@@ -131,6 +136,7 @@ func resourceObjectSystemNpuPortPathOptionRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectSystemNpuPortPathOption(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuPortPathOption resource: %v", err)
 	}
 
@@ -181,7 +187,7 @@ func expandObjectSystemNpuPortPathOptionPortsUsingNpu2edl(d *schema.ResourceData
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectSystemNpuPortPathOption(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuPortPathOption(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ports_using_npu"); ok || d.HasChange("ports_using_npu") {

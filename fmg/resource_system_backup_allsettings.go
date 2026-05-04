@@ -95,7 +95,7 @@ func resourceSystemBackupAllSettingsUpdate(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemBackupAllSettings(d)
+	obj, err := getObjectSystemBackupAllSettings(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemBackupAllSettings resource while getting object: %v", err)
 	}
@@ -116,7 +116,6 @@ func resourceSystemBackupAllSettingsUpdate(d *schema.ResourceData, m interface{}
 
 func resourceSystemBackupAllSettingsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -126,11 +125,17 @@ func resourceSystemBackupAllSettingsDelete(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemBackupAllSettings(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemBackupAllSettings resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemBackupAllSettings(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemBackupAllSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemBackupAllSettings resource: %v", err)
+		return fmt.Errorf("Error clearing SystemBackupAllSettings resource: %v", err)
 	}
 
 	d.SetId("")
@@ -151,6 +156,7 @@ func resourceSystemBackupAllSettingsRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadSystemBackupAllSettings(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemBackupAllSettings resource: %v", err)
 	}
 
@@ -331,7 +337,7 @@ func expandSystemBackupAllSettingsWeekDays(d *schema.ResourceData, v interface{}
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystemBackupAllSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemBackupAllSettings(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {

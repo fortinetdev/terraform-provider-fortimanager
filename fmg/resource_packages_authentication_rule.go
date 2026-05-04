@@ -29,6 +29,11 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -101,6 +106,11 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Optional: true,
 			},
 			"protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"session_logout": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -182,9 +192,31 @@ func resourcePackagesAuthenticationRuleCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesAuthenticationRule(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesAuthenticationRule resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesAuthenticationRule(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesAuthenticationRule(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesAuthenticationRule resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesAuthenticationRule(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesAuthenticationRule resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -298,6 +330,7 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadPackagesAuthenticationRule(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesAuthenticationRule resource: %v", err)
 	}
 
@@ -351,6 +384,10 @@ func flattenPackagesAuthenticationRuleName(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesAuthenticationRuleProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationRuleSessionLogout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -498,6 +535,16 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("session_logout", flattenPackagesAuthenticationRuleSessionLogout(o["session-logout"], d, "session_logout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["session-logout"], "PackagesAuthenticationRule-SessionLogout"); ok {
+			if err = d.Set("session_logout", vv); err != nil {
+				return fmt.Errorf("Error reading session_logout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading session_logout: %v", err)
 		}
 	}
 
@@ -650,6 +697,10 @@ func expandPackagesAuthenticationRuleProtocol(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesAuthenticationRuleSessionLogout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesAuthenticationRuleSrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -780,6 +831,15 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("session_logout"); ok || d.HasChange("session_logout") {
+		t, err := expandPackagesAuthenticationRuleSessionLogout(d, v, "session_logout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["session-logout"] = t
 		}
 	}
 

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Switch Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_switchcontroller_trafficpolicy"
 description: |-

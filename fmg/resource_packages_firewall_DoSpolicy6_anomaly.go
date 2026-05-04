@@ -29,6 +29,11 @@ func resourcePackagesFirewallDosPolicy6Anomaly() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -159,9 +164,31 @@ func resourcePackagesFirewallDosPolicy6AnomalyCreate(d *schema.ResourceData, m i
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallDosPolicy6Anomaly(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallDosPolicy6Anomaly resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallDosPolicy6Anomaly(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallDosPolicy6Anomaly(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallDosPolicy6Anomaly resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesFirewallDosPolicy6Anomaly(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesFirewallDosPolicy6Anomaly resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -290,6 +317,7 @@ func resourcePackagesFirewallDosPolicy6AnomalyRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadPackagesFirewallDosPolicy6Anomaly(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallDosPolicy6Anomaly resource: %v", err)
 	}
 

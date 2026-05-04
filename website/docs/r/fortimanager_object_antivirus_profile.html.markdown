@@ -89,6 +89,7 @@ The following arguments are supported:
 * `fortisandbox_max_upload` - Maximum size of files that can be uploaded to FortiSandbox.
 * `fortisandbox_mode` - FortiSandbox scan modes. Valid values: `inline`, `analytics-suspicious`, `analytics-everything`.
 
+* `fortisandbox_scan_timeout` - FortiSandbox inline scan timeout in seconds (30 - 180, default = 60).
 * `fortisandbox_timeout_action` - Action to take if FortiSandbox inline scan encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
 
 * `ftgd_analytics` - Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.

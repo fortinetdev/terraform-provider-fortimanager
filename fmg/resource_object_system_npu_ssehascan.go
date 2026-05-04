@@ -77,7 +77,7 @@ func resourceObjectSystemNpuSseHaScanUpdate(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuSseHaScan(d)
+	obj, err := getObjectObjectSystemNpuSseHaScan(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSseHaScan resource while getting object: %v", err)
 	}
@@ -98,7 +98,6 @@ func resourceObjectSystemNpuSseHaScanUpdate(d *schema.ResourceData, m interface{
 
 func resourceObjectSystemNpuSseHaScanDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -111,11 +110,17 @@ func resourceObjectSystemNpuSseHaScanDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuSseHaScan(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuSseHaScan resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuSseHaScan(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuSseHaScan(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuSseHaScan resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuSseHaScan resource: %v", err)
 	}
 
 	d.SetId("")
@@ -139,6 +144,7 @@ func resourceObjectSystemNpuSseHaScanRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadObjectSystemNpuSseHaScan(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuSseHaScan resource: %v", err)
 	}
 
@@ -225,7 +231,7 @@ func expandObjectSystemNpuSseHaScanMinDuration2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectSystemNpuSseHaScan(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuSseHaScan(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("gap"); ok || d.HasChange("gap") {

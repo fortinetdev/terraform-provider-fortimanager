@@ -540,7 +540,7 @@ func resourceObjectFspVlanDhcpServerUpdate(d *schema.ResourceData, m interface{}
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	obj, err := getObjectObjectFspVlanDhcpServer(d)
+	obj, err := getObjectObjectFspVlanDhcpServer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDhcpServer resource while getting object: %v", err)
 	}
@@ -561,7 +561,6 @@ func resourceObjectFspVlanDhcpServerUpdate(d *schema.ResourceData, m interface{}
 
 func resourceObjectFspVlanDhcpServerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -577,11 +576,17 @@ func resourceObjectFspVlanDhcpServerDelete(d *schema.ResourceData, m interface{}
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
+	obj, err := getObjectObjectFspVlanDhcpServer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFspVlanDhcpServer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFspVlanDhcpServer(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFspVlanDhcpServer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFspVlanDhcpServer resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFspVlanDhcpServer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -617,6 +622,7 @@ func resourceObjectFspVlanDhcpServerRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectFspVlanDhcpServer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanDhcpServer resource: %v", err)
 	}
 
@@ -2598,7 +2604,7 @@ func expandObjectFspVlanDhcpServerWinsServer22edl(d *schema.ResourceData, v inte
 	return v, nil
 }
 
-func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auto_configuration"); ok || d.HasChange("auto_configuration") {
@@ -2781,12 +2787,16 @@ func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("exclude_range"); ok || d.HasChange("exclude_range") {
-		t, err := expandObjectFspVlanDhcpServerExcludeRange2edl(d, v, "exclude_range")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["exclude-range"] = t
+	if bemptysontable {
+		obj["exclude-range"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("exclude_range"); ok || d.HasChange("exclude_range") {
+			t, err := expandObjectFspVlanDhcpServerExcludeRange2edl(d, v, "exclude_range")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["exclude-range"] = t
+			}
 		}
 	}
 
@@ -2826,12 +2836,16 @@ func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
-		t, err := expandObjectFspVlanDhcpServerIpRange2edl(d, v, "ip_range")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip-range"] = t
+	if bemptysontable {
+		obj["ip-range"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
+			t, err := expandObjectFspVlanDhcpServerIpRange2edl(d, v, "ip_range")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip-range"] = t
+			}
 		}
 	}
 
@@ -2970,12 +2984,16 @@ func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
-		t, err := expandObjectFspVlanDhcpServerOptions2edl(d, v, "options")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["options"] = t
+	if bemptysontable {
+		obj["options"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
+			t, err := expandObjectFspVlanDhcpServerOptions2edl(d, v, "options")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["options"] = t
+			}
 		}
 	}
 
@@ -2988,12 +3006,16 @@ func getObjectObjectFspVlanDhcpServer(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("reserved_address"); ok || d.HasChange("reserved_address") {
-		t, err := expandObjectFspVlanDhcpServerReservedAddress2edl(d, v, "reserved_address")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["reserved-address"] = t
+	if bemptysontable {
+		obj["reserved-address"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("reserved_address"); ok || d.HasChange("reserved_address") {
+			t, err := expandObjectFspVlanDhcpServerReservedAddress2edl(d, v, "reserved_address")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["reserved-address"] = t
+			}
 		}
 	}
 

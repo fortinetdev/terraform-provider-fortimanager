@@ -29,6 +29,11 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -123,9 +128,31 @@ func resourceObjectDynamicMulticastInterfaceCreate(d *schema.ResourceData, m int
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicMulticastInterface(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectDynamicMulticastInterface(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectDynamicMulticastInterface(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectDynamicMulticastInterface resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectDynamicMulticastInterface(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -209,6 +236,7 @@ func resourceObjectDynamicMulticastInterfaceRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectDynamicMulticastInterface(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectDynamicMulticastInterface resource: %v", err)
 	}
 

@@ -258,7 +258,7 @@ func resourceObjectFirewallProfileProtocolOptionsHttpUpdate(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsHttp(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsHttp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsHttp resource while getting object: %v", err)
 	}
@@ -279,7 +279,6 @@ func resourceObjectFirewallProfileProtocolOptionsHttpUpdate(d *schema.ResourceDa
 
 func resourceObjectFirewallProfileProtocolOptionsHttpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -295,11 +294,17 @@ func resourceObjectFirewallProfileProtocolOptionsHttpDelete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsHttp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsHttp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsHttp(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsHttp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsHttp resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsHttp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -335,6 +340,7 @@ func resourceObjectFirewallProfileProtocolOptionsHttpRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsHttp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsHttp resource: %v", err)
 	}
 
@@ -1051,7 +1057,7 @@ func expandObjectFirewallProfileProtocolOptionsHttpEncryptedFileLog2edl(d *schem
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("address_ip_rating"); ok || d.HasChange("address_ip_rating") {

@@ -259,7 +259,7 @@ func resourceSystemLocallogFortianalyzerFilterUpdate(d *schema.ResourceData, m i
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogFortianalyzerFilter(d)
+	obj, err := getObjectSystemLocallogFortianalyzerFilter(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogFortianalyzerFilter resource while getting object: %v", err)
 	}
@@ -280,7 +280,6 @@ func resourceSystemLocallogFortianalyzerFilterUpdate(d *schema.ResourceData, m i
 
 func resourceSystemLocallogFortianalyzerFilterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -290,11 +289,17 @@ func resourceSystemLocallogFortianalyzerFilterDelete(d *schema.ResourceData, m i
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogFortianalyzerFilter(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogFortianalyzerFilter resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogFortianalyzerFilter(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogFortianalyzerFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogFortianalyzerFilter resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogFortianalyzerFilter resource: %v", err)
 	}
 
 	d.SetId("")
@@ -315,6 +320,7 @@ func resourceSystemLocallogFortianalyzerFilterRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadSystemLocallogFortianalyzerFilter(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogFortianalyzerFilter resource: %v", err)
 	}
 
@@ -1117,7 +1123,7 @@ func expandSystemLocallogFortianalyzerFilterWebport(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectSystemLocallogFortianalyzerFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogFortianalyzerFilter(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aid"); ok || d.HasChange("aid") {

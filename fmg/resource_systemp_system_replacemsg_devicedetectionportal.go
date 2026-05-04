@@ -87,7 +87,7 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalUpdate(d *schema.Resour
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgDeviceDetectionPortal(d)
+	obj, err := getObjectSystempSystemReplacemsgDeviceDetectionPortal(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgDeviceDetectionPortal resource while getting object: %v", err)
 	}
@@ -108,7 +108,6 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalUpdate(d *schema.Resour
 
 func resourceSystempSystemReplacemsgDeviceDetectionPortalDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -124,11 +123,17 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalDelete(d *schema.Resour
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgDeviceDetectionPortal(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgDeviceDetectionPortal resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgDeviceDetectionPortal(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgDeviceDetectionPortal(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgDeviceDetectionPortal resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgDeviceDetectionPortal resource: %v", err)
 	}
 
 	d.SetId("")
@@ -164,6 +169,7 @@ func resourceSystempSystemReplacemsgDeviceDetectionPortalRead(d *schema.Resource
 
 	o, err := c.ReadSystempSystemReplacemsgDeviceDetectionPortal(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgDeviceDetectionPortal resource: %v", err)
 	}
 
@@ -268,7 +274,7 @@ func expandSystempSystemReplacemsgDeviceDetectionPortalMsgType(d *schema.Resourc
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgDeviceDetectionPortal(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgDeviceDetectionPortal(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

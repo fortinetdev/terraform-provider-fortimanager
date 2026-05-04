@@ -7130,6 +7130,138 @@ func (c *FortiSDKClient) ReadObjectDynamicIppool(mkey string, paradict map[strin
 	return
 }
 
+// CreateObjectDynamicLogNpuServerServerGroup API operation for FortiManager creates a new LogNpu ServerServer Group.
+// Returns the index value of the LogNpu ServerServer Group and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateObjectDynamicLogNpuServerServerGroup(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateObjectDynamicLogNpuServerServerGroup API operation for FortiManager updates the specified LogNpu ServerServer Group.
+// Returns the index value of the LogNpu ServerServer Group and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateObjectDynamicLogNpuServerServerGroup(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteObjectDynamicLogNpuServerServerGroup API operation for FortiManager deletes the specified LogNpu ServerServer Group.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteObjectDynamicLogNpuServerServerGroup(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadObjectDynamicLogNpuServerServerGroup API operation for FortiManager gets the LogNpu ServerServer Group
+// with the specified index value.
+// Returns the requested LogNpu ServerServer Group value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadObjectDynamicLogNpuServerServerGroup(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreateObjectDynamicLogNpuServerServerGroupDynamicMapping API operation for FortiManager creates a new LogNpu ServerServer GroupDynamicMapping.
+// Returns the index value of the LogNpu ServerServer GroupDynamicMapping and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group dynamic mapping chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateObjectDynamicLogNpuServerServerGroupDynamicMapping(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group/{server-group}/dynamic_mapping"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateObjectDynamicLogNpuServerServerGroupDynamicMapping API operation for FortiManager updates the specified LogNpu ServerServer GroupDynamicMapping.
+// Returns the index value of the LogNpu ServerServer GroupDynamicMapping and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group dynamic mapping chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateObjectDynamicLogNpuServerServerGroupDynamicMapping(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group/{server-group}/dynamic_mapping"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLStringDMScope(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteObjectDynamicLogNpuServerServerGroupDynamicMapping API operation for FortiManager deletes the specified LogNpu ServerServer GroupDynamicMapping.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group dynamic mapping chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteObjectDynamicLogNpuServerServerGroupDynamicMapping(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group/{server-group}/dynamic_mapping"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLStringDMScope(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadObjectDynamicLogNpuServerServerGroupDynamicMapping API operation for FortiManager gets the LogNpu ServerServer GroupDynamicMapping
+// with the specified index value.
+// Returns the requested LogNpu ServerServer GroupDynamicMapping value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object dynamic - log npu-server server-group dynamic mapping chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadObjectDynamicLogNpuServerServerGroupDynamicMapping(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/dynamic/log/npu-server/server-group/{server-group}/dynamic_mapping"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLStringDMScope(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
 // CreateObjectDynamicMulticastInterface API operation for FortiManager creates a new MulticastInterface.
 // Returns the index value of the MulticastInterface and execution result when the request executes successfully.
 // Returns error for service API and SDK errors.
@@ -21803,6 +21935,138 @@ func (c *FortiSDKClient) ReadObjectFmgSaseManagerStatus(mkey string, paradict ma
 	if err != nil {
 		return nil, fmt.Errorf("%v", err)
 	}
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreateObjectFmgScript API operation for FortiManager creates a new Script.
+// Returns the index value of the Script and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateObjectFmgScript(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateObjectFmgScript API operation for FortiManager updates the specified Script.
+// Returns the index value of the Script and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateObjectFmgScript(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteObjectFmgScript API operation for FortiManager deletes the specified Script.
+// Returns error for service API and SDK errors.
+// See the object fmg - script chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteObjectFmgScript(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/obj/fmg/script"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadObjectFmgScript API operation for FortiManager gets the Script
+// with the specified index value.
+// Returns the requested Script value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadObjectFmgScript(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreateObjectFmgScriptSchedule API operation for FortiManager creates a new ScriptSchedule.
+// Returns the index value of the ScriptSchedule and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script schedule chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateObjectFmgScriptSchedule(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script/{script}/schedule"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateObjectFmgScriptSchedule API operation for FortiManager updates the specified ScriptSchedule.
+// Returns the index value of the ScriptSchedule and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script schedule chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateObjectFmgScriptSchedule(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script/{script}/schedule"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteObjectFmgScriptSchedule API operation for FortiManager deletes the specified ScriptSchedule.
+// Returns error for service API and SDK errors.
+// See the object fmg - script schedule chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteObjectFmgScriptSchedule(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/obj/fmg/script/{script}/schedule"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadObjectFmgScriptSchedule API operation for FortiManager gets the ScriptSchedule
+// with the specified index value.
+// Returns the requested ScriptSchedule value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object fmg - script schedule chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadObjectFmgScriptSchedule(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/fmg/script/{script}/schedule"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
 
 	mapTmp, err = read(c, path, "get", false)
 	return
@@ -49750,6 +50014,46 @@ func (c *FortiSDKClient) ReadObjectZtnaWebPortalBookmarkBookmarksMove(mkey strin
 	return
 }
 
+// UpdateObjectZtnaWebPortalBookmarkLlmSecureProxy API operation for FortiManager updates the specified Web Portal BookmarkLlm Secure Proxy.
+// Returns the index value of the Web Portal BookmarkLlm Secure Proxy and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object ztna - web-portal-bookmark llm-secure-proxy chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateObjectZtnaWebPortalBookmarkLlmSecureProxy(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/ztna/web-portal-bookmark/{web-portal-bookmark}/llm-secure-proxy"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteObjectZtnaWebPortalBookmarkLlmSecureProxy API operation for FortiManager deletes the specified Web Portal BookmarkLlm Secure Proxy.
+// Returns error for service API and SDK errors.
+// See the object ztna - web-portal-bookmark llm-secure-proxy chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteObjectZtnaWebPortalBookmarkLlmSecureProxy(mkey string, paradict, wsParams map[string]string) (err error) {
+
+	//No unset API for object ztna - web-portal-bookmark llm-secure-proxy
+	return
+}
+
+// ReadObjectZtnaWebPortalBookmarkLlmSecureProxy API operation for FortiManager gets the Web Portal BookmarkLlm Secure Proxy
+// with the specified index value.
+// Returns the requested Web Portal BookmarkLlm Secure Proxy value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the object ztna - web-portal-bookmark llm-secure-proxy chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadObjectZtnaWebPortalBookmarkLlmSecureProxy(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/obj/ztna/web-portal-bookmark/{web-portal-bookmark}/llm-secure-proxy"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
 // CreateObjectZtnaWebProxy API operation for FortiManager creates a new Web Proxy.
 // Returns the index value of the Web Proxy and execution result when the request executes successfully.
 // Returns error for service API and SDK errors.
@@ -54319,6 +54623,21 @@ func (c *FortiSDKClient) UpdateSecurityconsoleSignCertificateTemplate(params *ma
 // See the securityconsole - template cli preview chapter in the FortiManager Handbook - CLI Reference.
 func (c *FortiSDKClient) UpdateSecurityconsoleTemplateCliPreview(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
 	path := "/securityconsole/template/cli/preview"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "exec", params, false, wsParams)
+	return
+}
+
+// UpdateSecurityconsoleTemplateValidate API operation for FortiManager updates the specified TemplateValidate.
+// Returns the index value of the TemplateValidate and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the securityconsole - template validate chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateSecurityconsoleTemplateValidate(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/securityconsole/template/validate"
 	path, err = replaceParaWithValue(path, paradict)
 	if err != nil {
 		return nil, fmt.Errorf("%v", err)
@@ -61088,6 +61407,46 @@ func (c *FortiSDKClient) ReadSystempSystemCentralManagementServerList(mkey strin
 	return
 }
 
+// UpdateSystempSystemDns API operation for FortiManager updates the specified SystemDns.
+// Returns the index value of the SystemDns and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system dns chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateSystempSystemDns(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/dns"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteSystempSystemDns API operation for FortiManager deletes the specified SystemDns.
+// Returns error for service API and SDK errors.
+// See the systemp - system dns chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteSystempSystemDns(mkey string, paradict, wsParams map[string]string) (err error) {
+
+	//No unset API for systemp - system dns
+	return
+}
+
+// ReadSystempSystemDns API operation for FortiManager gets the SystemDns
+// with the specified index value.
+// Returns the requested SystemDns value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system dns chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadSystempSystemDns(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/dns"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
 // UpdateSystempSystemEmailServer API operation for FortiManager updates the specified SystemEmail Server.
 // Returns the index value of the SystemEmail Server and execution result when the request executes successfully.
 // Returns error for service API and SDK errors.
@@ -62115,6 +62474,138 @@ func (c *FortiSDKClient) DeleteSystempSystemSnmpUser(mkey string, paradict, wsPa
 // See the systemp - system snmp user chapter in the FortiManager Handbook - CLI Reference.
 func (c *FortiSDKClient) ReadSystempSystemSnmpUser(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
 	path := "/pm/config/[*]/devprof/{devprof}/system/snmp/user"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreateSystempSystemTemplateInterface API operation for FortiManager creates a new SystemTemplateInterface.
+// Returns the index value of the SystemTemplateInterface and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateSystempSystemTemplateInterface(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateSystempSystemTemplateInterface API operation for FortiManager updates the specified SystemTemplateInterface.
+// Returns the index value of the SystemTemplateInterface and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateSystempSystemTemplateInterface(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteSystempSystemTemplateInterface API operation for FortiManager deletes the specified SystemTemplateInterface.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteSystempSystemTemplateInterface(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadSystempSystemTemplateInterface API operation for FortiManager gets the SystemTemplateInterface
+// with the specified index value.
+// Returns the requested SystemTemplateInterface value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadSystempSystemTemplateInterface(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreateSystempSystemTemplateInterfaceIpRange API operation for FortiManager creates a new SystemTemplateInterfaceIp Range.
+// Returns the index value of the SystemTemplateInterfaceIp Range and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface ip-range chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreateSystempSystemTemplateInterfaceIpRange(params *map[string]interface{}, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface/{interface}/ip-range"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false, wsParams)
+	return
+}
+
+// UpdateSystempSystemTemplateInterfaceIpRange API operation for FortiManager updates the specified SystemTemplateInterfaceIp Range.
+// Returns the index value of the SystemTemplateInterfaceIp Range and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface ip-range chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateSystempSystemTemplateInterfaceIpRange(params *map[string]interface{}, mkey string, paradict, wsParams map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface/{interface}/ip-range"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false, wsParams)
+	return
+}
+
+// DeleteSystempSystemTemplateInterfaceIpRange API operation for FortiManager deletes the specified SystemTemplateInterfaceIp Range.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface ip-range chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeleteSystempSystemTemplateInterfaceIpRange(mkey string, paradict, wsParams map[string]string) (err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface/{interface}/ip-range"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false, wsParams)
+	return
+}
+
+// ReadSystempSystemTemplateInterfaceIpRange API operation for FortiManager gets the SystemTemplateInterfaceIp Range
+// with the specified index value.
+// Returns the requested SystemTemplateInterfaceIp Range value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the systemp - system template interface ip-range chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadSystempSystemTemplateInterfaceIpRange(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/devprof/{devprof}/system/template/interface/{interface}/ip-range"
 	path, err = replaceParaWithValue(path, paradict)
 	if err != nil {
 		return nil, fmt.Errorf("%v", err)

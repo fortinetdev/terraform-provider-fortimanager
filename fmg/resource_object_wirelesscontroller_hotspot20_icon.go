@@ -29,6 +29,11 @@ func resourceObjectWirelessControllerHotspot20Icon() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -112,9 +117,31 @@ func resourceObjectWirelessControllerHotspot20IconCreate(d *schema.ResourceData,
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20Icon(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Icon resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWirelessControllerHotspot20Icon(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWirelessControllerHotspot20Icon(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20Icon resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWirelessControllerHotspot20Icon(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20Icon resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -198,6 +225,7 @@ func resourceObjectWirelessControllerHotspot20IconRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectWirelessControllerHotspot20Icon(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerHotspot20Icon resource: %v", err)
 	}
 

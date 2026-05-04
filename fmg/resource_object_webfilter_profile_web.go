@@ -140,7 +140,7 @@ func resourceObjectWebfilterProfileWebUpdate(d *schema.ResourceData, m interface
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWebfilterProfileWeb(d)
+	obj, err := getObjectObjectWebfilterProfileWeb(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileWeb resource while getting object: %v", err)
 	}
@@ -161,7 +161,6 @@ func resourceObjectWebfilterProfileWebUpdate(d *schema.ResourceData, m interface
 
 func resourceObjectWebfilterProfileWebDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -177,11 +176,17 @@ func resourceObjectWebfilterProfileWebDelete(d *schema.ResourceData, m interface
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWebfilterProfileWeb(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWebfilterProfileWeb resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterProfileWeb(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWebfilterProfileWeb(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWebfilterProfileWeb resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWebfilterProfileWeb resource: %v", err)
 	}
 
 	d.SetId("")
@@ -217,6 +222,7 @@ func resourceObjectWebfilterProfileWebRead(d *schema.ResourceData, m interface{}
 
 	o, err := c.ReadObjectWebfilterProfileWeb(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileWeb resource: %v", err)
 	}
 
@@ -501,7 +507,7 @@ func expandObjectWebfilterProfileWebQwantRestrict2edl(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectObjectWebfilterProfileWeb(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWebfilterProfileWeb(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("allowlist"); ok || d.HasChange("allowlist") {

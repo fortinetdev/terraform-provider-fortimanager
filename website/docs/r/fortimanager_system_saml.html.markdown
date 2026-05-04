@@ -47,6 +47,10 @@ The following arguments are supported:
 * `idp_single_sign_on_url` - IDP single sign-on URL.
 * `login_auto_redirect` - Enable/Disable auto redirect to IDP login page. disable - Disable auto redirect to IDP Login Page. enable - Enable auto redirect to IDP Login Page. Valid values: `disable`, `enable`.
 
+* `logout_request_signed` - Enable/Disable logout request signed. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `logout_response_signed` - Enable/Disable logout response signed. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `role` - SAML role. IDP - IDentiy Provider. SP - Service Provider. FAB-SP - Fabric Service Provider. Valid values: `IDP`, `SP`, `FAB-SP`.
 
 * `server_address` - server address.

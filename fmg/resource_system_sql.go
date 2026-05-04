@@ -216,7 +216,7 @@ func resourceSystemSqlUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemSql(d)
+	obj, err := getObjectSystemSql(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSql resource while getting object: %v", err)
 	}
@@ -237,7 +237,6 @@ func resourceSystemSqlUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemSqlDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -247,11 +246,17 @@ func resourceSystemSqlDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemSql(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemSql resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemSql(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemSql(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemSql resource: %v", err)
+		return fmt.Errorf("Error clearing SystemSql resource: %v", err)
 	}
 
 	d.SetId("")
@@ -272,6 +277,7 @@ func resourceSystemSqlRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemSql(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSql resource: %v", err)
 	}
 
@@ -1072,7 +1078,7 @@ func expandSystemSqlUtmTablePartitionTime(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
-func getObjectSystemSql(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemSql(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("background_rebuild"); ok || d.HasChange("background_rebuild") {
@@ -1093,21 +1099,29 @@ func getObjectSystemSql(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("custom_index"); ok || d.HasChange("custom_index") {
-		t, err := expandSystemSqlCustomIndex(d, v, "custom_index")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["custom-index"] = t
+	if bemptysontable {
+		obj["custom-index"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("custom_index"); ok || d.HasChange("custom_index") {
+			t, err := expandSystemSqlCustomIndex(d, v, "custom_index")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["custom-index"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("custom_skipidx"); ok || d.HasChange("custom_skipidx") {
-		t, err := expandSystemSqlCustomSkipidx(d, v, "custom_skipidx")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["custom-skipidx"] = t
+	if bemptysontable {
+		obj["custom-skipidx"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("custom_skipidx"); ok || d.HasChange("custom_skipidx") {
+			t, err := expandSystemSqlCustomSkipidx(d, v, "custom_skipidx")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["custom-skipidx"] = t
+			}
 		}
 	}
 
@@ -1246,12 +1260,16 @@ func getObjectSystemSql(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("ts_index_field"); ok || d.HasChange("ts_index_field") {
-		t, err := expandSystemSqlTsIndexField(d, v, "ts_index_field")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ts-index-field"] = t
+	if bemptysontable {
+		obj["ts-index-field"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ts_index_field"); ok || d.HasChange("ts_index_field") {
+			t, err := expandSystemSqlTsIndexField(d, v, "ts_index_field")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ts-index-field"] = t
+			}
 		}
 	}
 

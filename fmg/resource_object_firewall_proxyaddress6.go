@@ -29,6 +29,11 @@ func resourceObjectFirewallProxyAddress6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -112,6 +117,12 @@ func resourceObjectFirewallProxyAddress6() *schema.Resource {
 			"host_regex": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"llm_servers": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"method": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -224,9 +235,31 @@ func resourceObjectFirewallProxyAddress6Create(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddress6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallProxyAddress6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallProxyAddress6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallProxyAddress6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallProxyAddress6 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallProxyAddress6(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallProxyAddress6 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -310,6 +343,7 @@ func resourceObjectFirewallProxyAddress6Read(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectFirewallProxyAddress6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProxyAddress6 resource: %v", err)
 	}
 
@@ -429,6 +463,10 @@ func flattenObjectFirewallProxyAddress6Host(v interface{}, d *schema.ResourceDat
 
 func flattenObjectFirewallProxyAddress6HostRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallProxyAddress6LlmServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddress6Method(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -660,6 +698,16 @@ func refreshObjectObjectFirewallProxyAddress6(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading host_regex: %v", err)
+		}
+	}
+
+	if err = d.Set("llm_servers", flattenObjectFirewallProxyAddress6LlmServers(o["llm-servers"], d, "llm_servers")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-servers"], "ObjectFirewallProxyAddress6-LlmServers"); ok {
+			if err = d.Set("llm_servers", vv); err != nil {
+				return fmt.Errorf("Error reading llm_servers: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_servers: %v", err)
 		}
 	}
 
@@ -912,6 +960,10 @@ func expandObjectFirewallProxyAddress6HostRegex(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddress6LlmServers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallProxyAddress6Method(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -1101,6 +1153,15 @@ func getObjectObjectFirewallProxyAddress6(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["host-regex"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_servers"); ok || d.HasChange("llm_servers") {
+		t, err := expandObjectFirewallProxyAddress6LlmServers(d, v, "llm_servers")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-servers"] = t
 		}
 	}
 

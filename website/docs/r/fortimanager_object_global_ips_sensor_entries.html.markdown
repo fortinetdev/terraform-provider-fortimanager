@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Global"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_global_ips_sensor_entries"
 description: |-

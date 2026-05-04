@@ -54,7 +54,7 @@ func resourceSystemReportEstBrowseTimeUpdate(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemReportEstBrowseTime(d)
+	obj, err := getObjectSystemReportEstBrowseTime(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource while getting object: %v", err)
 	}
@@ -75,7 +75,6 @@ func resourceSystemReportEstBrowseTimeUpdate(d *schema.ResourceData, m interface
 
 func resourceSystemReportEstBrowseTimeDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -85,11 +84,17 @@ func resourceSystemReportEstBrowseTimeDelete(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemReportEstBrowseTime(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemReportEstBrowseTime(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemReportEstBrowseTime(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemReportEstBrowseTime resource: %v", err)
+		return fmt.Errorf("Error clearing SystemReportEstBrowseTime resource: %v", err)
 	}
 
 	d.SetId("")
@@ -110,6 +115,7 @@ func resourceSystemReportEstBrowseTimeRead(d *schema.ResourceData, m interface{}
 
 	o, err := c.ReadSystemReportEstBrowseTime(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemReportEstBrowseTime resource: %v", err)
 	}
 
@@ -174,7 +180,7 @@ func expandSystemReportEstBrowseTimeStatus(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectSystemReportEstBrowseTime(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemReportEstBrowseTime(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_read_time"); ok || d.HasChange("max_read_time") {

@@ -198,7 +198,7 @@ func resourceFmupdateFwmSettingUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFwmSetting(d)
+	obj, err := getObjectFmupdateFwmSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFwmSetting resource while getting object: %v", err)
 	}
@@ -219,7 +219,6 @@ func resourceFmupdateFwmSettingUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceFmupdateFwmSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -229,11 +228,17 @@ func resourceFmupdateFwmSettingDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFwmSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFwmSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFwmSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFwmSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFwmSetting resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFwmSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -254,6 +259,7 @@ func resourceFmupdateFwmSettingRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadFmupdateFwmSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFwmSetting resource: %v", err)
 	}
 
@@ -841,7 +847,7 @@ func expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectFmupdateFwmSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFwmSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auto_scan_fgt_disk"); ok || d.HasChange("auto_scan_fgt_disk") {

@@ -29,6 +29,11 @@ func resourceObjectSpamfilterIptrust() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -114,9 +119,31 @@ func resourceObjectSpamfilterIptrustCreate(d *schema.ResourceData, m interface{}
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSpamfilterIptrust(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSpamfilterIptrust resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSpamfilterIptrust(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSpamfilterIptrust(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSpamfilterIptrust resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectSpamfilterIptrust(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectSpamfilterIptrust resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -200,6 +227,7 @@ func resourceObjectSpamfilterIptrustRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectSpamfilterIptrust(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSpamfilterIptrust resource: %v", err)
 	}
 
@@ -288,6 +316,13 @@ func flattenObjectSpamfilterIptrustEntriesId(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSpamfilterIptrustEntriesIp4Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 

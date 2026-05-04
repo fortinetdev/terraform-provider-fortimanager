@@ -29,6 +29,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -303,6 +308,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"par_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
 				Elem:      &schema.Schema{Type: schema.TypeString},
@@ -543,9 +552,31 @@ func resourceObjectSystemSdnConnectorCreate(d *schema.ResourceData, m interface{
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemSdnConnector(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSystemSdnConnector resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSystemSdnConnector(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSystemSdnConnector(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSystemSdnConnector resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectSystemSdnConnector(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectSystemSdnConnector resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -629,6 +660,7 @@ func resourceObjectSystemSdnConnectorRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadObjectSystemSdnConnector(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemSdnConnector resource: %v", err)
 	}
 
@@ -1136,6 +1168,10 @@ func flattenObjectSystemSdnConnectorOciRegion(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectSystemSdnConnectorOciRegionType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorParId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1822,6 +1858,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading oci_region_type: %v", err)
+		}
+	}
+
+	if err = d.Set("par_id", flattenObjectSystemSdnConnectorParId(o["par-id"], d, "par_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["par-id"], "ObjectSystemSdnConnector-ParId"); ok {
+			if err = d.Set("par_id", vv); err != nil {
+				return fmt.Errorf("Error reading par_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading par_id: %v", err)
 		}
 	}
 
@@ -2646,6 +2692,10 @@ func expandObjectSystemSdnConnectorOciRegionType(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorParId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3228,6 +3278,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["oci-region-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("par_id"); ok || d.HasChange("par_id") {
+		t, err := expandObjectSystemSdnConnectorParId(d, v, "par_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["par-id"] = t
 		}
 	}
 

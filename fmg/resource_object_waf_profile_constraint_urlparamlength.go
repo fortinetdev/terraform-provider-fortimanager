@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintUrlParamLengthUpdate(d *schema.ResourceDa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintUrlParamLength(d)
+	obj, err := getObjectObjectWafProfileConstraintUrlParamLength(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintUrlParamLength resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintUrlParamLengthUpdate(d *schema.ResourceDa
 
 func resourceObjectWafProfileConstraintUrlParamLengthDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintUrlParamLengthDelete(d *schema.ResourceDa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintUrlParamLength(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintUrlParamLength resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintUrlParamLength(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintUrlParamLength(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintUrlParamLength resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintUrlParamLength resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintUrlParamLengthRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectWafProfileConstraintUrlParamLength(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintUrlParamLength resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintUrlParamLengthStatus3rdl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintUrlParamLength(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintUrlParamLength(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

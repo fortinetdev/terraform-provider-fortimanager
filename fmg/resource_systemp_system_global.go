@@ -154,7 +154,7 @@ func resourceSystempSystemGlobalUpdate(d *schema.ResourceData, m interface{}) er
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemGlobal(d)
+	obj, err := getObjectSystempSystemGlobal(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemGlobal resource while getting object: %v", err)
 	}
@@ -175,7 +175,6 @@ func resourceSystempSystemGlobalUpdate(d *schema.ResourceData, m interface{}) er
 
 func resourceSystempSystemGlobalDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -191,11 +190,17 @@ func resourceSystempSystemGlobalDelete(d *schema.ResourceData, m interface{}) er
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemGlobal(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemGlobal resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemGlobal(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemGlobal(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemGlobal resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemGlobal resource: %v", err)
 	}
 
 	d.SetId("")
@@ -231,6 +236,7 @@ func resourceSystempSystemGlobalRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystempSystemGlobal(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemGlobal resource: %v", err)
 	}
 
@@ -569,7 +575,7 @@ func expandSystempSystemGlobalSwitchController(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
-func getObjectSystempSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemGlobal(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("admin_https_redirect"); ok || d.HasChange("admin_https_redirect") {

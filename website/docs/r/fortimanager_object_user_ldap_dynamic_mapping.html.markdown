@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object User"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_user_ldap_dynamic_mapping"
 description: |-

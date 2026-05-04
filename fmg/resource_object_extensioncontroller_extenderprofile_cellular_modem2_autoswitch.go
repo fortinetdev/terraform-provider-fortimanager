@@ -112,7 +112,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchUpd
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(d)
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch resource while getting object: %v", err)
 	}
@@ -133,7 +133,6 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchUpd
 
 func resourceObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -149,11 +148,17 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchDel
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch resource: %v", err)
 	}
 
 	d.SetId("")
@@ -189,6 +194,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchRea
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch resource: %v", err)
 	}
 
@@ -365,7 +371,7 @@ func expandObjectExtensionControllerExtenderProfileCellularModem2AutoSwitchSwitc
 	return v, nil
 }
 
-func getObjectObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtensionControllerExtenderProfileCellularModem2AutoSwitch(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dataplan"); ok || d.HasChange("dataplan") {

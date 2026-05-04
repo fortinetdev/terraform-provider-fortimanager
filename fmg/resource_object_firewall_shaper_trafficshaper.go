@@ -29,6 +29,11 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -158,9 +163,31 @@ func resourceObjectFirewallShaperTrafficShaperCreate(d *schema.ResourceData, m i
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallShaperTrafficShaper(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallShaperTrafficShaper resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallShaperTrafficShaper(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallShaperTrafficShaper(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallShaperTrafficShaper resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallShaperTrafficShaper(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallShaperTrafficShaper resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -244,6 +271,7 @@ func resourceObjectFirewallShaperTrafficShaperRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadObjectFirewallShaperTrafficShaper(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallShaperTrafficShaper resource: %v", err)
 	}
 

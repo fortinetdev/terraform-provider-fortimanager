@@ -29,6 +29,11 @@ func resourceObjectIpsCustom() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -137,9 +142,31 @@ func resourceObjectIpsCustomCreate(d *schema.ResourceData, m interface{}) error 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIpsCustom(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIpsCustom resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("tag")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIpsCustom(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIpsCustom(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIpsCustom resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIpsCustom(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIpsCustom resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "tag"))
@@ -223,6 +250,7 @@ func resourceObjectIpsCustomRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadObjectIpsCustom(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIpsCustom resource: %v", err)
 	}
 

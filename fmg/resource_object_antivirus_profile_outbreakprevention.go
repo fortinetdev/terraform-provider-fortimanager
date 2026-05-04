@@ -81,7 +81,7 @@ func resourceObjectAntivirusProfileOutbreakPreventionUpdate(d *schema.ResourceDa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectAntivirusProfileOutbreakPrevention(d)
+	obj, err := getObjectObjectAntivirusProfileOutbreakPrevention(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileOutbreakPrevention resource while getting object: %v", err)
 	}
@@ -102,7 +102,6 @@ func resourceObjectAntivirusProfileOutbreakPreventionUpdate(d *schema.ResourceDa
 
 func resourceObjectAntivirusProfileOutbreakPreventionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -118,11 +117,17 @@ func resourceObjectAntivirusProfileOutbreakPreventionDelete(d *schema.ResourceDa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectAntivirusProfileOutbreakPrevention(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAntivirusProfileOutbreakPrevention resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfileOutbreakPrevention(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectAntivirusProfileOutbreakPrevention(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectAntivirusProfileOutbreakPrevention resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectAntivirusProfileOutbreakPrevention resource: %v", err)
 	}
 
 	d.SetId("")
@@ -158,6 +163,7 @@ func resourceObjectAntivirusProfileOutbreakPreventionRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectAntivirusProfileOutbreakPrevention(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAntivirusProfileOutbreakPrevention resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectAntivirusProfileOutbreakPreventionFtgdService2edl(d *schema.Res
 	return v, nil
 }
 
-func getObjectObjectAntivirusProfileOutbreakPrevention(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectAntivirusProfileOutbreakPrevention(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("external_blocklist"); ok || d.HasChange("external_blocklist") {

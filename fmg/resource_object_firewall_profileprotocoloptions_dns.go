@@ -82,7 +82,7 @@ func resourceObjectFirewallProfileProtocolOptionsDnsUpdate(d *schema.ResourceDat
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsDns(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsDns(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsDns resource while getting object: %v", err)
 	}
@@ -103,7 +103,6 @@ func resourceObjectFirewallProfileProtocolOptionsDnsUpdate(d *schema.ResourceDat
 
 func resourceObjectFirewallProfileProtocolOptionsDnsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -119,11 +118,17 @@ func resourceObjectFirewallProfileProtocolOptionsDnsDelete(d *schema.ResourceDat
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsDns(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsDns resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsDns(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsDns(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsDns resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsDns resource: %v", err)
 	}
 
 	d.SetId("")
@@ -159,6 +164,7 @@ func resourceObjectFirewallProfileProtocolOptionsDnsRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsDns(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsDns resource: %v", err)
 	}
 
@@ -227,7 +233,7 @@ func expandObjectFirewallProfileProtocolOptionsDnsStatus2edl(d *schema.ResourceD
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsDns(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsDns(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ports"); ok || d.HasChange("ports") {

@@ -29,6 +29,11 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6Rules() *schema.
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -112,9 +117,31 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesCreate(d *s
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("rule_id")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWirelessControllerAccessControlListLayer3Ipv6Rules(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWirelessControllerAccessControlListLayer3Ipv6Rules(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "rule_id")))
@@ -216,6 +243,7 @@ func resourceObjectWirelessControllerAccessControlListLayer3Ipv6RulesRead(d *sch
 
 	o, err := c.ReadObjectWirelessControllerAccessControlListLayer3Ipv6Rules(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerAccessControlListLayer3Ipv6Rules resource: %v", err)
 	}
 

@@ -111,7 +111,7 @@ func resourceObjectFirewallSslSshProfileSshUpdate(d *schema.ResourceData, m inte
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	obj, err := getObjectObjectFirewallSslSshProfileSsh(d)
+	obj, err := getObjectObjectFirewallSslSshProfileSsh(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSsh resource while getting object: %v", err)
 	}
@@ -132,7 +132,6 @@ func resourceObjectFirewallSslSshProfileSshUpdate(d *schema.ResourceData, m inte
 
 func resourceObjectFirewallSslSshProfileSshDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -148,11 +147,17 @@ func resourceObjectFirewallSslSshProfileSshDelete(d *schema.ResourceData, m inte
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
+	obj, err := getObjectObjectFirewallSslSshProfileSsh(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallSslSshProfileSsh resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallSslSshProfileSsh(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallSslSshProfileSsh(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfileSsh resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallSslSshProfileSsh resource: %v", err)
 	}
 
 	d.SetId("")
@@ -188,6 +193,7 @@ func resourceObjectFirewallSslSshProfileSshRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadObjectFirewallSslSshProfileSsh(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallSslSshProfileSsh resource: %v", err)
 	}
 
@@ -364,7 +370,7 @@ func expandObjectFirewallSslSshProfileSshUnsupportedVersion2edl(d *schema.Resour
 	return v, nil
 }
 
-func getObjectObjectFirewallSslSshProfileSsh(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallSslSshProfileSsh(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("inspect_all"); ok || d.HasChange("inspect_all") {

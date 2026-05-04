@@ -65,7 +65,7 @@ func resourceFmupdateFdsSettingUpdateScheduleUpdate(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFdsSettingUpdateSchedule(d)
+	obj, err := getObjectFmupdateFdsSettingUpdateSchedule(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingUpdateSchedule resource while getting object: %v", err)
 	}
@@ -86,7 +86,6 @@ func resourceFmupdateFdsSettingUpdateScheduleUpdate(d *schema.ResourceData, m in
 
 func resourceFmupdateFdsSettingUpdateScheduleDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -96,11 +95,17 @@ func resourceFmupdateFdsSettingUpdateScheduleDelete(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFdsSettingUpdateSchedule(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFdsSettingUpdateSchedule resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingUpdateSchedule(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFdsSettingUpdateSchedule(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFdsSettingUpdateSchedule resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFdsSettingUpdateSchedule resource: %v", err)
 	}
 
 	d.SetId("")
@@ -121,6 +126,7 @@ func resourceFmupdateFdsSettingUpdateScheduleRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadFmupdateFdsSettingUpdateSchedule(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFdsSettingUpdateSchedule resource: %v", err)
 	}
 
@@ -150,7 +156,7 @@ func flattenFmupdateFdsSettingUpdateScheduleStatus2edl(v interface{}, d *schema.
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleTime2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func refreshObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, o map[string]interface{}) error {
@@ -221,7 +227,7 @@ func expandFmupdateFdsSettingUpdateScheduleTime2edl(d *schema.ResourceData, v in
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("day"); ok || d.HasChange("day") {

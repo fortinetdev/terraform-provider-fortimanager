@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object ICAP"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_icap_remoteserver"
 description: |-
@@ -19,6 +19,7 @@ The following arguments are supported:
 
 * `addr_type` - Addr-Type. Valid values: `fqdn`, `ip4`, `ip6`.
 
+* `ca_cert` - Ca-Cert.
 * `fqdn` - Fqdn.
 * `healthcheck` - Healthcheck. Valid values: `disable`, `enable`.
 

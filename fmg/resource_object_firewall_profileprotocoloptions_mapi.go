@@ -108,7 +108,7 @@ func resourceObjectFirewallProfileProtocolOptionsMapiUpdate(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsMapi(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsMapi(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsMapi resource while getting object: %v", err)
 	}
@@ -129,7 +129,6 @@ func resourceObjectFirewallProfileProtocolOptionsMapiUpdate(d *schema.ResourceDa
 
 func resourceObjectFirewallProfileProtocolOptionsMapiDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -145,11 +144,17 @@ func resourceObjectFirewallProfileProtocolOptionsMapiDelete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsMapi(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsMapi resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsMapi(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsMapi(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsMapi resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsMapi resource: %v", err)
 	}
 
 	d.SetId("")
@@ -185,6 +190,7 @@ func resourceObjectFirewallProfileProtocolOptionsMapiRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsMapi(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsMapi resource: %v", err)
 	}
 
@@ -343,7 +349,7 @@ func expandObjectFirewallProfileProtocolOptionsMapiUncompressedOversizeLimit2edl
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsMapi(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsMapi(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {

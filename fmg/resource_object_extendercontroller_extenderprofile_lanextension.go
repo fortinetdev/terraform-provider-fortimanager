@@ -120,7 +120,7 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionUpdate(d *schema
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtenderControllerExtenderProfileLanExtension(d)
+	obj, err := getObjectObjectExtenderControllerExtenderProfileLanExtension(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileLanExtension resource while getting object: %v", err)
 	}
@@ -141,7 +141,6 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionUpdate(d *schema
 
 func resourceObjectExtenderControllerExtenderProfileLanExtensionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -157,11 +156,17 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionDelete(d *schema
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtenderControllerExtenderProfileLanExtension(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileLanExtension resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileLanExtension(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileLanExtension(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileLanExtension resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtenderControllerExtenderProfileLanExtension resource: %v", err)
 	}
 
 	d.SetId("")
@@ -197,6 +202,7 @@ func resourceObjectExtenderControllerExtenderProfileLanExtensionRead(d *schema.R
 
 	o, err := c.ReadObjectExtenderControllerExtenderProfileLanExtension(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtenderControllerExtenderProfileLanExtension resource: %v", err)
 	}
 
@@ -458,15 +464,19 @@ func expandObjectExtenderControllerExtenderProfileLanExtensionLinkLoadbalance2ed
 	return v, nil
 }
 
-func getObjectObjectExtenderControllerExtenderProfileLanExtension(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtenderControllerExtenderProfileLanExtension(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("backhaul"); ok || d.HasChange("backhaul") {
-		t, err := expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul2edl(d, v, "backhaul")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["backhaul"] = t
+	if bemptysontable {
+		obj["backhaul"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("backhaul"); ok || d.HasChange("backhaul") {
+			t, err := expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul2edl(d, v, "backhaul")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["backhaul"] = t
+			}
 		}
 	}
 

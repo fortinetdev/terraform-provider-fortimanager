@@ -29,6 +29,11 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueNameValueList() *schema.R
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -91,9 +96,31 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueNameValueListCreate(d *sc
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueNameValueList(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueNameValueList resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("index")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWirelessControllerHotspot20AnqpVenueNameValueList(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWirelessControllerHotspot20AnqpVenueNameValueList(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpVenueNameValueList resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWirelessControllerHotspot20AnqpVenueNameValueList(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpVenueNameValueList resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "index")))
@@ -195,6 +222,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueNameValueListRead(d *sche
 
 	o, err := c.ReadObjectWirelessControllerHotspot20AnqpVenueNameValueList(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerHotspot20AnqpVenueNameValueList resource: %v", err)
 	}
 

@@ -183,7 +183,7 @@ func resourceSystempLogFortianalyzerCloudSettingUpdate(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogFortianalyzerCloudSetting(d)
+	obj, err := getObjectSystempLogFortianalyzerCloudSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogFortianalyzerCloudSetting resource while getting object: %v", err)
 	}
@@ -204,7 +204,6 @@ func resourceSystempLogFortianalyzerCloudSettingUpdate(d *schema.ResourceData, m
 
 func resourceSystempLogFortianalyzerCloudSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -220,11 +219,17 @@ func resourceSystempLogFortianalyzerCloudSettingDelete(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempLogFortianalyzerCloudSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempLogFortianalyzerCloudSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempLogFortianalyzerCloudSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempLogFortianalyzerCloudSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempLogFortianalyzerCloudSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystempLogFortianalyzerCloudSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -260,6 +265,7 @@ func resourceSystempLogFortianalyzerCloudSettingRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadSystempLogFortianalyzerCloudSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempLogFortianalyzerCloudSetting resource: %v", err)
 	}
 
@@ -724,7 +730,7 @@ func expandSystempLogFortianalyzerCloudSettingVrfSelect(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectSystempLogFortianalyzerCloudSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempLogFortianalyzerCloudSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("__change_ip"); ok || d.HasChange("__change_ip") {

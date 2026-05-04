@@ -230,7 +230,7 @@ func resourceObjectWebfilterProfileFtgdWfUpdate(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWebfilterProfileFtgdWf(d)
+	obj, err := getObjectObjectWebfilterProfileFtgdWf(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileFtgdWf resource while getting object: %v", err)
 	}
@@ -251,7 +251,6 @@ func resourceObjectWebfilterProfileFtgdWfUpdate(d *schema.ResourceData, m interf
 
 func resourceObjectWebfilterProfileFtgdWfDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -267,11 +266,17 @@ func resourceObjectWebfilterProfileFtgdWfDelete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWebfilterProfileFtgdWf(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWebfilterProfileFtgdWf resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterProfileFtgdWf(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWebfilterProfileFtgdWf(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWebfilterProfileFtgdWf resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWebfilterProfileFtgdWf resource: %v", err)
 	}
 
 	d.SetId("")
@@ -307,6 +312,7 @@ func resourceObjectWebfilterProfileFtgdWfRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectWebfilterProfileFtgdWf(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileFtgdWf resource: %v", err)
 	}
 
@@ -1098,7 +1104,7 @@ func expandObjectWebfilterProfileFtgdWfRiskRiskLevel2edl(d *schema.ResourceData,
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("exempt_quota"); ok || d.HasChange("exempt_quota") {
@@ -1110,12 +1116,16 @@ func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
-		t, err := expandObjectWebfilterProfileFtgdWfFilters2edl(d, v, "filters")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["filters"] = t
+	if bemptysontable {
+		obj["filters"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
+			t, err := expandObjectWebfilterProfileFtgdWfFilters2edl(d, v, "filters")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["filters"] = t
+			}
 		}
 	}
 
@@ -1146,12 +1156,16 @@ func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("quota"); ok || d.HasChange("quota") {
-		t, err := expandObjectWebfilterProfileFtgdWfQuota2edl(d, v, "quota")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["quota"] = t
+	if bemptysontable {
+		obj["quota"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("quota"); ok || d.HasChange("quota") {
+			t, err := expandObjectWebfilterProfileFtgdWfQuota2edl(d, v, "quota")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["quota"] = t
+			}
 		}
 	}
 
@@ -1191,12 +1205,16 @@ func getObjectObjectWebfilterProfileFtgdWf(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("risk"); ok || d.HasChange("risk") {
-		t, err := expandObjectWebfilterProfileFtgdWfRisk2edl(d, v, "risk")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["risk"] = t
+	if bemptysontable {
+		obj["risk"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("risk"); ok || d.HasChange("risk") {
+			t, err := expandObjectWebfilterProfileFtgdWfRisk2edl(d, v, "risk")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["risk"] = t
+			}
 		}
 	}
 

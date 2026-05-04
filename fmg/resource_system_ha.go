@@ -180,7 +180,7 @@ func resourceSystemHaUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemHa(d)
+	obj, err := getObjectSystemHa(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHa resource while getting object: %v", err)
 	}
@@ -201,7 +201,6 @@ func resourceSystemHaUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemHaDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -211,11 +210,17 @@ func resourceSystemHaDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemHa(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemHa resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemHa(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemHa(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemHa resource: %v", err)
+		return fmt.Errorf("Error clearing SystemHa resource: %v", err)
 	}
 
 	d.SetId("")
@@ -236,6 +241,7 @@ func resourceSystemHaRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemHa(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemHa resource: %v", err)
 	}
 
@@ -908,7 +914,7 @@ func expandSystemHaVrrpInterface(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
-func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemHa(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("clusterid"); ok || d.HasChange("clusterid") {
@@ -974,21 +980,29 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("monitored_interfaces"); ok || d.HasChange("monitored_interfaces") {
-		t, err := expandSystemHaMonitoredInterfaces(d, v, "monitored_interfaces")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["monitored-interfaces"] = t
+	if bemptysontable {
+		obj["monitored-interfaces"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("monitored_interfaces"); ok || d.HasChange("monitored_interfaces") {
+			t, err := expandSystemHaMonitoredInterfaces(d, v, "monitored_interfaces")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["monitored-interfaces"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("monitored_ips"); ok || d.HasChange("monitored_ips") {
-		t, err := expandSystemHaMonitoredIps(d, v, "monitored_ips")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["monitored-ips"] = t
+	if bemptysontable {
+		obj["monitored-ips"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("monitored_ips"); ok || d.HasChange("monitored_ips") {
+			t, err := expandSystemHaMonitoredIps(d, v, "monitored_ips")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["monitored-ips"] = t
+			}
 		}
 	}
 
@@ -1001,12 +1015,16 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
-		t, err := expandSystemHaPeer(d, v, "peer")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["peer"] = t
+	if bemptysontable {
+		obj["peer"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
+			t, err := expandSystemHaPeer(d, v, "peer")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["peer"] = t
+			}
 		}
 	}
 

@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgTrafficQuotaUpdate(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgTrafficQuota(d)
+	obj, err := getObjectSystempSystemReplacemsgTrafficQuota(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgTrafficQuota resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgTrafficQuotaUpdate(d *schema.ResourceData, m
 
 func resourceSystempSystemReplacemsgTrafficQuotaDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgTrafficQuotaDelete(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgTrafficQuota(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgTrafficQuota resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgTrafficQuota(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgTrafficQuota(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgTrafficQuota resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgTrafficQuota resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgTrafficQuotaRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadSystempSystemReplacemsgTrafficQuota(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgTrafficQuota resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgTrafficQuotaMsgType(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgTrafficQuota(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgTrafficQuota(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

@@ -29,6 +29,11 @@ func resourceSystemGlobalSslCipherSuites() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"cipher": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -63,9 +68,31 @@ func resourceSystemGlobalSslCipherSuitesCreate(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemGlobalSslCipherSuites(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("cipher")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemGlobalSslCipherSuites(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemGlobalSslCipherSuites(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemGlobalSslCipherSuites resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemGlobalSslCipherSuites(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "cipher"))
@@ -140,6 +167,7 @@ func resourceSystemGlobalSslCipherSuitesRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadSystemGlobalSslCipherSuites(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemGlobalSslCipherSuites resource: %v", err)
 	}
 

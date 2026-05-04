@@ -95,6 +95,7 @@ The following arguments are supported:
 * `oci_region` - OCI server region.
 * `oci_region_type` - OCI region type. Valid values: `commercial`, `government`.
 
+* `par_id` - Public address range ID.
 * `password` - Password of the remote SDN connector as login credentials.
 * `private_key` - Private key of GCP service account.
 * `proxy` - SDN proxy.

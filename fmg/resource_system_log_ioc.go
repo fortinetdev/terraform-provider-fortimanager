@@ -74,7 +74,7 @@ func resourceSystemLogIocUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogIoc(d)
+	obj, err := getObjectSystemLogIoc(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogIoc resource while getting object: %v", err)
 	}
@@ -95,7 +95,6 @@ func resourceSystemLogIocUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemLogIocDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -105,11 +104,17 @@ func resourceSystemLogIocDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogIoc(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogIoc resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogIoc(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogIoc(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogIoc resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogIoc resource: %v", err)
 	}
 
 	d.SetId("")
@@ -130,6 +135,7 @@ func resourceSystemLogIocRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemLogIoc(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogIoc resource: %v", err)
 	}
 
@@ -266,7 +272,7 @@ func expandSystemLogIocStatus(d *schema.ResourceData, v interface{}, pre string)
 	return v, nil
 }
 
-func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogIoc(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("notification"); ok || d.HasChange("notification") {

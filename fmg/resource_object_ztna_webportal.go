@@ -29,6 +29,11 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -179,6 +184,16 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"llm_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"llm_proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -202,9 +217,31 @@ func resourceObjectZtnaWebPortalCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectZtnaWebPortal(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectZtnaWebPortal resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectZtnaWebPortal(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectZtnaWebPortal(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectZtnaWebPortal resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectZtnaWebPortal(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectZtnaWebPortal resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -288,6 +325,7 @@ func resourceObjectZtnaWebPortalRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadObjectZtnaWebPortal(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaWebPortal resource: %v", err)
 	}
 
@@ -406,6 +444,14 @@ func flattenObjectZtnaWebPortalWindowsForticlientDownloadUrl(v interface{}, d *s
 
 func flattenObjectZtnaWebPortalBookmarks(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectZtnaWebPortalLlmProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectZtnaWebPortalLlmProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectObjectZtnaWebPortal(d *schema.ResourceData, o map[string]interface{}) error {
@@ -675,6 +721,26 @@ func refreshObjectObjectZtnaWebPortal(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("llm_profile", flattenObjectZtnaWebPortalLlmProfile(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "ObjectZtnaWebPortal-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("llm_proxy", flattenObjectZtnaWebPortalLlmProxy(o["llm-proxy"], d, "llm_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-proxy"], "ObjectZtnaWebPortal-LlmProxy"); ok {
+			if err = d.Set("llm_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading llm_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_proxy: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -786,6 +852,14 @@ func expandObjectZtnaWebPortalWindowsForticlientDownloadUrl(d *schema.ResourceDa
 
 func expandObjectZtnaWebPortalBookmarks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectZtnaWebPortalLlmProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectZtnaWebPortalLlmProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectZtnaWebPortal(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -1022,6 +1096,24 @@ func getObjectObjectZtnaWebPortal(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["bookmarks"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandObjectZtnaWebPortalLlmProfile(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_proxy"); ok || d.HasChange("llm_proxy") {
+		t, err := expandObjectZtnaWebPortalLlmProxy(d, v, "llm_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-proxy"] = t
 		}
 	}
 

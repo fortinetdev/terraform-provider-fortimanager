@@ -162,7 +162,7 @@ func resourceObjectFirewallSslSshProfilePop3SUpdate(d *schema.ResourceData, m in
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
-	obj, err := getObjectObjectFirewallSslSshProfilePop3S(d)
+	obj, err := getObjectObjectFirewallSslSshProfilePop3S(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfilePop3S resource while getting object: %v", err)
 	}
@@ -183,7 +183,6 @@ func resourceObjectFirewallSslSshProfilePop3SUpdate(d *schema.ResourceData, m in
 
 func resourceObjectFirewallSslSshProfilePop3SDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -199,11 +198,17 @@ func resourceObjectFirewallSslSshProfilePop3SDelete(d *schema.ResourceData, m in
 	ssl_ssh_profile := d.Get("ssl_ssh_profile").(string)
 	paradict["ssl_ssh_profile"] = ssl_ssh_profile
 
+	obj, err := getObjectObjectFirewallSslSshProfilePop3S(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallSslSshProfilePop3S resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallSslSshProfilePop3S(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallSslSshProfilePop3S(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfilePop3S resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallSslSshProfilePop3S resource: %v", err)
 	}
 
 	d.SetId("")
@@ -239,6 +244,7 @@ func resourceObjectFirewallSslSshProfilePop3SRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectFirewallSslSshProfilePop3S(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallSslSshProfilePop3S resource: %v", err)
 	}
 
@@ -613,7 +619,7 @@ func expandObjectFirewallSslSshProfilePop3SUntrustedServerCert2edl(d *schema.Res
 	return v, nil
 }
 
-func getObjectObjectFirewallSslSshProfilePop3S(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallSslSshProfilePop3S(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("allow_invalid_server_cert"); ok || d.HasChange("allow_invalid_server_cert") {

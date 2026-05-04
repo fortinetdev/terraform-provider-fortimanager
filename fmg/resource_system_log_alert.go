@@ -49,7 +49,7 @@ func resourceSystemLogAlertUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogAlert(d)
+	obj, err := getObjectSystemLogAlert(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogAlert resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceSystemLogAlertUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemLogAlertDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceSystemLogAlertDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogAlert(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogAlert resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogAlert(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogAlert(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogAlert resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogAlert resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceSystemLogAlertRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemLogAlert(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogAlert resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandSystemLogAlertMaxAlertCount(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
-func getObjectSystemLogAlert(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogAlert(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_alert_count"); ok || d.HasChange("max_alert_count") {

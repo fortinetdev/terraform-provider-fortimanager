@@ -29,6 +29,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -527,6 +532,10 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"vip_id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"weblogic_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1038,6 +1047,10 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"vip_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"weblogic_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1076,9 +1089,31 @@ func resourceObjectFirewallVip6Create(d *schema.ResourceData, m interface{}) err
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallVip6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallVip6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallVip6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallVip6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallVip6 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallVip6(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallVip6 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -1162,6 +1197,7 @@ func resourceObjectFirewallVip6Read(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadObjectFirewallVip6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallVip6 resource: %v", err)
 	}
 
@@ -1695,6 +1731,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["uuid"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingUuid(i["uuid"], d, pre_append)
 			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Uuid")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vip_id"
+		if _, ok := i["vip-id"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingVipId(i["vip-id"], d, pre_append)
+			tmp["vip_id"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-VipId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weblogic_server"
@@ -2291,6 +2333,10 @@ func flattenObjectFirewallVip6DynamicMappingUserAgentDetect(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVip6DynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingVipId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2953,6 +2999,10 @@ func flattenObjectFirewallVip6UserAgentDetect(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVip6Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6VipId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3875,6 +3925,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("vip_id", flattenObjectFirewallVip6VipId(o["vip-id"], d, "vip_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vip-id"], "ObjectFirewallVip6-VipId"); ok {
+			if err = d.Set("vip_id", vv); err != nil {
+				return fmt.Errorf("Error reading vip_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vip_id: %v", err)
+		}
+	}
+
 	if err = d.Set("weblogic_server", flattenObjectFirewallVip6WeblogicServer(o["weblogic-server"], d, "weblogic_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["weblogic-server"], "ObjectFirewallVip6-WeblogicServer"); ok {
 			if err = d.Set("weblogic_server", vv); err != nil {
@@ -4351,6 +4411,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["uuid"], _ = expandObjectFirewallVip6DynamicMappingUuid(d, i["uuid"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vip_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vip-id"], _ = expandObjectFirewallVip6DynamicMappingVipId(d, i["vip_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weblogic_server"
@@ -4912,6 +4977,10 @@ func expandObjectFirewallVip6DynamicMappingUserAgentDetect(d *schema.ResourceDat
 }
 
 func expandObjectFirewallVip6DynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingVipId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5533,6 +5602,10 @@ func expandObjectFirewallVip6UserAgentDetect(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallVip6Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6VipId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6291,6 +6364,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vip_id"); ok || d.HasChange("vip_id") {
+		t, err := expandObjectFirewallVip6VipId(d, v, "vip_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vip-id"] = t
 		}
 	}
 

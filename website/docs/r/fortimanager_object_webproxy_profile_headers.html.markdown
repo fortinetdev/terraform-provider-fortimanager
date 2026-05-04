@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Web Proxy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_webproxy_profile_headers"
 description: |-

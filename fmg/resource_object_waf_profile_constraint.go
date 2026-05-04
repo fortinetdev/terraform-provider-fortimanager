@@ -601,7 +601,7 @@ func resourceObjectWafProfileConstraintUpdate(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraint(d)
+	obj, err := getObjectObjectWafProfileConstraint(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraint resource while getting object: %v", err)
 	}
@@ -622,7 +622,6 @@ func resourceObjectWafProfileConstraintUpdate(d *schema.ResourceData, m interfac
 
 func resourceObjectWafProfileConstraintDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -638,11 +637,17 @@ func resourceObjectWafProfileConstraintDelete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraint(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraint resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraint(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraint(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraint resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraint resource: %v", err)
 	}
 
 	d.SetId("")
@@ -678,6 +683,7 @@ func resourceObjectWafProfileConstraintRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectWafProfileConstraint(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraint resource: %v", err)
 	}
 
@@ -2814,7 +2820,7 @@ func expandObjectWafProfileConstraintVersionStatus2edl(d *schema.ResourceData, v
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraint(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraint(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("content_length"); ok || d.HasChange("content_length") {
@@ -2826,12 +2832,16 @@ func getObjectObjectWafProfileConstraint(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("exception"); ok || d.HasChange("exception") {
-		t, err := expandObjectWafProfileConstraintException2edl(d, v, "exception")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["exception"] = t
+	if bemptysontable {
+		obj["exception"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("exception"); ok || d.HasChange("exception") {
+			t, err := expandObjectWafProfileConstraintException2edl(d, v, "exception")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["exception"] = t
+			}
 		}
 	}
 

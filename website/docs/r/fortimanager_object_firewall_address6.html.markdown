@@ -66,6 +66,8 @@ The following arguments are supported:
 * `macaddr` - Multiple MAC address ranges.
 * `name` - Address name.
 * `obj_id` - Object ID for NSX.
+* `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.
+
 * `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `all`, `private`, `public`.
@@ -108,6 +110,8 @@ The `dynamic_mapping` block supports:
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
+* `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.
+
 * `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `all`, `private`, `public`.

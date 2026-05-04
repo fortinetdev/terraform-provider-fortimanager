@@ -29,6 +29,11 @@ func resourceObjectSwitchControllerManagedSwitchPorts() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -482,9 +487,31 @@ func resourceObjectSwitchControllerManagedSwitchPortsCreate(d *schema.ResourceDa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSwitchControllerManagedSwitchPorts(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("port_name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSwitchControllerManagedSwitchPorts(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSwitchControllerManagedSwitchPorts(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectSwitchControllerManagedSwitchPorts(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "port_name"))
@@ -586,6 +613,7 @@ func resourceObjectSwitchControllerManagedSwitchPortsRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectSwitchControllerManagedSwitchPorts(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSwitchControllerManagedSwitchPorts resource: %v", err)
 	}
 

@@ -29,6 +29,11 @@ func resourceSystemAdminUserAdom() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -61,9 +66,31 @@ func resourceSystemAdminUserAdomCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminUserAdom(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemAdminUserAdom resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("adom_name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemAdminUserAdom(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemAdminUserAdom(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemAdminUserAdom resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemAdminUserAdom(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemAdminUserAdom resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "adom_name"))
@@ -156,6 +183,7 @@ func resourceSystemAdminUserAdomRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemAdminUserAdom(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAdminUserAdom resource: %v", err)
 	}
 

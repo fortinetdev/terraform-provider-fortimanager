@@ -29,6 +29,11 @@ func resourceObjectFspVlan() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -3553,9 +3558,31 @@ func resourceObjectFspVlanCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlan(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFspVlan resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFspVlan(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFspVlan(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFspVlan resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFspVlan(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFspVlan resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -3639,6 +3666,7 @@ func resourceObjectFspVlanRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadObjectFspVlan(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlan resource: %v", err)
 	}
 
@@ -5828,6 +5856,13 @@ func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayType(v interface{}, d *
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -6764,6 +6799,13 @@ func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipId(v interface{}, d *
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -9088,6 +9130,13 @@ func flattenObjectFspVlanInterfaceInternal(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfaceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return conv2str(v)
 }
 
@@ -9991,6 +10040,13 @@ func flattenObjectFspVlanInterfaceManagedSubnetworkSize(v interface{}, d *schema
 }
 
 func flattenObjectFspVlanInterfaceManagementIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return conv2str(v)
 }
 
@@ -10207,6 +10263,13 @@ func flattenObjectFspVlanInterfaceRedundantInterface(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceRemoteIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -10360,6 +10423,13 @@ func flattenObjectFspVlanInterfaceSecondaryipId(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -10600,6 +10670,13 @@ func flattenObjectFspVlanInterfaceSwitchControllerOffloadingGw(v interface{}, d 
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerOffloadingIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -10640,14 +10717,35 @@ func flattenObjectFspVlanInterfaceTrunk(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFspVlanInterfaceTrustIp1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
 func flattenObjectFspVlanInterfaceTrustIp2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
 func flattenObjectFspVlanInterfaceTrustIp3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 

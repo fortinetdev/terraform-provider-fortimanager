@@ -64,7 +64,7 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionUpdate(d *schema.ResourceData, 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAutoDeleteDlpFilesAutoDeletion(d)
+	obj, err := getObjectSystemAutoDeleteDlpFilesAutoDeletion(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteDlpFilesAutoDeletion resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionUpdate(d *schema.ResourceData, 
 
 func resourceSystemAutoDeleteDlpFilesAutoDeletionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionDelete(d *schema.ResourceData, 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAutoDeleteDlpFilesAutoDeletion(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAutoDeleteDlpFilesAutoDeletion resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteDlpFilesAutoDeletion(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAutoDeleteDlpFilesAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAutoDeleteDlpFilesAutoDeletion resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAutoDeleteDlpFilesAutoDeletion resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionRead(d *schema.ResourceData, m 
 
 	o, err := c.ReadSystemAutoDeleteDlpFilesAutoDeletion(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAutoDeleteDlpFilesAutoDeletion resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemAutoDeleteDlpFilesAutoDeletionValue2edl(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAutoDeleteDlpFilesAutoDeletion(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {

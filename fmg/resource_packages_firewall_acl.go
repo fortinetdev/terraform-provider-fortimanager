@@ -29,6 +29,11 @@ func resourcePackagesFirewallAcl() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -134,17 +139,38 @@ func resourcePackagesFirewallAclCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesFirewallAcl(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallAcl resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallAcl(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallAcl(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallAcl resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesFirewallAclRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesFirewallAcl(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesFirewallAcl resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesFirewallAclRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesFirewallAcl resource: %v", err)
+			}
 		}
 	}
 
@@ -259,6 +285,7 @@ func resourcePackagesFirewallAclRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadPackagesFirewallAcl(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallAcl resource: %v", err)
 	}
 

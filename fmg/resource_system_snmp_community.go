@@ -29,6 +29,11 @@ func resourceSystemSnmpCommunity() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"events": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -156,9 +161,31 @@ func resourceSystemSnmpCommunityCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSnmpCommunity(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemSnmpCommunity resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemSnmpCommunity(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemSnmpCommunity(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemSnmpCommunity resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemSnmpCommunity(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemSnmpCommunity resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -233,6 +260,7 @@ func resourceSystemSnmpCommunityRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemSnmpCommunity(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSnmpCommunity resource: %v", err)
 	}
 
@@ -309,6 +337,13 @@ func flattenSystemSnmpCommunityHostsInterface(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemSnmpCommunityHostsIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 

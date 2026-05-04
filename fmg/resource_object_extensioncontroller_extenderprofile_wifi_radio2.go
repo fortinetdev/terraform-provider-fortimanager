@@ -157,7 +157,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Update(d *schema.
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtensionControllerExtenderProfileWifiRadio2(d)
+	obj, err := getObjectObjectExtensionControllerExtenderProfileWifiRadio2(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifiRadio2 resource while getting object: %v", err)
 	}
@@ -178,7 +178,6 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Update(d *schema.
 
 func resourceObjectExtensionControllerExtenderProfileWifiRadio2Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -194,11 +193,17 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Delete(d *schema.
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtensionControllerExtenderProfileWifiRadio2(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifiRadio2 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileWifiRadio2(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileWifiRadio2(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileWifiRadio2 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtensionControllerExtenderProfileWifiRadio2 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -234,6 +239,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiRadio2Read(d *schema.Re
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileWifiRadio2(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileWifiRadio2 resource: %v", err)
 	}
 
@@ -572,7 +578,7 @@ func expandObjectExtensionControllerExtenderProfileWifiRadio2Status3rdl(d *schem
 	return v, nil
 }
 
-func getObjectObjectExtensionControllerExtenderProfileWifiRadio2(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtensionControllerExtenderProfileWifiRadio2(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("n80211d"); ok || d.HasChange("n80211d") {

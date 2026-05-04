@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Log"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_log_npuserver"
 description: |-

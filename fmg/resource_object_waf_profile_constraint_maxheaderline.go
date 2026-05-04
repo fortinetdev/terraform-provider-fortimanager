@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintMaxHeaderLineUpdate(d *schema.ResourceDat
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMaxHeaderLine(d)
+	obj, err := getObjectObjectWafProfileConstraintMaxHeaderLine(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxHeaderLine resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintMaxHeaderLineUpdate(d *schema.ResourceDat
 
 func resourceObjectWafProfileConstraintMaxHeaderLineDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintMaxHeaderLineDelete(d *schema.ResourceDat
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMaxHeaderLine(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxHeaderLine resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMaxHeaderLine(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMaxHeaderLine(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxHeaderLine resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMaxHeaderLine resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintMaxHeaderLineRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectWafProfileConstraintMaxHeaderLine(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMaxHeaderLine resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintMaxHeaderLineStatus3rdl(d *schema.ResourceD
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMaxHeaderLine(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMaxHeaderLine(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

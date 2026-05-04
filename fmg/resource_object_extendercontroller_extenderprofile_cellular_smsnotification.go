@@ -153,7 +153,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationUpdat
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d)
+	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularSmsNotification resource while getting object: %v", err)
 	}
@@ -174,7 +174,6 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationUpdat
 
 func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -190,11 +189,17 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationDelet
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularSmsNotification resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileCellularSmsNotification(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularSmsNotification(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileCellularSmsNotification resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtenderControllerExtenderProfileCellularSmsNotification resource: %v", err)
 	}
 
 	d.SetId("")
@@ -230,6 +235,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularSmsNotificationRead(
 
 	o, err := c.ReadObjectExtenderControllerExtenderProfileCellularSmsNotification(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtenderControllerExtenderProfileCellularSmsNotification resource: %v", err)
 	}
 
@@ -607,7 +613,7 @@ func expandObjectExtenderControllerExtenderProfileCellularSmsNotificationStatus3
 	return v, nil
 }
 
-func getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("alert"); ok || d.HasChange("alert") {
@@ -619,12 +625,16 @@ func getObjectObjectExtenderControllerExtenderProfileCellularSmsNotification(d *
 		}
 	}
 
-	if v, ok := d.GetOk("receiver"); ok || d.HasChange("receiver") {
-		t, err := expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver3rdl(d, v, "receiver")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["receiver"] = t
+	if bemptysontable {
+		obj["receiver"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("receiver"); ok || d.HasChange("receiver") {
+			t, err := expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver3rdl(d, v, "receiver")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["receiver"] = t
+			}
 		}
 	}
 

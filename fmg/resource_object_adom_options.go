@@ -75,7 +75,7 @@ func resourceObjectAdomOptionsUpdate(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectAdomOptions(d)
+	obj, err := getObjectObjectAdomOptions(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAdomOptions resource while getting object: %v", err)
 	}
@@ -96,7 +96,6 @@ func resourceObjectAdomOptionsUpdate(d *schema.ResourceData, m interface{}) erro
 
 func resourceObjectAdomOptionsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -109,11 +108,17 @@ func resourceObjectAdomOptionsDelete(d *schema.ResourceData, m interface{}) erro
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectAdomOptions(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAdomOptions resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectAdomOptions(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectAdomOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectAdomOptions resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectAdomOptions resource: %v", err)
 	}
 
 	d.SetId("")
@@ -137,6 +142,7 @@ func resourceObjectAdomOptionsRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadObjectAdomOptions(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAdomOptions resource: %v", err)
 	}
 
@@ -223,7 +229,7 @@ func expandObjectAdomOptionsSpecifyAssignPkgList(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectObjectAdomOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectAdomOptions(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("assign_excluded"); ok || d.HasChange("assign_excluded") {

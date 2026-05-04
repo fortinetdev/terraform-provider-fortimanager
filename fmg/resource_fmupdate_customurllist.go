@@ -50,7 +50,7 @@ func resourceFmupdateCustomUrlListUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateCustomUrlList(d)
+	obj, err := getObjectFmupdateCustomUrlList(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateCustomUrlList resource while getting object: %v", err)
 	}
@@ -71,7 +71,6 @@ func resourceFmupdateCustomUrlListUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceFmupdateCustomUrlListDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -81,11 +80,17 @@ func resourceFmupdateCustomUrlListDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateCustomUrlList(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateCustomUrlList resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateCustomUrlList(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateCustomUrlList(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateCustomUrlList resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateCustomUrlList resource: %v", err)
 	}
 
 	d.SetId("")
@@ -106,6 +111,7 @@ func resourceFmupdateCustomUrlListRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadFmupdateCustomUrlList(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateCustomUrlList resource: %v", err)
 	}
 
@@ -152,7 +158,7 @@ func expandFmupdateCustomUrlListDbSelection(d *schema.ResourceData, v interface{
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectFmupdateCustomUrlList(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateCustomUrlList(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("db_selection"); ok || d.HasChange("db_selection") {

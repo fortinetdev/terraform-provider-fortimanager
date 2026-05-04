@@ -79,7 +79,7 @@ func resourceDvmCmdUpdateDevListUpdate(d *schema.ResourceData, m interface{}) er
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectDvmCmdUpdateDevList(d)
+	obj, err := getObjectDvmCmdUpdateDevList(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdUpdateDevList resource while getting object: %v", err)
 	}
@@ -276,7 +276,7 @@ func expandDvmCmdUpdateDevListUpdateDevMemberListVdom(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectDvmCmdUpdateDevList(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdUpdateDevList(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -297,12 +297,16 @@ func getObjectDvmCmdUpdateDevList(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("update_dev_member_list"); ok || d.HasChange("update_dev_member_list") {
-		t, err := expandDvmCmdUpdateDevListUpdateDevMemberList(d, v, "update_dev_member_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["update-dev-member-list"] = t
+	if bemptysontable {
+		obj["update-dev-member-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("update_dev_member_list"); ok || d.HasChange("update_dev_member_list") {
+			t, err := expandDvmCmdUpdateDevListUpdateDevMemberList(d, v, "update_dev_member_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["update-dev-member-list"] = t
+			}
 		}
 	}
 

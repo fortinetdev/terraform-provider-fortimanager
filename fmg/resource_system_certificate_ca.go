@@ -29,6 +29,11 @@ func resourceSystemCertificateCa() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"ca": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -64,9 +69,31 @@ func resourceSystemCertificateCaCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemCertificateCa(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemCertificateCa resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemCertificateCa(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemCertificateCa(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemCertificateCa resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemCertificateCa(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemCertificateCa resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -141,6 +168,7 @@ func resourceSystemCertificateCaRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemCertificateCa(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemCertificateCa resource: %v", err)
 	}
 

@@ -100,7 +100,7 @@ func resourceSystemSocFabricUpdate(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemSocFabric(d)
+	obj, err := getObjectSystemSocFabric(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSocFabric resource while getting object: %v", err)
 	}
@@ -121,7 +121,6 @@ func resourceSystemSocFabricUpdate(d *schema.ResourceData, m interface{}) error 
 
 func resourceSystemSocFabricDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -131,11 +130,17 @@ func resourceSystemSocFabricDelete(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemSocFabric(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemSocFabric resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemSocFabric(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemSocFabric(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemSocFabric resource: %v", err)
+		return fmt.Errorf("Error clearing SystemSocFabric resource: %v", err)
 	}
 
 	d.SetId("")
@@ -156,6 +161,7 @@ func resourceSystemSocFabricRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemSocFabric(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSocFabric resource: %v", err)
 	}
 
@@ -415,7 +421,7 @@ func expandSystemSocFabricTrustedListSerial(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemSocFabric(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
@@ -481,12 +487,16 @@ func getObjectSystemSocFabric(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusted_list"); ok || d.HasChange("trusted_list") {
-		t, err := expandSystemSocFabricTrustedList(d, v, "trusted_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["trusted-list"] = t
+	if bemptysontable {
+		obj["trusted-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("trusted_list"); ok || d.HasChange("trusted_list") {
+			t, err := expandSystemSocFabricTrustedList(d, v, "trusted_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["trusted-list"] = t
+			}
 		}
 	}
 

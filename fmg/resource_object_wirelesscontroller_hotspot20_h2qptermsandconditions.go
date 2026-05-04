@@ -29,6 +29,11 @@ func resourceObjectWirelessControllerHotspot20H2QpTermsAndConditions() *schema.R
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -85,9 +90,31 @@ func resourceObjectWirelessControllerHotspot20H2QpTermsAndConditionsCreate(d *sc
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpTermsAndConditions(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpTermsAndConditions resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWirelessControllerHotspot20H2QpTermsAndConditions(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWirelessControllerHotspot20H2QpTermsAndConditions(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpTermsAndConditions resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWirelessControllerHotspot20H2QpTermsAndConditions(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpTermsAndConditions resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -171,6 +198,7 @@ func resourceObjectWirelessControllerHotspot20H2QpTermsAndConditionsRead(d *sche
 
 	o, err := c.ReadObjectWirelessControllerHotspot20H2QpTermsAndConditions(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerHotspot20H2QpTermsAndConditions resource: %v", err)
 	}
 

@@ -29,6 +29,11 @@ func resourceObjectUserGroup() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -225,6 +230,10 @@ func resourceObjectUserGroup() *schema.Resource {
 							Optional: true,
 						},
 						"multiple_guest_add": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"negate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -528,6 +537,10 @@ func resourceObjectUserGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -556,9 +569,31 @@ func resourceObjectUserGroupCreate(d *schema.ResourceData, m interface{}) error 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserGroup(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserGroup resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserGroup(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserGroup(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserGroup resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserGroup(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserGroup resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -642,6 +677,7 @@ func resourceObjectUserGroupRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadObjectUserGroup(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserGroup resource: %v", err)
 	}
 
@@ -805,6 +841,12 @@ func flattenObjectUserGroupDynamicMapping(v interface{}, d *schema.ResourceData,
 		if _, ok := i["multiple-guest-add"]; ok {
 			v := flattenObjectUserGroupDynamicMappingMultipleGuestAdd(i["multiple-guest-add"], d, pre_append)
 			tmp["multiple_guest_add"] = fortiAPISubPartPatch(v, "ObjectUserGroup-DynamicMapping-MultipleGuestAdd")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "negate"
+		if _, ok := i["negate"]; ok {
+			v := flattenObjectUserGroupDynamicMappingNegate(i["negate"], d, pre_append)
+			tmp["negate"] = fortiAPISubPartPatch(v, "ObjectUserGroup-DynamicMapping-Negate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
@@ -1302,6 +1344,10 @@ func flattenObjectUserGroupDynamicMappingMultipleGuestAdd(v interface{}, d *sche
 	return v
 }
 
+func flattenObjectUserGroupDynamicMappingNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserGroupDynamicMappingPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1727,6 +1773,10 @@ func flattenObjectUserGroupLogicType(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectUserGroupNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -2040,6 +2090,16 @@ func refreshObjectObjectUserGroup(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("negate", flattenObjectUserGroupNegate(o["negate"], d, "negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["negate"], "ObjectUserGroup-Negate"); ok {
+			if err = d.Set("negate", vv); err != nil {
+				return fmt.Errorf("Error reading negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading negate: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -2187,6 +2247,11 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "multiple_guest_add"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["multiple-guest-add"], _ = expandObjectUserGroupDynamicMappingMultipleGuestAdd(d, i["multiple_guest_add"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["negate"], _ = expandObjectUserGroupDynamicMappingNegate(d, i["negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
@@ -2638,6 +2703,10 @@ func expandObjectUserGroupDynamicMappingMultipleGuestAdd(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandObjectUserGroupDynamicMappingNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserGroupDynamicMappingPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3046,6 +3115,10 @@ func expandObjectUserGroupLogicType(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectUserGroupNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -3280,6 +3353,15 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["logic-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("negate"); ok || d.HasChange("negate") {
+		t, err := expandObjectUserGroupNegate(d, v, "negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["negate"] = t
 		}
 	}
 

@@ -29,6 +29,11 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddr() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -80,9 +85,31 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrCreate(d *schema.ResourceData
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("prefix")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFspVlanInterfaceIpv6Ip6ExtraAddr(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "prefix"))
@@ -184,6 +211,7 @@ func resourceObjectFspVlanInterfaceIpv6Ip6ExtraAddrRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectFspVlanInterfaceIpv6Ip6ExtraAddr(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanInterfaceIpv6Ip6ExtraAddr resource: %v", err)
 	}
 

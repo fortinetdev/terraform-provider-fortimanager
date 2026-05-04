@@ -29,6 +29,11 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRange() *schema.Resourc
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -131,9 +136,31 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeCreate(d *schema.R
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFspVlanDynamicMappingDhcpServerExcludeRange(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerExcludeRange(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -265,6 +292,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerExcludeRangeRead(d *schema.Res
 
 	o, err := c.ReadObjectFspVlanDynamicMappingDhcpServerExcludeRange(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanDynamicMappingDhcpServerExcludeRange resource: %v", err)
 	}
 

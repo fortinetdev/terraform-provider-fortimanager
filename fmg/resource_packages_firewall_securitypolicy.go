@@ -29,6 +29,11 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -56,7 +61,7 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -486,17 +491,38 @@ func resourcePackagesFirewallSecurityPolicyCreate(d *schema.ResourceData, m inte
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesFirewallSecurityPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallSecurityPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallSecurityPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallSecurityPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesFirewallSecurityPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesFirewallSecurityPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesFirewallSecurityPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesFirewallSecurityPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -611,6 +637,7 @@ func resourcePackagesFirewallSecurityPolicyRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadPackagesFirewallSecurityPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallSecurityPolicy resource: %v", err)
 	}
 

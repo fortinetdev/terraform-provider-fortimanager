@@ -64,7 +64,7 @@ func resourceSystemLogInterfaceStatsUpdate(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogInterfaceStats(d)
+	obj, err := getObjectSystemLogInterfaceStats(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogInterfaceStats resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemLogInterfaceStatsUpdate(d *schema.ResourceData, m interface{}
 
 func resourceSystemLogInterfaceStatsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemLogInterfaceStatsDelete(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogInterfaceStats(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogInterfaceStats resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogInterfaceStats(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogInterfaceStats(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogInterfaceStats resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogInterfaceStats resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemLogInterfaceStatsRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadSystemLogInterfaceStats(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogInterfaceStats resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemLogInterfaceStatsStatus(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
-func getObjectSystemLogInterfaceStats(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogInterfaceStats(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("billing_report"); ok || d.HasChange("billing_report") {

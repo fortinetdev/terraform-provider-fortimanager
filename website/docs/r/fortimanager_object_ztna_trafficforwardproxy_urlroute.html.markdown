@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object ZTNA"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_ztna_trafficforwardproxy_urlroute"
 description: |-

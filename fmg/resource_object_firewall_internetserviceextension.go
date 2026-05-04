@@ -29,6 +29,11 @@ func resourceObjectFirewallInternetServiceExtension() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -223,9 +228,31 @@ func resourceObjectFirewallInternetServiceExtensionCreate(d *schema.ResourceData
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceExtension(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallInternetServiceExtension resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallInternetServiceExtension(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallInternetServiceExtension(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallInternetServiceExtension resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallInternetServiceExtension(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallInternetServiceExtension resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "fosid"))
@@ -309,6 +336,7 @@ func resourceObjectFirewallInternetServiceExtensionRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectFirewallInternetServiceExtension(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallInternetServiceExtension resource: %v", err)
 	}
 
@@ -728,7 +756,7 @@ func flattenObjectFirewallInternetServiceExtensionEntryProtocol(v interface{}, d
 }
 
 func flattenObjectFirewallInternetServiceExtensionId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func refreshObjectObjectFirewallInternetServiceExtension(d *schema.ResourceData, o map[string]interface{}) error {

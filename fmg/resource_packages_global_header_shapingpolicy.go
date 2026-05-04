@@ -29,6 +29,11 @@ func resourcePackagesGlobalHeaderShapingPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -294,17 +299,38 @@ func resourcePackagesGlobalHeaderShapingPolicyCreate(d *schema.ResourceData, m i
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesGlobalHeaderShapingPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesGlobalHeaderShapingPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesGlobalHeaderShapingPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesGlobalHeaderShapingPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -410,6 +436,7 @@ func resourcePackagesGlobalHeaderShapingPolicyRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadPackagesGlobalHeaderShapingPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
 
@@ -439,7 +466,7 @@ func flattenPackagesGlobalHeaderShapingPolicyApplication(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyClassIdReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {

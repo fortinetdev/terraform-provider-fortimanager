@@ -29,6 +29,11 @@ func resourceObjectDynamicAddress() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -104,9 +109,31 @@ func resourceObjectDynamicAddressCreate(d *schema.ResourceData, m interface{}) e
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectDynamicAddress(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectDynamicAddress resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectDynamicAddress(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectDynamicAddress(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectDynamicAddress resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectDynamicAddress(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectDynamicAddress resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -190,6 +217,7 @@ func resourceObjectDynamicAddressRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadObjectDynamicAddress(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectDynamicAddress resource: %v", err)
 	}
 

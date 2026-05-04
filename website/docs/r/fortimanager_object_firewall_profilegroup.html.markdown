@@ -55,6 +55,7 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `ia_profile` - Ia-Profile.
 * `isolator_profile` - Isolator-Profile.
+* `llm_profile` - Llm-Profile.
 * `redirect_profile` - Redirect-Profile.
 
 

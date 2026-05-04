@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object System"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_system_npu"
 description: |-
@@ -76,6 +76,8 @@ The following arguments are supported:
 * `hash_ipv6_sel` - Select which 4bytes of the IPv6 address are used for traffic hash(0~3).
 * `hash_tbl_spread` - Enable/disable hash table entry spread (default enabled). Valid values: `disable`, `enable`.
 
+* `hif_queue_customize` - Customize HIF queue settings. Valid values: `numa-affinity`, `all-cpus`.
+
 * `host_shortcut_mode` - Set np6 host shortcut mode. Valid values: `bi-directional`, `host-shortcut`.
 
 * `hpe` - Hpe. The structure of `hpe` block is documented below.
@@ -88,6 +90,7 @@ The following arguments are supported:
 
 * `hw_ha_scan_interval` - HW HA periodical scan interval in seconds (0-3600, default = 120, 0 to disable).
 * `icmp_error_rate_ctrl` - Icmp-Error-Rate-Ctrl. The structure of `icmp_error_rate_ctrl` block is documented below.
+* `ike_port` - Configure additional IPsec ports for offloading.
 * `icmp_rate_ctrl` - Icmp-Rate-Ctrl. The structure of `icmp_rate_ctrl` block is documented below.
 * `inbound_dscp_copy` - Enable/disable copying the DSCP field from outer IP header to inner IP Header. Valid values: `disable`, `enable`.
 
@@ -141,6 +144,8 @@ The following arguments are supported:
 
 * `max_receive_unit` - Set the maximum packet size for receive, larger packets will be silently dropped.
 * `max_session_timeout` - Maximum time interval for refreshing NPU-offloaded sessions (10 - 1000 sec, default 40 sec).
+* `mcast_denied_ses_offload` - Enable/disable offloading of multicast denied sessions. Valid values: `disable`, `enable`.
+
 * `mcast_session_accounting` - Enable/disable traffic accounting for each multicast session through TAE counter. Valid values: `disable`, `session-based`, `tpe-based`.
 
 * `mcast_session_counting` - Mcast-Session-Counting. Valid values: `disable`, `enable`, `session-based`, `tpe-based`.
@@ -192,6 +197,8 @@ The following arguments are supported:
 * `session_acct_interval` - Session accounting update interval (1 - 10 sec, default 5 sec).
 * `session_denied_offload` - Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
 
+* `shadow_virtual_switch` - Enable/disable shadow virtual switch. Valid values: `disable`, `enable`.
+
 * `shaping_stats` - Enable/disable NP7 traffic shaping statistics (default = disable). Valid values: `disable`, `enable`.
 
 * `spa_port_select_mode` - Port selection mode for SPA IP pool. Valid values: `random`, `direct`.
@@ -225,9 +232,13 @@ The following arguments are supported:
 
 * `ull_port_mode` - Set ULL port's speed to 10G/25G (default 10G). Valid values: `10G`, `25G`.
 
+* `use_ixgbe_tx` - Enable/disable use of the ixgbe NIC for transmitting packets (default = enable). Valid values: `disable`, `enable`.
+
 * `use_mse_oft` - Enable/disable use of MSE OFT. Valid values: `disable`, `enable`.
 
 * `vlan_lookup_cache` - Enable/disable vlan lookup cache (default enabled). Valid values: `disable`, `enable`.
+
+* `vxlan_mac_flapping_guard` - Enable/disable VxLAN MAC flapping guard. Valid values: `disable`, `enable`.
 
 * `vxlan_offload` - Enable/disable offloading vxlan. Valid values: `disable`, `enable`.
 

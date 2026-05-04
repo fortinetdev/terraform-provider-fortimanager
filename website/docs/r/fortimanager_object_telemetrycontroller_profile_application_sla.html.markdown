@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Telemetry Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_telemetrycontroller_profile_application_sla"
 description: |-

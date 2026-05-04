@@ -597,7 +597,7 @@ func resourceWantempSystemVirtualWanLinkUpdate(d *schema.ResourceData, m interfa
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	obj, err := getObjectWantempSystemVirtualWanLink(d)
+	obj, err := getObjectWantempSystemVirtualWanLink(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemVirtualWanLink resource while getting object: %v", err)
 	}
@@ -618,7 +618,6 @@ func resourceWantempSystemVirtualWanLinkUpdate(d *schema.ResourceData, m interfa
 
 func resourceWantempSystemVirtualWanLinkDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -634,11 +633,17 @@ func resourceWantempSystemVirtualWanLinkDelete(d *schema.ResourceData, m interfa
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
+	obj, err := getObjectWantempSystemVirtualWanLink(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating WantempSystemVirtualWanLink resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteWantempSystemVirtualWanLink(mkey, paradict, wsParams)
+	_, err = c.UpdateWantempSystemVirtualWanLink(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting WantempSystemVirtualWanLink resource: %v", err)
+		return fmt.Errorf("Error clearing WantempSystemVirtualWanLink resource: %v", err)
 	}
 
 	d.SetId("")
@@ -674,6 +679,7 @@ func resourceWantempSystemVirtualWanLinkRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadWantempSystemVirtualWanLink(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading WantempSystemVirtualWanLink resource: %v", err)
 	}
 
@@ -3324,7 +3330,7 @@ func expandWantempSystemVirtualWanLinkStatus(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fail_alert_interfaces"); ok || d.HasChange("fail_alert_interfaces") {
@@ -3345,12 +3351,16 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemVirtualWanLinkHealthCheck(d, v, "health_check")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["health-check"] = t
+	if bemptysontable {
+		obj["health-check"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
+			t, err := expandWantempSystemVirtualWanLinkHealthCheck(d, v, "health_check")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["health-check"] = t
+			}
 		}
 	}
 
@@ -3363,21 +3373,29 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
-		t, err := expandWantempSystemVirtualWanLinkMembers(d, v, "members")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["members"] = t
+	if bemptysontable {
+		obj["members"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
+			t, err := expandWantempSystemVirtualWanLinkMembers(d, v, "members")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["members"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("neighbor"); ok || d.HasChange("neighbor") {
-		t, err := expandWantempSystemVirtualWanLinkNeighbor(d, v, "neighbor")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["neighbor"] = t
+	if bemptysontable {
+		obj["neighbor"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("neighbor"); ok || d.HasChange("neighbor") {
+			t, err := expandWantempSystemVirtualWanLinkNeighbor(d, v, "neighbor")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["neighbor"] = t
+			}
 		}
 	}
 
@@ -3408,12 +3426,16 @@ func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
-		t, err := expandWantempSystemVirtualWanLinkService(d, v, "service")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["service"] = t
+	if bemptysontable {
+		obj["service"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
+			t, err := expandWantempSystemVirtualWanLinkService(d, v, "service")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["service"] = t
+			}
 		}
 	}
 

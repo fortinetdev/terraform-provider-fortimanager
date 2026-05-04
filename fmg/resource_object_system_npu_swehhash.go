@@ -108,7 +108,7 @@ func resourceObjectSystemNpuSwEhHashUpdate(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuSwEhHash(d)
+	obj, err := getObjectObjectSystemNpuSwEhHash(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSwEhHash resource while getting object: %v", err)
 	}
@@ -129,7 +129,6 @@ func resourceObjectSystemNpuSwEhHashUpdate(d *schema.ResourceData, m interface{}
 
 func resourceObjectSystemNpuSwEhHashDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -142,11 +141,17 @@ func resourceObjectSystemNpuSwEhHashDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuSwEhHash(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuSwEhHash resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuSwEhHash(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuSwEhHash(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuSwEhHash resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuSwEhHash resource: %v", err)
 	}
 
 	d.SetId("")
@@ -170,6 +175,7 @@ func resourceObjectSystemNpuSwEhHashRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectSystemNpuSwEhHash(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuSwEhHash resource: %v", err)
 	}
 
@@ -364,7 +370,7 @@ func expandObjectSystemNpuSwEhHashSourcePort2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("computation"); ok || d.HasChange("computation") {

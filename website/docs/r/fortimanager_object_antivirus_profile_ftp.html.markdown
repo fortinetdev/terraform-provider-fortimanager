@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Antivirus"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_antivirus_profile_ftp"
 description: |-

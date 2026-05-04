@@ -77,7 +77,7 @@ func resourceSecurityconsoleSignCertificateTemplateUpdate(d *schema.ResourceData
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleSignCertificateTemplate(d)
+	obj, err := getObjectSecurityconsoleSignCertificateTemplate(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleSignCertificateTemplate resource while getting object: %v", err)
 	}
@@ -274,7 +274,7 @@ func expandSecurityconsoleSignCertificateTemplateTemplate(d *schema.ResourceData
 	return convstr2list(v, nil), nil
 }
 
-func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -286,12 +286,16 @@ func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*m
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsoleSignCertificateTemplateScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsoleSignCertificateTemplateScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

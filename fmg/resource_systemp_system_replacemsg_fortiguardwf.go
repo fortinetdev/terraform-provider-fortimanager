@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgFortiguardWfUpdate(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgFortiguardWf(d)
+	obj, err := getObjectSystempSystemReplacemsgFortiguardWf(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgFortiguardWf resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgFortiguardWfUpdate(d *schema.ResourceData, m
 
 func resourceSystempSystemReplacemsgFortiguardWfDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgFortiguardWfDelete(d *schema.ResourceData, m
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgFortiguardWf(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgFortiguardWf resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgFortiguardWf(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgFortiguardWf(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgFortiguardWf resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgFortiguardWf resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgFortiguardWfRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadSystempSystemReplacemsgFortiguardWf(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgFortiguardWf resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgFortiguardWfMsgType(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgFortiguardWf(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgFortiguardWf(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

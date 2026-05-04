@@ -314,7 +314,7 @@ func resourceFmupdateFdsSettingUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFdsSetting(d)
+	obj, err := getObjectFmupdateFdsSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSetting resource while getting object: %v", err)
 	}
@@ -335,7 +335,6 @@ func resourceFmupdateFdsSettingUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceFmupdateFdsSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -345,11 +344,17 @@ func resourceFmupdateFdsSettingDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFdsSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFdsSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFdsSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFdsSetting resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFdsSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -370,6 +375,7 @@ func resourceFmupdateFdsSettingRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadFmupdateFdsSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFdsSetting resource: %v", err)
 	}
 
@@ -655,7 +661,7 @@ func flattenFmupdateFdsSettingServerOverrideServlistPort(v interface{}, d *schem
 }
 
 func flattenFmupdateFdsSettingServerOverrideServlistServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenFmupdateFdsSettingServerOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -756,7 +762,7 @@ func flattenFmupdateFdsSettingUpdateScheduleStatus(v interface{}, d *schema.Reso
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return convstr2list(v, d.Get(pre))
 }
 
 func flattenFmupdateFdsSettingWanipQueryMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1368,7 +1374,7 @@ func expandFmupdateFdsSettingServerOverrideServlistPort(d *schema.ResourceData, 
 }
 
 func expandFmupdateFdsSettingServerOverrideServlistServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandFmupdateFdsSettingServerOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1473,7 +1479,7 @@ func expandFmupdateFdsSettingWanipQueryMode(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFdsSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("user_agent"); ok || d.HasChange("user_agent") {

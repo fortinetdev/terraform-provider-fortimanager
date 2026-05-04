@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Email Filter"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_emailfilter_profile_gmail"
 description: |-

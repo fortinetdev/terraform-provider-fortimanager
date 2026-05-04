@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Wantemp"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_wantemp_system_sdwan_healthcheck"
 description: |-
@@ -103,6 +103,8 @@ The following arguments are supported:
 * `threshold_warning_jitter` - Warning threshold for jitter (ms, default = 0).
 * `threshold_warning_latency` - Warning threshold for latency (ms, default = 0).
 * `threshold_warning_packetloss` - Warning threshold for packet loss (percentage, default = 0).
+* `update_bgp_route` - Enable/disable updating the BGP route. Valid values: `disable`, `enable`.
+
 * `update_cascade_interface` - Enable/disable update cascade interface. Valid values: `disable`, `enable`.
 
 * `update_static_route` - Enable/disable updating the static route. Valid values: `disable`, `enable`.

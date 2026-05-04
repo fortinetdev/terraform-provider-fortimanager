@@ -134,7 +134,7 @@ func resourceObjectAntivirusProfileCifsUpdate(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectAntivirusProfileCifs(d)
+	obj, err := getObjectObjectAntivirusProfileCifs(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileCifs resource while getting object: %v", err)
 	}
@@ -155,7 +155,6 @@ func resourceObjectAntivirusProfileCifsUpdate(d *schema.ResourceData, m interfac
 
 func resourceObjectAntivirusProfileCifsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -171,11 +170,17 @@ func resourceObjectAntivirusProfileCifsDelete(d *schema.ResourceData, m interfac
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectAntivirusProfileCifs(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAntivirusProfileCifs resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfileCifs(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectAntivirusProfileCifs(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectAntivirusProfileCifs resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectAntivirusProfileCifs resource: %v", err)
 	}
 
 	d.SetId("")
@@ -211,6 +216,7 @@ func resourceObjectAntivirusProfileCifsRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectAntivirusProfileCifs(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAntivirusProfileCifs resource: %v", err)
 	}
 
@@ -459,7 +465,7 @@ func expandObjectAntivirusProfileCifsQuarantine2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectObjectAntivirusProfileCifs(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectAntivirusProfileCifs(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("archive_block"); ok || d.HasChange("archive_block") {

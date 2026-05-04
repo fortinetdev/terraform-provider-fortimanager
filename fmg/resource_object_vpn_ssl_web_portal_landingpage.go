@@ -121,7 +121,7 @@ func resourceObjectVpnSslWebPortalLandingPageUpdate(d *schema.ResourceData, m in
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
-	obj, err := getObjectObjectVpnSslWebPortalLandingPage(d)
+	obj, err := getObjectObjectVpnSslWebPortalLandingPage(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPage resource while getting object: %v", err)
 	}
@@ -142,7 +142,6 @@ func resourceObjectVpnSslWebPortalLandingPageUpdate(d *schema.ResourceData, m in
 
 func resourceObjectVpnSslWebPortalLandingPageDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -158,11 +157,17 @@ func resourceObjectVpnSslWebPortalLandingPageDelete(d *schema.ResourceData, m in
 	portal := d.Get("portal").(string)
 	paradict["portal"] = portal
 
+	obj, err := getObjectObjectVpnSslWebPortalLandingPage(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectVpnSslWebPortalLandingPage resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebPortalLandingPage(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectVpnSslWebPortalLandingPage(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectVpnSslWebPortalLandingPage resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectVpnSslWebPortalLandingPage resource: %v", err)
 	}
 
 	d.SetId("")
@@ -198,6 +203,7 @@ func resourceObjectVpnSslWebPortalLandingPageRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectVpnSslWebPortalLandingPage(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectVpnSslWebPortalLandingPage resource: %v", err)
 	}
 
@@ -443,15 +449,19 @@ func expandObjectVpnSslWebPortalLandingPageUrl2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectVpnSslWebPortalLandingPage(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectVpnSslWebPortalLandingPage(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("form_data"); ok || d.HasChange("form_data") {
-		t, err := expandObjectVpnSslWebPortalLandingPageFormData2edl(d, v, "form_data")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["form-data"] = t
+	if bemptysontable {
+		obj["form-data"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("form_data"); ok || d.HasChange("form_data") {
+			t, err := expandObjectVpnSslWebPortalLandingPageFormData2edl(d, v, "form_data")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["form-data"] = t
+			}
 		}
 	}
 

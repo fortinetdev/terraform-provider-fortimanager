@@ -49,7 +49,7 @@ func resourceFmupdatePublicnetworkUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdatePublicnetwork(d)
+	obj, err := getObjectFmupdatePublicnetwork(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdatePublicnetwork resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceFmupdatePublicnetworkUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceFmupdatePublicnetworkDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceFmupdatePublicnetworkDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdatePublicnetwork(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdatePublicnetwork resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdatePublicnetwork(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdatePublicnetwork(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdatePublicnetwork resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdatePublicnetwork resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceFmupdatePublicnetworkRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadFmupdatePublicnetwork(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdatePublicnetwork resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandFmupdatePublicnetworkStatus(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
-func getObjectFmupdatePublicnetwork(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdatePublicnetwork(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {

@@ -29,6 +29,11 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -182,6 +187,12 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"llm_servers": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"post_arg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -224,9 +235,31 @@ func resourceObjectFirewallProxyAddressCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddress(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallProxyAddress resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallProxyAddress(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallProxyAddress(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallProxyAddress resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallProxyAddress(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallProxyAddress resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -310,6 +343,7 @@ func resourceObjectFirewallProxyAddressRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectFirewallProxyAddress(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProxyAddress resource: %v", err)
 	}
 
@@ -532,6 +566,10 @@ func flattenObjectFirewallProxyAddressUaMinVer(v interface{}, d *schema.Resource
 
 func flattenObjectFirewallProxyAddressUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallProxyAddressLlmServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddressPostArg(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -805,6 +843,16 @@ func refreshObjectObjectFirewallProxyAddress(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("llm_servers", flattenObjectFirewallProxyAddressLlmServers(o["llm-servers"], d, "llm_servers")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-servers"], "ObjectFirewallProxyAddress-LlmServers"); ok {
+			if err = d.Set("llm_servers", vv); err != nil {
+				return fmt.Errorf("Error reading llm_servers: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_servers: %v", err)
+		}
+	}
+
 	if err = d.Set("post_arg", flattenObjectFirewallProxyAddressPostArg(o["post-arg"], d, "post_arg")); err != nil {
 		if vv, ok := fortiAPIPatch(o["post-arg"], "ObjectFirewallProxyAddress-PostArg"); ok {
 			if err = d.Set("post_arg", vv); err != nil {
@@ -1035,6 +1083,10 @@ func expandObjectFirewallProxyAddressUuid(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddressLlmServers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallProxyAddressPostArg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1245,6 +1297,15 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_servers"); ok || d.HasChange("llm_servers") {
+		t, err := expandObjectFirewallProxyAddressLlmServers(d, v, "llm_servers")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-servers"] = t
 		}
 	}
 

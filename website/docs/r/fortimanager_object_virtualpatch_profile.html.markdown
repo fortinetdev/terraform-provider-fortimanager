@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Virtual Patch"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_virtualpatch_profile"
 description: |-

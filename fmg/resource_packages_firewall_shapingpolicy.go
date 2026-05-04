@@ -29,6 +29,11 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -337,17 +342,38 @@ func resourcePackagesFirewallShapingPolicyCreate(d *schema.ResourceData, m inter
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesFirewallShapingPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallShapingPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallShapingPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallShapingPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallShapingPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesFirewallShapingPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesFirewallShapingPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesFirewallShapingPolicy resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesFirewallShapingPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesFirewallShapingPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -462,6 +488,7 @@ func resourcePackagesFirewallShapingPolicyRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadPackagesFirewallShapingPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallShapingPolicy resource: %v", err)
 	}
 
@@ -491,7 +518,7 @@ func flattenPackagesFirewallShapingPolicyApplication(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallShapingPolicyClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesFirewallShapingPolicyComment(v interface{}, d *schema.ResourceData, pre string) interface{} {

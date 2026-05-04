@@ -29,6 +29,11 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -127,6 +132,11 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"require_signed_resp_and_asrt": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"scim_client": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -190,9 +200,31 @@ func resourceObjectUserSamlDynamicMappingCreate(d *schema.ResourceData, m interf
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserSamlDynamicMapping(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserSamlDynamicMapping resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("_scope")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserSamlDynamicMapping(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserSamlDynamicMapping(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserSamlDynamicMapping resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserSamlDynamicMapping(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserSamlDynamicMapping resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getScopeKey(d, "_scope"))
@@ -297,6 +329,7 @@ func resourceObjectUserSamlDynamicMappingRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectUserSamlDynamicMapping(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserSamlDynamicMapping resource: %v", err)
 	}
 
@@ -415,6 +448,10 @@ func flattenObjectUserSamlDynamicMappingLimitRelaystate2edl(v interface{}, d *sc
 }
 
 func flattenObjectUserSamlDynamicMappingReauth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingRequireSignedRespAndAsrt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -621,6 +658,16 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("require_signed_resp_and_asrt", flattenObjectUserSamlDynamicMappingRequireSignedRespAndAsrt2edl(o["require-signed-resp-and-asrt"], d, "require_signed_resp_and_asrt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["require-signed-resp-and-asrt"], "ObjectUserSamlDynamicMapping-RequireSignedRespAndAsrt"); ok {
+			if err = d.Set("require_signed_resp_and_asrt", vv); err != nil {
+				return fmt.Errorf("Error reading require_signed_resp_and_asrt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading require_signed_resp_and_asrt: %v", err)
+		}
+	}
+
 	if err = d.Set("scim_client", flattenObjectUserSamlDynamicMappingScimClient2edl(o["scim-client"], d, "scim_client")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scim-client"], "ObjectUserSamlDynamicMapping-ScimClient"); ok {
 			if err = d.Set("scim_client", vv); err != nil {
@@ -798,6 +845,10 @@ func expandObjectUserSamlDynamicMappingReauth2edl(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingRequireSignedRespAndAsrt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingScimClient2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -961,6 +1012,15 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["reauth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("require_signed_resp_and_asrt"); ok || d.HasChange("require_signed_resp_and_asrt") {
+		t, err := expandObjectUserSamlDynamicMappingRequireSignedRespAndAsrt2edl(d, v, "require_signed_resp_and_asrt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["require-signed-resp-and-asrt"] = t
 		}
 	}
 

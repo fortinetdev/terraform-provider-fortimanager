@@ -26,6 +26,7 @@ type Config struct {
 	ImportOptions *schema.Set
 	FMGType       string
 	WorkspaceMode string
+	UpdateIfExist bool
 
 	LogSession    bool
 	Session       string
@@ -57,7 +58,7 @@ func (c *Config) CreateClient() (interface{}, error) {
 func createFMGClient(fClient *FortiClient, c *Config) error {
 	config := &tls.Config{}
 
-	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.FMGCloudToken, c.FMGType, c.LogSession, c.CleanSession)
+	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.FMGCloudToken, c.FMGType, c.LogSession, c.CleanSession, c.UpdateIfExist)
 
 	if auth.Hostname == "" {
 		_, err := auth.GetEnvHostname()
@@ -123,6 +124,10 @@ func createFMGClient(fClient *FortiClient, c *Config) error {
 		config.InsecureSkipVerify = b
 	} else {
 		config.InsecureSkipVerify = *c.Insecure
+		// if insecure is true, allow GODEBUG=x509negativeserial=1 to avoid the negative serial number error
+		if *c.Insecure {
+			os.Setenv("GODEBUG", "x509negativeserial=1")
+		}
 	}
 
 	if config.InsecureSkipVerify == false && auth.CABundle == "" {

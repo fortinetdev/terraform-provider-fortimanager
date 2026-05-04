@@ -95,7 +95,7 @@ func resourceObjectSwitchControllerAclIngressClassifierUpdate(d *schema.Resource
 	ingress := d.Get("ingress").(string)
 	paradict["ingress"] = ingress
 
-	obj, err := getObjectObjectSwitchControllerAclIngressClassifier(d)
+	obj, err := getObjectObjectSwitchControllerAclIngressClassifier(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressClassifier resource while getting object: %v", err)
 	}
@@ -116,7 +116,6 @@ func resourceObjectSwitchControllerAclIngressClassifierUpdate(d *schema.Resource
 
 func resourceObjectSwitchControllerAclIngressClassifierDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -132,11 +131,17 @@ func resourceObjectSwitchControllerAclIngressClassifierDelete(d *schema.Resource
 	ingress := d.Get("ingress").(string)
 	paradict["ingress"] = ingress
 
+	obj, err := getObjectObjectSwitchControllerAclIngressClassifier(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressClassifier resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerAclIngressClassifier(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSwitchControllerAclIngressClassifier(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSwitchControllerAclIngressClassifier resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSwitchControllerAclIngressClassifier resource: %v", err)
 	}
 
 	d.SetId("")
@@ -172,6 +177,7 @@ func resourceObjectSwitchControllerAclIngressClassifierRead(d *schema.ResourceDa
 
 	o, err := c.ReadObjectSwitchControllerAclIngressClassifier(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSwitchControllerAclIngressClassifier resource: %v", err)
 	}
 
@@ -189,6 +195,13 @@ func resourceObjectSwitchControllerAclIngressClassifierRead(d *schema.ResourceDa
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierDstIpPrefix2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convipstringlist2ipmask(v)
 }
 
@@ -197,6 +210,13 @@ func flattenObjectSwitchControllerAclIngressClassifierDstMac2edl(v interface{}, 
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierSrcIpPrefix2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convipstringlist2ipmask(v)
 }
 
@@ -294,7 +314,7 @@ func expandObjectSwitchControllerAclIngressClassifierVlan2edl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectSwitchControllerAclIngressClassifier(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSwitchControllerAclIngressClassifier(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dst_ip_prefix"); ok || d.HasChange("dst_ip_prefix") {

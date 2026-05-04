@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Diameter Filter"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_diameterfilter_profile"
 description: |-

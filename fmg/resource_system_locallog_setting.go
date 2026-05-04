@@ -74,7 +74,7 @@ func resourceSystemLocallogSettingUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogSetting(d)
+	obj, err := getObjectSystemLocallogSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSetting resource while getting object: %v", err)
 	}
@@ -95,7 +95,6 @@ func resourceSystemLocallogSettingUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceSystemLocallogSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -105,11 +104,17 @@ func resourceSystemLocallogSettingDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -130,6 +135,7 @@ func resourceSystemLocallogSettingRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadSystemLocallogSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogSetting resource: %v", err)
 	}
 
@@ -266,7 +272,7 @@ func expandSystemLocallogSettingNoLogDetectionThreshold(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectSystemLocallogSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("log_daemon_crash"); ok || d.HasChange("log_daemon_crash") {

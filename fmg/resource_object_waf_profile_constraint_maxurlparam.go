@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintMaxUrlParamUpdate(d *schema.ResourceData,
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMaxUrlParam(d)
+	obj, err := getObjectObjectWafProfileConstraintMaxUrlParam(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxUrlParam resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintMaxUrlParamUpdate(d *schema.ResourceData,
 
 func resourceObjectWafProfileConstraintMaxUrlParamDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintMaxUrlParamDelete(d *schema.ResourceData,
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMaxUrlParam(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxUrlParam resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMaxUrlParam(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMaxUrlParam(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxUrlParam resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMaxUrlParam resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintMaxUrlParamRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectWafProfileConstraintMaxUrlParam(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMaxUrlParam resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintMaxUrlParamStatus3rdl(d *schema.ResourceDat
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMaxUrlParam(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMaxUrlParam(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

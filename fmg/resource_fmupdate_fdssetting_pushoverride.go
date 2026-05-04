@@ -59,7 +59,7 @@ func resourceFmupdateFdsSettingPushOverrideUpdate(d *schema.ResourceData, m inte
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFdsSettingPushOverride(d)
+	obj, err := getObjectFmupdateFdsSettingPushOverride(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverride resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceFmupdateFdsSettingPushOverrideUpdate(d *schema.ResourceData, m inte
 
 func resourceFmupdateFdsSettingPushOverrideDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceFmupdateFdsSettingPushOverrideDelete(d *schema.ResourceData, m inte
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFdsSettingPushOverride(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverride resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingPushOverride(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFdsSettingPushOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFdsSettingPushOverride resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFdsSettingPushOverride resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceFmupdateFdsSettingPushOverrideRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadFmupdateFdsSettingPushOverride(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFdsSettingPushOverride resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandFmupdateFdsSettingPushOverrideStatus2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {

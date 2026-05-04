@@ -29,6 +29,11 @@ func resourceObjectZtnaTrafficForwardProxySslServerCipherSuites() *schema.Resour
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -92,17 +97,38 @@ func resourceObjectZtnaTrafficForwardProxySslServerCipherSuitesCreate(d *schema.
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectZtnaTrafficForwardProxySslServerCipherSuites(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectZtnaTrafficForwardProxySslServerCipherSuites resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("priority")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectZtnaTrafficForwardProxySslServerCipherSuites(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectZtnaTrafficForwardProxySslServerCipherSuites(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectZtnaTrafficForwardProxySslServerCipherSuites resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["priority"] != nil {
-		if vidn, ok := v["priority"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectZtnaTrafficForwardProxySslServerCipherSuitesRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectZtnaTrafficForwardProxySslServerCipherSuites(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectZtnaTrafficForwardProxySslServerCipherSuites resource: %v", err)
+		}
+
+		if v != nil && v["priority"] != nil {
+			if vidn, ok := v["priority"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectZtnaTrafficForwardProxySslServerCipherSuitesRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectZtnaTrafficForwardProxySslServerCipherSuites resource: %v", err)
+			}
 		}
 	}
 
@@ -205,6 +231,7 @@ func resourceObjectZtnaTrafficForwardProxySslServerCipherSuitesRead(d *schema.Re
 
 	o, err := c.ReadObjectZtnaTrafficForwardProxySslServerCipherSuites(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaTrafficForwardProxySslServerCipherSuites resource: %v", err)
 	}
 

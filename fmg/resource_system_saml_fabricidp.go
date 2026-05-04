@@ -29,6 +29,11 @@ func resourceSystemSamlFabricIdp() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"dev_id": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -75,9 +80,31 @@ func resourceSystemSamlFabricIdpCreate(d *schema.ResourceData, m interface{}) er
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSamlFabricIdp(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemSamlFabricIdp resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("dev_id")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemSamlFabricIdp(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemSamlFabricIdp(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemSamlFabricIdp resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemSamlFabricIdp(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemSamlFabricIdp resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "dev_id"))
@@ -152,6 +179,7 @@ func resourceSystemSamlFabricIdpRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemSamlFabricIdp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSamlFabricIdp resource: %v", err)
 	}
 

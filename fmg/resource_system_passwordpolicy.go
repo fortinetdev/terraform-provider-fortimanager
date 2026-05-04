@@ -78,7 +78,7 @@ func resourceSystemPasswordPolicyUpdate(d *schema.ResourceData, m interface{}) e
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemPasswordPolicy(d)
+	obj, err := getObjectSystemPasswordPolicy(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemPasswordPolicy resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceSystemPasswordPolicyUpdate(d *schema.ResourceData, m interface{}) e
 
 func resourceSystemPasswordPolicyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -109,11 +108,17 @@ func resourceSystemPasswordPolicyDelete(d *schema.ResourceData, m interface{}) e
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemPasswordPolicy(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemPasswordPolicy resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemPasswordPolicy(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemPasswordPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemPasswordPolicy resource: %v", err)
+		return fmt.Errorf("Error clearing SystemPasswordPolicy resource: %v", err)
 	}
 
 	d.SetId("")
@@ -134,6 +139,7 @@ func resourceSystemPasswordPolicyRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadSystemPasswordPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemPasswordPolicy resource: %v", err)
 	}
 
@@ -288,7 +294,7 @@ func expandSystemPasswordPolicyStatus(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
-func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemPasswordPolicy(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("change_4_characters"); ok || d.HasChange("change_4_characters") {

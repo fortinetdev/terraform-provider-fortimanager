@@ -117,7 +117,7 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileUpdate(d *schema
 	sim_profile := d.Get("sim_profile").(string)
 	paradict["sim_profile"] = sim_profile
 
-	obj, err := getObjectObjectExtenderControllerSimProfileAutoSwitchProfile(d)
+	obj, err := getObjectObjectExtenderControllerSimProfileAutoSwitchProfile(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfileAutoSwitchProfile resource while getting object: %v", err)
 	}
@@ -138,7 +138,6 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileUpdate(d *schema
 
 func resourceObjectExtenderControllerSimProfileAutoSwitchProfileDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -154,11 +153,17 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileDelete(d *schema
 	sim_profile := d.Get("sim_profile").(string)
 	paradict["sim_profile"] = sim_profile
 
+	obj, err := getObjectObjectExtenderControllerSimProfileAutoSwitchProfile(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfileAutoSwitchProfile resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerSimProfileAutoSwitchProfile(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtenderControllerSimProfileAutoSwitchProfile(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtenderControllerSimProfileAutoSwitchProfile resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtenderControllerSimProfileAutoSwitchProfile resource: %v", err)
 	}
 
 	d.SetId("")
@@ -194,6 +199,7 @@ func resourceObjectExtenderControllerSimProfileAutoSwitchProfileRead(d *schema.R
 
 	o, err := c.ReadObjectExtenderControllerSimProfileAutoSwitchProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtenderControllerSimProfileAutoSwitchProfile resource: %v", err)
 	}
 
@@ -388,7 +394,7 @@ func expandObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBackTimer2ed
 	return v, nil
 }
 
-func getObjectObjectExtenderControllerSimProfileAutoSwitchProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtenderControllerSimProfileAutoSwitchProfile(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dataplan"); ok || d.HasChange("dataplan") {

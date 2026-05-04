@@ -192,7 +192,7 @@ func resourceSystempLogSyslogdSettingUpdate(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogSyslogdSetting(d)
+	obj, err := getObjectSystempLogSyslogdSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdSetting resource while getting object: %v", err)
 	}
@@ -213,7 +213,6 @@ func resourceSystempLogSyslogdSettingUpdate(d *schema.ResourceData, m interface{
 
 func resourceSystempLogSyslogdSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -229,11 +228,17 @@ func resourceSystempLogSyslogdSettingDelete(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempLogSyslogdSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempLogSyslogdSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempLogSyslogdSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempLogSyslogdSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempLogSyslogdSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystempLogSyslogdSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -269,6 +274,7 @@ func resourceSystempLogSyslogdSettingRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadSystempLogSyslogdSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempLogSyslogdSetting resource: %v", err)
 	}
 
@@ -862,7 +868,7 @@ func expandSystempLogSyslogdSettingLogTemplatesTemplate(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectSystempLogSyslogdSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempLogSyslogdSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("certificate"); ok || d.HasChange("certificate") {
@@ -874,12 +880,16 @@ func getObjectSystempLogSyslogdSetting(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("custom_field_name"); ok || d.HasChange("custom_field_name") {
-		t, err := expandSystempLogSyslogdSettingCustomFieldName(d, v, "custom_field_name")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["custom-field-name"] = t
+	if bemptysontable {
+		obj["custom-field-name"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("custom_field_name"); ok || d.HasChange("custom_field_name") {
+			t, err := expandSystempLogSyslogdSettingCustomFieldName(d, v, "custom_field_name")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["custom-field-name"] = t
+			}
 		}
 	}
 
@@ -1009,12 +1019,16 @@ func getObjectSystempLogSyslogdSetting(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("log_templates"); ok || d.HasChange("log_templates") {
-		t, err := expandSystempLogSyslogdSettingLogTemplates(d, v, "log_templates")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["log-templates"] = t
+	if bemptysontable {
+		obj["log-templates"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("log_templates"); ok || d.HasChange("log_templates") {
+			t, err := expandSystempLogSyslogdSettingLogTemplates(d, v, "log_templates")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["log-templates"] = t
+			}
 		}
 	}
 

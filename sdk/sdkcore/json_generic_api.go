@@ -33,8 +33,8 @@ func (c *FortiSDKClient) JsonGenericAPI(data string, wsParams map[string]string)
 		if err != nil {
 			return
 		}
-	}
-	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	} else if c.Config.Auth.CleanSession {
 		c.logoutSession(session)
 	}
 

@@ -29,6 +29,11 @@ func resourceObjectIcapProfileIcapHeaders() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -107,17 +112,38 @@ func resourceObjectIcapProfileIcapHeadersCreate(d *schema.ResourceData, m interf
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectIcapProfileIcapHeaders(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapProfileIcapHeaders resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapProfileIcapHeaders(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapProfileIcapHeaders(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapProfileIcapHeaders resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectIcapProfileIcapHeadersRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectIcapProfileIcapHeaders(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectIcapProfileIcapHeaders resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectIcapProfileIcapHeadersRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectIcapProfileIcapHeaders resource: %v", err)
+			}
 		}
 	}
 
@@ -220,6 +246,7 @@ func resourceObjectIcapProfileIcapHeadersRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectIcapProfileIcapHeaders(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapProfileIcapHeaders resource: %v", err)
 	}
 

@@ -49,7 +49,7 @@ func resourceFmupdateMultilayerUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateMultilayer(d)
+	obj, err := getObjectFmupdateMultilayer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateMultilayer resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceFmupdateMultilayerUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceFmupdateMultilayerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceFmupdateMultilayerDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateMultilayer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateMultilayer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateMultilayer(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateMultilayer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateMultilayer resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateMultilayer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceFmupdateMultilayerRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadFmupdateMultilayer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateMultilayer resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandFmupdateMultilayerWebspamRating(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectFmupdateMultilayer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateMultilayer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("webspam_rating"); ok || d.HasChange("webspam_rating") {

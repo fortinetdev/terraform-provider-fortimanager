@@ -91,7 +91,7 @@ func resourceObjectWafProfileConstraintMethodUpdate(d *schema.ResourceData, m in
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMethod(d)
+	obj, err := getObjectObjectWafProfileConstraintMethod(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMethod resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceObjectWafProfileConstraintMethodUpdate(d *schema.ResourceData, m in
 
 func resourceObjectWafProfileConstraintMethodDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -128,11 +127,17 @@ func resourceObjectWafProfileConstraintMethodDelete(d *schema.ResourceData, m in
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMethod(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMethod resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMethod(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMethod(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMethod resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMethod resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectWafProfileConstraintMethodRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectWafProfileConstraintMethod(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMethod resource: %v", err)
 	}
 
@@ -272,7 +278,7 @@ func expandObjectWafProfileConstraintMethodStatus3rdl(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMethod(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMethod(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

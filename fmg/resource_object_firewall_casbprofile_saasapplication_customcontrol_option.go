@@ -29,6 +29,11 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlOption() *sche
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -101,9 +106,31 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlOptionCreate(d
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallCasbProfileSaasApplicationCustomControlOption(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationCustomControlOption resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallCasbProfileSaasApplicationCustomControlOption(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallCasbProfileSaasApplicationCustomControlOption(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallCasbProfileSaasApplicationCustomControlOption resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallCasbProfileSaasApplicationCustomControlOption(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallCasbProfileSaasApplicationCustomControlOption resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -235,6 +262,7 @@ func resourceObjectFirewallCasbProfileSaasApplicationCustomControlOptionRead(d *
 
 	o, err := c.ReadObjectFirewallCasbProfileSaasApplicationCustomControlOption(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallCasbProfileSaasApplicationCustomControlOption resource: %v", err)
 	}
 

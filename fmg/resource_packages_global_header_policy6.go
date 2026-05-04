@@ -29,6 +29,11 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -40,7 +45,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -582,17 +587,38 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesGlobalHeaderPolicy6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesGlobalHeaderPolicy6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy6 resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesGlobalHeaderPolicy6Read(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesGlobalHeaderPolicy6Read(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
+			}
 		}
 	}
 
@@ -698,6 +724,7 @@ func resourcePackagesGlobalHeaderPolicy6Read(d *schema.ResourceData, m interface
 
 	o, err := c.ReadPackagesGlobalHeaderPolicy6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
 
@@ -1023,7 +1050,7 @@ func flattenPackagesGlobalHeaderPolicy6ServiceNegate(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalHeaderPolicy6SessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesGlobalHeaderPolicy6SpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {

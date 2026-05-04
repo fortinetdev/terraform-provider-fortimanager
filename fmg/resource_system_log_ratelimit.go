@@ -112,7 +112,7 @@ func resourceSystemLogRatelimitUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogRatelimit(d)
+	obj, err := getObjectSystemLogRatelimit(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimit resource while getting object: %v", err)
 	}
@@ -133,7 +133,6 @@ func resourceSystemLogRatelimitUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceSystemLogRatelimitDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -143,11 +142,17 @@ func resourceSystemLogRatelimitDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogRatelimit(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogRatelimit resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogRatelimit(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogRatelimit(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogRatelimit resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogRatelimit resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceSystemLogRatelimitRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadSystemLogRatelimit(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogRatelimit resource: %v", err)
 	}
 
@@ -560,15 +566,19 @@ func expandSystemLogRatelimitSystemRatelimit(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectSystemLogRatelimit(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogRatelimit(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
-		t, err := expandSystemLogRatelimitDevice(d, v, "device")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["device"] = t
+	if bemptysontable {
+		obj["device"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
+			t, err := expandSystemLogRatelimitDevice(d, v, "device")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["device"] = t
+			}
 		}
 	}
 
@@ -590,12 +600,16 @@ func getObjectSystemLogRatelimit(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ratelimits"); ok || d.HasChange("ratelimits") {
-		t, err := expandSystemLogRatelimitRatelimits(d, v, "ratelimits")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ratelimits"] = t
+	if bemptysontable {
+		obj["ratelimits"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ratelimits"); ok || d.HasChange("ratelimits") {
+			t, err := expandSystemLogRatelimitRatelimits(d, v, "ratelimits")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ratelimits"] = t
+			}
 		}
 	}
 

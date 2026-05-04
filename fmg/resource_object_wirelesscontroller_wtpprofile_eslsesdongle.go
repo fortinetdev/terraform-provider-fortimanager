@@ -124,7 +124,7 @@ func resourceObjectWirelessControllerWtpProfileEslSesDongleUpdate(d *schema.Reso
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	obj, err := getObjectObjectWirelessControllerWtpProfileEslSesDongle(d)
+	obj, err := getObjectObjectWirelessControllerWtpProfileEslSesDongle(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileEslSesDongle resource while getting object: %v", err)
 	}
@@ -145,7 +145,6 @@ func resourceObjectWirelessControllerWtpProfileEslSesDongleUpdate(d *schema.Reso
 
 func resourceObjectWirelessControllerWtpProfileEslSesDongleDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -161,11 +160,17 @@ func resourceObjectWirelessControllerWtpProfileEslSesDongleDelete(d *schema.Reso
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
+	obj, err := getObjectObjectWirelessControllerWtpProfileEslSesDongle(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileEslSesDongle resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfileEslSesDongle(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerWtpProfileEslSesDongle(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileEslSesDongle resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerWtpProfileEslSesDongle resource: %v", err)
 	}
 
 	d.SetId("")
@@ -201,6 +206,7 @@ func resourceObjectWirelessControllerWtpProfileEslSesDongleRead(d *schema.Resour
 
 	o, err := c.ReadObjectWirelessControllerWtpProfileEslSesDongle(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfileEslSesDongle resource: %v", err)
 	}
 
@@ -431,7 +437,7 @@ func expandObjectWirelessControllerWtpProfileEslSesDongleTlsFqdnVerification2edl
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerWtpProfileEslSesDongle(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerWtpProfileEslSesDongle(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("apc_addr_type"); ok || d.HasChange("apc_addr_type") {

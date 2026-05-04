@@ -617,7 +617,7 @@ func resourceSystemLogSettingsUpdate(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogSettings(d)
+	obj, err := getObjectSystemLogSettings(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettings resource while getting object: %v", err)
 	}
@@ -638,7 +638,6 @@ func resourceSystemLogSettingsUpdate(d *schema.ResourceData, m interface{}) erro
 
 func resourceSystemLogSettingsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -648,11 +647,17 @@ func resourceSystemLogSettingsDelete(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogSettings(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogSettings resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogSettings(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogSettings resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogSettings resource: %v", err)
 	}
 
 	d.SetId("")
@@ -673,6 +678,7 @@ func resourceSystemLogSettingsRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadSystemLogSettings(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogSettings resource: %v", err)
 	}
 
@@ -2753,7 +2759,7 @@ func expandSystemLogSettingsUnencryptedLogging(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
-func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogSettings(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fac_custom_field1"); ok || d.HasChange("fac_custom_field1") {

@@ -59,7 +59,7 @@ func resourceSystemLogFosPolicyStatsUpdate(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogFosPolicyStats(d)
+	obj, err := getObjectSystemLogFosPolicyStats(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFosPolicyStats resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemLogFosPolicyStatsUpdate(d *schema.ResourceData, m interface{}
 
 func resourceSystemLogFosPolicyStatsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemLogFosPolicyStatsDelete(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogFosPolicyStats(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogFosPolicyStats resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogFosPolicyStats(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogFosPolicyStats(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogFosPolicyStats resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogFosPolicyStats resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemLogFosPolicyStatsRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadSystemLogFosPolicyStats(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogFosPolicyStats resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemLogFosPolicyStatsStatus(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
-func getObjectSystemLogFosPolicyStats(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogFosPolicyStats(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention_days"); ok || d.HasChange("retention_days") {

@@ -29,6 +29,11 @@ func resourceSystemSqlCustomIndex() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"case_sensitive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -73,9 +78,31 @@ func resourceSystemSqlCustomIndexCreate(d *schema.ResourceData, m interface{}) e
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSqlCustomIndex(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemSqlCustomIndex resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemSqlCustomIndex(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemSqlCustomIndex(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemSqlCustomIndex resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemSqlCustomIndex(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemSqlCustomIndex resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -150,6 +177,7 @@ func resourceSystemSqlCustomIndexRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadSystemSqlCustomIndex(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSqlCustomIndex resource: %v", err)
 	}
 

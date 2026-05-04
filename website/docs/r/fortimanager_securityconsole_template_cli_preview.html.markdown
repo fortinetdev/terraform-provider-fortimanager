@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Security Console"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_securityconsole_template_cli_preview"
 description: |-

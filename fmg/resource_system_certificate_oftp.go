@@ -77,7 +77,7 @@ func resourceSystemCertificateOftpUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemCertificateOftp(d)
+	obj, err := getObjectSystemCertificateOftp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateOftp resource while getting object: %v", err)
 	}
@@ -98,7 +98,6 @@ func resourceSystemCertificateOftpUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceSystemCertificateOftpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -108,11 +107,17 @@ func resourceSystemCertificateOftpDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemCertificateOftp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemCertificateOftp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemCertificateOftp(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemCertificateOftp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemCertificateOftp resource: %v", err)
+		return fmt.Errorf("Error clearing SystemCertificateOftp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -133,6 +138,7 @@ func resourceSystemCertificateOftpRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadSystemCertificateOftp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemCertificateOftp resource: %v", err)
 	}
 
@@ -245,7 +251,7 @@ func expandSystemCertificateOftpPrivateKey(d *schema.ResourceData, v interface{}
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystemCertificateOftp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemCertificateOftp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("certificate"); ok || d.HasChange("certificate") {

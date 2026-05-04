@@ -87,7 +87,7 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesUpdate(d *schema.R
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
-	obj, err := getObjectObjectWirelessControllerVapPortalMessageOverrides(d)
+	obj, err := getObjectObjectWirelessControllerVapPortalMessageOverrides(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapPortalMessageOverrides resource while getting object: %v", err)
 	}
@@ -108,7 +108,6 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesUpdate(d *schema.R
 
 func resourceObjectWirelessControllerVapPortalMessageOverridesDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -124,11 +123,17 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesDelete(d *schema.R
 	vap := d.Get("vap").(string)
 	paradict["vap"] = vap
 
+	obj, err := getObjectObjectWirelessControllerVapPortalMessageOverrides(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerVapPortalMessageOverrides resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerVapPortalMessageOverrides(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerVapPortalMessageOverrides(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerVapPortalMessageOverrides resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerVapPortalMessageOverrides resource: %v", err)
 	}
 
 	d.SetId("")
@@ -164,6 +169,7 @@ func resourceObjectWirelessControllerVapPortalMessageOverridesRead(d *schema.Res
 
 	o, err := c.ReadObjectWirelessControllerVapPortalMessageOverrides(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerVapPortalMessageOverrides resource: %v", err)
 	}
 
@@ -268,7 +274,7 @@ func expandObjectWirelessControllerVapPortalMessageOverridesAuthRejectPage2edl(d
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerVapPortalMessageOverrides(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerVapPortalMessageOverrides(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auth_disclaimer_page"); ok || d.HasChange("auth_disclaimer_page") {

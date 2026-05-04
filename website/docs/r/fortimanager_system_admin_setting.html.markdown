@@ -28,6 +28,8 @@ The following arguments are supported:
 * `admin_https_redirect` - Enable/disable redirection of HTTP admin traffic to HTTPS. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `admin_login_max` - Maximum number admin users logged in at one time (1 - 256).
+* `admin_scp` - Enable/disable admin SCP. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `admin_server_cert` - HTTPS & Web Service server certificate.
 * `allow_register` - Enable/disable allowance of register an unregistered device. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 

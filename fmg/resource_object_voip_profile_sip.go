@@ -617,7 +617,7 @@ func resourceObjectVoipProfileSipUpdate(d *schema.ResourceData, m interface{}) e
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectVoipProfileSip(d)
+	obj, err := getObjectObjectVoipProfileSip(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVoipProfileSip resource while getting object: %v", err)
 	}
@@ -638,7 +638,6 @@ func resourceObjectVoipProfileSipUpdate(d *schema.ResourceData, m interface{}) e
 
 func resourceObjectVoipProfileSipDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -654,11 +653,17 @@ func resourceObjectVoipProfileSipDelete(d *schema.ResourceData, m interface{}) e
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectVoipProfileSip(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectVoipProfileSip resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectVoipProfileSip(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectVoipProfileSip(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectVoipProfileSip resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectVoipProfileSip resource: %v", err)
 	}
 
 	d.SetId("")
@@ -694,6 +699,7 @@ func resourceObjectVoipProfileSipRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadObjectVoipProfileSip(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectVoipProfileSip resource: %v", err)
 	}
 
@@ -2796,7 +2802,7 @@ func expandObjectVoipProfileSipUpdateRateTrack2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectVoipProfileSip(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectVoipProfileSip(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_rate"); ok || d.HasChange("ack_rate") {

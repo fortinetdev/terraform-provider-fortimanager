@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Wireless Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_wirelesscontroller_wtpprofile_radio3"
 description: |-

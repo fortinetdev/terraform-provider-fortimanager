@@ -89,7 +89,7 @@ func resourceObjectWirelessControllerWtpProfilePlatformUpdate(d *schema.Resource
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	obj, err := getObjectObjectWirelessControllerWtpProfilePlatform(d)
+	obj, err := getObjectObjectWirelessControllerWtpProfilePlatform(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfilePlatform resource while getting object: %v", err)
 	}
@@ -110,7 +110,6 @@ func resourceObjectWirelessControllerWtpProfilePlatformUpdate(d *schema.Resource
 
 func resourceObjectWirelessControllerWtpProfilePlatformDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -126,11 +125,17 @@ func resourceObjectWirelessControllerWtpProfilePlatformDelete(d *schema.Resource
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
+	obj, err := getObjectObjectWirelessControllerWtpProfilePlatform(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfilePlatform resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfilePlatform(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerWtpProfilePlatform(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfilePlatform resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerWtpProfilePlatform resource: %v", err)
 	}
 
 	d.SetId("")
@@ -166,6 +171,7 @@ func resourceObjectWirelessControllerWtpProfilePlatformRead(d *schema.ResourceDa
 
 	o, err := c.ReadObjectWirelessControllerWtpProfilePlatform(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfilePlatform resource: %v", err)
 	}
 
@@ -270,7 +276,7 @@ func expandObjectWirelessControllerWtpProfilePlatformType2edl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerWtpProfilePlatform(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerWtpProfilePlatform(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("_local_platform_str"); ok || d.HasChange("_local_platform_str") {

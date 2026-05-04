@@ -79,7 +79,7 @@ func resourceObjectFirewallVendorMacUpdate(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectFirewallVendorMac(d)
+	obj, err := getObjectObjectFirewallVendorMac(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVendorMac resource while getting object: %v", err)
 	}
@@ -100,7 +100,6 @@ func resourceObjectFirewallVendorMacUpdate(d *schema.ResourceData, m interface{}
 
 func resourceObjectFirewallVendorMacDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -113,11 +112,17 @@ func resourceObjectFirewallVendorMacDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectFirewallVendorMac(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallVendorMac resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVendorMac(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallVendorMac(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallVendorMac resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallVendorMac resource: %v", err)
 	}
 
 	d.SetId("")
@@ -141,6 +146,7 @@ func resourceObjectFirewallVendorMacRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectFirewallVendorMac(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallVendorMac resource: %v", err)
 	}
 
@@ -245,7 +251,7 @@ func expandObjectFirewallVendorMacObsolete(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectObjectFirewallVendorMac(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallVendorMac(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {

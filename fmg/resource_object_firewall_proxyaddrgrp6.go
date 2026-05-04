@@ -29,6 +29,11 @@ func resourceObjectFirewallProxyAddrgrp6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -52,6 +57,11 @@ func resourceObjectFirewallProxyAddrgrp6() *schema.Resource {
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"logic_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"member": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -126,9 +136,31 @@ func resourceObjectFirewallProxyAddrgrp6Create(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProxyAddrgrp6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrp6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallProxyAddrgrp6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallProxyAddrgrp6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallProxyAddrgrp6 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallProxyAddrgrp6(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallProxyAddrgrp6 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -212,6 +244,7 @@ func resourceObjectFirewallProxyAddrgrp6Read(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectFirewallProxyAddrgrp6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProxyAddrgrp6 resource: %v", err)
 	}
 
@@ -233,6 +266,10 @@ func flattenObjectFirewallProxyAddrgrp6Color(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallProxyAddrgrp6Comment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProxyAddrgrp6LogicType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -342,6 +379,16 @@ func refreshObjectObjectFirewallProxyAddrgrp6(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("logic_type", flattenObjectFirewallProxyAddrgrp6LogicType(o["logic-type"], d, "logic_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["logic-type"], "ObjectFirewallProxyAddrgrp6-LogicType"); ok {
+			if err = d.Set("logic_type", vv); err != nil {
+				return fmt.Errorf("Error reading logic_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading logic_type: %v", err)
+		}
+	}
+
 	if err = d.Set("member", flattenObjectFirewallProxyAddrgrp6Member(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "ObjectFirewallProxyAddrgrp6-Member"); ok {
 			if err = d.Set("member", vv); err != nil {
@@ -420,6 +467,10 @@ func expandObjectFirewallProxyAddrgrp6Color(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallProxyAddrgrp6Comment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProxyAddrgrp6LogicType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -508,6 +559,15 @@ func getObjectObjectFirewallProxyAddrgrp6(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("logic_type"); ok || d.HasChange("logic_type") {
+		t, err := expandObjectFirewallProxyAddrgrp6LogicType(d, v, "logic_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["logic-type"] = t
 		}
 	}
 

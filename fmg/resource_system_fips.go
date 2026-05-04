@@ -59,7 +59,7 @@ func resourceSystemFipsUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemFips(d)
+	obj, err := getObjectSystemFips(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFips resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemFipsUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemFipsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemFipsDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemFips(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemFips resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemFips(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemFips(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemFips resource: %v", err)
+		return fmt.Errorf("Error clearing SystemFips resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemFipsRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemFips(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemFips resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemFipsStatus(d *schema.ResourceData, v interface{}, pre string) (
 	return v, nil
 }
 
-func getObjectSystemFips(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemFips(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("entropy_token"); ok || d.HasChange("entropy_token") {

@@ -29,6 +29,11 @@ func resourceObjectCifsProfile() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -164,9 +169,31 @@ func resourceObjectCifsProfileCreate(d *schema.ResourceData, m interface{}) erro
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCifsProfile(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectCifsProfile resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectCifsProfile(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectCifsProfile(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectCifsProfile resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectCifsProfile(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectCifsProfile resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -250,6 +277,7 @@ func resourceObjectCifsProfileRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadObjectCifsProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectCifsProfile resource: %v", err)
 	}
 

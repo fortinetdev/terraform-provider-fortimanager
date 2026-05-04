@@ -93,7 +93,7 @@ func resourceObjectSystemNpuIcmpErrorRateCtrlUpdate(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuIcmpErrorRateCtrl(d)
+	obj, err := getObjectObjectSystemNpuIcmpErrorRateCtrl(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIcmpErrorRateCtrl resource while getting object: %v", err)
 	}
@@ -114,7 +114,6 @@ func resourceObjectSystemNpuIcmpErrorRateCtrlUpdate(d *schema.ResourceData, m in
 
 func resourceObjectSystemNpuIcmpErrorRateCtrlDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceObjectSystemNpuIcmpErrorRateCtrlDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuIcmpErrorRateCtrl(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuIcmpErrorRateCtrl resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIcmpErrorRateCtrl(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuIcmpErrorRateCtrl(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuIcmpErrorRateCtrl resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuIcmpErrorRateCtrl resource: %v", err)
 	}
 
 	d.SetId("")
@@ -155,6 +160,7 @@ func resourceObjectSystemNpuIcmpErrorRateCtrlRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectSystemNpuIcmpErrorRateCtrl(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuIcmpErrorRateCtrl resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectSystemNpuIcmpErrorRateCtrlIcmpv6ErrorRateLimit2edl(d *schema.Re
 	return v, nil
 }
 
-func getObjectObjectSystemNpuIcmpErrorRateCtrl(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuIcmpErrorRateCtrl(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("icmpv4_error_bucket_size"); ok || d.HasChange("icmpv4_error_bucket_size") {

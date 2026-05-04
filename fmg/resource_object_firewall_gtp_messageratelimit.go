@@ -307,7 +307,7 @@ func resourceObjectFirewallGtpMessageRateLimitUpdate(d *schema.ResourceData, m i
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	obj, err := getObjectObjectFirewallGtpMessageRateLimit(d)
+	obj, err := getObjectObjectFirewallGtpMessageRateLimit(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimit resource while getting object: %v", err)
 	}
@@ -328,7 +328,6 @@ func resourceObjectFirewallGtpMessageRateLimitUpdate(d *schema.ResourceData, m i
 
 func resourceObjectFirewallGtpMessageRateLimitDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -344,11 +343,17 @@ func resourceObjectFirewallGtpMessageRateLimitDelete(d *schema.ResourceData, m i
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
+	obj, err := getObjectObjectFirewallGtpMessageRateLimit(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimit resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallGtpMessageRateLimit(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallGtpMessageRateLimit(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallGtpMessageRateLimit resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallGtpMessageRateLimit resource: %v", err)
 	}
 
 	d.SetId("")
@@ -384,6 +389,7 @@ func resourceObjectFirewallGtpMessageRateLimitRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadObjectFirewallGtpMessageRateLimit(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallGtpMessageRateLimit resource: %v", err)
 	}
 
@@ -1478,7 +1484,7 @@ func expandObjectFirewallGtpMessageRateLimitVersionNotSupport2edl(d *schema.Reso
 	return v, nil
 }
 
-func getObjectObjectFirewallGtpMessageRateLimit(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallGtpMessageRateLimit(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("create_aa_pdp_request"); ok || d.HasChange("create_aa_pdp_request") {

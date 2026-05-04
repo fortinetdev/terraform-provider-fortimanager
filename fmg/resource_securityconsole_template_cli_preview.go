@@ -81,7 +81,7 @@ func resourceSecurityconsoleTemplateCliPreviewUpdate(d *schema.ResourceData, m i
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleTemplateCliPreview(d)
+	obj, err := getObjectSecurityconsoleTemplateCliPreview(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleTemplateCliPreview resource while getting object: %v", err)
 	}
@@ -296,7 +296,7 @@ func expandSecurityconsoleTemplateCliPreviewScopeVdom(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectSecurityconsoleTemplateCliPreview(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleTemplateCliPreview(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -326,12 +326,16 @@ func getObjectSecurityconsoleTemplateCliPreview(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsoleTemplateCliPreviewScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsoleTemplateCliPreviewScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

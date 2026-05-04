@@ -49,7 +49,7 @@ func resourceFmupdateAnalyzerVirusreportUpdate(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateAnalyzerVirusreport(d)
+	obj, err := getObjectFmupdateAnalyzerVirusreport(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceFmupdateAnalyzerVirusreportUpdate(d *schema.ResourceData, m interfa
 
 func resourceFmupdateAnalyzerVirusreportDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceFmupdateAnalyzerVirusreportDelete(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateAnalyzerVirusreport(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateAnalyzerVirusreport(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateAnalyzerVirusreport(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateAnalyzerVirusreport resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateAnalyzerVirusreport resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceFmupdateAnalyzerVirusreportRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadFmupdateAnalyzerVirusreport(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateAnalyzerVirusreport resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandFmupdateAnalyzerVirusreportStatus(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectFmupdateAnalyzerVirusreport(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateAnalyzerVirusreport(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {

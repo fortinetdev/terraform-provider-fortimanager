@@ -82,7 +82,7 @@ func resourceObjectFirewallProfileProtocolOptionsProxyRedirectUpdate(d *schema.R
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsProxyRedirect(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsProxyRedirect(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsProxyRedirect resource while getting object: %v", err)
 	}
@@ -103,7 +103,6 @@ func resourceObjectFirewallProfileProtocolOptionsProxyRedirectUpdate(d *schema.R
 
 func resourceObjectFirewallProfileProtocolOptionsProxyRedirectDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -119,11 +118,17 @@ func resourceObjectFirewallProfileProtocolOptionsProxyRedirectDelete(d *schema.R
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsProxyRedirect(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsProxyRedirect resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsProxyRedirect(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsProxyRedirect(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsProxyRedirect resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsProxyRedirect resource: %v", err)
 	}
 
 	d.SetId("")
@@ -159,6 +164,7 @@ func resourceObjectFirewallProfileProtocolOptionsProxyRedirectRead(d *schema.Res
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsProxyRedirect(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsProxyRedirect resource: %v", err)
 	}
 
@@ -227,7 +233,7 @@ func expandObjectFirewallProfileProtocolOptionsProxyRedirectStatus2edl(d *schema
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsProxyRedirect(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsProxyRedirect(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ports"); ok || d.HasChange("ports") {

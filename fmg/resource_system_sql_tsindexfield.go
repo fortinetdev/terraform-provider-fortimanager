@@ -29,6 +29,11 @@ func resourceSystemSqlTsIndexField() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -58,9 +63,31 @@ func resourceSystemSqlTsIndexFieldCreate(d *schema.ResourceData, m interface{}) 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSqlTsIndexField(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemSqlTsIndexField resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("category")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemSqlTsIndexField(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemSqlTsIndexField(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemSqlTsIndexField resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemSqlTsIndexField(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemSqlTsIndexField resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "category"))
@@ -135,6 +162,7 @@ func resourceSystemSqlTsIndexFieldRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadSystemSqlTsIndexField(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSqlTsIndexField resource: %v", err)
 	}
 

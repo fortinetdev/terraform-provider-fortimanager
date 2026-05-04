@@ -140,7 +140,7 @@ func resourceObjectFirewallProfileProtocolOptionsSshUpdate(d *schema.ResourceDat
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsSsh(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsSsh(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsSsh resource while getting object: %v", err)
 	}
@@ -161,7 +161,6 @@ func resourceObjectFirewallProfileProtocolOptionsSshUpdate(d *schema.ResourceDat
 
 func resourceObjectFirewallProfileProtocolOptionsSshDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -177,11 +176,17 @@ func resourceObjectFirewallProfileProtocolOptionsSshDelete(d *schema.ResourceDat
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsSsh(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsSsh resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsSsh(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsSsh(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsSsh resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsSsh resource: %v", err)
 	}
 
 	d.SetId("")
@@ -217,6 +222,7 @@ func resourceObjectFirewallProfileProtocolOptionsSshRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsSsh(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsSsh resource: %v", err)
 	}
 
@@ -501,7 +507,7 @@ func expandObjectFirewallProfileProtocolOptionsSshExplicitFtpTls2edl(d *schema.R
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("comfort_amount"); ok || d.HasChange("comfort_amount") {

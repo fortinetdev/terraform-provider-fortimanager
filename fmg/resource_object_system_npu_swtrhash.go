@@ -73,7 +73,7 @@ func resourceObjectSystemNpuSwTrHashUpdate(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuSwTrHash(d)
+	obj, err := getObjectObjectSystemNpuSwTrHash(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSwTrHash resource while getting object: %v", err)
 	}
@@ -94,7 +94,6 @@ func resourceObjectSystemNpuSwTrHashUpdate(d *schema.ResourceData, m interface{}
 
 func resourceObjectSystemNpuSwTrHashDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -107,11 +106,17 @@ func resourceObjectSystemNpuSwTrHashDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuSwTrHash(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuSwTrHash resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuSwTrHash(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuSwTrHash(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuSwTrHash resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuSwTrHash resource: %v", err)
 	}
 
 	d.SetId("")
@@ -135,6 +140,7 @@ func resourceObjectSystemNpuSwTrHashRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectSystemNpuSwTrHash(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuSwTrHash resource: %v", err)
 	}
 
@@ -203,7 +209,7 @@ func expandObjectSystemNpuSwTrHashTcpUdpPort2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectObjectSystemNpuSwTrHash(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuSwTrHash(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("draco15"); ok || d.HasChange("draco15") {

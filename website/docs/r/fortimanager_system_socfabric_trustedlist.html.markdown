@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "System"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_socfabric_trustedlist"
 description: |-

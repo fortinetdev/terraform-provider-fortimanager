@@ -54,7 +54,7 @@ func resourceFmupdateAvIpsAdvancedLogUpdate(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateAvIpsAdvancedLog(d)
+	obj, err := getObjectFmupdateAvIpsAdvancedLog(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource while getting object: %v", err)
 	}
@@ -75,7 +75,6 @@ func resourceFmupdateAvIpsAdvancedLogUpdate(d *schema.ResourceData, m interface{
 
 func resourceFmupdateAvIpsAdvancedLogDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -85,11 +84,17 @@ func resourceFmupdateAvIpsAdvancedLogDelete(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateAvIpsAdvancedLog(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateAvIpsAdvancedLog(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateAvIpsAdvancedLog(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateAvIpsAdvancedLog resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
 
 	d.SetId("")
@@ -110,6 +115,7 @@ func resourceFmupdateAvIpsAdvancedLogRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadFmupdateAvIpsAdvancedLog(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
 
@@ -174,7 +180,7 @@ func expandFmupdateAvIpsAdvancedLogLogServer(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectFmupdateAvIpsAdvancedLog(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateAvIpsAdvancedLog(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("log_fortigate"); ok || d.HasChange("log_fortigate") {

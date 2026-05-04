@@ -29,6 +29,11 @@ func resourcePackagesPblock() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -69,14 +74,17 @@ func resourcePackagesPblock() *schema.Resource {
 						"consolidated_firewall_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy6_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"inspection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -85,10 +93,12 @@ func resourcePackagesPblock() *schema.Resource {
 						"ngfw_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"policy_offload_level": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_ssh_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -124,9 +134,31 @@ func resourcePackagesPblockCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesPblock(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesPblock resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesPblock(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesPblock(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesPblock resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesPblock(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesPblock resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -210,6 +242,7 @@ func resourcePackagesPblockRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadPackagesPblock(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesPblock resource: %v", err)
 	}
 

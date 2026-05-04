@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgNacQuarUpdate(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgNacQuar(d)
+	obj, err := getObjectSystempSystemReplacemsgNacQuar(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgNacQuar resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgNacQuarUpdate(d *schema.ResourceData, m inte
 
 func resourceSystempSystemReplacemsgNacQuarDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgNacQuarDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgNacQuar(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgNacQuar resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgNacQuar(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgNacQuar(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgNacQuar resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgNacQuar resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgNacQuarRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadSystempSystemReplacemsgNacQuar(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgNacQuar resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgNacQuarMsgType(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgNacQuar(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgNacQuar(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

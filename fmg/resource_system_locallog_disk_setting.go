@@ -154,7 +154,7 @@ func resourceSystemLocallogDiskSettingUpdate(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogDiskSetting(d)
+	obj, err := getObjectSystemLocallogDiskSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource while getting object: %v", err)
 	}
@@ -175,7 +175,6 @@ func resourceSystemLocallogDiskSettingUpdate(d *schema.ResourceData, m interface
 
 func resourceSystemLocallogDiskSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -185,11 +184,17 @@ func resourceSystemLocallogDiskSettingDelete(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogDiskSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogDiskSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogDiskSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogDiskSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogDiskSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -210,6 +215,7 @@ func resourceSystemLocallogDiskSettingRead(d *schema.ResourceData, m interface{}
 
 	o, err := c.ReadSystemLocallogDiskSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogDiskSetting resource: %v", err)
 	}
 
@@ -620,7 +626,7 @@ func expandSystemLocallogDiskSettingUploadzip(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectSystemLocallogDiskSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogDiskSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("diskfull"); ok || d.HasChange("diskfull") {

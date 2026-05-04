@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object IPS"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_ips_sensor_entries_exemptip"
 description: |-

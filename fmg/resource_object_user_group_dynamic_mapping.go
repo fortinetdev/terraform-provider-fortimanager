@@ -29,6 +29,11 @@ func resourceObjectUserGroupDynamicMapping() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -211,6 +216,10 @@ func resourceObjectUserGroupDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"password": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -383,9 +392,31 @@ func resourceObjectUserGroupDynamicMappingCreate(d *schema.ResourceData, m inter
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserGroupDynamicMapping(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserGroupDynamicMapping resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("_scope")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserGroupDynamicMapping(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserGroupDynamicMapping(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserGroupDynamicMapping resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserGroupDynamicMapping(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserGroupDynamicMapping resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getScopeKey(d, "_scope"))
@@ -490,6 +521,7 @@ func resourceObjectUserGroupDynamicMappingRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectUserGroupDynamicMapping(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserGroupDynamicMapping resource: %v", err)
 	}
 
@@ -814,6 +846,10 @@ func flattenObjectUserGroupDynamicMappingMobilePhone2edl(v interface{}, d *schem
 }
 
 func flattenObjectUserGroupDynamicMappingMultipleGuestAdd2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserGroupDynamicMappingNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1218,6 +1254,16 @@ func refreshObjectObjectUserGroupDynamicMapping(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading multiple_guest_add: %v", err)
+		}
+	}
+
+	if err = d.Set("negate", flattenObjectUserGroupDynamicMappingNegate2edl(o["negate"], d, "negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["negate"], "ObjectUserGroupDynamicMapping-Negate"); ok {
+			if err = d.Set("negate", vv); err != nil {
+				return fmt.Errorf("Error reading negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading negate: %v", err)
 		}
 	}
 
@@ -1823,6 +1869,10 @@ func expandObjectUserGroupDynamicMappingMultipleGuestAdd2edl(d *schema.ResourceD
 	return v, nil
 }
 
+func expandObjectUserGroupDynamicMappingNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserGroupDynamicMappingPassword2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2152,6 +2202,15 @@ func getObjectObjectUserGroupDynamicMapping(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["multiple-guest-add"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("negate"); ok || d.HasChange("negate") {
+		t, err := expandObjectUserGroupDynamicMappingNegate2edl(d, v, "negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["negate"] = t
 		}
 	}
 

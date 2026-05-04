@@ -113,7 +113,7 @@ func resourceObjectWebfilterProfileOverrideUpdate(d *schema.ResourceData, m inte
 	parent_profile := d.Get("url_profile").(string)
 	paradict["profile"] = parent_profile
 
-	obj, err := getObjectObjectWebfilterProfileOverride(d)
+	obj, err := getObjectObjectWebfilterProfileOverride(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileOverride resource while getting object: %v", err)
 	}
@@ -134,7 +134,6 @@ func resourceObjectWebfilterProfileOverrideUpdate(d *schema.ResourceData, m inte
 
 func resourceObjectWebfilterProfileOverrideDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -150,11 +149,17 @@ func resourceObjectWebfilterProfileOverrideDelete(d *schema.ResourceData, m inte
 	parent_profile := d.Get("url_profile").(string)
 	paradict["profile"] = parent_profile
 
+	obj, err := getObjectObjectWebfilterProfileOverride(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWebfilterProfileOverride resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterProfileOverride(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWebfilterProfileOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWebfilterProfileOverride resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWebfilterProfileOverride resource: %v", err)
 	}
 
 	d.SetId("")
@@ -190,6 +195,7 @@ func resourceObjectWebfilterProfileOverrideRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadObjectWebfilterProfileOverride(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileOverride resource: %v", err)
 	}
 
@@ -366,7 +372,7 @@ func expandObjectWebfilterProfileOverrideProfileType2edl(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectObjectWebfilterProfileOverride(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWebfilterProfileOverride(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ovrd_cookie"); ok || d.HasChange("ovrd_cookie") {

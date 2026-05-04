@@ -438,7 +438,7 @@ func resourceObjectFspVlanInterfaceIpv6Update(d *schema.ResourceData, m interfac
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	obj, err := getObjectObjectFspVlanInterfaceIpv6(d)
+	obj, err := getObjectObjectFspVlanInterfaceIpv6(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6 resource while getting object: %v", err)
 	}
@@ -459,7 +459,6 @@ func resourceObjectFspVlanInterfaceIpv6Update(d *schema.ResourceData, m interfac
 
 func resourceObjectFspVlanInterfaceIpv6Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -475,11 +474,17 @@ func resourceObjectFspVlanInterfaceIpv6Delete(d *schema.ResourceData, m interfac
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
+	obj, err := getObjectObjectFspVlanInterfaceIpv6(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFspVlanInterfaceIpv6 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFspVlanInterfaceIpv6(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFspVlanInterfaceIpv6(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFspVlanInterfaceIpv6 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFspVlanInterfaceIpv6 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -515,6 +520,7 @@ func resourceObjectFspVlanInterfaceIpv6Read(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectFspVlanInterfaceIpv6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanInterfaceIpv6 resource: %v", err)
 	}
 
@@ -2164,7 +2170,7 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6Vrip63rdl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("autoconf"); ok || d.HasChange("autoconf") {
@@ -2347,12 +2353,16 @@ func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip6_delegated_prefix_list"); ok || d.HasChange("ip6_delegated_prefix_list") {
-		t, err := expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList3rdl(d, v, "ip6_delegated_prefix_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip6-delegated-prefix-list"] = t
+	if bemptysontable {
+		obj["ip6-delegated-prefix-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip6_delegated_prefix_list"); ok || d.HasChange("ip6_delegated_prefix_list") {
+			t, err := expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList3rdl(d, v, "ip6_delegated_prefix_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip6-delegated-prefix-list"] = t
+			}
 		}
 	}
 
@@ -2365,12 +2375,16 @@ func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip6_extra_addr"); ok || d.HasChange("ip6_extra_addr") {
-		t, err := expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr3rdl(d, v, "ip6_extra_addr")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip6-extra-addr"] = t
+	if bemptysontable {
+		obj["ip6-extra-addr"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip6_extra_addr"); ok || d.HasChange("ip6_extra_addr") {
+			t, err := expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr3rdl(d, v, "ip6_extra_addr")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip6-extra-addr"] = t
+			}
 		}
 	}
 
@@ -2437,12 +2451,16 @@ func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip6_prefix_list"); ok || d.HasChange("ip6_prefix_list") {
-		t, err := expandObjectFspVlanInterfaceIpv6Ip6PrefixList3rdl(d, v, "ip6_prefix_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip6-prefix-list"] = t
+	if bemptysontable {
+		obj["ip6-prefix-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip6_prefix_list"); ok || d.HasChange("ip6_prefix_list") {
+			t, err := expandObjectFspVlanInterfaceIpv6Ip6PrefixList3rdl(d, v, "ip6_prefix_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip6-prefix-list"] = t
+			}
 		}
 	}
 
@@ -2590,12 +2608,16 @@ func getObjectObjectFspVlanInterfaceIpv6(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("vrrp6"); ok || d.HasChange("vrrp6") {
-		t, err := expandObjectFspVlanInterfaceIpv6Vrrp63rdl(d, v, "vrrp6")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["vrrp6"] = t
+	if bemptysontable {
+		obj["vrrp6"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("vrrp6"); ok || d.HasChange("vrrp6") {
+			t, err := expandObjectFspVlanInterfaceIpv6Vrrp63rdl(d, v, "vrrp6")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["vrrp6"] = t
+			}
 		}
 	}
 

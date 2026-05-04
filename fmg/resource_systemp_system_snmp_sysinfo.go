@@ -76,7 +76,7 @@ func resourceSystempSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemSnmpSysinfo(d)
+	obj, err := getObjectSystempSystemSnmpSysinfo(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemSnmpSysinfo resource while getting object: %v", err)
 	}
@@ -97,7 +97,6 @@ func resourceSystempSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{
 
 func resourceSystempSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -113,11 +112,17 @@ func resourceSystempSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemSnmpSysinfo(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemSnmpSysinfo resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemSnmpSysinfo(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemSnmpSysinfo(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemSnmpSysinfo resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemSnmpSysinfo resource: %v", err)
 	}
 
 	d.SetId("")
@@ -153,6 +158,7 @@ func resourceSystempSystemSnmpSysinfoRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadSystempSystemSnmpSysinfo(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemSnmpSysinfo resource: %v", err)
 	}
 
@@ -203,7 +209,7 @@ func expandSystempSystemSnmpSysinfoStatus(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
-func getObjectSystempSystemSnmpSysinfo(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemSnmpSysinfo(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {

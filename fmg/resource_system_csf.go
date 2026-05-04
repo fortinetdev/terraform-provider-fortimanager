@@ -224,7 +224,7 @@ func resourceSystemCsfUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemCsf(d)
+	obj, err := getObjectSystemCsf(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCsf resource while getting object: %v", err)
 	}
@@ -245,7 +245,6 @@ func resourceSystemCsfUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemCsfDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -255,11 +254,17 @@ func resourceSystemCsfDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemCsf(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemCsf resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemCsf(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemCsf(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemCsf resource: %v", err)
+		return fmt.Errorf("Error clearing SystemCsf resource: %v", err)
 	}
 
 	d.SetId("")
@@ -280,6 +285,7 @@ func resourceSystemCsfRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemCsf(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemCsf resource: %v", err)
 	}
 
@@ -1043,7 +1049,7 @@ func expandSystemCsfUpstreamPort(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
-func getObjectSystemCsf(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemCsf(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("accept_auth_by_cert"); ok || d.HasChange("accept_auth_by_cert") {
@@ -1100,12 +1106,16 @@ func getObjectSystemCsf(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_connector"); ok || d.HasChange("fabric_connector") {
-		t, err := expandSystemCsfFabricConnector(d, v, "fabric_connector")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["fabric-connector"] = t
+	if bemptysontable {
+		obj["fabric-connector"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("fabric_connector"); ok || d.HasChange("fabric_connector") {
+			t, err := expandSystemCsfFabricConnector(d, v, "fabric_connector")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["fabric-connector"] = t
+			}
 		}
 	}
 
@@ -1226,12 +1236,16 @@ func getObjectSystemCsf(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("trusted_list"); ok || d.HasChange("trusted_list") {
-		t, err := expandSystemCsfTrustedList(d, v, "trusted_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["trusted-list"] = t
+	if bemptysontable {
+		obj["trusted-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("trusted_list"); ok || d.HasChange("trusted_list") {
+			t, err := expandSystemCsfTrustedList(d, v, "trusted_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["trusted-list"] = t
+			}
 		}
 	}
 

@@ -54,7 +54,7 @@ func resourceSystemLogTopologyUpdate(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogTopology(d)
+	obj, err := getObjectSystemLogTopology(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogTopology resource while getting object: %v", err)
 	}
@@ -75,7 +75,6 @@ func resourceSystemLogTopologyUpdate(d *schema.ResourceData, m interface{}) erro
 
 func resourceSystemLogTopologyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -85,11 +84,17 @@ func resourceSystemLogTopologyDelete(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogTopology(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogTopology resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogTopology(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogTopology(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogTopology resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogTopology resource: %v", err)
 	}
 
 	d.SetId("")
@@ -110,6 +115,7 @@ func resourceSystemLogTopologyRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadSystemLogTopology(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogTopology resource: %v", err)
 	}
 
@@ -174,7 +180,7 @@ func expandSystemLogTopologyMaxDepthShare(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
-func getObjectSystemLogTopology(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogTopology(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_depth"); ok || d.HasChange("max_depth") {

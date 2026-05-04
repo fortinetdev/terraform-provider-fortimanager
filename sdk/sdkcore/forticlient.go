@@ -88,6 +88,7 @@ func NewClient(auth *auth.Auth, client *http.Client, workspaceModeConfig string)
 }
 
 func (c *FortiSDKClient) login() (err error) {
+	log.Printf("[INFO] login.")
 	auth := c.Config.Auth
 
 	if auth.Token != "" {
@@ -128,6 +129,7 @@ func saveSession(session string) {
 }
 
 func (c *FortiSDKClient) loginSession() (session string, err error) {
+	log.Printf("[INFO] login to get regular session.")
 	data := make(map[string]interface{})
 	data["method"] = "exec"
 	data["params"] = make([]map[string]interface{}, 0)
@@ -252,6 +254,7 @@ func (c *FortiSDKClient) loginFortiCloud() (err error) {
 }
 
 func (c *FortiSDKClient) logoutSession(session string) (err error) {
+	log.Printf("[INFO] Logout session")
 	if session == "" {
 		return
 	}
@@ -302,7 +305,7 @@ func (c *FortiSDKClient) logoutSession(session string) (err error) {
 				if vv, ok := v2["code"].(float64); ok {
 					tmp := int(vv)
 					if tmp == 0 || tmp == -11 {
-						c.Session = ""
+						log.Printf("[INFO] Logout succeeded.")
 					} else {
 						err = fmt.Errorf("Response code could not be recognized: %v", tmp)
 					}

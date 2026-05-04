@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Router"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_router_routemap_rule"
 description: |-
@@ -59,6 +59,8 @@ The following arguments are supported:
 * `match_origin` - Match BGP origin code. Valid values: `none`, `egp`, `igp`, `incomplete`.
 
 * `match_route_type` - Match route type. Valid values: `1`, `2`, `none`, `external-type1`, `external-type2`.
+
+* `match_suppress` - Enable/disable matching of suppressed original neighbor. Valid values: `disable`, `enable`.
 
 * `match_tag` - Match tag.
 * `match_vrf` - Match VRF ID.

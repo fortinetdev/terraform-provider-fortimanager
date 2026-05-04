@@ -128,7 +128,7 @@ func resourceObjectTelemetryControllerProfileApplicationSlaUpdate(d *schema.Reso
 	paradict["profile"] = profile
 	paradict["application"] = application
 
-	obj, err := getObjectObjectTelemetryControllerProfileApplicationSla(d)
+	obj, err := getObjectObjectTelemetryControllerProfileApplicationSla(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectTelemetryControllerProfileApplicationSla resource while getting object: %v", err)
 	}
@@ -149,7 +149,6 @@ func resourceObjectTelemetryControllerProfileApplicationSlaUpdate(d *schema.Reso
 
 func resourceObjectTelemetryControllerProfileApplicationSlaDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -167,11 +166,17 @@ func resourceObjectTelemetryControllerProfileApplicationSlaDelete(d *schema.Reso
 	paradict["profile"] = profile
 	paradict["application"] = application
 
+	obj, err := getObjectObjectTelemetryControllerProfileApplicationSla(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectTelemetryControllerProfileApplicationSla resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectTelemetryControllerProfileApplicationSla(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectTelemetryControllerProfileApplicationSla(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectTelemetryControllerProfileApplicationSla resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectTelemetryControllerProfileApplicationSla resource: %v", err)
 	}
 
 	d.SetId("")
@@ -218,6 +223,7 @@ func resourceObjectTelemetryControllerProfileApplicationSlaRead(d *schema.Resour
 
 	o, err := c.ReadObjectTelemetryControllerProfileApplicationSla(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectTelemetryControllerProfileApplicationSla resource: %v", err)
 	}
 
@@ -466,7 +472,7 @@ func expandObjectTelemetryControllerProfileApplicationSlaTtfbThreshold3rdl(d *sc
 	return v, nil
 }
 
-func getObjectObjectTelemetryControllerProfileApplicationSla(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectTelemetryControllerProfileApplicationSla(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("app_throughput_threshold"); ok || d.HasChange("app_throughput_threshold") {

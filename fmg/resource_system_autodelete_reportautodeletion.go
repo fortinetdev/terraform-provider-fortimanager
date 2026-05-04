@@ -64,7 +64,7 @@ func resourceSystemAutoDeleteReportAutoDeletionUpdate(d *schema.ResourceData, m 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAutoDeleteReportAutoDeletion(d)
+	obj, err := getObjectSystemAutoDeleteReportAutoDeletion(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteReportAutoDeletion resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemAutoDeleteReportAutoDeletionUpdate(d *schema.ResourceData, m 
 
 func resourceSystemAutoDeleteReportAutoDeletionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemAutoDeleteReportAutoDeletionDelete(d *schema.ResourceData, m 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAutoDeleteReportAutoDeletion(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAutoDeleteReportAutoDeletion resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteReportAutoDeletion(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAutoDeleteReportAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAutoDeleteReportAutoDeletion resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAutoDeleteReportAutoDeletion resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemAutoDeleteReportAutoDeletionRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadSystemAutoDeleteReportAutoDeletion(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAutoDeleteReportAutoDeletion resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemAutoDeleteReportAutoDeletionValue2edl(d *schema.ResourceData, v
 	return v, nil
 }
 
-func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAutoDeleteReportAutoDeletion(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {

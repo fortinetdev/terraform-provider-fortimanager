@@ -29,6 +29,11 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleExistingVpc() *schema.Resourc
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -315,9 +320,31 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleExistingVpcCreate(d *schema.R
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCloudOrchestAwstemplateAutoscaleExistingVpc(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectCloudOrchestAwstemplateAutoscaleExistingVpc resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectCloudOrchestAwstemplateAutoscaleExistingVpc(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectCloudOrchestAwstemplateAutoscaleExistingVpc(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectCloudOrchestAwstemplateAutoscaleExistingVpc resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectCloudOrchestAwstemplateAutoscaleExistingVpc(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectCloudOrchestAwstemplateAutoscaleExistingVpc resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -401,6 +428,7 @@ func resourceObjectCloudOrchestAwstemplateAutoscaleExistingVpcRead(d *schema.Res
 
 	o, err := c.ReadObjectCloudOrchestAwstemplateAutoscaleExistingVpc(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectCloudOrchestAwstemplateAutoscaleExistingVpc resource: %v", err)
 	}
 

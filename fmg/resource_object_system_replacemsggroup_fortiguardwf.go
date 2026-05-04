@@ -29,6 +29,11 @@ func resourceObjectSystemReplacemsgGroupFortiguardWf() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -95,9 +100,31 @@ func resourceObjectSystemReplacemsgGroupFortiguardWfCreate(d *schema.ResourceDat
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectSystemReplacemsgGroupFortiguardWf(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupFortiguardWf resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("msg_type")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSystemReplacemsgGroupFortiguardWf(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSystemReplacemsgGroupFortiguardWf(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSystemReplacemsgGroupFortiguardWf resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectSystemReplacemsgGroupFortiguardWf(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectSystemReplacemsgGroupFortiguardWf resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "msg_type"))
@@ -199,6 +226,7 @@ func resourceObjectSystemReplacemsgGroupFortiguardWfRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectSystemReplacemsgGroupFortiguardWf(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemReplacemsgGroupFortiguardWf resource: %v", err)
 	}
 

@@ -232,7 +232,7 @@ func resourceSystempLogSyslogdFilterUpdate(d *schema.ResourceData, m interface{}
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogSyslogdFilter(d)
+	obj, err := getObjectSystempLogSyslogdFilter(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdFilter resource while getting object: %v", err)
 	}
@@ -253,7 +253,6 @@ func resourceSystempLogSyslogdFilterUpdate(d *schema.ResourceData, m interface{}
 
 func resourceSystempLogSyslogdFilterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -269,11 +268,17 @@ func resourceSystempLogSyslogdFilterDelete(d *schema.ResourceData, m interface{}
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempLogSyslogdFilter(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempLogSyslogdFilter resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempLogSyslogdFilter(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempLogSyslogdFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempLogSyslogdFilter resource: %v", err)
+		return fmt.Errorf("Error clearing SystempLogSyslogdFilter resource: %v", err)
 	}
 
 	d.SetId("")
@@ -309,6 +314,7 @@ func resourceSystempLogSyslogdFilterRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadSystempLogSyslogdFilter(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempLogSyslogdFilter resource: %v", err)
 	}
 
@@ -1099,7 +1105,7 @@ func expandSystempLogSyslogdFilterZtnaTraffic(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectSystempLogSyslogdFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempLogSyslogdFilter(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("anomaly"); ok || d.HasChange("anomaly") {
@@ -1147,12 +1153,16 @@ func getObjectSystempLogSyslogdFilter(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("exclude_list"); ok || d.HasChange("exclude_list") {
-		t, err := expandSystempLogSyslogdFilterExcludeList(d, v, "exclude_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["exclude-list"] = t
+	if bemptysontable {
+		obj["exclude-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("exclude_list"); ok || d.HasChange("exclude_list") {
+			t, err := expandSystempLogSyslogdFilterExcludeList(d, v, "exclude_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["exclude-list"] = t
+			}
 		}
 	}
 
@@ -1183,12 +1193,16 @@ func getObjectSystempLogSyslogdFilter(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("free_style"); ok || d.HasChange("free_style") {
-		t, err := expandSystempLogSyslogdFilterFreeStyle(d, v, "free_style")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["free-style"] = t
+	if bemptysontable {
+		obj["free-style"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("free_style"); ok || d.HasChange("free_style") {
+			t, err := expandSystempLogSyslogdFilterFreeStyle(d, v, "free_style")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["free-style"] = t
+			}
 		}
 	}
 

@@ -85,7 +85,7 @@ func resourceSecurityconsolePackageCloneUpdate(d *schema.ResourceData, m interfa
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsolePackageClone(d)
+	obj, err := getObjectSecurityconsolePackageClone(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageClone resource while getting object: %v", err)
 	}
@@ -318,7 +318,7 @@ func expandSecurityconsolePackageCloneScopeVdom(d *schema.ResourceData, v interf
 	return v, nil
 }
 
-func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsolePackageClone(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -357,12 +357,16 @@ func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsolePackageCloneScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsolePackageCloneScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

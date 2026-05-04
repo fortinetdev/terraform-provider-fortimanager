@@ -152,7 +152,7 @@ func resourceObjectWirelessControllerWtpProfileLanUpdate(d *schema.ResourceData,
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	obj, err := getObjectObjectWirelessControllerWtpProfileLan(d)
+	obj, err := getObjectObjectWirelessControllerWtpProfileLan(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLan resource while getting object: %v", err)
 	}
@@ -173,7 +173,6 @@ func resourceObjectWirelessControllerWtpProfileLanUpdate(d *schema.ResourceData,
 
 func resourceObjectWirelessControllerWtpProfileLanDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -189,11 +188,17 @@ func resourceObjectWirelessControllerWtpProfileLanDelete(d *schema.ResourceData,
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
+	obj, err := getObjectObjectWirelessControllerWtpProfileLan(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLan resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfileLan(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerWtpProfileLan(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileLan resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerWtpProfileLan resource: %v", err)
 	}
 
 	d.SetId("")
@@ -229,6 +234,7 @@ func resourceObjectWirelessControllerWtpProfileLanRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectWirelessControllerWtpProfileLan(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfileLan resource: %v", err)
 	}
 
@@ -621,7 +627,7 @@ func expandObjectWirelessControllerWtpProfileLanPort8Ssid2edl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerWtpProfileLan(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerWtpProfileLan(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("port_esl_mode"); ok || d.HasChange("port_esl_mode") {

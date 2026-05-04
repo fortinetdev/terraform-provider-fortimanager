@@ -100,7 +100,7 @@ func resourceObjectVoipProfileSccpUpdate(d *schema.ResourceData, m interface{}) 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectVoipProfileSccp(d)
+	obj, err := getObjectObjectVoipProfileSccp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVoipProfileSccp resource while getting object: %v", err)
 	}
@@ -121,7 +121,6 @@ func resourceObjectVoipProfileSccpUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceObjectVoipProfileSccpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -137,11 +136,17 @@ func resourceObjectVoipProfileSccpDelete(d *schema.ResourceData, m interface{}) 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectVoipProfileSccp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectVoipProfileSccp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectVoipProfileSccp(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectVoipProfileSccp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectVoipProfileSccp resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectVoipProfileSccp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -177,6 +182,7 @@ func resourceObjectVoipProfileSccpRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadObjectVoipProfileSccp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectVoipProfileSccp resource: %v", err)
 	}
 
@@ -317,7 +323,7 @@ func expandObjectVoipProfileSccpVerifyHeader2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectObjectVoipProfileSccp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectVoipProfileSccp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("block_mcast"); ok || d.HasChange("block_mcast") {

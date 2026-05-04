@@ -182,7 +182,7 @@ func resourcePackagesAuthenticationSettingUpdate(d *schema.ResourceData, m inter
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
-	obj, err := getObjectPackagesAuthenticationSetting(d)
+	obj, err := getObjectPackagesAuthenticationSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource while getting object: %v", err)
 	}
@@ -203,7 +203,6 @@ func resourcePackagesAuthenticationSettingUpdate(d *schema.ResourceData, m inter
 
 func resourcePackagesAuthenticationSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -221,11 +220,17 @@ func resourcePackagesAuthenticationSettingDelete(d *schema.ResourceData, m inter
 	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
+	obj, err := getObjectPackagesAuthenticationSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeletePackagesAuthenticationSetting(mkey, paradict, wsParams)
+	_, err = c.UpdatePackagesAuthenticationSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting PackagesAuthenticationSetting resource: %v", err)
+		return fmt.Errorf("Error clearing PackagesAuthenticationSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -269,6 +274,7 @@ func resourcePackagesAuthenticationSettingRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadPackagesAuthenticationSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesAuthenticationSetting resource: %v", err)
 	}
 
@@ -715,7 +721,7 @@ func expandPackagesAuthenticationSettingLogAuthRequest(d *schema.ResourceData, v
 	return v, nil
 }
 
-func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectPackagesAuthenticationSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("active_auth_scheme"); ok || d.HasChange("active_auth_scheme") {

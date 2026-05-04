@@ -59,7 +59,7 @@ func resourceSystemLogFetchServerSettingsUpdate(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogFetchServerSettings(d)
+	obj, err := getObjectSystemLogFetchServerSettings(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchServerSettings resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemLogFetchServerSettingsUpdate(d *schema.ResourceData, m interf
 
 func resourceSystemLogFetchServerSettingsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemLogFetchServerSettingsDelete(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogFetchServerSettings(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogFetchServerSettings resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogFetchServerSettings(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogFetchServerSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogFetchServerSettings resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogFetchServerSettings resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemLogFetchServerSettingsRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadSystemLogFetchServerSettings(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogFetchServerSettings resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemLogFetchServerSettingsSessionTimeout(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectSystemLogFetchServerSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogFetchServerSettings(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_conn_per_session"); ok || d.HasChange("max_conn_per_session") {

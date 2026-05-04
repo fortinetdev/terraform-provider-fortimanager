@@ -29,6 +29,11 @@ func resourceObjectZtnaWebProxyApiGateway6SslCipherSuites() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -99,17 +104,38 @@ func resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesCreate(d *schema.Resour
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectZtnaWebProxyApiGateway6SslCipherSuites(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("priority")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectZtnaWebProxyApiGateway6SslCipherSuites(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectZtnaWebProxyApiGateway6SslCipherSuites(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["priority"] != nil {
-		if vidn, ok := v["priority"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectZtnaWebProxyApiGateway6SslCipherSuites(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
+		}
+
+		if v != nil && v["priority"] != nil {
+			if vidn, ok := v["priority"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
+			}
 		}
 	}
 
@@ -227,6 +253,7 @@ func resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesRead(d *schema.Resource
 
 	o, err := c.ReadObjectZtnaWebProxyApiGateway6SslCipherSuites(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
 	}
 

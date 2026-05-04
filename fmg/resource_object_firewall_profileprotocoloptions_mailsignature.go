@@ -80,7 +80,7 @@ func resourceObjectFirewallProfileProtocolOptionsMailSignatureUpdate(d *schema.R
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsMailSignature(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsMailSignature(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsMailSignature resource while getting object: %v", err)
 	}
@@ -101,7 +101,6 @@ func resourceObjectFirewallProfileProtocolOptionsMailSignatureUpdate(d *schema.R
 
 func resourceObjectFirewallProfileProtocolOptionsMailSignatureDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -117,11 +116,17 @@ func resourceObjectFirewallProfileProtocolOptionsMailSignatureDelete(d *schema.R
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsMailSignature(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsMailSignature resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsMailSignature(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsMailSignature(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsMailSignature resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsMailSignature resource: %v", err)
 	}
 
 	d.SetId("")
@@ -157,6 +162,7 @@ func resourceObjectFirewallProfileProtocolOptionsMailSignatureRead(d *schema.Res
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsMailSignature(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsMailSignature resource: %v", err)
 	}
 
@@ -225,7 +231,7 @@ func expandObjectFirewallProfileProtocolOptionsMailSignatureStatus2edl(d *schema
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsMailSignature(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsMailSignature(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("signature"); ok || d.HasChange("signature") {

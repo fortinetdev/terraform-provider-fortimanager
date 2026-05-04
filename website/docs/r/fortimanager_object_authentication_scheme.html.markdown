@@ -28,6 +28,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `cert_http_header` - Enable/disable authentication with user certificate in Client-Cert HTTP header (default = disable). Valid values: `disable`, `enable`.
+
 * `digest_algo` - Digest Authentication Algorithms. Valid values: `md5`, `sha-256`.
 
 * `digest_rfc2069` - Enable/disable support for the deprecated RFC2069 Digest Client (no cnonce field, default = disable). Valid values: `disable`, `enable`.
@@ -55,6 +57,13 @@ The following arguments are supported:
 * `user_cert` - Enable/disable authentication with user certificate (default = disable). Valid values: `disable`, `enable`.
 
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
+* `auth_user_header` - Auth-User-Header.
+* `captcha` - Captcha. Valid values: `disable`, `enable`.
+
+* `captcha_secret_key` - Captcha-Secret-Key.
+* `captcha_site_key` - Captcha-Site-Key.
+* `captcha_vendor` - Captcha-Vendor. Valid values: `google-recaptcha-v2-checkbox`, `google-recaptcha-v2-invisible`, `google-recaptcha-v3`, `cloudflare-turnstile`.
+
 * `oidc_server` - Oidc-Server.
 * `oidc_timeout` - Oidc-Timeout.
 * `search_all_ldap_databases` - Search-All-Ldap-Databases. Valid values: `disable`, `enable`.

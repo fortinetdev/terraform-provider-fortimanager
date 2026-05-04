@@ -221,7 +221,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsUpdate(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsCifs(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsCifs(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifs resource while getting object: %v", err)
 	}
@@ -242,7 +242,6 @@ func resourceObjectFirewallProfileProtocolOptionsCifsUpdate(d *schema.ResourceDa
 
 func resourceObjectFirewallProfileProtocolOptionsCifsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -258,11 +257,17 @@ func resourceObjectFirewallProfileProtocolOptionsCifsDelete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsCifs(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsCifs resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsCifs(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsCifs(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsCifs resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsCifs resource: %v", err)
 	}
 
 	d.SetId("")
@@ -298,6 +303,7 @@ func resourceObjectFirewallProfileProtocolOptionsCifsRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsCifs(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsCifs resource: %v", err)
 	}
 
@@ -958,7 +964,7 @@ func expandObjectFirewallProfileProtocolOptionsCifsUncompressedOversizeLimit2edl
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("domain_controller"); ok || d.HasChange("domain_controller") {
@@ -1024,12 +1030,16 @@ func getObjectObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData) (
 		}
 	}
 
-	if v, ok := d.GetOk("server_keytab"); ok || d.HasChange("server_keytab") {
-		t, err := expandObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(d, v, "server_keytab")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["server-keytab"] = t
+	if bemptysontable {
+		obj["server-keytab"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("server_keytab"); ok || d.HasChange("server_keytab") {
+			t, err := expandObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(d, v, "server_keytab")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["server-keytab"] = t
+			}
 		}
 	}
 

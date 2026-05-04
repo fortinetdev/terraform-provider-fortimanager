@@ -383,7 +383,7 @@ func resourceObjectSystemNpuFpAnomalyUpdate(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuFpAnomaly(d)
+	obj, err := getObjectObjectSystemNpuFpAnomaly(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuFpAnomaly resource while getting object: %v", err)
 	}
@@ -404,7 +404,6 @@ func resourceObjectSystemNpuFpAnomalyUpdate(d *schema.ResourceData, m interface{
 
 func resourceObjectSystemNpuFpAnomalyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -417,11 +416,17 @@ func resourceObjectSystemNpuFpAnomalyDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuFpAnomaly(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuFpAnomaly resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuFpAnomaly(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuFpAnomaly(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuFpAnomaly resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuFpAnomaly resource: %v", err)
 	}
 
 	d.SetId("")
@@ -445,6 +450,7 @@ func resourceObjectSystemNpuFpAnomalyRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadObjectSystemNpuFpAnomaly(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuFpAnomaly resource: %v", err)
 	}
 
@@ -1665,7 +1671,7 @@ func expandObjectSystemNpuFpAnomalyVxlanMinlenErr2edl(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("capwap_minlen_err"); ok || d.HasChange("capwap_minlen_err") {

@@ -89,7 +89,7 @@ func resourceSystempDeviceProfileFortianalyzerUpdate(d *schema.ResourceData, m i
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempDeviceProfileFortianalyzer(d)
+	obj, err := getObjectSystempDeviceProfileFortianalyzer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempDeviceProfileFortianalyzer resource while getting object: %v", err)
 	}
@@ -110,7 +110,6 @@ func resourceSystempDeviceProfileFortianalyzerUpdate(d *schema.ResourceData, m i
 
 func resourceSystempDeviceProfileFortianalyzerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -126,11 +125,17 @@ func resourceSystempDeviceProfileFortianalyzerDelete(d *schema.ResourceData, m i
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempDeviceProfileFortianalyzer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempDeviceProfileFortianalyzer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempDeviceProfileFortianalyzer(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempDeviceProfileFortianalyzer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempDeviceProfileFortianalyzer resource: %v", err)
+		return fmt.Errorf("Error clearing SystempDeviceProfileFortianalyzer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -166,6 +171,7 @@ func resourceSystempDeviceProfileFortianalyzerRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadSystempDeviceProfileFortianalyzer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempDeviceProfileFortianalyzer resource: %v", err)
 	}
 
@@ -270,7 +276,7 @@ func expandSystempDeviceProfileFortianalyzerTargetSn(d *schema.ResourceData, v i
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystempDeviceProfileFortianalyzer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempDeviceProfileFortianalyzer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("managed_sn"); ok || d.HasChange("managed_sn") {

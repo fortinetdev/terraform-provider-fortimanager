@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object ZTNA"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_ztna_webportalbookmark"
 description: |-
@@ -11,6 +11,7 @@ Configure ztna web-portal bookmark.
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `bookmarks`: `fortimanager_object_ztna_webportalbookmark_bookmarks`
+>- `llm_secure_proxy`: `fortimanager_object_ztna_webportalbookmark_llmsecureproxy`
 
 
 
@@ -26,6 +27,7 @@ The following arguments are supported:
 * `groups` - User groups.
 * `name` - Bookmark name.
 * `users` - User name.
+* `llm_secure_proxy` - Llm-Secure-Proxy. The structure of `llm_secure_proxy` block is documented below.
 * `type` - Type. Valid values: `user`, `ldap-dynamic`, `saml-dynamic`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -62,6 +64,12 @@ The `bookmarks` block supports:
 * `vnc_keyboard_layout` - Keyboard layout. Valid values: `da`, `de`, `de-ch`, `en-uk`, `es`, `fi`, `fr`, `fr-be`, `it`, `no`, `pt`, `sv`, `nl`, `en-uk-ext`, `it-142`, `pt-br-abnt2`, `default`, `fr-ca-mul`, `gd`, `us-intl`.
 
 * `width` - Screen width (range from 0 - 65535, default = 0).
+
+The `llm_secure_proxy` block supports:
+
+* `all_llm_servers` - All-Llm-Servers. Valid values: `disable`, `enable`.
+
+* `llm_servers` - Llm-Servers.
 
 
 ## Attribute Reference

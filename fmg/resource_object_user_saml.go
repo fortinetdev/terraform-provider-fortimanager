@@ -29,6 +29,11 @@ func resourceObjectUserSaml() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -150,6 +155,11 @@ func resourceObjectUserSaml() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"require_signed_resp_and_asrt": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"scim_client": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -228,6 +238,11 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"require_signed_resp_and_asrt": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"scim_client": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -288,9 +303,31 @@ func resourceObjectUserSamlCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserSaml(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserSaml resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserSaml(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserSaml(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserSaml resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserSaml(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserSaml resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -374,6 +411,7 @@ func resourceObjectUserSamlRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadObjectUserSaml(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserSaml resource: %v", err)
 	}
 
@@ -517,6 +555,12 @@ func flattenObjectUserSamlDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["reauth"]; ok {
 			v := flattenObjectUserSamlDynamicMappingReauth(i["reauth"], d, pre_append)
 			tmp["reauth"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-Reauth")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "require_signed_resp_and_asrt"
+		if _, ok := i["require-signed-resp-and-asrt"]; ok {
+			v := flattenObjectUserSamlDynamicMappingRequireSignedRespAndAsrt(i["require-signed-resp-and-asrt"], d, pre_append)
+			tmp["require_signed_resp_and_asrt"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-RequireSignedRespAndAsrt")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "scim_client"
@@ -676,6 +720,10 @@ func flattenObjectUserSamlDynamicMappingReauth(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingRequireSignedRespAndAsrt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingScimClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -741,6 +789,10 @@ func flattenObjectUserSamlName(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserSamlReauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlRequireSignedRespAndAsrt(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -957,6 +1009,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("require_signed_resp_and_asrt", flattenObjectUserSamlRequireSignedRespAndAsrt(o["require-signed-resp-and-asrt"], d, "require_signed_resp_and_asrt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["require-signed-resp-and-asrt"], "ObjectUserSaml-RequireSignedRespAndAsrt"); ok {
+			if err = d.Set("require_signed_resp_and_asrt", vv); err != nil {
+				return fmt.Errorf("Error reading require_signed_resp_and_asrt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading require_signed_resp_and_asrt: %v", err)
+		}
+	}
+
 	if err = d.Set("scim_client", flattenObjectUserSamlScimClient(o["scim-client"], d, "scim_client")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scim-client"], "ObjectUserSaml-ScimClient"); ok {
 			if err = d.Set("scim_client", vv); err != nil {
@@ -1150,6 +1212,11 @@ func expandObjectUserSamlDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["reauth"], _ = expandObjectUserSamlDynamicMappingReauth(d, i["reauth"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "require_signed_resp_and_asrt"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["require-signed-resp-and-asrt"], _ = expandObjectUserSamlDynamicMappingRequireSignedRespAndAsrt(d, i["require_signed_resp_and_asrt"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "scim_client"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["scim-client"], _ = expandObjectUserSamlDynamicMappingScimClient(d, i["scim_client"], pre_append)
@@ -1293,6 +1360,10 @@ func expandObjectUserSamlDynamicMappingReauth(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingRequireSignedRespAndAsrt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingScimClient(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -1358,6 +1429,10 @@ func expandObjectUserSamlName(d *schema.ResourceData, v interface{}, pre string)
 }
 
 func expandObjectUserSamlReauth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlRequireSignedRespAndAsrt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1533,6 +1608,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["reauth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("require_signed_resp_and_asrt"); ok || d.HasChange("require_signed_resp_and_asrt") {
+		t, err := expandObjectUserSamlRequireSignedRespAndAsrt(d, v, "require_signed_resp_and_asrt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["require-signed-resp-and-asrt"] = t
 		}
 	}
 

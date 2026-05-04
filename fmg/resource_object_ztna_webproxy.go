@@ -29,6 +29,11 @@ func resourceObjectZtnaWebProxy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -627,9 +632,31 @@ func resourceObjectZtnaWebProxyCreate(d *schema.ResourceData, m interface{}) err
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectZtnaWebProxy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectZtnaWebProxy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectZtnaWebProxy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectZtnaWebProxy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectZtnaWebProxy resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectZtnaWebProxy(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectZtnaWebProxy resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -713,6 +740,7 @@ func resourceObjectZtnaWebProxyRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadObjectZtnaWebProxy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaWebProxy resource: %v", err)
 	}
 

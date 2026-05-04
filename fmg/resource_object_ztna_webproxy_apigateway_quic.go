@@ -118,7 +118,7 @@ func resourceObjectZtnaWebProxyApiGatewayQuicUpdate(d *schema.ResourceData, m in
 	paradict["web_proxy"] = web_proxy
 	paradict["api_gateway"] = api_gateway
 
-	obj, err := getObjectObjectZtnaWebProxyApiGatewayQuic(d)
+	obj, err := getObjectObjectZtnaWebProxyApiGatewayQuic(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGatewayQuic resource while getting object: %v", err)
 	}
@@ -139,7 +139,6 @@ func resourceObjectZtnaWebProxyApiGatewayQuicUpdate(d *schema.ResourceData, m in
 
 func resourceObjectZtnaWebProxyApiGatewayQuicDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -157,11 +156,17 @@ func resourceObjectZtnaWebProxyApiGatewayQuicDelete(d *schema.ResourceData, m in
 	paradict["web_proxy"] = web_proxy
 	paradict["api_gateway"] = api_gateway
 
+	obj, err := getObjectObjectZtnaWebProxyApiGatewayQuic(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGatewayQuic resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectZtnaWebProxyApiGatewayQuic(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectZtnaWebProxyApiGatewayQuic(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectZtnaWebProxyApiGatewayQuic resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectZtnaWebProxyApiGatewayQuic resource: %v", err)
 	}
 
 	d.SetId("")
@@ -208,6 +213,7 @@ func resourceObjectZtnaWebProxyApiGatewayQuicRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectZtnaWebProxyApiGatewayQuic(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaWebProxyApiGatewayQuic resource: %v", err)
 	}
 
@@ -384,7 +390,7 @@ func expandObjectZtnaWebProxyApiGatewayQuicMaxUdpPayloadSize3rdl(d *schema.Resou
 	return v, nil
 }
 
-func getObjectObjectZtnaWebProxyApiGatewayQuic(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectZtnaWebProxyApiGatewayQuic(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_delay_exponent"); ok || d.HasChange("ack_delay_exponent") {

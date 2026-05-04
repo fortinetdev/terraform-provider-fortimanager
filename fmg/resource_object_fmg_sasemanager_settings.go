@@ -96,7 +96,7 @@ func resourceObjectFmgSaseManagerSettingsUpdate(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectFmgSaseManagerSettings(d)
+	obj, err := getObjectObjectFmgSaseManagerSettings(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgSaseManagerSettings resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectFmgSaseManagerSettingsUpdate(d *schema.ResourceData, m interf
 
 func resourceObjectFmgSaseManagerSettingsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -130,11 +129,17 @@ func resourceObjectFmgSaseManagerSettingsDelete(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectFmgSaseManagerSettings(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFmgSaseManagerSettings resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFmgSaseManagerSettings(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFmgSaseManagerSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFmgSaseManagerSettings resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFmgSaseManagerSettings resource: %v", err)
 	}
 
 	d.SetId("")
@@ -158,6 +163,7 @@ func resourceObjectFmgSaseManagerSettingsRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectFmgSaseManagerSettings(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFmgSaseManagerSettings resource: %v", err)
 	}
 
@@ -298,7 +304,7 @@ func expandObjectFmgSaseManagerSettingsUser(d *schema.ResourceData, v interface{
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectFmgSaseManagerSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFmgSaseManagerSettings(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {

@@ -178,7 +178,7 @@ func resourceSystempLogFortianalyzerSettingUpdate(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogFortianalyzerSetting(d)
+	obj, err := getObjectSystempLogFortianalyzerSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogFortianalyzerSetting resource while getting object: %v", err)
 	}
@@ -199,7 +199,6 @@ func resourceSystempLogFortianalyzerSettingUpdate(d *schema.ResourceData, m inte
 
 func resourceSystempLogFortianalyzerSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -215,11 +214,17 @@ func resourceSystempLogFortianalyzerSettingDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempLogFortianalyzerSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempLogFortianalyzerSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempLogFortianalyzerSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempLogFortianalyzerSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempLogFortianalyzerSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystempLogFortianalyzerSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -255,6 +260,7 @@ func resourceSystempLogFortianalyzerSettingRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadSystempLogFortianalyzerSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempLogFortianalyzerSetting resource: %v", err)
 	}
 
@@ -719,7 +725,7 @@ func expandSystempLogFortianalyzerSettingVrfSelect(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectSystempLogFortianalyzerSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempLogFortianalyzerSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("access_config"); ok || d.HasChange("access_config") {

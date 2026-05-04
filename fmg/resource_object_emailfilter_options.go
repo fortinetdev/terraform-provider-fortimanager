@@ -67,7 +67,7 @@ func resourceObjectEmailfilterOptionsUpdate(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectEmailfilterOptions(d)
+	obj, err := getObjectObjectEmailfilterOptions(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterOptions resource while getting object: %v", err)
 	}
@@ -88,7 +88,6 @@ func resourceObjectEmailfilterOptionsUpdate(d *schema.ResourceData, m interface{
 
 func resourceObjectEmailfilterOptionsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -101,11 +100,17 @@ func resourceObjectEmailfilterOptionsDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectEmailfilterOptions(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectEmailfilterOptions resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterOptions(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectEmailfilterOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectEmailfilterOptions resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectEmailfilterOptions resource: %v", err)
 	}
 
 	d.SetId("")
@@ -129,6 +134,7 @@ func resourceObjectEmailfilterOptionsRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadObjectEmailfilterOptions(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectEmailfilterOptions resource: %v", err)
 	}
 
@@ -179,7 +185,7 @@ func expandObjectEmailfilterOptionsDnsTimeout(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectObjectEmailfilterOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectEmailfilterOptions(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dns_timeout"); ok || d.HasChange("dns_timeout") {

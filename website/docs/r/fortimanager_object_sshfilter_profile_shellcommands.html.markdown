@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object SSH Filter"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_sshfilter_profile_shellcommands"
 description: |-

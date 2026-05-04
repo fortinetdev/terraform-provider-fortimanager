@@ -46,6 +46,8 @@ The following arguments are supported:
 * `name` - Authentication rule name.
 * `protocol` - Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
 
+* `session_logout` - Enable/disable logout of a user from the current session. Valid values: `disable`, `enable`.
+
 * `srcaddr` - Select an IPv4 source address from available options. Required for web proxy authentication.
 * `srcaddr6` - Select an IPv6 source address. Required for web proxy authentication.
 * `srcintf` - Incoming (ingress) interface.

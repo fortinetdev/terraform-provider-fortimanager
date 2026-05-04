@@ -139,7 +139,7 @@ func resourceSystempSystemEmailServerUpdate(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemEmailServer(d)
+	obj, err := getObjectSystempSystemEmailServer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemEmailServer resource while getting object: %v", err)
 	}
@@ -160,7 +160,6 @@ func resourceSystempSystemEmailServerUpdate(d *schema.ResourceData, m interface{
 
 func resourceSystempSystemEmailServerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -176,11 +175,17 @@ func resourceSystempSystemEmailServerDelete(d *schema.ResourceData, m interface{
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemEmailServer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemEmailServer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemEmailServer(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemEmailServer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemEmailServer resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemEmailServer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -216,6 +221,7 @@ func resourceSystempSystemEmailServerRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadSystempSystemEmailServer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemEmailServer resource: %v", err)
 	}
 
@@ -504,7 +510,7 @@ func expandSystempSystemEmailServerVrfSelect(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectSystempSystemEmailServer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemEmailServer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("authenticate"); ok || d.HasChange("authenticate") {

@@ -82,7 +82,7 @@ func resourceObjectSystemNpuIcmpRateCtrlUpdate(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuIcmpRateCtrl(d)
+	obj, err := getObjectObjectSystemNpuIcmpRateCtrl(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIcmpRateCtrl resource while getting object: %v", err)
 	}
@@ -103,7 +103,6 @@ func resourceObjectSystemNpuIcmpRateCtrlUpdate(d *schema.ResourceData, m interfa
 
 func resourceObjectSystemNpuIcmpRateCtrlDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -116,11 +115,17 @@ func resourceObjectSystemNpuIcmpRateCtrlDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuIcmpRateCtrl(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuIcmpRateCtrl resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIcmpRateCtrl(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuIcmpRateCtrl(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuIcmpRateCtrl resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuIcmpRateCtrl resource: %v", err)
 	}
 
 	d.SetId("")
@@ -144,6 +149,7 @@ func resourceObjectSystemNpuIcmpRateCtrlRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectSystemNpuIcmpRateCtrl(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuIcmpRateCtrl resource: %v", err)
 	}
 
@@ -248,7 +254,7 @@ func expandObjectSystemNpuIcmpRateCtrlIcmpV6Rate2edl(d *schema.ResourceData, v i
 	return v, nil
 }
 
-func getObjectObjectSystemNpuIcmpRateCtrl(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuIcmpRateCtrl(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("icmp_v4_bucket_size"); ok || d.HasChange("icmp_v4_bucket_size") {

@@ -81,7 +81,7 @@ func resourceObjectSwitchControllerAclIngressActionUpdate(d *schema.ResourceData
 	ingress := d.Get("ingress").(string)
 	paradict["ingress"] = ingress
 
-	obj, err := getObjectObjectSwitchControllerAclIngressAction(d)
+	obj, err := getObjectObjectSwitchControllerAclIngressAction(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressAction resource while getting object: %v", err)
 	}
@@ -102,7 +102,6 @@ func resourceObjectSwitchControllerAclIngressActionUpdate(d *schema.ResourceData
 
 func resourceObjectSwitchControllerAclIngressActionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -118,11 +117,17 @@ func resourceObjectSwitchControllerAclIngressActionDelete(d *schema.ResourceData
 	ingress := d.Get("ingress").(string)
 	paradict["ingress"] = ingress
 
+	obj, err := getObjectObjectSwitchControllerAclIngressAction(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSwitchControllerAclIngressAction resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerAclIngressAction(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSwitchControllerAclIngressAction(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSwitchControllerAclIngressAction resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSwitchControllerAclIngressAction resource: %v", err)
 	}
 
 	d.SetId("")
@@ -158,6 +163,7 @@ func resourceObjectSwitchControllerAclIngressActionRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectSwitchControllerAclIngressAction(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSwitchControllerAclIngressAction resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectSwitchControllerAclIngressActionDrop2edl(d *schema.ResourceData
 	return v, nil
 }
 
-func getObjectObjectSwitchControllerAclIngressAction(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSwitchControllerAclIngressAction(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgcount"); ok || d.HasChange("fmgcount") {

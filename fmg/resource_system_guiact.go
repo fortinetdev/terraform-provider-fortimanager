@@ -80,7 +80,7 @@ func resourceSystemGuiactUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemGuiact(d)
+	obj, err := getObjectSystemGuiact(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGuiact resource while getting object: %v", err)
 	}
@@ -101,7 +101,6 @@ func resourceSystemGuiactUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemGuiactDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -111,11 +110,17 @@ func resourceSystemGuiactDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemGuiact(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemGuiact resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemGuiact(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemGuiact(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemGuiact resource: %v", err)
+		return fmt.Errorf("Error clearing SystemGuiact resource: %v", err)
 	}
 
 	d.SetId("")
@@ -136,6 +141,7 @@ func resourceSystemGuiactRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemGuiact(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemGuiact resource: %v", err)
 	}
 
@@ -326,7 +332,7 @@ func expandSystemGuiactTime(d *schema.ResourceData, v interface{}, pre string) (
 	return v, nil
 }
 
-func getObjectSystemGuiact(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemGuiact(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("backup_all"); ok || d.HasChange("backup_all") {

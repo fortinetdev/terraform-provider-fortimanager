@@ -29,6 +29,11 @@ func resourceObjectCasbProfileSaasApplicationAdvancedTenantControl() *schema.Res
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -111,9 +116,31 @@ func resourceObjectCasbProfileSaasApplicationAdvancedTenantControlCreate(d *sche
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectCasbProfileSaasApplicationAdvancedTenantControl(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationAdvancedTenantControl resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectCasbProfileSaasApplicationAdvancedTenantControl(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectCasbProfileSaasApplicationAdvancedTenantControl(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectCasbProfileSaasApplicationAdvancedTenantControl resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectCasbProfileSaasApplicationAdvancedTenantControl(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectCasbProfileSaasApplicationAdvancedTenantControl resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -230,6 +257,7 @@ func resourceObjectCasbProfileSaasApplicationAdvancedTenantControlRead(d *schema
 
 	o, err := c.ReadObjectCasbProfileSaasApplicationAdvancedTenantControl(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectCasbProfileSaasApplicationAdvancedTenantControl resource: %v", err)
 	}
 
@@ -296,7 +324,7 @@ func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlAttributeName3r
 }
 
 func flattenObjectCasbProfileSaasApplicationAdvancedTenantControlName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func refreshObjectObjectCasbProfileSaasApplicationAdvancedTenantControl(d *schema.ResourceData, o map[string]interface{}) error {

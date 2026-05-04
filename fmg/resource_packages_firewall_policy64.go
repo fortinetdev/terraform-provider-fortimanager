@@ -29,6 +29,11 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -220,9 +225,31 @@ func resourcePackagesFirewallPolicy64Create(d *schema.ResourceData, m interface{
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallPolicy64(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallPolicy64 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallPolicy64(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallPolicy64(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallPolicy64 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesFirewallPolicy64(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesFirewallPolicy64 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -336,6 +363,7 @@ func resourcePackagesFirewallPolicy64Read(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadPackagesFirewallPolicy64(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallPolicy64 resource: %v", err)
 	}
 

@@ -29,6 +29,11 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -44,6 +49,11 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
+			},
+			"cert_http_header": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"digest_algo": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -133,6 +143,26 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auth_user_header": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"captcha": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"captcha_secret_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"captcha_site_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"captcha_vendor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"oidc_server": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -170,9 +200,31 @@ func resourceObjectAuthenticationSchemeCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAuthenticationScheme(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectAuthenticationScheme(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectAuthenticationScheme(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectAuthenticationScheme resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectAuthenticationScheme(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectAuthenticationScheme resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -256,6 +308,7 @@ func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectAuthenticationScheme(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAuthenticationScheme resource: %v", err)
 	}
 
@@ -270,6 +323,10 @@ func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error reading ObjectAuthenticationScheme resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectAuthenticationSchemeCertHttpHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectAuthenticationSchemeDigestAlgo(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -344,6 +401,26 @@ func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.Reso
 	return flattenStringList(v)
 }
 
+func flattenObjectAuthenticationSchemeAuthUserHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeCaptcha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeCaptchaSecretKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeCaptchaSiteKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeCaptchaVendor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAuthenticationSchemeOidcServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -361,6 +438,16 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("cert_http_header", flattenObjectAuthenticationSchemeCertHttpHeader(o["cert-http-header"], d, "cert_http_header")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-http-header"], "ObjectAuthenticationScheme-CertHttpHeader"); ok {
+			if err = d.Set("cert_http_header", vv); err != nil {
+				return fmt.Errorf("Error reading cert_http_header: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_http_header: %v", err)
+		}
 	}
 
 	if err = d.Set("digest_algo", flattenObjectAuthenticationSchemeDigestAlgo(o["digest-algo"], d, "digest_algo")); err != nil {
@@ -543,6 +630,56 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("auth_user_header", flattenObjectAuthenticationSchemeAuthUserHeader(o["auth-user-header"], d, "auth_user_header")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-user-header"], "ObjectAuthenticationScheme-AuthUserHeader"); ok {
+			if err = d.Set("auth_user_header", vv); err != nil {
+				return fmt.Errorf("Error reading auth_user_header: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_user_header: %v", err)
+		}
+	}
+
+	if err = d.Set("captcha", flattenObjectAuthenticationSchemeCaptcha(o["captcha"], d, "captcha")); err != nil {
+		if vv, ok := fortiAPIPatch(o["captcha"], "ObjectAuthenticationScheme-Captcha"); ok {
+			if err = d.Set("captcha", vv); err != nil {
+				return fmt.Errorf("Error reading captcha: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading captcha: %v", err)
+		}
+	}
+
+	if err = d.Set("captcha_secret_key", flattenObjectAuthenticationSchemeCaptchaSecretKey(o["captcha-secret-key"], d, "captcha_secret_key")); err != nil {
+		if vv, ok := fortiAPIPatch(o["captcha-secret-key"], "ObjectAuthenticationScheme-CaptchaSecretKey"); ok {
+			if err = d.Set("captcha_secret_key", vv); err != nil {
+				return fmt.Errorf("Error reading captcha_secret_key: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading captcha_secret_key: %v", err)
+		}
+	}
+
+	if err = d.Set("captcha_site_key", flattenObjectAuthenticationSchemeCaptchaSiteKey(o["captcha-site-key"], d, "captcha_site_key")); err != nil {
+		if vv, ok := fortiAPIPatch(o["captcha-site-key"], "ObjectAuthenticationScheme-CaptchaSiteKey"); ok {
+			if err = d.Set("captcha_site_key", vv); err != nil {
+				return fmt.Errorf("Error reading captcha_site_key: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading captcha_site_key: %v", err)
+		}
+	}
+
+	if err = d.Set("captcha_vendor", flattenObjectAuthenticationSchemeCaptchaVendor(o["captcha-vendor"], d, "captcha_vendor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["captcha-vendor"], "ObjectAuthenticationScheme-CaptchaVendor"); ok {
+			if err = d.Set("captcha_vendor", vv); err != nil {
+				return fmt.Errorf("Error reading captcha_vendor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading captcha_vendor: %v", err)
+		}
+	}
+
 	if err = d.Set("oidc_server", flattenObjectAuthenticationSchemeOidcServer(o["oidc-server"], d, "oidc_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["oidc-server"], "ObjectAuthenticationScheme-OidcServer"); ok {
 			if err = d.Set("oidc_server", vv); err != nil {
@@ -580,6 +717,10 @@ func flattenObjectAuthenticationSchemeFortiTestDebug(d *schema.ResourceData, fos
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectAuthenticationSchemeCertHttpHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectAuthenticationSchemeDigestAlgo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -654,6 +795,26 @@ func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v inte
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAuthenticationSchemeAuthUserHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeCaptcha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeCaptchaSecretKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeCaptchaSiteKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeCaptchaVendor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAuthenticationSchemeOidcServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -668,6 +829,15 @@ func expandObjectAuthenticationSchemeSearchAllLdapDatabases(d *schema.ResourceDa
 
 func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("cert_http_header"); ok || d.HasChange("cert_http_header") {
+		t, err := expandObjectAuthenticationSchemeCertHttpHeader(d, v, "cert_http_header")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-http-header"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("digest_algo"); ok || d.HasChange("digest_algo") {
 		t, err := expandObjectAuthenticationSchemeDigestAlgo(d, v, "digest_algo")
@@ -828,6 +998,51 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["user-database"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auth_user_header"); ok || d.HasChange("auth_user_header") {
+		t, err := expandObjectAuthenticationSchemeAuthUserHeader(d, v, "auth_user_header")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-user-header"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("captcha"); ok || d.HasChange("captcha") {
+		t, err := expandObjectAuthenticationSchemeCaptcha(d, v, "captcha")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["captcha"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("captcha_secret_key"); ok || d.HasChange("captcha_secret_key") {
+		t, err := expandObjectAuthenticationSchemeCaptchaSecretKey(d, v, "captcha_secret_key")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["captcha-secret-key"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("captcha_site_key"); ok || d.HasChange("captcha_site_key") {
+		t, err := expandObjectAuthenticationSchemeCaptchaSiteKey(d, v, "captcha_site_key")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["captcha-site-key"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("captcha_vendor"); ok || d.HasChange("captcha_vendor") {
+		t, err := expandObjectAuthenticationSchemeCaptchaVendor(d, v, "captcha_vendor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["captcha-vendor"] = t
 		}
 	}
 

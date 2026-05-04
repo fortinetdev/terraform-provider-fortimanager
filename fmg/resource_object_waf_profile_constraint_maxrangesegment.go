@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentUpdate(d *schema.ResourceD
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMaxRangeSegment(d)
+	obj, err := getObjectObjectWafProfileConstraintMaxRangeSegment(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxRangeSegment resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentUpdate(d *schema.ResourceD
 
 func resourceObjectWafProfileConstraintMaxRangeSegmentDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentDelete(d *schema.ResourceD
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMaxRangeSegment(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxRangeSegment resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMaxRangeSegment(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMaxRangeSegment(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxRangeSegment resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMaxRangeSegment resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintMaxRangeSegmentRead(d *schema.ResourceDat
 
 	o, err := c.ReadObjectWafProfileConstraintMaxRangeSegment(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMaxRangeSegment resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintMaxRangeSegmentStatus3rdl(d *schema.Resourc
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMaxRangeSegment(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMaxRangeSegment(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

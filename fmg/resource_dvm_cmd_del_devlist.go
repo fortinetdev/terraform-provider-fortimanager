@@ -79,7 +79,7 @@ func resourceDvmCmdDelDevListUpdate(d *schema.ResourceData, m interface{}) error
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectDvmCmdDelDevList(d)
+	obj, err := getObjectDvmCmdDelDevList(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdDelDevList resource while getting object: %v", err)
 	}
@@ -276,7 +276,7 @@ func expandDvmCmdDelDevListFlags(d *schema.ResourceData, v interface{}, pre stri
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectDvmCmdDelDevList(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdDelDevList(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -288,12 +288,16 @@ func getObjectDvmCmdDelDevList(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("del_dev_member_list"); ok || d.HasChange("del_dev_member_list") {
-		t, err := expandDvmCmdDelDevListDelDevMemberList(d, v, "del_dev_member_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["del-dev-member-list"] = t
+	if bemptysontable {
+		obj["del-dev-member-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("del_dev_member_list"); ok || d.HasChange("del_dev_member_list") {
+			t, err := expandDvmCmdDelDevListDelDevMemberList(d, v, "del_dev_member_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["del-dev-member-list"] = t
+			}
 		}
 	}
 

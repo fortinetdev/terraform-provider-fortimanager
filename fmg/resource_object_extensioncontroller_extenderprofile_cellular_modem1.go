@@ -205,7 +205,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Update(d *sch
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem1(d)
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem1(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem1 resource while getting object: %v", err)
 	}
@@ -226,7 +226,6 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Update(d *sch
 
 func resourceObjectExtensionControllerExtenderProfileCellularModem1Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -242,11 +241,17 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Delete(d *sch
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellularModem1(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellularModem1 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellularModem1(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellularModem1(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellularModem1 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtensionControllerExtenderProfileCellularModem1 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -282,6 +287,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularModem1Read(d *schem
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileCellularModem1(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileCellularModem1 resource: %v", err)
 	}
 
@@ -761,7 +767,7 @@ func expandObjectExtensionControllerExtenderProfileCellularModem1Sim2PinCode3rdl
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectExtensionControllerExtenderProfileCellularModem1(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtensionControllerExtenderProfileCellularModem1(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auto_switch"); ok || d.HasChange("auto_switch") {

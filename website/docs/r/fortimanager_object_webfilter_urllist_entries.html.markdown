@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Web Filter"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_webfilter_urllist_entries"
 description: |-

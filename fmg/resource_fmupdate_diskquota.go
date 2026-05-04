@@ -49,7 +49,7 @@ func resourceFmupdateDiskQuotaUpdate(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateDiskQuota(d)
+	obj, err := getObjectFmupdateDiskQuota(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateDiskQuota resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceFmupdateDiskQuotaUpdate(d *schema.ResourceData, m interface{}) erro
 
 func resourceFmupdateDiskQuotaDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceFmupdateDiskQuotaDelete(d *schema.ResourceData, m interface{}) erro
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateDiskQuota(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateDiskQuota resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateDiskQuota(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateDiskQuota(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateDiskQuota resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateDiskQuota resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceFmupdateDiskQuotaRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadFmupdateDiskQuota(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateDiskQuota resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandFmupdateDiskQuotaValue(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
-func getObjectFmupdateDiskQuota(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateDiskQuota(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {

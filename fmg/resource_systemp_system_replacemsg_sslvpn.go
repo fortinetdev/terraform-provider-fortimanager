@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgSslvpnUpdate(d *schema.ResourceData, m inter
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgSslvpn(d)
+	obj, err := getObjectSystempSystemReplacemsgSslvpn(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgSslvpn resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgSslvpnUpdate(d *schema.ResourceData, m inter
 
 func resourceSystempSystemReplacemsgSslvpnDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgSslvpnDelete(d *schema.ResourceData, m inter
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgSslvpn(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgSslvpn resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgSslvpn(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgSslvpn(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgSslvpn resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgSslvpn resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgSslvpnRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadSystempSystemReplacemsgSslvpn(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgSslvpn resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgSslvpnMsgType(d *schema.ResourceData, v interf
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgSslvpn(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgSslvpn(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

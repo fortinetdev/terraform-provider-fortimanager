@@ -184,7 +184,7 @@ func resourceSystemDmUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemDm(d)
+	obj, err := getObjectSystemDm(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDm resource while getting object: %v", err)
 	}
@@ -205,7 +205,6 @@ func resourceSystemDmUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemDmDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -215,11 +214,17 @@ func resourceSystemDmDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemDm(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemDm resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemDm(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemDm(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemDm resource: %v", err)
+		return fmt.Errorf("Error clearing SystemDm resource: %v", err)
 	}
 
 	d.SetId("")
@@ -240,6 +245,7 @@ func resourceSystemDmRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemDm(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemDm resource: %v", err)
 	}
 
@@ -772,7 +778,7 @@ func expandSystemDmVerifyInstall(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
-func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemDm(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("concurrent_install_image_limit"); ok || d.HasChange("concurrent_install_image_limit") {

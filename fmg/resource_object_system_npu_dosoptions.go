@@ -78,7 +78,7 @@ func resourceObjectSystemNpuDosOptionsUpdate(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuDosOptions(d)
+	obj, err := getObjectObjectSystemNpuDosOptions(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuDosOptions resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceObjectSystemNpuDosOptionsUpdate(d *schema.ResourceData, m interface
 
 func resourceObjectSystemNpuDosOptionsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -112,11 +111,17 @@ func resourceObjectSystemNpuDosOptionsDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuDosOptions(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuDosOptions resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuDosOptions(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuDosOptions(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuDosOptions resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuDosOptions resource: %v", err)
 	}
 
 	d.SetId("")
@@ -140,6 +145,7 @@ func resourceObjectSystemNpuDosOptionsRead(d *schema.ResourceData, m interface{}
 
 	o, err := c.ReadObjectSystemNpuDosOptions(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuDosOptions resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectSystemNpuDosOptionsNpuDosTpeMode2edl(d *schema.ResourceData, v 
 	return v, nil
 }
 
-func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("npu_dos_meter_mode"); ok || d.HasChange("npu_dos_meter_mode") {

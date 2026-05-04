@@ -29,6 +29,11 @@ func resourceSystemMail() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -109,9 +114,31 @@ func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemMail(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemMail resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemMail(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemMail(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemMail resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemMail(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemMail resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "fosid"))
@@ -186,6 +213,7 @@ func resourceSystemMailRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemMail(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemMail resource: %v", err)
 	}
 

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_address_dynamic_mapping"
 description: |-
@@ -57,6 +57,8 @@ The following arguments are supported:
 
 * `organization` - Organization domain name (Syntax: organization/domain).
 * `os` - Dynamic address matching operating system.
+* `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.
+
 * `pattern_end` - Pattern-End.
 * `pattern_start` - Pattern-Start.
 * `policy_group` - Policy group name.

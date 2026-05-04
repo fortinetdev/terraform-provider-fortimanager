@@ -111,7 +111,7 @@ func resourceObjectFirewallVip6QuicUpdate(d *schema.ResourceData, m interface{})
 	vip6 := d.Get("vip6").(string)
 	paradict["vip6"] = vip6
 
-	obj, err := getObjectObjectFirewallVip6Quic(d)
+	obj, err := getObjectObjectFirewallVip6Quic(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip6Quic resource while getting object: %v", err)
 	}
@@ -132,7 +132,6 @@ func resourceObjectFirewallVip6QuicUpdate(d *schema.ResourceData, m interface{})
 
 func resourceObjectFirewallVip6QuicDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -148,11 +147,17 @@ func resourceObjectFirewallVip6QuicDelete(d *schema.ResourceData, m interface{})
 	vip6 := d.Get("vip6").(string)
 	paradict["vip6"] = vip6
 
+	obj, err := getObjectObjectFirewallVip6Quic(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallVip6Quic resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVip6Quic(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallVip6Quic(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallVip6Quic resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallVip6Quic resource: %v", err)
 	}
 
 	d.SetId("")
@@ -188,6 +193,7 @@ func resourceObjectFirewallVip6QuicRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectFirewallVip6Quic(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallVip6Quic resource: %v", err)
 	}
 
@@ -364,7 +370,7 @@ func expandObjectFirewallVip6QuicMaxUdpPayloadSize2edl(d *schema.ResourceData, v
 	return v, nil
 }
 
-func getObjectObjectFirewallVip6Quic(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallVip6Quic(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_delay_exponent"); ok || d.HasChange("ack_delay_exponent") {

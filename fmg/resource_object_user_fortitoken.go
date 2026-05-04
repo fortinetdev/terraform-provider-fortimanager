@@ -29,6 +29,11 @@ func resourceObjectUserFortitoken() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -94,9 +99,31 @@ func resourceObjectUserFortitokenCreate(d *schema.ResourceData, m interface{}) e
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserFortitoken(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserFortitoken resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("serial_number")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserFortitoken(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserFortitoken(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserFortitoken resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserFortitoken(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserFortitoken resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "serial_number"))
@@ -180,6 +207,7 @@ func resourceObjectUserFortitokenRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadObjectUserFortitoken(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserFortitoken resource: %v", err)
 	}
 

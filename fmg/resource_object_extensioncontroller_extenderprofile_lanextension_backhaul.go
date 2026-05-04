@@ -29,6 +29,11 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaul() *sch
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -49,6 +54,31 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaul() *sch
 				Type:     schema.TypeString,
 				Required: true,
 				ForceNew: true,
+			},
+			"health_check_fail_cnt": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"health_check_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"health_check_probe_cnt": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"health_check_probe_tm": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"health_check_recovery_cnt": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -96,9 +126,31 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulCreate(
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectExtensionControllerExtenderProfileLanExtensionBackhaul(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectExtensionControllerExtenderProfileLanExtensionBackhaul(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -200,6 +252,7 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulRead(d 
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileLanExtensionBackhaul(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource: %v", err)
 	}
 
@@ -214,6 +267,26 @@ func resourceObjectExtensionControllerExtenderProfileLanExtensionBackhaulRead(d 
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileLanExtensionBackhaul resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulName3rdl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -237,6 +310,56 @@ func refreshObjectObjectExtensionControllerExtenderProfileLanExtensionBackhaul(d
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("health_check_fail_cnt", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt3rdl(o["health-check-fail-cnt"], d, "health_check_fail_cnt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-fail-cnt"], "ObjectExtensionControllerExtenderProfileLanExtensionBackhaul-HealthCheckFailCnt"); ok {
+			if err = d.Set("health_check_fail_cnt", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_fail_cnt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_fail_cnt: %v", err)
+		}
+	}
+
+	if err = d.Set("health_check_interval", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval3rdl(o["health-check-interval"], d, "health_check_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-interval"], "ObjectExtensionControllerExtenderProfileLanExtensionBackhaul-HealthCheckInterval"); ok {
+			if err = d.Set("health_check_interval", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("health_check_probe_cnt", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt3rdl(o["health-check-probe-cnt"], d, "health_check_probe_cnt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-probe-cnt"], "ObjectExtensionControllerExtenderProfileLanExtensionBackhaul-HealthCheckProbeCnt"); ok {
+			if err = d.Set("health_check_probe_cnt", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_probe_cnt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_probe_cnt: %v", err)
+		}
+	}
+
+	if err = d.Set("health_check_probe_tm", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm3rdl(o["health-check-probe-tm"], d, "health_check_probe_tm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-probe-tm"], "ObjectExtensionControllerExtenderProfileLanExtensionBackhaul-HealthCheckProbeTm"); ok {
+			if err = d.Set("health_check_probe_tm", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_probe_tm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_probe_tm: %v", err)
+		}
+	}
+
+	if err = d.Set("health_check_recovery_cnt", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt3rdl(o["health-check-recovery-cnt"], d, "health_check_recovery_cnt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["health-check-recovery-cnt"], "ObjectExtensionControllerExtenderProfileLanExtensionBackhaul-HealthCheckRecoveryCnt"); ok {
+			if err = d.Set("health_check_recovery_cnt", vv); err != nil {
+				return fmt.Errorf("Error reading health_check_recovery_cnt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading health_check_recovery_cnt: %v", err)
+		}
 	}
 
 	if err = d.Set("name", flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulName3rdl(o["name"], d, "name")); err != nil {
@@ -288,6 +411,26 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulFortiTes
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulName3rdl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -306,6 +449,51 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulWeight3rd
 
 func getObjectObjectExtensionControllerExtenderProfileLanExtensionBackhaul(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("health_check_fail_cnt"); ok || d.HasChange("health_check_fail_cnt") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt3rdl(d, v, "health_check_fail_cnt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-fail-cnt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("health_check_interval"); ok || d.HasChange("health_check_interval") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval3rdl(d, v, "health_check_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("health_check_probe_cnt"); ok || d.HasChange("health_check_probe_cnt") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt3rdl(d, v, "health_check_probe_cnt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-probe-cnt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("health_check_probe_tm"); ok || d.HasChange("health_check_probe_tm") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm3rdl(d, v, "health_check_probe_tm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-probe-tm"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("health_check_recovery_cnt"); ok || d.HasChange("health_check_recovery_cnt") {
+		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt3rdl(d, v, "health_check_recovery_cnt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["health-check-recovery-cnt"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulName3rdl(d, v, "name")

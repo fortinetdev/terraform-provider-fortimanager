@@ -197,7 +197,7 @@ func resourceObjectLogNpuServerUpdate(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectLogNpuServer(d)
+	obj, err := getObjectObjectLogNpuServer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectLogNpuServer resource while getting object: %v", err)
 	}
@@ -218,7 +218,6 @@ func resourceObjectLogNpuServerUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceObjectLogNpuServerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -231,11 +230,17 @@ func resourceObjectLogNpuServerDelete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectLogNpuServer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectLogNpuServer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectLogNpuServer(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectLogNpuServer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectLogNpuServer resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectLogNpuServer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -259,6 +264,7 @@ func resourceObjectLogNpuServerRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadObjectLogNpuServer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectLogNpuServer resource: %v", err)
 	}
 
@@ -899,7 +905,7 @@ func expandObjectLogNpuServerSyslogSeverity(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectLogNpuServer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("enforce_seq_order"); ok || d.HasChange("enforce_seq_order") {
@@ -938,21 +944,29 @@ func getObjectObjectLogNpuServer(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("server_group"); ok || d.HasChange("server_group") {
-		t, err := expandObjectLogNpuServerServerGroup(d, v, "server_group")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["server-group"] = t
+	if bemptysontable {
+		obj["server-group"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("server_group"); ok || d.HasChange("server_group") {
+			t, err := expandObjectLogNpuServerServerGroup(d, v, "server_group")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["server-group"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("server_info"); ok || d.HasChange("server_info") {
-		t, err := expandObjectLogNpuServerServerInfo(d, v, "server_info")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["server-info"] = t
+	if bemptysontable {
+		obj["server-info"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("server_info"); ok || d.HasChange("server_info") {
+			t, err := expandObjectLogNpuServerServerInfo(d, v, "server_info")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["server-info"] = t
+			}
 		}
 	}
 

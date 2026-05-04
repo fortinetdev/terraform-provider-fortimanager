@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object VPN Manager"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_vpnmgr_node_ipv4excluderange"
 description: |-

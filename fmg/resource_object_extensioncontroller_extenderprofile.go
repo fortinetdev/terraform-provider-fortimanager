@@ -29,6 +29,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -504,6 +509,31 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 							Optional: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
+									"health_check_fail_cnt": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"health_check_interval": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"health_check_probe_cnt": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"health_check_probe_tm": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"health_check_recovery_cnt": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -868,9 +898,31 @@ func resourceObjectExtensionControllerExtenderProfileCreate(d *schema.ResourceDa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectExtensionControllerExtenderProfile(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfile resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectExtensionControllerExtenderProfile(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectExtensionControllerExtenderProfile(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfile resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectExtensionControllerExtenderProfile(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectExtensionControllerExtenderProfile resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -954,6 +1006,7 @@ func resourceObjectExtensionControllerExtenderProfileRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfile resource: %v", err)
 	}
 
@@ -1778,6 +1831,36 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaul(v inter
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_fail_cnt"
+		if _, ok := i["health-check-fail-cnt"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt(i["health-check-fail-cnt"], d, pre_append)
+			tmp["health_check_fail_cnt"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-HealthCheckFailCnt")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_interval"
+		if _, ok := i["health-check-interval"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval(i["health-check-interval"], d, pre_append)
+			tmp["health_check_interval"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-HealthCheckInterval")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_probe_cnt"
+		if _, ok := i["health-check-probe-cnt"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt(i["health-check-probe-cnt"], d, pre_append)
+			tmp["health_check_probe_cnt"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-HealthCheckProbeCnt")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_probe_tm"
+		if _, ok := i["health-check-probe-tm"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm(i["health-check-probe-tm"], d, pre_append)
+			tmp["health_check_probe_tm"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-HealthCheckProbeTm")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_recovery_cnt"
+		if _, ok := i["health-check-recovery-cnt"]; ok {
+			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt(i["health-check-recovery-cnt"], d, pre_append)
+			tmp["health_check_recovery_cnt"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-HealthCheckRecoveryCnt")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
 			v := flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulName(i["name"], d, pre_append)
@@ -1810,6 +1893,26 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaul(v inter
 	}
 
 	return result
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaulName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3384,6 +3487,31 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaul(d *schem
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_fail_cnt"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-fail-cnt"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt(d, i["health_check_fail_cnt"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_interval"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-interval"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval(d, i["health_check_interval"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_probe_cnt"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-probe-cnt"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt(d, i["health_check_probe_cnt"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_probe_tm"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-probe-tm"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm(d, i["health_check_probe_tm"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_recovery_cnt"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-recovery-cnt"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt(d, i["health_check_recovery_cnt"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulName(d, i["name"], pre_append)
@@ -3412,6 +3540,26 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaul(d *schem
 	}
 
 	return result, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckFailCnt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeCnt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckProbeTm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulHealthCheckRecoveryCnt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

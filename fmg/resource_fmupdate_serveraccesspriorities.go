@@ -91,7 +91,7 @@ func resourceFmupdateServerAccessPrioritiesUpdate(d *schema.ResourceData, m inte
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateServerAccessPriorities(d)
+	obj, err := getObjectFmupdateServerAccessPriorities(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceFmupdateServerAccessPrioritiesUpdate(d *schema.ResourceData, m inte
 
 func resourceFmupdateServerAccessPrioritiesDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -122,11 +121,17 @@ func resourceFmupdateServerAccessPrioritiesDelete(d *schema.ResourceData, m inte
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateServerAccessPriorities(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateServerAccessPriorities(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateServerAccessPriorities(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateServerAccessPriorities resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateServerAccessPriorities resource: %v", err)
 	}
 
 	d.SetId("")
@@ -147,6 +152,7 @@ func resourceFmupdateServerAccessPrioritiesRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadFmupdateServerAccessPriorities(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateServerAccessPriorities resource: %v", err)
 	}
 
@@ -386,7 +392,7 @@ func expandFmupdateServerAccessPrioritiesWebSpam(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("access_public"); ok || d.HasChange("access_public") {
@@ -407,12 +413,16 @@ func getObjectFmupdateServerAccessPriorities(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("private_server"); ok || d.HasChange("private_server") {
-		t, err := expandFmupdateServerAccessPrioritiesPrivateServer(d, v, "private_server")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["private-server"] = t
+	if bemptysontable {
+		obj["private-server"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("private_server"); ok || d.HasChange("private_server") {
+			t, err := expandFmupdateServerAccessPrioritiesPrivateServer(d, v, "private_server")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["private-server"] = t
+			}
 		}
 	}
 

@@ -86,7 +86,7 @@ func resourceObjectAntivirusProfileNacQuarUpdate(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectAntivirusProfileNacQuar(d)
+	obj, err := getObjectObjectAntivirusProfileNacQuar(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileNacQuar resource while getting object: %v", err)
 	}
@@ -107,7 +107,6 @@ func resourceObjectAntivirusProfileNacQuarUpdate(d *schema.ResourceData, m inter
 
 func resourceObjectAntivirusProfileNacQuarDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -123,11 +122,17 @@ func resourceObjectAntivirusProfileNacQuarDelete(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectAntivirusProfileNacQuar(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAntivirusProfileNacQuar resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfileNacQuar(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectAntivirusProfileNacQuar(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectAntivirusProfileNacQuar resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectAntivirusProfileNacQuar resource: %v", err)
 	}
 
 	d.SetId("")
@@ -163,6 +168,7 @@ func resourceObjectAntivirusProfileNacQuarRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectAntivirusProfileNacQuar(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAntivirusProfileNacQuar resource: %v", err)
 	}
 
@@ -249,7 +255,7 @@ func expandObjectAntivirusProfileNacQuarLog2edl(d *schema.ResourceData, v interf
 	return v, nil
 }
 
-func getObjectObjectAntivirusProfileNacQuar(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectAntivirusProfileNacQuar(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("expiry"); ok || d.HasChange("expiry") {

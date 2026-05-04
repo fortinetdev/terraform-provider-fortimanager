@@ -86,7 +86,7 @@ func resourceSystemFmgClusterUpdate(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemFmgCluster(d)
+	obj, err := getObjectSystemFmgCluster(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFmgCluster resource while getting object: %v", err)
 	}
@@ -107,7 +107,6 @@ func resourceSystemFmgClusterUpdate(d *schema.ResourceData, m interface{}) error
 
 func resourceSystemFmgClusterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -117,11 +116,17 @@ func resourceSystemFmgClusterDelete(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemFmgCluster(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemFmgCluster resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemFmgCluster(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemFmgCluster(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemFmgCluster resource: %v", err)
+		return fmt.Errorf("Error clearing SystemFmgCluster resource: %v", err)
 	}
 
 	d.SetId("")
@@ -142,6 +147,7 @@ func resourceSystemFmgClusterRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemFmgCluster(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemFmgCluster resource: %v", err)
 	}
 
@@ -381,7 +387,7 @@ func expandSystemFmgClusterPeerSn(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
-func getObjectSystemFmgCluster(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemFmgCluster(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fqdn"); ok || d.HasChange("fqdn") {
@@ -411,12 +417,16 @@ func getObjectSystemFmgCluster(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
-		t, err := expandSystemFmgClusterPeer(d, v, "peer")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["peer"] = t
+	if bemptysontable {
+		obj["peer"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
+			t, err := expandSystemFmgClusterPeer(d, v, "peer")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["peer"] = t
+			}
 		}
 	}
 

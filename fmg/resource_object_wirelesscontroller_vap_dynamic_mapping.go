@@ -29,6 +29,11 @@ func resourceObjectWirelessControllerVapDynamicMapping() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1025,9 +1030,31 @@ func resourceObjectWirelessControllerVapDynamicMappingCreate(d *schema.ResourceD
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWirelessControllerVapDynamicMapping(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWirelessControllerVapDynamicMapping resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("_scope")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWirelessControllerVapDynamicMapping(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWirelessControllerVapDynamicMapping(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWirelessControllerVapDynamicMapping resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWirelessControllerVapDynamicMapping(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWirelessControllerVapDynamicMapping resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getScopeKey(d, "_scope"))
@@ -1132,6 +1159,7 @@ func resourceObjectWirelessControllerVapDynamicMappingRead(d *schema.ResourceDat
 
 	o, err := c.ReadObjectWirelessControllerVapDynamicMapping(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerVapDynamicMapping resource: %v", err)
 	}
 
@@ -1205,6 +1233,13 @@ func flattenObjectWirelessControllerVapDynamicMappingIntfDhcp6RelayType2edl(v in
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingIntfIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convipstringlist2ipmask(v)
 }
 
@@ -1502,6 +1537,13 @@ func flattenObjectWirelessControllerVapDynamicMappingIntraVapPrivacy2edl(v inter
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 

@@ -29,6 +29,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -40,7 +45,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"access_proxy": &schema.Schema{
@@ -732,6 +737,12 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"learning_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"llm_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"log_http_transaction": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1446,17 +1457,38 @@ func resourcePackagesGlobalHeaderPolicyCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalHeaderPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesGlobalHeaderPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesGlobalHeaderPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesGlobalHeaderPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesGlobalHeaderPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesGlobalHeaderPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -1562,6 +1594,7 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadPackagesGlobalHeaderPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesGlobalHeaderPolicy resource: %v", err)
 	}
 
@@ -2186,6 +2219,10 @@ func flattenPackagesGlobalHeaderPolicyLearningMode(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyLlmProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesGlobalHeaderPolicyLogHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2243,6 +2280,13 @@ func flattenPackagesGlobalHeaderPolicyNatinbound(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalHeaderPolicyNatip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return flattenStringList(v)
 }
 
@@ -4302,6 +4346,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading learning_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("llm_profile", flattenPackagesGlobalHeaderPolicyLlmProfile(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "PackagesGlobalHeaderPolicy-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
 		}
 	}
 
@@ -6412,6 +6466,10 @@ func expandPackagesGlobalHeaderPolicyLearningMode(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyLlmProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalHeaderPolicyLogHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8376,6 +8434,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["learning-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandPackagesGlobalHeaderPolicyLlmProfile(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
 		}
 	}
 

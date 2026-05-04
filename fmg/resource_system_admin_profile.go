@@ -29,6 +29,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"adom_admin": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -542,9 +547,31 @@ func resourceSystemAdminProfileCreate(d *schema.ResourceData, m interface{}) err
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminProfile(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemAdminProfile resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("profileid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemAdminProfile(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemAdminProfile(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemAdminProfile resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemAdminProfile(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemAdminProfile resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "profileid"))
@@ -619,6 +646,7 @@ func resourceSystemAdminProfileRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadSystemAdminProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAdminProfile resource: %v", err)
 	}
 
@@ -989,42 +1017,112 @@ func flattenSystemAdminProfileTriageEvents(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAdminProfileTrusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost10(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost8(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenSystemAdminProfileTrusthost9(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convintflist2str(v, d.Get(pre))
 }
 

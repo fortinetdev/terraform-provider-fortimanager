@@ -78,7 +78,7 @@ func resourceObjectEmailfilterFortishieldUpdate(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectEmailfilterFortishield(d)
+	obj, err := getObjectObjectEmailfilterFortishield(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterFortishield resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceObjectEmailfilterFortishieldUpdate(d *schema.ResourceData, m interf
 
 func resourceObjectEmailfilterFortishieldDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -112,11 +111,17 @@ func resourceObjectEmailfilterFortishieldDelete(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectEmailfilterFortishield(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectEmailfilterFortishield resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterFortishield(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectEmailfilterFortishield(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectEmailfilterFortishield resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectEmailfilterFortishield resource: %v", err)
 	}
 
 	d.SetId("")
@@ -140,6 +145,7 @@ func resourceObjectEmailfilterFortishieldRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectEmailfilterFortishield(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectEmailfilterFortishield resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectEmailfilterFortishieldSpamSubmitTxt2Htm(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectObjectEmailfilterFortishield(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectEmailfilterFortishield(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("spam_submit_force"); ok || d.HasChange("spam_submit_force") {

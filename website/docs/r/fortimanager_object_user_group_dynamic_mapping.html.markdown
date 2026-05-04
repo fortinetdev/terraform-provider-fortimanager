@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object User"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_user_group_dynamic_mapping"
 description: |-
@@ -52,6 +52,8 @@ The following arguments are supported:
 * `mobile_phone` - Enable/disable the guest user mobile phone number field. Valid values: `disable`, `enable`.
 
 * `multiple_guest_add` - Enable/disable addition of multiple guests. Valid values: `disable`, `enable`.
+
+* `negate` - Negate. Valid values: `disable`, `enable`.
 
 * `password` - Guest user password type. Valid values: `auto-generate`, `specify`, `disable`.
 

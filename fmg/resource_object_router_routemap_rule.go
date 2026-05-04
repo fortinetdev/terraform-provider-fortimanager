@@ -29,6 +29,11 @@ func resourceObjectRouterRouteMapRule() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -115,6 +120,11 @@ func resourceObjectRouterRouteMapRule() *schema.Resource {
 				Computed: true,
 			},
 			"match_route_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"match_suppress": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -298,9 +308,31 @@ func resourceObjectRouterRouteMapRuleCreate(d *schema.ResourceData, m interface{
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterRouteMapRule(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectRouterRouteMapRule resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectRouterRouteMapRule(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectRouterRouteMapRule(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectRouterRouteMapRule resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectRouterRouteMapRule(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectRouterRouteMapRule resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -402,6 +434,7 @@ func resourceObjectRouterRouteMapRuleRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadObjectRouterRouteMapRule(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectRouterRouteMapRule resource: %v", err)
 	}
 
@@ -479,6 +512,10 @@ func flattenObjectRouterRouteMapRuleMatchOrigin2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectRouterRouteMapRuleMatchRouteType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleMatchSuppress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -575,7 +612,7 @@ func flattenObjectRouterRouteMapRuleSetLocalPreference2edl(v interface{}, d *sch
 }
 
 func flattenObjectRouterRouteMapRuleSetMetric2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectRouterRouteMapRuleSetMetricType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -599,7 +636,7 @@ func flattenObjectRouterRouteMapRuleSetRouteTag2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectRouterRouteMapRuleSetTag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectRouterRouteMapRuleSetVpnv4Nexthop2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -782,6 +819,16 @@ func refreshObjectObjectRouterRouteMapRule(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading match_route_type: %v", err)
+		}
+	}
+
+	if err = d.Set("match_suppress", flattenObjectRouterRouteMapRuleMatchSuppress2edl(o["match-suppress"], d, "match_suppress")); err != nil {
+		if vv, ok := fortiAPIPatch(o["match-suppress"], "ObjectRouterRouteMapRule-MatchSuppress"); ok {
+			if err = d.Set("match_suppress", vv); err != nil {
+				return fmt.Errorf("Error reading match_suppress: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading match_suppress: %v", err)
 		}
 	}
 
@@ -1198,6 +1245,10 @@ func expandObjectRouterRouteMapRuleMatchRouteType2edl(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectRouterRouteMapRuleMatchSuppress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectRouterRouteMapRuleMatchTag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1478,6 +1529,15 @@ func getObjectObjectRouterRouteMapRule(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["match-route-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("match_suppress"); ok || d.HasChange("match_suppress") {
+		t, err := expandObjectRouterRouteMapRuleMatchSuppress2edl(d, v, "match_suppress")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["match-suppress"] = t
 		}
 	}
 

@@ -270,6 +270,7 @@ func resourceObjectFirewallInternetServiceRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectFirewallInternetService(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallInternetService resource: %v", err)
 	}
 

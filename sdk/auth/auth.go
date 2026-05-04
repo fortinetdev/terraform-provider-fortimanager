@@ -7,13 +7,14 @@ import (
 
 // Auth describes the authentication information for FortiManager
 type Auth struct {
-	Hostname string
-	User     string
-	Passwd   string
-	CABundle string
-	Insecure *bool
-	Refresh  bool
-	FMGType  string
+	Hostname      string
+	User          string
+	Passwd        string
+	CABundle      string
+	Insecure      *bool
+	Refresh       bool
+	FMGType       string
+	UpdateIfExist bool
 
 	LogSession    bool
 	Session       string
@@ -23,13 +24,14 @@ type Auth struct {
 }
 
 // NewAuth inits Auth object with the given metadata
-func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fmgtype string, logsession, cleanSession bool) *Auth {
+func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fmgtype string, logsession, cleanSession bool, updateIfExist bool) *Auth {
 	return &Auth{
-		Hostname: hostname,
-		User:     user,
-		Passwd:   passwd,
-		CABundle: cabundle,
-		FMGType:  fmgtype,
+		Hostname:      hostname,
+		User:          user,
+		Passwd:        passwd,
+		CABundle:      cabundle,
+		FMGType:       fmgtype,
+		UpdateIfExist: updateIfExist,
 
 		LogSession:    logsession,
 		Session:       session,

@@ -91,7 +91,7 @@ func resourceSecurityconsoleReinstallPackageUpdate(d *schema.ResourceData, m int
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleReinstallPackage(d)
+	obj, err := getObjectSecurityconsoleReinstallPackage(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleReinstallPackage resource while getting object: %v", err)
 	}
@@ -376,7 +376,7 @@ func expandSecurityconsoleReinstallPackageTargetScopeVdom(d *schema.ResourceData
 	return v, nil
 }
 
-func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -397,12 +397,16 @@ func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
-		t, err := expandSecurityconsoleReinstallPackageTarget(d, v, "target")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["target"] = t
+	if bemptysontable {
+		obj["target"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
+			t, err := expandSecurityconsoleReinstallPackageTarget(d, v, "target")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["target"] = t
+			}
 		}
 	}
 

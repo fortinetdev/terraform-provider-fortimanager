@@ -29,6 +29,11 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -166,6 +171,12 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"llm_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"redirect_profile": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -195,9 +206,31 @@ func resourceObjectFirewallProfileGroupCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallProfileGroup(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallProfileGroup resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallProfileGroup(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallProfileGroup(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallProfileGroup resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallProfileGroup(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallProfileGroup resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -281,6 +314,7 @@ func resourceObjectFirewallProfileGroupRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectFirewallProfileGroup(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileGroup resource: %v", err)
 	}
 
@@ -406,6 +440,10 @@ func flattenObjectFirewallProfileGroupIaProfile(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallProfileGroupIsolatorProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallProfileGroupLlmProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -700,6 +738,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("llm_profile", flattenObjectFirewallProfileGroupLlmProfile(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "ObjectFirewallProfileGroup-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("redirect_profile", flattenObjectFirewallProfileGroupRedirectProfile(o["redirect-profile"], d, "redirect_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["redirect-profile"], "ObjectFirewallProfileGroup-RedirectProfile"); ok {
 			if err = d.Set("redirect_profile", vv); err != nil {
@@ -828,6 +876,10 @@ func expandObjectFirewallProfileGroupIaProfile(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallProfileGroupIsolatorProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProfileGroupLlmProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -1087,6 +1139,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["isolator-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandObjectFirewallProfileGroupLlmProfile(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
 		}
 	}
 

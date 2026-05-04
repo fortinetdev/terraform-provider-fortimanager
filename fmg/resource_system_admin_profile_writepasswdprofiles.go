@@ -29,6 +29,11 @@ func resourceSystemAdminProfileWritePasswdProfiles() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -61,9 +66,31 @@ func resourceSystemAdminProfileWritePasswdProfilesCreate(d *schema.ResourceData,
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminProfileWritePasswdProfiles(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemAdminProfileWritePasswdProfiles resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("profileid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemAdminProfileWritePasswdProfiles(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemAdminProfileWritePasswdProfiles(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemAdminProfileWritePasswdProfiles resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemAdminProfileWritePasswdProfiles(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemAdminProfileWritePasswdProfiles resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "profileid"))
@@ -156,6 +183,7 @@ func resourceSystemAdminProfileWritePasswdProfilesRead(d *schema.ResourceData, m
 
 	o, err := c.ReadSystemAdminProfileWritePasswdProfiles(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAdminProfileWritePasswdProfiles resource: %v", err)
 	}
 

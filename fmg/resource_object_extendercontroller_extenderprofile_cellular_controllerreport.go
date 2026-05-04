@@ -86,7 +86,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularControllerReportUpda
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularControllerReport(d)
+	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularControllerReport(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularControllerReport resource while getting object: %v", err)
 	}
@@ -107,7 +107,6 @@ func resourceObjectExtenderControllerExtenderProfileCellularControllerReportUpda
 
 func resourceObjectExtenderControllerExtenderProfileCellularControllerReportDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -123,11 +122,17 @@ func resourceObjectExtenderControllerExtenderProfileCellularControllerReportDele
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtenderControllerExtenderProfileCellularControllerReport(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfileCellularControllerReport resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerExtenderProfileCellularControllerReport(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtenderControllerExtenderProfileCellularControllerReport(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfileCellularControllerReport resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtenderControllerExtenderProfileCellularControllerReport resource: %v", err)
 	}
 
 	d.SetId("")
@@ -163,6 +168,7 @@ func resourceObjectExtenderControllerExtenderProfileCellularControllerReportRead
 
 	o, err := c.ReadObjectExtenderControllerExtenderProfileCellularControllerReport(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtenderControllerExtenderProfileCellularControllerReport resource: %v", err)
 	}
 
@@ -249,7 +255,7 @@ func expandObjectExtenderControllerExtenderProfileCellularControllerReportStatus
 	return v, nil
 }
 
-func getObjectObjectExtenderControllerExtenderProfileCellularControllerReport(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtenderControllerExtenderProfileCellularControllerReport(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("interval"); ok || d.HasChange("interval") {

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_proxyaddress6"
 description: |-
@@ -34,6 +34,7 @@ The following arguments are supported:
 * `header_name` - Header-Name.
 * `host` - Host.
 * `host_regex` - Host-Regex.
+* `llm_servers` - Llm-Servers.
 * `method` - Method. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `connect`.
 
 * `name` - Name.

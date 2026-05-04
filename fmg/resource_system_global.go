@@ -184,6 +184,10 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fgfm_allow_products": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"fgfm_allow_vm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -234,6 +238,11 @@ func resourceSystemGlobal() *schema.Resource {
 			},
 			"gui_feature_visibility_mode": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"gui_install_preview_concurrency": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -610,7 +619,7 @@ func resourceSystemGlobalUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemGlobal(d)
+	obj, err := getObjectSystemGlobal(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobal resource while getting object: %v", err)
 	}
@@ -631,7 +640,6 @@ func resourceSystemGlobalUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemGlobalDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -641,11 +649,17 @@ func resourceSystemGlobalDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemGlobal(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemGlobal resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemGlobal(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemGlobal(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemGlobal resource: %v", err)
+		return fmt.Errorf("Error clearing SystemGlobal resource: %v", err)
 	}
 
 	d.SetId("")
@@ -666,6 +680,7 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemGlobal(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemGlobal resource: %v", err)
 	}
 
@@ -806,6 +821,10 @@ func flattenSystemGlobalFcpCfgService(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenSystemGlobalFgfmAllowProducts(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalFgfmAllowVm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -847,6 +866,10 @@ func flattenSystemGlobalGuiCurlTimeout(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemGlobalGuiFeatureVisibilityMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalGuiInstallPreviewConcurrency(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1517,6 +1540,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fgfm_allow_products", flattenSystemGlobalFgfmAllowProducts(o["fgfm-allow-products"], d, "fgfm_allow_products")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-allow-products"], "SystemGlobal-FgfmAllowProducts"); ok {
+			if err = d.Set("fgfm_allow_products", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_allow_products: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_allow_products: %v", err)
+		}
+	}
+
 	if err = d.Set("fgfm_allow_vm", flattenSystemGlobalFgfmAllowVm(o["fgfm-allow-vm"], d, "fgfm_allow_vm")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-allow-vm"], "SystemGlobal-FgfmAllowVm"); ok {
 			if err = d.Set("fgfm_allow_vm", vv); err != nil {
@@ -1624,6 +1657,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading gui_feature_visibility_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("gui_install_preview_concurrency", flattenSystemGlobalGuiInstallPreviewConcurrency(o["gui-install-preview-concurrency"], d, "gui_install_preview_concurrency")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-install-preview-concurrency"], "SystemGlobal-GuiInstallPreviewConcurrency"); ok {
+			if err = d.Set("gui_install_preview_concurrency", vv); err != nil {
+				return fmt.Errorf("Error reading gui_install_preview_concurrency: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_install_preview_concurrency: %v", err)
 		}
 	}
 
@@ -2438,6 +2481,10 @@ func expandSystemGlobalFcpCfgService(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandSystemGlobalFgfmAllowProducts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalFgfmAllowVm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2479,6 +2526,10 @@ func expandSystemGlobalGuiCurlTimeout(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemGlobalGuiFeatureVisibilityMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalGuiInstallPreviewConcurrency(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2818,7 +2869,7 @@ func expandSystemGlobalWorkspaceUnlockAfterInstall(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemGlobal(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("admin_host"); ok || d.HasChange("admin_host") {
@@ -3100,6 +3151,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fgfm_allow_products"); ok || d.HasChange("fgfm_allow_products") {
+		t, err := expandSystemGlobalFgfmAllowProducts(d, v, "fgfm_allow_products")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-allow-products"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fgfm_allow_vm"); ok || d.HasChange("fgfm_allow_vm") {
 		t, err := expandSystemGlobalFgfmAllowVm(d, v, "fgfm_allow_vm")
 		if err != nil {
@@ -3196,6 +3256,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["gui-feature-visibility-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gui_install_preview_concurrency"); ok || d.HasChange("gui_install_preview_concurrency") {
+		t, err := expandSystemGlobalGuiInstallPreviewConcurrency(d, v, "gui_install_preview_concurrency")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-install-preview-concurrency"] = t
 		}
 	}
 
@@ -3388,12 +3457,16 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("mc_policy_disabled_adoms"); ok || d.HasChange("mc_policy_disabled_adoms") {
-		t, err := expandSystemGlobalMcPolicyDisabledAdoms(d, v, "mc_policy_disabled_adoms")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["mc-policy-disabled-adoms"] = t
+	if bemptysontable {
+		obj["mc-policy-disabled-adoms"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("mc_policy_disabled_adoms"); ok || d.HasChange("mc_policy_disabled_adoms") {
+			t, err := expandSystemGlobalMcPolicyDisabledAdoms(d, v, "mc_policy_disabled_adoms")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["mc-policy-disabled-adoms"] = t
+			}
 		}
 	}
 
@@ -3649,12 +3722,16 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_cipher_suites"); ok || d.HasChange("ssl_cipher_suites") {
-		t, err := expandSystemGlobalSslCipherSuites(d, v, "ssl_cipher_suites")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ssl-cipher-suites"] = t
+	if bemptysontable {
+		obj["ssl-cipher-suites"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ssl_cipher_suites"); ok || d.HasChange("ssl_cipher_suites") {
+			t, err := expandSystemGlobalSslCipherSuites(d, v, "ssl_cipher_suites")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ssl-cipher-suites"] = t
+			}
 		}
 	}
 

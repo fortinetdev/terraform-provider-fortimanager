@@ -95,7 +95,7 @@ func resourceObjectSystemNpuIsfNpQueuesUpdate(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuIsfNpQueues(d)
+	obj, err := getObjectObjectSystemNpuIsfNpQueues(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIsfNpQueues resource while getting object: %v", err)
 	}
@@ -116,7 +116,6 @@ func resourceObjectSystemNpuIsfNpQueuesUpdate(d *schema.ResourceData, m interfac
 
 func resourceObjectSystemNpuIsfNpQueuesDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -129,11 +128,17 @@ func resourceObjectSystemNpuIsfNpQueuesDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuIsfNpQueues(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuIsfNpQueues resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIsfNpQueues(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuIsfNpQueues(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuIsfNpQueues resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuIsfNpQueues resource: %v", err)
 	}
 
 	d.SetId("")
@@ -157,6 +162,7 @@ func resourceObjectSystemNpuIsfNpQueuesRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectSystemNpuIsfNpQueues(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuIsfNpQueues resource: %v", err)
 	}
 
@@ -333,7 +339,7 @@ func expandObjectSystemNpuIsfNpQueuesCos72edl(d *schema.ResourceData, v interfac
 	return convstr2list(v, nil), nil
 }
 
-func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cos0"); ok || d.HasChange("cos0") {

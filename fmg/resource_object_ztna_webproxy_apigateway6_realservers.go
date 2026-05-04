@@ -29,6 +29,11 @@ func resourceObjectZtnaWebProxyApiGateway6Realservers() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -149,17 +154,38 @@ func resourceObjectZtnaWebProxyApiGateway6RealserversCreate(d *schema.ResourceDa
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectZtnaWebProxyApiGateway6Realservers(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6Realservers resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectZtnaWebProxyApiGateway6Realservers(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectZtnaWebProxyApiGateway6Realservers(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGateway6Realservers resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectZtnaWebProxyApiGateway6RealserversRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectZtnaWebProxyApiGateway6Realservers(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6Realservers resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectZtnaWebProxyApiGateway6RealserversRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectZtnaWebProxyApiGateway6Realservers resource: %v", err)
+			}
 		}
 	}
 
@@ -277,6 +303,7 @@ func resourceObjectZtnaWebProxyApiGateway6RealserversRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectZtnaWebProxyApiGateway6Realservers(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaWebProxyApiGateway6Realservers resource: %v", err)
 	}
 

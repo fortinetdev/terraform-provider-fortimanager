@@ -86,7 +86,7 @@ func resourceFmupdateFdsSettingServerOverrideUpdate(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFdsSettingServerOverride(d)
+	obj, err := getObjectFmupdateFdsSettingServerOverride(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource while getting object: %v", err)
 	}
@@ -107,7 +107,6 @@ func resourceFmupdateFdsSettingServerOverrideUpdate(d *schema.ResourceData, m in
 
 func resourceFmupdateFdsSettingServerOverrideDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -117,11 +116,17 @@ func resourceFmupdateFdsSettingServerOverrideDelete(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFdsSettingServerOverride(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingServerOverride(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFdsSettingServerOverride(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFdsSettingServerOverride resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFdsSettingServerOverride resource: %v", err)
 	}
 
 	d.SetId("")
@@ -142,6 +147,7 @@ func resourceFmupdateFdsSettingServerOverrideRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadFmupdateFdsSettingServerOverride(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFdsSettingServerOverride resource: %v", err)
 	}
 
@@ -234,7 +240,7 @@ func flattenFmupdateFdsSettingServerOverrideServlistPort2edl(v interface{}, d *s
 }
 
 func flattenFmupdateFdsSettingServerOverrideServlistServiceType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenFmupdateFdsSettingServerOverrideStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -357,22 +363,26 @@ func expandFmupdateFdsSettingServerOverrideServlistPort2edl(d *schema.ResourceDa
 }
 
 func expandFmupdateFdsSettingServerOverrideServlistServiceType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandFmupdateFdsSettingServerOverrideStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("servlist"); ok || d.HasChange("servlist") {
-		t, err := expandFmupdateFdsSettingServerOverrideServlist2edl(d, v, "servlist")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["servlist"] = t
+	if bemptysontable {
+		obj["servlist"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("servlist"); ok || d.HasChange("servlist") {
+			t, err := expandFmupdateFdsSettingServerOverrideServlist2edl(d, v, "servlist")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["servlist"] = t
+			}
 		}
 	}
 

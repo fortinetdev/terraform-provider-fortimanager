@@ -29,6 +29,11 @@ func resourcePackagesFirewallHyperscalePolicy46() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -153,9 +158,31 @@ func resourcePackagesFirewallHyperscalePolicy46Create(d *schema.ResourceData, m 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallHyperscalePolicy46(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy46 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallHyperscalePolicy46(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallHyperscalePolicy46(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallHyperscalePolicy46 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesFirewallHyperscalePolicy46(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy46 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -269,6 +296,7 @@ func resourcePackagesFirewallHyperscalePolicy46Read(d *schema.ResourceData, m in
 
 	o, err := c.ReadPackagesFirewallHyperscalePolicy46(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallHyperscalePolicy46 resource: %v", err)
 	}
 

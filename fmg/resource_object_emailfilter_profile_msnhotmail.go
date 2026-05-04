@@ -81,7 +81,7 @@ func resourceObjectEmailfilterProfileMsnHotmailUpdate(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectEmailfilterProfileMsnHotmail(d)
+	obj, err := getObjectObjectEmailfilterProfileMsnHotmail(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterProfileMsnHotmail resource while getting object: %v", err)
 	}
@@ -102,7 +102,6 @@ func resourceObjectEmailfilterProfileMsnHotmailUpdate(d *schema.ResourceData, m 
 
 func resourceObjectEmailfilterProfileMsnHotmailDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -118,11 +117,17 @@ func resourceObjectEmailfilterProfileMsnHotmailDelete(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectEmailfilterProfileMsnHotmail(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectEmailfilterProfileMsnHotmail resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterProfileMsnHotmail(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectEmailfilterProfileMsnHotmail(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectEmailfilterProfileMsnHotmail resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectEmailfilterProfileMsnHotmail resource: %v", err)
 	}
 
 	d.SetId("")
@@ -158,6 +163,7 @@ func resourceObjectEmailfilterProfileMsnHotmailRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadObjectEmailfilterProfileMsnHotmail(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectEmailfilterProfileMsnHotmail resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectEmailfilterProfileMsnHotmailLogAll2edl(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectObjectEmailfilterProfileMsnHotmail(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectEmailfilterProfileMsnHotmail(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {

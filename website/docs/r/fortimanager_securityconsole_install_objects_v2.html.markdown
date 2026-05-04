@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Security Console"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_securityconsole_install_objects_v2"
 description: |-

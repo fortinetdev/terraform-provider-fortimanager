@@ -147,7 +147,7 @@ func resourceObjectFirewallGtpIeValidationUpdate(d *schema.ResourceData, m inter
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	obj, err := getObjectObjectFirewallGtpIeValidation(d)
+	obj, err := getObjectObjectFirewallGtpIeValidation(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpIeValidation resource while getting object: %v", err)
 	}
@@ -168,7 +168,6 @@ func resourceObjectFirewallGtpIeValidationUpdate(d *schema.ResourceData, m inter
 
 func resourceObjectFirewallGtpIeValidationDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -184,11 +183,17 @@ func resourceObjectFirewallGtpIeValidationDelete(d *schema.ResourceData, m inter
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
+	obj, err := getObjectObjectFirewallGtpIeValidation(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallGtpIeValidation resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallGtpIeValidation(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallGtpIeValidation(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallGtpIeValidation resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallGtpIeValidation resource: %v", err)
 	}
 
 	d.SetId("")
@@ -224,6 +229,7 @@ func resourceObjectFirewallGtpIeValidationRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectFirewallGtpIeValidation(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallGtpIeValidation resource: %v", err)
 	}
 
@@ -598,7 +604,7 @@ func expandObjectFirewallGtpIeValidationUli2edl(d *schema.ResourceData, v interf
 	return v, nil
 }
 
-func getObjectObjectFirewallGtpIeValidation(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallGtpIeValidation(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("apn_restriction"); ok || d.HasChange("apn_restriction") {

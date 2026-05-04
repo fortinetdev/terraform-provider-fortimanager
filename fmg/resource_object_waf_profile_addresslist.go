@@ -94,7 +94,7 @@ func resourceObjectWafProfileAddressListUpdate(d *schema.ResourceData, m interfa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileAddressList(d)
+	obj, err := getObjectObjectWafProfileAddressList(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileAddressList resource while getting object: %v", err)
 	}
@@ -115,7 +115,6 @@ func resourceObjectWafProfileAddressListUpdate(d *schema.ResourceData, m interfa
 
 func resourceObjectWafProfileAddressListDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -131,11 +130,17 @@ func resourceObjectWafProfileAddressListDelete(d *schema.ResourceData, m interfa
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileAddressList(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileAddressList resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileAddressList(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileAddressList(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileAddressList resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileAddressList resource: %v", err)
 	}
 
 	d.SetId("")
@@ -171,6 +176,7 @@ func resourceObjectWafProfileAddressListRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectWafProfileAddressList(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileAddressList resource: %v", err)
 	}
 
@@ -293,7 +299,7 @@ func expandObjectWafProfileAddressListTrustedAddress2edl(d *schema.ResourceData,
 	return convstr2list(v, nil), nil
 }
 
-func getObjectObjectWafProfileAddressList(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileAddressList(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("blocked_address"); ok || d.HasChange("blocked_address") {

@@ -29,6 +29,11 @@ func resourceDvmdbAdom() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"create_time": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -191,9 +196,31 @@ func resourceDvmdbAdomCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["lockMode"] = "skip_lock"
 
-	_, err = c.CreateDvmdbAdom(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating DvmdbAdom resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadDvmdbAdom(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateDvmdbAdom(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating DvmdbAdom resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateDvmdbAdom(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating DvmdbAdom resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -262,6 +289,7 @@ func resourceDvmdbAdomRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadDvmdbAdom(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading DvmdbAdom resource: %v", err)
 	}
 

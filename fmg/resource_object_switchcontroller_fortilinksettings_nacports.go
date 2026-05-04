@@ -103,7 +103,7 @@ func resourceObjectSwitchControllerFortilinkSettingsNacPortsUpdate(d *schema.Res
 	fortilink_settings := d.Get("fortilink_settings").(string)
 	paradict["fortilink_settings"] = fortilink_settings
 
-	obj, err := getObjectObjectSwitchControllerFortilinkSettingsNacPorts(d)
+	obj, err := getObjectObjectSwitchControllerFortilinkSettingsNacPorts(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettingsNacPorts resource while getting object: %v", err)
 	}
@@ -124,7 +124,6 @@ func resourceObjectSwitchControllerFortilinkSettingsNacPortsUpdate(d *schema.Res
 
 func resourceObjectSwitchControllerFortilinkSettingsNacPortsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -140,11 +139,17 @@ func resourceObjectSwitchControllerFortilinkSettingsNacPortsDelete(d *schema.Res
 	fortilink_settings := d.Get("fortilink_settings").(string)
 	paradict["fortilink_settings"] = fortilink_settings
 
+	obj, err := getObjectObjectSwitchControllerFortilinkSettingsNacPorts(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettingsNacPorts resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerFortilinkSettingsNacPorts(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSwitchControllerFortilinkSettingsNacPorts(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSwitchControllerFortilinkSettingsNacPorts resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSwitchControllerFortilinkSettingsNacPorts resource: %v", err)
 	}
 
 	d.SetId("")
@@ -180,6 +185,7 @@ func resourceObjectSwitchControllerFortilinkSettingsNacPortsRead(d *schema.Resou
 
 	o, err := c.ReadObjectSwitchControllerFortilinkSettingsNacPorts(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSwitchControllerFortilinkSettingsNacPorts resource: %v", err)
 	}
 
@@ -338,7 +344,7 @@ func expandObjectSwitchControllerFortilinkSettingsNacPortsParentKey2edl(d *schem
 	return v, nil
 }
 
-func getObjectObjectSwitchControllerFortilinkSettingsNacPorts(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSwitchControllerFortilinkSettingsNacPorts(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("bounce_nac_port"); ok || d.HasChange("bounce_nac_port") {

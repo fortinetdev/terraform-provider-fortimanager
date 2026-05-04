@@ -23,8 +23,7 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 		if err != nil {
 			return
 		}
-	}
-	if c.Config.Auth.CleanSession && session == "" {
+	} else if c.Config.Auth.CleanSession && session == "" {
 		session, err = c.loginSession()
 	}
 	// Send the request
@@ -34,14 +33,15 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 	if c.WorkspaceMode == "normal" {
 		unlockErr := unlockWorkspace(c, wsParams, session)
 		if unlockErr != nil {
+			log.Printf("[ERROR] Unlock workspace failed: %v", unlockErr)
 			if err == nil {
 				err = unlockErr
 			} else {
 				err = fmt.Errorf("%v, %v", err, unlockErr)
 			}
 		}
-	}
-	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	} else if c.Config.Auth.CleanSession {
 		c.logoutSession(session)
 	}
 
@@ -60,8 +60,7 @@ func delete(c *FortiSDKClient, path string, method string, move bool, wsParams m
 		if err != nil {
 			return
 		}
-	}
-	if c.Config.Auth.CleanSession && session == "" {
+	} else if c.Config.Auth.CleanSession && session == "" {
 		session, err = c.loginSession()
 	}
 	// Send the request
@@ -77,8 +76,8 @@ func delete(c *FortiSDKClient, path string, method string, move bool, wsParams m
 				err = fmt.Errorf("%v, %v", err, unlockErr)
 			}
 		}
-	}
-	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	} else if c.Config.Auth.CleanSession {
 		c.logoutSession(session)
 	}
 
@@ -167,6 +166,7 @@ func lockWorkspace(c *FortiSDKClient, wsParams map[string]string) (session strin
 	for _ = range maxLoop {
 		session, err = c.loginSession()
 		if err != nil {
+			log.Printf("[ERROR] Login failed when lock workspace.")
 			err = fmt.Errorf("Login failed: %v", err)
 			continue
 		}
@@ -259,6 +259,13 @@ func encodeData(c *FortiSDKClient, path, method, session string, params *map[str
 		data["session"] = session
 	} else if c.Session != "" {
 		data["session"] = c.Session
+		session = c.Session
+	}
+
+	if session == "" {
+		session, _ := c.loginSession()
+		data["session"] = session
+		c.Session = session
 	}
 
 	paramItem := make(map[string]interface{})

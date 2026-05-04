@@ -99,7 +99,7 @@ func resourceFmupdateServiceUpdate(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateService(d)
+	obj, err := getObjectFmupdateService(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateService resource while getting object: %v", err)
 	}
@@ -120,7 +120,6 @@ func resourceFmupdateServiceUpdate(d *schema.ResourceData, m interface{}) error 
 
 func resourceFmupdateServiceDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -130,11 +129,17 @@ func resourceFmupdateServiceDelete(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateService(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateService resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateService(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateService(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateService resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateService resource: %v", err)
 	}
 
 	d.SetId("")
@@ -155,6 +160,7 @@ func resourceFmupdateServiceRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadFmupdateService(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateService resource: %v", err)
 	}
 
@@ -381,7 +387,7 @@ func expandFmupdateServiceWebfilterHttpsTraversal(d *schema.ResourceData, v inte
 	return v, nil
 }
 
-func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateService(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("avips"); ok || d.HasChange("avips") {

@@ -102,7 +102,7 @@ func resourceObjectVideofilterProfileFortiguardCategoryUpdate(d *schema.Resource
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectVideofilterProfileFortiguardCategory(d)
+	obj, err := getObjectObjectVideofilterProfileFortiguardCategory(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterProfileFortiguardCategory resource while getting object: %v", err)
 	}
@@ -123,7 +123,6 @@ func resourceObjectVideofilterProfileFortiguardCategoryUpdate(d *schema.Resource
 
 func resourceObjectVideofilterProfileFortiguardCategoryDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -139,11 +138,17 @@ func resourceObjectVideofilterProfileFortiguardCategoryDelete(d *schema.Resource
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectVideofilterProfileFortiguardCategory(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectVideofilterProfileFortiguardCategory resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterProfileFortiguardCategory(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectVideofilterProfileFortiguardCategory(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectVideofilterProfileFortiguardCategory resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectVideofilterProfileFortiguardCategory resource: %v", err)
 	}
 
 	d.SetId("")
@@ -179,6 +184,7 @@ func resourceObjectVideofilterProfileFortiguardCategoryRead(d *schema.ResourceDa
 
 	o, err := c.ReadObjectVideofilterProfileFortiguardCategory(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectVideofilterProfileFortiguardCategory resource: %v", err)
 	}
 
@@ -368,15 +374,19 @@ func expandObjectVideofilterProfileFortiguardCategoryFiltersLog2edl(d *schema.Re
 	return v, nil
 }
 
-func getObjectObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
-		t, err := expandObjectVideofilterProfileFortiguardCategoryFilters2edl(d, v, "filters")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["filters"] = t
+	if bemptysontable {
+		obj["filters"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
+			t, err := expandObjectVideofilterProfileFortiguardCategoryFilters2edl(d, v, "filters")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["filters"] = t
+			}
 		}
 	}
 

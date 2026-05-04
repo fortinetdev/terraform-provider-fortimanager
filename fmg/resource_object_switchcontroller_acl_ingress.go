@@ -29,6 +29,11 @@ func resourceObjectSwitchControllerAclIngress() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -132,17 +137,38 @@ func resourceObjectSwitchControllerAclIngressCreate(d *schema.ResourceData, m in
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectSwitchControllerAclIngress(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSwitchControllerAclIngress resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSwitchControllerAclIngress(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSwitchControllerAclIngress(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSwitchControllerAclIngress resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectSwitchControllerAclIngressRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectSwitchControllerAclIngress(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectSwitchControllerAclIngress resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectSwitchControllerAclIngressRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectSwitchControllerAclIngress resource: %v", err)
+			}
 		}
 	}
 
@@ -227,6 +253,7 @@ func resourceObjectSwitchControllerAclIngressRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectSwitchControllerAclIngress(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSwitchControllerAclIngress resource: %v", err)
 	}
 
@@ -313,6 +340,13 @@ func flattenObjectSwitchControllerAclIngressClassifier(v interface{}, d *schema.
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierDstIpPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convipstringlist2ipmask(v)
 }
 
@@ -321,6 +355,13 @@ func flattenObjectSwitchControllerAclIngressClassifierDstMac(v interface{}, d *s
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierSrcIpPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return convipstringlist2ipmask(v)
 }
 

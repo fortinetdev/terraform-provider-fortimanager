@@ -29,6 +29,11 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -123,6 +128,11 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Computed: true,
 						},
 						"match_route_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"match_suppress": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -311,9 +321,31 @@ func resourceObjectRouterRouteMapCreate(d *schema.ResourceData, m interface{}) e
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectRouterRouteMap(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectRouterRouteMap resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectRouterRouteMap(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectRouterRouteMap(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectRouterRouteMap resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectRouterRouteMap(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectRouterRouteMap resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -397,6 +429,7 @@ func resourceObjectRouterRouteMapRead(d *schema.ResourceData, m interface{}) err
 
 	o, err := c.ReadObjectRouterRouteMap(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectRouterRouteMap resource: %v", err)
 	}
 
@@ -534,6 +567,12 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 		if _, ok := i["match-route-type"]; ok {
 			v := flattenObjectRouterRouteMapRuleMatchRouteType(i["match-route-type"], d, pre_append)
 			tmp["match_route_type"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-MatchRouteType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_suppress"
+		if _, ok := i["match-suppress"]; ok {
+			v := flattenObjectRouterRouteMapRuleMatchSuppress(i["match-suppress"], d, pre_append)
+			tmp["match_suppress"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-MatchSuppress")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_tag"
@@ -814,6 +853,10 @@ func flattenObjectRouterRouteMapRuleMatchRouteType(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectRouterRouteMapRuleMatchSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectRouterRouteMapRuleMatchTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -907,7 +950,7 @@ func flattenObjectRouterRouteMapRuleSetLocalPreference(v interface{}, d *schema.
 }
 
 func flattenObjectRouterRouteMapRuleSetMetric(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectRouterRouteMapRuleSetMetricType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -931,7 +974,7 @@ func flattenObjectRouterRouteMapRuleSetRouteTag(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectRouterRouteMapRuleSetTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectRouterRouteMapRuleSetVpnv4Nexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1114,6 +1157,11 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_route_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-route-type"], _ = expandObjectRouterRouteMapRuleMatchRouteType(d, i["match_route_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_suppress"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["match-suppress"], _ = expandObjectRouterRouteMapRuleMatchSuppress(d, i["match_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_tag"
@@ -1357,6 +1405,10 @@ func expandObjectRouterRouteMapRuleMatchOrigin(d *schema.ResourceData, v interfa
 }
 
 func expandObjectRouterRouteMapRuleMatchRouteType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleMatchSuppress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

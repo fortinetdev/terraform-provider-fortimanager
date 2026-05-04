@@ -187,7 +187,7 @@ func resourceSystemLogSettingsRollingLocalUpdate(d *schema.ResourceData, m inter
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogSettingsRollingLocal(d)
+	obj, err := getObjectSystemLogSettingsRollingLocal(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettingsRollingLocal resource while getting object: %v", err)
 	}
@@ -208,7 +208,6 @@ func resourceSystemLogSettingsRollingLocalUpdate(d *schema.ResourceData, m inter
 
 func resourceSystemLogSettingsRollingLocalDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -218,11 +217,17 @@ func resourceSystemLogSettingsRollingLocalDelete(d *schema.ResourceData, m inter
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogSettingsRollingLocal(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogSettingsRollingLocal resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogSettingsRollingLocal(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogSettingsRollingLocal(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogSettingsRollingLocal resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogSettingsRollingLocal resource: %v", err)
 	}
 
 	d.SetId("")
@@ -243,6 +248,7 @@ func resourceSystemLogSettingsRollingLocalRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadSystemLogSettingsRollingLocal(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogSettingsRollingLocal resource: %v", err)
 	}
 
@@ -769,7 +775,7 @@ func expandSystemLogSettingsRollingLocalWhen2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("days"); ok || d.HasChange("days") {

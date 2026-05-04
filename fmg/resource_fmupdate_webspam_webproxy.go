@@ -74,7 +74,7 @@ func resourceFmupdateWebSpamWebProxyUpdate(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateWebSpamWebProxy(d)
+	obj, err := getObjectFmupdateWebSpamWebProxy(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamWebProxy resource while getting object: %v", err)
 	}
@@ -95,7 +95,6 @@ func resourceFmupdateWebSpamWebProxyUpdate(d *schema.ResourceData, m interface{}
 
 func resourceFmupdateWebSpamWebProxyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -105,11 +104,17 @@ func resourceFmupdateWebSpamWebProxyDelete(d *schema.ResourceData, m interface{}
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateWebSpamWebProxy(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateWebSpamWebProxy resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateWebSpamWebProxy(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateWebSpamWebProxy(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateWebSpamWebProxy resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateWebSpamWebProxy resource: %v", err)
 	}
 
 	d.SetId("")
@@ -130,6 +135,7 @@ func resourceFmupdateWebSpamWebProxyRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadFmupdateWebSpamWebProxy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateWebSpamWebProxy resource: %v", err)
 	}
 
@@ -252,7 +258,7 @@ func expandFmupdateWebSpamWebProxyUsername(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectFmupdateWebSpamWebProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateWebSpamWebProxy(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {

@@ -554,7 +554,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerUpdate(d *schema.ResourceData,
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
-	obj, err := getObjectObjectFspVlanDynamicMappingDhcpServer(d)
+	obj, err := getObjectObjectFspVlanDynamicMappingDhcpServer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServer resource while getting object: %v", err)
 	}
@@ -575,7 +575,6 @@ func resourceObjectFspVlanDynamicMappingDhcpServerUpdate(d *schema.ResourceData,
 
 func resourceObjectFspVlanDynamicMappingDhcpServerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -595,11 +594,17 @@ func resourceObjectFspVlanDynamicMappingDhcpServerDelete(d *schema.ResourceData,
 	paradict["dynamic_mapping_name"] = dynamic_mapping_name
 	paradict["dynamic_mapping_vdom"] = dynamic_mapping_vdom
 
+	obj, err := getObjectObjectFspVlanDynamicMappingDhcpServer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFspVlanDynamicMappingDhcpServer(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFspVlanDynamicMappingDhcpServer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFspVlanDynamicMappingDhcpServer resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFspVlanDynamicMappingDhcpServer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -657,6 +662,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectFspVlanDynamicMappingDhcpServer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanDynamicMappingDhcpServer resource: %v", err)
 	}
 
@@ -2638,7 +2644,7 @@ func expandObjectFspVlanDynamicMappingDhcpServerWinsServer23rdl(d *schema.Resour
 	return v, nil
 }
 
-func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auto_configuration"); ok || d.HasChange("auto_configuration") {
@@ -2821,12 +2827,16 @@ func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("exclude_range"); ok || d.HasChange("exclude_range") {
-		t, err := expandObjectFspVlanDynamicMappingDhcpServerExcludeRange3rdl(d, v, "exclude_range")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["exclude-range"] = t
+	if bemptysontable {
+		obj["exclude-range"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("exclude_range"); ok || d.HasChange("exclude_range") {
+			t, err := expandObjectFspVlanDynamicMappingDhcpServerExcludeRange3rdl(d, v, "exclude_range")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["exclude-range"] = t
+			}
 		}
 	}
 
@@ -2866,12 +2876,16 @@ func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
-		t, err := expandObjectFspVlanDynamicMappingDhcpServerIpRange3rdl(d, v, "ip_range")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip-range"] = t
+	if bemptysontable {
+		obj["ip-range"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
+			t, err := expandObjectFspVlanDynamicMappingDhcpServerIpRange3rdl(d, v, "ip_range")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip-range"] = t
+			}
 		}
 	}
 
@@ -3010,12 +3024,16 @@ func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
-		t, err := expandObjectFspVlanDynamicMappingDhcpServerOptions3rdl(d, v, "options")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["options"] = t
+	if bemptysontable {
+		obj["options"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
+			t, err := expandObjectFspVlanDynamicMappingDhcpServerOptions3rdl(d, v, "options")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["options"] = t
+			}
 		}
 	}
 
@@ -3028,12 +3046,16 @@ func getObjectObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("reserved_address"); ok || d.HasChange("reserved_address") {
-		t, err := expandObjectFspVlanDynamicMappingDhcpServerReservedAddress3rdl(d, v, "reserved_address")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["reserved-address"] = t
+	if bemptysontable {
+		obj["reserved-address"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("reserved_address"); ok || d.HasChange("reserved_address") {
+			t, err := expandObjectFspVlanDynamicMappingDhcpServerReservedAddress3rdl(d, v, "reserved_address")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["reserved-address"] = t
+			}
 		}
 	}
 

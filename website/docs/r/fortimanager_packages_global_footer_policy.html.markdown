@@ -311,6 +311,7 @@ The following arguments are supported:
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
 * `learning_mode` - Learning-Mode. Valid values: `disable`, `enable`.
 
+* `llm_profile` - Llm-Profile.
 * `log_http_transaction` - Log-Http-Transaction. Valid values: `disable`, `enable`.
 
 * `log_unmatched_traffic` - Log-Unmatched-Traffic. Valid values: `disable`, `enable`.

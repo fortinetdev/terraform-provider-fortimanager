@@ -29,6 +29,11 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -110,6 +115,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"incoming_ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -139,6 +145,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"pac_file_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pac_file_server_port": &schema.Schema{
 				Type:     schema.TypeString,
@@ -147,6 +154,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"pac_file_server_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pac_file_through_https": &schema.Schema{
 				Type:     schema.TypeString,
@@ -165,6 +173,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"realm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"return_to_sender": &schema.Schema{
 				Type:     schema.TypeString,
@@ -174,6 +183,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"sec_default_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"secure_web_proxy": &schema.Schema{
 				Type:     schema.TypeString,
@@ -214,6 +224,7 @@ func resourceObjectWebProxyExplicitProxy() *schema.Resource {
 			"unknown_http_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user_agent_detect": &schema.Schema{
 				Type:     schema.TypeString,
@@ -243,9 +254,31 @@ func resourceObjectWebProxyExplicitProxyCreate(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyExplicitProxy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWebProxyExplicitProxy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWebProxyExplicitProxy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWebProxyExplicitProxy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWebProxyExplicitProxy resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWebProxyExplicitProxy(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWebProxyExplicitProxy resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -329,6 +362,7 @@ func resourceObjectWebProxyExplicitProxyRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectWebProxyExplicitProxy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebProxyExplicitProxy resource: %v", err)
 	}
 

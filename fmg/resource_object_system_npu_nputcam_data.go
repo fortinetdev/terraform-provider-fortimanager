@@ -314,7 +314,7 @@ func resourceObjectSystemNpuNpuTcamDataUpdate(d *schema.ResourceData, m interfac
 	npu_tcam := d.Get("npu_tcam").(string)
 	paradict["npu_tcam"] = npu_tcam
 
-	obj, err := getObjectObjectSystemNpuNpuTcamData(d)
+	obj, err := getObjectObjectSystemNpuNpuTcamData(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamData resource while getting object: %v", err)
 	}
@@ -335,7 +335,6 @@ func resourceObjectSystemNpuNpuTcamDataUpdate(d *schema.ResourceData, m interfac
 
 func resourceObjectSystemNpuNpuTcamDataDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -351,11 +350,17 @@ func resourceObjectSystemNpuNpuTcamDataDelete(d *schema.ResourceData, m interfac
 	npu_tcam := d.Get("npu_tcam").(string)
 	paradict["npu_tcam"] = npu_tcam
 
+	obj, err := getObjectObjectSystemNpuNpuTcamData(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamData resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpuTcamData(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuNpuTcamData(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuNpuTcamData resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuNpuTcamData resource: %v", err)
 	}
 
 	d.SetId("")
@@ -391,6 +396,7 @@ func resourceObjectSystemNpuNpuTcamDataRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectSystemNpuNpuTcamData(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuNpuTcamData resource: %v", err)
 	}
 
@@ -1395,7 +1401,7 @@ func expandObjectSystemNpuNpuTcamDataVdid3rdl(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectObjectSystemNpuNpuTcamData(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuNpuTcamData(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("df"); ok || d.HasChange("df") {

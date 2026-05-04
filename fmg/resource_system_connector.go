@@ -89,7 +89,7 @@ func resourceSystemConnectorUpdate(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemConnector(d)
+	obj, err := getObjectSystemConnector(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemConnector resource while getting object: %v", err)
 	}
@@ -110,7 +110,6 @@ func resourceSystemConnectorUpdate(d *schema.ResourceData, m interface{}) error 
 
 func resourceSystemConnectorDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -120,11 +119,17 @@ func resourceSystemConnectorDelete(d *schema.ResourceData, m interface{}) error 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemConnector(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemConnector resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemConnector(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemConnector(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemConnector resource: %v", err)
+		return fmt.Errorf("Error clearing SystemConnector resource: %v", err)
 	}
 
 	d.SetId("")
@@ -145,6 +150,7 @@ func resourceSystemConnectorRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemConnector(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemConnector resource: %v", err)
 	}
 
@@ -335,7 +341,7 @@ func expandSystemConnectorPxSvrTimeout(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
-func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemConnector(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cloud_orchest_refresh_interval"); ok || d.HasChange("cloud_orchest_refresh_interval") {

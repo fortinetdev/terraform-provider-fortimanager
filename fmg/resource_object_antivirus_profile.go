@@ -29,6 +29,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -329,6 +334,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			},
 			"fortisandbox_mode": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fortisandbox_scan_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -1086,9 +1096,31 @@ func resourceObjectAntivirusProfileCreate(d *schema.ResourceData, m interface{})
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectAntivirusProfile(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectAntivirusProfile resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectAntivirusProfile(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectAntivirusProfile(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectAntivirusProfile resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectAntivirusProfile(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectAntivirusProfile resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -1172,6 +1204,7 @@ func resourceObjectAntivirusProfileRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectAntivirusProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAntivirusProfile resource: %v", err)
 	}
 
@@ -1587,6 +1620,10 @@ func flattenObjectAntivirusProfileFortisandboxMaxUpload(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfileFortisandboxMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortisandboxScanTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3084,6 +3121,16 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fortisandbox_scan_timeout", flattenObjectAntivirusProfileFortisandboxScanTimeout(o["fortisandbox-scan-timeout"], d, "fortisandbox_scan_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortisandbox-scan-timeout"], "ObjectAntivirusProfile-FortisandboxScanTimeout"); ok {
+			if err = d.Set("fortisandbox_scan_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading fortisandbox_scan_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortisandbox_scan_timeout: %v", err)
+		}
+	}
+
 	if err = d.Set("fortisandbox_timeout_action", flattenObjectAntivirusProfileFortisandboxTimeoutAction(o["fortisandbox-timeout-action"], d, "fortisandbox_timeout_action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fortisandbox-timeout-action"], "ObjectAntivirusProfile-FortisandboxTimeoutAction"); ok {
 			if err = d.Set("fortisandbox_timeout_action", vv); err != nil {
@@ -3806,6 +3853,10 @@ func expandObjectAntivirusProfileFortisandboxMaxUpload(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfileFortisandboxMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortisandboxScanTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5139,6 +5190,15 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["fortisandbox-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortisandbox_scan_timeout"); ok || d.HasChange("fortisandbox_scan_timeout") {
+		t, err := expandObjectAntivirusProfileFortisandboxScanTimeout(d, v, "fortisandbox_scan_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortisandbox-scan-timeout"] = t
 		}
 	}
 

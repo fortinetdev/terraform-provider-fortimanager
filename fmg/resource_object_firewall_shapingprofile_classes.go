@@ -29,6 +29,11 @@ func resourceObjectFirewallShapingProfileClasses() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -98,9 +103,31 @@ func resourceObjectFirewallShapingProfileClassesCreate(d *schema.ResourceData, m
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallShapingProfileClasses(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallShapingProfileClasses resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallShapingProfileClasses(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallShapingProfileClasses(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallShapingProfileClasses resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallShapingProfileClasses(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallShapingProfileClasses resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -202,6 +229,7 @@ func resourceObjectFirewallShapingProfileClassesRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectFirewallShapingProfileClasses(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallShapingProfileClasses resource: %v", err)
 	}
 

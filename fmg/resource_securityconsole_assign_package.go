@@ -83,7 +83,7 @@ func resourceSecurityconsoleAssignPackageUpdate(d *schema.ResourceData, m interf
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleAssignPackage(d)
+	obj, err := getObjectSecurityconsoleAssignPackage(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAssignPackage resource while getting object: %v", err)
 	}
@@ -299,7 +299,7 @@ func expandSecurityconsoleAssignPackageTargetPkg(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectSecurityconsoleAssignPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleAssignPackage(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
@@ -320,12 +320,16 @@ func getObjectSecurityconsoleAssignPackage(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
-		t, err := expandSecurityconsoleAssignPackageTarget(d, v, "target")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["target"] = t
+	if bemptysontable {
+		obj["target"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
+			t, err := expandSecurityconsoleAssignPackageTarget(d, v, "target")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["target"] = t
+			}
 		}
 	}
 

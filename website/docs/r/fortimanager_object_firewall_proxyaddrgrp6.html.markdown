@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_proxyaddrgrp6"
 description: |-
@@ -24,6 +24,8 @@ The following arguments are supported:
 
 * `color` - Color.
 * `comment` - Comment.
+* `logic_type` - Logic-Type. Valid values: `or`, `and`.
+
 * `member` - Member.
 * `name` - Name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.

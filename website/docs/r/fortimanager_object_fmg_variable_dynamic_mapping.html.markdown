@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object FMG"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_fmg_variable_dynamic_mapping"
 description: |-

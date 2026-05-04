@@ -259,7 +259,7 @@ func resourceSystemLocallogDiskFilterUpdate(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogDiskFilter(d)
+	obj, err := getObjectSystemLocallogDiskFilter(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogDiskFilter resource while getting object: %v", err)
 	}
@@ -280,7 +280,6 @@ func resourceSystemLocallogDiskFilterUpdate(d *schema.ResourceData, m interface{
 
 func resourceSystemLocallogDiskFilterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -290,11 +289,17 @@ func resourceSystemLocallogDiskFilterDelete(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogDiskFilter(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogDiskFilter resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogDiskFilter(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogDiskFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogDiskFilter resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogDiskFilter resource: %v", err)
 	}
 
 	d.SetId("")
@@ -315,6 +320,7 @@ func resourceSystemLocallogDiskFilterRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadSystemLocallogDiskFilter(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogDiskFilter resource: %v", err)
 	}
 
@@ -1117,7 +1123,7 @@ func expandSystemLocallogDiskFilterWebport(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectSystemLocallogDiskFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogDiskFilter(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aid"); ok || d.HasChange("aid") {

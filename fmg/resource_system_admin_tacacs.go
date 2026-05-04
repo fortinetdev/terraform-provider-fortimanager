@@ -29,6 +29,11 @@ func resourceSystemAdminTacacs() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"authen_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -102,9 +107,31 @@ func resourceSystemAdminTacacsCreate(d *schema.ResourceData, m interface{}) erro
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemAdminTacacs(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemAdminTacacs resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemAdminTacacs(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemAdminTacacs(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemAdminTacacs resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemAdminTacacs(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemAdminTacacs resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -179,6 +206,7 @@ func resourceSystemAdminTacacsRead(d *schema.ResourceData, m interface{}) error 
 
 	o, err := c.ReadSystemAdminTacacs(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAdminTacacs resource: %v", err)
 	}
 

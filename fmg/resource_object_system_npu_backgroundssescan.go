@@ -106,7 +106,7 @@ func resourceObjectSystemNpuBackgroundSseScanUpdate(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuBackgroundSseScan(d)
+	obj, err := getObjectObjectSystemNpuBackgroundSseScan(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuBackgroundSseScan resource while getting object: %v", err)
 	}
@@ -127,7 +127,6 @@ func resourceObjectSystemNpuBackgroundSseScanUpdate(d *schema.ResourceData, m in
 
 func resourceObjectSystemNpuBackgroundSseScanDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -140,11 +139,17 @@ func resourceObjectSystemNpuBackgroundSseScanDelete(d *schema.ResourceData, m in
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuBackgroundSseScan(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuBackgroundSseScan resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuBackgroundSseScan(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuBackgroundSseScan(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuBackgroundSseScan resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuBackgroundSseScan resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectSystemNpuBackgroundSseScanRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectSystemNpuBackgroundSseScan(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuBackgroundSseScan resource: %v", err)
 	}
 
@@ -362,7 +368,7 @@ func expandObjectSystemNpuBackgroundSseScanUdpQualDuration2edl(d *schema.Resourc
 	return v, nil
 }
 
-func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("scan"); ok || d.HasChange("scan") {

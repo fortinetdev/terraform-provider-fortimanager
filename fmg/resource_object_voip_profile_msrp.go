@@ -90,7 +90,7 @@ func resourceObjectVoipProfileMsrpUpdate(d *schema.ResourceData, m interface{}) 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectVoipProfileMsrp(d)
+	obj, err := getObjectObjectVoipProfileMsrp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVoipProfileMsrp resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceObjectVoipProfileMsrpUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceObjectVoipProfileMsrpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceObjectVoipProfileMsrpDelete(d *schema.ResourceData, m interface{}) 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectVoipProfileMsrp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectVoipProfileMsrp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectVoipProfileMsrp(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectVoipProfileMsrp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectVoipProfileMsrp resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectVoipProfileMsrp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceObjectVoipProfileMsrpRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadObjectVoipProfileMsrp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectVoipProfileMsrp resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandObjectVoipProfileMsrpStatus2edl(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectObjectVoipProfileMsrp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectVoipProfileMsrp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("log_violations"); ok || d.HasChange("log_violations") {

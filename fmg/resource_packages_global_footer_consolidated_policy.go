@@ -29,6 +29,11 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -40,7 +45,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -483,17 +488,38 @@ func resourcePackagesGlobalFooterConsolidatedPolicyCreate(d *schema.ResourceData
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesGlobalFooterConsolidatedPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesGlobalFooterConsolidatedPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesGlobalFooterConsolidatedPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesGlobalFooterConsolidatedPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -599,6 +625,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicyRead(d *schema.ResourceData, 
 
 	o, err := c.ReadPackagesGlobalFooterConsolidatedPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
 	}
 

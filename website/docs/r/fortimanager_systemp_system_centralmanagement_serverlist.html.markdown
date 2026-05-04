@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Systemp"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_systemp_system_centralmanagement_serverlist"
 description: |-

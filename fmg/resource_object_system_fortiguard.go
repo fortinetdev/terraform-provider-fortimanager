@@ -409,7 +409,7 @@ func resourceObjectSystemFortiguardUpdate(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemFortiguard(d)
+	obj, err := getObjectObjectSystemFortiguard(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemFortiguard resource while getting object: %v", err)
 	}
@@ -430,7 +430,6 @@ func resourceObjectSystemFortiguardUpdate(d *schema.ResourceData, m interface{})
 
 func resourceObjectSystemFortiguardDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -443,11 +442,17 @@ func resourceObjectSystemFortiguardDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemFortiguard(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemFortiguard resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemFortiguard(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemFortiguard(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemFortiguard resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemFortiguard resource: %v", err)
 	}
 
 	d.SetId("")
@@ -471,6 +476,7 @@ func resourceObjectSystemFortiguardRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectSystemFortiguard(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemFortiguard resource: %v", err)
 	}
 
@@ -1785,7 +1791,7 @@ func expandObjectSystemFortiguardFnbiLicense(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemFortiguard(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fds_license_expiring_days"); ok || d.HasChange("fds_license_expiring_days") {

@@ -52,7 +52,7 @@ func resourceSecurityconsoleAbortUpdate(d *schema.ResourceData, m interface{}) e
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleAbort(d)
+	obj, err := getObjectSecurityconsoleAbort(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAbort resource while getting object: %v", err)
 	}
@@ -112,7 +112,7 @@ func expandSecurityconsoleAbortAdom(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
-func getObjectSecurityconsoleAbort(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleAbort(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {

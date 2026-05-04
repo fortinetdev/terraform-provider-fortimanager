@@ -187,7 +187,7 @@ func resourceSystemLogSettingsRollingAnalyzerUpdate(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogSettingsRollingAnalyzer(d)
+	obj, err := getObjectSystemLogSettingsRollingAnalyzer(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettingsRollingAnalyzer resource while getting object: %v", err)
 	}
@@ -208,7 +208,6 @@ func resourceSystemLogSettingsRollingAnalyzerUpdate(d *schema.ResourceData, m in
 
 func resourceSystemLogSettingsRollingAnalyzerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -218,11 +217,17 @@ func resourceSystemLogSettingsRollingAnalyzerDelete(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogSettingsRollingAnalyzer(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogSettingsRollingAnalyzer resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogSettingsRollingAnalyzer(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogSettingsRollingAnalyzer(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogSettingsRollingAnalyzer resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogSettingsRollingAnalyzer resource: %v", err)
 	}
 
 	d.SetId("")
@@ -243,6 +248,7 @@ func resourceSystemLogSettingsRollingAnalyzerRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadSystemLogSettingsRollingAnalyzer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogSettingsRollingAnalyzer resource: %v", err)
 	}
 
@@ -769,7 +775,7 @@ func expandSystemLogSettingsRollingAnalyzerWhen2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("days"); ok || d.HasChange("days") {

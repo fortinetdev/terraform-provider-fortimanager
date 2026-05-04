@@ -282,7 +282,7 @@ func resourceFmupdateWebSpamFgdSettingUpdate(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateWebSpamFgdSetting(d)
+	obj, err := getObjectFmupdateWebSpamFgdSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamFgdSetting resource while getting object: %v", err)
 	}
@@ -303,7 +303,6 @@ func resourceFmupdateWebSpamFgdSettingUpdate(d *schema.ResourceData, m interface
 
 func resourceFmupdateWebSpamFgdSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -313,11 +312,17 @@ func resourceFmupdateWebSpamFgdSettingDelete(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateWebSpamFgdSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateWebSpamFgdSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateWebSpamFgdSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateWebSpamFgdSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateWebSpamFgdSetting resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateWebSpamFgdSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -338,6 +343,7 @@ func resourceFmupdateWebSpamFgdSettingRead(d *schema.ResourceData, m interface{}
 
 	o, err := c.ReadFmupdateWebSpamFgdSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateWebSpamFgdSetting resource: %v", err)
 	}
 
@@ -573,7 +579,7 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistPort(v interface{}, d
 }
 
 func flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenFmupdateWebSpamFgdSettingServerOverrideStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1269,7 +1275,7 @@ func expandFmupdateWebSpamFgdSettingServerOverrideServlistPort(d *schema.Resourc
 }
 
 func expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandFmupdateWebSpamFgdSettingServerOverrideStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1316,7 +1322,7 @@ func expandFmupdateWebSpamFgdSettingWfPreload(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("as_cache"); ok || d.HasChange("as_cache") {

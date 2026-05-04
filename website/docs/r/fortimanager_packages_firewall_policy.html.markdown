@@ -115,6 +115,7 @@ The following arguments are supported:
 
 * `isolator_profile` - Isolator-Profile.
 * `isolator_server` - Isolator-Server.
+* `llm_profile` - Llm-Profile.
 * `max_session_per_user` - Max-Session-Per-User.
 * `pass_through` - Pass-Through. Valid values: `disable`, `enable`.
 

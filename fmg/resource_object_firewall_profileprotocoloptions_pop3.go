@@ -123,7 +123,7 @@ func resourceObjectFirewallProfileProtocolOptionsPop3Update(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsPop3(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsPop3(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsPop3 resource while getting object: %v", err)
 	}
@@ -144,7 +144,6 @@ func resourceObjectFirewallProfileProtocolOptionsPop3Update(d *schema.ResourceDa
 
 func resourceObjectFirewallProfileProtocolOptionsPop3Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -160,11 +159,17 @@ func resourceObjectFirewallProfileProtocolOptionsPop3Delete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsPop3(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsPop3 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsPop3(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsPop3(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsPop3 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsPop3 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -200,6 +205,7 @@ func resourceObjectFirewallProfileProtocolOptionsPop3Read(d *schema.ResourceData
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsPop3(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsPop3 resource: %v", err)
 	}
 
@@ -412,7 +418,7 @@ func expandObjectFirewallProfileProtocolOptionsPop3UncompressedOversizeLimit2edl
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsPop3(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsPop3(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("inspect_all"); ok || d.HasChange("inspect_all") {

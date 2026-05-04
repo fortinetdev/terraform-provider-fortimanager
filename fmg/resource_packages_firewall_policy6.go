@@ -29,6 +29,11 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -56,7 +61,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -481,9 +486,31 @@ func resourcePackagesFirewallPolicy6Create(d *schema.ResourceData, m interface{}
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreatePackagesFirewallPolicy6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallPolicy6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallPolicy6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallPolicy6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallPolicy6 resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreatePackagesFirewallPolicy6(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating PackagesFirewallPolicy6 resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -597,6 +624,7 @@ func resourcePackagesFirewallPolicy6Read(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadPackagesFirewallPolicy6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallPolicy6 resource: %v", err)
 	}
 
@@ -862,7 +890,7 @@ func flattenPackagesFirewallPolicy6ServiceNegate(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallPolicy6SessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesFirewallPolicy6SpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {

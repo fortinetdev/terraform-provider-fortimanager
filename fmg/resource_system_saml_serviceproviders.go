@@ -29,6 +29,11 @@ func resourceSystemSamlServiceProviders() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"idp_entity_id": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -94,9 +99,31 @@ func resourceSystemSamlServiceProvidersCreate(d *schema.ResourceData, m interfac
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemSamlServiceProviders(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemSamlServiceProviders resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("idp_entity_id")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemSamlServiceProviders(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemSamlServiceProviders(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemSamlServiceProviders resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemSamlServiceProviders(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemSamlServiceProviders resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "idp_entity_id"))
@@ -171,6 +198,7 @@ func resourceSystemSamlServiceProvidersRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadSystemSamlServiceProviders(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemSamlServiceProviders resource: %v", err)
 	}
 

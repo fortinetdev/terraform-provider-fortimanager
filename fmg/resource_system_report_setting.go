@@ -98,7 +98,7 @@ func resourceSystemReportSettingUpdate(d *schema.ResourceData, m interface{}) er
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemReportSetting(d)
+	obj, err := getObjectSystemReportSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportSetting resource while getting object: %v", err)
 	}
@@ -119,7 +119,6 @@ func resourceSystemReportSettingUpdate(d *schema.ResourceData, m interface{}) er
 
 func resourceSystemReportSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -129,11 +128,17 @@ func resourceSystemReportSettingDelete(d *schema.ResourceData, m interface{}) er
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemReportSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemReportSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemReportSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemReportSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemReportSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemReportSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -154,6 +159,7 @@ func resourceSystemReportSettingRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemReportSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemReportSetting resource: %v", err)
 	}
 
@@ -380,7 +386,7 @@ func expandSystemReportSettingWeekStart(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
-func getObjectSystemReportSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemReportSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aggregate_report"); ok || d.HasChange("aggregate_report") {

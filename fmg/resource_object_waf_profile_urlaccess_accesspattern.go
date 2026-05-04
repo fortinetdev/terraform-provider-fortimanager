@@ -29,6 +29,11 @@ func resourceObjectWafProfileUrlAccessAccessPattern() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -106,9 +111,31 @@ func resourceObjectWafProfileUrlAccessAccessPatternCreate(d *schema.ResourceData
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWafProfileUrlAccessAccessPattern(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWafProfileUrlAccessAccessPattern(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWafProfileUrlAccessAccessPattern(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWafProfileUrlAccessAccessPattern(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -225,6 +252,7 @@ func resourceObjectWafProfileUrlAccessAccessPatternRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectWafProfileUrlAccessAccessPattern(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileUrlAccessAccessPattern resource: %v", err)
 	}
 

@@ -91,7 +91,7 @@ func resourceObjectWafProfileConstraintMalformedUpdate(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMalformed(d)
+	obj, err := getObjectObjectWafProfileConstraintMalformed(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMalformed resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceObjectWafProfileConstraintMalformedUpdate(d *schema.ResourceData, m
 
 func resourceObjectWafProfileConstraintMalformedDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -128,11 +127,17 @@ func resourceObjectWafProfileConstraintMalformedDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMalformed(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMalformed resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMalformed(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMalformed(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMalformed resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMalformed resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectWafProfileConstraintMalformedRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectWafProfileConstraintMalformed(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMalformed resource: %v", err)
 	}
 
@@ -272,7 +278,7 @@ func expandObjectWafProfileConstraintMalformedStatus3rdl(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMalformed(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMalformed(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

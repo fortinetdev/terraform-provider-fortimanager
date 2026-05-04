@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Wan"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_wan_template"
 description: |-

@@ -83,7 +83,7 @@ func resourceObjectFirewallGtpMessageRateLimitV2Update(d *schema.ResourceData, m
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
-	obj, err := getObjectObjectFirewallGtpMessageRateLimitV2(d)
+	obj, err := getObjectObjectFirewallGtpMessageRateLimitV2(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimitV2 resource while getting object: %v", err)
 	}
@@ -104,7 +104,6 @@ func resourceObjectFirewallGtpMessageRateLimitV2Update(d *schema.ResourceData, m
 
 func resourceObjectFirewallGtpMessageRateLimitV2Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -120,11 +119,17 @@ func resourceObjectFirewallGtpMessageRateLimitV2Delete(d *schema.ResourceData, m
 	gtp := d.Get("gtp").(string)
 	paradict["gtp"] = gtp
 
+	obj, err := getObjectObjectFirewallGtpMessageRateLimitV2(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallGtpMessageRateLimitV2 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallGtpMessageRateLimitV2(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallGtpMessageRateLimitV2(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallGtpMessageRateLimitV2 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallGtpMessageRateLimitV2 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -160,6 +165,7 @@ func resourceObjectFirewallGtpMessageRateLimitV2Read(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectFirewallGtpMessageRateLimitV2(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallGtpMessageRateLimitV2 resource: %v", err)
 	}
 
@@ -246,7 +252,7 @@ func expandObjectFirewallGtpMessageRateLimitV2EchoRequest2edl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectFirewallGtpMessageRateLimitV2(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallGtpMessageRateLimitV2(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("create_session_request"); ok || d.HasChange("create_session_request") {

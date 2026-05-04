@@ -29,6 +29,11 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddress() *schema.Reso
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -135,9 +140,31 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressCreate(d *schem
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFspVlanDynamicMappingDhcpServerReservedAddress(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFspVlanDynamicMappingDhcpServerReservedAddress(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -269,6 +296,7 @@ func resourceObjectFspVlanDynamicMappingDhcpServerReservedAddressRead(d *schema.
 
 	o, err := c.ReadObjectFspVlanDynamicMappingDhcpServerReservedAddress(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanDynamicMappingDhcpServerReservedAddress resource: %v", err)
 	}
 

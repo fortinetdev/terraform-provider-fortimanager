@@ -91,7 +91,7 @@ func resourceObjectWafProfileConstraintVersionUpdate(d *schema.ResourceData, m i
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintVersion(d)
+	obj, err := getObjectObjectWafProfileConstraintVersion(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintVersion resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceObjectWafProfileConstraintVersionUpdate(d *schema.ResourceData, m i
 
 func resourceObjectWafProfileConstraintVersionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -128,11 +127,17 @@ func resourceObjectWafProfileConstraintVersionDelete(d *schema.ResourceData, m i
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintVersion(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintVersion resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintVersion(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintVersion(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintVersion resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintVersion resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectWafProfileConstraintVersionRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadObjectWafProfileConstraintVersion(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintVersion resource: %v", err)
 	}
 
@@ -272,7 +278,7 @@ func expandObjectWafProfileConstraintVersionStatus3rdl(d *schema.ResourceData, v
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintVersion(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintVersion(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object ZTNA"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_ztna_webportal"
 description: |-
@@ -55,6 +55,9 @@ The following arguments are supported:
 * `vip6` - Virtual IPv6 name.
 * `windows_forticlient_download_url` - Download URL for Windows FortiClient.
 * `bookmarks` - Bookmarks.
+* `llm_profile` - Llm-Profile.
+* `llm_proxy` - Llm-Proxy. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

@@ -128,7 +128,7 @@ func resourceObjectWafProfileMethodUpdate(d *schema.ResourceData, m interface{})
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileMethod(d)
+	obj, err := getObjectObjectWafProfileMethod(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileMethod resource while getting object: %v", err)
 	}
@@ -149,7 +149,6 @@ func resourceObjectWafProfileMethodUpdate(d *schema.ResourceData, m interface{})
 
 func resourceObjectWafProfileMethodDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -165,11 +164,17 @@ func resourceObjectWafProfileMethodDelete(d *schema.ResourceData, m interface{})
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileMethod(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileMethod resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileMethod(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileMethod(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileMethod resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileMethod resource: %v", err)
 	}
 
 	d.SetId("")
@@ -205,6 +210,7 @@ func resourceObjectWafProfileMethodRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectWafProfileMethod(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileMethod resource: %v", err)
 	}
 
@@ -485,7 +491,7 @@ func expandObjectWafProfileMethodStatus2edl(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectObjectWafProfileMethod(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileMethod(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("default_allowed_methods"); ok || d.HasChange("default_allowed_methods") {
@@ -506,12 +512,16 @@ func getObjectObjectWafProfileMethod(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("method_policy"); ok || d.HasChange("method_policy") {
-		t, err := expandObjectWafProfileMethodMethodPolicy2edl(d, v, "method_policy")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["method-policy"] = t
+	if bemptysontable {
+		obj["method-policy"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("method_policy"); ok || d.HasChange("method_policy") {
+			t, err := expandObjectWafProfileMethodMethodPolicy2edl(d, v, "method_policy")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["method-policy"] = t
+			}
 		}
 	}
 

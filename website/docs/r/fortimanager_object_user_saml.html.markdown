@@ -52,6 +52,8 @@ The following arguments are supported:
 * `name` - SAML server entry name.
 * `reauth` - Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `require_signed_resp_and_asrt` - Require both response and assertion from IDP to be signed when FGT acts as SP (default = disable). Valid values: `disable`, `enable`.
+
 * `scim_client` - SCIM client name.
 * `scim_group_attr_type` - Group attribute type used to match SCIM groups (default = display-name).. Valid values: `display-name`, `external-id`.
 
@@ -85,6 +87,8 @@ The `dynamic_mapping` block supports:
 * `limit_relaystate` - Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `disable`, `enable`.
 
 * `reauth` - Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `require_signed_resp_and_asrt` - Require both response and assertion from IDP to be signed when FGT acts as SP (default = disable). Valid values: `disable`, `enable`.
 
 * `scim_client` - SCIM client name.
 * `scim_group_attr_type` - Group attribute type used to match SCIM groups (default = display-name).. Valid values: `display-name`, `external-id`.

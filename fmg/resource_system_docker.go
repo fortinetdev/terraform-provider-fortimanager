@@ -125,7 +125,7 @@ func resourceSystemDockerUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemDocker(d)
+	obj, err := getObjectSystemDocker(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDocker resource while getting object: %v", err)
 	}
@@ -146,7 +146,6 @@ func resourceSystemDockerUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemDockerDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -156,11 +155,17 @@ func resourceSystemDockerDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemDocker(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemDocker resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemDocker(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemDocker(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemDocker resource: %v", err)
+		return fmt.Errorf("Error clearing SystemDocker resource: %v", err)
 	}
 
 	d.SetId("")
@@ -181,6 +186,7 @@ func resourceSystemDockerRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemDocker(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemDocker resource: %v", err)
 	}
 
@@ -202,6 +208,13 @@ func flattenSystemDockerCpu(v interface{}, d *schema.ResourceData, pre string) i
 }
 
 func flattenSystemDockerDefaultAddressPoolBase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return flattenStringList(v)
 }
 
@@ -497,7 +510,7 @@ func expandSystemDockerUniversalconnector(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
-func getObjectSystemDocker(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemDocker(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("cpu"); ok || d.HasChange("cpu") {

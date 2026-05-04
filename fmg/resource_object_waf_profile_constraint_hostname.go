@@ -91,7 +91,7 @@ func resourceObjectWafProfileConstraintHostnameUpdate(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintHostname(d)
+	obj, err := getObjectObjectWafProfileConstraintHostname(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintHostname resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceObjectWafProfileConstraintHostnameUpdate(d *schema.ResourceData, m 
 
 func resourceObjectWafProfileConstraintHostnameDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -128,11 +127,17 @@ func resourceObjectWafProfileConstraintHostnameDelete(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintHostname(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintHostname resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintHostname(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintHostname(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintHostname resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintHostname resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectWafProfileConstraintHostnameRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadObjectWafProfileConstraintHostname(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintHostname resource: %v", err)
 	}
 
@@ -272,7 +278,7 @@ func expandObjectWafProfileConstraintHostnameStatus3rdl(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintHostname(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintHostname(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

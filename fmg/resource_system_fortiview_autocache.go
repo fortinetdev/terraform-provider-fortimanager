@@ -64,7 +64,7 @@ func resourceSystemFortiviewAutoCacheUpdate(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemFortiviewAutoCache(d)
+	obj, err := getObjectSystemFortiviewAutoCache(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFortiviewAutoCache resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemFortiviewAutoCacheUpdate(d *schema.ResourceData, m interface{
 
 func resourceSystemFortiviewAutoCacheDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemFortiviewAutoCacheDelete(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemFortiviewAutoCache(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemFortiviewAutoCache resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemFortiviewAutoCache(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemFortiviewAutoCache(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemFortiviewAutoCache resource: %v", err)
+		return fmt.Errorf("Error clearing SystemFortiviewAutoCache resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemFortiviewAutoCacheRead(d *schema.ResourceData, m interface{})
 
 	o, err := c.ReadSystemFortiviewAutoCache(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemFortiviewAutoCache resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemFortiviewAutoCacheStatus(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
-func getObjectSystemFortiviewAutoCache(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemFortiviewAutoCache(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aggressive_fortiview"); ok || d.HasChange("aggressive_fortiview") {

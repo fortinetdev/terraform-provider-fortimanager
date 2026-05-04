@@ -142,7 +142,7 @@ func resourceDvmCmdAddDevListUpdate(d *schema.ResourceData, m interface{}) error
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectDvmCmdAddDevList(d)
+	obj, err := getObjectDvmCmdAddDevList(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevList resource while getting object: %v", err)
 	}
@@ -614,15 +614,19 @@ func expandDvmCmdAddDevListFlags(d *schema.ResourceData, v interface{}, pre stri
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectDvmCmdAddDevList(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdAddDevList(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("add_dev_list"); ok || d.HasChange("add_dev_list") {
-		t, err := expandDvmCmdAddDevListAddDevList(d, v, "add_dev_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["add-dev-list"] = t
+	if bemptysontable {
+		obj["add-dev-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("add_dev_list"); ok || d.HasChange("add_dev_list") {
+			t, err := expandDvmCmdAddDevListAddDevList(d, v, "add_dev_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["add-dev-list"] = t
+			}
 		}
 	}
 

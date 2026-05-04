@@ -55,6 +55,8 @@ The following arguments are supported:
 * `type` - Source or destination address group type. Valid values: `src`, `dst`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `logic_type` - Logic-Type. Valid values: `or`, `and`.
+
 * `visibility` - Enable/disable visibility of the object in the GUI. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

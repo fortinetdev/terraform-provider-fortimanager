@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Packages"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_responseshapingpolicy_move"
 description: |-

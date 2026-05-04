@@ -68,7 +68,7 @@ func resourceSystemInterfaceIpv6Update(d *schema.ResourceData, m interface{}) er
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
-	obj, err := getObjectSystemInterfaceIpv6(d)
+	obj, err := getObjectSystemInterfaceIpv6(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemInterfaceIpv6 resource while getting object: %v", err)
 	}
@@ -89,7 +89,6 @@ func resourceSystemInterfaceIpv6Update(d *schema.ResourceData, m interface{}) er
 
 func resourceSystemInterfaceIpv6Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -102,11 +101,17 @@ func resourceSystemInterfaceIpv6Delete(d *schema.ResourceData, m interface{}) er
 	var_interface := d.Get("interface").(string)
 	paradict["interface"] = var_interface
 
+	obj, err := getObjectSystemInterfaceIpv6(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemInterfaceIpv6 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemInterfaceIpv6(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemInterfaceIpv6(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemInterfaceIpv6 resource: %v", err)
+		return fmt.Errorf("Error clearing SystemInterfaceIpv6 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -139,6 +144,7 @@ func resourceSystemInterfaceIpv6Read(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadSystemInterfaceIpv6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemInterfaceIpv6 resource: %v", err)
 	}
 
@@ -221,7 +227,7 @@ func expandSystemInterfaceIpv6Ip6Autoconf2edl(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectSystemInterfaceIpv6(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemInterfaceIpv6(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ip6_address"); ok || d.HasChange("ip6_address") {

@@ -59,7 +59,7 @@ func resourceSystemHaScheduledCheckUpdate(d *schema.ResourceData, m interface{})
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemHaScheduledCheck(d)
+	obj, err := getObjectSystemHaScheduledCheck(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaScheduledCheck resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemHaScheduledCheckUpdate(d *schema.ResourceData, m interface{})
 
 func resourceSystemHaScheduledCheckDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemHaScheduledCheckDelete(d *schema.ResourceData, m interface{})
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemHaScheduledCheck(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemHaScheduledCheck resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemHaScheduledCheck(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemHaScheduledCheck(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemHaScheduledCheck resource: %v", err)
+		return fmt.Errorf("Error clearing SystemHaScheduledCheck resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemHaScheduledCheckRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadSystemHaScheduledCheck(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemHaScheduledCheck resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemHaScheduledCheckWeekDays(d *schema.ResourceData, v interface{},
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystemHaScheduledCheck(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemHaScheduledCheck(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {

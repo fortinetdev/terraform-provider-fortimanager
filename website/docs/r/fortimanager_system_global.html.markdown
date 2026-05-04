@@ -82,6 +82,7 @@ The following arguments are supported:
 
 * `fcp_cfg_service` - Enable/disable FCP service processing configuration requests disable - FCP service doesn&apos;t process configuration requests from web enable - FCP service processes configuration requests from web. Valid values: `disable`, `enable`.
 
+* `fgfm_allow_products` - set the additional products that FMG can manage it by fgfm.
 * `fgfm_allow_vm` - Enable/disable VM platform FGFM connect restriction. disable - Don&apos;t allow VM platform connection in FGFM. enable - Allow VM platform connection in FGFM. Valid values: `disable`, `enable`.
 
 * `fgfm_ca_cert` - set the extra fgfm CA certificates.
@@ -100,6 +101,7 @@ The following arguments are supported:
 * `gui_curl_timeout` - GUI curl timeout in seconds (5-300 default 30).
 * `gui_feature_visibility_mode` - Set GUI feature visibility mode (per-adom, per-admin). per-adom - Per-ADOM control in policy &amp; objects and provisioning templates. per-admin - Per-admin control in policy &amp; objects and provisioning templates. Valid values: `per-adom`, `per-admin`.
 
+* `gui_install_preview_concurrency` - Set the maximum number of devices to be processed in a single GUI install preview request (1-100 default 20).
 * `gui_polling_interval` - GUI polling interval in seconds (1-288000 default 5).
 * `ha_member_auto_grouping` - Enable/disable automatically group HA members feature disable - Disable automatically grouping HA members feature. enable - Enable automatically grouping HA members only when group name is unique in your network. Valid values: `disable`, `enable`.
 

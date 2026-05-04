@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Isolator"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_isolator_profile"
 description: |-

@@ -136,7 +136,7 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsUpdate(d *schema.R
 	access_proxy := d.Get("access_proxy").(string)
 	paradict["access_proxy"] = access_proxy
 
-	obj, err := getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d)
+	obj, err := getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyServerPubkeyAuthSettings resource while getting object: %v", err)
 	}
@@ -157,7 +157,6 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsUpdate(d *schema.R
 
 func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -173,11 +172,17 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsDelete(d *schema.R
 	access_proxy := d.Get("access_proxy").(string)
 	paradict["access_proxy"] = access_proxy
 
+	obj, err := getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallAccessProxyServerPubkeyAuthSettings resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxyServerPubkeyAuthSettings(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallAccessProxyServerPubkeyAuthSettings(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyServerPubkeyAuthSettings resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallAccessProxyServerPubkeyAuthSettings resource: %v", err)
 	}
 
 	d.SetId("")
@@ -213,6 +218,7 @@ func resourceObjectFirewallAccessProxyServerPubkeyAuthSettingsRead(d *schema.Res
 
 	o, err := c.ReadObjectFirewallAccessProxyServerPubkeyAuthSettings(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxyServerPubkeyAuthSettings resource: %v", err)
 	}
 
@@ -528,7 +534,7 @@ func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsSourceAddress2edl(d 
 	return v, nil
 }
 
-func getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auth_ca"); ok || d.HasChange("auth_ca") {
@@ -540,12 +546,16 @@ func getObjectObjectFirewallAccessProxyServerPubkeyAuthSettings(d *schema.Resour
 		}
 	}
 
-	if v, ok := d.GetOk("cert_extension"); ok || d.HasChange("cert_extension") {
-		t, err := expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension2edl(d, v, "cert_extension")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["cert-extension"] = t
+	if bemptysontable {
+		obj["cert-extension"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("cert_extension"); ok || d.HasChange("cert_extension") {
+			t, err := expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension2edl(d, v, "cert_extension")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["cert-extension"] = t
+			}
 		}
 	}
 

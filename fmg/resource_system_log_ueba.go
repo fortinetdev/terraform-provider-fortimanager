@@ -59,7 +59,7 @@ func resourceSystemLogUebaUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLogUeba(d)
+	obj, err := getObjectSystemLogUeba(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogUeba resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemLogUebaUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemLogUebaDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemLogUebaDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLogUeba(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLogUeba resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLogUeba(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLogUeba(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLogUeba resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLogUeba resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemLogUebaRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemLogUeba(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLogUeba resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemLogUebaIpUniqueScope(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
-func getObjectSystemLogUeba(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLogUeba(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("hostname_ep_unifier"); ok || d.HasChange("hostname_ep_unifier") {

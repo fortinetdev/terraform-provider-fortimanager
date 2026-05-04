@@ -79,7 +79,7 @@ func resourceObjectFmgSaseManagerStatusUpdate(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectFmgSaseManagerStatus(d)
+	obj, err := getObjectObjectFmgSaseManagerStatus(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFmgSaseManagerStatus resource while getting object: %v", err)
 	}
@@ -100,7 +100,6 @@ func resourceObjectFmgSaseManagerStatusUpdate(d *schema.ResourceData, m interfac
 
 func resourceObjectFmgSaseManagerStatusDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -113,11 +112,17 @@ func resourceObjectFmgSaseManagerStatusDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectFmgSaseManagerStatus(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFmgSaseManagerStatus resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFmgSaseManagerStatus(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFmgSaseManagerStatus(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFmgSaseManagerStatus resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFmgSaseManagerStatus resource: %v", err)
 	}
 
 	d.SetId("")
@@ -141,6 +146,7 @@ func resourceObjectFmgSaseManagerStatusRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadObjectFmgSaseManagerStatus(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFmgSaseManagerStatus resource: %v", err)
 	}
 
@@ -245,7 +251,7 @@ func expandObjectFmgSaseManagerStatusSpaHubs(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectObjectFmgSaseManagerStatus(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFmgSaseManagerStatus(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("forticlient_ver"); ok || d.HasChange("forticlient_ver") {

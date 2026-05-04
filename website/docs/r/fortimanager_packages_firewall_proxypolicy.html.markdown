@@ -120,6 +120,7 @@ The following arguments are supported:
 * `mms_profile` - Name of an existing MMS profile.
 * `policyid` - Policy ID.
 * `poolname` - Name of IP pool object.
+* `poolname6` - Name of IPv6 pool object.
 * `profile_group` - Name of profile group.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.

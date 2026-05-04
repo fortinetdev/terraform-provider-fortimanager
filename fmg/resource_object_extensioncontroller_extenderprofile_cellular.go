@@ -478,7 +478,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularUpdate(d *schema.Re
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtensionControllerExtenderProfileCellular(d)
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellular(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellular resource while getting object: %v", err)
 	}
@@ -499,7 +499,6 @@ func resourceObjectExtensionControllerExtenderProfileCellularUpdate(d *schema.Re
 
 func resourceObjectExtensionControllerExtenderProfileCellularDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -515,11 +514,17 @@ func resourceObjectExtensionControllerExtenderProfileCellularDelete(d *schema.Re
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtensionControllerExtenderProfileCellular(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileCellular resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileCellular(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileCellular(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileCellular resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtensionControllerExtenderProfileCellular resource: %v", err)
 	}
 
 	d.SetId("")
@@ -555,6 +560,7 @@ func resourceObjectExtensionControllerExtenderProfileCellularRead(d *schema.Reso
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileCellular(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileCellular resource: %v", err)
 	}
 
@@ -2042,7 +2048,7 @@ func expandObjectExtensionControllerExtenderProfileCellularSmsNotificationStatus
 	return v, nil
 }
 
-func getObjectObjectExtensionControllerExtenderProfileCellular(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtensionControllerExtenderProfileCellular(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("controller_report"); ok || d.HasChange("controller_report") {

@@ -78,7 +78,7 @@ func resourceObjectSystemNpuIpReassemblyUpdate(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuIpReassembly(d)
+	obj, err := getObjectObjectSystemNpuIpReassembly(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuIpReassembly resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceObjectSystemNpuIpReassemblyUpdate(d *schema.ResourceData, m interfa
 
 func resourceObjectSystemNpuIpReassemblyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -112,11 +111,17 @@ func resourceObjectSystemNpuIpReassemblyDelete(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuIpReassembly(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuIpReassembly resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuIpReassembly(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuIpReassembly(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuIpReassembly resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuIpReassembly resource: %v", err)
 	}
 
 	d.SetId("")
@@ -140,6 +145,7 @@ func resourceObjectSystemNpuIpReassemblyRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadObjectSystemNpuIpReassembly(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuIpReassembly resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectSystemNpuIpReassemblyStatus2edl(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("max_timeout"); ok || d.HasChange("max_timeout") {

@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintHeaderLengthUpdate(d *schema.ResourceData
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintHeaderLength(d)
+	obj, err := getObjectObjectWafProfileConstraintHeaderLength(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintHeaderLength resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintHeaderLengthUpdate(d *schema.ResourceData
 
 func resourceObjectWafProfileConstraintHeaderLengthDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintHeaderLengthDelete(d *schema.ResourceData
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintHeaderLength(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintHeaderLength resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintHeaderLength(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintHeaderLength(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintHeaderLength resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintHeaderLength resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintHeaderLengthRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectWafProfileConstraintHeaderLength(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintHeaderLength resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintHeaderLengthStatus3rdl(d *schema.ResourceDa
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintHeaderLength(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintHeaderLength(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

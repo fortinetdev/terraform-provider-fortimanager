@@ -29,6 +29,11 @@ func resourceObjectApplicationListEntriesParameters() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -117,9 +122,31 @@ func resourceObjectApplicationListEntriesParametersCreate(d *schema.ResourceData
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectApplicationListEntriesParameters(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectApplicationListEntriesParameters resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectApplicationListEntriesParameters(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectApplicationListEntriesParameters(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectApplicationListEntriesParameters resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectApplicationListEntriesParameters(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectApplicationListEntriesParameters resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -236,6 +263,7 @@ func resourceObjectApplicationListEntriesParametersRead(d *schema.ResourceData, 
 
 	o, err := c.ReadObjectApplicationListEntriesParameters(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectApplicationListEntriesParameters resource: %v", err)
 	}
 

@@ -13,6 +13,7 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	forticlient "github.com/terraform-providers/terraform-provider-fortimanager/sdk/sdkcore"
 )
 
 func validateConvIPMask2CIDR(oOldIP, oNewIP string) string {
@@ -188,6 +189,8 @@ func getStringKey(d *schema.ResourceData, field string) string {
 	if v, ok := d.GetOkExists(field); ok {
 		if v1, ok := v.(string); ok {
 			return v1
+		} else if v1, ok := v.(int); ok {
+			return fmt.Sprintf("%v", v1)
 		}
 	}
 
@@ -603,4 +606,13 @@ func checkScopeId(idStr string) (string, error) {
 func formatPath(inputPath string) string {
 	inputPath = strings.ReplaceAll(inputPath, "//", "/")
 	return strings.Trim(inputPath, "/")
+}
+
+func getUpdateIfExist(c *forticlient.FortiSDKClient, d *schema.ResourceData) bool {
+	resourceVI, exists := d.GetOkExists("update_if_exist")
+	if exists {
+		return resourceVI.(bool)
+	} else {
+		return c.Config.Auth.UpdateIfExist
+	}
 }

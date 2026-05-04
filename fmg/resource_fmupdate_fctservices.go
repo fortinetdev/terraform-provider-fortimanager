@@ -54,7 +54,7 @@ func resourceFmupdateFctServicesUpdate(d *schema.ResourceData, m interface{}) er
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFctServices(d)
+	obj, err := getObjectFmupdateFctServices(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFctServices resource while getting object: %v", err)
 	}
@@ -75,7 +75,6 @@ func resourceFmupdateFctServicesUpdate(d *schema.ResourceData, m interface{}) er
 
 func resourceFmupdateFctServicesDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -85,11 +84,17 @@ func resourceFmupdateFctServicesDelete(d *schema.ResourceData, m interface{}) er
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFctServices(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFctServices resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFctServices(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFctServices(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFctServices resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFctServices resource: %v", err)
 	}
 
 	d.SetId("")
@@ -110,6 +115,7 @@ func resourceFmupdateFctServicesRead(d *schema.ResourceData, m interface{}) erro
 
 	o, err := c.ReadFmupdateFctServices(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFctServices resource: %v", err)
 	}
 
@@ -174,7 +180,7 @@ func expandFmupdateFctServicesStatus(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
-func getObjectFmupdateFctServices(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFctServices(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {

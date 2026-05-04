@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_address6_dynamic_mapping"
 description: |-
@@ -44,6 +44,8 @@ The following arguments are supported:
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
+* `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.
+
 * `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `all`, `private`, `public`.

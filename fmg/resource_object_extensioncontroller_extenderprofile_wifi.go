@@ -271,7 +271,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiUpdate(d *schema.Resour
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
-	obj, err := getObjectObjectExtensionControllerExtenderProfileWifi(d)
+	obj, err := getObjectObjectExtensionControllerExtenderProfileWifi(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifi resource while getting object: %v", err)
 	}
@@ -292,7 +292,6 @@ func resourceObjectExtensionControllerExtenderProfileWifiUpdate(d *schema.Resour
 
 func resourceObjectExtensionControllerExtenderProfileWifiDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -308,11 +307,17 @@ func resourceObjectExtensionControllerExtenderProfileWifiDelete(d *schema.Resour
 	extender_profile := d.Get("extender_profile").(string)
 	paradict["extender_profile"] = extender_profile
 
+	obj, err := getObjectObjectExtensionControllerExtenderProfileWifi(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectExtensionControllerExtenderProfileWifi resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectExtensionControllerExtenderProfileWifi(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectExtensionControllerExtenderProfileWifi(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectExtensionControllerExtenderProfileWifi resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectExtensionControllerExtenderProfileWifi resource: %v", err)
 	}
 
 	d.SetId("")
@@ -348,6 +353,7 @@ func resourceObjectExtensionControllerExtenderProfileWifiRead(d *schema.Resource
 
 	o, err := c.ReadObjectExtensionControllerExtenderProfileWifi(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfileWifi resource: %v", err)
 	}
 
@@ -1096,7 +1102,7 @@ func expandObjectExtensionControllerExtenderProfileWifiRadio2Status2edl(d *schem
 	return v, nil
 }
 
-func getObjectObjectExtensionControllerExtenderProfileWifi(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectExtensionControllerExtenderProfileWifi(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dfs"); ok || d.HasChange("dfs") {

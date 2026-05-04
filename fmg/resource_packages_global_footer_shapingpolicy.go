@@ -29,6 +29,11 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -294,17 +299,38 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesGlobalFooterShapingPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesGlobalFooterShapingPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesGlobalFooterShapingPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesGlobalFooterShapingPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesGlobalFooterShapingPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -410,6 +436,7 @@ func resourcePackagesGlobalFooterShapingPolicyRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadPackagesGlobalFooterShapingPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
 
@@ -439,7 +466,7 @@ func flattenPackagesGlobalFooterShapingPolicyApplication(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterShapingPolicyClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesGlobalFooterShapingPolicyClassIdReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {

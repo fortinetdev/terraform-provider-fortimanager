@@ -59,7 +59,7 @@ func resourceSystemLocallogMemorySettingUpdate(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogMemorySetting(d)
+	obj, err := getObjectSystemLocallogMemorySetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogMemorySetting resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemLocallogMemorySettingUpdate(d *schema.ResourceData, m interfa
 
 func resourceSystemLocallogMemorySettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemLocallogMemorySettingDelete(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogMemorySetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogMemorySetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogMemorySetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogMemorySetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogMemorySetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogMemorySetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemLocallogMemorySettingRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadSystemLocallogMemorySetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogMemorySetting resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemLocallogMemorySettingStatus(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectSystemLocallogMemorySetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogMemorySetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("diskfull"); ok || d.HasChange("diskfull") {

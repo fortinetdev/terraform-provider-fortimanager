@@ -29,6 +29,11 @@ func resourceObjectFirewallAccessProxy6ApiGatewayRealservers() *schema.Resource 
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -184,9 +189,31 @@ func resourceObjectFirewallAccessProxy6ApiGatewayRealserversCreate(d *schema.Res
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxy6ApiGatewayRealservers(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGatewayRealservers resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallAccessProxy6ApiGatewayRealservers(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallAccessProxy6ApiGatewayRealservers(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGatewayRealservers resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallAccessProxy6ApiGatewayRealservers(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGatewayRealservers resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -303,6 +330,7 @@ func resourceObjectFirewallAccessProxy6ApiGatewayRealserversRead(d *schema.Resou
 
 	o, err := c.ReadObjectFirewallAccessProxy6ApiGatewayRealservers(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxy6ApiGatewayRealservers resource: %v", err)
 	}
 

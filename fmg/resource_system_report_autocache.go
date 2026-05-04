@@ -64,7 +64,7 @@ func resourceSystemReportAutoCacheUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemReportAutoCache(d)
+	obj, err := getObjectSystemReportAutoCache(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportAutoCache resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemReportAutoCacheUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceSystemReportAutoCacheDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemReportAutoCacheDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemReportAutoCache(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemReportAutoCache resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemReportAutoCache(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemReportAutoCache(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemReportAutoCache resource: %v", err)
+		return fmt.Errorf("Error clearing SystemReportAutoCache resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemReportAutoCacheRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadSystemReportAutoCache(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemReportAutoCache resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemReportAutoCacheStatus(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
-func getObjectSystemReportAutoCache(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemReportAutoCache(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aggressive_schedule"); ok || d.HasChange("aggressive_schedule") {

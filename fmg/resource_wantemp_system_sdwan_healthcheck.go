@@ -29,6 +29,11 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -330,6 +335,10 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"update_bgp_route": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"update_cascade_interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -379,9 +388,31 @@ func resourceWantempSystemSdwanHealthCheckCreate(d *schema.ResourceData, m inter
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateWantempSystemSdwanHealthCheck(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheck resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadWantempSystemSdwanHealthCheck(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateWantempSystemSdwanHealthCheck(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating WantempSystemSdwanHealthCheck resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateWantempSystemSdwanHealthCheck(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating WantempSystemSdwanHealthCheck resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -483,6 +514,7 @@ func resourceWantempSystemSdwanHealthCheckRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadWantempSystemSdwanHealthCheck(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading WantempSystemSdwanHealthCheck resource: %v", err)
 	}
 
@@ -811,6 +843,10 @@ func flattenWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(v interface
 }
 
 func flattenWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckUpdateBgpRoute2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1355,6 +1391,16 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("update_bgp_route", flattenWantempSystemSdwanHealthCheckUpdateBgpRoute2edl(o["update-bgp-route"], d, "update_bgp_route")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-bgp-route"], "WantempSystemSdwanHealthCheck-UpdateBgpRoute"); ok {
+			if err = d.Set("update_bgp_route", vv); err != nil {
+				return fmt.Errorf("Error reading update_bgp_route: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_bgp_route: %v", err)
+		}
+	}
+
 	if err = d.Set("update_cascade_interface", flattenWantempSystemSdwanHealthCheckUpdateCascadeInterface2edl(o["update-cascade-interface"], d, "update_cascade_interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-cascade-interface"], "WantempSystemSdwanHealthCheck-UpdateCascadeInterface"); ok {
 			if err = d.Set("update_cascade_interface", vv); err != nil {
@@ -1706,6 +1752,10 @@ func expandWantempSystemSdwanHealthCheckThresholdWarningLatency2edl(d *schema.Re
 }
 
 func expandWantempSystemSdwanHealthCheckThresholdWarningPacketloss2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckUpdateBgpRoute2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2184,6 +2234,15 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["threshold-warning-packetloss"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_bgp_route"); ok || d.HasChange("update_bgp_route") {
+		t, err := expandWantempSystemSdwanHealthCheckUpdateBgpRoute2edl(d, v, "update_bgp_route")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-bgp-route"] = t
 		}
 	}
 

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Device Manager"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_dvmdb_device_vdom"
 description: |-

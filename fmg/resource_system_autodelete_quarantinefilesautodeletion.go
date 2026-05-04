@@ -64,7 +64,7 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionUpdate(d *schema.Resourc
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d)
+	obj, err := getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteQuarantineFilesAutoDeletion resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionUpdate(d *schema.Resourc
 
 func resourceSystemAutoDeleteQuarantineFilesAutoDeletionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionDelete(d *schema.Resourc
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAutoDeleteQuarantineFilesAutoDeletion resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteQuarantineFilesAutoDeletion(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAutoDeleteQuarantineFilesAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionRead(d *schema.ResourceD
 
 	o, err := c.ReadSystemAutoDeleteQuarantineFilesAutoDeletion(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemAutoDeleteQuarantineFilesAutoDeletionValue2edl(d *schema.Resour
 	return v, nil
 }
 
-func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {

@@ -170,7 +170,7 @@ func resourceObjectAntivirusProfileContentDisarmUpdate(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectAntivirusProfileContentDisarm(d)
+	obj, err := getObjectObjectAntivirusProfileContentDisarm(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfileContentDisarm resource while getting object: %v", err)
 	}
@@ -191,7 +191,6 @@ func resourceObjectAntivirusProfileContentDisarmUpdate(d *schema.ResourceData, m
 
 func resourceObjectAntivirusProfileContentDisarmDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -207,11 +206,17 @@ func resourceObjectAntivirusProfileContentDisarmDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectAntivirusProfileContentDisarm(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAntivirusProfileContentDisarm resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfileContentDisarm(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectAntivirusProfileContentDisarm(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectAntivirusProfileContentDisarm resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectAntivirusProfileContentDisarm resource: %v", err)
 	}
 
 	d.SetId("")
@@ -247,6 +252,7 @@ func resourceObjectAntivirusProfileContentDisarmRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectAntivirusProfileContentDisarm(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectAntivirusProfileContentDisarm resource: %v", err)
 	}
 
@@ -639,7 +645,7 @@ func expandObjectAntivirusProfileContentDisarmPdfJavacode2edl(d *schema.Resource
 	return v, nil
 }
 
-func getObjectObjectAntivirusProfileContentDisarm(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectAntivirusProfileContentDisarm(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("analytics_suspicious"); ok || d.HasChange("analytics_suspicious") {

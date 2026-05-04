@@ -29,6 +29,11 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -61,6 +66,11 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"label_day": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -107,9 +117,31 @@ func resourceObjectFirewallScheduleRecurringCreate(d *schema.ResourceData, m int
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallScheduleRecurring(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallScheduleRecurring(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallScheduleRecurring(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallScheduleRecurring resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallScheduleRecurring(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -193,6 +225,7 @@ func resourceObjectFirewallScheduleRecurringRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectFirewallScheduleRecurring(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallScheduleRecurring resource: %v", err)
 	}
 
@@ -222,6 +255,10 @@ func flattenObjectFirewallScheduleRecurringEnd(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFirewallScheduleRecurringFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallScheduleRecurringLabelDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -285,6 +322,16 @@ func refreshObjectObjectFirewallScheduleRecurring(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("label_day", flattenObjectFirewallScheduleRecurringLabelDay(o["label-day"], d, "label_day")); err != nil {
+		if vv, ok := fortiAPIPatch(o["label-day"], "ObjectFirewallScheduleRecurring-LabelDay"); ok {
+			if err = d.Set("label_day", vv); err != nil {
+				return fmt.Errorf("Error reading label_day: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading label_day: %v", err)
 		}
 	}
 
@@ -353,6 +400,10 @@ func expandObjectFirewallScheduleRecurringFabricObject(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallScheduleRecurringLabelDay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallScheduleRecurringGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -405,6 +456,15 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("label_day"); ok || d.HasChange("label_day") {
+		t, err := expandObjectFirewallScheduleRecurringLabelDay(d, v, "label_day")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["label-day"] = t
 		}
 	}
 

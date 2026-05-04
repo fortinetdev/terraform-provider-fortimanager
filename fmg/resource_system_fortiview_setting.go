@@ -59,7 +59,7 @@ func resourceSystemFortiviewSettingUpdate(d *schema.ResourceData, m interface{})
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemFortiviewSetting(d)
+	obj, err := getObjectSystemFortiviewSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFortiviewSetting resource while getting object: %v", err)
 	}
@@ -80,7 +80,6 @@ func resourceSystemFortiviewSettingUpdate(d *schema.ResourceData, m interface{})
 
 func resourceSystemFortiviewSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -90,11 +89,17 @@ func resourceSystemFortiviewSettingDelete(d *schema.ResourceData, m interface{})
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemFortiviewSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemFortiviewSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemFortiviewSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemFortiviewSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemFortiviewSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemFortiviewSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -115,6 +120,7 @@ func resourceSystemFortiviewSettingRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadSystemFortiviewSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemFortiviewSetting resource: %v", err)
 	}
 
@@ -197,7 +203,7 @@ func expandSystemFortiviewSettingResolveIp(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
-func getObjectSystemFortiviewSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemFortiviewSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("data_source"); ok || d.HasChange("data_source") {

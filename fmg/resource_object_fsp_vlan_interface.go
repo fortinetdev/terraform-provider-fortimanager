@@ -2039,7 +2039,7 @@ func resourceObjectFspVlanInterfaceUpdate(d *schema.ResourceData, m interface{})
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
-	obj, err := getObjectObjectFspVlanInterface(d)
+	obj, err := getObjectObjectFspVlanInterface(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlanInterface resource while getting object: %v", err)
 	}
@@ -2060,7 +2060,6 @@ func resourceObjectFspVlanInterfaceUpdate(d *schema.ResourceData, m interface{})
 
 func resourceObjectFspVlanInterfaceDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -2076,11 +2075,17 @@ func resourceObjectFspVlanInterfaceDelete(d *schema.ResourceData, m interface{})
 	vlan := d.Get("vlan").(string)
 	paradict["vlan"] = vlan
 
+	obj, err := getObjectObjectFspVlanInterface(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFspVlanInterface resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFspVlanInterface(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFspVlanInterface(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFspVlanInterface resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFspVlanInterface resource: %v", err)
 	}
 
 	d.SetId("")
@@ -2116,6 +2121,7 @@ func resourceObjectFspVlanInterfaceRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectFspVlanInterface(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFspVlanInterface resource: %v", err)
 	}
 
@@ -2625,6 +2631,13 @@ func flattenObjectFspVlanInterfaceInternal2edl(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFspVlanInterfaceIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return conv2str(v)
 }
 
@@ -3528,6 +3541,13 @@ func flattenObjectFspVlanInterfaceManagedSubnetworkSize2edl(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanInterfaceManagementIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return conv2str(v)
 }
 
@@ -3744,6 +3764,13 @@ func flattenObjectFspVlanInterfaceRedundantInterface2edl(v interface{}, d *schem
 }
 
 func flattenObjectFspVlanInterfaceRemoteIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -3897,6 +3924,13 @@ func flattenObjectFspVlanInterfaceSecondaryipId2edl(v interface{}, d *schema.Res
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -4137,6 +4171,13 @@ func flattenObjectFspVlanInterfaceSwitchControllerOffloadingGw2edl(v interface{}
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerOffloadingIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -4177,14 +4218,35 @@ func flattenObjectFspVlanInterfaceTrunk2edl(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanInterfaceTrustIp12edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
 func flattenObjectFspVlanInterfaceTrustIp22edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
 func flattenObjectFspVlanInterfaceTrustIp32edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return v
 }
 
@@ -10106,7 +10168,7 @@ func expandObjectFspVlanInterfaceWinsIp2edl(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectObjectFspVlanInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFspVlanInterface(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("vlan_op_mode"); ok || d.HasChange("vlan_op_mode") {
@@ -12035,12 +12097,16 @@ func getObjectObjectFspVlanInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("secondaryip"); ok || d.HasChange("secondaryip") {
-		t, err := expandObjectFspVlanInterfaceSecondaryip2edl(d, v, "secondaryip")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["secondaryip"] = t
+	if bemptysontable {
+		obj["secondaryip"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("secondaryip"); ok || d.HasChange("secondaryip") {
+			t, err := expandObjectFspVlanInterfaceSecondaryip2edl(d, v, "secondaryip")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["secondaryip"] = t
+			}
 		}
 	}
 
@@ -12782,12 +12848,16 @@ func getObjectObjectFspVlanInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("vrrp"); ok || d.HasChange("vrrp") {
-		t, err := expandObjectFspVlanInterfaceVrrp2edl(d, v, "vrrp")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["vrrp"] = t
+	if bemptysontable {
+		obj["vrrp"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("vrrp"); ok || d.HasChange("vrrp") {
+			t, err := expandObjectFspVlanInterfaceVrrp2edl(d, v, "vrrp")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["vrrp"] = t
+			}
 		}
 	}
 

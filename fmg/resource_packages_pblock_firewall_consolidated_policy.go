@@ -29,6 +29,11 @@ func resourcePackagesPblockFirewallConsolidatedPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -51,7 +56,7 @@ func resourcePackagesPblockFirewallConsolidatedPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -511,17 +516,38 @@ func resourcePackagesPblockFirewallConsolidatedPolicyCreate(d *schema.ResourceDa
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallConsolidatedPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesPblockFirewallConsolidatedPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesPblockFirewallConsolidatedPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesPblockFirewallConsolidatedPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesPblockFirewallConsolidatedPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesPblockFirewallConsolidatedPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -622,6 +648,7 @@ func resourcePackagesPblockFirewallConsolidatedPolicyRead(d *schema.ResourceData
 
 	o, err := c.ReadPackagesPblockFirewallConsolidatedPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesPblockFirewallConsolidatedPolicy resource: %v", err)
 	}
 

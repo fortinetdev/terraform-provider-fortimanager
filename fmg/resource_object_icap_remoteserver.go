@@ -29,6 +29,11 @@ func resourceObjectIcapRemoteServer() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -47,6 +52,12 @@ func resourceObjectIcapRemoteServer() *schema.Resource {
 			},
 			"addr_type": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ca_cert": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -127,9 +138,31 @@ func resourceObjectIcapRemoteServerCreate(d *schema.ResourceData, m interface{})
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapRemoteServer(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapRemoteServer resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapRemoteServer(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapRemoteServer(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapRemoteServer resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIcapRemoteServer(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIcapRemoteServer resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -213,6 +246,7 @@ func resourceObjectIcapRemoteServerRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectIcapRemoteServer(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapRemoteServer resource: %v", err)
 	}
 
@@ -231,6 +265,10 @@ func resourceObjectIcapRemoteServerRead(d *schema.ResourceData, m interface{}) e
 
 func flattenObjectIcapRemoteServerAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectIcapRemoteServerCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectIcapRemoteServerFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -291,6 +329,16 @@ func refreshObjectObjectIcapRemoteServer(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading addr_type: %v", err)
+		}
+	}
+
+	if err = d.Set("ca_cert", flattenObjectIcapRemoteServerCaCert(o["ca-cert"], d, "ca_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ca-cert"], "ObjectIcapRemoteServer-CaCert"); ok {
+			if err = d.Set("ca_cert", vv); err != nil {
+				return fmt.Errorf("Error reading ca_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ca_cert: %v", err)
 		}
 	}
 
@@ -417,6 +465,10 @@ func expandObjectIcapRemoteServerAddrType(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectIcapRemoteServerCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectIcapRemoteServerFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -470,6 +522,15 @@ func getObjectObjectIcapRemoteServer(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["addr-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ca_cert"); ok || d.HasChange("ca_cert") {
+		t, err := expandObjectIcapRemoteServerCaCert(d, v, "ca_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ca-cert"] = t
 		}
 	}
 

@@ -76,7 +76,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientUpdate(d *schema.ResourceData
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFdsSettingPushOverrideToClient(d)
+	obj, err := getObjectFmupdateFdsSettingPushOverrideToClient(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverrideToClient resource while getting object: %v", err)
 	}
@@ -97,7 +97,6 @@ func resourceFmupdateFdsSettingPushOverrideToClientUpdate(d *schema.ResourceData
 
 func resourceFmupdateFdsSettingPushOverrideToClientDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -107,11 +106,17 @@ func resourceFmupdateFdsSettingPushOverrideToClientDelete(d *schema.ResourceData
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFdsSettingPushOverrideToClient(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverrideToClient resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingPushOverrideToClient(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFdsSettingPushOverrideToClient(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFdsSettingPushOverrideToClient resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFdsSettingPushOverrideToClient resource: %v", err)
 	}
 
 	d.SetId("")
@@ -132,6 +137,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientRead(d *schema.ResourceData, 
 
 	o, err := c.ReadFmupdateFdsSettingPushOverrideToClient(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFdsSettingPushOverrideToClient resource: %v", err)
 	}
 
@@ -316,15 +322,19 @@ func expandFmupdateFdsSettingPushOverrideToClientStatus2edl(d *schema.ResourceDa
 	return v, nil
 }
 
-func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("announce_ip"); ok || d.HasChange("announce_ip") {
-		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(d, v, "announce_ip")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["announce-ip"] = t
+	if bemptysontable {
+		obj["announce-ip"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("announce_ip"); ok || d.HasChange("announce_ip") {
+			t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIp2edl(d, v, "announce_ip")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["announce-ip"] = t
+			}
 		}
 	}
 

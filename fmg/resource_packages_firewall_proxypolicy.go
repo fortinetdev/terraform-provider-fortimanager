@@ -29,6 +29,11 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -56,7 +61,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"access_proxy": &schema.Schema{
@@ -318,6 +323,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"poolname6": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"profile_group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -532,17 +543,38 @@ func resourcePackagesFirewallProxyPolicyCreate(d *schema.ResourceData, m interfa
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesFirewallProxyPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("policyid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesFirewallProxyPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesFirewallProxyPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesFirewallProxyPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesFirewallProxyPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -657,6 +689,7 @@ func resourcePackagesFirewallProxyPolicyRead(d *schema.ResourceData, m interface
 
 	o, err := c.ReadPackagesFirewallProxyPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallProxyPolicy resource: %v", err)
 	}
 
@@ -890,6 +923,10 @@ func flattenPackagesFirewallProxyPolicyPolicyid(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallProxyPolicyPoolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallProxyPolicyPoolname6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -1610,6 +1647,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("poolname6", flattenPackagesFirewallProxyPolicyPoolname6(o["poolname6"], d, "poolname6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["poolname6"], "PackagesFirewallProxyPolicy-Poolname6"); ok {
+			if err = d.Set("poolname6", vv); err != nil {
+				return fmt.Errorf("Error reading poolname6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading poolname6: %v", err)
+		}
+	}
+
 	if err = d.Set("profile_group", flattenPackagesFirewallProxyPolicyProfileGroup(o["profile-group"], d, "profile_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-group"], "PackagesFirewallProxyPolicy-ProfileGroup"); ok {
 			if err = d.Set("profile_group", vv); err != nil {
@@ -2236,6 +2283,10 @@ func expandPackagesFirewallProxyPolicyPolicyid(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallProxyPolicyPoolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallProxyPolicyPoolname6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -2894,6 +2945,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["poolname"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("poolname6"); ok || d.HasChange("poolname6") {
+		t, err := expandPackagesFirewallProxyPolicyPoolname6(d, v, "poolname6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["poolname6"] = t
 		}
 	}
 

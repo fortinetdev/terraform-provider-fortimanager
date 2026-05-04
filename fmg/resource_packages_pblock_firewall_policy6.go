@@ -29,6 +29,11 @@ func resourcePackagesPblockFirewallPolicy6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -51,7 +56,7 @@ func resourcePackagesPblockFirewallPolicy6() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -499,17 +504,38 @@ func resourcePackagesPblockFirewallPolicy6Create(d *schema.ResourceData, m inter
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallPolicy6(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy6 resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesPblockFirewallPolicy6(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesPblockFirewallPolicy6(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesPblockFirewallPolicy6 resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesPblockFirewallPolicy6Read(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesPblockFirewallPolicy6(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesPblockFirewallPolicy6 resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesPblockFirewallPolicy6Read(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesPblockFirewallPolicy6 resource: %v", err)
+			}
 		}
 	}
 
@@ -610,6 +636,7 @@ func resourcePackagesPblockFirewallPolicy6Read(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadPackagesPblockFirewallPolicy6(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesPblockFirewallPolicy6 resource: %v", err)
 	}
 
@@ -871,7 +898,7 @@ func flattenPackagesPblockFirewallPolicy6ServiceNegate2edl(v interface{}, d *sch
 }
 
 func flattenPackagesPblockFirewallPolicy6SessionTtl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesPblockFirewallPolicy6SpamfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {

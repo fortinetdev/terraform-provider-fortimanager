@@ -83,7 +83,7 @@ func resourceSecurityconsoleInstallObjectsV2Update(d *schema.ResourceData, m int
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleInstallObjectsV2(d)
+	obj, err := getObjectSecurityconsoleInstallObjectsV2(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallObjectsV2 resource while getting object: %v", err)
 	}
@@ -298,7 +298,7 @@ func expandSecurityconsoleInstallObjectsV2ScopeVdom(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectSecurityconsoleInstallObjectsV2(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleInstallObjectsV2(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -328,12 +328,16 @@ func getObjectSecurityconsoleInstallObjectsV2(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsoleInstallObjectsV2Scope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsoleInstallObjectsV2Scope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

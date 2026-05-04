@@ -29,6 +29,11 @@ func resourceObjectFirewallIdentityBasedRoute() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -107,9 +112,31 @@ func resourceObjectFirewallIdentityBasedRouteCreate(d *schema.ResourceData, m in
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallIdentityBasedRoute(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallIdentityBasedRoute resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallIdentityBasedRoute(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallIdentityBasedRoute(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallIdentityBasedRoute resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallIdentityBasedRoute(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallIdentityBasedRoute resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -193,6 +220,7 @@ func resourceObjectFirewallIdentityBasedRouteRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectFirewallIdentityBasedRoute(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallIdentityBasedRoute resource: %v", err)
 	}
 

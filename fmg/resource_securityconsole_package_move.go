@@ -64,7 +64,7 @@ func resourceSecurityconsolePackageMoveUpdate(d *schema.ResourceData, m interfac
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsolePackageMove(d)
+	obj, err := getObjectSecurityconsolePackageMove(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageMove resource while getting object: %v", err)
 	}
@@ -178,7 +178,7 @@ func expandSecurityconsolePackageMovePkg(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
-func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsolePackageMove(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {

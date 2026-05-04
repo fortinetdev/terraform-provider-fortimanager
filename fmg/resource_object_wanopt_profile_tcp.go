@@ -117,7 +117,7 @@ func resourceObjectWanoptProfileTcpUpdate(d *schema.ResourceData, m interface{})
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWanoptProfileTcp(d)
+	obj, err := getObjectObjectWanoptProfileTcp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptProfileTcp resource while getting object: %v", err)
 	}
@@ -138,7 +138,6 @@ func resourceObjectWanoptProfileTcpUpdate(d *schema.ResourceData, m interface{})
 
 func resourceObjectWanoptProfileTcpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -154,11 +153,17 @@ func resourceObjectWanoptProfileTcpDelete(d *schema.ResourceData, m interface{})
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWanoptProfileTcp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWanoptProfileTcp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWanoptProfileTcp(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWanoptProfileTcp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWanoptProfileTcp resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWanoptProfileTcp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -194,6 +199,7 @@ func resourceObjectWanoptProfileTcpRead(d *schema.ResourceData, m interface{}) e
 
 	o, err := c.ReadObjectWanoptProfileTcp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWanoptProfileTcp resource: %v", err)
 	}
 
@@ -388,7 +394,7 @@ func expandObjectWanoptProfileTcpTunnelSharing2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectWanoptProfileTcp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWanoptProfileTcp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("byte_caching"); ok || d.HasChange("byte_caching") {

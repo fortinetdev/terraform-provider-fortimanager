@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgAlertmailUpdate(d *schema.ResourceData, m in
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgAlertmail(d)
+	obj, err := getObjectSystempSystemReplacemsgAlertmail(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgAlertmail resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgAlertmailUpdate(d *schema.ResourceData, m in
 
 func resourceSystempSystemReplacemsgAlertmailDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgAlertmailDelete(d *schema.ResourceData, m in
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgAlertmail(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgAlertmail resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgAlertmail(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgAlertmail(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgAlertmail resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgAlertmail resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgAlertmailRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadSystempSystemReplacemsgAlertmail(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgAlertmail resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgAlertmailMsgType(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgAlertmail(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgAlertmail(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

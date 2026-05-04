@@ -44,6 +44,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"admin_scp": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"admin_server_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -298,7 +303,7 @@ func resourceSystemAdminSettingUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAdminSetting(d)
+	obj, err := getObjectSystemAdminSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminSetting resource while getting object: %v", err)
 	}
@@ -319,7 +324,6 @@ func resourceSystemAdminSettingUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceSystemAdminSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -329,11 +333,17 @@ func resourceSystemAdminSettingDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAdminSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAdminSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAdminSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAdminSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAdminSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAdminSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -354,6 +364,7 @@ func resourceSystemAdminSettingRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadSystemAdminSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAdminSetting resource: %v", err)
 	}
 
@@ -379,6 +390,10 @@ func flattenSystemAdminSettingAdminHttpsRedirect(v interface{}, d *schema.Resour
 }
 
 func flattenSystemAdminSettingAdminLoginMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingAdminScp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -596,6 +611,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading admin_login_max: %v", err)
+		}
+	}
+
+	if err = d.Set("admin_scp", flattenSystemAdminSettingAdminScp(o["admin-scp"], d, "admin_scp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["admin-scp"], "SystemAdminSetting-AdminScp"); ok {
+			if err = d.Set("admin_scp", vv); err != nil {
+				return fmt.Errorf("Error reading admin_scp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading admin_scp: %v", err)
 		}
 	}
 
@@ -1080,6 +1105,10 @@ func expandSystemAdminSettingAdminLoginMax(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandSystemAdminSettingAdminScp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingAdminServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1272,7 +1301,7 @@ func expandSystemAdminSettingWebadminLanguage(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
-func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAdminSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("access_banner"); ok || d.HasChange("access_banner") {
@@ -1299,6 +1328,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["admin-login-max"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("admin_scp"); ok || d.HasChange("admin_scp") {
+		t, err := expandSystemAdminSettingAdminScp(d, v, "admin_scp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["admin-scp"] = t
 		}
 	}
 

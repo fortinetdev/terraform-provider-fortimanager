@@ -78,7 +78,7 @@ func resourceSystemLocallogFortianalyzerSettingUpdate(d *schema.ResourceData, m 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogFortianalyzerSetting(d)
+	obj, err := getObjectSystemLocallogFortianalyzerSetting(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogFortianalyzerSetting resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceSystemLocallogFortianalyzerSettingUpdate(d *schema.ResourceData, m 
 
 func resourceSystemLocallogFortianalyzerSettingDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -109,11 +108,17 @@ func resourceSystemLocallogFortianalyzerSettingDelete(d *schema.ResourceData, m 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogFortianalyzerSetting(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogFortianalyzerSetting resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogFortianalyzerSetting(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogFortianalyzerSetting(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogFortianalyzerSetting resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogFortianalyzerSetting resource: %v", err)
 	}
 
 	d.SetId("")
@@ -134,6 +139,7 @@ func resourceSystemLocallogFortianalyzerSettingRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadSystemLocallogFortianalyzerSetting(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogFortianalyzerSetting resource: %v", err)
 	}
 
@@ -288,7 +294,7 @@ func expandSystemLocallogFortianalyzerSettingUploadTime(d *schema.ResourceData, 
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystemLocallogFortianalyzerSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogFortianalyzerSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("peer_cert_cn"); ok || d.HasChange("peer_cert_cn") {

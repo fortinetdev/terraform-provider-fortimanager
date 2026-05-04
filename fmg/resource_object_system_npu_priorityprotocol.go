@@ -78,7 +78,7 @@ func resourceObjectSystemNpuPriorityProtocolUpdate(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuPriorityProtocol(d)
+	obj, err := getObjectObjectSystemNpuPriorityProtocol(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPriorityProtocol resource while getting object: %v", err)
 	}
@@ -99,7 +99,6 @@ func resourceObjectSystemNpuPriorityProtocolUpdate(d *schema.ResourceData, m int
 
 func resourceObjectSystemNpuPriorityProtocolDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -112,11 +111,17 @@ func resourceObjectSystemNpuPriorityProtocolDelete(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuPriorityProtocol(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuPriorityProtocol resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuPriorityProtocol(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuPriorityProtocol(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuPriorityProtocol resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuPriorityProtocol resource: %v", err)
 	}
 
 	d.SetId("")
@@ -140,6 +145,7 @@ func resourceObjectSystemNpuPriorityProtocolRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectSystemNpuPriorityProtocol(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuPriorityProtocol resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectSystemNpuPriorityProtocolSlbc2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("bfd"); ok || d.HasChange("bfd") {

@@ -35,6 +35,8 @@ The following arguments are supported:
 * `end` - Time of day to end the schedule, format hh:mm.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
 
+* `label_day` - Configure a window during the time of day in which the schedule job is executed. Valid values: `none`, `over-night`, `early-morning`, `morning`, `midday`, `afternoon`, `evening`, `night`, `late-night`.
+
 * `global_object` - Global Object.
 * `name` - Recurring schedule name.
 * `start` - Time of day to start the schedule, format hh:mm.

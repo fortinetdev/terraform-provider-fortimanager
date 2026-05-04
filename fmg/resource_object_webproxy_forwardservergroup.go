@@ -29,6 +29,11 @@ func resourceObjectWebProxyForwardServerGroup() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -110,9 +115,31 @@ func resourceObjectWebProxyForwardServerGroupCreate(d *schema.ResourceData, m in
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebProxyForwardServerGroup(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroup resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWebProxyForwardServerGroup(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWebProxyForwardServerGroup(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWebProxyForwardServerGroup resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWebProxyForwardServerGroup(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroup resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -196,6 +223,7 @@ func resourceObjectWebProxyForwardServerGroupRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadObjectWebProxyForwardServerGroup(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebProxyForwardServerGroup resource: %v", err)
 	}
 

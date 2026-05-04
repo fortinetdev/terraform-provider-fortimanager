@@ -1,4 +1,27 @@
-## 1.17.0 (Unreleased)
+## 1.18.0 (Unreleased)
+
+## 1.17.0 (May 04, 2026)
+
+IMPROVEMENTS:
+* Support FMG 7.2.12,  7.4.8, 7.4.10, 7.6.5, 7.6.6；
+* Fix type issue of variable _policy_block;
+* Fix inconsist issue;
+* Fix issue of destroy operation could not clean tables for pre-existing resource;
+* Handle different format of IPv4 address/mask; 
+* Add sub-category on doc;
+* Support variable update_if_exist as equivalent functionality of import by get resoruce first before creation;
+* Fix issue of session increace issue when workspace mode is normal;
+
+FEATURES:
+* **New Resource:** `fortimanager_object_dynamic_log_npuserver_servergroup`
+* **New Resource:** `fortimanager_object_dynamic_log_npuserver_servergroup_dynamic_mapping`
+* **New Resource:** `fortimanager_object_fmg_script`
+* **New Resource:** `fortimanager_object_fmg_script_schedule`
+* **New Resource:** `fortimanager_object_ztna_webportalbookmark_llmsecureproxy`
+* **New Resource:** `fortimanager_securityconsole_template_validate`
+* **New Resource:** `fortimanager_systemp_system_dns`
+* **New Resource:** `fortimanager_systemp_system_template_interface`
+* **New Resource:** `fortimanager_systemp_system_template_interface_iprange`
 
 ## 1.16.0 (Mar 07, 2026)
 

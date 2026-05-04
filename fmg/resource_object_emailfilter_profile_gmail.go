@@ -81,7 +81,7 @@ func resourceObjectEmailfilterProfileGmailUpdate(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectEmailfilterProfileGmail(d)
+	obj, err := getObjectObjectEmailfilterProfileGmail(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterProfileGmail resource while getting object: %v", err)
 	}
@@ -102,7 +102,6 @@ func resourceObjectEmailfilterProfileGmailUpdate(d *schema.ResourceData, m inter
 
 func resourceObjectEmailfilterProfileGmailDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -118,11 +117,17 @@ func resourceObjectEmailfilterProfileGmailDelete(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectEmailfilterProfileGmail(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectEmailfilterProfileGmail resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterProfileGmail(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectEmailfilterProfileGmail(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectEmailfilterProfileGmail resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectEmailfilterProfileGmail resource: %v", err)
 	}
 
 	d.SetId("")
@@ -158,6 +163,7 @@ func resourceObjectEmailfilterProfileGmailRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectEmailfilterProfileGmail(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectEmailfilterProfileGmail resource: %v", err)
 	}
 
@@ -226,7 +232,7 @@ func expandObjectEmailfilterProfileGmailLogAll2edl(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectObjectEmailfilterProfileGmail(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectEmailfilterProfileGmail(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {

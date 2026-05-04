@@ -90,7 +90,7 @@ func resourceSystempSystemReplacemsgUtmUpdate(d *schema.ResourceData, m interfac
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemReplacemsgUtm(d)
+	obj, err := getObjectSystempSystemReplacemsgUtm(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemReplacemsgUtm resource while getting object: %v", err)
 	}
@@ -111,7 +111,6 @@ func resourceSystempSystemReplacemsgUtmUpdate(d *schema.ResourceData, m interfac
 
 func resourceSystempSystemReplacemsgUtmDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -127,11 +126,17 @@ func resourceSystempSystemReplacemsgUtmDelete(d *schema.ResourceData, m interfac
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemReplacemsgUtm(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemReplacemsgUtm resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemReplacemsgUtm(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemReplacemsgUtm(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemReplacemsgUtm resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemReplacemsgUtm resource: %v", err)
 	}
 
 	d.SetId("")
@@ -167,6 +172,7 @@ func resourceSystempSystemReplacemsgUtmRead(d *schema.ResourceData, m interface{
 
 	o, err := c.ReadSystempSystemReplacemsgUtm(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemReplacemsgUtm resource: %v", err)
 	}
 
@@ -271,7 +277,7 @@ func expandSystempSystemReplacemsgUtmMsgType(d *schema.ResourceData, v interface
 	return v, nil
 }
 
-func getObjectSystempSystemReplacemsgUtm(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemReplacemsgUtm(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("buffer"); ok || d.HasChange("buffer") {

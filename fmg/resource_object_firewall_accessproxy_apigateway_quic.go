@@ -118,7 +118,7 @@ func resourceObjectFirewallAccessProxyApiGatewayQuicUpdate(d *schema.ResourceDat
 	paradict["access_proxy"] = access_proxy
 	paradict["api_gateway"] = api_gateway
 
-	obj, err := getObjectObjectFirewallAccessProxyApiGatewayQuic(d)
+	obj, err := getObjectObjectFirewallAccessProxyApiGatewayQuic(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewayQuic resource while getting object: %v", err)
 	}
@@ -139,7 +139,6 @@ func resourceObjectFirewallAccessProxyApiGatewayQuicUpdate(d *schema.ResourceDat
 
 func resourceObjectFirewallAccessProxyApiGatewayQuicDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -157,11 +156,17 @@ func resourceObjectFirewallAccessProxyApiGatewayQuicDelete(d *schema.ResourceDat
 	paradict["access_proxy"] = access_proxy
 	paradict["api_gateway"] = api_gateway
 
+	obj, err := getObjectObjectFirewallAccessProxyApiGatewayQuic(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallAccessProxyApiGatewayQuic resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxyApiGatewayQuic(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallAccessProxyApiGatewayQuic(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyApiGatewayQuic resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallAccessProxyApiGatewayQuic resource: %v", err)
 	}
 
 	d.SetId("")
@@ -208,6 +213,7 @@ func resourceObjectFirewallAccessProxyApiGatewayQuicRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectFirewallAccessProxyApiGatewayQuic(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxyApiGatewayQuic resource: %v", err)
 	}
 
@@ -384,7 +390,7 @@ func expandObjectFirewallAccessProxyApiGatewayQuicMaxUdpPayloadSize3rdl(d *schem
 	return v, nil
 }
 
-func getObjectObjectFirewallAccessProxyApiGatewayQuic(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallAccessProxyApiGatewayQuic(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_delay_exponent"); ok || d.HasChange("ack_delay_exponent") {

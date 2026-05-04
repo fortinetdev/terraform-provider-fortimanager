@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Fmupdate"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_fmupdate_fwmsetting_upgradetimeout"
 description: |-

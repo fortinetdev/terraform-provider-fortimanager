@@ -163,7 +163,7 @@ func resourceObjectWebfilterProfileAntiphishUpdate(d *schema.ResourceData, m int
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWebfilterProfileAntiphish(d)
+	obj, err := getObjectObjectWebfilterProfileAntiphish(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphish resource while getting object: %v", err)
 	}
@@ -184,7 +184,6 @@ func resourceObjectWebfilterProfileAntiphishUpdate(d *schema.ResourceData, m int
 
 func resourceObjectWebfilterProfileAntiphishDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -200,11 +199,17 @@ func resourceObjectWebfilterProfileAntiphishDelete(d *schema.ResourceData, m int
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWebfilterProfileAntiphish(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWebfilterProfileAntiphish resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterProfileAntiphish(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWebfilterProfileAntiphish(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWebfilterProfileAntiphish resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWebfilterProfileAntiphish resource: %v", err)
 	}
 
 	d.SetId("")
@@ -240,6 +245,7 @@ func resourceObjectWebfilterProfileAntiphishRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectWebfilterProfileAntiphish(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileAntiphish resource: %v", err)
 	}
 
@@ -706,7 +712,7 @@ func expandObjectWebfilterProfileAntiphishStatus2edl(d *schema.ResourceData, v i
 	return v, nil
 }
 
-func getObjectObjectWebfilterProfileAntiphish(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWebfilterProfileAntiphish(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("authentication"); ok || d.HasChange("authentication") {
@@ -745,12 +751,16 @@ func getObjectObjectWebfilterProfileAntiphish(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("custom_patterns"); ok || d.HasChange("custom_patterns") {
-		t, err := expandObjectWebfilterProfileAntiphishCustomPatterns2edl(d, v, "custom_patterns")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["custom-patterns"] = t
+	if bemptysontable {
+		obj["custom-patterns"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("custom_patterns"); ok || d.HasChange("custom_patterns") {
+			t, err := expandObjectWebfilterProfileAntiphishCustomPatterns2edl(d, v, "custom_patterns")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["custom-patterns"] = t
+			}
 		}
 	}
 
@@ -772,12 +782,16 @@ func getObjectObjectWebfilterProfileAntiphish(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("inspection_entries"); ok || d.HasChange("inspection_entries") {
-		t, err := expandObjectWebfilterProfileAntiphishInspectionEntries2edl(d, v, "inspection_entries")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["inspection-entries"] = t
+	if bemptysontable {
+		obj["inspection-entries"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("inspection_entries"); ok || d.HasChange("inspection_entries") {
+			t, err := expandObjectWebfilterProfileAntiphishInspectionEntries2edl(d, v, "inspection_entries")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["inspection-entries"] = t
+			}
 		}
 	}
 

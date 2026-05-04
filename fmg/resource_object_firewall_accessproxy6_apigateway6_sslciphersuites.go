@@ -29,6 +29,11 @@ func resourceObjectFirewallAccessProxy6ApiGateway6SslCipherSuites() *schema.Reso
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -98,9 +103,31 @@ func resourceObjectFirewallAccessProxy6ApiGateway6SslCipherSuitesCreate(d *schem
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGateway6SslCipherSuites resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("priority")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGateway6SslCipherSuites resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallAccessProxy6ApiGateway6SslCipherSuites resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "priority")))
@@ -217,6 +244,7 @@ func resourceObjectFirewallAccessProxy6ApiGateway6SslCipherSuitesRead(d *schema.
 
 	o, err := c.ReadObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxy6ApiGateway6SslCipherSuites resource: %v", err)
 	}
 

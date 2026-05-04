@@ -64,7 +64,7 @@ func resourceSystemAutoDeleteLogAutoDeletionUpdate(d *schema.ResourceData, m int
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAutoDeleteLogAutoDeletion(d)
+	obj, err := getObjectSystemAutoDeleteLogAutoDeletion(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteLogAutoDeletion resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemAutoDeleteLogAutoDeletionUpdate(d *schema.ResourceData, m int
 
 func resourceSystemAutoDeleteLogAutoDeletionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemAutoDeleteLogAutoDeletionDelete(d *schema.ResourceData, m int
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAutoDeleteLogAutoDeletion(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAutoDeleteLogAutoDeletion resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteLogAutoDeletion(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAutoDeleteLogAutoDeletion(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAutoDeleteLogAutoDeletion resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAutoDeleteLogAutoDeletion resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemAutoDeleteLogAutoDeletionRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadSystemAutoDeleteLogAutoDeletion(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAutoDeleteLogAutoDeletion resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemAutoDeleteLogAutoDeletionValue2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAutoDeleteLogAutoDeletion(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("retention"); ok || d.HasChange("retention") {

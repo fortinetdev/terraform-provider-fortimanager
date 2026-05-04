@@ -29,6 +29,11 @@ func resourceObjectWebfilterProfileFileFilterEntries() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -113,9 +118,31 @@ func resourceObjectWebfilterProfileFileFilterEntriesCreate(d *schema.ResourceDat
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectWebfilterProfileFileFilterEntries(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectWebfilterProfileFileFilterEntries resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("filter")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectWebfilterProfileFileFilterEntries(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectWebfilterProfileFileFilterEntries(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectWebfilterProfileFileFilterEntries resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectWebfilterProfileFileFilterEntries(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectWebfilterProfileFileFilterEntries resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "filter"))
@@ -217,6 +244,7 @@ func resourceObjectWebfilterProfileFileFilterEntriesRead(d *schema.ResourceData,
 
 	o, err := c.ReadObjectWebfilterProfileFileFilterEntries(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileFileFilterEntries resource: %v", err)
 	}
 

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Dynamic"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_dynamic_interface_dynamic_mapping"
 description: |-

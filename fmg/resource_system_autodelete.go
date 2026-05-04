@@ -168,7 +168,7 @@ func resourceSystemAutoDeleteUpdate(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAutoDelete(d)
+	obj, err := getObjectSystemAutoDelete(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDelete resource while getting object: %v", err)
 	}
@@ -189,7 +189,6 @@ func resourceSystemAutoDeleteUpdate(d *schema.ResourceData, m interface{}) error
 
 func resourceSystemAutoDeleteDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -199,11 +198,17 @@ func resourceSystemAutoDeleteDelete(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAutoDelete(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAutoDelete resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAutoDelete(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAutoDelete(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAutoDelete resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAutoDelete resource: %v", err)
 	}
 
 	d.SetId("")
@@ -224,6 +229,7 @@ func resourceSystemAutoDeleteRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemAutoDelete(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAutoDelete resource: %v", err)
 	}
 
@@ -746,7 +752,7 @@ func expandSystemAutoDeleteStatusFake(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
-func getObjectSystemAutoDelete(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAutoDelete(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("dlp_files_auto_deletion"); ok || d.HasChange("dlp_files_auto_deletion") {

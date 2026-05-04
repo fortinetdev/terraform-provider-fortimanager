@@ -192,7 +192,7 @@ func resourceSystempSystemNtpUpdate(d *schema.ResourceData, m interface{}) error
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemNtp(d)
+	obj, err := getObjectSystempSystemNtp(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemNtp resource while getting object: %v", err)
 	}
@@ -213,7 +213,6 @@ func resourceSystempSystemNtpUpdate(d *schema.ResourceData, m interface{}) error
 
 func resourceSystempSystemNtpDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -229,11 +228,17 @@ func resourceSystempSystemNtpDelete(d *schema.ResourceData, m interface{}) error
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemNtp(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemNtp resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemNtp(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemNtp(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemNtp resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemNtp resource: %v", err)
 	}
 
 	d.SetId("")
@@ -269,6 +274,7 @@ func resourceSystempSystemNtpRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystempSystemNtp(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemNtp resource: %v", err)
 	}
 
@@ -765,7 +771,7 @@ func expandSystempSystemNtpType(d *schema.ResourceData, v interface{}, pre strin
 	return v, nil
 }
 
-func getObjectSystempSystemNtp(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemNtp(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("authentication"); ok || d.HasChange("authentication") {
@@ -813,12 +819,16 @@ func getObjectSystempSystemNtp(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ntpserver"); ok || d.HasChange("ntpserver") {
-		t, err := expandSystempSystemNtpNtpserver(d, v, "ntpserver")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ntpserver"] = t
+	if bemptysontable {
+		obj["ntpserver"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ntpserver"); ok || d.HasChange("ntpserver") {
+			t, err := expandSystempSystemNtpNtpserver(d, v, "ntpserver")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ntpserver"] = t
+			}
 		}
 	}
 

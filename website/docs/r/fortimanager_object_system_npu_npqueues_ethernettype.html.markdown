@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object System"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_system_npu_npqueues_ethernettype"
 description: |-

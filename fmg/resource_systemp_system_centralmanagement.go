@@ -118,7 +118,7 @@ func resourceSystempSystemCentralManagementUpdate(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempSystemCentralManagement(d)
+	obj, err := getObjectSystempSystemCentralManagement(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemCentralManagement resource while getting object: %v", err)
 	}
@@ -139,7 +139,6 @@ func resourceSystempSystemCentralManagementUpdate(d *schema.ResourceData, m inte
 
 func resourceSystempSystemCentralManagementDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -155,11 +154,17 @@ func resourceSystempSystemCentralManagementDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempSystemCentralManagement(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempSystemCentralManagement resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempSystemCentralManagement(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempSystemCentralManagement(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempSystemCentralManagement resource: %v", err)
+		return fmt.Errorf("Error clearing SystempSystemCentralManagement resource: %v", err)
 	}
 
 	d.SetId("")
@@ -195,6 +200,7 @@ func resourceSystempSystemCentralManagementRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadSystempSystemCentralManagement(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempSystemCentralManagement resource: %v", err)
 	}
 
@@ -440,7 +446,7 @@ func expandSystempSystemCentralManagementServerListServerType(d *schema.Resource
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystempSystemCentralManagement(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempSystemCentralManagement(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("include_default_servers"); ok || d.HasChange("include_default_servers") {
@@ -452,12 +458,16 @@ func getObjectSystempSystemCentralManagement(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("server_list"); ok || d.HasChange("server_list") {
-		t, err := expandSystempSystemCentralManagementServerList(d, v, "server_list")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["server-list"] = t
+	if bemptysontable {
+		obj["server-list"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("server_list"); ok || d.HasChange("server_list") {
+			t, err := expandSystempSystemCentralManagementServerList(d, v, "server_list")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["server-list"] = t
+			}
 		}
 	}
 

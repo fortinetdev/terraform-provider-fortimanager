@@ -29,6 +29,11 @@ func resourceObjectUserExternalIdentityProvider() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -128,9 +133,31 @@ func resourceObjectUserExternalIdentityProviderCreate(d *schema.ResourceData, m 
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectUserExternalIdentityProvider(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectUserExternalIdentityProvider resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectUserExternalIdentityProvider(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectUserExternalIdentityProvider(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectUserExternalIdentityProvider resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectUserExternalIdentityProvider(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectUserExternalIdentityProvider resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -214,6 +241,7 @@ func resourceObjectUserExternalIdentityProviderRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadObjectUserExternalIdentityProvider(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectUserExternalIdentityProvider resource: %v", err)
 	}
 

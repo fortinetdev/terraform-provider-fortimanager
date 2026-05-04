@@ -483,7 +483,7 @@ func resourceObjectWirelessControllerWtpProfileRadio2Update(d *schema.ResourceDa
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	obj, err := getObjectObjectWirelessControllerWtpProfileRadio2(d)
+	obj, err := getObjectObjectWirelessControllerWtpProfileRadio2(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileRadio2 resource while getting object: %v", err)
 	}
@@ -504,7 +504,6 @@ func resourceObjectWirelessControllerWtpProfileRadio2Update(d *schema.ResourceDa
 
 func resourceObjectWirelessControllerWtpProfileRadio2Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -520,11 +519,17 @@ func resourceObjectWirelessControllerWtpProfileRadio2Delete(d *schema.ResourceDa
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
+	obj, err := getObjectObjectWirelessControllerWtpProfileRadio2(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileRadio2 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfileRadio2(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerWtpProfileRadio2(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileRadio2 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerWtpProfileRadio2 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -560,6 +565,7 @@ func resourceObjectWirelessControllerWtpProfileRadio2Read(d *schema.ResourceData
 
 	o, err := c.ReadObjectWirelessControllerWtpProfileRadio2(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfileRadio2 resource: %v", err)
 	}
 
@@ -2152,7 +2158,7 @@ func expandObjectWirelessControllerWtpProfileRadio2ZeroWaitDfs2edl(d *schema.Res
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("n80211d"); ok || d.HasChange("n80211d") {

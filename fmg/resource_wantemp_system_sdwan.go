@@ -418,6 +418,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"update_bgp_route": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"update_cascade_interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1252,7 +1256,7 @@ func resourceWantempSystemSdwanUpdate(d *schema.ResourceData, m interface{}) err
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
-	obj, err := getObjectWantempSystemSdwan(d)
+	obj, err := getObjectWantempSystemSdwan(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwan resource while getting object: %v", err)
 	}
@@ -1273,7 +1277,6 @@ func resourceWantempSystemSdwanUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceWantempSystemSdwanDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -1289,11 +1292,17 @@ func resourceWantempSystemSdwanDelete(d *schema.ResourceData, m interface{}) err
 	wanprof := d.Get("wanprof").(string)
 	paradict["wanprof"] = wanprof
 
+	obj, err := getObjectWantempSystemSdwan(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating WantempSystemSdwan resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteWantempSystemSdwan(mkey, paradict, wsParams)
+	_, err = c.UpdateWantempSystemSdwan(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting WantempSystemSdwan resource: %v", err)
+		return fmt.Errorf("Error clearing WantempSystemSdwan resource: %v", err)
 	}
 
 	d.SetId("")
@@ -1329,6 +1338,7 @@ func resourceWantempSystemSdwanRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadWantempSystemSdwan(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading WantempSystemSdwan resource: %v", err)
 	}
 
@@ -1833,6 +1843,12 @@ func flattenWantempSystemSdwanHealthCheck(v interface{}, d *schema.ResourceData,
 			tmp["threshold_warning_packetloss"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-ThresholdWarningPacketloss")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_bgp_route"
+		if _, ok := i["update-bgp-route"]; ok {
+			v := flattenWantempSystemSdwanHealthCheckUpdateBgpRoute(i["update-bgp-route"], d, pre_append)
+			tmp["update_bgp_route"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-UpdateBgpRoute")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_cascade_interface"
 		if _, ok := i["update-cascade-interface"]; ok {
 			v := flattenWantempSystemSdwanHealthCheckUpdateCascadeInterface(i["update-cascade-interface"], d, pre_append)
@@ -2179,6 +2195,10 @@ func flattenWantempSystemSdwanHealthCheckThresholdWarningLatency(v interface{}, 
 }
 
 func flattenWantempSystemSdwanHealthCheckThresholdWarningPacketloss(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckUpdateBgpRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4735,6 +4755,11 @@ func expandWantempSystemSdwanHealthCheck(d *schema.ResourceData, v interface{}, 
 			tmp["threshold-warning-packetloss"], _ = expandWantempSystemSdwanHealthCheckThresholdWarningPacketloss(d, i["threshold_warning_packetloss"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_bgp_route"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["update-bgp-route"], _ = expandWantempSystemSdwanHealthCheckUpdateBgpRoute(d, i["update_bgp_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "update_cascade_interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["update-cascade-interface"], _ = expandWantempSystemSdwanHealthCheckUpdateCascadeInterface(d, i["update_cascade_interface"], pre_append)
@@ -5067,6 +5092,10 @@ func expandWantempSystemSdwanHealthCheckThresholdWarningLatency(d *schema.Resour
 }
 
 func expandWantempSystemSdwanHealthCheckThresholdWarningPacketloss(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckUpdateBgpRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6715,7 +6744,7 @@ func expandWantempSystemSdwanZoneServiceSlaTieBreak(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectWantempSystemSdwan(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("app_perf_log_period"); ok || d.HasChange("app_perf_log_period") {
@@ -6727,12 +6756,16 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("duplication"); ok || d.HasChange("duplication") {
-		t, err := expandWantempSystemSdwanDuplication(d, v, "duplication")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["duplication"] = t
+	if bemptysontable {
+		obj["duplication"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("duplication"); ok || d.HasChange("duplication") {
+			t, err := expandWantempSystemSdwanDuplication(d, v, "duplication")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["duplication"] = t
+			}
 		}
 	}
 
@@ -6772,21 +6805,29 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
-		t, err := expandWantempSystemSdwanHealthCheck(d, v, "health_check")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["health-check"] = t
+	if bemptysontable {
+		obj["health-check"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("health_check"); ok || d.HasChange("health_check") {
+			t, err := expandWantempSystemSdwanHealthCheck(d, v, "health_check")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["health-check"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("health_check_fortiguard"); ok || d.HasChange("health_check_fortiguard") {
-		t, err := expandWantempSystemSdwanHealthCheckFortiguard(d, v, "health_check_fortiguard")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["health-check-fortiguard"] = t
+	if bemptysontable {
+		obj["health-check-fortiguard"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("health_check_fortiguard"); ok || d.HasChange("health_check_fortiguard") {
+			t, err := expandWantempSystemSdwanHealthCheckFortiguard(d, v, "health_check_fortiguard")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["health-check-fortiguard"] = t
+			}
 		}
 	}
 
@@ -6799,21 +6840,29 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
-		t, err := expandWantempSystemSdwanMembers(d, v, "members")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["members"] = t
+	if bemptysontable {
+		obj["members"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("members"); ok || d.HasChange("members") {
+			t, err := expandWantempSystemSdwanMembers(d, v, "members")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["members"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("neighbor"); ok || d.HasChange("neighbor") {
-		t, err := expandWantempSystemSdwanNeighbor(d, v, "neighbor")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["neighbor"] = t
+	if bemptysontable {
+		obj["neighbor"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("neighbor"); ok || d.HasChange("neighbor") {
+			t, err := expandWantempSystemSdwanNeighbor(d, v, "neighbor")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["neighbor"] = t
+			}
 		}
 	}
 
@@ -6853,12 +6902,16 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
-		t, err := expandWantempSystemSdwanService(d, v, "service")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["service"] = t
+	if bemptysontable {
+		obj["service"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
+			t, err := expandWantempSystemSdwanService(d, v, "service")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["service"] = t
+			}
 		}
 	}
 
@@ -6880,12 +6933,16 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("zone"); ok || d.HasChange("zone") {
-		t, err := expandWantempSystemSdwanZone(d, v, "zone")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["zone"] = t
+	if bemptysontable {
+		obj["zone"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("zone"); ok || d.HasChange("zone") {
+			t, err := expandWantempSystemSdwanZone(d, v, "zone")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["zone"] = t
+			}
 		}
 	}
 

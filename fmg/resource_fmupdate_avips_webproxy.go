@@ -75,7 +75,7 @@ func resourceFmupdateAvIpsWebProxyUpdate(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateAvIpsWebProxy(d)
+	obj, err := getObjectFmupdateAvIpsWebProxy(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsWebProxy resource while getting object: %v", err)
 	}
@@ -96,7 +96,6 @@ func resourceFmupdateAvIpsWebProxyUpdate(d *schema.ResourceData, m interface{}) 
 
 func resourceFmupdateAvIpsWebProxyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -106,11 +105,17 @@ func resourceFmupdateAvIpsWebProxyDelete(d *schema.ResourceData, m interface{}) 
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateAvIpsWebProxy(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateAvIpsWebProxy resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateAvIpsWebProxy(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateAvIpsWebProxy(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateAvIpsWebProxy resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateAvIpsWebProxy resource: %v", err)
 	}
 
 	d.SetId("")
@@ -131,6 +136,7 @@ func resourceFmupdateAvIpsWebProxyRead(d *schema.ResourceData, m interface{}) er
 
 	o, err := c.ReadFmupdateAvIpsWebProxy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateAvIpsWebProxy resource: %v", err)
 	}
 
@@ -253,7 +259,7 @@ func expandFmupdateAvIpsWebProxyUsername(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
-func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {

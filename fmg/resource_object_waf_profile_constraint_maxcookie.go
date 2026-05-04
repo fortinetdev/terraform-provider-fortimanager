@@ -96,7 +96,7 @@ func resourceObjectWafProfileConstraintMaxCookieUpdate(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWafProfileConstraintMaxCookie(d)
+	obj, err := getObjectObjectWafProfileConstraintMaxCookie(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxCookie resource while getting object: %v", err)
 	}
@@ -117,7 +117,6 @@ func resourceObjectWafProfileConstraintMaxCookieUpdate(d *schema.ResourceData, m
 
 func resourceObjectWafProfileConstraintMaxCookieDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -133,11 +132,17 @@ func resourceObjectWafProfileConstraintMaxCookieDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWafProfileConstraintMaxCookie(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWafProfileConstraintMaxCookie resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWafProfileConstraintMaxCookie(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWafProfileConstraintMaxCookie(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWafProfileConstraintMaxCookie resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWafProfileConstraintMaxCookie resource: %v", err)
 	}
 
 	d.SetId("")
@@ -173,6 +178,7 @@ func resourceObjectWafProfileConstraintMaxCookieRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectWafProfileConstraintMaxCookie(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWafProfileConstraintMaxCookie resource: %v", err)
 	}
 
@@ -295,7 +301,7 @@ func expandObjectWafProfileConstraintMaxCookieStatus3rdl(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectObjectWafProfileConstraintMaxCookie(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWafProfileConstraintMaxCookie(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

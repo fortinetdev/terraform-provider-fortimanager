@@ -79,7 +79,7 @@ func resourceSecurityconsolePackageCommitUpdate(d *schema.ResourceData, m interf
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsolePackageCommit(d)
+	obj, err := getObjectSecurityconsolePackageCommit(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCommit resource while getting object: %v", err)
 	}
@@ -276,7 +276,7 @@ func expandSecurityconsolePackageCommitScopeVdom(d *schema.ResourceData, v inter
 	return v, nil
 }
 
-func getObjectSecurityconsolePackageCommit(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsolePackageCommit(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -297,12 +297,16 @@ func getObjectSecurityconsolePackageCommit(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsolePackageCommitScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsolePackageCommitScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

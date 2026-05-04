@@ -29,6 +29,11 @@ func resourceObjectIcapRemoteServerGroupServerList() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -86,9 +91,31 @@ func resourceObjectIcapRemoteServerGroupServerListCreate(d *schema.ResourceData,
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapRemoteServerGroupServerList(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapRemoteServerGroupServerList resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapRemoteServerGroupServerList(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapRemoteServerGroupServerList(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapRemoteServerGroupServerList resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIcapRemoteServerGroupServerList(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIcapRemoteServerGroupServerList resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -190,6 +217,7 @@ func resourceObjectIcapRemoteServerGroupServerListRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectIcapRemoteServerGroupServerList(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapRemoteServerGroupServerList resource: %v", err)
 	}
 
@@ -207,7 +235,7 @@ func resourceObjectIcapRemoteServerGroupServerListRead(d *schema.ResourceData, m
 }
 
 func flattenObjectIcapRemoteServerGroupServerListName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectIcapRemoteServerGroupServerListWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -62,7 +62,7 @@ func resourceDvmCmdDelDeviceUpdate(d *schema.ResourceData, m interface{}) error 
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectDvmCmdDelDevice(d)
+	obj, err := getObjectDvmCmdDelDevice(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdDelDevice resource while getting object: %v", err)
 	}
@@ -158,7 +158,7 @@ func expandDvmCmdDelDeviceFlags(d *schema.ResourceData, v interface{}, pre strin
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectDvmCmdDelDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdDelDevice(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {

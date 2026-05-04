@@ -29,6 +29,11 @@ func resourceObjectIcapServerGroupServerList() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -86,9 +91,31 @@ func resourceObjectIcapServerGroupServerListCreate(d *schema.ResourceData, m int
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapServerGroupServerList(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapServerGroupServerList resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapServerGroupServerList(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapServerGroupServerList(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapServerGroupServerList resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIcapServerGroupServerList(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIcapServerGroupServerList resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -190,6 +217,7 @@ func resourceObjectIcapServerGroupServerListRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectIcapServerGroupServerList(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapServerGroupServerList resource: %v", err)
 	}
 
@@ -207,7 +235,7 @@ func resourceObjectIcapServerGroupServerListRead(d *schema.ResourceData, m inter
 }
 
 func flattenObjectIcapServerGroupServerListName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectIcapServerGroupServerListWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {

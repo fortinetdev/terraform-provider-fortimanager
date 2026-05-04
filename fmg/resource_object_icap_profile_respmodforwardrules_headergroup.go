@@ -29,6 +29,11 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroup() *schema.Resource 
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -102,9 +107,31 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupCreate(d *schema.Res
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectIcapProfileRespmodForwardRulesHeaderGroup(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectIcapProfileRespmodForwardRulesHeaderGroup(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -221,6 +248,7 @@ func resourceObjectIcapProfileRespmodForwardRulesHeaderGroupRead(d *schema.Resou
 
 	o, err := c.ReadObjectIcapProfileRespmodForwardRulesHeaderGroup(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectIcapProfileRespmodForwardRulesHeaderGroup resource: %v", err)
 	}
 

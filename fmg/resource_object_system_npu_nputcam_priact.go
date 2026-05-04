@@ -79,7 +79,7 @@ func resourceObjectSystemNpuNpuTcamPriActUpdate(d *schema.ResourceData, m interf
 	npu_tcam := d.Get("npu_tcam").(string)
 	paradict["npu_tcam"] = npu_tcam
 
-	obj, err := getObjectObjectSystemNpuNpuTcamPriAct(d)
+	obj, err := getObjectObjectSystemNpuNpuTcamPriAct(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamPriAct resource while getting object: %v", err)
 	}
@@ -100,7 +100,6 @@ func resourceObjectSystemNpuNpuTcamPriActUpdate(d *schema.ResourceData, m interf
 
 func resourceObjectSystemNpuNpuTcamPriActDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -116,11 +115,17 @@ func resourceObjectSystemNpuNpuTcamPriActDelete(d *schema.ResourceData, m interf
 	npu_tcam := d.Get("npu_tcam").(string)
 	paradict["npu_tcam"] = npu_tcam
 
+	obj, err := getObjectObjectSystemNpuNpuTcamPriAct(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuNpuTcamPriAct resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpuTcamPriAct(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuNpuTcamPriAct(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuNpuTcamPriAct resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuNpuTcamPriAct resource: %v", err)
 	}
 
 	d.SetId("")
@@ -156,6 +161,7 @@ func resourceObjectSystemNpuNpuTcamPriActRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectSystemNpuNpuTcamPriAct(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuNpuTcamPriAct resource: %v", err)
 	}
 
@@ -224,7 +230,7 @@ func expandObjectSystemNpuNpuTcamPriActWeight3rdl(d *schema.ResourceData, v inte
 	return v, nil
 }
 
-func getObjectObjectSystemNpuNpuTcamPriAct(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuNpuTcamPriAct(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("priority"); ok || d.HasChange("priority") {

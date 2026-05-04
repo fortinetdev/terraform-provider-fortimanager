@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Wantemp"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_wantemp_system_virtualwanlink_service"
 description: |-

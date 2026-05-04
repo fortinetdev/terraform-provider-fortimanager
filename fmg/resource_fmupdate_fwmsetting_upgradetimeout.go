@@ -114,7 +114,7 @@ func resourceFmupdateFwmSettingUpgradeTimeoutUpdate(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateFwmSettingUpgradeTimeout(d)
+	obj, err := getObjectFmupdateFwmSettingUpgradeTimeout(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFwmSettingUpgradeTimeout resource while getting object: %v", err)
 	}
@@ -135,7 +135,6 @@ func resourceFmupdateFwmSettingUpgradeTimeoutUpdate(d *schema.ResourceData, m in
 
 func resourceFmupdateFwmSettingUpgradeTimeoutDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -145,11 +144,17 @@ func resourceFmupdateFwmSettingUpgradeTimeoutDelete(d *schema.ResourceData, m in
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateFwmSettingUpgradeTimeout(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateFwmSettingUpgradeTimeout resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateFwmSettingUpgradeTimeout(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateFwmSettingUpgradeTimeout(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateFwmSettingUpgradeTimeout resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateFwmSettingUpgradeTimeout resource: %v", err)
 	}
 
 	d.SetId("")
@@ -170,6 +175,7 @@ func resourceFmupdateFwmSettingUpgradeTimeoutRead(d *schema.ResourceData, m inte
 
 	o, err := c.ReadFmupdateFwmSettingUpgradeTimeout(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateFwmSettingUpgradeTimeout resource: %v", err)
 	}
 
@@ -450,7 +456,7 @@ func expandFmupdateFwmSettingUpgradeTimeoutTotalTimeout2edl(d *schema.ResourceDa
 	return v, nil
 }
 
-func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateFwmSettingUpgradeTimeout(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("check_status_timeout"); ok || d.HasChange("check_status_timeout") {

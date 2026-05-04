@@ -259,7 +259,7 @@ func resourceSystemLocallogSyslogd3FilterUpdate(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemLocallogSyslogd3Filter(d)
+	obj, err := getObjectSystemLocallogSyslogd3Filter(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSyslogd3Filter resource while getting object: %v", err)
 	}
@@ -280,7 +280,6 @@ func resourceSystemLocallogSyslogd3FilterUpdate(d *schema.ResourceData, m interf
 
 func resourceSystemLocallogSyslogd3FilterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -290,11 +289,17 @@ func resourceSystemLocallogSyslogd3FilterDelete(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemLocallogSyslogd3Filter(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemLocallogSyslogd3Filter resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemLocallogSyslogd3Filter(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemLocallogSyslogd3Filter(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemLocallogSyslogd3Filter resource: %v", err)
+		return fmt.Errorf("Error clearing SystemLocallogSyslogd3Filter resource: %v", err)
 	}
 
 	d.SetId("")
@@ -315,6 +320,7 @@ func resourceSystemLocallogSyslogd3FilterRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadSystemLocallogSyslogd3Filter(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemLocallogSyslogd3Filter resource: %v", err)
 	}
 
@@ -1117,7 +1123,7 @@ func expandSystemLocallogSyslogd3FilterWebport(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
-func getObjectSystemLocallogSyslogd3Filter(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemLocallogSyslogd3Filter(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aid"); ok || d.HasChange("aid") {

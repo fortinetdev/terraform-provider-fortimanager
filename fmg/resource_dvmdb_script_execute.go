@@ -107,7 +107,7 @@ func resourceDvmdbScriptExecuteUpdate(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectDvmdbScriptExecute(d)
+	obj, err := getObjectDvmdbScriptExecute(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScriptExecute resource while getting object: %v", err)
 	}
@@ -343,7 +343,7 @@ func expandDvmdbScriptExecuteScript2edl(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
-func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmdbScriptExecute(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -373,12 +373,16 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandDvmdbScriptExecuteScope2edl(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandDvmdbScriptExecuteScope2edl(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

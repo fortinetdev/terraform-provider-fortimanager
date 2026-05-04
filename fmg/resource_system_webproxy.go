@@ -74,7 +74,7 @@ func resourceSystemWebProxyUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemWebProxy(d)
+	obj, err := getObjectSystemWebProxy(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWebProxy resource while getting object: %v", err)
 	}
@@ -95,7 +95,6 @@ func resourceSystemWebProxyUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemWebProxyDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -105,11 +104,17 @@ func resourceSystemWebProxyDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemWebProxy(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemWebProxy resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemWebProxy(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemWebProxy(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemWebProxy resource: %v", err)
+		return fmt.Errorf("Error clearing SystemWebProxy resource: %v", err)
 	}
 
 	d.SetId("")
@@ -130,6 +135,7 @@ func resourceSystemWebProxyRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemWebProxy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemWebProxy resource: %v", err)
 	}
 
@@ -252,7 +258,7 @@ func expandSystemWebProxyUsername(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
-func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemWebProxy(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {

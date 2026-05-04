@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Extender Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_extendercontroller_extenderprofile_cellular_modem1"
 description: |-

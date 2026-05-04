@@ -168,7 +168,7 @@ func resourceObjectSystemNpuHpeUpdate(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuHpe(d)
+	obj, err := getObjectObjectSystemNpuHpe(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuHpe resource while getting object: %v", err)
 	}
@@ -189,7 +189,6 @@ func resourceObjectSystemNpuHpeUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceObjectSystemNpuHpeDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -202,11 +201,17 @@ func resourceObjectSystemNpuHpeDelete(d *schema.ResourceData, m interface{}) err
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuHpe(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuHpe resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuHpe(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuHpe(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuHpe resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuHpe resource: %v", err)
 	}
 
 	d.SetId("")
@@ -230,6 +235,7 @@ func resourceObjectSystemNpuHpeRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadObjectSystemNpuHpe(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuHpe resource: %v", err)
 	}
 
@@ -640,7 +646,7 @@ func expandObjectSystemNpuHpeUdpMax2edl(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
-func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuHpe(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("all_protocol"); ok || d.HasChange("all_protocol") {

@@ -29,6 +29,11 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -51,7 +56,7 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"_policy_block": &schema.Schema{
-				Type:     schema.TypeInt,
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"action": &schema.Schema{
@@ -137,6 +142,12 @@ func resourcePackagesPblockFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"llm_profile": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -1295,17 +1306,38 @@ func resourcePackagesPblockFirewallPolicyCreate(d *schema.ResourceData, m interf
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreatePackagesPblockFirewallPolicy(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating PackagesPblockFirewallPolicy resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadPackagesPblockFirewallPolicy(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdatePackagesPblockFirewallPolicy(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating PackagesPblockFirewallPolicy resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["policyid"] != nil {
-		if vidn, ok := v["policyid"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourcePackagesPblockFirewallPolicyRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreatePackagesPblockFirewallPolicy(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating PackagesPblockFirewallPolicy resource: %v", err)
+		}
+
+		if v != nil && v["policyid"] != nil {
+			if vidn, ok := v["policyid"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourcePackagesPblockFirewallPolicyRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating PackagesPblockFirewallPolicy resource: %v", err)
+			}
 		}
 	}
 
@@ -1406,6 +1438,7 @@ func resourcePackagesPblockFirewallPolicyRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadPackagesPblockFirewallPolicy(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesPblockFirewallPolicy resource: %v", err)
 	}
 
@@ -1495,6 +1528,10 @@ func flattenPackagesPblockFirewallPolicyIsolatorProfile2edl(v interface{}, d *sc
 }
 
 func flattenPackagesPblockFirewallPolicyIsolatorServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesPblockFirewallPolicyLlmProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -1975,6 +2012,13 @@ func flattenPackagesPblockFirewallPolicyNatinbound2edl(v interface{}, d *schema.
 }
 
 func flattenPackagesPblockFirewallPolicyNatip2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return flattenStringList(v)
 }
 
@@ -2624,6 +2668,16 @@ func refreshObjectPackagesPblockFirewallPolicy(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
+	if err = d.Set("llm_profile", flattenPackagesPblockFirewallPolicyLlmProfile2edl(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "PackagesPblockFirewallPolicy-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
 		}
 	}
 
@@ -5042,6 +5096,10 @@ func expandPackagesPblockFirewallPolicyIsolatorServer2edl(d *schema.ResourceData
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandPackagesPblockFirewallPolicyLlmProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesPblockFirewallPolicyMaxSessionPerUser2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6145,6 +6203,15 @@ func getObjectPackagesPblockFirewallPolicy(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["isolator-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandPackagesPblockFirewallPolicyLlmProfile2edl(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
 		}
 	}
 

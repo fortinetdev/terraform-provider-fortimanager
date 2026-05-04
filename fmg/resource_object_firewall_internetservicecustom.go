@@ -29,6 +29,11 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -191,9 +196,31 @@ func resourceObjectFirewallInternetServiceCustomCreate(d *schema.ResourceData, m
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceCustom(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustom resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallInternetServiceCustom(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallInternetServiceCustom(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallInternetServiceCustom resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallInternetServiceCustom(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallInternetServiceCustom resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "name"))
@@ -277,6 +304,7 @@ func resourceObjectFirewallInternetServiceCustomRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectFirewallInternetServiceCustom(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallInternetServiceCustom resource: %v", err)
 	}
 

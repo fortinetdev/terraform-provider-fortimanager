@@ -95,7 +95,7 @@ func resourceObjectEmailfilterProfilePop3Update(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectEmailfilterProfilePop3(d)
+	obj, err := getObjectObjectEmailfilterProfilePop3(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterProfilePop3 resource while getting object: %v", err)
 	}
@@ -116,7 +116,6 @@ func resourceObjectEmailfilterProfilePop3Update(d *schema.ResourceData, m interf
 
 func resourceObjectEmailfilterProfilePop3Delete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -132,11 +131,17 @@ func resourceObjectEmailfilterProfilePop3Delete(d *schema.ResourceData, m interf
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectEmailfilterProfilePop3(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectEmailfilterProfilePop3 resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterProfilePop3(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectEmailfilterProfilePop3(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectEmailfilterProfilePop3 resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectEmailfilterProfilePop3 resource: %v", err)
 	}
 
 	d.SetId("")
@@ -172,6 +177,7 @@ func resourceObjectEmailfilterProfilePop3Read(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectEmailfilterProfilePop3(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectEmailfilterProfilePop3 resource: %v", err)
 	}
 
@@ -294,7 +300,7 @@ func expandObjectEmailfilterProfilePop3TagType2edl(d *schema.ResourceData, v int
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectEmailfilterProfilePop3(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectEmailfilterProfilePop3(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {

@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object FSP"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_fsp_vlan_interface_ipv6_ip6delegatedprefixlist"
 description: |-

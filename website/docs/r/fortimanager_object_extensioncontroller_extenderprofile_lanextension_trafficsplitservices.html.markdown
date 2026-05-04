@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Extension Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_extensioncontroller_extenderprofile_lanextension_trafficsplitservices"
 description: |-

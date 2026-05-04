@@ -64,7 +64,7 @@ func resourceSystemDnsUpdate(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemDns(d)
+	obj, err := getObjectSystemDns(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDns resource while getting object: %v", err)
 	}
@@ -85,7 +85,6 @@ func resourceSystemDnsUpdate(d *schema.ResourceData, m interface{}) error {
 
 func resourceSystemDnsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -95,11 +94,17 @@ func resourceSystemDnsDelete(d *schema.ResourceData, m interface{}) error {
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemDns(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemDns resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemDns(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemDns(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemDns resource: %v", err)
+		return fmt.Errorf("Error clearing SystemDns resource: %v", err)
 	}
 
 	d.SetId("")
@@ -120,6 +125,7 @@ func resourceSystemDnsRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemDns(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemDns resource: %v", err)
 	}
 
@@ -220,7 +226,7 @@ func expandSystemDnsSecondary(d *schema.ResourceData, v interface{}, pre string)
 	return v, nil
 }
 
-func getObjectSystemDns(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemDns(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ip6_primary"); ok || d.HasChange("ip6_primary") {

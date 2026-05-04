@@ -29,6 +29,11 @@ func resourceSystemRoute() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"device": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -69,9 +74,31 @@ func resourceSystemRouteCreate(d *schema.ResourceData, m interface{}) error {
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateSystemRoute(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating SystemRoute resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("seq_num")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadSystemRoute(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateSystemRoute(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating SystemRoute resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateSystemRoute(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating SystemRoute resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "seq_num")))
@@ -146,6 +173,7 @@ func resourceSystemRouteRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemRoute(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemRoute resource: %v", err)
 	}
 
@@ -167,6 +195,13 @@ func flattenSystemRouteDevice(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenSystemRouteDst(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v1, ok := d.GetOkExists(pre); ok && v != nil {
+		if s, ok := v1.(string); ok {
+			v = validateConvIPMask2CIDR(s, conv2str(v).(string))
+			return v
+		}
+	}
+
 	return flattenStringList(v)
 }
 

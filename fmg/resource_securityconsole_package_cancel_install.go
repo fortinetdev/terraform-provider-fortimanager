@@ -52,7 +52,7 @@ func resourceSecurityconsolePackageCancelInstallUpdate(d *schema.ResourceData, m
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsolePackageCancelInstall(d)
+	obj, err := getObjectSecurityconsolePackageCancelInstall(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCancelInstall resource while getting object: %v", err)
 	}
@@ -112,7 +112,7 @@ func expandSecurityconsolePackageCancelInstallAdom(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {

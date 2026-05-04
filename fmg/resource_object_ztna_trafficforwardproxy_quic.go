@@ -103,7 +103,7 @@ func resourceObjectZtnaTrafficForwardProxyQuicUpdate(d *schema.ResourceData, m i
 	traffic_forward_proxy := d.Get("traffic_forward_proxy").(string)
 	paradict["traffic_forward_proxy"] = traffic_forward_proxy
 
-	obj, err := getObjectObjectZtnaTrafficForwardProxyQuic(d)
+	obj, err := getObjectObjectZtnaTrafficForwardProxyQuic(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectZtnaTrafficForwardProxyQuic resource while getting object: %v", err)
 	}
@@ -124,7 +124,6 @@ func resourceObjectZtnaTrafficForwardProxyQuicUpdate(d *schema.ResourceData, m i
 
 func resourceObjectZtnaTrafficForwardProxyQuicDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -140,11 +139,17 @@ func resourceObjectZtnaTrafficForwardProxyQuicDelete(d *schema.ResourceData, m i
 	traffic_forward_proxy := d.Get("traffic_forward_proxy").(string)
 	paradict["traffic_forward_proxy"] = traffic_forward_proxy
 
+	obj, err := getObjectObjectZtnaTrafficForwardProxyQuic(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectZtnaTrafficForwardProxyQuic resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectZtnaTrafficForwardProxyQuic(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectZtnaTrafficForwardProxyQuic(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectZtnaTrafficForwardProxyQuic resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectZtnaTrafficForwardProxyQuic resource: %v", err)
 	}
 
 	d.SetId("")
@@ -180,6 +185,7 @@ func resourceObjectZtnaTrafficForwardProxyQuicRead(d *schema.ResourceData, m int
 
 	o, err := c.ReadObjectZtnaTrafficForwardProxyQuic(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectZtnaTrafficForwardProxyQuic resource: %v", err)
 	}
 
@@ -356,7 +362,7 @@ func expandObjectZtnaTrafficForwardProxyQuicMaxUdpPayloadSize2edl(d *schema.Reso
 	return v, nil
 }
 
-func getObjectObjectZtnaTrafficForwardProxyQuic(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectZtnaTrafficForwardProxyQuic(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("ack_delay_exponent"); ok || d.HasChange("ack_delay_exponent") {

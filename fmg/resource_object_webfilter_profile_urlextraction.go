@@ -91,7 +91,7 @@ func resourceObjectWebfilterProfileUrlExtractionUpdate(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectWebfilterProfileUrlExtraction(d)
+	obj, err := getObjectObjectWebfilterProfileUrlExtraction(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterProfileUrlExtraction resource while getting object: %v", err)
 	}
@@ -112,7 +112,6 @@ func resourceObjectWebfilterProfileUrlExtractionUpdate(d *schema.ResourceData, m
 
 func resourceObjectWebfilterProfileUrlExtractionDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -128,11 +127,17 @@ func resourceObjectWebfilterProfileUrlExtractionDelete(d *schema.ResourceData, m
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectWebfilterProfileUrlExtraction(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWebfilterProfileUrlExtraction resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterProfileUrlExtraction(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWebfilterProfileUrlExtraction(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWebfilterProfileUrlExtraction resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWebfilterProfileUrlExtraction resource: %v", err)
 	}
 
 	d.SetId("")
@@ -168,6 +173,7 @@ func resourceObjectWebfilterProfileUrlExtractionRead(d *schema.ResourceData, m i
 
 	o, err := c.ReadObjectWebfilterProfileUrlExtraction(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWebfilterProfileUrlExtraction resource: %v", err)
 	}
 
@@ -290,7 +296,7 @@ func expandObjectWebfilterProfileUrlExtractionStatus2edl(d *schema.ResourceData,
 	return v, nil
 }
 
-func getObjectObjectWebfilterProfileUrlExtraction(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWebfilterProfileUrlExtraction(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("redirect_header"); ok || d.HasChange("redirect_header") {

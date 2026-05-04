@@ -127,7 +127,7 @@ func resourceObjectFirewallProfileProtocolOptionsImapUpdate(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
-	obj, err := getObjectObjectFirewallProfileProtocolOptionsImap(d)
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsImap(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsImap resource while getting object: %v", err)
 	}
@@ -148,7 +148,6 @@ func resourceObjectFirewallProfileProtocolOptionsImapUpdate(d *schema.ResourceDa
 
 func resourceObjectFirewallProfileProtocolOptionsImapDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -164,11 +163,17 @@ func resourceObjectFirewallProfileProtocolOptionsImapDelete(d *schema.ResourceDa
 	profile_protocol_options := d.Get("profile_protocol_options").(string)
 	paradict["profile_protocol_options"] = profile_protocol_options
 
+	obj, err := getObjectObjectFirewallProfileProtocolOptionsImap(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptionsImap resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptionsImap(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptionsImap(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptionsImap resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectFirewallProfileProtocolOptionsImap resource: %v", err)
 	}
 
 	d.SetId("")
@@ -204,6 +209,7 @@ func resourceObjectFirewallProfileProtocolOptionsImapRead(d *schema.ResourceData
 
 	o, err := c.ReadObjectFirewallProfileProtocolOptionsImap(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptionsImap resource: %v", err)
 	}
 
@@ -434,7 +440,7 @@ func expandObjectFirewallProfileProtocolOptionsImapAddressIpRating2edl(d *schema
 	return v, nil
 }
 
-func getObjectObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("inspect_all"); ok || d.HasChange("inspect_all") {

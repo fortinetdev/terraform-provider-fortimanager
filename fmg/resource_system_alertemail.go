@@ -80,7 +80,7 @@ func resourceSystemAlertemailUpdate(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAlertemail(d)
+	obj, err := getObjectSystemAlertemail(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertemail resource while getting object: %v", err)
 	}
@@ -101,7 +101,6 @@ func resourceSystemAlertemailUpdate(d *schema.ResourceData, m interface{}) error
 
 func resourceSystemAlertemailDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -111,11 +110,17 @@ func resourceSystemAlertemailDelete(d *schema.ResourceData, m interface{}) error
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAlertemail(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAlertemail resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAlertemail(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAlertemail(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAlertemail resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAlertemail resource: %v", err)
 	}
 
 	d.SetId("")
@@ -136,6 +141,7 @@ func resourceSystemAlertemailRead(d *schema.ResourceData, m interface{}) error {
 
 	o, err := c.ReadSystemAlertemail(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAlertemail resource: %v", err)
 	}
 
@@ -276,7 +282,7 @@ func expandSystemAlertemailSmtpuser(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
-func getObjectSystemAlertemail(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAlertemail(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("authentication"); ok || d.HasChange("authentication") {

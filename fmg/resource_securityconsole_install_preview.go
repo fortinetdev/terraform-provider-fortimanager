@@ -89,7 +89,7 @@ func resourceSecurityconsoleInstallPreviewUpdate(d *schema.ResourceData, m inter
 	paradict := make(map[string]string)
 	wsParams := make(map[string]string)
 
-	obj, err := getObjectSecurityconsoleInstallPreview(d)
+	obj, err := getObjectSecurityconsoleInstallPreview(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallPreview resource while getting object: %v", err)
 	}
@@ -322,7 +322,7 @@ func expandSecurityconsoleInstallPreviewVdoms(d *schema.ResourceData, v interfac
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
@@ -352,12 +352,16 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandSecurityconsoleInstallPreviewScope(d, v, "scope")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scope"] = t
+	if bemptysontable {
+		obj["scope"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
+			t, err := expandSecurityconsoleInstallPreviewScope(d, v, "scope")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scope"] = t
+			}
 		}
 	}
 

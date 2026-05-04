@@ -243,7 +243,7 @@ func resourceObjectWirelessControllerWtpProfileLbsUpdate(d *schema.ResourceData,
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
-	obj, err := getObjectObjectWirelessControllerWtpProfileLbs(d)
+	obj, err := getObjectObjectWirelessControllerWtpProfileLbs(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLbs resource while getting object: %v", err)
 	}
@@ -264,7 +264,6 @@ func resourceObjectWirelessControllerWtpProfileLbsUpdate(d *schema.ResourceData,
 
 func resourceObjectWirelessControllerWtpProfileLbsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -280,11 +279,17 @@ func resourceObjectWirelessControllerWtpProfileLbsDelete(d *schema.ResourceData,
 	wtp_profile := d.Get("wtp_profile").(string)
 	paradict["wtp_profile"] = wtp_profile
 
+	obj, err := getObjectObjectWirelessControllerWtpProfileLbs(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfileLbs resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfileLbs(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectWirelessControllerWtpProfileLbs(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfileLbs resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectWirelessControllerWtpProfileLbs resource: %v", err)
 	}
 
 	d.SetId("")
@@ -320,6 +325,7 @@ func resourceObjectWirelessControllerWtpProfileLbsRead(d *schema.ResourceData, m
 
 	o, err := c.ReadObjectWirelessControllerWtpProfileLbs(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfileLbs resource: %v", err)
 	}
 
@@ -1004,7 +1010,7 @@ func expandObjectWirelessControllerWtpProfileLbsStationLocate2edl(d *schema.Reso
 	return v, nil
 }
 
-func getObjectObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("aeroscout"); ok || d.HasChange("aeroscout") {

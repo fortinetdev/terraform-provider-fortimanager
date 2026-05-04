@@ -49,7 +49,7 @@ func resourceFmupdateServerOverrideStatusUpdate(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectFmupdateServerOverrideStatus(d)
+	obj, err := getObjectFmupdateServerOverrideStatus(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerOverrideStatus resource while getting object: %v", err)
 	}
@@ -70,7 +70,6 @@ func resourceFmupdateServerOverrideStatusUpdate(d *schema.ResourceData, m interf
 
 func resourceFmupdateServerOverrideStatusDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -80,11 +79,17 @@ func resourceFmupdateServerOverrideStatusDelete(d *schema.ResourceData, m interf
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectFmupdateServerOverrideStatus(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating FmupdateServerOverrideStatus resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteFmupdateServerOverrideStatus(mkey, paradict, wsParams)
+	_, err = c.UpdateFmupdateServerOverrideStatus(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting FmupdateServerOverrideStatus resource: %v", err)
+		return fmt.Errorf("Error clearing FmupdateServerOverrideStatus resource: %v", err)
 	}
 
 	d.SetId("")
@@ -105,6 +110,7 @@ func resourceFmupdateServerOverrideStatusRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadFmupdateServerOverrideStatus(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading FmupdateServerOverrideStatus resource: %v", err)
 	}
 
@@ -151,7 +157,7 @@ func expandFmupdateServerOverrideStatusMode(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
-func getObjectFmupdateServerOverrideStatus(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectFmupdateServerOverrideStatus(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {

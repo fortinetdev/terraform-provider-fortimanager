@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Router"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_router_prefixlist6_rule"
 description: |-

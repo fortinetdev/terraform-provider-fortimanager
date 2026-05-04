@@ -557,7 +557,7 @@ func resourceObjectSystemNpuNpQueuesUpdate(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	obj, err := getObjectObjectSystemNpuNpQueues(d)
+	obj, err := getObjectObjectSystemNpuNpQueues(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueues resource while getting object: %v", err)
 	}
@@ -578,7 +578,6 @@ func resourceObjectSystemNpuNpQueuesUpdate(d *schema.ResourceData, m interface{}
 
 func resourceObjectSystemNpuNpQueuesDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -591,11 +590,17 @@ func resourceObjectSystemNpuNpQueuesDelete(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
+	obj, err := getObjectObjectSystemNpuNpQueues(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSystemNpuNpQueues resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueues(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectSystemNpuNpQueues(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueues resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectSystemNpuNpQueues resource: %v", err)
 	}
 
 	d.SetId("")
@@ -619,6 +624,7 @@ func resourceObjectSystemNpuNpQueuesRead(d *schema.ResourceData, m interface{}) 
 
 	o, err := c.ReadObjectSystemNpuNpQueues(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemNpuNpQueues resource: %v", err)
 	}
 
@@ -2787,7 +2793,7 @@ func expandObjectSystemNpuNpQueuesSchedulerName2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
-func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("custom_etype_lookup"); ok || d.HasChange("custom_etype_lookup") {
@@ -2799,48 +2805,68 @@ func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("ethernet_type"); ok || d.HasChange("ethernet_type") {
-		t, err := expandObjectSystemNpuNpQueuesEthernetType2edl(d, v, "ethernet_type")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ethernet-type"] = t
+	if bemptysontable {
+		obj["ethernet-type"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ethernet_type"); ok || d.HasChange("ethernet_type") {
+			t, err := expandObjectSystemNpuNpQueuesEthernetType2edl(d, v, "ethernet_type")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ethernet-type"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("ip_protocol"); ok || d.HasChange("ip_protocol") {
-		t, err := expandObjectSystemNpuNpQueuesIpProtocol2edl(d, v, "ip_protocol")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip-protocol"] = t
+	if bemptysontable {
+		obj["ip-protocol"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip_protocol"); ok || d.HasChange("ip_protocol") {
+			t, err := expandObjectSystemNpuNpQueuesIpProtocol2edl(d, v, "ip_protocol")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip-protocol"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("ip_service"); ok || d.HasChange("ip_service") {
-		t, err := expandObjectSystemNpuNpQueuesIpService2edl(d, v, "ip_service")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["ip-service"] = t
+	if bemptysontable {
+		obj["ip-service"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("ip_service"); ok || d.HasChange("ip_service") {
+			t, err := expandObjectSystemNpuNpQueuesIpService2edl(d, v, "ip_service")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["ip-service"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("profile"); ok || d.HasChange("profile") {
-		t, err := expandObjectSystemNpuNpQueuesProfile2edl(d, v, "profile")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["profile"] = t
+	if bemptysontable {
+		obj["profile"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("profile"); ok || d.HasChange("profile") {
+			t, err := expandObjectSystemNpuNpQueuesProfile2edl(d, v, "profile")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["profile"] = t
+			}
 		}
 	}
 
-	if v, ok := d.GetOk("scheduler"); ok || d.HasChange("scheduler") {
-		t, err := expandObjectSystemNpuNpQueuesScheduler2edl(d, v, "scheduler")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["scheduler"] = t
+	if bemptysontable {
+		obj["scheduler"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("scheduler"); ok || d.HasChange("scheduler") {
+			t, err := expandObjectSystemNpuNpQueuesScheduler2edl(d, v, "scheduler")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["scheduler"] = t
+			}
 		}
 	}
 

@@ -109,7 +109,7 @@ func resourceObjectDnsfilterProfileFtgdDnsUpdate(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectDnsfilterProfileFtgdDns(d)
+	obj, err := getObjectObjectDnsfilterProfileFtgdDns(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileFtgdDns resource while getting object: %v", err)
 	}
@@ -130,7 +130,6 @@ func resourceObjectDnsfilterProfileFtgdDnsUpdate(d *schema.ResourceData, m inter
 
 func resourceObjectDnsfilterProfileFtgdDnsDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -146,11 +145,17 @@ func resourceObjectDnsfilterProfileFtgdDnsDelete(d *schema.ResourceData, m inter
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectDnsfilterProfileFtgdDns(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectDnsfilterProfileFtgdDns resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectDnsfilterProfileFtgdDns(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectDnsfilterProfileFtgdDns(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectDnsfilterProfileFtgdDns resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectDnsfilterProfileFtgdDns resource: %v", err)
 	}
 
 	d.SetId("")
@@ -186,6 +191,7 @@ func resourceObjectDnsfilterProfileFtgdDnsRead(d *schema.ResourceData, m interfa
 
 	o, err := c.ReadObjectDnsfilterProfileFtgdDns(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectDnsfilterProfileFtgdDns resource: %v", err)
 	}
 
@@ -393,15 +399,19 @@ func expandObjectDnsfilterProfileFtgdDnsOptions2edl(d *schema.ResourceData, v in
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectObjectDnsfilterProfileFtgdDns(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectDnsfilterProfileFtgdDns(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
-		t, err := expandObjectDnsfilterProfileFtgdDnsFilters2edl(d, v, "filters")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["filters"] = t
+	if bemptysontable {
+		obj["filters"] = make([]struct{}, 0)
+	} else {
+		if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
+			t, err := expandObjectDnsfilterProfileFtgdDnsFilters2edl(d, v, "filters")
+			if err != nil {
+				return &obj, err
+			} else if t != nil {
+				obj["filters"] = t
+			}
 		}
 	}
 

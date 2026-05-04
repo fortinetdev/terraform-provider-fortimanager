@@ -29,6 +29,11 @@ func resourceObjectFirewallInternetServiceExtensionDisableEntry() *schema.Resour
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -160,9 +165,31 @@ func resourceObjectFirewallInternetServiceExtensionDisableEntryCreate(d *schema.
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallInternetServiceExtensionDisableEntry(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallInternetServiceExtensionDisableEntry resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallInternetServiceExtensionDisableEntry(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallInternetServiceExtensionDisableEntry(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallInternetServiceExtensionDisableEntry resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallInternetServiceExtensionDisableEntry(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallInternetServiceExtensionDisableEntry resource: %v", err)
+		}
+
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -264,6 +291,7 @@ func resourceObjectFirewallInternetServiceExtensionDisableEntryRead(d *schema.Re
 
 	o, err := c.ReadObjectFirewallInternetServiceExtensionDisableEntry(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallInternetServiceExtensionDisableEntry resource: %v", err)
 	}
 

@@ -75,7 +75,7 @@ func resourceObjectDnsfilterProfileDomainFilterUpdate(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
-	obj, err := getObjectObjectDnsfilterProfileDomainFilter(d)
+	obj, err := getObjectObjectDnsfilterProfileDomainFilter(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterProfileDomainFilter resource while getting object: %v", err)
 	}
@@ -96,7 +96,6 @@ func resourceObjectDnsfilterProfileDomainFilterUpdate(d *schema.ResourceData, m 
 
 func resourceObjectDnsfilterProfileDomainFilterDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -112,11 +111,17 @@ func resourceObjectDnsfilterProfileDomainFilterDelete(d *schema.ResourceData, m 
 	profile := d.Get("profile").(string)
 	paradict["profile"] = profile
 
+	obj, err := getObjectObjectDnsfilterProfileDomainFilter(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectDnsfilterProfileDomainFilter resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteObjectDnsfilterProfileDomainFilter(mkey, paradict, wsParams)
+	_, err = c.UpdateObjectDnsfilterProfileDomainFilter(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting ObjectDnsfilterProfileDomainFilter resource: %v", err)
+		return fmt.Errorf("Error clearing ObjectDnsfilterProfileDomainFilter resource: %v", err)
 	}
 
 	d.SetId("")
@@ -152,6 +157,7 @@ func resourceObjectDnsfilterProfileDomainFilterRead(d *schema.ResourceData, m in
 
 	o, err := c.ReadObjectDnsfilterProfileDomainFilter(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectDnsfilterProfileDomainFilter resource: %v", err)
 	}
 
@@ -202,7 +208,7 @@ func expandObjectDnsfilterProfileDomainFilterDomainFilterTable2edl(d *schema.Res
 	return v, nil
 }
 
-func getObjectObjectDnsfilterProfileDomainFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectObjectDnsfilterProfileDomainFilter(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("domain_filter_table"); ok || d.HasChange("domain_filter_table") {

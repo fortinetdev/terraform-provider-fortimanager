@@ -64,7 +64,7 @@ func resourceExecFgfmReclaimDevTunnelUpdate(d *schema.ResourceData, m interface{
 	device_name := d.Get("device_name").(string)
 	paradict["device_name"] = device_name
 
-	obj, err := getObjectExecFgfmReclaimDevTunnel(d)
+	obj, err := getObjectExecFgfmReclaimDevTunnel(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating ExecFgfmReclaimDevTunnel resource while getting object: %v", err)
 	}
@@ -123,7 +123,7 @@ func expandExecFgfmReclaimDevTunnelFlags(d *schema.ResourceData, v interface{}, 
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectExecFgfmReclaimDevTunnel(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectExecFgfmReclaimDevTunnel(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {

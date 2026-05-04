@@ -55,7 +55,7 @@ func resourceSystemAlertConsoleUpdate(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
-	obj, err := getObjectSystemAlertConsole(d)
+	obj, err := getObjectSystemAlertConsole(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertConsole resource while getting object: %v", err)
 	}
@@ -76,7 +76,6 @@ func resourceSystemAlertConsoleUpdate(d *schema.ResourceData, m interface{}) err
 
 func resourceSystemAlertConsoleDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -86,11 +85,17 @@ func resourceSystemAlertConsoleDelete(d *schema.ResourceData, m interface{}) err
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	obj, err := getObjectSystemAlertConsole(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystemAlertConsole resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystemAlertConsole(mkey, paradict, wsParams)
+	_, err = c.UpdateSystemAlertConsole(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystemAlertConsole resource: %v", err)
+		return fmt.Errorf("Error clearing SystemAlertConsole resource: %v", err)
 	}
 
 	d.SetId("")
@@ -111,6 +116,7 @@ func resourceSystemAlertConsoleRead(d *schema.ResourceData, m interface{}) error
 
 	o, err := c.ReadSystemAlertConsole(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystemAlertConsole resource: %v", err)
 	}
 
@@ -175,7 +181,7 @@ func expandSystemAlertConsoleSeverityLevel(d *schema.ResourceData, v interface{}
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func getObjectSystemAlertConsole(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystemAlertConsole(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("period"); ok || d.HasChange("period") {

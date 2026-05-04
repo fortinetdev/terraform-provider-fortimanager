@@ -29,6 +29,11 @@ func resourceObjectFirewallShapingProfile() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -188,9 +193,31 @@ func resourceObjectFirewallShapingProfileCreate(d *schema.ResourceData, m interf
 	}
 	wsParams["adom"] = adomv
 
-	_, err = c.CreateObjectFirewallShapingProfile(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectFirewallShapingProfile resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("profile_name")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectFirewallShapingProfile(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectFirewallShapingProfile(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectFirewallShapingProfile resource: %v", err)
+			}
+		}
+	}
+
+	if !existing {
+		_, err = c.CreateObjectFirewallShapingProfile(obj, paradict, wsParams)
+		if err != nil {
+			return fmt.Errorf("Error creating ObjectFirewallShapingProfile resource: %v", err)
+		}
+
 	}
 
 	d.SetId(getStringKey(d, "profile_name"))
@@ -274,6 +301,7 @@ func resourceObjectFirewallShapingProfileRead(d *schema.ResourceData, m interfac
 
 	o, err := c.ReadObjectFirewallShapingProfile(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallShapingProfile resource: %v", err)
 	}
 
@@ -410,7 +438,7 @@ func flattenObjectFirewallShapingProfileShapingEntriesCburstInMsec(v interface{}
 }
 
 func flattenObjectFirewallShapingProfileShapingEntriesClassId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallShapingProfileShapingEntriesGuaranteedBandwidthPercentage(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -29,6 +29,11 @@ func resourceObjectSystemDnsDatabaseDnsEntry() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"update_if_exist": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Computed: true,
+			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -119,17 +124,38 @@ func resourceObjectSystemDnsDatabaseDnsEntryCreate(d *schema.ResourceData, m int
 	}
 	wsParams["adom"] = adomv
 
-	v, err := c.CreateObjectSystemDnsDatabaseDnsEntry(obj, paradict, wsParams)
-	if err != nil {
-		return fmt.Errorf("Error creating ObjectSystemDnsDatabaseDnsEntry resource: %v", err)
+	update_if_exist := getUpdateIfExist(c, d)
+	mkey_tf, mkey_ok := d.GetOk("fosid")
+	mkey := fmt.Sprint(mkey_tf)
+	o := make(map[string]interface{})
+	existing := false
+
+	if update_if_exist && mkey_ok {
+		// check existing
+		o, err = c.ReadObjectSystemDnsDatabaseDnsEntry(mkey, paradict)
+		if err == nil && o != nil {
+			existing = true
+			// update if existing
+			o, err = c.UpdateObjectSystemDnsDatabaseDnsEntry(obj, mkey, paradict, wsParams)
+			if err != nil {
+				return fmt.Errorf("Error updating ObjectSystemDnsDatabaseDnsEntry resource: %v", err)
+			}
+		}
 	}
 
-	if v != nil && v["id"] != nil {
-		if vidn, ok := v["id"].(float64); ok {
-			d.SetId(strconv.Itoa(int(vidn)))
-			return resourceObjectSystemDnsDatabaseDnsEntryRead(d, m)
-		} else {
+	if !existing {
+		v, err := c.CreateObjectSystemDnsDatabaseDnsEntry(obj, paradict, wsParams)
+		if err != nil {
 			return fmt.Errorf("Error creating ObjectSystemDnsDatabaseDnsEntry resource: %v", err)
+		}
+
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceObjectSystemDnsDatabaseDnsEntryRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating ObjectSystemDnsDatabaseDnsEntry resource: %v", err)
+			}
 		}
 	}
 
@@ -232,6 +258,7 @@ func resourceObjectSystemDnsDatabaseDnsEntryRead(d *schema.ResourceData, m inter
 
 	o, err := c.ReadObjectSystemDnsDatabaseDnsEntry(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectSystemDnsDatabaseDnsEntry resource: %v", err)
 	}
 

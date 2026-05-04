@@ -109,7 +109,7 @@ func resourceSystempDeviceProfileFortiguardUpdate(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempDeviceProfileFortiguard(d)
+	obj, err := getObjectSystempDeviceProfileFortiguard(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempDeviceProfileFortiguard resource while getting object: %v", err)
 	}
@@ -130,7 +130,6 @@ func resourceSystempDeviceProfileFortiguardUpdate(d *schema.ResourceData, m inte
 
 func resourceSystempDeviceProfileFortiguardDelete(d *schema.ResourceData, m interface{}) error {
 	mkey := d.Id()
-
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
@@ -146,11 +145,17 @@ func resourceSystempDeviceProfileFortiguardDelete(d *schema.ResourceData, m inte
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
+	obj, err := getObjectSystempDeviceProfileFortiguard(d, true)
+
+	if err != nil {
+		return fmt.Errorf("Error updating SystempDeviceProfileFortiguard resource while getting object: %v", err)
+	}
+
 	wsParams["adom"] = adomv
 
-	err = c.DeleteSystempDeviceProfileFortiguard(mkey, paradict, wsParams)
+	_, err = c.UpdateSystempDeviceProfileFortiguard(obj, mkey, paradict, wsParams)
 	if err != nil {
-		return fmt.Errorf("Error deleting SystempDeviceProfileFortiguard resource: %v", err)
+		return fmt.Errorf("Error clearing SystempDeviceProfileFortiguard resource: %v", err)
 	}
 
 	d.SetId("")
@@ -186,6 +191,7 @@ func resourceSystempDeviceProfileFortiguardRead(d *schema.ResourceData, m interf
 
 	o, err := c.ReadSystempDeviceProfileFortiguard(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading SystempDeviceProfileFortiguard resource: %v", err)
 	}
 
@@ -362,7 +368,7 @@ func expandSystempDeviceProfileFortiguardVrfSelect(d *schema.ResourceData, v int
 	return v, nil
 }
 
-func getObjectSystempDeviceProfileFortiguard(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectSystempDeviceProfileFortiguard(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("auto_firmware_upgrade"); ok || d.HasChange("auto_firmware_upgrade") {

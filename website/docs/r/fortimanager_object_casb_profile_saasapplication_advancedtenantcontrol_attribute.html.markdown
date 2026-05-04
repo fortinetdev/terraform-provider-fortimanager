@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object CASB"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_casb_profile_saasapplication_advancedtenantcontrol_attribute"
 description: |-
