@@ -39,6 +39,12 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `header_client_cert` - Action to take on the HTTP Client-Cert/Client-Cert-Chain headers in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 
 * `header_client_ip` - Action to take on the HTTP client-IP header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
@@ -63,6 +69,7 @@ The following arguments are supported:
 * `name` - Profile name.
 * `strip_encoding` - Enable/disable stripping unsupported encoding from the request header. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `max_cache_object_size` - Max-Cache-Object-Size.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

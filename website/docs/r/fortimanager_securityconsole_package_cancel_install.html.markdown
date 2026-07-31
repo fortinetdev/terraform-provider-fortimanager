@@ -24,6 +24,7 @@ The following arguments are supported:
 
 
 * `fmgadom` - Source ADOM name.
+* `preview_taskid` - Preview_Taskid.
 * `force_recreate` - The argument is optional, if it is set, when the value changes, the resource will be re-created.
 
 

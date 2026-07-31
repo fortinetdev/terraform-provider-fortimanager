@@ -49,6 +49,18 @@ The following arguments are supported:
 * `digest_type` - Digest-Type. Valid values: `sha1`, `sha256`.
 
 * `email` - Email.
+* `enroll_protocol` - Enroll-Protocol. Valid values: `scep`, `est`.
+
+* `est_ca_id` - Est-Ca-Id.
+* `est_client_cert` - Est-Client-Cert.
+* `est_http_password` - Est-Http-Password.
+* `est_http_username` - Est-Http-Username.
+* `est_regeneration_method` - Est-Regeneration-Method. Valid values: `create-new-key`, `use-existing-key`.
+
+* `est_server_cert` - Est-Server-Cert.
+* `est_server_url` - Est-Server-Url.
+* `est_srp_password` - Est-Srp-Password.
+* `est_srp_username` - Est-Srp-Username.
 * `id_type` - Id-Type. Valid values: `host-ip`, `domain-name`, `email`.
 
 * `key_size` - Key-Size. Valid values: `512`, `1024`, `1536`, `2048`, `4096`.
@@ -61,11 +73,13 @@ The following arguments are supported:
 * `scep_ca_identifier` - Scep-Ca-Identifier.
 * `scep_password` - Scep-Password.
 * `scep_server` - Scep-Server.
+* `source_ip` - Source-Ip.
 * `state` - State.
 * `subject_alt_name` - <i>Support meta variable</i>
 * `subject_name` - Subject-Name.
 * `type` - Type. Valid values: `external`, `local`.
 
+* `validity` - Validity.
 
 
 ## Attribute Reference

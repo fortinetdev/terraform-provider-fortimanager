@@ -50,6 +50,21 @@ func resourceObjectSystemSdnProxy() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -78,6 +93,11 @@ func resourceObjectSystemSdnProxy() *schema.Resource {
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -227,6 +247,18 @@ func resourceObjectSystemSdnProxyRead(d *schema.ResourceData, m interface{}) err
 	return nil
 }
 
+func flattenObjectSystemSdnProxyFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnProxyFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnProxyFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnProxyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -247,11 +279,45 @@ func flattenObjectSystemSdnProxyUsername(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectSystemSdnProxyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectSystemSdnProxy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectSystemSdnProxyFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectSystemSdnProxy-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectSystemSdnProxyFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectSystemSdnProxy-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectSystemSdnProxyFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectSystemSdnProxy-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
 	}
 
 	if err = d.Set("name", flattenObjectSystemSdnProxyName(o["name"], d, "name")); err != nil {
@@ -304,6 +370,16 @@ func refreshObjectObjectSystemSdnProxy(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectSystemSdnProxyUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectSystemSdnProxy-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -311,6 +387,18 @@ func flattenObjectSystemSdnProxyFortiTestDebug(d *schema.ResourceData, fosdebugs
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectSystemSdnProxyFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnProxyFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnProxyFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemSdnProxyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -337,8 +425,39 @@ func expandObjectSystemSdnProxyUsername(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectSystemSdnProxyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectSystemSdnProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectSystemSdnProxyFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectSystemSdnProxyFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectSystemSdnProxyFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemSdnProxyName(d, v, "name")
@@ -391,6 +510,15 @@ func getObjectObjectSystemSdnProxy(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectSystemSdnProxyUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

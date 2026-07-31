@@ -34,8 +34,15 @@ The following arguments are supported:
 * `comment` - Comment.
 * `direction` - How this service may be used (source, destination or both). Valid values: `both`, `source`, `destination`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `member` - Internet Service group member.
 * `name` - Internet Service group name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

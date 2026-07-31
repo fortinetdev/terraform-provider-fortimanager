@@ -25,6 +25,7 @@ The following arguments are supported:
 
 * `action` - Action. Valid values: `add-aggregate`, `add-loopback`, `add-vlan`, `add-zone`, `conf-intf`, `conf-dhcp-server`, `conf-monitor-bandwd`, `conf-vap-ssid`.
 
+* `alias` - <i>Support meta variable</i>
 * `allowaccess` - Allowaccess. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `radius-acct`, `probe-response`, `dnp`, `ftm`, `fabric`, `speed-test`.
 
 * `dhcp_id` - <i>Support meta variable</i>
@@ -33,6 +34,8 @@ The following arguments are supported:
 * `interface_members` - <i>Support meta variable</i>
 * `ip_range` - Ip-Range. The structure of `ip_range` block is documented below.
 * `ipmask` - <i>Support meta variable</i>
+* `mode` - Mode. Valid values: `static`, `dhcp`, `pppoe`, `pppoa`, `ipoa`, `eoa`.
+
 * `model` - Model.
 * `monitor_bandwidth` - Monitor-Bandwidth. Valid values: `disable`, `enable`.
 

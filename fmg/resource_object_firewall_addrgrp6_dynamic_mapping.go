@@ -75,6 +75,11 @@ func resourceObjectFirewallAddrgrp6DynamicMapping() *schema.Resource {
 					},
 				},
 			},
+			"category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -82,6 +87,17 @@ func resourceObjectFirewallAddrgrp6DynamicMapping() *schema.Resource {
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"exclude": &schema.Schema{
 				Type:     schema.TypeString,
@@ -94,7 +110,17 @@ func resourceObjectFirewallAddrgrp6DynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -110,6 +136,11 @@ func resourceObjectFirewallAddrgrp6DynamicMapping() *schema.Resource {
 			"tags": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -350,11 +381,23 @@ func flattenObjectFirewallAddrgrp6DynamicMappingScopeVdom2edl(v interface{}, d *
 	return v
 }
 
+func flattenObjectFirewallAddrgrp6DynamicMappingCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddrgrp6DynamicMappingColor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallAddrgrp6DynamicMappingComment2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrp6DynamicMappingCustomTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallAddrgrp6DynamicMappingDisplayWith2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -366,7 +409,15 @@ func flattenObjectFirewallAddrgrp6DynamicMappingExcludeMember2edl(v interface{},
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallAddrgrp6DynamicMappingFabricForceSync2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddrgrp6DynamicMappingFabricObject2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrp6DynamicMappingFabricObjectSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -380,6 +431,10 @@ func flattenObjectFirewallAddrgrp6DynamicMappingMember2edl(v interface{}, d *sch
 
 func flattenObjectFirewallAddrgrp6DynamicMappingTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectFirewallAddrgrp6DynamicMappingType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallAddrgrp6DynamicMappingUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -435,6 +490,16 @@ func refreshObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("category", flattenObjectFirewallAddrgrp6DynamicMappingCategory2edl(o["category"], d, "category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["category"], "ObjectFirewallAddrgrp6DynamicMapping-Category"); ok {
+			if err = d.Set("category", vv); err != nil {
+				return fmt.Errorf("Error reading category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading category: %v", err)
+		}
+	}
+
 	if err = d.Set("color", flattenObjectFirewallAddrgrp6DynamicMappingColor2edl(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallAddrgrp6DynamicMapping-Color"); ok {
 			if err = d.Set("color", vv); err != nil {
@@ -452,6 +517,26 @@ func refreshObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenObjectFirewallAddrgrp6DynamicMappingCustomTags2edl(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallAddrgrp6DynamicMapping-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallAddrgrp6DynamicMappingDisplayWith2edl(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallAddrgrp6DynamicMapping-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
 		}
 	}
 
@@ -475,6 +560,16 @@ func refreshObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallAddrgrp6DynamicMappingFabricForceSync2edl(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallAddrgrp6DynamicMapping-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddrgrp6DynamicMappingFabricObject2edl(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddrgrp6DynamicMapping-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -482,6 +577,16 @@ func refreshObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallAddrgrp6DynamicMappingFabricObjectSource2edl(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallAddrgrp6DynamicMapping-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -512,6 +617,16 @@ func refreshObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading tags: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenObjectFirewallAddrgrp6DynamicMappingType2edl(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "ObjectFirewallAddrgrp6DynamicMapping-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
 		}
 	}
 
@@ -590,11 +705,23 @@ func expandObjectFirewallAddrgrp6DynamicMappingScopeVdom2edl(d *schema.ResourceD
 	return v, nil
 }
 
+func expandObjectFirewallAddrgrp6DynamicMappingCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddrgrp6DynamicMappingColor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallAddrgrp6DynamicMappingComment2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddrgrp6DynamicMappingCustomTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallAddrgrp6DynamicMappingDisplayWith2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -606,7 +733,15 @@ func expandObjectFirewallAddrgrp6DynamicMappingExcludeMember2edl(d *schema.Resou
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallAddrgrp6DynamicMappingFabricForceSync2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddrgrp6DynamicMappingFabricObject2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddrgrp6DynamicMappingFabricObjectSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -620,6 +755,10 @@ func expandObjectFirewallAddrgrp6DynamicMappingMember2edl(d *schema.ResourceData
 
 func expandObjectFirewallAddrgrp6DynamicMappingTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectFirewallAddrgrp6DynamicMappingType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallAddrgrp6DynamicMappingUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -651,6 +790,15 @@ func getObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingCategory2edl(d, v, "category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["category"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallAddrgrp6DynamicMappingColor2edl(d, v, "color")
 		if err != nil {
@@ -666,6 +814,24 @@ func getObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingCustomTags2edl(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingDisplayWith2edl(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
 		}
 	}
 
@@ -687,12 +853,30 @@ func getObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingFabricForceSync2edl(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddrgrp6DynamicMappingFabricObject2edl(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingFabricObjectSource2edl(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -720,6 +904,15 @@ func getObjectObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["tags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandObjectFirewallAddrgrp6DynamicMappingType2edl(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
 		}
 	}
 

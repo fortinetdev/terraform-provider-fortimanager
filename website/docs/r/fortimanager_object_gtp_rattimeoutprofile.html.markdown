@@ -21,12 +21,24 @@ The following arguments are supported:
 * `gan_timeout` - Established gan timeout in seconds (default = 0).
 * `geran_timeout` - Established geran timeout in seconds (default = 0).
 * `hspa_timeout` - Established hspa timeout in seconds (default = 0).
+* `ltem_geo_timeout` - Established ltem-geo timeout in seconds (default = 0).
+* `ltem_leo_timeout` - Established ltem-leo timeout in seconds (default = 0).
+* `ltem_meo_timeout` - Established ltem-meo timeout in seconds (default = 0).
+* `ltem_othersat_timeout` - Established ltem-othersat timeout in seconds (default = 0).
 * `ltem_timeout` - Established ltem timeout in seconds (default = 0).
 * `name` - RAT timeout profile name.
+* `nbiot_geo_timeout` - Established nbiot-geo timeout in seconds (default = 0).
+* `nbiot_leo_timeout` - Established nbiot-leo timeout in seconds (default = 0).
+* `nbiot_meo_timeout` - Established nbiot-meo timeout in seconds (default = 0).
+* `nbiot_othersat_timeout` - Established nbiot-othersat timeout in seconds (default = 0).
 * `nbiot_timeout` - Established nbiot timeout in seconds (default = 0).
 * `nr_timeout` - Established nr timeout in seconds (default = 0).
 * `utran_timeout` - Established utran timeout in seconds (default = 0).
 * `virtual_timeout` - Established virtual timeout in seconds (default = 0).
+* `wb_eutran_geo_timeout` - Established wb-eutran-geo timeout in seconds (default = 0).
+* `wb_eutran_leo_timeout` - Established wb-eutran-leo timeout in seconds (default = 0).
+* `wb_eutran_meo_timeout` - Established wb-eutran-meo timeout in seconds (default = 0).
+* `wb_eutran_othersat_timeout` - Established wb-eutran-othersat timeout in seconds (default = 0).
 * `wlan_timeout` - Established wlan timeout in seconds (default = 0).
 
 

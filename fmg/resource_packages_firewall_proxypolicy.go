@@ -104,6 +104,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"decrypted_traffic_mirror": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -171,6 +177,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"file_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"fsso_groups": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"global_label": &schema.Schema{
 				Type:     schema.TypeString,
@@ -289,6 +301,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"llm_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"log_http_transaction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -336,6 +354,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"profile_protocol_options": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"profile_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -418,6 +437,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"ssl_ssh_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -492,6 +512,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"webproxy_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"ztna_destination": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"ztna_ems_tag": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -609,14 +635,21 @@ func resourcePackagesFirewallProxyPolicyUpdate(d *schema.ResourceData, m interfa
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallProxyPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallProxyPolicyRead(d, m)
 }
@@ -746,6 +779,10 @@ func flattenPackagesFirewallProxyPolicyComments(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenPackagesFirewallProxyPolicyCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallProxyPolicyDecryptedTrafficMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -800,6 +837,10 @@ func flattenPackagesFirewallProxyPolicyEmailfilterProfile(v interface{}, d *sche
 
 func flattenPackagesFirewallProxyPolicyFileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenPackagesFirewallProxyPolicyFssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyGlobalLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -896,6 +937,10 @@ func flattenPackagesFirewallProxyPolicyIsolatorServer(v interface{}, d *schema.R
 
 func flattenPackagesFirewallProxyPolicyLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallProxyPolicyLlmProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyLogHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1074,6 +1119,10 @@ func flattenPackagesFirewallProxyPolicyWebproxyProfile(v interface{}, d *schema.
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenPackagesFirewallProxyPolicyZtnaDestination(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallProxyPolicyZtnaEmsTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1194,6 +1243,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallProxyPolicyCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallProxyPolicy-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -1334,6 +1393,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading file_filter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("fsso_groups", flattenPackagesFirewallProxyPolicyFssoGroups(o["fsso-groups"], d, "fsso_groups")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fsso-groups"], "PackagesFirewallProxyPolicy-FssoGroups"); ok {
+			if err = d.Set("fsso_groups", vv); err != nil {
+				return fmt.Errorf("Error reading fsso_groups: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fsso_groups: %v", err)
 		}
 	}
 
@@ -1574,6 +1643,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading label: %v", err)
+		}
+	}
+
+	if err = d.Set("llm_profile", flattenPackagesFirewallProxyPolicyLlmProfile(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "PackagesFirewallProxyPolicy-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
 		}
 	}
 
@@ -2017,6 +2096,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("ztna_destination", flattenPackagesFirewallProxyPolicyZtnaDestination(o["ztna-destination"], d, "ztna_destination")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-destination"], "PackagesFirewallProxyPolicy-ZtnaDestination"); ok {
+			if err = d.Set("ztna_destination", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_destination: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_destination: %v", err)
+		}
+	}
+
 	if err = d.Set("ztna_ems_tag", flattenPackagesFirewallProxyPolicyZtnaEmsTag(o["ztna-ems-tag"], d, "ztna_ems_tag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ztna-ems-tag"], "PackagesFirewallProxyPolicy-ZtnaEmsTag"); ok {
 			if err = d.Set("ztna_ems_tag", vv); err != nil {
@@ -2106,6 +2195,10 @@ func expandPackagesFirewallProxyPolicyComments(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallProxyPolicyDecryptedTrafficMirror(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -2160,6 +2253,10 @@ func expandPackagesFirewallProxyPolicyEmailfilterProfile(d *schema.ResourceData,
 
 func expandPackagesFirewallProxyPolicyFileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandPackagesFirewallProxyPolicyFssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyGlobalLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2256,6 +2353,10 @@ func expandPackagesFirewallProxyPolicyIsolatorServer(d *schema.ResourceData, v i
 
 func expandPackagesFirewallProxyPolicyLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesFirewallProxyPolicyLlmProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallProxyPolicyLogHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2434,6 +2535,10 @@ func expandPackagesFirewallProxyPolicyWebproxyProfile(d *schema.ResourceData, v 
 	return convstr2list(v, nil), nil
 }
 
+func expandPackagesFirewallProxyPolicyZtnaDestination(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallProxyPolicyZtnaEmsTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -2540,6 +2645,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallProxyPolicyCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 
@@ -2666,6 +2780,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["file-filter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fsso_groups"); ok || d.HasChange("fsso_groups") {
+		t, err := expandPackagesFirewallProxyPolicyFssoGroups(d, v, "fsso_groups")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fsso-groups"] = t
 		}
 	}
 
@@ -2882,6 +3005,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["label"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandPackagesFirewallProxyPolicyLlmProfile(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
 		}
 	}
 
@@ -3278,6 +3410,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["webproxy-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_destination"); ok || d.HasChange("ztna_destination") {
+		t, err := expandPackagesFirewallProxyPolicyZtnaDestination(d, v, "ztna_destination")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-destination"] = t
 		}
 	}
 

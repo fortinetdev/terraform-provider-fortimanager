@@ -40,6 +40,12 @@ The following arguments are supported:
 * `comment` - Comment.
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `eval` - Expression to evaluate.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `fgd_id` - ID of object in FortiGuard database.
 * `match_type` - Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
 
@@ -57,6 +63,7 @@ The following arguments are supported:
 * `nac_quar_log` - Enable/disable NAC quarantine logging. Valid values: `disable`, `enable`.
 
 * `name` - Name of the DLP sensor.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `options` - Configure DLP options. Valid values: `strict-file`.
 
 * `replacemsg_group` - Replacement message group used by this DLP sensor.

@@ -64,6 +64,21 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"filters": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -157,6 +172,11 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vimeo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -174,6 +194,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 			"youtube_channel_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"youtube_restrict": &schema.Schema{
 				Type:     schema.TypeString,
@@ -342,6 +363,18 @@ func flattenObjectVideofilterProfileDailymotion(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVideofilterProfileDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVideofilterProfileFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVideofilterProfileFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVideofilterProfileFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -553,6 +586,10 @@ func flattenObjectVideofilterProfileReplacemsgGroup(v interface{}, d *schema.Res
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectVideofilterProfileUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterProfileVimeo(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -611,6 +648,36 @@ func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading default_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectVideofilterProfileFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectVideofilterProfile-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectVideofilterProfileFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectVideofilterProfile-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectVideofilterProfileFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectVideofilterProfile-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -692,6 +759,16 @@ func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectVideofilterProfileUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectVideofilterProfile-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("vimeo", flattenObjectVideofilterProfileVimeo(o["vimeo"], d, "vimeo")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vimeo"], "ObjectVideofilterProfile-Vimeo"); ok {
 			if err = d.Set("vimeo", vv); err != nil {
@@ -760,6 +837,18 @@ func expandObjectVideofilterProfileDailymotion(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVideofilterProfileDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVideofilterProfileFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVideofilterProfileFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVideofilterProfileFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -954,6 +1043,10 @@ func expandObjectVideofilterProfileReplacemsgGroup(d *schema.ResourceData, v int
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectVideofilterProfileUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVideofilterProfileVimeo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1004,6 +1097,33 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectVideofilterProfileFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectVideofilterProfileFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectVideofilterProfileFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("filters"); ok || d.HasChange("filters") {
 		t, err := expandObjectVideofilterProfileFilters(d, v, "filters")
 		if err != nil {
@@ -1046,6 +1166,15 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["replacemsg-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectVideofilterProfileUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

@@ -55,6 +55,21 @@ func resourceObjectWebProxyForwardServerGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"group_down_option": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -86,6 +101,11 @@ func resourceObjectWebProxyForwardServerGroup() *schema.Resource {
 						},
 					},
 				},
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -244,6 +264,18 @@ func flattenObjectWebProxyForwardServerGroupAffinity(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectWebProxyForwardServerGroupFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyForwardServerGroupFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyForwardServerGroupFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerGroupGroupDownOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -305,6 +337,10 @@ func flattenObjectWebProxyForwardServerGroupServerListWeight(v interface{}, d *s
 	return v
 }
 
+func flattenObjectWebProxyForwardServerGroupUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -323,6 +359,36 @@ func refreshObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading affinity: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectWebProxyForwardServerGroupFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectWebProxyForwardServerGroup-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectWebProxyForwardServerGroupFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectWebProxyForwardServerGroup-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectWebProxyForwardServerGroupFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectWebProxyForwardServerGroup-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -380,6 +446,16 @@ func refreshObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectWebProxyForwardServerGroupUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectWebProxyForwardServerGroup-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -390,6 +466,18 @@ func flattenObjectWebProxyForwardServerGroupFortiTestDebug(d *schema.ResourceDat
 }
 
 func expandObjectWebProxyForwardServerGroupAffinity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerGroupFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerGroupFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerGroupFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -447,6 +535,10 @@ func expandObjectWebProxyForwardServerGroupServerListWeight(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectWebProxyForwardServerGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -456,6 +548,33 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["affinity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectWebProxyForwardServerGroupFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectWebProxyForwardServerGroupFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectWebProxyForwardServerGroupFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -492,6 +611,15 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["server-list"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectWebProxyForwardServerGroupUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

@@ -54,6 +54,8 @@ The following arguments are supported:
 * `vip` - Virtual IP name.
 * `vip6` - Virtual IPv6 name.
 * `windows_forticlient_download_url` - Download URL for Windows FortiClient.
+* `ak_manager` - Ak-Manager. Valid values: `disable`, `enable`.
+
 * `bookmarks` - Bookmarks.
 * `llm_profile` - Llm-Profile.
 * `llm_proxy` - Llm-Proxy. Valid values: `disable`, `enable`.

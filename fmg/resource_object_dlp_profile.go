@@ -64,6 +64,21 @@ func resourceObjectDlpProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -71,6 +86,11 @@ func resourceObjectDlpProfile() *schema.Resource {
 			},
 			"fortidata_error_action": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fortidata_scan_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -177,6 +197,11 @@ func resourceObjectDlpProfile() *schema.Resource {
 			"summary_proto": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -345,11 +370,27 @@ func flattenObjectDlpProfileExtendedLog(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenObjectDlpProfileFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpProfileFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpProfileFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectDlpProfileFortidataErrorAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpProfileFortidataScanTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -552,6 +593,10 @@ func flattenObjectDlpProfileSummaryProto(v interface{}, d *schema.ResourceData, 
 	return flattenStringList(v)
 }
 
+func flattenObjectDlpProfileUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectDlpProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -593,6 +638,36 @@ func refreshObjectObjectDlpProfile(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectDlpProfileFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectDlpProfile-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectDlpProfileFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectDlpProfile-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectDlpProfileFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectDlpProfile-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
+	}
+
 	if err = d.Set("feature_set", flattenObjectDlpProfileFeatureSet(o["feature-set"], d, "feature_set")); err != nil {
 		if vv, ok := fortiAPIPatch(o["feature-set"], "ObjectDlpProfile-FeatureSet"); ok {
 			if err = d.Set("feature_set", vv); err != nil {
@@ -610,6 +685,16 @@ func refreshObjectObjectDlpProfile(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading fortidata_error_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortidata_scan_timeout", flattenObjectDlpProfileFortidataScanTimeout(o["fortidata-scan-timeout"], d, "fortidata_scan_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortidata-scan-timeout"], "ObjectDlpProfile-FortidataScanTimeout"); ok {
+			if err = d.Set("fortidata_scan_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading fortidata_scan_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortidata_scan_timeout: %v", err)
 		}
 	}
 
@@ -687,6 +772,16 @@ func refreshObjectObjectDlpProfile(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectDlpProfileUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectDlpProfile-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -708,11 +803,27 @@ func expandObjectDlpProfileExtendedLog(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandObjectDlpProfileFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpProfileFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpProfileFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpProfileFeatureSet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectDlpProfileFortidataErrorAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpProfileFortidataScanTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -895,6 +1006,10 @@ func expandObjectDlpProfileSummaryProto(d *schema.ResourceData, v interface{}, p
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectDlpProfileUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectDlpProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -925,6 +1040,33 @@ func getObjectObjectDlpProfile(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectDlpProfileFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectDlpProfileFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectDlpProfileFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("feature_set"); ok || d.HasChange("feature_set") {
 		t, err := expandObjectDlpProfileFeatureSet(d, v, "feature_set")
 		if err != nil {
@@ -940,6 +1082,15 @@ func getObjectObjectDlpProfile(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["fortidata-error-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortidata_scan_timeout"); ok || d.HasChange("fortidata_scan_timeout") {
+		t, err := expandObjectDlpProfileFortidataScanTimeout(d, v, "fortidata_scan_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortidata-scan-timeout"] = t
 		}
 	}
 
@@ -994,6 +1145,15 @@ func getObjectObjectDlpProfile(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["summary-proto"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectDlpProfileUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

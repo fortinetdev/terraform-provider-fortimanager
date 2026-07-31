@@ -48,6 +48,12 @@ The following arguments are supported:
 
 * `_gui_meta` - _Gui_Meta.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_poll_interval` - Interval in minutes within to fetch groups from FSSO server, or unset to disable.
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -85,6 +91,7 @@ The following arguments are supported:
 * `type` - Server type. Valid values: `default`, `fortiems`, `fortinac`, `fortiems-cloud`.
 
 * `user_info_server` - LDAP server to get user information.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
@@ -92,6 +99,12 @@ The `dynamic_mapping` block supports:
 
 * `_gui_meta` - _Gui_Meta.
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_poll_interval` - Interval in minutes within to fetch groups from FSSO server, or unset to disable.
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -128,6 +141,7 @@ The `dynamic_mapping` block supports:
 * `type` - Server type. Valid values: `default`, `fortiems`, `fortinac`, `fortiems-cloud`.
 
 * `user_info_server` - LDAP server to get user information.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
 
 The `_scope` block supports:

@@ -48,6 +48,12 @@ The following arguments are supported:
 * `comment` - Comment.
 * `external` - Enable/disable external Email inspection. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
@@ -75,6 +81,7 @@ The following arguments are supported:
 
 * `spam_mheader_table` - Anti-spam MIME header table ID.
 * `spam_rbl_table` - Anti-spam DNSBL table ID.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 The `file_filter` block supports:
 

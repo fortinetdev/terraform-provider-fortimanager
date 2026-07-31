@@ -84,6 +84,21 @@ func resourceObjectDlpSensor() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fgd_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -206,6 +221,11 @@ func resourceObjectDlpSensor() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"options": &schema.Schema{
 				Type:     schema.TypeString,
@@ -451,6 +471,18 @@ func flattenObjectDlpSensorEval(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
+func flattenObjectDlpSensorFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpSensorFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpSensorFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpSensorFgdId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -676,6 +708,10 @@ func flattenObjectDlpSensorName(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
+func flattenObjectDlpSensorUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpSensorOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -740,6 +776,36 @@ func refreshObjectObjectDlpSensor(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading eval: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectDlpSensorFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectDlpSensor-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectDlpSensorFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectDlpSensor-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectDlpSensorFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectDlpSensor-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -857,6 +923,16 @@ func refreshObjectObjectDlpSensor(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectDlpSensorUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectDlpSensor-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("options", flattenObjectDlpSensorOptions(o["options"], d, "options")); err != nil {
 		if vv, ok := fortiAPIPatch(o["options"], "ObjectDlpSensor-Options"); ok {
 			if err = d.Set("options", vv); err != nil {
@@ -961,6 +1037,18 @@ func expandObjectDlpSensorEntriesStatus(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectDlpSensorEval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpSensorFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpSensorFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpSensorFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1168,6 +1256,10 @@ func expandObjectDlpSensorName(d *schema.ResourceData, v interface{}, pre string
 	return v, nil
 }
 
+func expandObjectDlpSensorUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpSensorOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1207,6 +1299,33 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["eval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectDlpSensorFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectDlpSensorFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectDlpSensorFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -1297,6 +1416,15 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectDlpSensorUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

@@ -10,6 +10,8 @@ description: |-
 FEC redundancy mapping table.
 
 ~> This resource is a sub resource for variable `mappings` of resource `fortimanager_object_vpn_ipsec_fec`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+>- `tos`: `fortimanager_object_vpn_ipsec_fec_mappings_tos`
 
 
 
@@ -37,13 +39,33 @@ The following arguments are supported:
 * `fec` - Fec.
 
 * `bandwidth_bi_threshold` - Apply FEC parameters when available bi-bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_bi_threshold_negate` - Negate bi-bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `bandwidth_down_threshold` - Apply FEC parameters when available down bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_down_threshold_negate` - Negate down bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `bandwidth_up_threshold` - Apply FEC parameters when available up bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_up_threshold_negate` - Negate up bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `base` - Number of base FEC packets (1 - 20).
 * `latency_threshold` - Apply FEC parameters when latency is &lt;= threshold (0 means no threshold).
+* `latency_threshold_negate` - Negate latency threshold. Valid values: `disable`, `enable`.
+
 * `packet_loss_threshold` - Apply FEC parameters when packet loss is &gt;= threshold (0 - 100, 0 means no threshold).
+* `packet_loss_threshold_negate` - Negate packet loss threshold. Valid values: `disable`, `enable`.
+
 * `redundant` - Number of redundant FEC packets (1 - 5).
 * `seqno` - Sequence number (1 - 64).
+* `tos` - Tos. The structure of `tos` block is documented below.
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `tos` block supports:
+
+* `base` - Number of base FEC packets (1 - 40).
+* `redundant` - Number of redundant FEC packets (0 - 20).
+* `seqno` - Sequence number (1 - 8).
+* `tos` - Type of service bit pattern.
+* `tos_mask` - Type of service evaluated bits.
 
 
 ## Attribute Reference

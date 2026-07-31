@@ -91,7 +91,18 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dirty": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -158,7 +169,18 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"custom_tags": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"dirty": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"display_with": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -176,7 +198,17 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"fabric_force_sync": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"fabric_object": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object_source": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -205,13 +237,27 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"hw_version": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"ipam_allocate_unique": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"macaddr": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"managed_subnetwork_size": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -232,6 +278,10 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"obsolete": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"organization": &schema.Schema{
 							Type:     schema.TypeString,
@@ -369,7 +419,17 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -394,6 +454,10 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"hw_version": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -401,6 +465,11 @@ func resourceObjectFirewallAddress() *schema.Resource {
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"ipam_allocate_unique": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -428,6 +497,11 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"managed_subnetwork_size": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -450,6 +524,10 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"obsolete": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"organization": &schema.Schema{
 				Type:     schema.TypeString,
@@ -776,7 +854,15 @@ func flattenObjectFirewallAddressCountry(v interface{}, d *schema.ResourceData, 
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallAddressCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddressDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDisplayWith(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -859,10 +945,22 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["country"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Country")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "custom_tags"
+		if _, ok := i["custom-tags"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingCustomTags(i["custom-tags"], d, pre_append)
+			tmp["custom_tags"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-CustomTags")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dirty"
 		if _, ok := i["dirty"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingDirty(i["dirty"], d, pre_append)
 			tmp["dirty"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Dirty")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "display_with"
+		if _, ok := i["display-with"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingDisplayWith(i["display-with"], d, pre_append)
+			tmp["display_with"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-DisplayWith")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
@@ -883,10 +981,22 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["epg_name"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-EpgName")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := i["fabric-force-sync"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingFabricForceSync(i["fabric-force-sync"], d, pre_append)
+			tmp["fabric_force_sync"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-FabricForceSync")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := i["fabric-object"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingFabricObject(i["fabric-object"], d, pre_append)
 			tmp["fabric_object"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-FabricObject")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := i["fabric-object-source"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingFabricObjectSource(i["fabric-object-source"], d, pre_append)
+			tmp["fabric_object_source"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-FabricObjectSource")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
@@ -925,16 +1035,34 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["hw_vendor"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-HwVendor")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "hw_version"
+		if _, ok := i["hw-version"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingHwVersion(i["hw-version"], d, pre_append)
+			tmp["hw_version"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-HwVersion")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := i["interface"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingInterface(i["interface"], d, pre_append)
 			tmp["interface"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Interface")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipam_allocate_unique"
+		if _, ok := i["ipam-allocate-unique"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingIpamAllocateUnique(i["ipam-allocate-unique"], d, pre_append)
+			tmp["ipam_allocate_unique"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-IpamAllocateUnique")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
 		if _, ok := i["macaddr"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingMacaddr(i["macaddr"], d, pre_append)
 			tmp["macaddr"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Macaddr")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "managed_subnetwork_size"
+		if _, ok := i["managed-subnetwork-size"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingManagedSubnetworkSize(i["managed-subnetwork-size"], d, pre_append)
+			tmp["managed_subnetwork_size"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-ManagedSubnetworkSize")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "node_ip_only"
@@ -959,6 +1087,12 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 		if _, ok := i["obj-type"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingObjType(i["obj-type"], d, pre_append)
 			tmp["obj_type"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-ObjType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "obsolete"
+		if _, ok := i["obsolete"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingObsolete(i["obsolete"], d, pre_append)
+			tmp["obsolete"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Obsolete")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "organization"
@@ -1224,7 +1358,15 @@ func flattenObjectFirewallAddressDynamicMappingCountry(v interface{}, d *schema.
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallAddressDynamicMappingCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddressDynamicMappingDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingDisplayWith(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1240,7 +1382,15 @@ func flattenObjectFirewallAddressDynamicMappingEpgName(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1268,12 +1418,24 @@ func flattenObjectFirewallAddressDynamicMappingHwVendor(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingHwVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingIpamAllocateUnique(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallAddressDynamicMappingMacaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallAddressDynamicMappingManagedSubnetworkSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallAddressDynamicMappingNodeIpOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1289,6 +1451,10 @@ func flattenObjectFirewallAddressDynamicMappingObjTag(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallAddressDynamicMappingObjType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingObsolete(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1430,7 +1596,15 @@ func flattenObjectFirewallAddressEpgName(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectFirewallAddressFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1454,12 +1628,20 @@ func flattenObjectFirewallAddressHwVendor(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectFirewallAddressHwVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallAddressInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenObjectFirewallAddressIpamAllocateUnique(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallAddressList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1525,6 +1707,10 @@ func flattenObjectFirewallAddressMacaddr(v interface{}, d *schema.ResourceData, 
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallAddressManagedSubnetworkSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1542,6 +1728,10 @@ func flattenObjectFirewallAddressObjTag(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallAddressObjType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressObsolete(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1823,6 +2013,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("custom_tags", flattenObjectFirewallAddressCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallAddress-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
 	if err = d.Set("dirty", flattenObjectFirewallAddressDirty(o["dirty"], d, "dirty")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dirty"], "ObjectFirewallAddress-Dirty"); ok {
 			if err = d.Set("dirty", vv); err != nil {
@@ -1830,6 +2030,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading dirty: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallAddressDisplayWith(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallAddress-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
 		}
 	}
 
@@ -1887,6 +2097,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallAddressFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallAddress-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddressFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddress-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -1894,6 +2114,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallAddressFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallAddress-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -1947,6 +2177,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("hw_version", flattenObjectFirewallAddressHwVersion(o["hw-version"], d, "hw_version")); err != nil {
+		if vv, ok := fortiAPIPatch(o["hw-version"], "ObjectFirewallAddress-HwVersion"); ok {
+			if err = d.Set("hw_version", vv); err != nil {
+				return fmt.Errorf("Error reading hw_version: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading hw_version: %v", err)
+		}
+	}
+
 	if err = d.Set("global_object", flattenObjectFirewallAddressGlobalObject(o["global-object"], d, "global_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["global-object"], "ObjectFirewallAddress-GlobalObject"); ok {
 			if err = d.Set("global_object", vv); err != nil {
@@ -1964,6 +2204,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading interface: %v", err)
+		}
+	}
+
+	if err = d.Set("ipam_allocate_unique", flattenObjectFirewallAddressIpamAllocateUnique(o["ipam-allocate-unique"], d, "ipam_allocate_unique")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipam-allocate-unique"], "ObjectFirewallAddress-IpamAllocateUnique"); ok {
+			if err = d.Set("ipam_allocate_unique", vv); err != nil {
+				return fmt.Errorf("Error reading ipam_allocate_unique: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipam_allocate_unique: %v", err)
 		}
 	}
 
@@ -1998,6 +2248,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading macaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("managed_subnetwork_size", flattenObjectFirewallAddressManagedSubnetworkSize(o["managed-subnetwork-size"], d, "managed_subnetwork_size")); err != nil {
+		if vv, ok := fortiAPIPatch(o["managed-subnetwork-size"], "ObjectFirewallAddress-ManagedSubnetworkSize"); ok {
+			if err = d.Set("managed_subnetwork_size", vv); err != nil {
+				return fmt.Errorf("Error reading managed_subnetwork_size: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading managed_subnetwork_size: %v", err)
 		}
 	}
 
@@ -2048,6 +2308,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading obj_type: %v", err)
+		}
+	}
+
+	if err = d.Set("obsolete", flattenObjectFirewallAddressObsolete(o["obsolete"], d, "obsolete")); err != nil {
+		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectFirewallAddress-Obsolete"); ok {
+			if err = d.Set("obsolete", vv); err != nil {
+				return fmt.Errorf("Error reading obsolete: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading obsolete: %v", err)
 		}
 	}
 
@@ -2380,7 +2650,15 @@ func expandObjectFirewallAddressCountry(d *schema.ResourceData, v interface{}, p
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallAddressCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddressDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDisplayWith(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2453,9 +2731,19 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["country"], _ = expandObjectFirewallAddressDynamicMappingCountry(d, i["country"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "custom_tags"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["custom-tags"], _ = expandObjectFirewallAddressDynamicMappingCustomTags(d, i["custom_tags"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dirty"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dirty"], _ = expandObjectFirewallAddressDynamicMappingDirty(d, i["dirty"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "display_with"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["display-with"], _ = expandObjectFirewallAddressDynamicMappingDisplayWith(d, i["display_with"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
@@ -2473,9 +2761,19 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["epg-name"], _ = expandObjectFirewallAddressDynamicMappingEpgName(d, i["epg_name"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-force-sync"], _ = expandObjectFirewallAddressDynamicMappingFabricForceSync(d, i["fabric_force_sync"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fabric-object"], _ = expandObjectFirewallAddressDynamicMappingFabricObject(d, i["fabric_object"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object-source"], _ = expandObjectFirewallAddressDynamicMappingFabricObjectSource(d, i["fabric_object_source"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
@@ -2508,14 +2806,29 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["hw-vendor"], _ = expandObjectFirewallAddressDynamicMappingHwVendor(d, i["hw_vendor"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "hw_version"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["hw-version"], _ = expandObjectFirewallAddressDynamicMappingHwVersion(d, i["hw_version"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectFirewallAddressDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipam_allocate_unique"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ipam-allocate-unique"], _ = expandObjectFirewallAddressDynamicMappingIpamAllocateUnique(d, i["ipam_allocate_unique"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["macaddr"], _ = expandObjectFirewallAddressDynamicMappingMacaddr(d, i["macaddr"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "managed_subnetwork_size"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["managed-subnetwork-size"], _ = expandObjectFirewallAddressDynamicMappingManagedSubnetworkSize(d, i["managed_subnetwork_size"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "node_ip_only"
@@ -2536,6 +2849,11 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obj-type"], _ = expandObjectFirewallAddressDynamicMappingObjType(d, i["obj_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "obsolete"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["obsolete"], _ = expandObjectFirewallAddressDynamicMappingObsolete(d, i["obsolete"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "organization"
@@ -2766,7 +3084,15 @@ func expandObjectFirewallAddressDynamicMappingCountry(d *schema.ResourceData, v 
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallAddressDynamicMappingCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddressDynamicMappingDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingDisplayWith(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2782,7 +3108,15 @@ func expandObjectFirewallAddressDynamicMappingEpgName(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2810,12 +3144,24 @@ func expandObjectFirewallAddressDynamicMappingHwVendor(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingHwVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingIpamAllocateUnique(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallAddressDynamicMappingMacaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallAddressDynamicMappingManagedSubnetworkSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallAddressDynamicMappingNodeIpOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2831,6 +3177,10 @@ func expandObjectFirewallAddressDynamicMappingObjTag(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallAddressDynamicMappingObjType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingObsolete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2958,7 +3308,15 @@ func expandObjectFirewallAddressEpgName(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectFirewallAddressFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2982,12 +3340,20 @@ func expandObjectFirewallAddressHwVendor(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectFirewallAddressHwVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallAddressInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
+}
+
+func expandObjectFirewallAddressIpamAllocateUnique(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallAddressList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3045,6 +3411,10 @@ func expandObjectFirewallAddressMacaddr(d *schema.ResourceData, v interface{}, p
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallAddressManagedSubnetworkSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3062,6 +3432,10 @@ func expandObjectFirewallAddressObjTag(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallAddressObjType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressObsolete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3304,12 +3678,30 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallAddressCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dirty"); ok || d.HasChange("dirty") {
 		t, err := expandObjectFirewallAddressDirty(d, v, "dirty")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["dirty"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallAddressDisplayWith(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
 		}
 	}
 
@@ -3349,12 +3741,30 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallAddressFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddressFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallAddressFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -3403,6 +3813,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("hw_version"); ok || d.HasChange("hw_version") {
+		t, err := expandObjectFirewallAddressHwVersion(d, v, "hw_version")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["hw-version"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallAddressGlobalObject(d, v, "global_object")
 		if err != nil {
@@ -3421,6 +3840,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("ipam_allocate_unique"); ok || d.HasChange("ipam_allocate_unique") {
+		t, err := expandObjectFirewallAddressIpamAllocateUnique(d, v, "ipam_allocate_unique")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipam-allocate-unique"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("list"); ok || d.HasChange("list") {
 		t, err := expandObjectFirewallAddressList(d, v, "list")
 		if err != nil {
@@ -3436,6 +3864,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["macaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("managed_subnetwork_size"); ok || d.HasChange("managed_subnetwork_size") {
+		t, err := expandObjectFirewallAddressManagedSubnetworkSize(d, v, "managed_subnetwork_size")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["managed-subnetwork-size"] = t
 		}
 	}
 
@@ -3481,6 +3918,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["obj-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("obsolete"); ok || d.HasChange("obsolete") {
+		t, err := expandObjectFirewallAddressObsolete(d, v, "obsolete")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["obsolete"] = t
 		}
 	}
 

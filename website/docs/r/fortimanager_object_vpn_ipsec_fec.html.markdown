@@ -40,13 +40,32 @@ The following arguments are supported:
 The `mappings` block supports:
 
 * `bandwidth_bi_threshold` - Apply FEC parameters when available bi-bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_bi_threshold_negate` - Negate bi-bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `bandwidth_down_threshold` - Apply FEC parameters when available down bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_down_threshold_negate` - Negate down bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `bandwidth_up_threshold` - Apply FEC parameters when available up bandwidth is &gt;= threshold (kbps, 0 means no threshold).
+* `bandwidth_up_threshold_negate` - Negate up bandwidth threshold. Valid values: `disable`, `enable`.
+
 * `base` - Number of base FEC packets (1 - 20).
 * `latency_threshold` - Apply FEC parameters when latency is &lt;= threshold (0 means no threshold).
+* `latency_threshold_negate` - Negate latency threshold. Valid values: `disable`, `enable`.
+
 * `packet_loss_threshold` - Apply FEC parameters when packet loss is &gt;= threshold (0 - 100, 0 means no threshold).
+* `packet_loss_threshold_negate` - Negate packet loss threshold. Valid values: `disable`, `enable`.
+
 * `redundant` - Number of redundant FEC packets (1 - 5).
 * `seqno` - Sequence number (1 - 64).
+* `tos` - Tos. The structure of `tos` block is documented below.
+
+The `tos` block supports:
+
+* `base` - Number of base FEC packets (1 - 40).
+* `redundant` - Number of redundant FEC packets (0 - 20).
+* `seqno` - Sequence number (1 - 8).
+* `tos` - Type of service bit pattern.
+* `tos_mask` - Type of service evaluated bits.
 
 
 ## Attribute Reference

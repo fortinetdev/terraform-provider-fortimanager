@@ -25,6 +25,7 @@ The following arguments are supported:
 
 * `access_banner` - Enable/disable access banner. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `admin_httpd_keep_alive_timeout` - HTTP keep-alive timeout (5 - 120 sec).
 * `admin_https_redirect` - Enable/disable redirection of HTTP admin traffic to HTTPS. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `admin_login_max` - Maximum number admin users logged in at one time (1 - 256).

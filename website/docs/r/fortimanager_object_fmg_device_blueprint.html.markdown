@@ -18,11 +18,14 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `auth_template` - Auth-Template.
+* `cert_template` - Cert-Template.
 * `cliprofs` - Cliprofs.
+* `cluster_worker` - Cluster-Worker.
 * `description` - Description.
 * `dev_group` - Dev-Group.
 * `enforce_device_config` - Enforce-Device-Config. Valid values: `disable`, `enable`.
 
+* `firmware_template` - Firmware-Template.
 * `folder` - Folder.
 * `ha_config` - Ha-Config. Valid values: `disable`, `enable`.
 

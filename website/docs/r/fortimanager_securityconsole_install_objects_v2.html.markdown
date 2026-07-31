@@ -17,6 +17,8 @@ The following arguments are supported:
 
 * `fmgadom` - Source ADOM name.
 * `category` - Category.
+* `flags` - cp_all_objs - Assign all objects during global policy assignment. preview - Generate preview cache only. generate_rev - Generate new ADOM revision before install. copy_assigned_pkg - For global policy assignment - copy assigned package from ADOM to device. unassign - Remove global policy from ADOM. ifpolicy_only - Only install interface policies. no_ifpolicy - Install regular policies only - do not install interface policies. objs_only - Install object(s) only - do not install any policies. auto_lock_ws - Automatically lock and unlock workspace when performing security console task. copy_only - Only copy to device db. Valid values: `none`, `cp_all_objs`, `preview`, `generate_rev`, `copy_assigned_pkg`, `unassign`, `ifpolicy_only`, `no_ifpolicy`, `objs_only`, `auto_lock_ws`, `check_pkg_st`, `copy_only`.
+
 * `objects` - Objects.
 * `scope` - Scope. The structure of `scope` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

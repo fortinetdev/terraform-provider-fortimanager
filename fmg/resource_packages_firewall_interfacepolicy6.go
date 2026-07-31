@@ -305,14 +305,21 @@ func resourcePackagesFirewallInterfacePolicy6Update(d *schema.ResourceData, m in
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallInterfacePolicy6(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallInterfacePolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy6 resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallInterfacePolicy6Read(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy6 resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallInterfacePolicy6Read(d, m)
 }

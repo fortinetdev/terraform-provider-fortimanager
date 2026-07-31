@@ -54,6 +54,18 @@ func resourceObjectUserPeer() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"checkemail": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"checkhost": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"checkip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -285,6 +297,18 @@ func flattenObjectUserPeerCa(v interface{}, d *schema.ResourceData, pre string) 
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectUserPeerCheckemail(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPeerCheckhost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPeerCheckip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserPeerCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -351,6 +375,36 @@ func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading ca: %v", err)
+		}
+	}
+
+	if err = d.Set("checkemail", flattenObjectUserPeerCheckemail(o["checkemail"], d, "checkemail")); err != nil {
+		if vv, ok := fortiAPIPatch(o["checkemail"], "ObjectUserPeer-Checkemail"); ok {
+			if err = d.Set("checkemail", vv); err != nil {
+				return fmt.Errorf("Error reading checkemail: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading checkemail: %v", err)
+		}
+	}
+
+	if err = d.Set("checkhost", flattenObjectUserPeerCheckhost(o["checkhost"], d, "checkhost")); err != nil {
+		if vv, ok := fortiAPIPatch(o["checkhost"], "ObjectUserPeer-Checkhost"); ok {
+			if err = d.Set("checkhost", vv); err != nil {
+				return fmt.Errorf("Error reading checkhost: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading checkhost: %v", err)
+		}
+	}
+
+	if err = d.Set("checkip", flattenObjectUserPeerCheckip(o["checkip"], d, "checkip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["checkip"], "ObjectUserPeer-Checkip"); ok {
+			if err = d.Set("checkip", vv); err != nil {
+				return fmt.Errorf("Error reading checkip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading checkip: %v", err)
 		}
 	}
 
@@ -497,6 +551,18 @@ func expandObjectUserPeerCa(d *schema.ResourceData, v interface{}, pre string) (
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectUserPeerCheckemail(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPeerCheckhost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPeerCheckip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserPeerCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -570,6 +636,33 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["ca"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("checkemail"); ok || d.HasChange("checkemail") {
+		t, err := expandObjectUserPeerCheckemail(d, v, "checkemail")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["checkemail"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("checkhost"); ok || d.HasChange("checkhost") {
+		t, err := expandObjectUserPeerCheckhost(d, v, "checkhost")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["checkhost"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("checkip"); ok || d.HasChange("checkip") {
+		t, err := expandObjectUserPeerCheckip(d, v, "checkip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["checkip"] = t
 		}
 	}
 

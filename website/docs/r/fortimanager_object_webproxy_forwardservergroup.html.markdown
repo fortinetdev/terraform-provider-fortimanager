@@ -35,12 +35,19 @@ The following arguments are supported:
 
 * `affinity` - Enable/disable affinity, attaching a source-ip's traffic to the assigned forwarding server until the forward-server-affinity-timeout is reached (under web-proxy global). Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_down_option` - Action to take when all of the servers in the forward server group are down: block sessions until at least one server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
 
 * `ldb_method` - Load balance method: weighted or least-session. Valid values: `weighted`, `least-session`, `active-passive`.
 
 * `name` - Configure a forward server group consisting one or multiple forward servers. Supports failover and load balancing.
 * `server_list` - Server-List. The structure of `server_list` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `server_list` block supports:

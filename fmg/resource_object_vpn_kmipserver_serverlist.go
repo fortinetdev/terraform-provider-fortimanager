@@ -171,14 +171,21 @@ func resourceObjectVpnKmipServerServerListUpdate(d *schema.ResourceData, m inter
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectVpnKmipServerServerList(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectVpnKmipServerServerList(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnKmipServerServerList resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectVpnKmipServerServerListRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectVpnKmipServerServerList resource: %v", err)
+		}
+	}
 
 	return resourceObjectVpnKmipServerServerListRead(d, m)
 }

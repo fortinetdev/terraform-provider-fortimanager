@@ -35,6 +35,9 @@ The following arguments are supported:
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `name` - IPv6 multicast address name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.

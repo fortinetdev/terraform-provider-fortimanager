@@ -60,6 +60,12 @@ The following arguments are supported:
 * `automation` - Automation. The structure of `automation` block is documented below.
 * `comment` - Comment.
 * `custom_message` - Custom-Message. The structure of `custom_message` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `device_detection_portal` - Device-Detection-Portal. The structure of `device_detection_portal` block is documented below.
 * `ec` - Ec. The structure of `ec` block is documented below.
 * `fortiguard_wf` - Fortiguard-Wf. The structure of `fortiguard_wf` block is documented below.
@@ -81,6 +87,7 @@ The following arguments are supported:
 * `sslvpn` - Sslvpn. The structure of `sslvpn` block is documented below.
 * `traffic_quota` - Traffic-Quota. The structure of `traffic_quota` block is documented below.
 * `utm` - Utm. The structure of `utm` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `webproxy` - Webproxy. The structure of `webproxy` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

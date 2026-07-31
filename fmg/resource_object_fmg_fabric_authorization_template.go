@@ -81,6 +81,18 @@ func resourceObjectFmgFabricAuthorizationTemplate() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"fspprof": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"fxtprof": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"prefix": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -88,6 +100,12 @@ func resourceObjectFmgFabricAuthorizationTemplate() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+						},
+						"wtpprof": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -302,6 +320,18 @@ func flattenObjectFmgFabricAuthorizationTemplatePlatforms(v interface{}, d *sche
 			tmp["fortilink"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Fortilink")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fspprof"
+		if _, ok := i["fspprof"]; ok {
+			v := flattenObjectFmgFabricAuthorizationTemplatePlatformsFspprof(i["fspprof"], d, pre_append)
+			tmp["fspprof"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Fspprof")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fxtprof"
+		if _, ok := i["fxtprof"]; ok {
+			v := flattenObjectFmgFabricAuthorizationTemplatePlatformsFxtprof(i["fxtprof"], d, pre_append)
+			tmp["fxtprof"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Fxtprof")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
 		if _, ok := i["prefix"]; ok {
 			v := flattenObjectFmgFabricAuthorizationTemplatePlatformsPrefix(i["prefix"], d, pre_append)
@@ -312,6 +342,12 @@ func flattenObjectFmgFabricAuthorizationTemplatePlatforms(v interface{}, d *sche
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFmgFabricAuthorizationTemplatePlatformsType(i["type"], d, pre_append)
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Type")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "wtpprof"
+		if _, ok := i["wtpprof"]; ok {
+			v := flattenObjectFmgFabricAuthorizationTemplatePlatformsWtpprof(i["wtpprof"], d, pre_append)
+			tmp["wtpprof"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Wtpprof")
 		}
 
 		if len(tmp) > 0 {
@@ -336,12 +372,24 @@ func flattenObjectFmgFabricAuthorizationTemplatePlatformsFortilink(v interface{}
 	return v
 }
 
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsFspprof(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsFxtprof(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFmgFabricAuthorizationTemplatePlatformsPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFmgFabricAuthorizationTemplatePlatformsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsWtpprof(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFmgFabricAuthorizationTemplateSwitchController(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -487,6 +535,16 @@ func expandObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceData,
 			tmp["fortilink"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsFortilink(d, i["fortilink"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fspprof"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fspprof"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsFspprof(d, i["fspprof"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fxtprof"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fxtprof"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsFxtprof(d, i["fxtprof"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsPrefix(d, i["prefix"], pre_append)
@@ -495,6 +553,11 @@ func expandObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceData,
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsType(d, i["type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "wtpprof"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["wtpprof"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsWtpprof(d, i["wtpprof"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -519,12 +582,24 @@ func expandObjectFmgFabricAuthorizationTemplatePlatformsFortilink(d *schema.Reso
 	return v, nil
 }
 
+func expandObjectFmgFabricAuthorizationTemplatePlatformsFspprof(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgFabricAuthorizationTemplatePlatformsFxtprof(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFmgFabricAuthorizationTemplatePlatformsPrefix(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFmgFabricAuthorizationTemplatePlatformsType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFmgFabricAuthorizationTemplatePlatformsWtpprof(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFmgFabricAuthorizationTemplateSwitchController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

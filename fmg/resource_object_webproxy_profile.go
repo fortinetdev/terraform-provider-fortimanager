@@ -50,6 +50,21 @@ func resourceObjectWebProxyProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"header_client_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -156,6 +171,11 @@ func resourceObjectWebProxyProfile() *schema.Resource {
 				Optional: true,
 			},
 			"strip_encoding": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -315,6 +335,18 @@ func resourceObjectWebProxyProfileRead(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error reading ObjectWebProxyProfile resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectWebProxyProfileFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyProfileFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyProfileFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectWebProxyProfileHeaderClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -484,6 +516,10 @@ func flattenObjectWebProxyProfileStripEncoding(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectWebProxyProfileUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyProfileMaxCacheObjectSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -497,6 +533,36 @@ func refreshObjectObjectWebProxyProfile(d *schema.ResourceData, o map[string]int
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectWebProxyProfileFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectWebProxyProfile-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectWebProxyProfileFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectWebProxyProfile-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectWebProxyProfileFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectWebProxyProfile-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
 	}
 
 	if err = d.Set("header_client_cert", flattenObjectWebProxyProfileHeaderClientCert(o["header-client-cert"], d, "header_client_cert")); err != nil {
@@ -643,6 +709,16 @@ func refreshObjectObjectWebProxyProfile(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectWebProxyProfileUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectWebProxyProfile-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("max_cache_object_size", flattenObjectWebProxyProfileMaxCacheObjectSize(o["max-cache-object-size"], d, "max_cache_object_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-cache-object-size"], "ObjectWebProxyProfile-MaxCacheObjectSize"); ok {
 			if err = d.Set("max_cache_object_size", vv); err != nil {
@@ -660,6 +736,18 @@ func flattenObjectWebProxyProfileFortiTestDebug(d *schema.ResourceData, fosdebug
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectWebProxyProfileFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyProfileFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyProfileFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWebProxyProfileHeaderClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -815,12 +903,43 @@ func expandObjectWebProxyProfileStripEncoding(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectWebProxyProfileUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebProxyProfileMaxCacheObjectSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectWebProxyProfileFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectWebProxyProfileFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectWebProxyProfileFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("header_client_cert"); ok || d.HasChange("header_client_cert") {
 		t, err := expandObjectWebProxyProfileHeaderClientCert(d, v, "header_client_cert")
@@ -936,6 +1055,15 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["strip-encoding"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectWebProxyProfileUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

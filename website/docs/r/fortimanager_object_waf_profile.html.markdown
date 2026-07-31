@@ -44,10 +44,17 @@ The following arguments are supported:
 
 * `external` - Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `method` - Method. The structure of `method` block is documented below.
 * `name` - WAF Profile name.
 * `signature` - Signature. The structure of `signature` block is documented below.
 * `url_access` - Url-Access. The structure of `url_access` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `address_list` block supports:

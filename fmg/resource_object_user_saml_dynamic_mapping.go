@@ -98,6 +98,18 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"group_claim_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -127,6 +139,10 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"realm": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"reauth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -153,11 +169,23 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"service_provider_address": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"single_logout_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"single_sign_on_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"sso_app_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -168,6 +196,15 @@ func resourceObjectUserSamlDynamicMapping() *schema.Resource {
 			"user_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"user_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -419,6 +456,18 @@ func flattenObjectUserSamlDynamicMappingEntityId2edl(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingFabricForceSync2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingFabricObject2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingFabricObjectSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingGroupClaimType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -447,6 +496,10 @@ func flattenObjectUserSamlDynamicMappingLimitRelaystate2edl(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingRealm2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingReauth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -467,6 +520,10 @@ func flattenObjectUserSamlDynamicMappingScimUserAttrType2edl(v interface{}, d *s
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingServiceProviderAddress2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingSingleLogoutUrl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -475,11 +532,27 @@ func flattenObjectUserSamlDynamicMappingSingleSignOnUrl2edl(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingSsoAppId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingUserClaimType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectUserSamlDynamicMappingUserName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingUserSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -578,6 +651,36 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectUserSamlDynamicMappingFabricForceSync2edl(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectUserSamlDynamicMapping-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectUserSamlDynamicMappingFabricObject2edl(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectUserSamlDynamicMapping-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectUserSamlDynamicMappingFabricObjectSource2edl(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectUserSamlDynamicMapping-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
+	}
+
 	if err = d.Set("group_claim_type", flattenObjectUserSamlDynamicMappingGroupClaimType2edl(o["group-claim-type"], d, "group_claim_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["group-claim-type"], "ObjectUserSamlDynamicMapping-GroupClaimType"); ok {
 			if err = d.Set("group_claim_type", vv); err != nil {
@@ -648,6 +751,16 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("realm", flattenObjectUserSamlDynamicMappingRealm2edl(o["realm"], d, "realm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["realm"], "ObjectUserSamlDynamicMapping-Realm"); ok {
+			if err = d.Set("realm", vv); err != nil {
+				return fmt.Errorf("Error reading realm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading realm: %v", err)
+		}
+	}
+
 	if err = d.Set("reauth", flattenObjectUserSamlDynamicMappingReauth2edl(o["reauth"], d, "reauth")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reauth"], "ObjectUserSamlDynamicMapping-Reauth"); ok {
 			if err = d.Set("reauth", vv); err != nil {
@@ -698,6 +811,16 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("service_provider_address", flattenObjectUserSamlDynamicMappingServiceProviderAddress2edl(o["service-provider-address"], d, "service_provider_address")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-provider-address"], "ObjectUserSamlDynamicMapping-ServiceProviderAddress"); ok {
+			if err = d.Set("service_provider_address", vv); err != nil {
+				return fmt.Errorf("Error reading service_provider_address: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_provider_address: %v", err)
+		}
+	}
+
 	if err = d.Set("single_logout_url", flattenObjectUserSamlDynamicMappingSingleLogoutUrl2edl(o["single-logout-url"], d, "single_logout_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["single-logout-url"], "ObjectUserSamlDynamicMapping-SingleLogoutUrl"); ok {
 			if err = d.Set("single_logout_url", vv); err != nil {
@@ -718,6 +841,26 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("sso_app_id", flattenObjectUserSamlDynamicMappingSsoAppId2edl(o["sso-app-id"], d, "sso_app_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sso-app-id"], "ObjectUserSamlDynamicMapping-SsoAppId"); ok {
+			if err = d.Set("sso_app_id", vv); err != nil {
+				return fmt.Errorf("Error reading sso_app_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sso_app_id: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenObjectUserSamlDynamicMappingType2edl(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "ObjectUserSamlDynamicMapping-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
 	if err = d.Set("user_claim_type", flattenObjectUserSamlDynamicMappingUserClaimType2edl(o["user-claim-type"], d, "user_claim_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user-claim-type"], "ObjectUserSamlDynamicMapping-UserClaimType"); ok {
 			if err = d.Set("user_claim_type", vv); err != nil {
@@ -735,6 +878,26 @@ func refreshObjectObjectUserSamlDynamicMapping(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading user_name: %v", err)
+		}
+	}
+
+	if err = d.Set("user_source", flattenObjectUserSamlDynamicMappingUserSource2edl(o["user-source"], d, "user_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-source"], "ObjectUserSamlDynamicMapping-UserSource"); ok {
+			if err = d.Set("user_source", vv); err != nil {
+				return fmt.Errorf("Error reading user_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_source: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid", flattenObjectUserSamlDynamicMappingUuid2edl(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectUserSamlDynamicMapping-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -813,6 +976,18 @@ func expandObjectUserSamlDynamicMappingEntityId2edl(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingFabricForceSync2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingFabricObject2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingFabricObjectSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingGroupClaimType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -841,6 +1016,10 @@ func expandObjectUserSamlDynamicMappingLimitRelaystate2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingRealm2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingReauth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -861,6 +1040,10 @@ func expandObjectUserSamlDynamicMappingScimUserAttrType2edl(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingServiceProviderAddress2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingSingleLogoutUrl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -869,11 +1052,27 @@ func expandObjectUserSamlDynamicMappingSingleSignOnUrl2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingSsoAppId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingUserClaimType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectUserSamlDynamicMappingUserName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingUserSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -943,6 +1142,33 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectUserSamlDynamicMappingFabricForceSync2edl(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectUserSamlDynamicMappingFabricObject2edl(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectUserSamlDynamicMappingFabricObjectSource2edl(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("group_claim_type"); ok || d.HasChange("group_claim_type") {
 		t, err := expandObjectUserSamlDynamicMappingGroupClaimType2edl(d, v, "group_claim_type")
 		if err != nil {
@@ -1006,6 +1232,15 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("realm"); ok || d.HasChange("realm") {
+		t, err := expandObjectUserSamlDynamicMappingRealm2edl(d, v, "realm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["realm"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("reauth"); ok || d.HasChange("reauth") {
 		t, err := expandObjectUserSamlDynamicMappingReauth2edl(d, v, "reauth")
 		if err != nil {
@@ -1051,6 +1286,15 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("service_provider_address"); ok || d.HasChange("service_provider_address") {
+		t, err := expandObjectUserSamlDynamicMappingServiceProviderAddress2edl(d, v, "service_provider_address")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-provider-address"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("single_logout_url"); ok || d.HasChange("single_logout_url") {
 		t, err := expandObjectUserSamlDynamicMappingSingleLogoutUrl2edl(d, v, "single_logout_url")
 		if err != nil {
@@ -1069,6 +1313,24 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("sso_app_id"); ok || d.HasChange("sso_app_id") {
+		t, err := expandObjectUserSamlDynamicMappingSsoAppId2edl(d, v, "sso_app_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sso-app-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandObjectUserSamlDynamicMappingType2edl(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("user_claim_type"); ok || d.HasChange("user_claim_type") {
 		t, err := expandObjectUserSamlDynamicMappingUserClaimType2edl(d, v, "user_claim_type")
 		if err != nil {
@@ -1084,6 +1346,24 @@ func getObjectObjectUserSamlDynamicMapping(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["user-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_source"); ok || d.HasChange("user_source") {
+		t, err := expandObjectUserSamlDynamicMappingUserSource2edl(d, v, "user_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-source"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectUserSamlDynamicMappingUuid2edl(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

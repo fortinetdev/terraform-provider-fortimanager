@@ -89,14 +89,23 @@ func resourceSecurityconsoleTemplateCliPreviewUpdate(d *schema.ResourceData, m i
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsoleTemplateCliPreview(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsoleTemplateCliPreview(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleTemplateCliPreview resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsoleTemplateCliPreview")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsoleTemplateCliPreviewRead(d, m)
 }

@@ -16,7 +16,14 @@ func (c *FortiSDKClient) CreateUpdateExecWorkspaceAction(globaladom, action, tar
 		}
 	}
 
-	output, err = createUpdate(c, path, "exec", nil, false, nil)
+	requestInput := &requestInput{}
+
+	requestInput.fortiSDKClient = c
+	requestInput.method = "exec"
+	requestInput.path = path
+	requestInput.bMove = false
+
+	output, err = createUpdate(requestInput)
 	return
 }
 
@@ -35,6 +42,13 @@ func (c *FortiSDKClient) GetExecWorkspaceAction(globaladom, target, param string
 		}
 	}
 
-	output, err = read(c, path, "get", false)
+	requestInput := &requestInput{}
+
+	requestInput.fortiSDKClient = c
+	requestInput.method = "get"
+	requestInput.path = path
+	requestInput.bMove = false
+
+	output, err = read(requestInput)
 	return
 }

@@ -28,12 +28,19 @@ The following arguments are supported:
 * `comments` - Comment.
 * `endip` - Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 * `external_prefix` - <i>Support meta variable</i> External NPTv6 prefix length (32 - 64).
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `internal_prefix` - <i>Support meta variable</i> Internal NPTv6 prefix length (32 - 64).
 * `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
 
 * `startip` - First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 * `type` - Configure IPv6 pool type (overload or NPTv6). Valid values: `overload`, `nptv6`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `_scope` block supports:

@@ -162,14 +162,21 @@ func resourceDvmdbRevisionUpdate(d *schema.ResourceData, m interface{}) error {
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateDvmdbRevision(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateDvmdbRevision(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbRevision resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "version")))
+	if v != nil && v["version"] != nil {
+		if vidn, ok := v["version"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceDvmdbRevisionRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating DvmdbRevision resource: %v", err)
+		}
+	}
 
 	return resourceDvmdbRevisionRead(d, m)
 }

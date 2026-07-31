@@ -63,9 +63,351 @@ func resourceObjectUserLocal() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"dynamic_mapping": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"_scope": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vdom": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
+						},
+						"auth_concurrent_override": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"auth_concurrent_value": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"authtimeout": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"email_to": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fabric_force_sync": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object_source": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortitoken": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"history0": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history1": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history10": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history11": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history12": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history13": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history14": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history15": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history16": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history17": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history18": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history19": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history2": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history3": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history4": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history5": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history6": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history7": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history8": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"history9": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"ldap_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"passwd": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"passwd_policy": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"passwd_time": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"ppk_identity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"ppk_secret": &schema.Schema{
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
+						},
+						"qkd_profile": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"radius_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"saml_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"sms_custom_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"sms_phone": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"sms_provider": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"sms_server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"tacacs_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"two_factor": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"two_factor_authentication": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"two_factor_notification": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"username_case_insensitivity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"username_case_sensitivity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"username_sensitivity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"uuid": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"workstation": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"email_to": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"fortitoken": &schema.Schema{
 				Type:     schema.TypeString,
@@ -315,9 +657,19 @@ func resourceObjectUserLocal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"workstation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -479,7 +831,413 @@ func flattenObjectUserLocalAuthtimeout(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectUserLocalDynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := i["_scope"]; ok {
+			v := flattenObjectUserLocalDynamicMappingScope(i["_scope"], d, pre_append)
+			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Scope")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_override"
+		if _, ok := i["auth-concurrent-override"]; ok {
+			v := flattenObjectUserLocalDynamicMappingAuthConcurrentOverride(i["auth-concurrent-override"], d, pre_append)
+			tmp["auth_concurrent_override"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-AuthConcurrentOverride")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_value"
+		if _, ok := i["auth-concurrent-value"]; ok {
+			v := flattenObjectUserLocalDynamicMappingAuthConcurrentValue(i["auth-concurrent-value"], d, pre_append)
+			tmp["auth_concurrent_value"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-AuthConcurrentValue")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "authtimeout"
+		if _, ok := i["authtimeout"]; ok {
+			v := flattenObjectUserLocalDynamicMappingAuthtimeout(i["authtimeout"], d, pre_append)
+			tmp["authtimeout"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Authtimeout")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "email_to"
+		if _, ok := i["email-to"]; ok {
+			v := flattenObjectUserLocalDynamicMappingEmailTo(i["email-to"], d, pre_append)
+			tmp["email_to"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-EmailTo")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := i["fabric-force-sync"]; ok {
+			v := flattenObjectUserLocalDynamicMappingFabricForceSync(i["fabric-force-sync"], d, pre_append)
+			tmp["fabric_force_sync"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-FabricForceSync")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := i["fabric-object"]; ok {
+			v := flattenObjectUserLocalDynamicMappingFabricObject(i["fabric-object"], d, pre_append)
+			tmp["fabric_object"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-FabricObject")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := i["fabric-object-source"]; ok {
+			v := flattenObjectUserLocalDynamicMappingFabricObjectSource(i["fabric-object-source"], d, pre_append)
+			tmp["fabric_object_source"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-FabricObjectSource")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortitoken"
+		if _, ok := i["fortitoken"]; ok {
+			v := flattenObjectUserLocalDynamicMappingFortitoken(i["fortitoken"], d, pre_append)
+			tmp["fortitoken"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Fortitoken")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectUserLocalDynamicMappingId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_server"
+		if _, ok := i["ldap-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingLdapServer(i["ldap-server"], d, pre_append)
+			tmp["ldap_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-LdapServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd_policy"
+		if _, ok := i["passwd-policy"]; ok {
+			v := flattenObjectUserLocalDynamicMappingPasswdPolicy(i["passwd-policy"], d, pre_append)
+			tmp["passwd_policy"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-PasswdPolicy")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd_time"
+		if _, ok := i["passwd-time"]; ok {
+			v := flattenObjectUserLocalDynamicMappingPasswdTime(i["passwd-time"], d, pre_append)
+			tmp["passwd_time"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-PasswdTime")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ppk_identity"
+		if _, ok := i["ppk-identity"]; ok {
+			v := flattenObjectUserLocalDynamicMappingPpkIdentity(i["ppk-identity"], d, pre_append)
+			tmp["ppk_identity"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-PpkIdentity")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "qkd_profile"
+		if _, ok := i["qkd-profile"]; ok {
+			v := flattenObjectUserLocalDynamicMappingQkdProfile(i["qkd-profile"], d, pre_append)
+			tmp["qkd_profile"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-QkdProfile")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_server"
+		if _, ok := i["radius-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingRadiusServer(i["radius-server"], d, pre_append)
+			tmp["radius_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-RadiusServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "saml_server"
+		if _, ok := i["saml-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingSamlServer(i["saml-server"], d, pre_append)
+			tmp["saml_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-SamlServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_custom_server"
+		if _, ok := i["sms-custom-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingSmsCustomServer(i["sms-custom-server"], d, pre_append)
+			tmp["sms_custom_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-SmsCustomServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_phone"
+		if _, ok := i["sms-phone"]; ok {
+			v := flattenObjectUserLocalDynamicMappingSmsPhone(i["sms-phone"], d, pre_append)
+			tmp["sms_phone"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-SmsPhone")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_provider"
+		if _, ok := i["sms-provider"]; ok {
+			v := flattenObjectUserLocalDynamicMappingSmsProvider(i["sms-provider"], d, pre_append)
+			tmp["sms_provider"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-SmsProvider")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_server"
+		if _, ok := i["sms-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingSmsServer(i["sms-server"], d, pre_append)
+			tmp["sms_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-SmsServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectUserLocalDynamicMappingStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Status")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tacacs_server"
+		if _, ok := i["tacacs+-server"]; ok {
+			v := flattenObjectUserLocalDynamicMappingTacacsServer(i["tacacs+-server"], d, pre_append)
+			tmp["tacacs_server"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-TacacsServer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor"
+		if _, ok := i["two-factor"]; ok {
+			v := flattenObjectUserLocalDynamicMappingTwoFactor(i["two-factor"], d, pre_append)
+			tmp["two_factor"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-TwoFactor")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_authentication"
+		if _, ok := i["two-factor-authentication"]; ok {
+			v := flattenObjectUserLocalDynamicMappingTwoFactorAuthentication(i["two-factor-authentication"], d, pre_append)
+			tmp["two_factor_authentication"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-TwoFactorAuthentication")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_notification"
+		if _, ok := i["two-factor-notification"]; ok {
+			v := flattenObjectUserLocalDynamicMappingTwoFactorNotification(i["two-factor-notification"], d, pre_append)
+			tmp["two_factor_notification"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-TwoFactorNotification")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := i["type"]; ok {
+			v := flattenObjectUserLocalDynamicMappingType(i["type"], d, pre_append)
+			tmp["type"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Type")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_insensitivity"
+		if _, ok := i["username-case-insensitivity"]; ok {
+			v := flattenObjectUserLocalDynamicMappingUsernameCaseInsensitivity(i["username-case-insensitivity"], d, pre_append)
+			tmp["username_case_insensitivity"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-UsernameCaseInsensitivity")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_sensitivity"
+		if _, ok := i["username-case-sensitivity"]; ok {
+			v := flattenObjectUserLocalDynamicMappingUsernameCaseSensitivity(i["username-case-sensitivity"], d, pre_append)
+			tmp["username_case_sensitivity"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-UsernameCaseSensitivity")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_sensitivity"
+		if _, ok := i["username-sensitivity"]; ok {
+			v := flattenObjectUserLocalDynamicMappingUsernameSensitivity(i["username-sensitivity"], d, pre_append)
+			tmp["username_sensitivity"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-UsernameSensitivity")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := i["uuid"]; ok {
+			v := flattenObjectUserLocalDynamicMappingUuid(i["uuid"], d, pre_append)
+			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Uuid")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "workstation"
+		if _, ok := i["workstation"]; ok {
+			v := flattenObjectUserLocalDynamicMappingWorkstation(i["workstation"], d, pre_append)
+			tmp["workstation"] = fortiAPISubPartPatch(v, "ObjectUserLocal-DynamicMapping-Workstation")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectUserLocalDynamicMappingScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectUserLocalDynamicMappingScopeName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserLocalDynamicMapping-Scope-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := i["vdom"]; ok {
+			v := flattenObjectUserLocalDynamicMappingScopeVdom(i["vdom"], d, pre_append)
+			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserLocalDynamicMapping-Scope-Vdom")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectUserLocalDynamicMappingScopeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingScopeVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingAuthConcurrentOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingAuthConcurrentValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingAuthtimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingEmailTo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingFortitoken(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingPasswdPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingPasswdTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingPpkIdentity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingQkdProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingRadiusServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingSamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingSmsCustomServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingSmsPhone(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingSmsProvider(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingSmsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingTacacsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalDynamicMappingTwoFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingTwoFactorAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingTwoFactorNotification(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingUsernameCaseInsensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingUsernameCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingUsernameSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalDynamicMappingWorkstation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLocalEmailTo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -567,6 +1325,10 @@ func flattenObjectUserLocalUsernameSensitivity(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserLocalUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLocalWorkstation(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -576,6 +1338,10 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
 	}
 
 	if err = d.Set("auth_concurrent_override", flattenObjectUserLocalAuthConcurrentOverride(o["auth-concurrent-override"], d, "auth_concurrent_override")); err != nil {
@@ -608,6 +1374,30 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("dynamic_mapping", flattenObjectUserLocalDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+			if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectUserLocal-DynamicMapping"); ok {
+				if err = d.Set("dynamic_mapping", vv); err != nil {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("dynamic_mapping"); ok {
+			if err = d.Set("dynamic_mapping", flattenObjectUserLocalDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+				if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectUserLocal-DynamicMapping"); ok {
+					if err = d.Set("dynamic_mapping", vv); err != nil {
+						return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("email_to", flattenObjectUserLocalEmailTo(o["email-to"], d, "email_to")); err != nil {
 		if vv, ok := fortiAPIPatch(o["email-to"], "ObjectUserLocal-EmailTo"); ok {
 			if err = d.Set("email_to", vv); err != nil {
@@ -615,6 +1405,36 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading email_to: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectUserLocalFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectUserLocal-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectUserLocalFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectUserLocal-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectUserLocalFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectUserLocal-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -828,6 +1648,16 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectUserLocalUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectUserLocal-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("workstation", flattenObjectUserLocalWorkstation(o["workstation"], d, "workstation")); err != nil {
 		if vv, ok := fortiAPIPatch(o["workstation"], "ObjectUserLocal-Workstation"); ok {
 			if err = d.Set("workstation", vv); err != nil {
@@ -859,7 +1689,572 @@ func expandObjectUserLocalAuthtimeout(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectUserLocalDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectUserLocalDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_override"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["auth-concurrent-override"], _ = expandObjectUserLocalDynamicMappingAuthConcurrentOverride(d, i["auth_concurrent_override"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_value"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["auth-concurrent-value"], _ = expandObjectUserLocalDynamicMappingAuthConcurrentValue(d, i["auth_concurrent_value"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "authtimeout"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["authtimeout"], _ = expandObjectUserLocalDynamicMappingAuthtimeout(d, i["authtimeout"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "email_to"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["email-to"], _ = expandObjectUserLocalDynamicMappingEmailTo(d, i["email_to"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-force-sync"], _ = expandObjectUserLocalDynamicMappingFabricForceSync(d, i["fabric_force_sync"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object"], _ = expandObjectUserLocalDynamicMappingFabricObject(d, i["fabric_object"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object-source"], _ = expandObjectUserLocalDynamicMappingFabricObjectSource(d, i["fabric_object_source"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortitoken"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fortitoken"], _ = expandObjectUserLocalDynamicMappingFortitoken(d, i["fortitoken"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history0"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history0"], _ = expandObjectUserLocalDynamicMappingHistory0(d, i["history0"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history1"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history1"], _ = expandObjectUserLocalDynamicMappingHistory1(d, i["history1"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history10"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history10"], _ = expandObjectUserLocalDynamicMappingHistory10(d, i["history10"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history11"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history11"], _ = expandObjectUserLocalDynamicMappingHistory11(d, i["history11"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history12"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history12"], _ = expandObjectUserLocalDynamicMappingHistory12(d, i["history12"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history13"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history13"], _ = expandObjectUserLocalDynamicMappingHistory13(d, i["history13"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history14"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history14"], _ = expandObjectUserLocalDynamicMappingHistory14(d, i["history14"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history15"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history15"], _ = expandObjectUserLocalDynamicMappingHistory15(d, i["history15"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history16"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history16"], _ = expandObjectUserLocalDynamicMappingHistory16(d, i["history16"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history17"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history17"], _ = expandObjectUserLocalDynamicMappingHistory17(d, i["history17"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history18"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history18"], _ = expandObjectUserLocalDynamicMappingHistory18(d, i["history18"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history19"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history19"], _ = expandObjectUserLocalDynamicMappingHistory19(d, i["history19"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history2"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history2"], _ = expandObjectUserLocalDynamicMappingHistory2(d, i["history2"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history3"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history3"], _ = expandObjectUserLocalDynamicMappingHistory3(d, i["history3"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history4"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history4"], _ = expandObjectUserLocalDynamicMappingHistory4(d, i["history4"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history5"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history5"], _ = expandObjectUserLocalDynamicMappingHistory5(d, i["history5"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history6"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history6"], _ = expandObjectUserLocalDynamicMappingHistory6(d, i["history6"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history7"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history7"], _ = expandObjectUserLocalDynamicMappingHistory7(d, i["history7"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history8"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history8"], _ = expandObjectUserLocalDynamicMappingHistory8(d, i["history8"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "history9"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["history9"], _ = expandObjectUserLocalDynamicMappingHistory9(d, i["history9"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectUserLocalDynamicMappingId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ldap-server"], _ = expandObjectUserLocalDynamicMappingLdapServer(d, i["ldap_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["passwd"], _ = expandObjectUserLocalDynamicMappingPasswd(d, i["passwd"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd_policy"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["passwd-policy"], _ = expandObjectUserLocalDynamicMappingPasswdPolicy(d, i["passwd_policy"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "passwd_time"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["passwd-time"], _ = expandObjectUserLocalDynamicMappingPasswdTime(d, i["passwd_time"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ppk_identity"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ppk-identity"], _ = expandObjectUserLocalDynamicMappingPpkIdentity(d, i["ppk_identity"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ppk_secret"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ppk-secret"], _ = expandObjectUserLocalDynamicMappingPpkSecret(d, i["ppk_secret"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "qkd_profile"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["qkd-profile"], _ = expandObjectUserLocalDynamicMappingQkdProfile(d, i["qkd_profile"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["radius-server"], _ = expandObjectUserLocalDynamicMappingRadiusServer(d, i["radius_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "saml_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["saml-server"], _ = expandObjectUserLocalDynamicMappingSamlServer(d, i["saml_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_custom_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sms-custom-server"], _ = expandObjectUserLocalDynamicMappingSmsCustomServer(d, i["sms_custom_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_phone"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sms-phone"], _ = expandObjectUserLocalDynamicMappingSmsPhone(d, i["sms_phone"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_provider"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sms-provider"], _ = expandObjectUserLocalDynamicMappingSmsProvider(d, i["sms_provider"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sms-server"], _ = expandObjectUserLocalDynamicMappingSmsServer(d, i["sms_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["status"], _ = expandObjectUserLocalDynamicMappingStatus(d, i["status"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tacacs_server"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["tacacs+-server"], _ = expandObjectUserLocalDynamicMappingTacacsServer(d, i["tacacs_server"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["two-factor"], _ = expandObjectUserLocalDynamicMappingTwoFactor(d, i["two_factor"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_authentication"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["two-factor-authentication"], _ = expandObjectUserLocalDynamicMappingTwoFactorAuthentication(d, i["two_factor_authentication"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_notification"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["two-factor-notification"], _ = expandObjectUserLocalDynamicMappingTwoFactorNotification(d, i["two_factor_notification"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["type"], _ = expandObjectUserLocalDynamicMappingType(d, i["type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_insensitivity"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["username-case-insensitivity"], _ = expandObjectUserLocalDynamicMappingUsernameCaseInsensitivity(d, i["username_case_insensitivity"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_sensitivity"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["username-case-sensitivity"], _ = expandObjectUserLocalDynamicMappingUsernameCaseSensitivity(d, i["username_case_sensitivity"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_sensitivity"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["username-sensitivity"], _ = expandObjectUserLocalDynamicMappingUsernameSensitivity(d, i["username_sensitivity"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["uuid"], _ = expandObjectUserLocalDynamicMappingUuid(d, i["uuid"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "workstation"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["workstation"], _ = expandObjectUserLocalDynamicMappingWorkstation(d, i["workstation"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectUserLocalDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectUserLocalDynamicMappingScopeName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vdom"], _ = expandObjectUserLocalDynamicMappingScopeVdom(d, i["vdom"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectUserLocalDynamicMappingScopeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingScopeVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingAuthConcurrentOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingAuthConcurrentValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingAuthtimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingEmailTo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingFortitoken(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory11(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory12(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory13(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory14(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory15(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory16(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory17(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory18(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory19(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingHistory9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingPasswdPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingPasswdTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingPpkIdentity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingPpkSecret(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingQkdProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingRadiusServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingSamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingSmsCustomServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingSmsPhone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingSmsProvider(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingSmsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingTacacsServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalDynamicMappingTwoFactor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingTwoFactorAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingTwoFactorNotification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingUsernameCaseInsensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingUsernameCaseSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingUsernameSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalDynamicMappingWorkstation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLocalEmailTo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1035,6 +2430,10 @@ func expandObjectUserLocalUsernameSensitivity(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectUserLocalUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLocalWorkstation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1069,12 +2468,48 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
+		t, err := expandObjectUserLocalDynamicMapping(d, v, "dynamic_mapping")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic_mapping"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("email_to"); ok || d.HasChange("email_to") {
 		t, err := expandObjectUserLocalEmailTo(d, v, "email_to")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["email-to"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectUserLocalFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectUserLocalFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectUserLocalFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -1462,6 +2897,15 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["username-sensitivity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectUserLocalUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

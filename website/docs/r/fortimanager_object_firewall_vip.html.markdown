@@ -74,6 +74,9 @@ The following arguments are supported:
 
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
+* `auth_portal` - Enable/disable authentication portal. Valid values: `disable`, `enable`.
+
+* `auth_virtual_host` - Virtual host for authentication portal.
 * `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
@@ -120,6 +123,8 @@ The following arguments are supported:
 * `ipv6_mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
 * `ipv6_mappedport` - IPv6 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
+
+* `log_blocked_traffic` - Enable/disable logging of blocked traffic. Valid values: `disable`, `enable`.
 
 * `mapped_addr` - Mapped FQDN address name.
 * `mappedip` - IP address or address range on the destination network to which the external IP address is mapped.
@@ -188,6 +193,8 @@ The following arguments are supported:
 
 * `ssl_http_match_host` - Enable/disable HTTP host matching for location conversion. Valid values: `disable`, `enable`.
 
+* `ssl_http_strip_secure_cookies` - Enable/disable removal of HTTPS-only directives in the reply's Set-Cookie HTTP header fields. Valid values: `disable`, `enable`.
+
 * `ssl_max_version` - Highest SSL/TLS version acceptable from a client. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
 * `ssl_min_version` - Lowest SSL/TLS version acceptable from a client. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
@@ -201,6 +208,7 @@ The following arguments are supported:
 * `ssl_server_algorithm` - Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `low`, `medium`, `custom`, `client`.
 
 * `ssl_server_cipher_suites` - Ssl-Server-Cipher-Suites. The structure of `ssl_server_cipher_suites` block is documented below.
+* `ssl_server_client_certificate` - Name of the client certificate presented to realserver during SSL/TLS handshake if requested.
 * `ssl_server_max_version` - Highest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
@@ -210,6 +218,8 @@ The following arguments are supported:
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
+
+* `ssl_upstream` - Apply SSL encryption between the FortiGate and the upstream server (default = disable). Valid values: `disable`, `enable`.
 
 * `status` - Enable/disable VIP. Valid values: `disable`, `enable`.
 
@@ -232,6 +242,9 @@ The `dynamic_mapping` block supports:
 
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
+* `auth_portal` - Enable/disable authentication portal. Valid values: `disable`, `enable`.
+
+* `auth_virtual_host` - Virtual host for authentication portal.
 * `client_cert` - Enable/disable requesting client certificate. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
@@ -276,6 +289,8 @@ The `dynamic_mapping` block supports:
 * `ipv6_mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
 * `ipv6_mappedport` - IPv6 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
+
+* `log_blocked_traffic` - Enable/disable logging of blocked traffic. Valid values: `disable`, `enable`.
 
 * `mapped_addr` - Mapped FQDN address name.
 * `mappedip` - IP address or address range on the destination network to which the external IP address is mapped.
@@ -342,6 +357,8 @@ The `dynamic_mapping` block supports:
 
 * `ssl_http_match_host` - Enable/disable HTTP host matching for location conversion. Valid values: `disable`, `enable`.
 
+* `ssl_http_strip_secure_cookies` - Enable/disable removal of HTTPS-only directives in the reply's Set-Cookie HTTP header fields. Valid values: `disable`, `enable`.
+
 * `ssl_max_version` - Highest SSL/TLS version acceptable from a client. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
 * `ssl_min_version` - Lowest SSL/TLS version acceptable from a client. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
@@ -354,6 +371,7 @@ The `dynamic_mapping` block supports:
 
 * `ssl_server_algorithm` - Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `low`, `medium`, `custom`, `client`.
 
+* `ssl_server_client_certificate` - Name of the client certificate presented to realserver during SSL/TLS handshake if requested.
 * `ssl_server_max_version` - Highest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
@@ -363,6 +381,8 @@ The `dynamic_mapping` block supports:
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
+
+* `ssl_upstream` - Apply SSL encryption between the FortiGate and the upstream server (default = disable). Valid values: `disable`, `enable`.
 
 * `status` - Status. Valid values: `disable`, `enable`.
 

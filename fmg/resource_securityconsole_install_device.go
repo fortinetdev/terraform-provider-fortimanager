@@ -91,14 +91,23 @@ func resourceSecurityconsoleInstallDeviceUpdate(d *schema.ResourceData, m interf
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsoleInstallDevice(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsoleInstallDevice(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallDevice resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsoleInstallDevice")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsoleInstallDeviceRead(d, m)
 }

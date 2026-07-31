@@ -54,7 +54,17 @@ func resourceObjectFirewallAddress6Template() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -277,7 +287,15 @@ func flattenObjectFirewallAddress6TemplateImageBase64(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFirewallAddress6TemplateFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6TemplateFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6TemplateFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -442,6 +460,16 @@ func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallAddress6TemplateFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallAddress6Template-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddress6TemplateFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddress6Template-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -449,6 +477,16 @@ func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallAddress6TemplateFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallAddress6Template-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -529,7 +567,15 @@ func expandObjectFirewallAddress6TemplateImageBase64(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFirewallAddress6TemplateFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6TemplateFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6TemplateFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -673,12 +719,30 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallAddress6TemplateFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddress6TemplateFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallAddress6TemplateFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 

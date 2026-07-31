@@ -54,6 +54,11 @@ func resourceObjectSystemReplacemsgImage() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"image_in_use": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"image_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -216,6 +221,10 @@ func flattenObjectSystemReplacemsgImageImageBase64(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemReplacemsgImageImageInUse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemReplacemsgImageImageType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -238,6 +247,16 @@ func refreshObjectObjectSystemReplacemsgImage(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading image_base64: %v", err)
+		}
+	}
+
+	if err = d.Set("image_in_use", flattenObjectSystemReplacemsgImageImageInUse(o["image-in-use"], d, "image_in_use")); err != nil {
+		if vv, ok := fortiAPIPatch(o["image-in-use"], "ObjectSystemReplacemsgImage-ImageInUse"); ok {
+			if err = d.Set("image_in_use", vv); err != nil {
+				return fmt.Errorf("Error reading image_in_use: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading image_in_use: %v", err)
 		}
 	}
 
@@ -274,6 +293,10 @@ func expandObjectSystemReplacemsgImageImageBase64(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectSystemReplacemsgImageImageInUse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemReplacemsgImageImageType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -291,6 +314,15 @@ func getObjectObjectSystemReplacemsgImage(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["image-base64"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("image_in_use"); ok || d.HasChange("image_in_use") {
+		t, err := expandObjectSystemReplacemsgImageImageInUse(d, v, "image_in_use")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["image-in-use"] = t
 		}
 	}
 

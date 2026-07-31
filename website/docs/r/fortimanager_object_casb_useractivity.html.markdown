@@ -74,6 +74,7 @@ The `match` block supports:
 * `strategy` - CASB user activity rules strategy. Valid values: `or`, `and`.
 
 * `tenant_extraction` - Tenant-Extraction. The structure of `tenant_extraction` block is documented below.
+* `tenant_session_extraction` - Tenant-Session-Extraction. The structure of `tenant_session_extraction` block is documented below.
 
 The `rules` block supports:
 
@@ -112,6 +113,28 @@ The `filters` block supports:
 * `header_name` - CASB tenant extraction filter header name.
 * `id` - CASB tenant extraction filter ID.
 * `place` - CASB tenant extraction filter place type. Valid values: `path`, `header`, `body`.
+
+
+The `tenant_session_extraction` block supports:
+
+* `filters` - Filters. The structure of `filters` block is documented below.
+* `jq` - CASB user activity session extraction jq script.
+* `session_match` - CASB user activity session match name.
+* `session_source` - Enable/disable CASB session extraction source flag. Valid values: `disable`, `enable`.
+
+* `status` - Enable/disable CASB session extraction. Valid values: `disable`, `enable`.
+
+
+The `filters` block supports:
+
+* `body_type` - CASB content extraction filter body type. Valid values: `json`, `form`.
+
+* `cookie_name` - CASB content extraction filter cookie name.
+* `direction` - CASB content extraction filter direction. Valid values: `request`, `response`.
+
+* `header_name` - CASB content extraction filter header name.
+* `id` - CASB content extraction filter ID.
+* `place` - CASB content extraction filter place type. Valid values: `header`, `path`, `body`, `cookie`.
 
 
 

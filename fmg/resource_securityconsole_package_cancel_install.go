@@ -40,6 +40,10 @@ func resourceSecurityconsolePackageCancelInstall() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"preview_taskid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -86,6 +90,10 @@ func flattenSecurityconsolePackageCancelInstallAdom(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenSecurityconsolePackageCancelInstallPreviewTaskid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -96,6 +104,16 @@ func refreshObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading fmgadom: %v", err)
+		}
+	}
+
+	if err = d.Set("preview_taskid", flattenSecurityconsolePackageCancelInstallPreviewTaskid(o["preview_taskid"], d, "preview_taskid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preview_taskid"], "SecurityconsolePackageCancelInstall-PreviewTaskid"); ok {
+			if err = d.Set("preview_taskid", vv); err != nil {
+				return fmt.Errorf("Error reading preview_taskid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preview_taskid: %v", err)
 		}
 	}
 
@@ -112,6 +130,10 @@ func expandSecurityconsolePackageCancelInstallAdom(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandSecurityconsolePackageCancelInstallPreviewTaskid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -121,6 +143,15 @@ func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData, bempty
 			return &obj, err
 		} else if t != nil {
 			obj["adom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preview_taskid"); ok || d.HasChange("preview_taskid") {
+		t, err := expandSecurityconsolePackageCancelInstallPreviewTaskid(d, v, "preview_taskid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preview_taskid"] = t
 		}
 	}
 

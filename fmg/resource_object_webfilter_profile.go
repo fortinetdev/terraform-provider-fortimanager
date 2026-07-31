@@ -156,6 +156,21 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"file_filter": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -512,6 +527,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						},
 					},
 				},
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"web": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1095,6 +1115,18 @@ func flattenObjectWebfilterProfileComment(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectWebfilterProfileExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1818,6 +1850,10 @@ func flattenObjectWebfilterProfileUrlExtractionStatus(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectWebfilterProfileUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileWeb(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -2163,6 +2199,36 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectWebfilterProfileFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectWebfilterProfile-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectWebfilterProfileFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectWebfilterProfile-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectWebfilterProfileFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectWebfilterProfile-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("file_filter", flattenObjectWebfilterProfileFileFilter(o["file-filter"], d, "file_filter")); err != nil {
 			if vv, ok := fortiAPIPatch(o["file-filter"], "ObjectWebfilterProfile-FileFilter"); ok {
@@ -2346,6 +2412,16 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 					return fmt.Errorf("Error reading url_extraction: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("uuid", flattenObjectWebfilterProfileUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectWebfilterProfile-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -2847,6 +2923,18 @@ func expandObjectWebfilterProfileComment(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectWebfilterProfileExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3518,6 +3606,10 @@ func expandObjectWebfilterProfileUrlExtractionStatus(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectWebfilterProfileUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -3817,6 +3909,33 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectWebfilterProfileFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectWebfilterProfileFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectWebfilterProfileFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("file_filter"); ok || d.HasChange("file_filter") {
 		t, err := expandObjectWebfilterProfileFileFilter(d, v, "file_filter")
 		if err != nil {
@@ -3931,6 +4050,15 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["url-extraction"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectWebfilterProfileUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

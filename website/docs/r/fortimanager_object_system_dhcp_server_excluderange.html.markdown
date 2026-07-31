@@ -41,6 +41,9 @@ The following arguments are supported:
 * `end_ip` - End of IP range.
 * `fosid` - ID.
 * `lease_time` - Lease time in seconds, 0 means default lease time.
+* `oui_match` - Enable/disable organizationally unique identifier (OUI) matching. When enabled only DHCP requests with a matching OUI are served with this range. Valid values: `disable`, `enable`.
+
+* `oui_string` - One or more OUI strings in quotes separated by spaces (in format of xx:xx:xx).
 * `start_ip` - Start of IP range.
 * `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
 
@@ -48,6 +51,7 @@ The following arguments are supported:
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
+* `vendor` - Vendor this ip-range will be assigned to.
 
 
 ## Attribute Reference

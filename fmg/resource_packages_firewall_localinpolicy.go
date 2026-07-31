@@ -60,6 +60,10 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -68,6 +72,12 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -276,14 +286,21 @@ func resourcePackagesFirewallLocalInPolicyUpdate(d *schema.ResourceData, m inter
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallLocalInPolicy(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallLocalInPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallLocalInPolicy resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallLocalInPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallLocalInPolicy resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallLocalInPolicyRead(d, m)
 }
@@ -373,12 +390,20 @@ func resourcePackagesFirewallLocalInPolicyRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
+func flattenPackagesFirewallLocalInPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesFirewallLocalInPolicyComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallLocalInPolicyCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -472,6 +497,16 @@ func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[st
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("_policy_block", flattenPackagesFirewallLocalInPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesFirewallLocalInPolicy-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
+	}
+
 	if err = d.Set("action", flattenPackagesFirewallLocalInPolicyAction(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesFirewallLocalInPolicy-Action"); ok {
 			if err = d.Set("action", vv); err != nil {
@@ -489,6 +524,16 @@ func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallLocalInPolicyCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallLocalInPolicy-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -711,12 +756,20 @@ func flattenPackagesFirewallLocalInPolicyFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesFirewallLocalInPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandPackagesFirewallLocalInPolicyComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesFirewallLocalInPolicyCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallLocalInPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -806,6 +859,15 @@ func expandPackagesFirewallLocalInPolicyVirtualPatch(d *schema.ResourceData, v i
 func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
+		t, err := expandPackagesFirewallLocalInPolicyPolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallLocalInPolicyAction(d, v, "action")
 		if err != nil {
@@ -821,6 +883,15 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallLocalInPolicyCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 

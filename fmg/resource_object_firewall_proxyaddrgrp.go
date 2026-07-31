@@ -62,6 +62,17 @@ func resourceObjectFirewallProxyAddrgrp() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"member": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -278,6 +289,14 @@ func flattenObjectFirewallProxyAddrgrpComment(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectFirewallProxyAddrgrpCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallProxyAddrgrpDisplayWith(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProxyAddrgrpMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -402,6 +421,26 @@ func refreshObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("custom_tags", flattenObjectFirewallProxyAddrgrpCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallProxyAddrgrp-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallProxyAddrgrpDisplayWith(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallProxyAddrgrp-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
+		}
+	}
+
 	if err = d.Set("member", flattenObjectFirewallProxyAddrgrpMember(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "ObjectFirewallProxyAddrgrp-Member"); ok {
 			if err = d.Set("member", vv); err != nil {
@@ -507,6 +546,14 @@ func expandObjectFirewallProxyAddrgrpComment(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddrgrpCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProxyAddrgrpDisplayWith(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProxyAddrgrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -609,6 +656,24 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallProxyAddrgrpCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallProxyAddrgrpDisplayWith(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
 		}
 	}
 

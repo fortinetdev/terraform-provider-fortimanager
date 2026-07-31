@@ -210,7 +210,17 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"creation_time": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"custom_log_fields": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"custom_tags": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -408,6 +418,18 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"extended_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -1102,6 +1124,10 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"skip_vrf_match": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"spamfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1383,6 +1409,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ztna_destination": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"ztna_device_ownership": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1400,6 +1432,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"ztna_ems_tag_secondary": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ztna_ems_tag6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -1520,14 +1558,21 @@ func resourcePackagesGlobalFooterPolicyUpdate(d *schema.ResourceData, m interfac
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesGlobalFooterPolicy(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesGlobalFooterPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalFooterPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource: %v", err)
+		}
+	}
 
 	return resourcePackagesGlobalFooterPolicyRead(d, m)
 }
@@ -1759,7 +1804,15 @@ func flattenPackagesGlobalFooterPolicyComments(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyCreationTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyCustomLogFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -1936,6 +1989,18 @@ func flattenPackagesGlobalFooterPolicyEndpointProfile(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalFooterPolicyExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2534,6 +2599,10 @@ func flattenPackagesGlobalFooterPolicySgtCheck(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicySkipVrfMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicySpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -2790,6 +2859,10 @@ func flattenPackagesGlobalFooterPolicyWsso(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyZtnaDestination(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesGlobalFooterPolicyZtnaDeviceOwnership(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2803,6 +2876,10 @@ func flattenPackagesGlobalFooterPolicyZtnaEmsTagNegate(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicyZtnaEmsTagSecondary(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyZtnaEmsTag6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -3199,6 +3276,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("creation_time", flattenPackagesGlobalFooterPolicyCreationTime(o["creation-time"], d, "creation_time")); err != nil {
+		if vv, ok := fortiAPIPatch(o["creation-time"], "PackagesGlobalFooterPolicy-CreationTime"); ok {
+			if err = d.Set("creation_time", vv); err != nil {
+				return fmt.Errorf("Error reading creation_time: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading creation_time: %v", err)
+		}
+	}
+
 	if err = d.Set("custom_log_fields", flattenPackagesGlobalFooterPolicyCustomLogFields(o["custom-log-fields"], d, "custom_log_fields")); err != nil {
 		if vv, ok := fortiAPIPatch(o["custom-log-fields"], "PackagesGlobalFooterPolicy-CustomLogFields"); ok {
 			if err = d.Set("custom_log_fields", vv); err != nil {
@@ -3206,6 +3293,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading custom_log_fields: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesGlobalFooterPolicyCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesGlobalFooterPolicy-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -3646,6 +3743,36 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading extended_log: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenPackagesGlobalFooterPolicyFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "PackagesGlobalFooterPolicy-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenPackagesGlobalFooterPolicyFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "PackagesGlobalFooterPolicy-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenPackagesGlobalFooterPolicyFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "PackagesGlobalFooterPolicy-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -5119,6 +5246,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("skip_vrf_match", flattenPackagesGlobalFooterPolicySkipVrfMatch(o["skip-vrf-match"], d, "skip_vrf_match")); err != nil {
+		if vv, ok := fortiAPIPatch(o["skip-vrf-match"], "PackagesGlobalFooterPolicy-SkipVrfMatch"); ok {
+			if err = d.Set("skip_vrf_match", vv); err != nil {
+				return fmt.Errorf("Error reading skip_vrf_match: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading skip_vrf_match: %v", err)
+		}
+	}
+
 	if err = d.Set("spamfilter_profile", flattenPackagesGlobalFooterPolicySpamfilterProfile(o["spamfilter-profile"], d, "spamfilter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["spamfilter-profile"], "PackagesGlobalFooterPolicy-SpamfilterProfile"); ok {
 			if err = d.Set("spamfilter_profile", vv); err != nil {
@@ -5759,6 +5896,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ztna_destination", flattenPackagesGlobalFooterPolicyZtnaDestination(o["ztna-destination"], d, "ztna_destination")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-destination"], "PackagesGlobalFooterPolicy-ZtnaDestination"); ok {
+			if err = d.Set("ztna_destination", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_destination: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_destination: %v", err)
+		}
+	}
+
 	if err = d.Set("ztna_device_ownership", flattenPackagesGlobalFooterPolicyZtnaDeviceOwnership(o["ztna-device-ownership"], d, "ztna_device_ownership")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ztna-device-ownership"], "PackagesGlobalFooterPolicy-ZtnaDeviceOwnership"); ok {
 			if err = d.Set("ztna_device_ownership", vv); err != nil {
@@ -5796,6 +5943,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading ztna_ems_tag_secondary: %v", err)
+		}
+	}
+
+	if err = d.Set("ztna_ems_tag6", flattenPackagesGlobalFooterPolicyZtnaEmsTag6(o["ztna-ems-tag6"], d, "ztna_ems_tag6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-ems-tag6"], "PackagesGlobalFooterPolicy-ZtnaEmsTag6"); ok {
+			if err = d.Set("ztna_ems_tag6", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_ems_tag6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_ems_tag6: %v", err)
 		}
 	}
 
@@ -6006,7 +6163,15 @@ func expandPackagesGlobalFooterPolicyComments(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyCreationTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyCustomLogFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -6183,6 +6348,18 @@ func expandPackagesGlobalFooterPolicyEndpointProfile(d *schema.ResourceData, v i
 }
 
 func expandPackagesGlobalFooterPolicyExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6774,6 +6951,10 @@ func expandPackagesGlobalFooterPolicySgtCheck(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicySkipVrfMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicySpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -7030,6 +7211,10 @@ func expandPackagesGlobalFooterPolicyWsso(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyZtnaDestination(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalFooterPolicyZtnaDeviceOwnership(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -7043,6 +7228,10 @@ func expandPackagesGlobalFooterPolicyZtnaEmsTagNegate(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicyZtnaEmsTagSecondary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyZtnaEmsTag6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -7402,12 +7591,30 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("creation_time"); ok || d.HasChange("creation_time") {
+		t, err := expandPackagesGlobalFooterPolicyCreationTime(d, v, "creation_time")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["creation-time"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("custom_log_fields"); ok || d.HasChange("custom_log_fields") {
 		t, err := expandPackagesGlobalFooterPolicyCustomLogFields(d, v, "custom_log_fields")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["custom-log-fields"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesGlobalFooterPolicyCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 
@@ -7804,6 +8011,33 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["extended-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandPackagesGlobalFooterPolicyFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandPackagesGlobalFooterPolicyFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandPackagesGlobalFooterPolicyFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -9130,6 +9364,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("skip_vrf_match"); ok || d.HasChange("skip_vrf_match") {
+		t, err := expandPackagesGlobalFooterPolicySkipVrfMatch(d, v, "skip_vrf_match")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["skip-vrf-match"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("spamfilter_profile"); ok || d.HasChange("spamfilter_profile") {
 		t, err := expandPackagesGlobalFooterPolicySpamfilterProfile(d, v, "spamfilter_profile")
 		if err != nil {
@@ -9706,6 +9949,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("ztna_destination"); ok || d.HasChange("ztna_destination") {
+		t, err := expandPackagesGlobalFooterPolicyZtnaDestination(d, v, "ztna_destination")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-destination"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ztna_device_ownership"); ok || d.HasChange("ztna_device_ownership") {
 		t, err := expandPackagesGlobalFooterPolicyZtnaDeviceOwnership(d, v, "ztna_device_ownership")
 		if err != nil {
@@ -9739,6 +9991,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-ems-tag-secondary"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_ems_tag6"); ok || d.HasChange("ztna_ems_tag6") {
+		t, err := expandPackagesGlobalFooterPolicyZtnaEmsTag6(d, v, "ztna_ems_tag6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-ems-tag6"] = t
 		}
 	}
 

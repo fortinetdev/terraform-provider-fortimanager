@@ -161,14 +161,21 @@ func resourceObjectZtnaTrafficForwardProxySslCipherSuitesUpdate(d *schema.Resour
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectZtnaTrafficForwardProxySslCipherSuites(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectZtnaTrafficForwardProxySslCipherSuites(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectZtnaTrafficForwardProxySslCipherSuites resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "priority")))
+	if v != nil && v["priority"] != nil {
+		if vidn, ok := v["priority"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectZtnaTrafficForwardProxySslCipherSuitesRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectZtnaTrafficForwardProxySslCipherSuites resource: %v", err)
+		}
+	}
 
 	return resourceObjectZtnaTrafficForwardProxySslCipherSuitesRead(d, m)
 }

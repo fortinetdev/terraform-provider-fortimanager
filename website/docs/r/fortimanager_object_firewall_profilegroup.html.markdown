@@ -36,6 +36,12 @@ The following arguments are supported:
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `emailfilter_profile` - Name of an existing email filter profile.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `file_filter_profile` - Name of an existing file-filter profile.
 * `icap_profile` - Name of an existing ICAP profile.
 * `ips_sensor` - Name of an existing IPS sensor.
@@ -48,6 +54,7 @@ The following arguments are supported:
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
 * `telemetry_profile` - Name of an existing telemetry profile.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `videofilter_profile` - Name of an existing VideoFilter profile.
 * `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `voip_profile` - Name of an existing VoIP profile.

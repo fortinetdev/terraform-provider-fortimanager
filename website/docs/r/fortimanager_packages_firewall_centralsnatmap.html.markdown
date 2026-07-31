@@ -38,6 +38,7 @@ The following arguments are supported:
 * `pkg` - Package.
 
 * `comments` - Comment.
+* `custom_tags` - Custom tags.
 * `dst_addr` - Destination address name from available addresses.
 * `dst_addr6` - IPv6 Destination address.
 * `dst_port` - Destination port or port range (1 to 65535, 0 means any port).

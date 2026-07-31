@@ -170,14 +170,21 @@ func resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesUpdate(d *schema.Resour
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectZtnaWebProxyApiGateway6SslCipherSuites(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectZtnaWebProxyApiGateway6SslCipherSuites(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "priority")))
+	if v != nil && v["priority"] != nil {
+		if vidn, ok := v["priority"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectZtnaWebProxyApiGateway6SslCipherSuites resource: %v", err)
+		}
+	}
 
 	return resourceObjectZtnaWebProxyApiGateway6SslCipherSuitesRead(d, m)
 }

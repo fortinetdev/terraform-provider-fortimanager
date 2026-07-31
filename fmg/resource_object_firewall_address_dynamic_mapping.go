@@ -112,7 +112,18 @@ func resourceObjectFirewallAddressDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dirty": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -130,7 +141,17 @@ func resourceObjectFirewallAddressDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -159,13 +180,27 @@ func resourceObjectFirewallAddressDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"hw_version": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ipam_allocate_unique": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"macaddr": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"managed_subnetwork_size": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -186,6 +221,10 @@ func resourceObjectFirewallAddressDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"obsolete": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"organization": &schema.Schema{
 				Type:     schema.TypeString,
@@ -569,7 +608,15 @@ func flattenObjectFirewallAddressDynamicMappingCountry2edl(v interface{}, d *sch
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallAddressDynamicMappingCustomTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddressDynamicMappingDirty2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingDisplayWith2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -585,7 +632,15 @@ func flattenObjectFirewallAddressDynamicMappingEpgName2edl(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingFabricForceSync2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingFabricObject2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingFabricObjectSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -613,12 +668,24 @@ func flattenObjectFirewallAddressDynamicMappingHwVendor2edl(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingHwVersion2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingIpamAllocateUnique2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallAddressDynamicMappingMacaddr2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallAddressDynamicMappingManagedSubnetworkSize2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallAddressDynamicMappingNodeIpOnly2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -634,6 +701,10 @@ func flattenObjectFirewallAddressDynamicMappingObjTag2edl(v interface{}, d *sche
 }
 
 func flattenObjectFirewallAddressDynamicMappingObjType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingObsolete2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -888,6 +959,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("custom_tags", flattenObjectFirewallAddressDynamicMappingCustomTags2edl(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallAddressDynamicMapping-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
 	if err = d.Set("dirty", flattenObjectFirewallAddressDynamicMappingDirty2edl(o["dirty"], d, "dirty")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dirty"], "ObjectFirewallAddressDynamicMapping-Dirty"); ok {
 			if err = d.Set("dirty", vv); err != nil {
@@ -895,6 +976,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading dirty: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallAddressDynamicMappingDisplayWith2edl(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallAddressDynamicMapping-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
 		}
 	}
 
@@ -928,6 +1019,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallAddressDynamicMappingFabricForceSync2edl(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallAddressDynamicMapping-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddressDynamicMappingFabricObject2edl(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddressDynamicMapping-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -935,6 +1036,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallAddressDynamicMappingFabricObjectSource2edl(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallAddressDynamicMapping-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -998,6 +1109,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("hw_version", flattenObjectFirewallAddressDynamicMappingHwVersion2edl(o["hw-version"], d, "hw_version")); err != nil {
+		if vv, ok := fortiAPIPatch(o["hw-version"], "ObjectFirewallAddressDynamicMapping-HwVersion"); ok {
+			if err = d.Set("hw_version", vv); err != nil {
+				return fmt.Errorf("Error reading hw_version: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading hw_version: %v", err)
+		}
+	}
+
 	if err = d.Set("interface", flattenObjectFirewallAddressDynamicMappingInterface2edl(o["interface"], d, "interface")); err != nil {
 		if vv, ok := fortiAPIPatch(o["interface"], "ObjectFirewallAddressDynamicMapping-Interface"); ok {
 			if err = d.Set("interface", vv); err != nil {
@@ -1008,6 +1129,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("ipam_allocate_unique", flattenObjectFirewallAddressDynamicMappingIpamAllocateUnique2edl(o["ipam-allocate-unique"], d, "ipam_allocate_unique")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipam-allocate-unique"], "ObjectFirewallAddressDynamicMapping-IpamAllocateUnique"); ok {
+			if err = d.Set("ipam_allocate_unique", vv); err != nil {
+				return fmt.Errorf("Error reading ipam_allocate_unique: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipam_allocate_unique: %v", err)
+		}
+	}
+
 	if err = d.Set("macaddr", flattenObjectFirewallAddressDynamicMappingMacaddr2edl(o["macaddr"], d, "macaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["macaddr"], "ObjectFirewallAddressDynamicMapping-Macaddr"); ok {
 			if err = d.Set("macaddr", vv); err != nil {
@@ -1015,6 +1146,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading macaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("managed_subnetwork_size", flattenObjectFirewallAddressDynamicMappingManagedSubnetworkSize2edl(o["managed-subnetwork-size"], d, "managed_subnetwork_size")); err != nil {
+		if vv, ok := fortiAPIPatch(o["managed-subnetwork-size"], "ObjectFirewallAddressDynamicMapping-ManagedSubnetworkSize"); ok {
+			if err = d.Set("managed_subnetwork_size", vv); err != nil {
+				return fmt.Errorf("Error reading managed_subnetwork_size: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading managed_subnetwork_size: %v", err)
 		}
 	}
 
@@ -1055,6 +1196,16 @@ func refreshObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading obj_type: %v", err)
+		}
+	}
+
+	if err = d.Set("obsolete", flattenObjectFirewallAddressDynamicMappingObsolete2edl(o["obsolete"], d, "obsolete")); err != nil {
+		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectFirewallAddressDynamicMapping-Obsolete"); ok {
+			if err = d.Set("obsolete", vv); err != nil {
+				return fmt.Errorf("Error reading obsolete: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading obsolete: %v", err)
 		}
 	}
 
@@ -1425,7 +1576,15 @@ func expandObjectFirewallAddressDynamicMappingCountry2edl(d *schema.ResourceData
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallAddressDynamicMappingCustomTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddressDynamicMappingDirty2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingDisplayWith2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1441,7 +1600,15 @@ func expandObjectFirewallAddressDynamicMappingEpgName2edl(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingFabricForceSync2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingFabricObject2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingFabricObjectSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1469,12 +1636,24 @@ func expandObjectFirewallAddressDynamicMappingHwVendor2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingHwVersion2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingInterface2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingIpamAllocateUnique2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallAddressDynamicMappingMacaddr2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallAddressDynamicMappingManagedSubnetworkSize2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallAddressDynamicMappingNodeIpOnly2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1490,6 +1669,10 @@ func expandObjectFirewallAddressDynamicMappingObjTag2edl(d *schema.ResourceData,
 }
 
 func expandObjectFirewallAddressDynamicMappingObjType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingObsolete2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1698,12 +1881,30 @@ func getObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallAddressDynamicMappingCustomTags2edl(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dirty"); ok || d.HasChange("dirty") {
 		t, err := expandObjectFirewallAddressDynamicMappingDirty2edl(d, v, "dirty")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["dirty"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallAddressDynamicMappingDisplayWith2edl(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
 		}
 	}
 
@@ -1734,12 +1935,30 @@ func getObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallAddressDynamicMappingFabricForceSync2edl(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddressDynamicMappingFabricObject2edl(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallAddressDynamicMappingFabricObjectSource2edl(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -1797,6 +2016,15 @@ func getObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("hw_version"); ok || d.HasChange("hw_version") {
+		t, err := expandObjectFirewallAddressDynamicMappingHwVersion2edl(d, v, "hw_version")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["hw-version"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectFirewallAddressDynamicMappingInterface2edl(d, v, "interface")
 		if err != nil {
@@ -1806,12 +2034,30 @@ func getObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("ipam_allocate_unique"); ok || d.HasChange("ipam_allocate_unique") {
+		t, err := expandObjectFirewallAddressDynamicMappingIpamAllocateUnique2edl(d, v, "ipam_allocate_unique")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipam-allocate-unique"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("macaddr"); ok || d.HasChange("macaddr") {
 		t, err := expandObjectFirewallAddressDynamicMappingMacaddr2edl(d, v, "macaddr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["macaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("managed_subnetwork_size"); ok || d.HasChange("managed_subnetwork_size") {
+		t, err := expandObjectFirewallAddressDynamicMappingManagedSubnetworkSize2edl(d, v, "managed_subnetwork_size")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["managed-subnetwork-size"] = t
 		}
 	}
 
@@ -1848,6 +2094,15 @@ func getObjectObjectFirewallAddressDynamicMapping(d *schema.ResourceData) (*map[
 			return &obj, err
 		} else if t != nil {
 			obj["obj-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("obsolete"); ok || d.HasChange("obsolete") {
+		t, err := expandObjectFirewallAddressDynamicMappingObsolete2edl(d, v, "obsolete")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["obsolete"] = t
 		}
 	}
 

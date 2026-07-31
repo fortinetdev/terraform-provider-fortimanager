@@ -49,6 +49,9 @@ The following arguments are supported:
 * `_image_base64` - _Image-Base64.
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
 * `comment` - Optional comments.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `member` - Members of address group.
 * `name` - Address group name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.

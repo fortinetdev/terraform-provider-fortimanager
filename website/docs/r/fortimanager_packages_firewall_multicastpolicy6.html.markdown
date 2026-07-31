@@ -45,6 +45,7 @@ The following arguments are supported:
 * `auto_asic_offload` - Enable/disable offloading policy traffic for hardware acceleration. Valid values: `disable`, `enable`.
 
 * `comments` - Comment.
+* `custom_tags` - Custom tags.
 * `dstaddr` - IPv6 destination address name.
 * `dstintf` - IPv6 destination interface name.
 * `end_port` - Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).

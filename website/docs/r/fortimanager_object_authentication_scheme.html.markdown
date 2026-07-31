@@ -58,6 +58,11 @@ The following arguments are supported:
 
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
 * `auth_user_header` - Auth-User-Header.
+* `bearer_format` - Bearer-Format. Valid values: `standard`, `raw`.
+
+* `bearer_header` - Bearer-Header.
+* `bearer_type` - Bearer-Type. Valid values: `access-token`.
+
 * `captcha` - Captcha. Valid values: `disable`, `enable`.
 
 * `captcha_secret_key` - Captcha-Secret-Key.

@@ -49,6 +49,8 @@ The following arguments are supported:
 * `sso` - Single sign-on. Valid values: `disable`, `enable`.
 
 * `url` - URL parameter.
+* `verify_cert` - Enable/disable certificate verification of the real server. Valid values: `disable`, `enable`.
+
 * `vnc_keyboard_layout` - Keyboard layout. Valid values: `da`, `de`, `de-ch`, `en-uk`, `es`, `fi`, `fr`, `fr-be`, `it`, `no`, `pt`, `sv`, `nl`, `en-uk-ext`, `it-142`, `pt-br-abnt2`, `default`, `fr-ca-mul`, `gd`, `us-intl`.
 
 * `width` - Screen width (range from 0 - 65535, default = 0).

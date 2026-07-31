@@ -50,23 +50,35 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `country` - IP addresses associated to a specific country.
+* `custom_tags` - Custom tags.
 * `dirty` - To be deleted address. Valid values: `dirty`, `clean`.
+
+* `display_with` - Display object with first tag, all tags, or just the icon & color. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
 
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address.
 * `end_mac` - Last MAC address in the range.
 * `epg_name` - Endpoint group name.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
 * `hw_model` - Dynamic address matching hardware model.
 * `hw_vendor` - Dynamic address matching hardware vendor.
+* `hw_version` - Dynamic address matching hardware version.
 * `global_object` - Global Object.
 * `interface` - Name of interface whose IP address is to be used.
+* `ipam_allocate_unique` - Allocate unique subnet for FortiIPAM managed fabric-object address. Valid values: `disable`, `enable`.
+
 * `list` - List. The structure of `list` block is documented below.
 * `macaddr` - Multiple MAC address ranges.
+* `managed_subnetwork_size` - Number of IP addresses to be allocated by FortiIPAM for this address. Valid values: `4`, `8`, `16`, `32`, `64`, `128`, `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`, `131072`, `262144`, `524288`, `1048576`, `2097152`, `4194304`, `8388608`, `16777216`.
+
 * `name` - Address name.
 * `node_ip_only` - Enable/disable collection of node addresses only in Kubernetes. Valid values: `disable`, `enable`.
 
@@ -74,6 +86,7 @@ The following arguments are supported:
 * `obj_tag` - Tag of dynamic address object.
 * `obj_type` - Object type. Valid values: `ip`, `mac`.
 
+* `obsolete` - Obsolete.
 * `organization` - Organization domain name (Syntax: organization/domain).
 * `os` - Dynamic address matching operating system.
 * `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.
@@ -122,12 +135,19 @@ The `dynamic_mapping` block supports:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `country` - IP addresses associated to a specific country.
+* `custom_tags` - Custom tags.
 * `dirty` - To be deleted address. Valid values: `dirty`, `clean`.
+
+* `display_with` - Display object with first tag, all tags, or just the icon & color. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
 
 * `end_ip` - Final IP address (inclusive) in the range for the address.
 * `end_mac` - Last MAC address in the range.
 * `epg_name` - Endpoint group name.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
@@ -135,14 +155,20 @@ The `dynamic_mapping` block supports:
 * `global_object` - Global-Object.
 * `hw_model` - Dynamic address matching hardware model.
 * `hw_vendor` - Dynamic address matching hardware vendor.
+* `hw_version` - Dynamic address matching hardware version.
 * `interface` - Name of interface whose IP address is to be used.
+* `ipam_allocate_unique` - Allocate unique subnet for FortiIPAM managed fabric-object address. Valid values: `disable`, `enable`.
+
 * `macaddr` - Macaddr.
+* `managed_subnetwork_size` - Number of IP addresses to be allocated by FortiIPAM for this address. Valid values: `4`, `8`, `16`, `32`, `64`, `128`, `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`, `131072`, `262144`, `524288`, `1048576`, `2097152`, `4194304`, `8388608`, `16777216`.
+
 * `node_ip_only` - Node-Ip-Only. Valid values: `disable`, `enable`.
 
 * `obj_id` - Object ID for NSX.
 * `obj_tag` - Obj-Tag.
 * `obj_type` - Obj-Type. Valid values: `ip`, `mac`.
 
+* `obsolete` - Obsolete.
 * `organization` - Organization domain name (Syntax: organization/domain).
 * `os` - Dynamic address matching operating system.
 * `passive_fqdn_learning` - Enable/disable passive learning of FQDNs.  When enabled, the FortiGate learns, trusts, and saves FQDNs from endpoint DNS queries (default = enable). Valid values: `disable`, `enable`.

@@ -44,6 +44,12 @@ func resourceSecurityconsoleInstallObjectsV2() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"flags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"objects": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -91,14 +97,23 @@ func resourceSecurityconsoleInstallObjectsV2Update(d *schema.ResourceData, m int
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsoleInstallObjectsV2(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsoleInstallObjectsV2(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallObjectsV2 resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsoleInstallObjectsV2")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsoleInstallObjectsV2Read(d, m)
 }
@@ -119,6 +134,10 @@ func flattenSecurityconsoleInstallObjectsV2Adom(v interface{}, d *schema.Resourc
 
 func flattenSecurityconsoleInstallObjectsV2Category(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenSecurityconsoleInstallObjectsV2Flags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenSecurityconsoleInstallObjectsV2Objects(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -201,6 +220,16 @@ func refreshObjectSecurityconsoleInstallObjectsV2(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("flags", flattenSecurityconsoleInstallObjectsV2Flags(o["flags"], d, "flags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["flags"], "SecurityconsoleInstallObjectsV2-Flags"); ok {
+			if err = d.Set("flags", vv); err != nil {
+				return fmt.Errorf("Error reading flags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading flags: %v", err)
+		}
+	}
+
 	if err = d.Set("objects", flattenSecurityconsoleInstallObjectsV2Objects(o["objects"], d, "objects")); err != nil {
 		if vv, ok := fortiAPIPatch(o["objects"], "SecurityconsoleInstallObjectsV2-Objects"); ok {
 			if err = d.Set("objects", vv); err != nil {
@@ -250,6 +279,10 @@ func expandSecurityconsoleInstallObjectsV2Adom(d *schema.ResourceData, v interfa
 
 func expandSecurityconsoleInstallObjectsV2Category(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandSecurityconsoleInstallObjectsV2Flags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandSecurityconsoleInstallObjectsV2Objects(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -316,6 +349,15 @@ func getObjectSecurityconsoleInstallObjectsV2(d *schema.ResourceData, bemptysont
 			return &obj, err
 		} else if t != nil {
 			obj["category"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
+		t, err := expandSecurityconsoleInstallObjectsV2Flags(d, v, "flags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["flags"] = t
 		}
 	}
 

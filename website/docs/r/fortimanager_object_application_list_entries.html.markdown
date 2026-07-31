@@ -46,6 +46,8 @@ The following arguments are supported:
 * `application` - ID of allowed applications.
 * `behavior` - Application behavior filter.
 * `category` - Category ID list.
+* `classification` - Application classification filter. Valid values: `none`, `sanctioned`, `unsanctioned`, `unclassified`.
+
 * `exclusion` - ID of excluded applications.
 * `fosid` - Entry ID.
 * `log` - Enable/disable logging for this application list. Valid values: `disable`, `enable`.

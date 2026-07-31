@@ -42,6 +42,9 @@ The following arguments are supported:
 * `category` - FortiGuard category ID.
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
 * `comment` - Optional comments.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `header` - HTTP header name as a regular expression.
 * `header_group` - Header-Group. The structure of `header_group` block is documented below.
 * `header_name` - Name of HTTP header.

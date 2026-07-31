@@ -49,9 +49,12 @@ The `platforms` block supports:
 * `extension_type` - Extension-Type. Valid values: `wan-extension`, `lan-extension`.
 
 * `fortilink` - Fortilink.
+* `fspprof` - Fspprof.
+* `fxtprof` - Fxtprof.
 * `prefix` - Prefix.
 * `type` - Type. Valid values: `ap`, `extender`, `switch`.
 
+* `wtpprof` - Wtpprof.
 
 
 ## Attribute Reference

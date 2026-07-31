@@ -62,6 +62,7 @@ The following arguments are supported:
 * `casb_profile` - Name of an existing CASB profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Optional comments.
+* `custom_tags` - Custom tags.
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
 * `detect_https_in_http_request` - Enable/disable detection of HTTPS in HTTP request. Valid values: `disable`, `enable`.
 
@@ -80,6 +81,7 @@ The following arguments are supported:
 * `dstintf` - Destination interface names.
 * `emailfilter_profile` - Name of an existing email filter profile.
 * `file_filter_profile` - Name of an existing file-filter profile.
+* `fsso_groups` - Names of FSSO groups.
 * `global_label` - Global web-based manager visible label.
 * `groups` - Names of group objects.
 * `http_tunnel_auth` - Enable/disable HTTP tunnel authentication. Valid values: `disable`, `enable`.
@@ -110,6 +112,7 @@ The following arguments are supported:
 * `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `isolator_server` - Isolator server name.
 * `label` - VDOM-specific GUI visible label.
+* `llm_profile` - Name of an existing LLM profile.
 * `log_http_transaction` - Enable/disable HTTP transaction log. Valid values: `disable`, `enable`.
 
 * `logtraffic` - Enable/disable logging traffic through the policy. Valid values: `disable`, `all`, `utm`.
@@ -168,6 +171,7 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
+* `ztna_destination` - ZTNA destinations (effective only with ZTNA traffic-forward-proxy).
 * `ztna_ems_tag` - ZTNA EMS Tag names.
 * `ztna_ems_tag_negate` - When enabled, ZTNA EMS tags match against any tag EXCEPT the specified ZTNA EMS tags. Valid values: `disable`, `enable`.
 

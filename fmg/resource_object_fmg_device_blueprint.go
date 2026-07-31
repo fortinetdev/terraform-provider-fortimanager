@@ -56,7 +56,19 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cert_template": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"cliprofs": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"cluster_worker": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -76,6 +88,10 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"firmware_template": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"folder": &schema.Schema{
 				Type:     schema.TypeString,
@@ -317,7 +333,15 @@ func flattenObjectFmgDeviceBlueprintAuthTemplate(v interface{}, d *schema.Resour
 	return flattenStringList(v)
 }
 
+func flattenObjectFmgDeviceBlueprintCertTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFmgDeviceBlueprintCliprofs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFmgDeviceBlueprintClusterWorker(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -330,6 +354,10 @@ func flattenObjectFmgDeviceBlueprintDevGroup(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFmgDeviceBlueprintEnforceDeviceConfig(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintFirmwareTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -418,6 +446,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("cert_template", flattenObjectFmgDeviceBlueprintCertTemplate(o["cert-template"], d, "cert_template")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-template"], "ObjectFmgDeviceBlueprint-CertTemplate"); ok {
+			if err = d.Set("cert_template", vv); err != nil {
+				return fmt.Errorf("Error reading cert_template: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_template: %v", err)
+		}
+	}
+
 	if err = d.Set("cliprofs", flattenObjectFmgDeviceBlueprintCliprofs(o["cliprofs"], d, "cliprofs")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cliprofs"], "ObjectFmgDeviceBlueprint-Cliprofs"); ok {
 			if err = d.Set("cliprofs", vv); err != nil {
@@ -425,6 +463,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading cliprofs: %v", err)
+		}
+	}
+
+	if err = d.Set("cluster_worker", flattenObjectFmgDeviceBlueprintClusterWorker(o["cluster-worker"], d, "cluster_worker")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cluster-worker"], "ObjectFmgDeviceBlueprint-ClusterWorker"); ok {
+			if err = d.Set("cluster_worker", vv); err != nil {
+				return fmt.Errorf("Error reading cluster_worker: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cluster_worker: %v", err)
 		}
 	}
 
@@ -455,6 +503,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading enforce_device_config: %v", err)
+		}
+	}
+
+	if err = d.Set("firmware_template", flattenObjectFmgDeviceBlueprintFirmwareTemplate(o["firmware-template"], d, "firmware_template")); err != nil {
+		if vv, ok := fortiAPIPatch(o["firmware-template"], "ObjectFmgDeviceBlueprint-FirmwareTemplate"); ok {
+			if err = d.Set("firmware_template", vv); err != nil {
+				return fmt.Errorf("Error reading firmware_template: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading firmware_template: %v", err)
 		}
 	}
 
@@ -641,7 +699,15 @@ func expandObjectFmgDeviceBlueprintAuthTemplate(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFmgDeviceBlueprintCertTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFmgDeviceBlueprintCliprofs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgDeviceBlueprintClusterWorker(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -654,6 +720,10 @@ func expandObjectFmgDeviceBlueprintDevGroup(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFmgDeviceBlueprintEnforceDeviceConfig(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintFirmwareTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -741,12 +811,30 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("cert_template"); ok || d.HasChange("cert_template") {
+		t, err := expandObjectFmgDeviceBlueprintCertTemplate(d, v, "cert_template")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-template"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cliprofs"); ok || d.HasChange("cliprofs") {
 		t, err := expandObjectFmgDeviceBlueprintCliprofs(d, v, "cliprofs")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["cliprofs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cluster_worker"); ok || d.HasChange("cluster_worker") {
+		t, err := expandObjectFmgDeviceBlueprintClusterWorker(d, v, "cluster_worker")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cluster-worker"] = t
 		}
 	}
 
@@ -774,6 +862,15 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["enforce-device-config"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("firmware_template"); ok || d.HasChange("firmware_template") {
+		t, err := expandObjectFmgDeviceBlueprintFirmwareTemplate(d, v, "firmware_template")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["firmware-template"] = t
 		}
 	}
 

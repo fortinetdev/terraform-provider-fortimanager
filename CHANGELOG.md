@@ -1,4 +1,92 @@
-## 1.18.0 (Unreleased)
+## 1.19.0 (Unreleased)
+
+## 1.18.0 (Jul 30, 2026)
+
+IMPROVEMENTS:
+* Support FortiManager v7.4.11, v7.6.7, 8.0.0;
+* Add resource dvmdb_group_objectmember;
+* Add sort resources;
+* Add resource fortimanager_device;
+* Update exec resources with task ID returned to wait for the task to complete;
+* Fix issue of object not existing for resource dvmdb_group_objectmember;
+* Fix variable type issue for resource sys_restore;
+* Fix crash issue caused by parsing HTTP response; 
+* Fix variable type issue of resource sys_backup;
+* Fix performance issue for token-based auth;
+* Check whether the session expired or not when clean_session is set to false;
+* Fix inconsistent result issue caused by auto-generated ID missing;
+
+FEATURES:
+* **New Resource:** `fortimanager_device`
+* **New Resource:** `fortimanager_dvmdb_group_objectmember`
+* **New Resource:** `fortimanager_object_application_list_defaultnetworkservices_sort`
+* **New Resource:** `fortimanager_object_application_list_entries_sort`
+* **New Resource:** `fortimanager_object_casb_profile_sort`
+* **New Resource:** `fortimanager_object_casb_saasapplication_sort`
+* **New Resource:** `fortimanager_object_casb_useractivity_sort`
+* **New Resource:** `fortimanager_object_dlp_dictionary_entries_sort`
+* **New Resource:** `fortimanager_object_dlp_filepattern_entries_sort`
+* **New Resource:** `fortimanager_object_dlp_label_entries_sort`
+* **New Resource:** `fortimanager_object_dlp_profile_rule_sort`
+* **New Resource:** `fortimanager_object_dlp_sensor_entries_sort`
+* **New Resource:** `fortimanager_object_dnsfilter_domainfilter_entries_sort`
+* **New Resource:** `fortimanager_object_emailfilter_blockallowlist_entries_sort`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification_receiver_sort`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile_lanextension_backhaul_sort`
+* **New Resource:** `fortimanager_object_filefilter_profile_rules_sort`
+* **New Resource:** `fortimanager_object_firewall_accessproxysshclientcert_sort`
+* **New Resource:** `fortimanager_object_firewall_shapingprofile_classes_sort`
+* **New Resource:** `fortimanager_object_firewall_shapingprofile_shapingentries_sort`
+* **New Resource:** `fortimanager_object_ips_sensor_entries_sort`
+* **New Resource:** `fortimanager_object_isolator_profile_entries_sort`
+* **New Resource:** `fortimanager_object_sshfilter_profile_shellcommands_sort`
+* **New Resource:** `fortimanager_object_switchcontroller_dynamicportpolicy_policy_sort`
+* **New Resource:** `fortimanager_object_system_externalresource_sort`
+* **New Resource:** `fortimanager_object_system_sdnconnector_compartmentlist_sort`
+* **New Resource:** `fortimanager_object_system_sdnconnector_externalaccountlist_sort`
+* **New Resource:** `fortimanager_object_system_sdnconnector_forwardingrule_sort`
+* **New Resource:** `fortimanager_object_system_sdnconnector_ociregionlist_sort`
+* **New Resource:** `fortimanager_object_videofilter_profile_filters_sort`
+* **New Resource:** `fortimanager_object_videofilter_profile_fortiguardcategory_filters_sort`
+* **New Resource:** `fortimanager_object_vpn_ipsec_fec_mappings_sort`
+* **New Resource:** `fortimanager_object_vpn_ipsec_fec_mappings_tos_sort`
+* **New Resource:** `fortimanager_object_vpn_kmipserver_serverlist_sort`
+* **New Resource:** `fortimanager_object_webproxy_redirectprofile_entries_sort`
+* **New Resource:** `fortimanager_object_webfilter_contentheader_entries_sort`
+* **New Resource:** `fortimanager_object_webfilter_urlfilter_entries_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv6rules_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_apcfgprofile_commandlist_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_bonjourprofile_policylist_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey_sort`
+* **New Resource:** `fortimanager_object_wirelesscontroller_vap_vlanname_sort`
+* **New Resource:** `fortimanager_object_ztna_webportalbookmark_bookmarks_sort`
+* **New Resource:** `fortimanager_packages_central_dnat6_sort`
+* **New Resource:** `fortimanager_packages_central_dnat_sort`
+* **New Resource:** `fortimanager_packages_firewall_DoSpolicy6_sort`
+* **New Resource:** `fortimanager_packages_firewall_DoSpolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_acl6_sort`
+* **New Resource:** `fortimanager_packages_firewall_acl_sort`
+* **New Resource:** `fortimanager_packages_firewall_centralsnatmap_sort`
+* **New Resource:** `fortimanager_packages_firewall_interfacepolicy6_sort`
+* **New Resource:** `fortimanager_packages_firewall_interfacepolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_localinpolicy6_sort`
+* **New Resource:** `fortimanager_packages_firewall_localinpolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_multicastpolicy6_sort`
+* **New Resource:** `fortimanager_packages_firewall_multicastpolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_policy_sort`
+* **New Resource:** `fortimanager_packages_firewall_proxypolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_responseshapingpolicy_sort`
+* **New Resource:** `fortimanager_packages_firewall_shapingpolicy_sort`
+* **New Resource:** `fortimanager_packages_pblock_firewall_localinpolicy6_sort`
+* **New Resource:** `fortimanager_packages_pblock_firewall_localinpolicy_sort`
+* **New Resource:** `fortimanager_packages_pblock_firewall_policy_sort`
+* **New Resource:** `fortimanager_packages_pblock_firewall_proxypolicy_sort`
+* **New Resource:** `fortimanager_packages_user_nacpolicy_sort`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_members_sort`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_service_sort`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_zone_sort`
 
 ## 1.17.0 (May 04, 2026)
 

@@ -106,6 +106,7 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 			"display_history": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"display_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -178,6 +179,10 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ak_manager": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"bookmarks": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -193,6 +198,7 @@ func resourceObjectZtnaWebPortal() *schema.Resource {
 			"llm_proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -439,6 +445,10 @@ func flattenObjectZtnaWebPortalVip6(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectZtnaWebPortalWindowsForticlientDownloadUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectZtnaWebPortalAkManager(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -711,6 +721,16 @@ func refreshObjectObjectZtnaWebPortal(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("ak_manager", flattenObjectZtnaWebPortalAkManager(o["ak-manager"], d, "ak_manager")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ak-manager"], "ObjectZtnaWebPortal-AkManager"); ok {
+			if err = d.Set("ak_manager", vv); err != nil {
+				return fmt.Errorf("Error reading ak_manager: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ak_manager: %v", err)
+		}
+	}
+
 	if err = d.Set("bookmarks", flattenObjectZtnaWebPortalBookmarks(o["bookmarks"], d, "bookmarks")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bookmarks"], "ObjectZtnaWebPortal-Bookmarks"); ok {
 			if err = d.Set("bookmarks", vv); err != nil {
@@ -847,6 +867,10 @@ func expandObjectZtnaWebPortalVip6(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectZtnaWebPortalWindowsForticlientDownloadUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectZtnaWebPortalAkManager(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1087,6 +1111,15 @@ func getObjectObjectZtnaWebPortal(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["windows-forticlient-download-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ak_manager"); ok || d.HasChange("ak_manager") {
+		t, err := expandObjectZtnaWebPortalAkManager(d, v, "ak_manager")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ak-manager"] = t
 		}
 	}
 

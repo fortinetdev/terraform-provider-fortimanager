@@ -450,14 +450,21 @@ func resourceObjectFirewallAccessProxy6ApiGatewayUpdate(d *schema.ResourceData, 
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectFirewallAccessProxy6ApiGateway(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectFirewallAccessProxy6ApiGateway(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGateway resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectFirewallAccessProxy6ApiGatewayRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectFirewallAccessProxy6ApiGateway resource: %v", err)
+		}
+	}
 
 	return resourceObjectFirewallAccessProxy6ApiGatewayRead(d, m)
 }

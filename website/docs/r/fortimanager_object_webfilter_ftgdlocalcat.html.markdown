@@ -30,6 +30,7 @@ The following arguments are supported:
 * `fosid` - Local category ID.
 * `status` - Enable/disable the local category. Valid values: `disable`, `enable`.
 
+* `urlfilter_table` - Local URL list.
 
 
 ## Attribute Reference

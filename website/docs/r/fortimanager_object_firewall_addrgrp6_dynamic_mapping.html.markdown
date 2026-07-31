@@ -24,16 +24,27 @@ The following arguments are supported:
 
 * `_image_base64` - _Image-Base64.
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `category` - Address group category. Valid values: `default`, `ztna-ems-tag`.
+
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `exclude` - Enable/disable address6 exclusion. Valid values: `disable`, `enable`.
 
 * `exclude_member` - Address6 exclusion member.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `global_object` - Global-Object.
 * `member` - Address objects contained within the group.
 * `tags` - Tags.
+* `type` - Address group type. Valid values: `default`, `dynamic-tag`.
+
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable address group6 visibility in the GUI. Valid values: `disable`, `enable`.
 

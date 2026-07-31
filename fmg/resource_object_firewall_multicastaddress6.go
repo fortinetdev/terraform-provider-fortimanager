@@ -58,6 +58,17 @@ func resourceObjectFirewallMulticastAddress6() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -253,6 +264,14 @@ func flattenObjectFirewallMulticastAddress6Comment(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectFirewallMulticastAddress6CustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMulticastAddress6DisplayWith(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallMulticastAddress6Ip6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -355,6 +374,26 @@ func refreshObjectObjectFirewallMulticastAddress6(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("custom_tags", flattenObjectFirewallMulticastAddress6CustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallMulticastAddress6-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallMulticastAddress6DisplayWith(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallMulticastAddress6-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
+		}
+	}
+
 	if err = d.Set("ip6", flattenObjectFirewallMulticastAddress6Ip6(o["ip6"], d, "ip6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip6"], "ObjectFirewallMulticastAddress6-Ip6"); ok {
 			if err = d.Set("ip6", vv); err != nil {
@@ -423,6 +462,14 @@ func expandObjectFirewallMulticastAddress6Color(d *schema.ResourceData, v interf
 }
 
 func expandObjectFirewallMulticastAddress6Comment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMulticastAddress6CustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMulticastAddress6DisplayWith(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -507,6 +554,24 @@ func getObjectObjectFirewallMulticastAddress6(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallMulticastAddress6CustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallMulticastAddress6DisplayWith(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
 		}
 	}
 

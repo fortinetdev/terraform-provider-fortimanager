@@ -86,6 +86,21 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"file_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -136,6 +151,11 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 			"telemetry_profile": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -367,6 +387,18 @@ func flattenObjectFirewallProfileGroupEmailfilterProfile(v interface{}, d *schem
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallProfileGroupFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileGroupFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileGroupFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupFileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -413,6 +445,10 @@ func flattenObjectFirewallProfileGroupSslSshProfile(v interface{}, d *schema.Res
 
 func flattenObjectFirewallProfileGroupTelemetryProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallProfileGroupUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallProfileGroupVideofilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -548,6 +584,36 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallProfileGroupFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallProfileGroup-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallProfileGroupFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallProfileGroup-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallProfileGroupFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallProfileGroup-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
+	}
+
 	if err = d.Set("file_filter_profile", flattenObjectFirewallProfileGroupFileFilterProfile(o["file-filter-profile"], d, "file_filter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["file-filter-profile"], "ObjectFirewallProfileGroup-FileFilterProfile"); ok {
 			if err = d.Set("file_filter_profile", vv); err != nil {
@@ -665,6 +731,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading telemetry_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid", flattenObjectFirewallProfileGroupUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallProfileGroup-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -803,6 +879,18 @@ func expandObjectFirewallProfileGroupEmailfilterProfile(d *schema.ResourceData, 
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallProfileGroupFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupFileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -849,6 +937,10 @@ func expandObjectFirewallProfileGroupSslSshProfile(d *schema.ResourceData, v int
 
 func expandObjectFirewallProfileGroupTelemetryProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallProfileGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallProfileGroupVideofilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -971,6 +1063,33 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallProfileGroupFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectFirewallProfileGroupFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallProfileGroupFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("file_filter_profile"); ok || d.HasChange("file_filter_profile") {
 		t, err := expandObjectFirewallProfileGroupFileFilterProfile(d, v, "file_filter_profile")
 		if err != nil {
@@ -1076,6 +1195,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["telemetry-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallProfileGroupUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

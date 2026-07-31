@@ -69,6 +69,17 @@ func resourceObjectSystemDhcpServerExcludeRange() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"oui_match": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"oui_string": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"start_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -95,6 +106,10 @@ func resourceObjectSystemDhcpServerExcludeRange() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"vendor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 		},
 	}
@@ -277,6 +292,14 @@ func flattenObjectSystemDhcpServerExcludeRangeLeaseTime2edl(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectSystemDhcpServerExcludeRangeOuiMatch2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemDhcpServerExcludeRangeOuiString2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectSystemDhcpServerExcludeRangeStartIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -295,6 +318,10 @@ func flattenObjectSystemDhcpServerExcludeRangeVciMatch2edl(v interface{}, d *sch
 
 func flattenObjectSystemDhcpServerExcludeRangeVciString2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectSystemDhcpServerExcludeRangeVendor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func refreshObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, o map[string]interface{}) error {
@@ -331,6 +358,26 @@ func refreshObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, o m
 			}
 		} else {
 			return fmt.Errorf("Error reading lease_time: %v", err)
+		}
+	}
+
+	if err = d.Set("oui_match", flattenObjectSystemDhcpServerExcludeRangeOuiMatch2edl(o["oui-match"], d, "oui_match")); err != nil {
+		if vv, ok := fortiAPIPatch(o["oui-match"], "ObjectSystemDhcpServerExcludeRange-OuiMatch"); ok {
+			if err = d.Set("oui_match", vv); err != nil {
+				return fmt.Errorf("Error reading oui_match: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading oui_match: %v", err)
+		}
+	}
+
+	if err = d.Set("oui_string", flattenObjectSystemDhcpServerExcludeRangeOuiString2edl(o["oui-string"], d, "oui_string")); err != nil {
+		if vv, ok := fortiAPIPatch(o["oui-string"], "ObjectSystemDhcpServerExcludeRange-OuiString"); ok {
+			if err = d.Set("oui_string", vv); err != nil {
+				return fmt.Errorf("Error reading oui_string: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading oui_string: %v", err)
 		}
 	}
 
@@ -384,6 +431,16 @@ func refreshObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, o m
 		}
 	}
 
+	if err = d.Set("vendor", flattenObjectSystemDhcpServerExcludeRangeVendor2edl(o["vendor"], d, "vendor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vendor"], "ObjectSystemDhcpServerExcludeRange-Vendor"); ok {
+			if err = d.Set("vendor", vv); err != nil {
+				return fmt.Errorf("Error reading vendor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vendor: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -405,6 +462,14 @@ func expandObjectSystemDhcpServerExcludeRangeLeaseTime2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectSystemDhcpServerExcludeRangeOuiMatch2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemDhcpServerExcludeRangeOuiString2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectSystemDhcpServerExcludeRangeStartIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -423,6 +488,10 @@ func expandObjectSystemDhcpServerExcludeRangeVciMatch2edl(d *schema.ResourceData
 
 func expandObjectSystemDhcpServerExcludeRangeVciString2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemDhcpServerExcludeRangeVendor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func getObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -452,6 +521,24 @@ func getObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["lease-time"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("oui_match"); ok || d.HasChange("oui_match") {
+		t, err := expandObjectSystemDhcpServerExcludeRangeOuiMatch2edl(d, v, "oui_match")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["oui-match"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("oui_string"); ok || d.HasChange("oui_string") {
+		t, err := expandObjectSystemDhcpServerExcludeRangeOuiString2edl(d, v, "oui_string")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["oui-string"] = t
 		}
 	}
 
@@ -497,6 +584,15 @@ func getObjectObjectSystemDhcpServerExcludeRange(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["vci-string"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vendor"); ok || d.HasChange("vendor") {
+		t, err := expandObjectSystemDhcpServerExcludeRangeVendor2edl(d, v, "vendor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vendor"] = t
 		}
 	}
 

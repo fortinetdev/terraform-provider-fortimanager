@@ -48,6 +48,9 @@ The following arguments are supported:
 
 * `name` - NAC policy name.
 * `os` - NAC policy matching operating system.
+* `port_setting_override` - Enable/disable port setting action on the NAC policy. Valid values: `disable`, `enable`.
+
+* `qos_policy` - Switch Port qos-policy action to be applied on the matched NAC policy.
 * `severity` - NAC policy matching devices vulnerability severity lists.
 * `src` - NAC policy matching source.
 * `ssid_policy` - SSID policy to be applied on the matched NAC policy.

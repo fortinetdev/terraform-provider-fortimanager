@@ -20,6 +20,12 @@ The following arguments are supported:
 * `addr_type` - Address type of the forwarding proxy server: IP or FQDN. Valid values: `fqdn`, `ipv6`, `ip`.
 
 * `comment` - Comment.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `fqdn` - Forward server Fully Qualified Domain Name (FQDN).
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -30,8 +36,10 @@ The following arguments are supported:
 
 * `name` - Server name.
 * `port` - Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
 * `ippool` - Ippool.
+* `ippool6` - Ippool6.
 * `protocol` - Protocol. Valid values: `http`, `socks`.
 
 

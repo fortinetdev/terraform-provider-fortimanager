@@ -59,6 +59,10 @@ func resourceSystempSystemTemplateInterface() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"alias": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"allowaccess": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -108,6 +112,10 @@ func resourceSystempSystemTemplateInterface() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"model": &schema.Schema{
 				Type:     schema.TypeString,
@@ -254,14 +262,21 @@ func resourceSystempSystemTemplateInterfaceUpdate(d *schema.ResourceData, m inte
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSystempSystemTemplateInterface(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSystempSystemTemplateInterface(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempSystemTemplateInterface resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "seq")))
+	if v != nil && v["seq"] != nil {
+		if vidn, ok := v["seq"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceSystempSystemTemplateInterfaceRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating SystempSystemTemplateInterface resource: %v", err)
+		}
+	}
 
 	return resourceSystempSystemTemplateInterfaceRead(d, m)
 }
@@ -342,6 +357,10 @@ func resourceSystempSystemTemplateInterfaceRead(d *schema.ResourceData, m interf
 }
 
 func flattenSystempSystemTemplateInterfaceAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystempSystemTemplateInterfaceAlias(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -428,6 +447,10 @@ func flattenSystempSystemTemplateInterfaceIpmask(v interface{}, d *schema.Resour
 	return flattenStringList(v)
 }
 
+func flattenSystempSystemTemplateInterfaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystempSystemTemplateInterfaceModel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -486,6 +509,16 @@ func refreshObjectSystempSystemTemplateInterface(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading action: %v", err)
+		}
+	}
+
+	if err = d.Set("alias", flattenSystempSystemTemplateInterfaceAlias(o["alias"], d, "alias")); err != nil {
+		if vv, ok := fortiAPIPatch(o["alias"], "SystempSystemTemplateInterface-Alias"); ok {
+			if err = d.Set("alias", vv); err != nil {
+				return fmt.Errorf("Error reading alias: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading alias: %v", err)
 		}
 	}
 
@@ -570,6 +603,16 @@ func refreshObjectSystempSystemTemplateInterface(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading ipmask: %v", err)
+		}
+	}
+
+	if err = d.Set("mode", flattenSystempSystemTemplateInterfaceMode(o["mode"], d, "mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mode"], "SystempSystemTemplateInterface-Mode"); ok {
+			if err = d.Set("mode", vv); err != nil {
+				return fmt.Errorf("Error reading mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mode: %v", err)
 		}
 	}
 
@@ -686,6 +729,10 @@ func expandSystempSystemTemplateInterfaceAction(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandSystempSystemTemplateInterfaceAlias(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempSystemTemplateInterfaceAllowaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -761,6 +808,10 @@ func expandSystempSystemTemplateInterfaceIpmask(d *schema.ResourceData, v interf
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandSystempSystemTemplateInterfaceMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystempSystemTemplateInterfaceModel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -814,6 +865,15 @@ func getObjectSystempSystemTemplateInterface(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("alias"); ok || d.HasChange("alias") {
+		t, err := expandSystempSystemTemplateInterfaceAlias(d, v, "alias")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["alias"] = t
 		}
 	}
 
@@ -877,6 +937,15 @@ func getObjectSystempSystemTemplateInterface(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["ipmask"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
+		t, err := expandSystempSystemTemplateInterfaceMode(d, v, "mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mode"] = t
 		}
 	}
 

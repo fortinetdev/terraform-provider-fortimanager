@@ -30,11 +30,18 @@ The following arguments are supported:
 
 * `city_id` - City ID.
 * `country_id` - Country or Area ID.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `internet_service_id` - Internet Service ID.
 * `name` - Internet Service name.
 * `region_id` - Region ID.
 * `type` - Internet Service name type. Valid values: `default`, `location`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

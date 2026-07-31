@@ -40,6 +40,12 @@ The following arguments are supported:
 * `sae_password` - Wi-Fi SAE Password.
 * `security` - Wi-Fi security. Valid values: `OPEN`, `WPA2-Personal`, `WPA-WPA2-Personal`, `WPA3-SAE`, `WPA3-SAE-Transition`, `WPA2-Enterprise`, `WPA3-Enterprise-only`, `WPA3-Enterprise-transition`, `WPA3-Enterprise-192-bit`.
 
+* `security_exempt_list` - Name of security exempt list.
+* `security_external_web` - URL of external authentication web server.
+* `security_groups` - User groups that can authenticate with the captive portal.
+* `security_mode` - Turn on captive portal authentication for this Wi-Fi interface. Valid values: `none`, `captive-portal`.
+
+* `security_redirect_url` - Optional URL for redirecting users after they pass captive portal authentication.
 * `ssid` - Wi-Fi SSID.
 * `start_ip` - Start ip address.
 * `target_wake_time` - Wi-Fi 802.11AX target wake time enable / disable, default = enable. Valid values: `disable`, `enable`.

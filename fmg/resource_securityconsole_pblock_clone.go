@@ -68,14 +68,23 @@ func resourceSecurityconsolePblockCloneUpdate(d *schema.ResourceData, m interfac
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsolePblockClone(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsolePblockClone(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePblockClone resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsolePblockClone")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsolePblockCloneRead(d, m)
 }

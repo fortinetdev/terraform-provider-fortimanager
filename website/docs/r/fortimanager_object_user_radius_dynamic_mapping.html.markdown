@@ -95,6 +95,12 @@ The following arguments are supported:
 
 * `ep_profile_query_type` - Ep-Profile-Query-Type. Valid values: `session-ip`, `extract-ip`, `extract-carrier-endpoint`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_override_attr_type` - Group-Override-Attr-Type. Valid values: `filter-Id`, `class`.
 
 * `h3c_compatibility` - Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `disable`, `enable`.
@@ -173,6 +179,7 @@ The following arguments are supported:
 
 * `username_case_sensitive` - Enable/disable case sensitive user names. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

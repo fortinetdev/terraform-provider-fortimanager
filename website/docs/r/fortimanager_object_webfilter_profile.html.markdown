@@ -58,6 +58,12 @@ The following arguments are supported:
 * `comment` - Optional comments.
 * `extended_log` - Enable/disable extended logging for web filtering. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
@@ -78,6 +84,7 @@ The following arguments are supported:
 
 * `replacemsg_group` - Replacement message group.
 * `url_extraction` - Url-Extraction. The structure of `url_extraction` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `web` - Web. The structure of `web` block is documented below.
 * `web_antiphishing_log` - Enable/disable logging of AntiPhishing checks. Valid values: `disable`, `enable`.
 

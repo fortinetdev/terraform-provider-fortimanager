@@ -31,6 +31,12 @@ The following arguments are supported:
 
 * `addr_type` - Address type of the remote ICAP server: IPv4, IPv6 or FQDN. Valid values: `fqdn`, `ip4`, `ip6`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `fqdn` - ICAP remote server Fully Qualified Domain Name (FQDN).
 * `healthcheck` - Enable/disable ICAP remote server health checking. Attempts to connect to the remote ICAP server to verify that the server is operating normally. Valid values: `disable`, `enable`.
 
@@ -45,6 +51,7 @@ The following arguments are supported:
 * `secure` - Enable/disable secure connection to ICAP server. Valid values: `disable`, `enable`.
 
 * `ssl_cert` - CA certificate name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

@@ -41,6 +41,12 @@ The following arguments are supported:
 
 * `comments` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
@@ -55,6 +61,8 @@ The following arguments are supported:
 * `source_ip` - Source IPv4 address used to communicate with server.
 * `source_ip_interface` - IPv4 Source interface for communication with the server.
 * `status` - Enable/disable user resource. Valid values: `disable`, `enable`.
+
+* `threat_feed_hash_mode` - Configure use of the external threat feed as either a hash database or plain text database (default = plain-text-db). Valid values: `hash-db`, `plain-text-db`.
 
 * `type` - User resource type. Valid values: `category`, `address`, `domain`, `malware`.
 

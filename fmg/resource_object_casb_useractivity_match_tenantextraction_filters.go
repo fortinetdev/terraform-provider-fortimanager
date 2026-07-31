@@ -176,14 +176,21 @@ func resourceObjectCasbUserActivityMatchTenantExtractionFiltersUpdate(d *schema.
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectCasbUserActivityMatchTenantExtractionFilters(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectCasbUserActivityMatchTenantExtractionFilters(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCasbUserActivityMatchTenantExtractionFilters resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectCasbUserActivityMatchTenantExtractionFiltersRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectCasbUserActivityMatchTenantExtractionFilters resource: %v", err)
+		}
+	}
 
 	return resourceObjectCasbUserActivityMatchTenantExtractionFiltersRead(d, m)
 }

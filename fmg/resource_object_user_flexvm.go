@@ -70,6 +70,7 @@ func resourceObjectUserFlexvm() *schema.Resource {
 			"password": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"program": &schema.Schema{
 				Type:     schema.TypeString,
@@ -248,7 +249,7 @@ func flattenObjectUserFlexvmName(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectUserFlexvmPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convintflist2str(v, d.Get(pre))
 }
 
 func flattenObjectUserFlexvmProgram(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -376,7 +377,7 @@ func expandObjectUserFlexvmName(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandObjectUserFlexvmPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return convstr2list(v, nil), nil
 }
 
 func expandObjectUserFlexvmProgram(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

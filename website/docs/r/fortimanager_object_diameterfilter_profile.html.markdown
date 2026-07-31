@@ -23,6 +23,12 @@ The following arguments are supported:
 
 * `command_code_range` - Valid range for command codes (0-16777215).
 * `comment` - Comment.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `log_packet` - Enable/disable packet log for triggered diameter settings. Valid values: `disable`, `enable`.
 
 * `message_length_invalid` - Action to be taken for invalid message length. Valid values: `block`, `reset`, `monitor`, `allow`.
@@ -38,6 +44,7 @@ The following arguments are supported:
 
 * `track_requests_answers` - Enable/disable validation that each answer has a corresponding request. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

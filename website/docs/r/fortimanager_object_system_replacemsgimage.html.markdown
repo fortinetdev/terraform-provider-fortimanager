@@ -27,6 +27,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `image_base64` - Image data.
+* `image_in_use` - True if the image is used by a replacemsg object.
 * `image_type` - Image type. Valid values: `gif`, `jpg`, `tiff`, `png`.
 
 * `name` - Image name.

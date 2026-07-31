@@ -29,6 +29,9 @@ The following arguments are supported:
 * `category` - Category.
 * `color` - Color.
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `header` - Header.
 * `header_group` - Header-Group. The structure of `header_group` block is documented below.
 * `header_name` - Header-Name.

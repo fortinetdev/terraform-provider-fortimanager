@@ -68,6 +68,18 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatforms() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fspprof": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"fxtprof": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"prefix": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -76,6 +88,12 @@ func resourceObjectFmgFabricAuthorizationTemplatePlatforms() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"wtpprof": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -258,12 +276,24 @@ func flattenObjectFmgFabricAuthorizationTemplatePlatformsFortilink2edl(v interfa
 	return v
 }
 
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsFspprof2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsFxtprof2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFmgFabricAuthorizationTemplatePlatformsPrefix2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFmgFabricAuthorizationTemplatePlatformsType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFmgFabricAuthorizationTemplatePlatformsWtpprof2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceData, o map[string]interface{}) error {
@@ -303,6 +333,26 @@ func refreshObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.Resour
 		}
 	}
 
+	if err = d.Set("fspprof", flattenObjectFmgFabricAuthorizationTemplatePlatformsFspprof2edl(o["fspprof"], d, "fspprof")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fspprof"], "ObjectFmgFabricAuthorizationTemplatePlatforms-Fspprof"); ok {
+			if err = d.Set("fspprof", vv); err != nil {
+				return fmt.Errorf("Error reading fspprof: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fspprof: %v", err)
+		}
+	}
+
+	if err = d.Set("fxtprof", flattenObjectFmgFabricAuthorizationTemplatePlatformsFxtprof2edl(o["fxtprof"], d, "fxtprof")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fxtprof"], "ObjectFmgFabricAuthorizationTemplatePlatforms-Fxtprof"); ok {
+			if err = d.Set("fxtprof", vv); err != nil {
+				return fmt.Errorf("Error reading fxtprof: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fxtprof: %v", err)
+		}
+	}
+
 	if err = d.Set("prefix", flattenObjectFmgFabricAuthorizationTemplatePlatformsPrefix2edl(o["prefix"], d, "prefix")); err != nil {
 		if vv, ok := fortiAPIPatch(o["prefix"], "ObjectFmgFabricAuthorizationTemplatePlatforms-Prefix"); ok {
 			if err = d.Set("prefix", vv); err != nil {
@@ -320,6 +370,16 @@ func refreshObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.Resour
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("wtpprof", flattenObjectFmgFabricAuthorizationTemplatePlatformsWtpprof2edl(o["wtpprof"], d, "wtpprof")); err != nil {
+		if vv, ok := fortiAPIPatch(o["wtpprof"], "ObjectFmgFabricAuthorizationTemplatePlatforms-Wtpprof"); ok {
+			if err = d.Set("wtpprof", vv); err != nil {
+				return fmt.Errorf("Error reading wtpprof: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading wtpprof: %v", err)
 		}
 	}
 
@@ -344,12 +404,24 @@ func expandObjectFmgFabricAuthorizationTemplatePlatformsFortilink2edl(d *schema.
 	return v, nil
 }
 
+func expandObjectFmgFabricAuthorizationTemplatePlatformsFspprof2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgFabricAuthorizationTemplatePlatformsFxtprof2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFmgFabricAuthorizationTemplatePlatformsPrefix2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFmgFabricAuthorizationTemplatePlatformsType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFmgFabricAuthorizationTemplatePlatformsWtpprof2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -382,6 +454,24 @@ func getObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceDa
 		}
 	}
 
+	if v, ok := d.GetOk("fspprof"); ok || d.HasChange("fspprof") {
+		t, err := expandObjectFmgFabricAuthorizationTemplatePlatformsFspprof2edl(d, v, "fspprof")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fspprof"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fxtprof"); ok || d.HasChange("fxtprof") {
+		t, err := expandObjectFmgFabricAuthorizationTemplatePlatformsFxtprof2edl(d, v, "fxtprof")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fxtprof"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("prefix"); ok || d.HasChange("prefix") {
 		t, err := expandObjectFmgFabricAuthorizationTemplatePlatformsPrefix2edl(d, v, "prefix")
 		if err != nil {
@@ -397,6 +487,15 @@ func getObjectObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceDa
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("wtpprof"); ok || d.HasChange("wtpprof") {
+		t, err := expandObjectFmgFabricAuthorizationTemplatePlatformsWtpprof2edl(d, v, "wtpprof")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["wtpprof"] = t
 		}
 	}
 

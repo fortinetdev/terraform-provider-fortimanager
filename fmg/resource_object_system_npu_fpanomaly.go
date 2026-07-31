@@ -57,6 +57,7 @@ func resourceObjectSystemNpuFpAnomaly() *schema.Resource {
 			"gre_csum_err": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"gtpu_plen_err": &schema.Schema{
 				Type:     schema.TypeString,

@@ -44,6 +44,12 @@ The following arguments are supported:
 * `dns_translation` - Dns-Translation. The structure of `dns_translation` block is documented below.
 * `domain_filter` - Domain-Filter. The structure of `domain_filter` block is documented below.
 * `external_ip_blocklist` - One or more external IP block lists.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `ftgd_dns` - Ftgd-Dns. The structure of `ftgd_dns` block is documented below.
 * `log_all_domain` - Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `disable`, `enable`.
 
@@ -59,6 +65,7 @@ The following arguments are supported:
 * `strip_ech` - Enable/disable removal of the encrypted client hello service parameter from supporting DNS RRs. Valid values: `disable`, `enable`.
 
 * `transparent_dns_database` - Transparent DNS database zones.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `youtube_restrict` - Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

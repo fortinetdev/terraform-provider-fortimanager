@@ -30,10 +30,17 @@ The following arguments are supported:
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `exclude` - Enable/disable address exclusion. Valid values: `disable`, `enable`.
 
 * `exclude_member` - Address exclusion member.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `global_object` - Global-Object.
 * `member` - Address objects contained within the group.

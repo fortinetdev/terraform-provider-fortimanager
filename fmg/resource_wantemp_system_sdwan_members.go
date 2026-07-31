@@ -55,6 +55,11 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"billing_start_day": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"_dynamic_member": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -67,6 +72,23 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"duplication_threshold_bandwidth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"duplication_threshold_bibandwidth": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"duplication_threshold_dwbandwidth": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"duplication_threshold_upbandwidth": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"gateway": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,6 +107,25 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"overage": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"overage_cost": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"overage_volume_ratio": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"overage_weight": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"preferred_source": &schema.Schema{
 				Type:     schema.TypeString,
@@ -108,6 +149,10 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
+			},
+			"quota_limit": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"seq_num": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -321,6 +366,10 @@ func resourceWantempSystemSdwanMembersRead(d *schema.ResourceData, m interface{}
 	return nil
 }
 
+func flattenWantempSystemSdwanMembersBillingStartDay2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanMembersDynamicMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -331,6 +380,22 @@ func flattenWantempSystemSdwanMembersComment2edl(v interface{}, d *schema.Resour
 
 func flattenWantempSystemSdwanMembersCost2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
+}
+
+func flattenWantempSystemSdwanMembersDuplicationThresholdBandwidth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersDuplicationThresholdBibandwidth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersDuplicationThresholdDwbandwidth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersDuplicationThresholdUpbandwidth2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenWantempSystemSdwanMembersGateway2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -347,6 +412,22 @@ func flattenWantempSystemSdwanMembersIngressSpilloverThreshold2edl(v interface{}
 
 func flattenWantempSystemSdwanMembersInterface2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
+}
+
+func flattenWantempSystemSdwanMembersOverage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersOverageCost2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersOverageVolumeRatio2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersOverageWeight2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenWantempSystemSdwanMembersPreferredSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -366,6 +447,10 @@ func flattenWantempSystemSdwanMembersPriorityOutSla2edl(v interface{}, d *schema
 }
 
 func flattenWantempSystemSdwanMembersPriority62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersQuotaLimit2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -412,6 +497,16 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("billing_start_day", flattenWantempSystemSdwanMembersBillingStartDay2edl(o["billing-start-day"], d, "billing_start_day")); err != nil {
+		if vv, ok := fortiAPIPatch(o["billing-start-day"], "WantempSystemSdwanMembers-BillingStartDay"); ok {
+			if err = d.Set("billing_start_day", vv); err != nil {
+				return fmt.Errorf("Error reading billing_start_day: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading billing_start_day: %v", err)
+		}
+	}
+
 	if err = d.Set("_dynamic_member", flattenWantempSystemSdwanMembersDynamicMember2edl(o["_dynamic-member"], d, "_dynamic_member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_dynamic-member"], "WantempSystemSdwanMembers-DynamicMember"); ok {
 			if err = d.Set("_dynamic_member", vv); err != nil {
@@ -439,6 +534,46 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading cost: %v", err)
+		}
+	}
+
+	if err = d.Set("duplication_threshold_bandwidth", flattenWantempSystemSdwanMembersDuplicationThresholdBandwidth2edl(o["duplication-threshold-bandwidth"], d, "duplication_threshold_bandwidth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["duplication-threshold-bandwidth"], "WantempSystemSdwanMembers-DuplicationThresholdBandwidth"); ok {
+			if err = d.Set("duplication_threshold_bandwidth", vv); err != nil {
+				return fmt.Errorf("Error reading duplication_threshold_bandwidth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading duplication_threshold_bandwidth: %v", err)
+		}
+	}
+
+	if err = d.Set("duplication_threshold_bibandwidth", flattenWantempSystemSdwanMembersDuplicationThresholdBibandwidth2edl(o["duplication-threshold-bibandwidth"], d, "duplication_threshold_bibandwidth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["duplication-threshold-bibandwidth"], "WantempSystemSdwanMembers-DuplicationThresholdBibandwidth"); ok {
+			if err = d.Set("duplication_threshold_bibandwidth", vv); err != nil {
+				return fmt.Errorf("Error reading duplication_threshold_bibandwidth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading duplication_threshold_bibandwidth: %v", err)
+		}
+	}
+
+	if err = d.Set("duplication_threshold_dwbandwidth", flattenWantempSystemSdwanMembersDuplicationThresholdDwbandwidth2edl(o["duplication-threshold-dwbandwidth"], d, "duplication_threshold_dwbandwidth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["duplication-threshold-dwbandwidth"], "WantempSystemSdwanMembers-DuplicationThresholdDwbandwidth"); ok {
+			if err = d.Set("duplication_threshold_dwbandwidth", vv); err != nil {
+				return fmt.Errorf("Error reading duplication_threshold_dwbandwidth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading duplication_threshold_dwbandwidth: %v", err)
+		}
+	}
+
+	if err = d.Set("duplication_threshold_upbandwidth", flattenWantempSystemSdwanMembersDuplicationThresholdUpbandwidth2edl(o["duplication-threshold-upbandwidth"], d, "duplication_threshold_upbandwidth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["duplication-threshold-upbandwidth"], "WantempSystemSdwanMembers-DuplicationThresholdUpbandwidth"); ok {
+			if err = d.Set("duplication_threshold_upbandwidth", vv); err != nil {
+				return fmt.Errorf("Error reading duplication_threshold_upbandwidth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading duplication_threshold_upbandwidth: %v", err)
 		}
 	}
 
@@ -479,6 +614,46 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading interface: %v", err)
+		}
+	}
+
+	if err = d.Set("overage", flattenWantempSystemSdwanMembersOverage2edl(o["overage"], d, "overage")); err != nil {
+		if vv, ok := fortiAPIPatch(o["overage"], "WantempSystemSdwanMembers-Overage"); ok {
+			if err = d.Set("overage", vv); err != nil {
+				return fmt.Errorf("Error reading overage: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading overage: %v", err)
+		}
+	}
+
+	if err = d.Set("overage_cost", flattenWantempSystemSdwanMembersOverageCost2edl(o["overage-cost"], d, "overage_cost")); err != nil {
+		if vv, ok := fortiAPIPatch(o["overage-cost"], "WantempSystemSdwanMembers-OverageCost"); ok {
+			if err = d.Set("overage_cost", vv); err != nil {
+				return fmt.Errorf("Error reading overage_cost: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading overage_cost: %v", err)
+		}
+	}
+
+	if err = d.Set("overage_volume_ratio", flattenWantempSystemSdwanMembersOverageVolumeRatio2edl(o["overage-volume-ratio"], d, "overage_volume_ratio")); err != nil {
+		if vv, ok := fortiAPIPatch(o["overage-volume-ratio"], "WantempSystemSdwanMembers-OverageVolumeRatio"); ok {
+			if err = d.Set("overage_volume_ratio", vv); err != nil {
+				return fmt.Errorf("Error reading overage_volume_ratio: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading overage_volume_ratio: %v", err)
+		}
+	}
+
+	if err = d.Set("overage_weight", flattenWantempSystemSdwanMembersOverageWeight2edl(o["overage-weight"], d, "overage_weight")); err != nil {
+		if vv, ok := fortiAPIPatch(o["overage-weight"], "WantempSystemSdwanMembers-OverageWeight"); ok {
+			if err = d.Set("overage_weight", vv); err != nil {
+				return fmt.Errorf("Error reading overage_weight: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading overage_weight: %v", err)
 		}
 	}
 
@@ -529,6 +704,16 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading priority6: %v", err)
+		}
+	}
+
+	if err = d.Set("quota_limit", flattenWantempSystemSdwanMembersQuotaLimit2edl(o["quota-limit"], d, "quota_limit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["quota-limit"], "WantempSystemSdwanMembers-QuotaLimit"); ok {
+			if err = d.Set("quota_limit", vv); err != nil {
+				return fmt.Errorf("Error reading quota_limit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading quota_limit: %v", err)
 		}
 	}
 
@@ -631,6 +816,10 @@ func flattenWantempSystemSdwanMembersFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
+func expandWantempSystemSdwanMembersBillingStartDay2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanMembersDynamicMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -640,6 +829,22 @@ func expandWantempSystemSdwanMembersComment2edl(d *schema.ResourceData, v interf
 }
 
 func expandWantempSystemSdwanMembersCost2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersDuplicationThresholdBandwidth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersDuplicationThresholdBibandwidth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersDuplicationThresholdDwbandwidth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersDuplicationThresholdUpbandwidth2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -659,6 +864,22 @@ func expandWantempSystemSdwanMembersInterface2edl(d *schema.ResourceData, v inte
 	return convstr2list(v, nil), nil
 }
 
+func expandWantempSystemSdwanMembersOverage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersOverageCost2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersOverageVolumeRatio2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersOverageWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanMembersPreferredSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -676,6 +897,10 @@ func expandWantempSystemSdwanMembersPriorityOutSla2edl(d *schema.ResourceData, v
 }
 
 func expandWantempSystemSdwanMembersPriority62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersQuotaLimit2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -718,6 +943,15 @@ func expandWantempSystemSdwanMembersZone2edl(d *schema.ResourceData, v interface
 func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("billing_start_day"); ok || d.HasChange("billing_start_day") {
+		t, err := expandWantempSystemSdwanMembersBillingStartDay2edl(d, v, "billing_start_day")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["billing-start-day"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("_dynamic_member"); ok || d.HasChange("_dynamic_member") {
 		t, err := expandWantempSystemSdwanMembersDynamicMember2edl(d, v, "_dynamic_member")
 		if err != nil {
@@ -742,6 +976,42 @@ func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["cost"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("duplication_threshold_bandwidth"); ok || d.HasChange("duplication_threshold_bandwidth") {
+		t, err := expandWantempSystemSdwanMembersDuplicationThresholdBandwidth2edl(d, v, "duplication_threshold_bandwidth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["duplication-threshold-bandwidth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("duplication_threshold_bibandwidth"); ok || d.HasChange("duplication_threshold_bibandwidth") {
+		t, err := expandWantempSystemSdwanMembersDuplicationThresholdBibandwidth2edl(d, v, "duplication_threshold_bibandwidth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["duplication-threshold-bibandwidth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("duplication_threshold_dwbandwidth"); ok || d.HasChange("duplication_threshold_dwbandwidth") {
+		t, err := expandWantempSystemSdwanMembersDuplicationThresholdDwbandwidth2edl(d, v, "duplication_threshold_dwbandwidth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["duplication-threshold-dwbandwidth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("duplication_threshold_upbandwidth"); ok || d.HasChange("duplication_threshold_upbandwidth") {
+		t, err := expandWantempSystemSdwanMembersDuplicationThresholdUpbandwidth2edl(d, v, "duplication_threshold_upbandwidth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["duplication-threshold-upbandwidth"] = t
 		}
 	}
 
@@ -778,6 +1048,42 @@ func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["interface"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("overage"); ok || d.HasChange("overage") {
+		t, err := expandWantempSystemSdwanMembersOverage2edl(d, v, "overage")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["overage"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("overage_cost"); ok || d.HasChange("overage_cost") {
+		t, err := expandWantempSystemSdwanMembersOverageCost2edl(d, v, "overage_cost")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["overage-cost"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("overage_volume_ratio"); ok || d.HasChange("overage_volume_ratio") {
+		t, err := expandWantempSystemSdwanMembersOverageVolumeRatio2edl(d, v, "overage_volume_ratio")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["overage-volume-ratio"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("overage_weight"); ok || d.HasChange("overage_weight") {
+		t, err := expandWantempSystemSdwanMembersOverageWeight2edl(d, v, "overage_weight")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["overage-weight"] = t
 		}
 	}
 
@@ -823,6 +1129,15 @@ func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["priority6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("quota_limit"); ok || d.HasChange("quota_limit") {
+		t, err := expandWantempSystemSdwanMembersQuotaLimit2edl(d, v, "quota_limit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["quota-limit"] = t
 		}
 	}
 

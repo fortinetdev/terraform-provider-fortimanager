@@ -32,6 +32,9 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `ca` - Name of the CA certificate.
+* `checkemail` - Peer certificate email address. Check passes if the certificate SAN matches the specified email address. If the certificate has no email-type SAN, the emailAddress DN in the Subject is checked instead.
+* `checkhost` - Peer certificate hostname. Check passes if the certificate SAN matches the specified hostname, and the client IP matches the hostname's resolved IP. If the certificate has no DNS-type SAN, CN is checked instead.
+* `checkip` - Peer certificate IP address. Check passes if the certificate SAN and the client IP both match the specified IP.
 * `cn` - Peer certificate common name.
 * `cn_type` - Peer certificate common name type. Valid values: `string`, `email`, `FQDN`, `ipv4`, `ipv6`.
 

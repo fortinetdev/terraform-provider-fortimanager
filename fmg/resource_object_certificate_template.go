@@ -72,6 +72,57 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"enroll_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"est_ca_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"est_client_cert": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"est_http_password": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"est_http_username": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"est_regeneration_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"est_server_cert": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"est_server_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"est_srp_password": &schema.Schema{
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"est_srp_username": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"id_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -117,6 +168,10 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"source_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"state": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -131,6 +186,11 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"validity": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -302,6 +362,38 @@ func flattenObjectCertificateTemplateEmail(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectCertificateTemplateEnrollProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateEstCaId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateEstClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCertificateTemplateEstHttpUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateEstRegenerationMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateEstServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectCertificateTemplateEstServerUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateEstSrpUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCertificateTemplateIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -334,6 +426,10 @@ func flattenObjectCertificateTemplateScepServer(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectCertificateTemplateSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCertificateTemplateState(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -347,6 +443,10 @@ func flattenObjectCertificateTemplateSubjectName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectCertificateTemplateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCertificateTemplateValidity(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -404,6 +504,86 @@ func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading email: %v", err)
+		}
+	}
+
+	if err = d.Set("enroll_protocol", flattenObjectCertificateTemplateEnrollProtocol(o["enroll-protocol"], d, "enroll_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["enroll-protocol"], "ObjectCertificateTemplate-EnrollProtocol"); ok {
+			if err = d.Set("enroll_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading enroll_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading enroll_protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("est_ca_id", flattenObjectCertificateTemplateEstCaId(o["est-ca-id"], d, "est_ca_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-ca-id"], "ObjectCertificateTemplate-EstCaId"); ok {
+			if err = d.Set("est_ca_id", vv); err != nil {
+				return fmt.Errorf("Error reading est_ca_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_ca_id: %v", err)
+		}
+	}
+
+	if err = d.Set("est_client_cert", flattenObjectCertificateTemplateEstClientCert(o["est-client-cert"], d, "est_client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-client-cert"], "ObjectCertificateTemplate-EstClientCert"); ok {
+			if err = d.Set("est_client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading est_client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_client_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("est_http_username", flattenObjectCertificateTemplateEstHttpUsername(o["est-http-username"], d, "est_http_username")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-http-username"], "ObjectCertificateTemplate-EstHttpUsername"); ok {
+			if err = d.Set("est_http_username", vv); err != nil {
+				return fmt.Errorf("Error reading est_http_username: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_http_username: %v", err)
+		}
+	}
+
+	if err = d.Set("est_regeneration_method", flattenObjectCertificateTemplateEstRegenerationMethod(o["est-regeneration-method"], d, "est_regeneration_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-regeneration-method"], "ObjectCertificateTemplate-EstRegenerationMethod"); ok {
+			if err = d.Set("est_regeneration_method", vv); err != nil {
+				return fmt.Errorf("Error reading est_regeneration_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_regeneration_method: %v", err)
+		}
+	}
+
+	if err = d.Set("est_server_cert", flattenObjectCertificateTemplateEstServerCert(o["est-server-cert"], d, "est_server_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-server-cert"], "ObjectCertificateTemplate-EstServerCert"); ok {
+			if err = d.Set("est_server_cert", vv); err != nil {
+				return fmt.Errorf("Error reading est_server_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_server_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("est_server_url", flattenObjectCertificateTemplateEstServerUrl(o["est-server-url"], d, "est_server_url")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-server-url"], "ObjectCertificateTemplate-EstServerUrl"); ok {
+			if err = d.Set("est_server_url", vv); err != nil {
+				return fmt.Errorf("Error reading est_server_url: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_server_url: %v", err)
+		}
+	}
+
+	if err = d.Set("est_srp_username", flattenObjectCertificateTemplateEstSrpUsername(o["est-srp-username"], d, "est_srp_username")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-srp-username"], "ObjectCertificateTemplate-EstSrpUsername"); ok {
+			if err = d.Set("est_srp_username", vv); err != nil {
+				return fmt.Errorf("Error reading est_srp_username: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_srp_username: %v", err)
 		}
 	}
 
@@ -487,6 +667,16 @@ func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("source_ip", flattenObjectCertificateTemplateSourceIp(o["source-ip"], d, "source_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-ip"], "ObjectCertificateTemplate-SourceIp"); ok {
+			if err = d.Set("source_ip", vv); err != nil {
+				return fmt.Errorf("Error reading source_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_ip: %v", err)
+		}
+	}
+
 	if err = d.Set("state", flattenObjectCertificateTemplateState(o["state"], d, "state")); err != nil {
 		if vv, ok := fortiAPIPatch(o["state"], "ObjectCertificateTemplate-State"); ok {
 			if err = d.Set("state", vv); err != nil {
@@ -527,6 +717,16 @@ func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("validity", flattenObjectCertificateTemplateValidity(o["validity"], d, "validity")); err != nil {
+		if vv, ok := fortiAPIPatch(o["validity"], "ObjectCertificateTemplate-Validity"); ok {
+			if err = d.Set("validity", vv); err != nil {
+				return fmt.Errorf("Error reading validity: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading validity: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -553,6 +753,46 @@ func expandObjectCertificateTemplateDigestType(d *schema.ResourceData, v interfa
 }
 
 func expandObjectCertificateTemplateEmail(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEnrollProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEstCaId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEstClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCertificateTemplateEstHttpPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCertificateTemplateEstHttpUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEstRegenerationMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEstServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCertificateTemplateEstServerUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateEstSrpPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCertificateTemplateEstSrpUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -592,6 +832,10 @@ func expandObjectCertificateTemplateScepServer(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectCertificateTemplateSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCertificateTemplateState(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -605,6 +849,10 @@ func expandObjectCertificateTemplateSubjectName(d *schema.ResourceData, v interf
 }
 
 func expandObjectCertificateTemplateType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCertificateTemplateValidity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -653,6 +901,96 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["email"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("enroll_protocol"); ok || d.HasChange("enroll_protocol") {
+		t, err := expandObjectCertificateTemplateEnrollProtocol(d, v, "enroll_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["enroll-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_ca_id"); ok || d.HasChange("est_ca_id") {
+		t, err := expandObjectCertificateTemplateEstCaId(d, v, "est_ca_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-ca-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_client_cert"); ok || d.HasChange("est_client_cert") {
+		t, err := expandObjectCertificateTemplateEstClientCert(d, v, "est_client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-client-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_http_password"); ok || d.HasChange("est_http_password") {
+		t, err := expandObjectCertificateTemplateEstHttpPassword(d, v, "est_http_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-http-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_http_username"); ok || d.HasChange("est_http_username") {
+		t, err := expandObjectCertificateTemplateEstHttpUsername(d, v, "est_http_username")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-http-username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_regeneration_method"); ok || d.HasChange("est_regeneration_method") {
+		t, err := expandObjectCertificateTemplateEstRegenerationMethod(d, v, "est_regeneration_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-regeneration-method"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_server_cert"); ok || d.HasChange("est_server_cert") {
+		t, err := expandObjectCertificateTemplateEstServerCert(d, v, "est_server_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-server-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_server_url"); ok || d.HasChange("est_server_url") {
+		t, err := expandObjectCertificateTemplateEstServerUrl(d, v, "est_server_url")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-server-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_srp_password"); ok || d.HasChange("est_srp_password") {
+		t, err := expandObjectCertificateTemplateEstSrpPassword(d, v, "est_srp_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-srp-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_srp_username"); ok || d.HasChange("est_srp_username") {
+		t, err := expandObjectCertificateTemplateEstSrpUsername(d, v, "est_srp_username")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-srp-username"] = t
 		}
 	}
 
@@ -737,6 +1075,15 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
+		t, err := expandObjectCertificateTemplateSourceIp(d, v, "source_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-ip"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("state"); ok || d.HasChange("state") {
 		t, err := expandObjectCertificateTemplateState(d, v, "state")
 		if err != nil {
@@ -770,6 +1117,15 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("validity"); ok || d.HasChange("validity") {
+		t, err := expandObjectCertificateTemplateValidity(d, v, "validity")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["validity"] = t
 		}
 	}
 

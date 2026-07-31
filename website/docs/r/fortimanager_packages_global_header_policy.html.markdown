@@ -137,7 +137,9 @@ The following arguments are supported:
 * `client_reputation_mode` - Client-Reputation-Mode. Valid values: `learning`, `monitoring`.
 
 * `comments` - Comment.
+* `creation_time` - The date and time that the policy was created.
 * `custom_log_fields` - Custom fields to append to log messages for this policy.
+* `custom_tags` - Custom tags.
 * `decrypted_traffic_mirror` - Decrypted-Traffic-Mirror.
 * `deep_inspection_options` - Deep-Inspection-Options.
 * `delay_tcp_npu_session` - Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `disable`, `enable`.
@@ -208,6 +210,12 @@ The following arguments are supported:
 * `endpoint_keepalive_interface` - Endpoint-Keepalive-Interface.
 * `endpoint_profile` - Endpoint-Profile.
 * `extended_log` - Extended-Log. Valid values: `disable`, `enable`.
+
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `failed_connection` - Failed-Connection. Valid values: `disable`, `enable`.
 
@@ -430,6 +438,8 @@ The following arguments are supported:
 * `sgt` - Security group tags.
 * `sgt_check` - Enable/disable security group tags (SGT) check. Valid values: `disable`, `enable`.
 
+* `skip_vrf_match` - Enable/disable skipping VRF matching on reply direction. Valid values: `disable`, `enable`.
+
 * `spamfilter_profile` - Spamfilter-Profile.
 * `src_vendor_mac` - Src-Vendor-Mac.
 * `srcaddr` - Source address and address group names.
@@ -521,12 +531,14 @@ The following arguments are supported:
 * `webproxy_profile` - Webproxy profile name.
 * `wsso` - Enable/disable WiFi Single Sign On (WSSO). Valid values: `disable`, `enable`.
 
+* `ztna_destination` - Configure ZTNA destinations. Must be used with ZTNA traffic-forward-proxy.
 * `ztna_device_ownership` - Enable/disable zero trust device ownership. Valid values: `disable`, `enable`.
 
 * `ztna_ems_tag` - Ztna-Ems-Tag.
 * `ztna_ems_tag_negate` - When enabled ztna-ems-tag specifies what the tags must NOT be. Valid values: `disable`, `enable`.
 
 * `ztna_ems_tag_secondary` - Source ztna-ems-tag-secondary names.
+* `ztna_ems_tag6` - Source ZTNA FortiClient EMS tag IPv6 names.
 * `ztna_geo_tag` - Ztna-Geo-Tag.
 * `ztna_policy_redirect` - Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `disable`, `enable`.
 

@@ -91,6 +91,17 @@ func resourceObjectFirewallAddress6DynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"display_with": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"end_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -104,7 +115,17 @@ func resourceObjectFirewallAddress6DynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -146,6 +167,14 @@ func resourceObjectFirewallAddress6DynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"obj_tag": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"obsolete": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"passive_fqdn_learning": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -177,6 +206,11 @@ func resourceObjectFirewallAddress6DynamicMapping() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sub_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"subnet_segment": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -197,6 +231,18 @@ func resourceObjectFirewallAddress6DynamicMapping() *schema.Resource {
 						},
 					},
 				},
+			},
+			"tag_detection_level": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"tag_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"tag_uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"tags": &schema.Schema{
 				Type:     schema.TypeString,
@@ -475,6 +521,14 @@ func flattenObjectFirewallAddress6DynamicMappingCountry2edl(v interface{}, d *sc
 	return convintflist2str(v, d.Get(pre))
 }
 
+func flattenObjectFirewallAddress6DynamicMappingCustomTags2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallAddress6DynamicMappingDisplayWith2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6DynamicMappingEndIp2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -487,7 +541,15 @@ func flattenObjectFirewallAddress6DynamicMappingEpgName2edl(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectFirewallAddress6DynamicMappingFabricForceSync2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6DynamicMappingFabricObject2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingFabricObjectSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -523,6 +585,14 @@ func flattenObjectFirewallAddress6DynamicMappingObjId2edl(v interface{}, d *sche
 	return v
 }
 
+func flattenObjectFirewallAddress6DynamicMappingObjTag2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingObsolete2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6DynamicMappingPassiveFqdnLearning2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -548,6 +618,10 @@ func flattenObjectFirewallAddress6DynamicMappingStartIp2edl(v interface{}, d *sc
 }
 
 func flattenObjectFirewallAddress6DynamicMappingStartMac2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingSubType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -607,6 +681,18 @@ func flattenObjectFirewallAddress6DynamicMappingSubnetSegmentType2edl(v interfac
 }
 
 func flattenObjectFirewallAddress6DynamicMappingSubnetSegmentValue2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingTagDetectionLevel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingTagType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingTagUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -723,6 +809,26 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("custom_tags", flattenObjectFirewallAddress6DynamicMappingCustomTags2edl(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "ObjectFirewallAddress6DynamicMapping-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
+		}
+	}
+
+	if err = d.Set("display_with", flattenObjectFirewallAddress6DynamicMappingDisplayWith2edl(o["display-with"], d, "display_with")); err != nil {
+		if vv, ok := fortiAPIPatch(o["display-with"], "ObjectFirewallAddress6DynamicMapping-DisplayWith"); ok {
+			if err = d.Set("display_with", vv); err != nil {
+				return fmt.Errorf("Error reading display_with: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading display_with: %v", err)
+		}
+	}
+
 	if err = d.Set("end_ip", flattenObjectFirewallAddress6DynamicMappingEndIp2edl(o["end-ip"], d, "end_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["end-ip"], "ObjectFirewallAddress6DynamicMapping-EndIp"); ok {
 			if err = d.Set("end_ip", vv); err != nil {
@@ -753,6 +859,16 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallAddress6DynamicMappingFabricForceSync2edl(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallAddress6DynamicMapping-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddress6DynamicMappingFabricObject2edl(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddress6DynamicMapping-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -760,6 +876,16 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 			}
 		} else {
 			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallAddress6DynamicMappingFabricObjectSource2edl(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallAddress6DynamicMapping-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -843,6 +969,26 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("obj_tag", flattenObjectFirewallAddress6DynamicMappingObjTag2edl(o["obj-tag"], d, "obj_tag")); err != nil {
+		if vv, ok := fortiAPIPatch(o["obj-tag"], "ObjectFirewallAddress6DynamicMapping-ObjTag"); ok {
+			if err = d.Set("obj_tag", vv); err != nil {
+				return fmt.Errorf("Error reading obj_tag: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading obj_tag: %v", err)
+		}
+	}
+
+	if err = d.Set("obsolete", flattenObjectFirewallAddress6DynamicMappingObsolete2edl(o["obsolete"], d, "obsolete")); err != nil {
+		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectFirewallAddress6DynamicMapping-Obsolete"); ok {
+			if err = d.Set("obsolete", vv); err != nil {
+				return fmt.Errorf("Error reading obsolete: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading obsolete: %v", err)
+		}
+	}
+
 	if err = d.Set("passive_fqdn_learning", flattenObjectFirewallAddress6DynamicMappingPassiveFqdnLearning2edl(o["passive-fqdn-learning"], d, "passive_fqdn_learning")); err != nil {
 		if vv, ok := fortiAPIPatch(o["passive-fqdn-learning"], "ObjectFirewallAddress6DynamicMapping-PassiveFqdnLearning"); ok {
 			if err = d.Set("passive_fqdn_learning", vv); err != nil {
@@ -913,6 +1059,16 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("sub_type", flattenObjectFirewallAddress6DynamicMappingSubType2edl(o["sub-type"], d, "sub_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sub-type"], "ObjectFirewallAddress6DynamicMapping-SubType"); ok {
+			if err = d.Set("sub_type", vv); err != nil {
+				return fmt.Errorf("Error reading sub_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sub_type: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("subnet_segment", flattenObjectFirewallAddress6DynamicMappingSubnetSegment2edl(o["subnet-segment"], d, "subnet_segment")); err != nil {
 			if vv, ok := fortiAPIPatch(o["subnet-segment"], "ObjectFirewallAddress6DynamicMapping-SubnetSegment"); ok {
@@ -934,6 +1090,36 @@ func refreshObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, o
 					return fmt.Errorf("Error reading subnet_segment: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("tag_detection_level", flattenObjectFirewallAddress6DynamicMappingTagDetectionLevel2edl(o["tag-detection-level"], d, "tag_detection_level")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tag-detection-level"], "ObjectFirewallAddress6DynamicMapping-TagDetectionLevel"); ok {
+			if err = d.Set("tag_detection_level", vv); err != nil {
+				return fmt.Errorf("Error reading tag_detection_level: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tag_detection_level: %v", err)
+		}
+	}
+
+	if err = d.Set("tag_type", flattenObjectFirewallAddress6DynamicMappingTagType2edl(o["tag-type"], d, "tag_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tag-type"], "ObjectFirewallAddress6DynamicMapping-TagType"); ok {
+			if err = d.Set("tag_type", vv); err != nil {
+				return fmt.Errorf("Error reading tag_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tag_type: %v", err)
+		}
+	}
+
+	if err = d.Set("tag_uuid", flattenObjectFirewallAddress6DynamicMappingTagUuid2edl(o["tag-uuid"], d, "tag_uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tag-uuid"], "ObjectFirewallAddress6DynamicMapping-TagUuid"); ok {
+			if err = d.Set("tag_uuid", vv); err != nil {
+				return fmt.Errorf("Error reading tag_uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tag_uuid: %v", err)
 		}
 	}
 
@@ -1078,6 +1264,14 @@ func expandObjectFirewallAddress6DynamicMappingCountry2edl(d *schema.ResourceDat
 	return convstr2list(v, nil), nil
 }
 
+func expandObjectFirewallAddress6DynamicMappingCustomTags2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingDisplayWith2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6DynamicMappingEndIp2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1090,7 +1284,15 @@ func expandObjectFirewallAddress6DynamicMappingEpgName2edl(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectFirewallAddress6DynamicMappingFabricForceSync2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6DynamicMappingFabricObject2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingFabricObjectSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1126,6 +1328,14 @@ func expandObjectFirewallAddress6DynamicMappingObjId2edl(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandObjectFirewallAddress6DynamicMappingObjTag2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingObsolete2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6DynamicMappingPassiveFqdnLearning2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1151,6 +1361,10 @@ func expandObjectFirewallAddress6DynamicMappingStartIp2edl(d *schema.ResourceDat
 }
 
 func expandObjectFirewallAddress6DynamicMappingStartMac2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingSubType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1202,6 +1416,18 @@ func expandObjectFirewallAddress6DynamicMappingSubnetSegmentType2edl(d *schema.R
 }
 
 func expandObjectFirewallAddress6DynamicMappingSubnetSegmentValue2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingTagDetectionLevel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingTagType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingTagUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1290,6 +1516,24 @@ func getObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandObjectFirewallAddress6DynamicMappingCustomTags2edl(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("display_with"); ok || d.HasChange("display_with") {
+		t, err := expandObjectFirewallAddress6DynamicMappingDisplayWith2edl(d, v, "display_with")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["display-with"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("end_ip"); ok || d.HasChange("end_ip") {
 		t, err := expandObjectFirewallAddress6DynamicMappingEndIp2edl(d, v, "end_ip")
 		if err != nil {
@@ -1317,12 +1561,30 @@ func getObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallAddress6DynamicMappingFabricForceSync2edl(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddress6DynamicMappingFabricObject2edl(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallAddress6DynamicMappingFabricObjectSource2edl(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -1398,6 +1660,24 @@ func getObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("obj_tag"); ok || d.HasChange("obj_tag") {
+		t, err := expandObjectFirewallAddress6DynamicMappingObjTag2edl(d, v, "obj_tag")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["obj-tag"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("obsolete"); ok || d.HasChange("obsolete") {
+		t, err := expandObjectFirewallAddress6DynamicMappingObsolete2edl(d, v, "obsolete")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["obsolete"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("passive_fqdn_learning"); ok || d.HasChange("passive_fqdn_learning") {
 		t, err := expandObjectFirewallAddress6DynamicMappingPassiveFqdnLearning2edl(d, v, "passive_fqdn_learning")
 		if err != nil {
@@ -1461,12 +1741,48 @@ func getObjectObjectFirewallAddress6DynamicMapping(d *schema.ResourceData) (*map
 		}
 	}
 
+	if v, ok := d.GetOk("sub_type"); ok || d.HasChange("sub_type") {
+		t, err := expandObjectFirewallAddress6DynamicMappingSubType2edl(d, v, "sub_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sub-type"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("subnet_segment"); ok || d.HasChange("subnet_segment") {
 		t, err := expandObjectFirewallAddress6DynamicMappingSubnetSegment2edl(d, v, "subnet_segment")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["subnet-segment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tag_detection_level"); ok || d.HasChange("tag_detection_level") {
+		t, err := expandObjectFirewallAddress6DynamicMappingTagDetectionLevel2edl(d, v, "tag_detection_level")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tag-detection-level"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tag_type"); ok || d.HasChange("tag_type") {
+		t, err := expandObjectFirewallAddress6DynamicMappingTagType2edl(d, v, "tag_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tag-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tag_uuid"); ok || d.HasChange("tag_uuid") {
+		t, err := expandObjectFirewallAddress6DynamicMappingTagUuid2edl(d, v, "tag_uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tag-uuid"] = t
 		}
 	}
 

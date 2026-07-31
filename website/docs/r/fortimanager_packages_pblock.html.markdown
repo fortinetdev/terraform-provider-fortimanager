@@ -11,6 +11,8 @@ Packages Pblock
 
 ~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `firewall_consolidated_policy`: `fortimanager_packages_pblock_firewall_consolidated_policy`
+>- `firewall_local_in_policy`: `fortimanager_packages_pblock_firewall_localinpolicy`
+>- `firewall_local_in_policy6`: `fortimanager_packages_pblock_firewall_localinpolicy6`
 >- `firewall_policy`: `fortimanager_packages_pblock_firewall_policy`
 >- `firewall_policy6`: `fortimanager_packages_pblock_firewall_policy6`
 >- `firewall_proxy_policy`: `fortimanager_packages_pblock_firewall_proxypolicy`

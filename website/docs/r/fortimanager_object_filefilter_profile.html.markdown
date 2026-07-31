@@ -38,6 +38,12 @@ The following arguments are supported:
 * `comment` - Comment.
 * `extended_log` - Enable/disable file-filter extended logging. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
 * `log` - Enable/disable file-filter logging. Valid values: `disable`, `enable`.
@@ -47,6 +53,7 @@ The following arguments are supported:
 * `rules` - Rules. The structure of `rules` block is documented below.
 * `scan_archive_contents` - Enable/disable archive contents scan. (Not for CIFS) Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `rules` block supports:

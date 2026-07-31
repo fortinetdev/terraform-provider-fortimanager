@@ -24,6 +24,9 @@ The following arguments are supported:
 
 * `color` - Color.
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `logic_type` - Logic-Type. Valid values: `or`, `and`.
 
 * `member` - Member.

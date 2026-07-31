@@ -100,6 +100,21 @@ func resourceObjectUserGroupDynamicMapping() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"group_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -227,6 +242,28 @@ func resourceObjectUserGroupDynamicMapping() *schema.Resource {
 			"redir_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"scim_group_attr_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scim_groups": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"scim_user_attr_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scim_users": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"sms_custom_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -360,6 +397,11 @@ func resourceObjectUserGroupDynamicMapping() *schema.Resource {
 			"user_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -615,6 +657,18 @@ func flattenObjectUserGroupDynamicMappingExpireType2edl(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectUserGroupDynamicMappingFabricForceSync2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserGroupDynamicMappingFabricObject2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserGroupDynamicMappingFabricObjectSource2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserGroupDynamicMappingGroupType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -861,6 +915,22 @@ func flattenObjectUserGroupDynamicMappingRedirUrl2edl(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectUserGroupDynamicMappingScimGroupAttrType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserGroupDynamicMappingScimGroups2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserGroupDynamicMappingScimUserAttrType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserGroupDynamicMappingScimUsers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectUserGroupDynamicMappingSmsCustomServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convintflist2str(v, d.Get(pre))
 }
@@ -1014,6 +1084,10 @@ func flattenObjectUserGroupDynamicMappingUserName2edl(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectUserGroupDynamicMappingUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectUserGroupDynamicMapping(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -1116,6 +1190,36 @@ func refreshObjectObjectUserGroupDynamicMapping(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading expire_type: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectUserGroupDynamicMappingFabricForceSync2edl(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectUserGroupDynamicMapping-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectUserGroupDynamicMappingFabricObject2edl(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectUserGroupDynamicMapping-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectUserGroupDynamicMappingFabricObjectSource2edl(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectUserGroupDynamicMapping-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -1284,6 +1388,46 @@ func refreshObjectObjectUserGroupDynamicMapping(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading redir_url: %v", err)
+		}
+	}
+
+	if err = d.Set("scim_group_attr_type", flattenObjectUserGroupDynamicMappingScimGroupAttrType2edl(o["scim-group-attr-type"], d, "scim_group_attr_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scim-group-attr-type"], "ObjectUserGroupDynamicMapping-ScimGroupAttrType"); ok {
+			if err = d.Set("scim_group_attr_type", vv); err != nil {
+				return fmt.Errorf("Error reading scim_group_attr_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scim_group_attr_type: %v", err)
+		}
+	}
+
+	if err = d.Set("scim_groups", flattenObjectUserGroupDynamicMappingScimGroups2edl(o["scim-groups"], d, "scim_groups")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scim-groups"], "ObjectUserGroupDynamicMapping-ScimGroups"); ok {
+			if err = d.Set("scim_groups", vv); err != nil {
+				return fmt.Errorf("Error reading scim_groups: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scim_groups: %v", err)
+		}
+	}
+
+	if err = d.Set("scim_user_attr_type", flattenObjectUserGroupDynamicMappingScimUserAttrType2edl(o["scim-user-attr-type"], d, "scim_user_attr_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scim-user-attr-type"], "ObjectUserGroupDynamicMapping-ScimUserAttrType"); ok {
+			if err = d.Set("scim_user_attr_type", vv); err != nil {
+				return fmt.Errorf("Error reading scim_user_attr_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scim_user_attr_type: %v", err)
+		}
+	}
+
+	if err = d.Set("scim_users", flattenObjectUserGroupDynamicMappingScimUsers2edl(o["scim-users"], d, "scim_users")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scim-users"], "ObjectUserGroupDynamicMapping-ScimUsers"); ok {
+			if err = d.Set("scim_users", vv); err != nil {
+				return fmt.Errorf("Error reading scim_users: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scim_users: %v", err)
 		}
 	}
 
@@ -1571,6 +1715,16 @@ func refreshObjectObjectUserGroupDynamicMapping(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectUserGroupDynamicMappingUuid2edl(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectUserGroupDynamicMapping-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1647,6 +1801,18 @@ func expandObjectUserGroupDynamicMappingExpire2edl(d *schema.ResourceData, v int
 }
 
 func expandObjectUserGroupDynamicMappingExpireType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserGroupDynamicMappingFabricForceSync2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserGroupDynamicMappingFabricObject2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserGroupDynamicMappingFabricObjectSource2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1881,6 +2047,22 @@ func expandObjectUserGroupDynamicMappingRedirUrl2edl(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectUserGroupDynamicMappingScimGroupAttrType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserGroupDynamicMappingScimGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserGroupDynamicMappingScimUserAttrType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserGroupDynamicMappingScimUsers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserGroupDynamicMappingSmsCustomServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -2031,6 +2213,10 @@ func expandObjectUserGroupDynamicMappingUserName2edl(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectUserGroupDynamicMappingUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectUserGroupDynamicMapping(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -2103,6 +2289,33 @@ func getObjectObjectUserGroupDynamicMapping(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["expire-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectUserGroupDynamicMappingFabricForceSync2edl(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectUserGroupDynamicMappingFabricObject2edl(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectUserGroupDynamicMappingFabricObjectSource2edl(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -2229,6 +2442,42 @@ func getObjectObjectUserGroupDynamicMapping(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["redir-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scim_group_attr_type"); ok || d.HasChange("scim_group_attr_type") {
+		t, err := expandObjectUserGroupDynamicMappingScimGroupAttrType2edl(d, v, "scim_group_attr_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scim-group-attr-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scim_groups"); ok || d.HasChange("scim_groups") {
+		t, err := expandObjectUserGroupDynamicMappingScimGroups2edl(d, v, "scim_groups")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scim-groups"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scim_user_attr_type"); ok || d.HasChange("scim_user_attr_type") {
+		t, err := expandObjectUserGroupDynamicMappingScimUserAttrType2edl(d, v, "scim_user_attr_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scim-user-attr-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scim_users"); ok || d.HasChange("scim_users") {
+		t, err := expandObjectUserGroupDynamicMappingScimUsers2edl(d, v, "scim_users")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scim-users"] = t
 		}
 	}
 
@@ -2472,6 +2721,15 @@ func getObjectObjectUserGroupDynamicMapping(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["user-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectUserGroupDynamicMappingUuid2edl(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

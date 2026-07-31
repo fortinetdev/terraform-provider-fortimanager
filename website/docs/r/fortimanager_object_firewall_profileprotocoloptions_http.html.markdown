@@ -76,6 +76,8 @@ The following arguments are supported:
 * `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
 * `streaming_content_bypass` - Enable/disable bypassing of streaming content from buffering. Valid values: `disable`, `enable`.
 
+* `streaming_content_scan_type` - Enforce scan on certain streaming content type when streaming-content-bypass is enabled. Valid values: `flv`, `octet`, `dvi`, `rtmp`, `mms-framed`, `msmediaview`, `pncmd`, `rtsp-tunnel`, `audio`, `audio-accp`, `audio-mpeg`, `pn-realaudio`, `pn-realaudio-plugin`, `mixed`, `x-mixed`, `event-stream`, `video`, `video-mp4`, `video-mpeg`, `video-xflv`, `video-xasf`.
+
 * `strip_x_forwarded_for` - Enable/disable stripping of HTTP X-Forwarded-For header. Valid values: `disable`, `enable`.
 
 * `switching_protocols` - Bypass from scanning, or block a connection that attempts to switch protocol. Valid values: `bypass`, `block`.

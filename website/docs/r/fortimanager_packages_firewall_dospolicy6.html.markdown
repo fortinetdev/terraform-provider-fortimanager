@@ -26,6 +26,7 @@ The following arguments are supported:
 
 * `anomaly` - Anomaly. The structure of `anomaly` block is documented below.
 * `comments` - Comment.
+* `custom_tags` - Custom tags.
 * `dstaddr` - Destination address name from available addresses.
 * `interface` - Incoming interface name from available interfaces.
 * `name` - Policy name.

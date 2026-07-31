@@ -35,9 +35,11 @@ The following arguments are supported:
 * `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Action performed on traffic matching the policy (default = deny). Valid values: `deny`, `accept`.
 
 * `comments` - Comment.
+* `custom_tags` - Custom tags.
 * `dstaddr` - Destination address object from available options.
 * `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 

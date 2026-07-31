@@ -59,6 +59,21 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fqdn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -125,11 +140,22 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vrf_select": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"ippool": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ippool6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -297,6 +323,18 @@ func flattenObjectWebProxyForwardServerComment(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectWebProxyForwardServerFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyForwardServerFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebProxyForwardServerFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -345,11 +383,19 @@ func flattenObjectWebProxyForwardServerUsername(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectWebProxyForwardServerUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectWebProxyForwardServerIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebProxyForwardServerIppool6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -381,6 +427,36 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectWebProxyForwardServerFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectWebProxyForwardServer-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectWebProxyForwardServerFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectWebProxyForwardServer-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectWebProxyForwardServerFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectWebProxyForwardServer-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -504,6 +580,16 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectWebProxyForwardServerUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectWebProxyForwardServer-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("vrf_select", flattenObjectWebProxyForwardServerVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectWebProxyForwardServer-VrfSelect"); ok {
 			if err = d.Set("vrf_select", vv); err != nil {
@@ -521,6 +607,16 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ippool: %v", err)
+		}
+	}
+
+	if err = d.Set("ippool6", flattenObjectWebProxyForwardServerIppool6(o["ippool6"], d, "ippool6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ippool6"], "ObjectWebProxyForwardServer-Ippool6"); ok {
+			if err = d.Set("ippool6", vv); err != nil {
+				return fmt.Errorf("Error reading ippool6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ippool6: %v", err)
 		}
 	}
 
@@ -548,6 +644,18 @@ func expandObjectWebProxyForwardServerAddrType(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebProxyForwardServerComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebProxyForwardServerFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -603,11 +711,19 @@ func expandObjectWebProxyForwardServerUsername(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectWebProxyForwardServerUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebProxyForwardServerVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectWebProxyForwardServerIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebProxyForwardServerIppool6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -633,6 +749,33 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectWebProxyForwardServerFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectWebProxyForwardServerFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectWebProxyForwardServerFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -753,6 +896,15 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectWebProxyForwardServerUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("vrf_select"); ok || d.HasChange("vrf_select") {
 		t, err := expandObjectWebProxyForwardServerVrfSelect(d, v, "vrf_select")
 		if err != nil {
@@ -768,6 +920,15 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ippool"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ippool6"); ok || d.HasChange("ippool6") {
+		t, err := expandObjectWebProxyForwardServerIppool6(d, v, "ippool6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ippool6"] = t
 		}
 	}
 

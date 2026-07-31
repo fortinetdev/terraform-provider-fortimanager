@@ -8,14 +8,21 @@ import (
 	"log"
 	"math/rand/v2"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 )
 
 ////////////////////////////////////////////////////////////////////////
 
-func createUpdate(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool, wsParams map[string]string) (output map[string]interface{}, err error) {
-	log.Printf("[INFO] Request infomation: %v:    %v\n", path, params)
+func createUpdate(requestInput *requestInput) (output map[string]interface{}, err error) {
+	c := requestInput.fortiSDKClient
+	method := requestInput.method
+	path := requestInput.path
+	params := requestInput.bodyParams
+	wsParams := requestInput.wsParams
+	move := requestInput.bMove
+	waitTime := requestInput.waitTime
 	session := ""
 	// Lock if needed
 	if c.WorkspaceMode == "normal" {
@@ -29,6 +36,9 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 	// Send the request
 	data := encodeData(c, path, method, session, params, move)
 	_, result, err := sendRequest(c, data)
+	if waitTime != 0.0 {
+		time.Sleep(time.Duration(waitTime) * time.Second)
+	}
 	// Unlock if needed
 	if c.WorkspaceMode == "normal" {
 		unlockErr := unlockWorkspace(c, wsParams, session)
@@ -52,7 +62,12 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 	return
 }
 
-func delete(c *FortiSDKClient, path string, method string, move bool, wsParams map[string]string) (err error) {
+func delete(requestInput *requestInput) (err error) {
+	c := requestInput.fortiSDKClient
+	method := requestInput.method
+	path := requestInput.path
+	wsParams := requestInput.wsParams
+	move := requestInput.bMove
 	session := ""
 	// Lock if needed
 	if c.WorkspaceMode == "normal" {
@@ -84,7 +99,11 @@ func delete(c *FortiSDKClient, path string, method string, move bool, wsParams m
 	return
 }
 
-func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[string]interface{}, err error) {
+func read(requestInput *requestInput) (mapTmp map[string]interface{}, err error) {
+	c := requestInput.fortiSDKClient
+	method := requestInput.method
+	path := requestInput.path
+	move := requestInput.bMove
 	session := ""
 	if c.Config.Auth.CleanSession {
 		session, err = c.loginSession()
@@ -106,7 +125,12 @@ func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[
 	return
 }
 
-func readMove(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool) (listTmp []interface{}, err error) {
+func readMove(requestInput *requestInput) (listTmp []interface{}, err error) {
+	c := requestInput.fortiSDKClient
+	method := requestInput.method
+	path := requestInput.path
+	params := requestInput.bodyParams
+	move := requestInput.bMove
 	session := ""
 	if c.Config.Auth.CleanSession {
 		session, err = c.loginSession()
@@ -258,6 +282,13 @@ func encodeData(c *FortiSDKClient, path, method, session string, params *map[str
 	if session != "" {
 		data["session"] = session
 	} else if c.Session != "" {
+		vMsg, err := c.ValidateSession(c.Session)
+		if err != nil {
+			if vMsg == "no_permission" {
+				session, _ := c.loginSession()
+				c.Session = session
+			}
+		}
 		data["session"] = c.Session
 		session = c.Session
 	}
@@ -291,10 +322,23 @@ func decodeData(result map[string]interface{}) (dataMap map[string]interface{}, 
 	v := result["result"]
 
 	// fortiapi intercepted all the exceptions
-	l := v.([]interface{})
-	v2 := l[0].(map[string]interface{})
-	if v2["data"] != nil {
-		if dataList, ok := v2["data"].([]interface{}); ok {
+	var rst map[string]interface{}
+	switch l := v.(type) {
+	case []interface{}:
+		if len(l) > 0 && l[0] != nil {
+			rst = l[0].(map[string]interface{})
+
+		}
+
+	case map[string]interface{}:
+		rst = l
+
+	default:
+		fmt.Printf("Unsupported response result type: %T\n", l)
+	}
+
+	if rst["data"] != nil {
+		if dataList, ok := rst["data"].([]interface{}); ok {
 			if len(dataList) == 0 {
 				err = fmt.Errorf("API response is empty.")
 				return
@@ -304,7 +348,7 @@ func decodeData(result map[string]interface{}) (dataMap map[string]interface{}, 
 			} else {
 				err = fmt.Errorf("The element of data list is not map for the API response. Please file an issue on provider's Github repository.")
 			}
-		} else if dataMap, ok = v2["data"].(map[string]interface{}); ok {
+		} else if dataMap, ok = rst["data"].(map[string]interface{}); ok {
 			return
 		} else {
 			err = fmt.Errorf("Could not identify the type of parameter 'data' of API response. Please file an issue on provider's Github repository.")
@@ -336,25 +380,35 @@ func fortiAPIErrorFormat(result map[string]interface{}, body string) (code int, 
 	if result != nil {
 		if result["result"] != nil {
 			v := result["result"]
+			var rst map[string]interface{}
+			switch l := v.(type) {
+			case []interface{}:
+				if len(l) > 0 && l[0] != nil {
+					rst = l[0].(map[string]interface{})
 
-			l := v.([]interface{})
-			if len(l) > 0 && l[0] != nil {
-				v2 := l[0].(map[string]interface{})
-				if v2["status"] != nil {
-					v3 := v2["status"].(map[string]interface{})
+				}
 
-					if v3["code"] != nil && v3["message"] != nil {
-						code = fortiIntValue(v3["code"])
-						message := fortiStringValue(v3["message"])
+			case map[string]interface{}:
+				rst = l
 
-						if code == 0 {
-							err = nil
-							return
-						}
+			default:
+				fmt.Printf("Unsupported response result type: %T\n", l)
+			}
 
-						err = fmt.Errorf("\nerr %d: %v", code, message)
-						return code, err
+			if rst != nil && rst["status"] != nil {
+				v3 := rst["status"].(map[string]interface{})
+
+				if v3["code"] != nil && v3["message"] != nil {
+					code = fortiIntValue(v3["code"])
+					message := fortiStringValue(v3["message"])
+
+					if code == 0 {
+						err = nil
+						return
 					}
+
+					err = fmt.Errorf("\nerr %d: %v", code, message)
+					return code, err
 				}
 			}
 		}
@@ -396,7 +450,7 @@ func fortiIntValue(t interface{}) int {
 }
 
 func replaceParaWithValue(path string, paradict map[string]string) (string, error) {
-	if !strings.ContainsAny(path, "[ | {") {
+	if !strings.ContainsAny(path, "[|{") {
 		return path, nil
 	}
 	if paradict == nil {
@@ -434,9 +488,100 @@ func replaceParaWithValue(path string, paradict map[string]string) (string, erro
 	rstPath = strings.ReplaceAll(rstPath, "//", "/")
 	rstPath = strings.TrimRight(rstPath, "/")
 
-	if strings.ContainsAny(rstPath, "[ | {") {
+	if strings.ContainsAny(rstPath, "[|{") {
 		return "", fmt.Errorf("path parameters error %v, %v", path, paradict)
 	}
 
 	return rstPath, nil
+}
+
+func conv2str(v interface{}) string {
+	if cv, ok := v.(string); ok {
+		return cv
+	} else if _, ok := v.([]interface{}); ok {
+		return convintflist2str(v, nil).(string)
+	} else if v1, ok := v.(float64); ok {
+		return strconv.FormatFloat(v1, 'f', -1, 64)
+	} else if v1, ok := v.(int); ok {
+		return strconv.FormatInt(int64(v1), 10)
+	}
+	return ""
+}
+
+func convintflist2str(v, tfv interface{}) interface{} {
+	if vList, ok := v.([]interface{}); ok {
+		if len(vList) == 0 {
+			return ""
+		}
+		vsList := make([]string, len(vList))
+		for i, item := range vList {
+			vsList[i] = strings.TrimSpace(fmt.Sprintf("%v", item))
+			if strings.Contains(vsList[i], ",") {
+				vsList[i] = "'" + vsList[i] + "'"
+			}
+		}
+		if tfv != nil {
+			if tfvs := fmt.Sprintf("%v", tfv); tfvs != "" {
+				tfvList := flattenStringList(tfv).([]string)
+				if len(tfvList) == len(vsList) {
+					tfvDict := make(map[string]bool)
+					for _, item := range tfvList {
+						tfvDict[item] = true
+					}
+					for _, item := range vsList {
+						item = strings.Trim(item, "'\" ")
+						if _, ok := tfvDict[item]; !ok {
+							return strings.Join(vsList[:], ", ")
+						}
+					}
+					return tfv
+				}
+			}
+		}
+		return strings.Join(vsList[:], ", ")
+	} else if vs, ok := v.(string); ok {
+		return vs
+	}
+	return ""
+}
+
+func flattenStringList(v interface{}) interface{} {
+	if v == nil {
+		return v
+	}
+	vsList := []string{}
+	if cv, ok := v.(string); ok {
+		if strings.Contains(cv, "'") || strings.Contains(cv, "\"") {
+			re := regexp.MustCompile(`['\"].*?['\"]`)
+			comma := re.FindAllString(cv, -1)
+			non_comma := re.Split(cv, -1)
+			for i := range non_comma {
+				cur_list := strings.Split(non_comma[i], ",")
+				for _, item := range cur_list {
+					item = strings.TrimSpace(item)
+					if item != "" {
+						vsList = append(vsList, item)
+					}
+				}
+				if i < len(comma) {
+					cur_item := strings.Trim(comma[i], "'\" ")
+					vsList = append(vsList, cur_item)
+				}
+			}
+		} else {
+			vsList = strings.Split(cv, ",")
+		}
+	} else if vList, ok := v.([]interface{}); ok {
+		for _, item := range vList {
+			vsList = append(vsList, fmt.Sprintf("%v", item))
+		}
+	}
+	if len(vsList) == 0 {
+		return vsList
+	}
+	for i, item := range vsList {
+		vsList[i] = strings.TrimSpace(item)
+	}
+
+	return vsList
 }

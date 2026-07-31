@@ -38,6 +38,7 @@ The following arguments are supported:
 * `tmp_cert_file` - Temporary certificate file.
 * `vendor` - HSM vendor. Valid values: `unknown`, `gch`.
 
+* `scep_url` - Scep-Url.
 
 
 ## Attribute Reference

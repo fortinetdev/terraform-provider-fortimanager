@@ -477,6 +477,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"skip_ip_check_in_session": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssh_enc_algo": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1085,6 +1090,10 @@ func flattenSystemGlobalSaveLastHitInAdomdb(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemGlobalSearchAllAdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalSkipIpCheckInSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2134,6 +2143,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("skip_ip_check_in_session", flattenSystemGlobalSkipIpCheckInSession(o["skip-ip-check-in-session"], d, "skip_ip_check_in_session")); err != nil {
+		if vv, ok := fortiAPIPatch(o["skip-ip-check-in-session"], "SystemGlobal-SkipIpCheckInSession"); ok {
+			if err = d.Set("skip_ip_check_in_session", vv); err != nil {
+				return fmt.Errorf("Error reading skip_ip_check_in_session: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading skip_ip_check_in_session: %v", err)
+		}
+	}
+
 	if err = d.Set("ssh_enc_algo", flattenSystemGlobalSshEncAlgo(o["ssh-enc-algo"], d, "ssh_enc_algo")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssh-enc-algo"], "SystemGlobal-SshEncAlgo"); ok {
 			if err = d.Set("ssh_enc_algo", vv); err != nil {
@@ -2739,6 +2758,10 @@ func expandSystemGlobalSaveLastHitInAdomdb(d *schema.ResourceData, v interface{}
 }
 
 func expandSystemGlobalSearchAllAdoms(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalSkipIpCheckInSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3674,6 +3697,15 @@ func getObjectSystemGlobal(d *schema.ResourceData, bemptysontable bool) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["search-all-adoms"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("skip_ip_check_in_session"); ok || d.HasChange("skip_ip_check_in_session") {
+		t, err := expandSystemGlobalSkipIpCheckInSession(d, v, "skip_ip_check_in_session")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["skip-ip-check-in-session"] = t
 		}
 	}
 

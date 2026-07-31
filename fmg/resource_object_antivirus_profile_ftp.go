@@ -95,6 +95,7 @@ func resourceObjectAntivirusProfileFtp() *schema.Resource {
 			"malware_stream": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"options": &schema.Schema{
 				Type:     schema.TypeSet,

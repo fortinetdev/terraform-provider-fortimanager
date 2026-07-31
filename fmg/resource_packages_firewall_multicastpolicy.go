@@ -74,6 +74,12 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dnat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -355,6 +361,10 @@ func flattenPackagesFirewallMulticastPolicyComments(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenPackagesFirewallMulticastPolicyCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallMulticastPolicyDnat(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -461,6 +471,16 @@ func refreshObjectPackagesFirewallMulticastPolicy(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallMulticastPolicyCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallMulticastPolicy-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -665,6 +685,10 @@ func expandPackagesFirewallMulticastPolicyComments(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandPackagesFirewallMulticastPolicyCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallMulticastPolicyDnat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -764,6 +788,15 @@ func getObjectPackagesFirewallMulticastPolicy(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallMulticastPolicyCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 

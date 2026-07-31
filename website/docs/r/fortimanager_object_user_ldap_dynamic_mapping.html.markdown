@@ -39,6 +39,12 @@ The following arguments are supported:
 
 * `cnid` - Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
 * `dn` - Distinguished name used to look up entries on the LDAP server.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `filter` - Filter.
 * `group` - Group.
 * `group_filter` - Filter used for group matching.
@@ -90,6 +96,7 @@ The following arguments are supported:
 
 * `user_info_exchange_server` - MS Exchange server from which to fetch user information.
 * `username` - Username (full DN) for initial binding.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `validate_server_certificate` - Validate-Server-Certificate. Valid values: `disable`, `enable`.
 
 * `vrf_select` - VRF ID used for connection to server.

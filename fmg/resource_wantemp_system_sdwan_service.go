@@ -65,6 +65,11 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"bandwidth_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"bandwidth_weight": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -304,6 +309,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -559,6 +565,10 @@ func flattenWantempSystemSdwanServiceAddrMode2edl(v interface{}, d *schema.Resou
 }
 
 func flattenWantempSystemSdwanServiceAgentExclusive2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceBandwidthType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -899,6 +909,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading agent_exclusive: %v", err)
+		}
+	}
+
+	if err = d.Set("bandwidth_type", flattenWantempSystemSdwanServiceBandwidthType2edl(o["bandwidth-type"], d, "bandwidth_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["bandwidth-type"], "WantempSystemSdwanService-BandwidthType"); ok {
+			if err = d.Set("bandwidth_type", vv); err != nil {
+				return fmt.Errorf("Error reading bandwidth_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading bandwidth_type: %v", err)
 		}
 	}
 
@@ -1593,6 +1613,10 @@ func expandWantempSystemSdwanServiceAgentExclusive2edl(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceBandwidthType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceBandwidthWeight2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1913,6 +1937,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["agent-exclusive"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("bandwidth_type"); ok || d.HasChange("bandwidth_type") {
+		t, err := expandWantempSystemSdwanServiceBandwidthType2edl(d, v, "bandwidth_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["bandwidth-type"] = t
 		}
 	}
 

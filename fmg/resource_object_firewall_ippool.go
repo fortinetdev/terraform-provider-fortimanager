@@ -230,6 +230,21 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fabric_force_sync": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object_source": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"icmp_session_quota": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -313,6 +328,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"uuid": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 					},
 				},
 			},
@@ -328,6 +348,21 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"exclude_ip": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -416,6 +451,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			},
 			"utilization_alarm_raise": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -775,6 +815,24 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["exclude_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-ExcludeIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := i["fabric-force-sync"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingFabricForceSync(i["fabric-force-sync"], d, pre_append)
+			tmp["fabric_force_sync"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-FabricForceSync")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := i["fabric-object"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingFabricObject(i["fabric-object"], d, pre_append)
+			tmp["fabric_object"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-FabricObject")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := i["fabric-object-source"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingFabricObjectSource(i["fabric-object-source"], d, pre_append)
+			tmp["fabric_object_source"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-FabricObjectSource")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "icmp_session_quota"
 		if _, ok := i["icmp-session-quota"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingIcmpSessionQuota(i["icmp-session-quota"], d, pre_append)
@@ -887,6 +945,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 		if _, ok := i["utilization-alarm-raise"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingUtilizationAlarmRaise(i["utilization-alarm-raise"], d, pre_append)
 			tmp["utilization_alarm_raise"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-UtilizationAlarmRaise")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := i["uuid"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingUuid(i["uuid"], d, pre_append)
+			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Uuid")
 		}
 
 		if len(tmp) > 0 {
@@ -1024,6 +1088,18 @@ func flattenObjectFirewallIppoolDynamicMappingExcludeIp(v interface{}, d *schema
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallIppoolDynamicMappingFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingIcmpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1100,6 +1176,10 @@ func flattenObjectFirewallIppoolDynamicMappingUtilizationAlarmRaise(v interface{
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1110,6 +1190,18 @@ func flattenObjectFirewallIppoolEndport(v interface{}, d *schema.ResourceData, p
 
 func flattenObjectFirewallIppoolExcludeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallIppoolFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallIppoolIcmpSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1189,6 +1281,10 @@ func flattenObjectFirewallIppoolUtilizationAlarmClear(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallIppoolUtilizationAlarmRaise(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1417,6 +1513,36 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("fabric_force_sync", flattenObjectFirewallIppoolFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectFirewallIppool-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallIppoolFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallIppool-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectFirewallIppoolFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectFirewallIppool-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
+		}
+	}
+
 	if err = d.Set("icmp_session_quota", flattenObjectFirewallIppoolIcmpSessionQuota(o["icmp-session-quota"], d, "icmp_session_quota")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icmp-session-quota"], "ObjectFirewallIppool-IcmpSessionQuota"); ok {
 			if err = d.Set("icmp_session_quota", vv); err != nil {
@@ -1617,6 +1743,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectFirewallIppoolUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallIppool-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1809,6 +1945,21 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["exclude-ip"], _ = expandObjectFirewallIppoolDynamicMappingExcludeIp(d, i["exclude_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-force-sync"], _ = expandObjectFirewallIppoolDynamicMappingFabricForceSync(d, i["fabric_force_sync"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object"], _ = expandObjectFirewallIppoolDynamicMappingFabricObject(d, i["fabric_object"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object-source"], _ = expandObjectFirewallIppoolDynamicMappingFabricObjectSource(d, i["fabric_object_source"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "icmp_session_quota"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["icmp-session-quota"], _ = expandObjectFirewallIppoolDynamicMappingIcmpSessionQuota(d, i["icmp_session_quota"], pre_append)
@@ -1902,6 +2053,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utilization_alarm_raise"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["utilization-alarm-raise"], _ = expandObjectFirewallIppoolDynamicMappingUtilizationAlarmRaise(d, i["utilization_alarm_raise"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["uuid"], _ = expandObjectFirewallIppoolDynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
 		if len(tmp) > 0 {
@@ -2032,6 +2188,18 @@ func expandObjectFirewallIppoolDynamicMappingExcludeIp(d *schema.ResourceData, v
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingIcmpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2108,6 +2276,10 @@ func expandObjectFirewallIppoolDynamicMappingUtilizationAlarmRaise(d *schema.Res
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2118,6 +2290,18 @@ func expandObjectFirewallIppoolEndport(d *schema.ResourceData, v interface{}, pr
 
 func expandObjectFirewallIppoolExcludeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallIppoolFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallIppoolIcmpSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2197,6 +2381,10 @@ func expandObjectFirewallIppoolUtilizationAlarmClear(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallIppoolUtilizationAlarmRaise(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2383,6 +2571,33 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectFirewallIppoolFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectFirewallIppoolFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectFirewallIppoolFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("icmp_session_quota"); ok || d.HasChange("icmp_session_quota") {
 		t, err := expandObjectFirewallIppoolIcmpSessionQuota(d, v, "icmp_session_quota")
 		if err != nil {
@@ -2560,6 +2775,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["utilization-alarm-raise"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectFirewallIppoolUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

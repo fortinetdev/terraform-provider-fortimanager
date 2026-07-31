@@ -137,6 +137,31 @@ func resourceObjectExtensionControllerExtenderVap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"security_exempt_list": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"security_external_web": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"security_groups": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"security_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"security_redirect_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ssid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -363,6 +388,26 @@ func flattenObjectExtensionControllerExtenderVapSecurity(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectExtensionControllerExtenderVapSecurityExemptList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderVapSecurityExternalWeb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderVapSecurityGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectExtensionControllerExtenderVapSecurityMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectExtensionControllerExtenderVapSecurityRedirectUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectExtensionControllerExtenderVapSsid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -536,6 +581,56 @@ func refreshObjectObjectExtensionControllerExtenderVap(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("security_exempt_list", flattenObjectExtensionControllerExtenderVapSecurityExemptList(o["security-exempt-list"], d, "security_exempt_list")); err != nil {
+		if vv, ok := fortiAPIPatch(o["security-exempt-list"], "ObjectExtensionControllerExtenderVap-SecurityExemptList"); ok {
+			if err = d.Set("security_exempt_list", vv); err != nil {
+				return fmt.Errorf("Error reading security_exempt_list: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading security_exempt_list: %v", err)
+		}
+	}
+
+	if err = d.Set("security_external_web", flattenObjectExtensionControllerExtenderVapSecurityExternalWeb(o["security-external-web"], d, "security_external_web")); err != nil {
+		if vv, ok := fortiAPIPatch(o["security-external-web"], "ObjectExtensionControllerExtenderVap-SecurityExternalWeb"); ok {
+			if err = d.Set("security_external_web", vv); err != nil {
+				return fmt.Errorf("Error reading security_external_web: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading security_external_web: %v", err)
+		}
+	}
+
+	if err = d.Set("security_groups", flattenObjectExtensionControllerExtenderVapSecurityGroups(o["security-groups"], d, "security_groups")); err != nil {
+		if vv, ok := fortiAPIPatch(o["security-groups"], "ObjectExtensionControllerExtenderVap-SecurityGroups"); ok {
+			if err = d.Set("security_groups", vv); err != nil {
+				return fmt.Errorf("Error reading security_groups: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading security_groups: %v", err)
+		}
+	}
+
+	if err = d.Set("security_mode", flattenObjectExtensionControllerExtenderVapSecurityMode(o["security-mode"], d, "security_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["security-mode"], "ObjectExtensionControllerExtenderVap-SecurityMode"); ok {
+			if err = d.Set("security_mode", vv); err != nil {
+				return fmt.Errorf("Error reading security_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading security_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("security_redirect_url", flattenObjectExtensionControllerExtenderVapSecurityRedirectUrl(o["security-redirect-url"], d, "security_redirect_url")); err != nil {
+		if vv, ok := fortiAPIPatch(o["security-redirect-url"], "ObjectExtensionControllerExtenderVap-SecurityRedirectUrl"); ok {
+			if err = d.Set("security_redirect_url", vv); err != nil {
+				return fmt.Errorf("Error reading security_redirect_url: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading security_redirect_url: %v", err)
+		}
+	}
+
 	if err = d.Set("ssid", flattenObjectExtensionControllerExtenderVapSsid(o["ssid"], d, "ssid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssid"], "ObjectExtensionControllerExtenderVap-Ssid"); ok {
 			if err = d.Set("ssid", vv); err != nil {
@@ -650,6 +745,26 @@ func expandObjectExtensionControllerExtenderVapSaePassword(d *schema.ResourceDat
 }
 
 func expandObjectExtensionControllerExtenderVapSecurity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderVapSecurityExemptList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderVapSecurityExternalWeb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderVapSecurityGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtensionControllerExtenderVapSecurityMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectExtensionControllerExtenderVapSecurityRedirectUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -822,6 +937,51 @@ func getObjectObjectExtensionControllerExtenderVap(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["security"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("security_exempt_list"); ok || d.HasChange("security_exempt_list") {
+		t, err := expandObjectExtensionControllerExtenderVapSecurityExemptList(d, v, "security_exempt_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["security-exempt-list"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("security_external_web"); ok || d.HasChange("security_external_web") {
+		t, err := expandObjectExtensionControllerExtenderVapSecurityExternalWeb(d, v, "security_external_web")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["security-external-web"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("security_groups"); ok || d.HasChange("security_groups") {
+		t, err := expandObjectExtensionControllerExtenderVapSecurityGroups(d, v, "security_groups")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["security-groups"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("security_mode"); ok || d.HasChange("security_mode") {
+		t, err := expandObjectExtensionControllerExtenderVapSecurityMode(d, v, "security_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["security-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("security_redirect_url"); ok || d.HasChange("security_redirect_url") {
+		t, err := expandObjectExtensionControllerExtenderVapSecurityRedirectUrl(d, v, "security_redirect_url")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["security-redirect-url"] = t
 		}
 	}
 

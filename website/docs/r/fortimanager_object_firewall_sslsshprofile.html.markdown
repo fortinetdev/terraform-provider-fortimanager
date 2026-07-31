@@ -55,6 +55,12 @@ The following arguments are supported:
 * `comment` - Optional comments.
 * `dot` - Dot. The structure of `dot` block is documented below.
 * `ech_outer_sni` - Ech-Outer-Sni. The structure of `ech_outer_sni` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `ftps` - Ftps. The structure of `ftps` block is documented below.
 * `https` - Https. The structure of `https` block is documented below.
 * `imaps` - Imaps. The structure of `imaps` block is documented below.
@@ -93,6 +99,7 @@ The following arguments are supported:
 * `untrusted_caname` - Untrusted CA certificate used by SSL Inspection.
 * `use_ssl_server` - Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `ssl_client_certificate` - Ssl-Client-Certificate. The structure of `ssl_client_certificate` block is documented below.
 * `whitelist` - Enable/disable exempting servers by FortiGuard whitelist. Valid values: `disable`, `enable`.
 

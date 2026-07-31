@@ -34,6 +34,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"admin_httpd_keep_alive_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"admin_https_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -385,6 +390,10 @@ func flattenSystemAdminSettingAccessBanner(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenSystemAdminSettingAdminHttpdKeepAliveTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminSettingAdminHttpsRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -591,6 +600,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading access_banner: %v", err)
+		}
+	}
+
+	if err = d.Set("admin_httpd_keep_alive_timeout", flattenSystemAdminSettingAdminHttpdKeepAliveTimeout(o["admin-httpd-keep-alive-timeout"], d, "admin_httpd_keep_alive_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["admin-httpd-keep-alive-timeout"], "SystemAdminSetting-AdminHttpdKeepAliveTimeout"); ok {
+			if err = d.Set("admin_httpd_keep_alive_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading admin_httpd_keep_alive_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading admin_httpd_keep_alive_timeout: %v", err)
 		}
 	}
 
@@ -1097,6 +1116,10 @@ func expandSystemAdminSettingAccessBanner(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemAdminSettingAdminHttpdKeepAliveTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingAdminHttpsRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1310,6 +1333,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData, bemptysontable bool) (*
 			return &obj, err
 		} else if t != nil {
 			obj["access-banner"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("admin_httpd_keep_alive_timeout"); ok || d.HasChange("admin_httpd_keep_alive_timeout") {
+		t, err := expandSystemAdminSettingAdminHttpdKeepAliveTimeout(d, v, "admin_httpd_keep_alive_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["admin-httpd-keep-alive-timeout"] = t
 		}
 	}
 

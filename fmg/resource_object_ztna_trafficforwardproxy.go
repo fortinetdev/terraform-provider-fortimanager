@@ -424,6 +424,7 @@ func resourceObjectZtnaTrafficForwardProxy() *schema.Resource {
 						"url_pattern": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

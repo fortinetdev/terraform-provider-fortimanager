@@ -50,6 +50,8 @@ The following arguments are supported:
 * `dedicated_management_affinity` - Affinity setting for management deamons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
 * `dedicated_management_cpu` - Enable to dedicate one CPU for GUI and CLI connections when NPs are busy. Valid values: `disable`, `enable`.
 
+* `default_ipsec_mcs_type` - Configure default IPSec MCS type. Valid values: `policing`, `shaping`.
+
 * `default_qos_type` - Set default QoS type. Valid values: `policing`, `shaping`.
 
 * `default_tcp_refresh_dir` - Default SSE timeout TCP refresh direction. Valid values: `both`, `outgoing`, `incoming`.
@@ -62,6 +64,14 @@ The following arguments are supported:
 * `dse_timeout` - DSE timeout in seconds (0-3600, default = 10).
 * `dsw_dts_profile` - Dsw-Dts-Profile. The structure of `dsw_dts_profile` block is documented below.
 * `dsw_queue_dts_profile` - Dsw-Queue-Dts-Profile. The structure of `dsw_queue_dts_profile` block is documented below.
+* `eif_tcp_refresh_dir` - SSE timeout TCP refresh direction for EIF session (both, incoming, or outgoing, default = both). Valid values: `both`, `outgoing`, `incoming`.
+
+* `eif_tcp_ttl` - SSE timeout TCP TTL for EIF session (300 - 72000 sec, default 3600 sec).
+* `eif_udp_refresh_dir` - SSE timeout UDP refresh direction for EIF session (both, incoming, or outgoing, default = both). Valid values: `both`, `outgoing`, `incoming`.
+
+* `eif_udp_ttl` - SSE timeout UDP TTL for EIF session (90 - 72000 sec, default 180 sec).
+* `extra_timeout_tcp` - Extra timeout for TCP with refresh-dir=incoming/both when "scan-stale" is used (0 - 7200 sec, default 0 sec).
+* `extra_timeout_udp` - Extra timeout for UDP with refresh-dir=incoming/both when "scan-stale" is used (0 - 7200 sec, default 0 sec).
 * `fastpath` - Enable/disable NP6 offloading (also called fast path). Valid values: `disable`, `enable`.
 
 * `fp_anomaly` - Fp-Anomaly. The structure of `fp_anomaly` block is documented below.
@@ -70,6 +80,8 @@ The following arguments are supported:
 * `gtp_enhanced_mode` - Enable/disable GTP enhanced mode. Valid values: `disable`, `enable`.
 
 * `gtp_support` - Enable/Disable NP7 GTP support Valid values: `disable`, `enable`.
+
+* `gtpu_hbq_teid_load_balance` - Enable/disable TEID hashing for GTPU traffic to HBQs. Valid values: `disable`, `enable`.
 
 * `hash_config` - Configure NPU trunk hash. Valid values: `5-tuple`, `src-ip`, `src-dst-ip`.
 
@@ -148,11 +160,16 @@ The following arguments are supported:
 
 * `mcast_session_accounting` - Enable/disable traffic accounting for each multicast session through TAE counter. Valid values: `disable`, `session-based`, `tpe-based`.
 
+* `mcs_auto_start` - Enable/disable NPU MCS auto start. Valid values: `disable`, `enable`.
+
+* `mcs_host_packet_tpe_shaping` - Enable/disable NPU shaping for host traffic with shaping profile on IPSec interface. Valid values: `disable`, `enable`.
+
 * `mcast_session_counting` - Mcast-Session-Counting. Valid values: `disable`, `enable`, `session-based`, `tpe-based`.
 
 * `mcast_session_counting6` - Enable/disable traffic accounting for each multicast session6 through TAE counter. Valid values: `disable`, `enable`, `session-based`, `tpe-based`.
 
 * `napi_break_interval` - NAPI break interval (default 0).
+* `np_linkscan_interval` - NPU link scan interval in milliseconds (50 - 1000, default = 1000).
 * `nat46_force_ipv4_packet_forwarding` - Enable/disable mandatory IPv4 packet forwarding in nat46. Valid values: `disable`, `enable`.
 
 * `np_queues` - Np-Queues. The structure of `np_queues` block is documented below.
@@ -218,6 +235,7 @@ The following arguments are supported:
 * `sw_np_pause` - Enable SP5 tx pause and marvell rx receive pause, for sw uplink only. Valid values: `disable`, `enable`.
 
 * `sw_np_rate` - Bandwidth from switch to NP, for sw uplink port.
+* `sw_np_rate_burst` - Burst value for bandwidth from switch to NP.
 * `sw_np_rate_unit` - Unit for bandwidth from switch to NP, for sw uplink port. Valid values: `mbps`, `pps`.
 
 * `sw_tr_hash` - Sw-Tr-Hash. The structure of `sw_tr_hash` block is documented below.
@@ -236,6 +254,9 @@ The following arguments are supported:
 
 * `use_mse_oft` - Enable/disable use of MSE OFT. Valid values: `disable`, `enable`.
 
+* `vlan_accounting` - Enable/disable NP7 VLAN accounting (default = enabled). Valid values: `disable`, `enable`.
+
+* `vlan_acct_interval` - VLAN accounting update interval in milliseconds (100 - 10000, default = 200).
 * `vlan_lookup_cache` - Enable/disable vlan lookup cache (default enabled). Valid values: `disable`, `enable`.
 
 * `vxlan_mac_flapping_guard` - Enable/disable VxLAN MAC flapping guard. Valid values: `disable`, `enable`.

@@ -40,6 +40,10 @@ func resourceSecurityconsoleAbort() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"preview_taskid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -86,6 +90,10 @@ func flattenSecurityconsoleAbortAdom(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenSecurityconsoleAbortPreviewTaskid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSecurityconsoleAbort(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -96,6 +104,16 @@ func refreshObjectSecurityconsoleAbort(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading fmgadom: %v", err)
+		}
+	}
+
+	if err = d.Set("preview_taskid", flattenSecurityconsoleAbortPreviewTaskid(o["preview_taskid"], d, "preview_taskid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preview_taskid"], "SecurityconsoleAbort-PreviewTaskid"); ok {
+			if err = d.Set("preview_taskid", vv); err != nil {
+				return fmt.Errorf("Error reading preview_taskid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preview_taskid: %v", err)
 		}
 	}
 
@@ -112,6 +130,10 @@ func expandSecurityconsoleAbortAdom(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandSecurityconsoleAbortPreviewTaskid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSecurityconsoleAbort(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -121,6 +143,15 @@ func getObjectSecurityconsoleAbort(d *schema.ResourceData, bemptysontable bool) 
 			return &obj, err
 		} else if t != nil {
 			obj["adom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preview_taskid"); ok || d.HasChange("preview_taskid") {
+		t, err := expandSecurityconsoleAbortPreviewTaskid(d, v, "preview_taskid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preview_taskid"] = t
 		}
 	}
 

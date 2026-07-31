@@ -50,6 +50,10 @@ func resourceSecurityconsoleInstallPreview() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"preview_taskid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -97,14 +101,23 @@ func resourceSecurityconsoleInstallPreviewUpdate(d *schema.ResourceData, m inter
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsoleInstallPreview(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsoleInstallPreview(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleInstallPreview resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsoleInstallPreview")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsoleInstallPreviewRead(d, m)
 }
@@ -129,6 +142,10 @@ func flattenSecurityconsoleInstallPreviewDevice(v interface{}, d *schema.Resourc
 
 func flattenSecurityconsoleInstallPreviewFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenSecurityconsoleInstallPreviewPreviewTaskid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenSecurityconsoleInstallPreviewScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -221,6 +238,16 @@ func refreshObjectSecurityconsoleInstallPreview(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("preview_taskid", flattenSecurityconsoleInstallPreviewPreviewTaskid(o["preview_taskid"], d, "preview_taskid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preview_taskid"], "SecurityconsoleInstallPreview-PreviewTaskid"); ok {
+			if err = d.Set("preview_taskid", vv); err != nil {
+				return fmt.Errorf("Error reading preview_taskid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preview_taskid: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("scope", flattenSecurityconsoleInstallPreviewScope(o["scope"], d, "scope")); err != nil {
 			if vv, ok := fortiAPIPatch(o["scope"], "SecurityconsoleInstallPreview-Scope"); ok {
@@ -274,6 +301,10 @@ func expandSecurityconsoleInstallPreviewDevice(d *schema.ResourceData, v interfa
 
 func expandSecurityconsoleInstallPreviewFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSecurityconsoleInstallPreviewPreviewTaskid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandSecurityconsoleInstallPreviewScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -349,6 +380,15 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData, bemptysontab
 			return &obj, err
 		} else if t != nil {
 			obj["flags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preview_taskid"); ok || d.HasChange("preview_taskid") {
+		t, err := expandSecurityconsoleInstallPreviewPreviewTaskid(d, v, "preview_taskid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preview_taskid"] = t
 		}
 	}
 

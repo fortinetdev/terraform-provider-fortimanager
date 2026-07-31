@@ -68,6 +68,7 @@ func resourceWantempSystemSdwanServiceSla() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -117,11 +118,19 @@ func resourceWantempSystemSdwanServiceSlaCreate(d *schema.ResourceData, m interf
 	}
 
 	if !existing {
-		_, err = c.CreateWantempSystemSdwanServiceSla(obj, paradict, wsParams)
+		v, err := c.CreateWantempSystemSdwanServiceSla(obj, paradict, wsParams)
 		if err != nil {
 			return fmt.Errorf("Error creating WantempSystemSdwanServiceSla resource: %v", err)
 		}
 
+		if v != nil && v["id"] != nil {
+			if vidn, ok := v["id"].(float64); ok {
+				d.SetId(strconv.Itoa(int(vidn)))
+				return resourceWantempSystemSdwanServiceSlaRead(d, m)
+			} else {
+				return fmt.Errorf("Error creating WantempSystemSdwanServiceSla resource: %v", err)
+			}
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -155,14 +164,21 @@ func resourceWantempSystemSdwanServiceSlaUpdate(d *schema.ResourceData, m interf
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateWantempSystemSdwanServiceSla(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateWantempSystemSdwanServiceSla(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating WantempSystemSdwanServiceSla resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceWantempSystemSdwanServiceSlaRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating WantempSystemSdwanServiceSla resource: %v", err)
+		}
+	}
 
 	return resourceWantempSystemSdwanServiceSlaRead(d, m)
 }

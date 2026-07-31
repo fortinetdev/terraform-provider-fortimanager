@@ -23,6 +23,7 @@ Configure AntiVirus profiles.
 >- `smb`: `fortimanager_object_antivirus_profile_smb`
 >- `smtp`: `fortimanager_object_antivirus_profile_smtp`
 >- `ssh`: `fortimanager_object_antivirus_profile_ssh`
+>- `websocket`: `fortimanager_object_antivirus_profile_websocket`
 
 
 
@@ -56,6 +57,7 @@ The following arguments are supported:
 * `analytics_db` - Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 
 * `analytics_ignore_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox.
+* `analytics_ignore_mpip` - Do not submit files matching this DLP label to FortiSandbox (post-transfer scan only).
 * `analytics_max_upload` - Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
 * `analytics_wl_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox.
 * `av_block_log` - Enable/disable logging for AntiVirus file blocking. Valid values: `disable`, `enable`.
@@ -74,6 +76,12 @@ The following arguments are supported:
 
 * `external_blocklist_enable_all` - Enable/disable all external blocklists. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
 * `fortiai_error_action` - Action to take if FortiAI encounters an error. Valid values: `block`, `log-only`, `ignore`.
@@ -83,6 +91,8 @@ The following arguments are supported:
 * `fortindr_error_action` - Action to take if FortiNDR encounters an error. Valid values: `block`, `log-only`, `ignore`.
 
 * `fortindr_timeout_action` - Action to take if FortiNDR encounters a scan timeout. Valid values: `block`, `log-only`, `ignore`.
+
+* `fortisandbox_destination` - FortiSandbox destination options. Valid values: `auto`, `sandbox`, `sandbox-cloud`.
 
 * `fortisandbox_error_action` - Action to take if FortiSandbox inline scan encounters an error. Valid values: `log-only`, `block`, `ignore`.
 
@@ -107,6 +117,10 @@ The following arguments are supported:
 * `nntp` - Nntp. The structure of `nntp` block is documented below.
 * `outbreak_prevention_archive_scan` - Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
 
+* `outbreak_prevention_error_action` - Action to take if outbreak-prevention encounters an error Valid values: `block`, `log-only`, `ignore`.
+
+* `outbreak_prevention_timeout_action` - Action to take if outbreak-prevention encounters a request timeout Valid values: `block`, `log-only`, `ignore`.
+
 * `outbreak_prevention` - Outbreak-Prevention. The structure of `outbreak_prevention` block is documented below.
 * `pop3` - Pop3. The structure of `pop3` block is documented below.
 * `replacemsg_group` - Replacement message group customized for this profile.
@@ -115,6 +129,8 @@ The following arguments are supported:
 * `smb` - Smb. The structure of `smb` block is documented below.
 * `smtp` - Smtp. The structure of `smtp` block is documented below.
 * `ssh` - Ssh. The structure of `ssh` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `websocket` - Websocket. The structure of `websocket` block is documented below.
 
 The `cifs` block supports:
 
@@ -446,6 +462,29 @@ The `ssh` block supports:
 * `options` - Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `avmonitor`, `quarantine`, `scan`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
+
+* `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+
+
+The `websocket` block supports:
+
+* `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `timeout`.
+
+* `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `timeout`.
+
+* `av_scan` - Enable/disable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
+
+* `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
+
+* `external_blocklist` - Enable/disable external-blocklist. Analyzes files including the content of archives. Valid values: `disable`, `monitor`, `block`.
+
+* `fortindr` - Enable/disable scanning of files by FortiNDR. Valid values: `disable`, `monitor`, `block`.
+
+* `fortisandbox` - Enable/disable scanning of files by FortiSandbox. Valid values: `disable`, `monitor`, `block`.
+
+* `malware_stream` - Enable/disable 0-day malware-stream scanning. Analyzes files including the content of archives. Valid values: `disable`, `monitor`, `block`.
+
+* `outbreak_prevention` - Enable/disable virus outbreak prevention service. Valid values: `disable`, `monitor`, `block`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
 

@@ -39,10 +39,17 @@ The following arguments are supported:
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `extended_log` - Enable/disable extended logging. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `name` - Sensor name.
 * `replacemsg_group` - Replacement message group.
 * `scan_botnet_connections` - Block or monitor connections to Botnet servers, or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `entries` block supports:

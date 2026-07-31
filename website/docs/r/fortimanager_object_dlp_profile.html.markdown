@@ -27,10 +27,17 @@ The following arguments are supported:
 
 * `extended_log` - Enable/disable extended logging for data leak prevention. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `feature_set` - Flow/proxy feature set. Valid values: `flow`, `proxy`.
 
 * `fortidata_error_action` - Action to take if FortiData query fails. Valid values: `block`, `log-only`, `ignore`.
 
+* `fortidata_scan_timeout` - FortiData inline scan timeout in seconds (10 - 30, default = 15).
 * `full_archive_proto` - Protocols to always content archive. Valid values: `smtp`, `pop3`, `imap`, `http-post`, `http-get`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 
 * `nac_quar_log` - Enable/disable NAC quarantine logging. Valid values: `disable`, `enable`.
@@ -40,6 +47,7 @@ The following arguments are supported:
 * `rule` - Rule. The structure of `rule` block is documented below.
 * `summary_proto` - Protocols to always log summary. Valid values: `smtp`, `pop3`, `imap`, `http-post`, `http-get`, `ftp`, `nntp`, `mapi`, `ssh`, `cifs`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `rule` block supports:

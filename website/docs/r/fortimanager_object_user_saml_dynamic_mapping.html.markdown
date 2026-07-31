@@ -31,6 +31,12 @@ The following arguments are supported:
 * `digest_method` - Digest method algorithm (default = sha1). Valid values: `sha1`, `sha256`.
 
 * `entity_id` - SP entity ID.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_claim_type` - Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
 
 * `group_name` - Group name in assertion statement.
@@ -40,6 +46,7 @@ The following arguments are supported:
 * `idp_single_sign_on_url` - IDP single sign-on URL.
 * `limit_relaystate` - Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `disable`, `enable`.
 
+* `realm` - FortiIdentity cloud realm.
 * `reauth` - Enable/disable signalling of IDP to force user re-authentication (default = disable). Valid values: `disable`, `enable`.
 
 * `require_signed_resp_and_asrt` - Require both response and assertion from IDP to be signed when FGT acts as SP (default = disable). Valid values: `disable`, `enable`.
@@ -49,11 +56,17 @@ The following arguments are supported:
 
 * `scim_user_attr_type` - User attribute type used to match SCIM users (default = user-name). Valid values: `display-name`, `external-id`, `user-name`.
 
+* `service_provider_address` - The address to handle SAML auth request. To include a port, append it after a colon.
 * `single_logout_url` - SP single logout URL.
 * `single_sign_on_url` - SP single sign-on URL.
+* `sso_app_id` - FortiIdentity cloud single sign-on application ID.
+* `type` - SAML type. Valid values: `custom`, `fortiidentity-cloud`.
+
 * `user_claim_type` - User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
 
 * `user_name` - User name in assertion statement.
+* `user_source` - FortiIdentity cloud user souce.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `_scope` block supports:

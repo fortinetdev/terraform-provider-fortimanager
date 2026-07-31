@@ -44,6 +44,7 @@ The following arguments are supported:
 * `dstaddr6` - Destination address6 or address6 group names.
 * `dstintf` - Outgoing (egress) interfaces or zones.
 * `fosid` - Duplication rule ID (1 - 255).
+* `members` - Member sequence number list.
 * `packet_de_duplication` - Enable/disable discarding of packets that have been duplicated. Valid values: `disable`, `enable`.
 
 * `packet_duplication` - Configure packet duplication method. Valid values: `disable`, `force`, `on-demand`.
@@ -55,6 +56,8 @@ The following arguments are supported:
 * `srcaddr` - Source address or address group names.
 * `srcaddr6` - Source address6 or address6 group names.
 * `srcintf` - Incoming (ingress) interfaces or zones.
+* `tos` - Type of service bit pattern.
+* `tos_mask` - Type of service evaluated bits.
 
 
 ## Attribute Reference

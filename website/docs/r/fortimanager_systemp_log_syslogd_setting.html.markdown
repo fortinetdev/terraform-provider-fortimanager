@@ -36,6 +36,7 @@ The following arguments are supported:
 
 * `certificate` - Certificate used to communicate with Syslog server.
 * `custom_field_name` - Custom-Field-Name. The structure of `custom_field_name` block is documented below.
+* `custom_log_format` - Customized format for logs.
 * `enc_algorithm` - Enable/disable reliable syslogging with TLS encryption. Valid values: `high`, `low`, `disable`, `high-medium`.
 
 * `facility` - Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.

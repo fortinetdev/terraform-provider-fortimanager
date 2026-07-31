@@ -408,6 +408,21 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"fabric_force_sync": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fabric_object_source": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"group_override_attr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -645,12 +660,32 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"uuid": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"vrf_select": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
 					},
 				},
+			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"group_override_attr_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -886,6 +921,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Computed: true,
 			},
 			"username_case_sensitive": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1483,6 +1523,24 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["ep_profile_query_type"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-EpProfileQueryType")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := i["fabric-force-sync"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingFabricForceSync(i["fabric-force-sync"], d, pre_append)
+			tmp["fabric_force_sync"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-FabricForceSync")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := i["fabric-object"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingFabricObject(i["fabric-object"], d, pre_append)
+			tmp["fabric_object"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-FabricObject")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := i["fabric-object-source"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingFabricObjectSource(i["fabric-object-source"], d, pre_append)
+			tmp["fabric_object_source"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-FabricObjectSource")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_override_attr_type"
 		if _, ok := i["group-override-attr-type"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingGroupOverrideAttrType(i["group-override-attr-type"], d, pre_append)
@@ -1751,6 +1809,12 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["username-case-sensitive"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingUsernameCaseSensitive(i["username-case-sensitive"], d, pre_append)
 			tmp["username_case_sensitive"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-UsernameCaseSensitive")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := i["uuid"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingUuid(i["uuid"], d, pre_append)
+			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-Uuid")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
@@ -2095,6 +2159,18 @@ func flattenObjectUserRadiusDynamicMappingEpProfileQueryType(v interface{}, d *s
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusDynamicMappingGroupOverrideAttrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2275,7 +2351,23 @@ func flattenObjectUserRadiusDynamicMappingUsernameCaseSensitive(v interface{}, d
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusDynamicMappingVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2459,6 +2551,10 @@ func flattenObjectUserRadiusUsernameCaseSensitive(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectUserRadiusUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusVrfSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2629,6 +2725,36 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectUserRadiusFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectUserRadius-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectUserRadiusFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectUserRadius-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectUserRadiusFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectUserRadius-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -3082,6 +3208,16 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectUserRadiusUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectUserRadius-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if err = d.Set("vrf_select", flattenObjectUserRadiusVrfSelect(o["vrf-select"], d, "vrf_select")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vrf-select"], "ObjectUserRadius-VrfSelect"); ok {
 			if err = d.Set("vrf_select", vv); err != nil {
@@ -3499,6 +3635,21 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["ep-profile-query-type"], _ = expandObjectUserRadiusDynamicMappingEpProfileQueryType(d, i["ep_profile_query_type"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_force_sync"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-force-sync"], _ = expandObjectUserRadiusDynamicMappingFabricForceSync(d, i["fabric_force_sync"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object"], _ = expandObjectUserRadiusDynamicMappingFabricObject(d, i["fabric_object"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object_source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["fabric-object-source"], _ = expandObjectUserRadiusDynamicMappingFabricObjectSource(d, i["fabric_object_source"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_override_attr_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-override-attr-type"], _ = expandObjectUserRadiusDynamicMappingGroupOverrideAttrType(d, i["group_override_attr_type"], pre_append)
@@ -3742,6 +3893,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_sensitive"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["username-case-sensitive"], _ = expandObjectUserRadiusDynamicMappingUsernameCaseSensitive(d, i["username_case_sensitive"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["uuid"], _ = expandObjectUserRadiusDynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrf_select"
@@ -4078,6 +4234,18 @@ func expandObjectUserRadiusDynamicMappingEpProfileQueryType(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectUserRadiusDynamicMappingFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusDynamicMappingGroupOverrideAttrType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4274,7 +4442,23 @@ func expandObjectUserRadiusDynamicMappingUsernameCaseSensitive(d *schema.Resourc
 	return v, nil
 }
 
+func expandObjectUserRadiusDynamicMappingUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusDynamicMappingVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4474,6 +4658,10 @@ func expandObjectUserRadiusUsernameCaseSensitive(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectUserRadiusUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusVrfSelect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4595,6 +4783,33 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic_mapping"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectUserRadiusFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectUserRadiusFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectUserRadiusFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -5036,6 +5251,15 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["username-case-sensitive"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectUserRadiusUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

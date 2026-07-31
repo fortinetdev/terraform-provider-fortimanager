@@ -68,6 +68,12 @@ The following arguments are supported:
 * `domain` - Domain name.
 * `external_account_list` - External-Account-List. The structure of `external_account_list` block is documented below.
 * `external_ip` - External-Ip. The structure of `external_ip` block is documented below.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `forwarding_rule` - Forwarding-Rule. The structure of `forwarding_rule` block is documented below.
 * `gcp_project` - GCP project name.
 * `gcp_project_list` - Gcp-Project-List. The structure of `gcp_project_list` block is documented below.
@@ -76,6 +82,7 @@ The following arguments are supported:
 
 * `ibm_region` - IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
 
+* `k8s_allow_list` - Allow list for the kubernetes cluster
 * `ibm_region_gen1` - Ibm-Region-Gen1. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
 
 * `ibm_region_gen2` - Ibm-Region-Gen2. Valid values: `us-south`, `us-east`, `great-britain`.
@@ -130,6 +137,7 @@ The following arguments are supported:
 
 * `user_id` - User ID.
 * `username` - Username of the remote SDN connector as login credentials.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vcenter_password` - vCenter server password for NSX quarantine.
 * `vcenter_server` - vCenter server address for NSX quarantine.
 * `vcenter_username` - vCenter server username for NSX quarantine.

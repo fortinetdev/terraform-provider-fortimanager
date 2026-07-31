@@ -32,12 +32,19 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `max_connections` - Maximum number of web proxy WISP connections (4 - 4096, default = 64).
 * `name` - Server name.
 * `outgoing_ip` - WISP outgoing IP address.
 * `server_ip` - WISP server IP address.
 * `server_port` - WISP server port (1 - 65535, default = 15868).
 * `timeout` - Period of time before WISP requests time out (1 - 15 sec, default = 5).
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

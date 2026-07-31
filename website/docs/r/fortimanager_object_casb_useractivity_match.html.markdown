@@ -13,6 +13,7 @@ CASB user activity match rules.
 The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
 >- `rules`: `fortimanager_object_casb_useractivity_match_rules`
 >- `tenant_extraction`: `fortimanager_object_casb_useractivity_match_tenantextraction`
+>- `tenant_session_extraction`: `fortimanager_object_casb_useractivity_match_tenantsessionextraction`
 
 
 
@@ -30,6 +31,7 @@ The following arguments are supported:
 * `strategy` - CASB user activity rules strategy. Valid values: `or`, `and`.
 
 * `tenant_extraction` - Tenant-Extraction. The structure of `tenant_extraction` block is documented below.
+* `tenant_session_extraction` - Tenant-Session-Extraction. The structure of `tenant_session_extraction` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `rules` block supports:
@@ -69,6 +71,28 @@ The `filters` block supports:
 * `header_name` - CASB tenant extraction filter header name.
 * `id` - CASB tenant extraction filter ID.
 * `place` - CASB tenant extraction filter place type. Valid values: `path`, `header`, `body`.
+
+
+The `tenant_session_extraction` block supports:
+
+* `filters` - Filters. The structure of `filters` block is documented below.
+* `jq` - CASB user activity session extraction jq script.
+* `session_match` - CASB user activity session match name.
+* `session_source` - Enable/disable CASB session extraction source flag. Valid values: `disable`, `enable`.
+
+* `status` - Enable/disable CASB session extraction. Valid values: `disable`, `enable`.
+
+
+The `filters` block supports:
+
+* `body_type` - CASB content extraction filter body type. Valid values: `json`, `form`.
+
+* `cookie_name` - CASB content extraction filter cookie name.
+* `direction` - CASB content extraction filter direction. Valid values: `request`, `response`.
+
+* `header_name` - CASB content extraction filter header name.
+* `id` - CASB content extraction filter ID.
+* `place` - CASB content extraction filter place type. Valid values: `header`, `path`, `body`, `cookie`.
 
 
 

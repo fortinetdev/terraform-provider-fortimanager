@@ -165,6 +165,12 @@ func resourceObjectFirewallProfileProtocolOptionsHttp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"streaming_content_scan_type": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"strip_x_forwarded_for": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -447,6 +453,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpStreamBasedUncompressedLimit
 
 func flattenObjectFirewallProfileProtocolOptionsHttpStreamingContentBypass2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpStreamingContentScanType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpStripXForwardedFor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -746,6 +756,16 @@ func refreshObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceDat
 		}
 	}
 
+	if err = d.Set("streaming_content_scan_type", flattenObjectFirewallProfileProtocolOptionsHttpStreamingContentScanType2edl(o["streaming-content-scan-type"], d, "streaming_content_scan_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["streaming-content-scan-type"], "ObjectFirewallProfileProtocolOptionsHttp-StreamingContentScanType"); ok {
+			if err = d.Set("streaming_content_scan_type", vv); err != nil {
+				return fmt.Errorf("Error reading streaming_content_scan_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading streaming_content_scan_type: %v", err)
+		}
+	}
+
 	if err = d.Set("strip_x_forwarded_for", flattenObjectFirewallProfileProtocolOptionsHttpStripXForwardedFor2edl(o["strip-x-forwarded-for"], d, "strip_x_forwarded_for")); err != nil {
 		if vv, ok := fortiAPIPatch(o["strip-x-forwarded-for"], "ObjectFirewallProfileProtocolOptionsHttp-StripXForwardedFor"); ok {
 			if err = d.Set("strip_x_forwarded_for", vv); err != nil {
@@ -995,6 +1015,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpStreamBasedUncompressedLimit2
 
 func expandObjectFirewallProfileProtocolOptionsHttpStreamingContentBypass2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpStreamingContentScanType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpStripXForwardedFor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1264,6 +1288,15 @@ func getObjectObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, b
 			return &obj, err
 		} else if t != nil {
 			obj["streaming-content-bypass"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("streaming_content_scan_type"); ok || d.HasChange("streaming_content_scan_type") {
+		t, err := expandObjectFirewallProfileProtocolOptionsHttpStreamingContentScanType2edl(d, v, "streaming_content_scan_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["streaming-content-scan-type"] = t
 		}
 	}
 

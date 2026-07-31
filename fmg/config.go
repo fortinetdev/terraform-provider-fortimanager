@@ -327,20 +327,6 @@ func convertV2Ipnetmaskstring(v interface{}) string {
 	return res
 }
 
-func getAdom(d *schema.ResourceData) string {
-	if v, ok := d.GetOk("adom"); ok {
-		if v1, ok := v.(string); ok {
-			return v1
-		}
-	} else {
-		// if global ..... adom exist?
-		// ...
-		return "global"
-	}
-
-	return "global"
-}
-
 func fortiAPISubPartPatch(t interface{}, lgname string) interface{} {
 	if t == nil {
 		return t
@@ -614,5 +600,49 @@ func getUpdateIfExist(c *forticlient.FortiSDKClient, d *schema.ResourceData) boo
 		return resourceVI.(bool)
 	} else {
 		return c.Config.Auth.UpdateIfExist
+	}
+}
+
+func getTaskID(respData map[string]interface{}) (string, error) {
+	if respData == nil {
+		return "", fmt.Errorf("response data is nil")
+	}
+
+	taskID, ok := respData["taskid"]
+	if ok && taskID != nil && taskID != "" {
+		return taskIDToString(taskID)
+	}
+
+	// Fall back to "task" if "taskid" is absent or empty.
+	taskID, ok = respData["task"]
+	if !ok {
+		return "", fmt.Errorf("'data' object missing 'taskid'/'task' field")
+	}
+
+	if taskID == nil || taskID == "" {
+		return "", fmt.Errorf("'taskid'/'task' is empty")
+	}
+
+	return taskIDToString(taskID)
+}
+
+// taskIDToString normalizes a task ID value that may be a single value or a
+// list of values. When the value is a list, the first element is returned.
+func taskIDToString(taskID interface{}) (string, error) {
+	switch v := taskID.(type) {
+	case string:
+		return v, nil
+	case []interface{}:
+		if len(v) == 0 {
+			return "", fmt.Errorf("'taskid'/'task' list is empty")
+		}
+		return fmt.Sprintf("%v", v[0]), nil
+	case []string:
+		if len(v) == 0 {
+			return "", fmt.Errorf("'taskid'/'task' list is empty")
+		}
+		return v[0], nil
+	default:
+		return fmt.Sprintf("%v", v), nil
 	}
 }

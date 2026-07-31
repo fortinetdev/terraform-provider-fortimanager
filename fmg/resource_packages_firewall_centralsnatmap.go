@@ -64,6 +64,12 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dst_addr": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -283,14 +289,21 @@ func resourcePackagesFirewallCentralSnatMapUpdate(d *schema.ResourceData, m inte
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallCentralSnatMap(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallCentralSnatMap(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallCentralSnatMapRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallCentralSnatMapRead(d, m)
 }
@@ -382,6 +395,10 @@ func resourcePackagesFirewallCentralSnatMapRead(d *schema.ResourceData, m interf
 
 func flattenPackagesFirewallCentralSnatMapComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallCentralSnatMapDstAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -498,6 +515,16 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallCentralSnatMapCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallCentralSnatMap-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -764,6 +791,10 @@ func expandPackagesFirewallCentralSnatMapComments(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallCentralSnatMapCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallCentralSnatMapDstAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -873,6 +904,15 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallCentralSnatMapCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 

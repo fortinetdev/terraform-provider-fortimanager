@@ -50,6 +50,8 @@ The following arguments are supported:
 * `cookie_max_age` - Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), default = 480 (8 hours)).
 * `cookie_refresh_div` - Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
 * `dev_range` - Address range for the IP based device query.
+* `ems_root_ca` - Enable/disable use of the EMS root CA for FortiClient, ZTNA, and endpoint authentication (default = enable). Valid values: `disable`, `enable`.
+
 * `ip_auth_cookie` - Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `disable`, `enable`.
 
 * `persistent_cookie` - Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `disable`, `enable`.
@@ -60,6 +62,7 @@ The following arguments are supported:
 * `user_cert_ca` - CA certificate used for client certificate verification.
 * `log_auth_request` - Log-Auth-Request. Valid values: `disable`, `enable`.
 
+* `max_redirection_url_length` - Max-Redirection-Url-Length.
 
 
 ## Attribute Reference

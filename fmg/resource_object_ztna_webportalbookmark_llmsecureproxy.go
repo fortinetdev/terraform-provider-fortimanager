@@ -53,6 +53,7 @@ func resourceObjectZtnaWebPortalBookmarkLlmSecureProxy() *schema.Resource {
 			"all_llm_servers": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"llm_servers": &schema.Schema{
 				Type:     schema.TypeSet,

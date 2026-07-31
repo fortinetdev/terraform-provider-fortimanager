@@ -50,6 +50,12 @@ The following arguments are supported:
 * `comment` - Comment.
 * `extension_feature` - Enable/disable ICAP extension features. Valid values: `scan-progress`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `file_transfer` - Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
 
 * `file_transfer_failure` - Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
@@ -89,6 +95,7 @@ The following arguments are supported:
 * `streaming_content_bypass` - Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 
 * `timeout` - Time (in seconds) that ICAP client waits for the response from ICAP server.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `allow_204_response` - Allow-204-Response. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

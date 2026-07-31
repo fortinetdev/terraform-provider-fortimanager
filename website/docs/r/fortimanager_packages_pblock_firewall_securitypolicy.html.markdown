@@ -33,6 +33,8 @@ The following arguments are supported:
 * `casb_profile` - Name of an existing CASB profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
+* `creation_time` - The date and time that the policy was created.
+* `custom_tags` - Custom tags.
 * `diameter_filter_profile` - Name of an existing Diameter filter profile.
 * `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
@@ -95,6 +97,7 @@ The following arguments are supported:
 * `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
 
+* `llm_profile` - Name of an existing LLM profile.
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `all`, `utm`.
 
 * `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.

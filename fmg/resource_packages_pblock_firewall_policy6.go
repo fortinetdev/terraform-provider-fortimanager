@@ -566,14 +566,21 @@ func resourcePackagesPblockFirewallPolicy6Update(d *schema.ResourceData, m inter
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesPblockFirewallPolicy6(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesPblockFirewallPolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPblockFirewallPolicy6 resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesPblockFirewallPolicy6Read(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesPblockFirewallPolicy6 resource: %v", err)
+		}
+	}
 
 	return resourcePackagesPblockFirewallPolicy6Read(d, m)
 }

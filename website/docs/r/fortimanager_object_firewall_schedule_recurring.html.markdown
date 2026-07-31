@@ -33,7 +33,11 @@ The following arguments are supported:
 * `day` - One or more days of the week on which the schedule is valid. Separate the names of the days with a space. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`, `none`.
 
 * `end` - Time of day to end the schedule, format hh:mm.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `label_day` - Configure a window during the time of day in which the schedule job is executed. Valid values: `none`, `over-night`, `early-morning`, `morning`, `midday`, `afternoon`, `evening`, `night`, `late-night`.
 

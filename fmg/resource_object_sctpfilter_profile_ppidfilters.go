@@ -164,14 +164,21 @@ func resourceObjectSctpFilterProfilePpidFiltersUpdate(d *schema.ResourceData, m 
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateObjectSctpFilterProfilePpidFilters(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateObjectSctpFilterProfilePpidFilters(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSctpFilterProfilePpidFilters resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectSctpFilterProfilePpidFiltersRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating ObjectSctpFilterProfilePpidFilters resource: %v", err)
+		}
+	}
 
 	return resourceObjectSctpFilterProfilePpidFiltersRead(d, m)
 }

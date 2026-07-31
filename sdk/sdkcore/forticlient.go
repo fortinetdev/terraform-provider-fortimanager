@@ -130,6 +130,9 @@ func saveSession(session string) {
 
 func (c *FortiSDKClient) loginSession() (session string, err error) {
 	log.Printf("[INFO] login to get regular session.")
+	if c.Config.Auth.User == "" || c.Config.Auth.Passwd == "" {
+		return
+	}
 	data := make(map[string]interface{})
 	data["method"] = "exec"
 	data["params"] = make([]map[string]interface{}, 0)
@@ -438,6 +441,52 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 
 	err = fmt.Errorf("Cannot get the version in response %s", string(body))
 	return "", err
+}
+
+// ValidateSession validate whether the session has expired
+// It returns result as string and error message
+func (c *FortiSDKClient) ValidateSession(session string) (vRst string, err error) {
+	log.Printf("Check whether the session is valid.")
+	data := make(map[string]interface{})
+	data["method"] = "get"
+	data["params"] = make([]map[string]interface{}, 0)
+	data["verbose"] = 1
+	data["session"] = session
+
+	paramItem := make(map[string]interface{})
+	paramItem["url"] = "/sys/status"
+
+	v2 := make([]map[string]interface{}, 0)
+	v2 = append(v2, paramItem)
+	data["params"] = v2
+
+	locJSON, err := json.Marshal(data)
+	bytes := bytes.NewBuffer(locJSON)
+
+	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
+	err = req.Send()
+
+	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
+	req.HTTPResponse.Body.Close()
+
+	if err != nil || body == nil {
+		err = fmt.Errorf("Cannot get response body %v", err)
+		return "no_response", err
+	}
+
+	var result map[string]interface{}
+	json.Unmarshal([]byte(string(body)), &result)
+
+	err_code, err := fortiAPIErrorFormat(result, string(body))
+	if err == nil {
+		vRst = "success"
+	} else if err_code == -11 {
+		vRst = "no_permission"
+	} else {
+		vRst = "other"
+	}
+
+	return vRst, err
 }
 
 // GetWorkspaceMode gets the workspace mode of FMG

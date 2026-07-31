@@ -32,7 +32,11 @@ The following arguments are supported:
 * `end` - Schedule end date and time, format hh:mm yyyy/mm/dd.
 * `end_utc` - Schedule end date and time, in epoch format.
 * `expiration_days` - Write an event log message this many days before the schedule expires.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `global_object` - Global Object.
 * `name` - Onetime schedule name.

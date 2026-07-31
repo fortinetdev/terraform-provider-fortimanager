@@ -111,8 +111,10 @@ func resourceSystempLogFortianalyzerCloudSetting() *schema.Resource {
 				Computed: true,
 			},
 			"preshared_key": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
+				Type:      schema.TypeString,
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"priority": &schema.Schema{
 				Type:     schema.TypeString,
@@ -512,16 +514,6 @@ func refreshObjectSystempLogFortianalyzerCloudSetting(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading monitor_keepalive_period: %v", err)
-		}
-	}
-
-	if err = d.Set("preshared_key", flattenSystempLogFortianalyzerCloudSettingPresharedKey(o["preshared-key"], d, "preshared_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["preshared-key"], "SystempLogFortianalyzerCloudSetting-PresharedKey"); ok {
-			if err = d.Set("preshared_key", vv); err != nil {
-				return fmt.Errorf("Error reading preshared_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading preshared_key: %v", err)
 		}
 	}
 

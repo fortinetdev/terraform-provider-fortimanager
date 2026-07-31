@@ -123,6 +123,10 @@ The following arguments are supported:
 
 * `status` - Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
 
+* `template` - DHCP template associated with the server.
+* `template_subnet` - Configure template subnet.
+* `template_subnet_from_interface` - Use interface subnet as DHCP template subnet. Valid values: `disable`, `enable`.
+
 * `tftp_server` - One or more hostnames or IP addresses of the TFTP servers in quotes separated by spaces.
 * `timezone` - Select the time zone to be assigned to DHCP clients. Valid values: `00`, `01`, `02`, `03`, `04`, `05`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `39`, `40`, `41`, `42`, `43`, `44`, `45`, `46`, `47`, `48`, `49`, `50`, `51`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `61`, `62`, `63`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `73`, `74`, `75`, `76`, `77`, `78`, `79`, `80`, `81`, `82`, `83`, `84`, `85`, `86`, `87`.
 
@@ -145,6 +149,9 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `lease_time` - Lease time in seconds, 0 means default lease time.
+* `oui_match` - Enable/disable organizationally unique identifier (OUI) matching. When enabled only DHCP requests with a matching OUI are served with this range. Valid values: `disable`, `enable`.
+
+* `oui_string` - One or more OUI strings in quotes separated by spaces (in format of xx:xx:xx).
 * `start_ip` - Start of IP range.
 * `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
 
@@ -152,12 +159,16 @@ The `exclude_range` block supports:
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
+* `vendor` - Vendor this ip-range will be assigned to.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `lease_time` - Lease time in seconds, 0 means default lease time.
+* `oui_match` - Enable/disable organizationally unique identifier (OUI) matching. When enabled only DHCP requests with a matching OUI are served with this range. Valid values: `disable`, `enable`.
+
+* `oui_string` - One or more OUI strings in quotes separated by spaces (in format of xx:xx:xx).
 * `start_ip` - Start of IP range.
 * `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
 
@@ -165,6 +176,7 @@ The `ip_range` block supports:
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
+* `vendor` - Vendor this ip-range will be assigned to.
 
 The `options` block supports:
 

@@ -140,6 +140,12 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -283,14 +289,21 @@ func resourcePackagesFirewallDosPolicy6Update(d *schema.ResourceData, m interfac
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallDosPolicy6(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallDosPolicy6(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy6 resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallDosPolicy6Read(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallDosPolicy6 resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallDosPolicy6Read(d, m)
 }
@@ -573,6 +586,10 @@ func flattenPackagesFirewallDosPolicy6Comments(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesFirewallDosPolicy6CustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesFirewallDosPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -647,6 +664,16 @@ func refreshObjectPackagesFirewallDosPolicy6(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallDosPolicy6CustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallDosPolicy6-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -911,6 +938,10 @@ func expandPackagesFirewallDosPolicy6Comments(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesFirewallDosPolicy6CustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallDosPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -961,6 +992,15 @@ func getObjectPackagesFirewallDosPolicy6(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallDosPolicy6CustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 

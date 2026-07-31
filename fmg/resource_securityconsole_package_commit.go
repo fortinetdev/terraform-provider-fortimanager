@@ -46,6 +46,10 @@ func resourceSecurityconsolePackageCommit() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"preview_taskid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -87,14 +91,23 @@ func resourceSecurityconsolePackageCommitUpdate(d *schema.ResourceData, m interf
 	adomv := "adom/" + d.Get("fmgadom").(string)
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdateSecurityconsolePackageCommit(obj, mkey, paradict, wsParams)
+	v, err := c.UpdateSecurityconsolePackageCommit(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCommit resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
+	taskID, err := getTaskID(v)
+	if err != nil {
+		return fmt.Errorf("Error get task ID for create device: %v", err)
+	}
 
-	d.SetId("SecurityconsolePackageCommit")
+	err = c.WaitTask(taskID)
+	if err != nil {
+		return fmt.Errorf("Error wait task finish for create device: %v", err)
+	}
+
+	d.SetId(fmt.Sprintf("%v", taskID))
 
 	return resourceSecurityconsolePackageCommitRead(d, m)
 }
@@ -115,6 +128,10 @@ func flattenSecurityconsolePackageCommitAdom(v interface{}, d *schema.ResourceDa
 
 func flattenSecurityconsolePackageCommitFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenSecurityconsolePackageCommitPreviewTaskid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenSecurityconsolePackageCommitScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -193,6 +210,16 @@ func refreshObjectSecurityconsolePackageCommit(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("preview_taskid", flattenSecurityconsolePackageCommitPreviewTaskid(o["preview_taskid"], d, "preview_taskid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preview_taskid"], "SecurityconsolePackageCommit-PreviewTaskid"); ok {
+			if err = d.Set("preview_taskid", vv); err != nil {
+				return fmt.Errorf("Error reading preview_taskid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preview_taskid: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("scope", flattenSecurityconsolePackageCommitScope(o["scope"], d, "scope")); err != nil {
 			if vv, ok := fortiAPIPatch(o["scope"], "SecurityconsolePackageCommit-Scope"); ok {
@@ -232,6 +259,10 @@ func expandSecurityconsolePackageCommitAdom(d *schema.ResourceData, v interface{
 
 func expandSecurityconsolePackageCommitFlags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSecurityconsolePackageCommitPreviewTaskid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandSecurityconsolePackageCommitScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -294,6 +325,15 @@ func getObjectSecurityconsolePackageCommit(d *schema.ResourceData, bemptysontabl
 			return &obj, err
 		} else if t != nil {
 			obj["flags"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preview_taskid"); ok || d.HasChange("preview_taskid") {
+		t, err := expandSecurityconsolePackageCommitPreviewTaskid(d, v, "preview_taskid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preview_taskid"] = t
 		}
 	}
 

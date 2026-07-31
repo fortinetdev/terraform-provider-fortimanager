@@ -102,6 +102,16 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"creation_time": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"custom_tags": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"diameter_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -325,6 +335,12 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 			"learning_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"llm_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
@@ -557,14 +573,21 @@ func resourcePackagesFirewallSecurityPolicyUpdate(d *schema.ResourceData, m inte
 
 	wsParams["adom"] = adomv
 
-	_, err = c.UpdatePackagesFirewallSecurityPolicy(obj, mkey, paradict, wsParams)
+	v, err := c.UpdatePackagesFirewallSecurityPolicy(obj, mkey, paradict, wsParams)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallSecurityPolicy resource: %v", err)
 	}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallSecurityPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error updating PackagesFirewallSecurityPolicy resource: %v", err)
+		}
+	}
 
 	return resourcePackagesFirewallSecurityPolicyRead(d, m)
 }
@@ -692,6 +715,14 @@ func flattenPackagesFirewallSecurityPolicyCifsProfile(v interface{}, d *schema.R
 
 func flattenPackagesFirewallSecurityPolicyComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallSecurityPolicyCreationTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallSecurityPolicyCustomTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallSecurityPolicyDiameterFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -892,6 +923,10 @@ func flattenPackagesFirewallSecurityPolicyIpsVoipFilter(v interface{}, d *schema
 
 func flattenPackagesFirewallSecurityPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesFirewallSecurityPolicyLlmProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallSecurityPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1130,6 +1165,26 @@ func refreshObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("creation_time", flattenPackagesFirewallSecurityPolicyCreationTime(o["creation-time"], d, "creation_time")); err != nil {
+		if vv, ok := fortiAPIPatch(o["creation-time"], "PackagesFirewallSecurityPolicy-CreationTime"); ok {
+			if err = d.Set("creation_time", vv); err != nil {
+				return fmt.Errorf("Error reading creation_time: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading creation_time: %v", err)
+		}
+	}
+
+	if err = d.Set("custom_tags", flattenPackagesFirewallSecurityPolicyCustomTags(o["custom-tags"], d, "custom_tags")); err != nil {
+		if vv, ok := fortiAPIPatch(o["custom-tags"], "PackagesFirewallSecurityPolicy-CustomTags"); ok {
+			if err = d.Set("custom_tags", vv); err != nil {
+				return fmt.Errorf("Error reading custom_tags: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading custom_tags: %v", err)
 		}
 	}
 
@@ -1633,6 +1688,16 @@ func refreshObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("llm_profile", flattenPackagesFirewallSecurityPolicyLlmProfile(o["llm-profile"], d, "llm_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["llm-profile"], "PackagesFirewallSecurityPolicy-LlmProfile"); ok {
+			if err = d.Set("llm_profile", vv); err != nil {
+				return fmt.Errorf("Error reading llm_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading llm_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("logtraffic", flattenPackagesFirewallSecurityPolicyLogtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesFirewallSecurityPolicy-Logtraffic"); ok {
 			if err = d.Set("logtraffic", vv); err != nil {
@@ -2012,6 +2077,14 @@ func expandPackagesFirewallSecurityPolicyComments(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallSecurityPolicyCreationTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallSecurityPolicyCustomTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesFirewallSecurityPolicyDiameterFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return convstr2list(v, nil), nil
 }
@@ -2210,6 +2283,10 @@ func expandPackagesFirewallSecurityPolicyIpsVoipFilter(d *schema.ResourceData, v
 
 func expandPackagesFirewallSecurityPolicyLearningMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesFirewallSecurityPolicyLlmProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesFirewallSecurityPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2434,6 +2511,24 @@ func getObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("creation_time"); ok || d.HasChange("creation_time") {
+		t, err := expandPackagesFirewallSecurityPolicyCreationTime(d, v, "creation_time")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["creation-time"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tags"); ok || d.HasChange("custom_tags") {
+		t, err := expandPackagesFirewallSecurityPolicyCustomTags(d, v, "custom_tags")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tags"] = t
 		}
 	}
 
@@ -2884,6 +2979,15 @@ func getObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["learning-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("llm_profile"); ok || d.HasChange("llm_profile") {
+		t, err := expandPackagesFirewallSecurityPolicyLlmProfile(d, v, "llm_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["llm-profile"] = t
 		}
 	}
 

@@ -48,6 +48,7 @@ func resourceObjectSystemNpuNpQueues() *schema.Resource {
 			"custom_etype_lookup": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ethernet_type": &schema.Schema{
 				Type:     schema.TypeList,

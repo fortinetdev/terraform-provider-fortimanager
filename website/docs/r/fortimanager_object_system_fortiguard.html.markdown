@@ -119,6 +119,8 @@ The following arguments are supported:
 
 * `protocol` - Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
 
+* `proxy_fqdn_host` - Enable/disable preference of the FQDN as host header, if resolved by DNS, in the CONNECT request to FortiGuard servers. For use when the FortiGate unit is behind a proxy server. Valid values: `disable`, `enable`.
+
 * `proxy_password` - Proxy user password.
 * `proxy_server_ip` - IP address of the proxy server.
 * `proxy_server_port` - Port used to communicate with the proxy server.

@@ -39,6 +39,9 @@ The following arguments are supported:
 * `associated_interface` - Interface associated with the address object. When setting up a policy, only addresses associated with this interface are available.
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
 * `comment` - Comment.
+* `custom_tags` - Custom tags.
+* `display_with` - Display object with first tag, all tags, or just the icon. Valid values: `all-tags`, `first-tag-only`, `icon-and-color`.
+
 * `end_ip` - Final IPv4 address (inclusive) in the range for the address.
 * `name` - Multicast address name.
 * `start_ip` - First IPv4 address (inclusive) in the range for the address.

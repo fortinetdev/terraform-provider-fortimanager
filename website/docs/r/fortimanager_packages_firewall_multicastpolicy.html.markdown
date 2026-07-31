@@ -47,6 +47,7 @@ The following arguments are supported:
 * `auto_asic_offload` - Enable/disable offloading policy traffic for hardware acceleration. Valid values: `disable`, `enable`.
 
 * `comments` - Comment.
+* `custom_tags` - Custom tags.
 * `dnat` - IPv4 DNAT address used for multicast destination addresses.
 * `dstaddr` - Destination address objects.
 * `dstintf` - Destination interface name.

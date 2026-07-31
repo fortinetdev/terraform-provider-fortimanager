@@ -59,13 +59,28 @@ func resourceObjectVpnIpsecFec() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"bandwidth_bi_threshold_negate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"bandwidth_down_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"bandwidth_down_threshold_negate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"bandwidth_up_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+						},
+						"bandwidth_up_threshold_negate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
 						},
 						"base": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -75,9 +90,19 @@ func resourceObjectVpnIpsecFec() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"latency_threshold_negate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"packet_loss_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+						},
+						"packet_loss_threshold_negate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
 						},
 						"redundant": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -87,6 +112,34 @@ func resourceObjectVpnIpsecFec() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
+						},
+						"tos": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"base": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"redundant": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"seqno": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+									},
+									"tos": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"tos_mask": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
 						},
 					},
 				},
@@ -274,16 +327,34 @@ func flattenObjectVpnIpsecFecMappings(v interface{}, d *schema.ResourceData, pre
 			tmp["bandwidth_bi_threshold"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthBiThreshold")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_bi_threshold_negate"
+		if _, ok := i["bandwidth-bi-threshold-negate"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsBandwidthBiThresholdNegate(i["bandwidth-bi-threshold-negate"], d, pre_append)
+			tmp["bandwidth_bi_threshold_negate"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthBiThresholdNegate")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_down_threshold"
 		if _, ok := i["bandwidth-down-threshold"]; ok {
 			v := flattenObjectVpnIpsecFecMappingsBandwidthDownThreshold(i["bandwidth-down-threshold"], d, pre_append)
 			tmp["bandwidth_down_threshold"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthDownThreshold")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_down_threshold_negate"
+		if _, ok := i["bandwidth-down-threshold-negate"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsBandwidthDownThresholdNegate(i["bandwidth-down-threshold-negate"], d, pre_append)
+			tmp["bandwidth_down_threshold_negate"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthDownThresholdNegate")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_up_threshold"
 		if _, ok := i["bandwidth-up-threshold"]; ok {
 			v := flattenObjectVpnIpsecFecMappingsBandwidthUpThreshold(i["bandwidth-up-threshold"], d, pre_append)
 			tmp["bandwidth_up_threshold"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthUpThreshold")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_up_threshold_negate"
+		if _, ok := i["bandwidth-up-threshold-negate"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsBandwidthUpThresholdNegate(i["bandwidth-up-threshold-negate"], d, pre_append)
+			tmp["bandwidth_up_threshold_negate"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-BandwidthUpThresholdNegate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "base"
@@ -298,10 +369,22 @@ func flattenObjectVpnIpsecFecMappings(v interface{}, d *schema.ResourceData, pre
 			tmp["latency_threshold"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-LatencyThreshold")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold_negate"
+		if _, ok := i["latency-threshold-negate"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsLatencyThresholdNegate(i["latency-threshold-negate"], d, pre_append)
+			tmp["latency_threshold_negate"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-LatencyThresholdNegate")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_threshold"
 		if _, ok := i["packet-loss-threshold"]; ok {
 			v := flattenObjectVpnIpsecFecMappingsPacketLossThreshold(i["packet-loss-threshold"], d, pre_append)
 			tmp["packet_loss_threshold"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-PacketLossThreshold")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_threshold_negate"
+		if _, ok := i["packet-loss-threshold-negate"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsPacketLossThresholdNegate(i["packet-loss-threshold-negate"], d, pre_append)
+			tmp["packet_loss_threshold_negate"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-PacketLossThresholdNegate")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "redundant"
@@ -314,6 +397,12 @@ func flattenObjectVpnIpsecFecMappings(v interface{}, d *schema.ResourceData, pre
 		if _, ok := i["seqno"]; ok {
 			v := flattenObjectVpnIpsecFecMappingsSeqno(i["seqno"], d, pre_append)
 			tmp["seqno"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-Seqno")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
+		if _, ok := i["tos"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTos(i["tos"], d, pre_append)
+			tmp["tos"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-Tos")
 		}
 
 		if len(tmp) > 0 {
@@ -330,11 +419,23 @@ func flattenObjectVpnIpsecFecMappingsBandwidthBiThreshold(v interface{}, d *sche
 	return v
 }
 
+func flattenObjectVpnIpsecFecMappingsBandwidthBiThresholdNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnIpsecFecMappingsBandwidthDownThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectVpnIpsecFecMappingsBandwidthDownThresholdNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnIpsecFecMappingsBandwidthUpThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsBandwidthUpThresholdNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -346,7 +447,15 @@ func flattenObjectVpnIpsecFecMappingsLatencyThreshold(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectVpnIpsecFecMappingsLatencyThresholdNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnIpsecFecMappingsPacketLossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsPacketLossThresholdNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -355,6 +464,85 @@ func flattenObjectVpnIpsecFecMappingsRedundant(v interface{}, d *schema.Resource
 }
 
 func flattenObjectVpnIpsecFecMappingsSeqno(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsTos(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "base"
+		if _, ok := i["base"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTosBase(i["base"], d, pre_append)
+			tmp["base"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFecMappings-Tos-Base")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "redundant"
+		if _, ok := i["redundant"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTosRedundant(i["redundant"], d, pre_append)
+			tmp["redundant"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFecMappings-Tos-Redundant")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "seqno"
+		if _, ok := i["seqno"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTosSeqno(i["seqno"], d, pre_append)
+			tmp["seqno"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFecMappings-Tos-Seqno")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
+		if _, ok := i["tos"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTosTos(i["tos"], d, pre_append)
+			tmp["tos"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFecMappings-Tos-Tos")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos_mask"
+		if _, ok := i["tos-mask"]; ok {
+			v := flattenObjectVpnIpsecFecMappingsTosTosMask(i["tos-mask"], d, pre_append)
+			tmp["tos_mask"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFecMappings-Tos-TosMask")
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectVpnIpsecFecMappingsTosBase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsTosRedundant(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsTosSeqno(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsTosTos(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnIpsecFecMappingsTosTosMask(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -435,14 +623,29 @@ func expandObjectVpnIpsecFecMappings(d *schema.ResourceData, v interface{}, pre 
 			tmp["bandwidth-bi-threshold"], _ = expandObjectVpnIpsecFecMappingsBandwidthBiThreshold(d, i["bandwidth_bi_threshold"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_bi_threshold_negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["bandwidth-bi-threshold-negate"], _ = expandObjectVpnIpsecFecMappingsBandwidthBiThresholdNegate(d, i["bandwidth_bi_threshold_negate"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_down_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bandwidth-down-threshold"], _ = expandObjectVpnIpsecFecMappingsBandwidthDownThreshold(d, i["bandwidth_down_threshold"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_down_threshold_negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["bandwidth-down-threshold-negate"], _ = expandObjectVpnIpsecFecMappingsBandwidthDownThresholdNegate(d, i["bandwidth_down_threshold_negate"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_up_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bandwidth-up-threshold"], _ = expandObjectVpnIpsecFecMappingsBandwidthUpThreshold(d, i["bandwidth_up_threshold"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_up_threshold_negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["bandwidth-up-threshold-negate"], _ = expandObjectVpnIpsecFecMappingsBandwidthUpThresholdNegate(d, i["bandwidth_up_threshold_negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "base"
@@ -455,9 +658,19 @@ func expandObjectVpnIpsecFecMappings(d *schema.ResourceData, v interface{}, pre 
 			tmp["latency-threshold"], _ = expandObjectVpnIpsecFecMappingsLatencyThreshold(d, i["latency_threshold"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "latency_threshold_negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["latency-threshold-negate"], _ = expandObjectVpnIpsecFecMappingsLatencyThresholdNegate(d, i["latency_threshold_negate"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["packet-loss-threshold"], _ = expandObjectVpnIpsecFecMappingsPacketLossThreshold(d, i["packet_loss_threshold"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "packet_loss_threshold_negate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["packet-loss-threshold-negate"], _ = expandObjectVpnIpsecFecMappingsPacketLossThresholdNegate(d, i["packet_loss_threshold_negate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "redundant"
@@ -468,6 +681,16 @@ func expandObjectVpnIpsecFecMappings(d *schema.ResourceData, v interface{}, pre 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seqno"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seqno"], _ = expandObjectVpnIpsecFecMappingsSeqno(d, i["seqno"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectVpnIpsecFecMappingsTos(d, i["tos"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["tos"] = t
+			}
 		}
 
 		if len(tmp) > 0 {
@@ -484,11 +707,23 @@ func expandObjectVpnIpsecFecMappingsBandwidthBiThreshold(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandObjectVpnIpsecFecMappingsBandwidthBiThresholdNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnIpsecFecMappingsBandwidthDownThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandObjectVpnIpsecFecMappingsBandwidthDownThresholdNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnIpsecFecMappingsBandwidthUpThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsBandwidthUpThresholdNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -500,7 +735,15 @@ func expandObjectVpnIpsecFecMappingsLatencyThreshold(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectVpnIpsecFecMappingsLatencyThresholdNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnIpsecFecMappingsPacketLossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsPacketLossThresholdNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -509,6 +752,75 @@ func expandObjectVpnIpsecFecMappingsRedundant(d *schema.ResourceData, v interfac
 }
 
 func expandObjectVpnIpsecFecMappingsSeqno(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "base"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["base"], _ = expandObjectVpnIpsecFecMappingsTosBase(d, i["base"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "redundant"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["redundant"], _ = expandObjectVpnIpsecFecMappingsTosRedundant(d, i["redundant"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "seqno"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["seqno"], _ = expandObjectVpnIpsecFecMappingsTosSeqno(d, i["seqno"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["tos"], _ = expandObjectVpnIpsecFecMappingsTosTos(d, i["tos"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tos_mask"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["tos-mask"], _ = expandObjectVpnIpsecFecMappingsTosTosMask(d, i["tos_mask"], pre_append)
+		}
+
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTosBase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTosRedundant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTosSeqno(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTosTos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnIpsecFecMappingsTosTosMask(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

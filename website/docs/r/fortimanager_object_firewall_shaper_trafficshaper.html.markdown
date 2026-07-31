@@ -45,6 +45,12 @@ The following arguments are supported:
 * `exceed_class_id` - Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
 * `exceed_cos` - VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 * `exceed_dscp` - DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `guaranteed_bandwidth` - Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
 * `maximum_bandwidth` - Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
 * `maximum_cos` - VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
@@ -55,6 +61,7 @@ The following arguments are supported:
 
 * `priority` - Higher priority traffic is more likely to be forwarded without delays and without compromising the guaranteed bandwidth. Valid values: `high`, `medium`, `low`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

@@ -46,6 +46,12 @@ The following arguments are supported:
 * `expire` - Time in seconds before guest user accounts expire. (1 - 31536000 sec)
 * `expire_type` - Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `group_type` - Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `directory-service`, `fsso-service`, `guest`, `rsso`.
 
 * `guest` - Guest. The structure of `guest` block is documented below.
@@ -61,6 +67,12 @@ The following arguments are supported:
 * `name` - Group name.
 * `password` - Guest user password type. Valid values: `auto-generate`, `specify`, `disable`.
 
+* `scim_group_attr_type` - Group attribute type used to match SCIM groups (default = display-name). Valid values: `display-name`, `external-id`.
+
+* `scim_groups` - Names of SCIM groups.
+* `scim_user_attr_type` - User attribute type used to match SCIM users (default = user-name). Valid values: `display-name`, `external-id`, `user-name`, `email`.
+
+* `scim_users` - Names of SCIM users.
 * `sms_custom_server` - SMS server.
 * `sms_server` - Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
 
@@ -71,6 +83,7 @@ The following arguments are supported:
 
 * `user_name` - Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `logic_type` - Logic-Type. Valid values: `or`, `and`.
 
 * `negate` - Negate. Valid values: `disable`, `enable`.
@@ -90,6 +103,12 @@ The `dynamic_mapping` block supports:
 
 * `expire` - Time in seconds before guest user accounts expire. (1 - 31536000 sec)
 * `expire_type` - Determine when the expiration countdown begins. Valid values: `immediately`, `first-successful-login`.
+
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
 
 * `group_type` - Set the group to be for firewall authentication, FSSO, RSSO, or guest users. Valid values: `firewall`, `directory-service`, `fsso-service`, `guest`, `rsso`.
 
@@ -111,6 +130,12 @@ The `dynamic_mapping` block supports:
 * `password` - Guest user password type. Valid values: `auto-generate`, `specify`, `disable`.
 
 * `redir_url` - Redir-Url.
+* `scim_group_attr_type` - Group attribute type used to match SCIM groups (default = display-name). Valid values: `display-name`, `external-id`.
+
+* `scim_groups` - Names of SCIM groups.
+* `scim_user_attr_type` - User attribute type used to match SCIM users (default = user-name). Valid values: `display-name`, `external-id`, `user-name`, `email`.
+
+* `scim_users` - Names of SCIM users.
 * `sms_custom_server` - SMS server.
 * `sms_server` - Send SMS through FortiGuard or other external server. Valid values: `fortiguard`, `custom`.
 
@@ -157,6 +182,7 @@ The `dynamic_mapping` block supports:
 
 * `user_name` - Enable/disable the guest user name entry. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 The `_scope` block supports:
 

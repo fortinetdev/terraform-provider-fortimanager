@@ -77,6 +77,7 @@ func resourceWantempSystemSdwanZone() *schema.Resource {
 			"service_sla_tie_break": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

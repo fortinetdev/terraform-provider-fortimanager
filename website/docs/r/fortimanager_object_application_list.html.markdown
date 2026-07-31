@@ -52,6 +52,12 @@ The following arguments are supported:
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `extended_log` - Enable/disable extended logging. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `force_inclusion_ssl_di_sigs` - Enable/disable forced inclusion of SSL deep inspection signatures. Valid values: `disable`, `enable`.
 
 * `name` - List name.
@@ -70,6 +76,7 @@ The following arguments are supported:
 
 * `unknown_application_log` - Enable/disable logging for unknown applications. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `default_network_services` block supports:
@@ -88,6 +95,8 @@ The `entries` block supports:
 * `application` - ID of allowed applications.
 * `behavior` - Application behavior filter.
 * `category` - Category ID list.
+* `classification` - Application classification filter. Valid values: `none`, `sanctioned`, `unsanctioned`, `unclassified`.
+
 * `exclusion` - ID of excluded applications.
 * `id` - Entry ID.
 * `log` - Enable/disable logging for this application list. Valid values: `disable`, `enable`.

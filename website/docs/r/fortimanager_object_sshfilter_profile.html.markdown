@@ -38,11 +38,18 @@ The following arguments are supported:
 
 * `default_command_log` - Enable/disable logging unmatched shell commands. Valid values: `disable`, `enable`.
 
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
 * `log` - SSH logging options. Valid values: `x11`, `shell`, `exec`, `port-forward`, `tun-forward`, `sftp`, `unknown`, `scp`.
 
 * `name` - SSH filter profile name.
 * `shell_commands` - Shell-Commands. The structure of `shell_commands` block is documented below.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `file_filter` block supports:

@@ -37,6 +37,12 @@ The following arguments are supported:
 * `addr_type` - Address type of the forwarding proxy server: IP or FQDN. Valid values: `fqdn`, `ip`.
 
 * `comment` - Comment.
+* `fabric_force_sync` - Enable/disable forced synchronization of configuration objects from the root FortiGate unit to the downstream devices.  Configuration conflict check is skipped. Valid values: `disable`, `enable`.
+
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
+* `fabric_object_source` - Source of truth for fabric object. Valid values: `member`, `local`, `root`.
+
 * `fqdn` - Forward server Fully Qualified Domain Name (FQDN).
 * `healthcheck` - Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
 
@@ -54,8 +60,10 @@ The following arguments are supported:
 * `server_down_option` - Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
 
 * `username` - HTTP authentication user name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vrf_select` - VRF ID used for connection to server.
 * `ippool` - Ippool.
+* `ippool6` - Ippool6.
 * `protocol` - Protocol. Valid values: `http`, `ftp`, `socks`.
 
 

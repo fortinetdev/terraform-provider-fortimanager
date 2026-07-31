@@ -243,6 +243,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"proxy_fqdn_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"proxy_password": &schema.Schema{
 				Type:      schema.TypeSet,
 				Elem:      &schema.Schema{Type: schema.TypeString},
@@ -306,6 +311,7 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 			"subscribe_update_notification": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"update_build_proxy": &schema.Schema{
 				Type:     schema.TypeString,
@@ -654,6 +660,10 @@ func flattenObjectSystemFortiguardPort(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectSystemFortiguardProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardProxyFqdnHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1194,6 +1204,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("proxy_fqdn_host", flattenObjectSystemFortiguardProxyFqdnHost(o["proxy-fqdn-host"], d, "proxy_fqdn_host")); err != nil {
+		if vv, ok := fortiAPIPatch(o["proxy-fqdn-host"], "ObjectSystemFortiguard-ProxyFqdnHost"); ok {
+			if err = d.Set("proxy_fqdn_host", vv); err != nil {
+				return fmt.Errorf("Error reading proxy_fqdn_host: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading proxy_fqdn_host: %v", err)
+		}
+	}
+
 	if err = d.Set("proxy_server_ip", flattenObjectSystemFortiguardProxyServerIp(o["proxy-server-ip"], d, "proxy_server_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["proxy-server-ip"], "ObjectSystemFortiguard-ProxyServerIp"); ok {
 			if err = d.Set("proxy_server_ip", vv); err != nil {
@@ -1664,6 +1684,10 @@ func expandObjectSystemFortiguardPort(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectSystemFortiguardProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardProxyFqdnHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2160,6 +2184,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData, bemptysontable bool
 			return &obj, err
 		} else if t != nil {
 			obj["protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy_fqdn_host"); ok || d.HasChange("proxy_fqdn_host") {
+		t, err := expandObjectSystemFortiguardProxyFqdnHost(d, v, "proxy_fqdn_host")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy-fqdn-host"] = t
 		}
 	}
 

@@ -188,6 +188,21 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 					},
 				},
 			},
+			"fabric_force_sync": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fabric_object_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"device_detection_portal": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -840,6 +855,11 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 					},
 				},
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"webproxy": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -1375,6 +1395,18 @@ func flattenObjectSystemReplacemsgGroupCustomMessageHeader(v interface{}, d *sch
 }
 
 func flattenObjectSystemReplacemsgGroupCustomMessageMsgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupFabricForceSync(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupFabricObjectSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3088,6 +3120,10 @@ func flattenObjectSystemReplacemsgGroupUtmMsgType(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectSystemReplacemsgGroupUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemReplacemsgGroupWebproxy(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -3295,6 +3331,36 @@ func refreshObjectObjectSystemReplacemsgGroup(d *schema.ResourceData, o map[stri
 					return fmt.Errorf("Error reading custom_message: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("fabric_force_sync", flattenObjectSystemReplacemsgGroupFabricForceSync(o["fabric-force-sync"], d, "fabric_force_sync")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-force-sync"], "ObjectSystemReplacemsgGroup-FabricForceSync"); ok {
+			if err = d.Set("fabric_force_sync", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_force_sync: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectSystemReplacemsgGroupFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectSystemReplacemsgGroup-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object_source", flattenObjectSystemReplacemsgGroupFabricObjectSource(o["fabric-object-source"], d, "fabric_object_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object-source"], "ObjectSystemReplacemsgGroup-FabricObjectSource"); ok {
+			if err = d.Set("fabric_object_source", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object_source: %v", err)
 		}
 	}
 
@@ -3750,6 +3816,16 @@ func refreshObjectObjectSystemReplacemsgGroup(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectSystemReplacemsgGroupUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectSystemReplacemsgGroup-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("webproxy", flattenObjectSystemReplacemsgGroupWebproxy(o["webproxy"], d, "webproxy")); err != nil {
 			if vv, ok := fortiAPIPatch(o["webproxy"], "ObjectSystemReplacemsgGroup-Webproxy"); ok {
@@ -4093,6 +4169,18 @@ func expandObjectSystemReplacemsgGroupCustomMessageHeader(d *schema.ResourceData
 }
 
 func expandObjectSystemReplacemsgGroupCustomMessageMsgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupFabricForceSync(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupFabricObjectSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5598,6 +5686,10 @@ func expandObjectSystemReplacemsgGroupUtmMsgType(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectSystemReplacemsgGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemReplacemsgGroupWebproxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -5712,6 +5804,33 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["custom-message"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_force_sync"); ok || d.HasChange("fabric_force_sync") {
+		t, err := expandObjectSystemReplacemsgGroupFabricForceSync(d, v, "fabric_force_sync")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-force-sync"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
+		t, err := expandObjectSystemReplacemsgGroupFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object_source"); ok || d.HasChange("fabric_object_source") {
+		t, err := expandObjectSystemReplacemsgGroupFabricObjectSource(d, v, "fabric_object_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object-source"] = t
 		}
 	}
 
@@ -5892,6 +6011,15 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["utm"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
+		t, err := expandObjectSystemReplacemsgGroupUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 
