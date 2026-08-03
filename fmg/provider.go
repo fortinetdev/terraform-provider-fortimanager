@@ -235,6 +235,7 @@ func Provider() *schema.Provider {
 			"fortimanager_object_cloud_orchestawstemplate_autoscaletgwnewvpc":                                resourceObjectCloudOrchestAwstemplateAutoscaleTgwNewVpc(),
 			"fortimanager_object_cloud_orchestration":                                                        resourceObjectCloudOrchestration(),
 			"fortimanager_object_credentialstore_domaincontroller":                                           resourceObjectCredentialStoreDomainController(),
+			"fortimanager_object_device_dns_database":                                                        resourceObjectDeviceDnsDatabase(),
 			"fortimanager_object_diameterfilter_profile":                                                     resourceObjectDiameterFilterProfile(),
 			"fortimanager_object_dlp_datatype":                                                               resourceObjectDlpDataType(),
 			"fortimanager_object_dlp_dictionary":                                                             resourceObjectDlpDictionary(),
