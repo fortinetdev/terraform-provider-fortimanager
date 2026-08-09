@@ -2,7 +2,6 @@ package forticlient
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 )
 
@@ -38,10 +37,18 @@ func (c *FortiSDKClient) JsonGenericAPI(data string, wsParams map[string]string)
 		c.logoutSession(session)
 	}
 
-	if err == nil {
-		output = string(fmt.Sprintf("%v", result))
-		log.Printf("Successful\n")
+	if err != nil {
+		return
 	}
+
+	var resultBytes []byte
+	resultBytes, err = json.Marshal(result)
+	if err != nil {
+		return
+	}
+
+	output = string(resultBytes)
+	log.Printf("Successful\n")
 
 	return
 }
