@@ -195,10 +195,15 @@ func resourceSystempLogSyslogdSettingUpdate(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	adomType, err := getAdomType(c, adomv)
+	if err != nil {
+		log.Printf("[WARN] Error getting adom type: %v", err)
+	}
+
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogSyslogdSetting(d, false)
+	obj, err := getObjectSystempLogSyslogdSetting(d, false, adomType)
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdSetting resource while getting object: %v", err)
 	}
@@ -231,10 +236,15 @@ func resourceSystempLogSyslogdSettingDelete(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	adomType, err := getAdomType(c, adomv)
+	if err != nil {
+		log.Printf("[WARN] Error getting adom type: %v", err)
+	}
+
 	devprof := d.Get("devprof").(string)
 	paradict["devprof"] = devprof
 
-	obj, err := getObjectSystempLogSyslogdSetting(d, true)
+	obj, err := getObjectSystempLogSyslogdSetting(d, true, adomType)
 
 	if err != nil {
 		return fmt.Errorf("Error updating SystempLogSyslogdSetting resource while getting object: %v", err)
@@ -892,7 +902,7 @@ func expandSystempLogSyslogdSettingLogTemplatesTemplate(d *schema.ResourceData, 
 	return v, nil
 }
 
-func getObjectSystempLogSyslogdSetting(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
+func getObjectSystempLogSyslogdSetting(d *schema.ResourceData, bemptysontable bool, adomType string) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("certificate"); ok || d.HasChange("certificate") {
@@ -1056,11 +1066,15 @@ func getObjectSystempLogSyslogdSetting(d *schema.ResourceData, bemptysontable bo
 		obj["log-templates"] = make([]struct{}, 0)
 	} else {
 		if v, ok := d.GetOk("log_templates"); ok || d.HasChange("log_templates") {
-			t, err := expandSystempLogSyslogdSettingLogTemplates(d, v, "log_templates")
-			if err != nil {
-				return &obj, err
-			} else if t != nil {
-				obj["log-templates"] = t
+			if adomType != "fpx" {
+				log.Printf("[WARN] Parameter log-templates is only valid on fpx type of adom, skip setting it")
+			} else {
+				t, err := expandSystempLogSyslogdSettingLogTemplates(d, v, "log_templates")
+				if err != nil {
+					return &obj, err
+				} else if t != nil {
+					obj["log-templates"] = t
+				}
 			}
 		}
 	}

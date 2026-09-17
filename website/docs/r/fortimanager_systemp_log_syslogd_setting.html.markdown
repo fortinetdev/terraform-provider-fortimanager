@@ -59,7 +59,7 @@ The following arguments are supported:
 * `status` - Enable/disable remote syslog logging. Valid values: `disable`, `enable`.
 
 * `vrf_select` - VRF ID used for connection to server.
-* `log_templates` - Log-Templates. The structure of `log_templates` block is documented below.
+* `log_templates` - Log-Templates. This parameter is only valid on fpx type of adom. The structure of `log_templates` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `custom_field_name` block supports:

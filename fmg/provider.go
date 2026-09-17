@@ -51,6 +51,13 @@ func Provider() *schema.Provider {
 				Description: "CA Bundle file",
 			},
 
+			"http_proxy": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				Default:     "",
+				Description: "HTTP proxy address",
+			},
+
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1385,6 +1392,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 		FMGType:       d.Get("fmg_type").(string),
 		WorkspaceMode: d.Get("workspace_mode").(string),
 		UpdateIfExist: d.Get("update_if_exist").(bool),
+		HTTPProxy:     d.Get("http_proxy").(string),
 
 		LogSession:    d.Get("logsession").(bool),
 		Session:       d.Get("presession").(string),

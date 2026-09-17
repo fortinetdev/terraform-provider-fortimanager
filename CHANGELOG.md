@@ -1,5 +1,15 @@
 ## 1.19.0 (Unreleased)
 
+## 1.18.1 (Sep 16, 2026)
+
+IMPROVEMENTS:
+* Fix issue of skip logout on workspace mode if unlock workspace fail;
+* Fix destroy issue due to the variable only valid on specific adom type;
+* Fix lost order issue for variable member of resource object_fmg_script;
+* Support HTTP PROXY;
+* Fix type convert issue of resource_device;
+* Update version coverage information in the doc; 
+
 ## 1.18.0 (Jul 30, 2026)
 
 IMPROVEMENTS:

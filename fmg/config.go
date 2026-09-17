@@ -256,6 +256,46 @@ func adomChecking(c *Config, d *schema.ResourceData) (string, error) {
 	return "", err
 }
 
+// getAdomType gets the adom type by reading the adom's restricted_prds
+// It returns the adom type, for example, "fpx" means the adom is fpx type
+func getAdomType(c *forticlient.FortiSDKClient, adomv string) (string, error) {
+	if adomv == "global" || adomv == "" {
+		return "", nil
+	}
+	adomName := strings.TrimPrefix(adomv, "adom/")
+
+	paradict := make(map[string]string)
+	o, err := c.ReadDvmdbAdom(adomName, paradict)
+	if err != nil {
+		return "", fmt.Errorf("Error reading adom %s: %v", adomName, err)
+	}
+	if o == nil {
+		return "", fmt.Errorf("Adom %s not found", adomName)
+	}
+
+	adomType := ""
+	if v, ok := o["restricted_prds"]; ok && v != nil {
+		switch vv := v.(type) {
+		case []interface{}:
+			for _, item := range vv {
+				if t := strings.TrimSpace(fmt.Sprintf("%v", item)); t != "" {
+					adomType = t
+					break
+				}
+			}
+		case string:
+			for _, item := range strings.Split(vv, ",") {
+				if t := strings.TrimSpace(item); t != "" {
+					adomType = t
+					break
+				}
+			}
+		}
+	}
+
+	return adomType, nil
+}
+
 func importOptionChecking(c *Config, para string) string {
 	v := c.ImportOptions.List()
 	if len(v) == 0 {

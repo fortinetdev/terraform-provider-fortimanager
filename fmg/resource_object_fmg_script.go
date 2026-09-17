@@ -89,7 +89,7 @@ func resourceObjectFmgScript() *schema.Resource {
 				Optional: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
@@ -658,7 +658,7 @@ func expandObjectFmgScriptFilterSerial(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFmgScriptMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFmgScriptName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

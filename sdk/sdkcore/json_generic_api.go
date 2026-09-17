@@ -30,10 +30,10 @@ func (c *FortiSDKClient) JsonGenericAPI(data string, wsParams map[string]string)
 	// Unlock if needed
 	if c.WorkspaceMode == "normal" {
 		err = unlockWorkspace(c, wsParams, session)
+		c.logoutSession(session)
 		if err != nil {
 			return
 		}
-		c.logoutSession(session)
 	} else if c.Config.Auth.CleanSession {
 		c.logoutSession(session)
 	}

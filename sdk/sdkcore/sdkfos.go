@@ -42,7 +42,6 @@ func (c *FortiSDKClient) UpdateDvmCmdAddDevList(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66,7 +65,6 @@ func (c *FortiSDKClient) UpdateDvmCmdAddDevice(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92,7 +90,6 @@ func (c *FortiSDKClient) UpdateDvmCmdDelDevList(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -116,7 +113,6 @@ func (c *FortiSDKClient) UpdateDvmCmdDelDevice(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -142,7 +138,6 @@ func (c *FortiSDKClient) UpdateDvmCmdUpdateDevList(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -166,7 +161,6 @@ func (c *FortiSDKClient) UpdateDvmCmdUpdateDevice(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -217,7 +211,6 @@ func (c *FortiSDKClient) UpdateDvmdbAdom(params *map[string]interface{}, mkey st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -316,7 +309,6 @@ func (c *FortiSDKClient) UpdateDvmdbDeviceVdom(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -413,7 +405,6 @@ func (c *FortiSDKClient) UpdateDvmdbGroup(params *map[string]interface{}, mkey s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -512,7 +503,6 @@ func (c *FortiSDKClient) UpdateDvmdbRevision(params *map[string]interface{}, mke
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -610,7 +600,6 @@ func (c *FortiSDKClient) UpdateDvmdbScript(params *map[string]interface{}, mkey 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -682,7 +671,6 @@ func (c *FortiSDKClient) UpdateDvmdbScriptExecute(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -707,7 +695,6 @@ func (c *FortiSDKClient) UpdateExecFgfmReclaimDevTunnel(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -731,7 +718,6 @@ func (c *FortiSDKClient) UpdateFmupdateAnalyzerVirusreport(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -789,7 +775,6 @@ func (c *FortiSDKClient) UpdateFmupdateAvIpsAdvancedLog(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -845,7 +830,6 @@ func (c *FortiSDKClient) UpdateFmupdateAvIpsWebProxy(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -903,7 +887,6 @@ func (c *FortiSDKClient) UpdateFmupdateCustomUrlList(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -959,7 +942,6 @@ func (c *FortiSDKClient) UpdateFmupdateDiskQuota(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1017,7 +999,6 @@ func (c *FortiSDKClient) UpdateFmupdateFctServices(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1073,7 +1054,6 @@ func (c *FortiSDKClient) UpdateFmupdateFdsSetting(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1131,7 +1111,6 @@ func (c *FortiSDKClient) UpdateFmupdateFdsSettingPushOverride(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1187,7 +1166,6 @@ func (c *FortiSDKClient) UpdateFmupdateFdsSettingPushOverrideToClient(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1245,7 +1223,6 @@ func (c *FortiSDKClient) UpdateFmupdateFdsSettingServerOverride(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1301,7 +1278,6 @@ func (c *FortiSDKClient) UpdateFmupdateFdsSettingUpdateSchedule(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1359,7 +1335,6 @@ func (c *FortiSDKClient) UpdateFmupdateFwmSetting(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1415,7 +1390,6 @@ func (c *FortiSDKClient) UpdateFmupdateFwmSettingUpgradeTimeout(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1473,7 +1447,6 @@ func (c *FortiSDKClient) UpdateFmupdateMultilayer(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1529,7 +1502,6 @@ func (c *FortiSDKClient) UpdateFmupdatePublicnetwork(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1587,7 +1559,6 @@ func (c *FortiSDKClient) UpdateFmupdateServerAccessPriorities(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1643,7 +1614,6 @@ func (c *FortiSDKClient) UpdateFmupdateServerOverrideStatus(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1701,7 +1671,6 @@ func (c *FortiSDKClient) UpdateFmupdateService(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1757,7 +1726,6 @@ func (c *FortiSDKClient) UpdateFmupdateWebSpamFgdSetting(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1815,7 +1783,6 @@ func (c *FortiSDKClient) UpdateFmupdateWebSpamWebProxy(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -1871,7 +1838,6 @@ func (c *FortiSDKClient) UpdateObjectAdomOptions(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -1954,7 +1920,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusMmsChecksum(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2053,7 +2018,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusNotification(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2151,7 +2115,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfile(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2223,7 +2186,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileCifs(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2279,7 +2241,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileContentDisarm(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2337,7 +2298,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileFtp(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2393,7 +2353,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileHttp(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2451,7 +2410,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileImap(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2507,7 +2465,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileMapi(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2565,7 +2522,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileNacQuar(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2621,7 +2577,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileNntp(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2679,7 +2634,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileOutbreakPrevention(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2735,7 +2689,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfilePop3(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2793,7 +2746,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileSmtp(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2850,7 +2802,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileSsh(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -2906,7 +2857,6 @@ func (c *FortiSDKClient) UpdateObjectAntivirusProfileWebsocket(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -2989,7 +2939,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationCategories(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -3088,7 +3037,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationCustom(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -3185,7 +3133,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationGroup(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -3284,7 +3231,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationList(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -3382,7 +3328,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListDefaultNetworkServices(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -3453,7 +3398,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListDefaultNetworkServicesMove(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -3532,7 +3476,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListEntries(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -3603,7 +3546,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListEntriesMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -3681,7 +3623,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListEntriesParameters(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -3780,7 +3721,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListEntriesParametersMembers(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -3851,7 +3791,6 @@ func (c *FortiSDKClient) UpdateObjectApplicationListEntriesParametersMove(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -3929,7 +3868,6 @@ func (c *FortiSDKClient) UpdateObjectAuthenticationScheme(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -4028,7 +3966,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfile(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -4099,7 +4036,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileMove(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -4177,7 +4113,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplication(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -4276,7 +4211,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationAccessRule(params
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -4373,7 +4307,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationAccessRuleAttribu
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -4472,7 +4405,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationAdvancedTenantCon
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -4569,7 +4501,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationAdvancedTenantCon
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -4668,7 +4599,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationCustomControl(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -4765,7 +4695,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationCustomControlAttr
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -4864,7 +4793,6 @@ func (c *FortiSDKClient) UpdateObjectCasbProfileSaasApplicationCustomControlOpti
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -4961,7 +4889,6 @@ func (c *FortiSDKClient) UpdateObjectCasbSaasApplication(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -5060,7 +4987,6 @@ func (c *FortiSDKClient) UpdateObjectCasbSaasApplicationInputAttributes(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -5131,7 +5057,6 @@ func (c *FortiSDKClient) UpdateObjectCasbSaasApplicationMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -5209,7 +5134,6 @@ func (c *FortiSDKClient) UpdateObjectCasbSaasApplicationOutputAttributes(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -5308,7 +5232,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivity(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -5405,7 +5328,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityControlOptions(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -5504,7 +5426,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityControlOptionsOperations(pa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -5601,7 +5522,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatch(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -5700,7 +5620,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatchRules(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -5771,7 +5690,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatchTenantExtraction(param
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -5855,7 +5773,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatchTenantExtractionFilter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -5926,7 +5843,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatchTenantSessionExtractio
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -6010,7 +5926,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMatchTenantSessionExtractio
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -6081,7 +5996,6 @@ func (c *FortiSDKClient) UpdateObjectCasbUserActivityMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -6159,7 +6073,6 @@ func (c *FortiSDKClient) UpdateObjectCertificateTemplate(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -6258,7 +6171,6 @@ func (c *FortiSDKClient) UpdateObjectCifsDomainController(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -6355,7 +6267,6 @@ func (c *FortiSDKClient) UpdateObjectCifsProfile(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -6454,7 +6365,6 @@ func (c *FortiSDKClient) UpdateObjectCliTemplate(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -6551,7 +6461,6 @@ func (c *FortiSDKClient) UpdateObjectCliTemplateGroup(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -6650,7 +6559,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestAws(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -6747,7 +6655,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestAwsconnector(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -6846,7 +6753,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestAwstemplateAutoscaleExistingVpc
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -6943,7 +6849,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestAwstemplateAutoscaleNewVpc(para
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -7042,7 +6947,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestAwstemplateAutoscaleTgwNewVpc(p
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -7139,7 +7043,6 @@ func (c *FortiSDKClient) UpdateObjectCloudOrchestration(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -7238,7 +7141,6 @@ func (c *FortiSDKClient) UpdateObjectCredentialStoreDomainController(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -7335,7 +7237,6 @@ func (c *FortiSDKClient) UpdateObjectDiameterFilterProfile(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -7434,7 +7335,6 @@ func (c *FortiSDKClient) UpdateObjectDlpDataType(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -7531,7 +7431,6 @@ func (c *FortiSDKClient) UpdateObjectDlpDictionary(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -7630,7 +7529,6 @@ func (c *FortiSDKClient) UpdateObjectDlpDictionaryEntries(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -7701,7 +7599,6 @@ func (c *FortiSDKClient) UpdateObjectDlpDictionaryEntriesMove(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -7779,7 +7676,6 @@ func (c *FortiSDKClient) UpdateObjectDlpExactDataMatch(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -7878,7 +7774,6 @@ func (c *FortiSDKClient) UpdateObjectDlpExactDataMatchColumns(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -7949,7 +7844,6 @@ func (c *FortiSDKClient) UpdateObjectDlpExactDataMatchColumnsMove(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -8027,7 +7921,6 @@ func (c *FortiSDKClient) UpdateObjectDlpFilepattern(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -8126,7 +8019,6 @@ func (c *FortiSDKClient) UpdateObjectDlpFilepatternEntries(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -8197,7 +8089,6 @@ func (c *FortiSDKClient) UpdateObjectDlpFilepatternEntriesMove(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -8275,7 +8166,6 @@ func (c *FortiSDKClient) UpdateObjectDlpFpSensitivity(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -8374,7 +8264,6 @@ func (c *FortiSDKClient) UpdateObjectDlpLabel(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -8472,7 +8361,6 @@ func (c *FortiSDKClient) UpdateObjectDlpLabelEntries(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -8543,7 +8431,6 @@ func (c *FortiSDKClient) UpdateObjectDlpLabelEntriesMove(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -8621,7 +8508,6 @@ func (c *FortiSDKClient) UpdateObjectDlpProfile(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -8720,7 +8606,6 @@ func (c *FortiSDKClient) UpdateObjectDlpProfileRule(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -8791,7 +8676,6 @@ func (c *FortiSDKClient) UpdateObjectDlpProfileRuleMove(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -8869,7 +8753,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensitivity(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -8968,7 +8851,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensor(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9066,7 +8948,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensorEntries(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9137,7 +9018,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensorEntriesMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -9216,7 +9096,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensorFilter(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9287,7 +9166,6 @@ func (c *FortiSDKClient) UpdateObjectDlpSensorFilterMove(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -9365,7 +9243,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterDomainFilter(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -9464,7 +9341,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterDomainFilterEntries(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9535,7 +9411,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterDomainFilterEntriesMove(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -9613,7 +9488,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterProfile(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -9712,7 +9586,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterProfileDnsTranslation(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9784,7 +9657,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterProfileDomainFilter(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -9840,7 +9712,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterProfileFtgdDns(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -9923,7 +9794,6 @@ func (c *FortiSDKClient) UpdateObjectDnsfilterProfileFtgdDnsFilters(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -10022,7 +9892,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicAddress(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -10119,7 +9988,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicAddressDynamicAddrMapping(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -10218,7 +10086,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicCertificateLocal(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -10315,7 +10182,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicCertificateLocalDynamicMapping(param
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -10414,7 +10280,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicInterface(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -10511,7 +10376,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicInterfaceDynamicMapping(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -10610,7 +10474,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicInterfacePlatformMapping(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -10707,7 +10570,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicIppool(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -10806,7 +10668,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicLogNpuServerServerGroup(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -10903,7 +10764,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicLogNpuServerServerGroupDynamicMappin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -11002,7 +10862,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicMulticastInterface(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -11099,7 +10958,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicMulticastInterfaceDynamicMapping(par
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -11198,7 +11056,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicVip(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -11295,7 +11152,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicVpntunnel(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -11394,7 +11250,6 @@ func (c *FortiSDKClient) UpdateObjectDynamicVpntunnelDynamicMapping(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -11491,7 +11346,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBlockAllowList(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -11590,7 +11444,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBlockAllowListEntries(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -11661,7 +11514,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBlockAllowListEntriesMove(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -11739,7 +11591,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBwl(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -11838,7 +11689,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBwlEntries(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -11909,7 +11759,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBwlEntriesMove(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -11987,7 +11836,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBword(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12086,7 +11934,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBwordEntries(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -12157,7 +12004,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterBwordEntriesMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -12235,7 +12081,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterDnsbl(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12334,7 +12179,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterDnsblEntries(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -12405,7 +12249,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterFortishield(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12488,7 +12331,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterIptrust(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12587,7 +12429,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterIptrustEntries(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -12684,7 +12525,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterMheader(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12783,7 +12623,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterMheaderEntries(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -12854,7 +12693,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterOptions(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -12938,7 +12776,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfile(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13010,7 +12847,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfileGmail(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13066,7 +12902,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfileImap(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13124,7 +12959,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfileMapi(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13180,7 +13014,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfileMsnHotmail(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13238,7 +13071,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfilePop3(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13294,7 +13126,6 @@ func (c *FortiSDKClient) UpdateObjectEmailfilterProfileSmtp(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13377,7 +13208,6 @@ func (c *FortiSDKClient) UpdateObjectEndpointControlFctems(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13476,7 +13306,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerDataplan(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13574,7 +13403,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfile(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13646,7 +13474,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellular(p
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13702,7 +13529,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularCo
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13760,7 +13586,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularMo
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13816,7 +13641,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularMo
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13874,7 +13698,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularMo
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -13930,7 +13753,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularMo
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -13988,7 +13810,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularSm
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14044,7 +13865,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularSm
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -14128,7 +13948,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularSm
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14199,7 +14018,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileCellularSm
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -14251,7 +14069,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileLanExtensi
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -14335,7 +14152,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileLanExtensi
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14406,7 +14222,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerExtenderProfileLanExtensi
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -14485,7 +14300,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerSimProfile(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14556,7 +14370,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerSimProfileAutoSwitchProfi
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -14639,7 +14452,6 @@ func (c *FortiSDKClient) UpdateObjectExtenderControllerTemplate(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -14738,7 +14550,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerDataplan(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14836,7 +14647,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfile(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14908,7 +14718,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellular(
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -14964,7 +14773,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularC
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15022,7 +14830,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularM
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15078,7 +14885,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularM
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15136,7 +14942,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularM
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15192,7 +14997,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularM
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15250,7 +15054,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularS
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15306,7 +15109,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularS
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15390,7 +15192,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularS
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15461,7 +15262,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileCellularS
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -15513,7 +15313,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileLanExtens
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15597,7 +15396,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileLanExtens
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15668,7 +15466,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileLanExtens
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -15746,7 +15543,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileLanExtens
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -15845,7 +15641,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileLanExtens
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15917,7 +15712,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileWifi(para
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -15974,7 +15768,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileWifiRadio
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -16030,7 +15823,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderProfileWifiRadio
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -16113,7 +15905,6 @@ func (c *FortiSDKClient) UpdateObjectExtensionControllerExtenderVap(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -16212,7 +16003,6 @@ func (c *FortiSDKClient) UpdateObjectFileFilterProfile(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -16310,7 +16100,6 @@ func (c *FortiSDKClient) UpdateObjectFileFilterProfileRules(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -16381,7 +16170,6 @@ func (c *FortiSDKClient) UpdateObjectFileFilterProfileRulesMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -16459,7 +16247,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -16558,7 +16345,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxySshClientCert(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -16656,7 +16442,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxySshClientCertCertExtensi
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -16727,7 +16512,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxySshClientCertMove(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -16805,7 +16589,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyVirtualHost(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -16904,7 +16687,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -17001,7 +16783,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGateway(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17100,7 +16881,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGateway6(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -17171,7 +16951,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGateway6Quic(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17254,7 +17033,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGateway6Realservers(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17353,7 +17131,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGateway6SslCipherSui
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -17424,7 +17201,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGatewayQuic(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17507,7 +17283,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGatewayRealservers(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17606,7 +17381,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6ApiGatewaySslCipherSuit
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -17677,7 +17451,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxy6Move(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -17755,7 +17528,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGateway(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -17854,7 +17626,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGateway6(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -17925,7 +17696,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGateway6Quic(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18008,7 +17778,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGateway6Realservers(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18107,7 +17876,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGateway6SslCipherSuit
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -18178,7 +17946,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGatewayQuic(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18261,7 +18028,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGatewayRealservers(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18360,7 +18126,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyApiGatewaySslCipherSuite
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -18431,7 +18196,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -18510,7 +18274,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyRealservers(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -18581,7 +18344,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAccessProxyServerPubkeyAuthSettings
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18664,7 +18426,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18763,7 +18524,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -18860,7 +18620,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6Template(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -18959,7 +18718,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6TemplateSubnetSegment(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -19056,7 +18814,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6TemplateSubnetSegmentValues
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -19155,7 +18912,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6DynamicMapping(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -19252,7 +19008,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6DynamicMappingSubnetSegment
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -19351,7 +19106,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6List(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -19448,7 +19202,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6SubnetSegment(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -19547,7 +19300,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddress6Tagging(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -19644,7 +19396,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddressDynamicMapping(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -19743,7 +19494,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddressList(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -19840,7 +19590,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddressTagging(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -19939,7 +19688,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrp(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20036,7 +19784,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrp6(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -20135,7 +19882,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrp6DynamicMapping(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20232,7 +19978,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrp6Tagging(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -20331,7 +20076,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrpDynamicMapping(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20428,7 +20172,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallAddrgrpTagging(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -20527,7 +20270,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCarrierEndpointBwl(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20625,7 +20367,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfile(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20696,7 +20437,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfileMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -20774,7 +20514,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfileSaasApplication(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -20873,7 +20612,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfileSaasApplicationAccessRul
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -20970,7 +20708,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfileSaasApplicationCustomCon
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21069,7 +20806,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCasbProfileSaasApplicationCustomCon
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21166,7 +20902,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallCustomTag(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21265,7 +21000,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallDecryptedTrafficMirror(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21362,7 +21096,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtp(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21461,7 +21194,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpApn(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21559,7 +21291,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpIeRemovePolicy(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21630,7 +21361,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpIeValidation(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21713,7 +21443,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpImsi(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21812,7 +21541,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpIpPolicy(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21884,7 +21612,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpMessageRateLimit(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -21940,7 +21667,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpMessageRateLimitV0(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -21998,7 +21724,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpMessageRateLimitV1(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -22054,7 +21779,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpMessageRateLimitV2(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22137,7 +21861,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpNoipPolicy(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22236,7 +21959,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpPerApnShaper(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -22333,7 +22055,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpPolicy(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22432,7 +22153,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallGtpPolicyV2(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -22529,7 +22249,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIdentityBasedRoute(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22628,7 +22347,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIdentityBasedRouteRule(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -22701,7 +22419,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetService(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22785,7 +22502,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceAddition(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -22884,7 +22600,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceAdditionEntry(params
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -22981,7 +22696,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceAdditionEntryPortRan
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -23080,7 +22794,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceCustom(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -23177,7 +22890,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceCustomGroup(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -23276,7 +22988,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceCustomEntry(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -23373,7 +23084,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceCustomEntryPortRange
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -23472,7 +23182,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtension(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -23569,7 +23278,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionDisableEntr
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -23668,7 +23376,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionDisableEntr
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -23765,7 +23472,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionDisableEntr
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -23864,7 +23570,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionDisableEntr
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -23961,7 +23666,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionEntry(param
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -24060,7 +23764,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceExtensionEntryPortRa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -24157,7 +23860,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceGroup(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -24256,7 +23958,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceName(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -24353,7 +24054,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetServiceEntry(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -24452,7 +24152,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIppool(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -24549,7 +24248,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIppool6(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -24648,7 +24346,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIppool6DynamicMapping(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -24745,7 +24442,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIppoolDynamicMapping(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -24844,7 +24540,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallIppoolGrp(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -24941,7 +24636,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallLdbMonitor(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25040,7 +24734,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallMmsProfile(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -25137,7 +24830,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallMulticastAddress(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25236,7 +24928,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallMulticastAddress6(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -25333,7 +25024,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallMulticastAddress6Tagging(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25432,7 +25122,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallMulticastAddressTagging(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -25529,7 +25218,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallNetworkServiceDynamic(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25628,7 +25316,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallPfcp(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -25725,7 +25412,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileGroup(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25824,7 +25510,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptions(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -25895,7 +25580,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsCifs(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -25979,7 +25663,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsCifsFileFilte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26050,7 +25733,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsCifsFileFilte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -26129,7 +25811,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsCifsServerKey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26201,7 +25882,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsDns(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26257,7 +25937,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsFtp(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26315,7 +25994,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsHttp(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26371,7 +26049,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsImap(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26429,7 +26106,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsMailSignature
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26485,7 +26161,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsMapi(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26543,7 +26218,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsNntp(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26599,7 +26273,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsPop3(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26657,7 +26330,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsProxyRedirect
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26713,7 +26385,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsSmtp(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26771,7 +26442,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsSsh(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -26827,7 +26497,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProfileProtocolOptionsWebsocket(par
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -26910,7 +26579,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddress(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27009,7 +26677,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddress6(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -27106,7 +26773,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddress6HeaderGroup(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27205,7 +26871,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddress6Tagging(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -27302,7 +26967,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddressHeaderGroup(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27401,7 +27065,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddressTagging(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -27498,7 +27161,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddrgrp(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27597,7 +27259,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddrgrp6(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -27694,7 +27355,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddrgrp6Tagging(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27793,7 +27453,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallProxyAddrgrpTagging(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -27890,7 +27549,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallScheduleGroup(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -27989,7 +27647,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallScheduleOnetime(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28086,7 +27743,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallScheduleRecurring(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -28185,7 +27841,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallServiceCategory(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28282,7 +27937,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallServiceCustom(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -28381,7 +28035,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallServiceGroup(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28478,7 +28131,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShaperPerIpShaper(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -28577,7 +28229,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShaperTrafficShaper(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28674,7 +28325,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShapingProfile(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -28773,7 +28423,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShapingProfileClasses(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28844,7 +28493,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShapingProfileClassesMove(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -28923,7 +28571,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShapingProfileShapingEntries(params
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -28994,7 +28641,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallShapingProfileShapingEntriesMove(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -29072,7 +28718,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSshLocalCa(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29171,7 +28816,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfile(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29242,7 +28886,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileDot(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29326,7 +28969,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileEchOuterSni(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29398,7 +29040,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileFtps(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29454,7 +29095,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileHttps(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29512,7 +29152,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileImaps(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29568,7 +29207,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfilePop3S(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29626,7 +29264,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSmtps(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29682,7 +29319,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSsh(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29740,7 +29376,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSsl(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -29796,7 +29431,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSslClientCertificate(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29879,7 +29513,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSslExempt(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -29978,7 +29611,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallSslSshProfileSslServer(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -30076,7 +29708,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallTrafficClass(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -30147,7 +29778,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVendorMac(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -30230,7 +29860,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -30329,7 +29958,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip46(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -30426,7 +30054,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip46DynamicMapping(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -30525,7 +30152,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip46Realservers(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -30622,7 +30248,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip6(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -30721,7 +30346,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip64(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -30818,7 +30442,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip64DynamicMapping(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -30917,7 +30540,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip64Realservers(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -31015,7 +30637,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip6DynamicMapping(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -31086,7 +30707,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip6Quic(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31169,7 +30789,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip6Realservers(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31268,7 +30887,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVip6SslServerCipherSuites(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -31365,7 +30983,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipDynamicMapping(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31464,7 +31081,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipGslbPublicIps(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -31535,7 +31151,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipQuic(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31618,7 +31233,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipSslServerCipherSuites(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31717,7 +31331,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipgrp(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -31814,7 +31427,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipgrp46(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -31913,7 +31525,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipgrp6(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32010,7 +31621,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipgrp64(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -32109,7 +31719,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallVipgrpDynamicMapping(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32206,7 +31815,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallWildcardFqdnCustom(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -32305,7 +31913,6 @@ func (c *FortiSDKClient) UpdateObjectFirewallWildcardFqdnGroup(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32402,7 +32009,6 @@ func (c *FortiSDKClient) UpdateObjectFmgDeviceBlueprint(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -32501,7 +32107,6 @@ func (c *FortiSDKClient) UpdateObjectFmgFabricAuthorizationTemplate(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32599,7 +32204,6 @@ func (c *FortiSDKClient) UpdateObjectFmgFabricAuthorizationTemplatePlatforms(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32671,7 +32275,6 @@ func (c *FortiSDKClient) UpdateObjectFmgSaseManagerSettings(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -32727,7 +32330,6 @@ func (c *FortiSDKClient) UpdateObjectFmgSaseManagerStatus(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -32810,7 +32412,6 @@ func (c *FortiSDKClient) UpdateObjectFmgScript(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -32909,7 +32510,6 @@ func (c *FortiSDKClient) UpdateObjectFmgScriptSchedule(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33006,7 +32606,6 @@ func (c *FortiSDKClient) UpdateObjectFmgVariable(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -33105,7 +32704,6 @@ func (c *FortiSDKClient) UpdateObjectFmgVariableDynamicMapping(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33203,7 +32801,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlan(params *map[string]interface{}, mke
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33274,7 +32871,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDhcpServer(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -33357,7 +32953,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDhcpServerExcludeRange(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -33456,7 +33051,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDhcpServerIpRange(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33553,7 +33147,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDhcpServerOptions(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -33652,7 +33245,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDhcpServerReservedAddress(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33750,7 +33342,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMapping(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -33821,7 +33412,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMappingDhcpServer(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -33904,7 +33494,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMappingDhcpServerExcludeRange
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34003,7 +33592,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMappingDhcpServerIpRange(para
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34100,7 +33688,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMappingDhcpServerOptions(para
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34199,7 +33786,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanDynamicMappingDhcpServerReservedAddr
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34271,7 +33857,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterface(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34327,7 +33912,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceIpv6(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34410,7 +33994,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34509,7 +34092,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceIpv6Ip6ExtraAddr(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34606,7 +34188,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceIpv6Vrrp6(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34705,7 +34286,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceSecondaryip(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34802,7 +34382,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceVrrp(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -34901,7 +34480,6 @@ func (c *FortiSDKClient) UpdateObjectFspVlanInterfaceVrrpProxyArp(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -34998,7 +34576,6 @@ func (c *FortiSDKClient) UpdateObjectGlobalIpsSensor(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -35097,7 +34674,6 @@ func (c *FortiSDKClient) UpdateObjectGlobalIpsSensorEntries(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -35194,7 +34770,6 @@ func (c *FortiSDKClient) UpdateObjectGlobalIpsSensorEntriesExemptIp(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -35293,7 +34868,6 @@ func (c *FortiSDKClient) UpdateObjectGlobalIpsSensorOverride(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -35390,7 +34964,6 @@ func (c *FortiSDKClient) UpdateObjectGtpRatTimeoutProfile(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -35489,7 +35062,6 @@ func (c *FortiSDKClient) UpdateObjectIcapProfile(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -35586,7 +35158,6 @@ func (c *FortiSDKClient) UpdateObjectIcapProfileIcapHeaders(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -35685,7 +35256,6 @@ func (c *FortiSDKClient) UpdateObjectIcapProfileRespmodForwardRules(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -35782,7 +35352,6 @@ func (c *FortiSDKClient) UpdateObjectIcapProfileRespmodForwardRulesHeaderGroup(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -35881,7 +35450,6 @@ func (c *FortiSDKClient) UpdateObjectIcapRemoteServer(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -35978,7 +35546,6 @@ func (c *FortiSDKClient) UpdateObjectIcapRemoteServerGroup(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -36077,7 +35644,6 @@ func (c *FortiSDKClient) UpdateObjectIcapRemoteServerGroupServerList(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -36174,7 +35740,6 @@ func (c *FortiSDKClient) UpdateObjectIcapServer(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -36273,7 +35838,6 @@ func (c *FortiSDKClient) UpdateObjectIcapServerGroup(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -36370,7 +35934,6 @@ func (c *FortiSDKClient) UpdateObjectIcapServerGroupServerList(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -36469,7 +36032,6 @@ func (c *FortiSDKClient) UpdateObjectImageAnalyzerProfile(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -36566,7 +36128,6 @@ func (c *FortiSDKClient) UpdateObjectIpsCustom(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -36665,7 +36226,6 @@ func (c *FortiSDKClient) UpdateObjectIpsSensor(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -36762,7 +36322,6 @@ func (c *FortiSDKClient) UpdateObjectIpsSensorEntries(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -36861,7 +36420,6 @@ func (c *FortiSDKClient) UpdateObjectIpsSensorEntriesExemptIp(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -36932,7 +36490,6 @@ func (c *FortiSDKClient) UpdateObjectIpsSensorEntriesMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -37010,7 +36567,6 @@ func (c *FortiSDKClient) UpdateObjectIsolatorProfile(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -37109,7 +36665,6 @@ func (c *FortiSDKClient) UpdateObjectIsolatorProfileEntries(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -37180,7 +36735,6 @@ func (c *FortiSDKClient) UpdateObjectIsolatorProfileEntriesMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -37259,7 +36813,6 @@ func (c *FortiSDKClient) UpdateObjectLogCustomField(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -37330,7 +36883,6 @@ func (c *FortiSDKClient) UpdateObjectLogNpuServer(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -37413,7 +36965,6 @@ func (c *FortiSDKClient) UpdateObjectLogNpuServerServerGroup(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -37512,7 +37063,6 @@ func (c *FortiSDKClient) UpdateObjectLogNpuServerServerInfo(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -37609,7 +37159,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAccessList(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -37708,7 +37257,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAccessList6(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -37805,7 +37353,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAccessList6Rule(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -37904,7 +37451,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAccessListRule(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38001,7 +37547,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAspathList(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -38100,7 +37645,6 @@ func (c *FortiSDKClient) UpdateObjectRouterAspathListRule(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38197,7 +37741,6 @@ func (c *FortiSDKClient) UpdateObjectRouterCommunityList(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -38296,7 +37839,6 @@ func (c *FortiSDKClient) UpdateObjectRouterCommunityListRule(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38393,7 +37935,6 @@ func (c *FortiSDKClient) UpdateObjectRouterPrefixList(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -38492,7 +38033,6 @@ func (c *FortiSDKClient) UpdateObjectRouterPrefixList6(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38589,7 +38129,6 @@ func (c *FortiSDKClient) UpdateObjectRouterPrefixList6Rule(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -38688,7 +38227,6 @@ func (c *FortiSDKClient) UpdateObjectRouterPrefixListRule(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38785,7 +38323,6 @@ func (c *FortiSDKClient) UpdateObjectRouterRouteMap(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -38884,7 +38421,6 @@ func (c *FortiSDKClient) UpdateObjectRouterRouteMapRule(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -38981,7 +38517,6 @@ func (c *FortiSDKClient) UpdateObjectSctpFilterProfile(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -39080,7 +38615,6 @@ func (c *FortiSDKClient) UpdateObjectSctpFilterProfilePpidFilters(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -39177,7 +38711,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterBwl(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -39276,7 +38809,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterBword(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -39373,7 +38905,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterDnsbl(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -39472,7 +39003,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterIptrust(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -39569,7 +39099,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterMheader(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -39668,7 +39197,6 @@ func (c *FortiSDKClient) UpdateObjectSpamfilterProfile(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -39765,7 +39293,6 @@ func (c *FortiSDKClient) UpdateObjectSshFilterProfile(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -39864,7 +39391,6 @@ func (c *FortiSDKClient) UpdateObjectSshFilterProfileShellCommands(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -39935,7 +39461,6 @@ func (c *FortiSDKClient) UpdateObjectSshFilterProfileShellCommandsMove(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -40013,7 +39538,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerAclGroup(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -40112,7 +39636,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerAclIngress(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -40184,7 +39707,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerAclIngressAction(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -40240,7 +39762,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerAclIngressClassifier(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -40323,7 +39844,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerCustomCommand(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -40422,7 +39942,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerDslPolicy(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -40519,7 +40038,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerDynamicPortPolicy(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -40618,7 +40136,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerDynamicPortPolicyPolicy(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -40689,7 +40206,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerDynamicPortPolicyPolicyMove
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -40768,7 +40284,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerFortilinkSettings(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -40839,7 +40354,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerFortilinkSettingsNacPorts(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -40922,7 +40436,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerLldpProfile(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -41021,7 +40534,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerLldpProfileCustomTlvs(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -41118,7 +40630,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerMacPolicy(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -41217,7 +40728,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitch(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -41314,7 +40824,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitchCustomCommand(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -41413,7 +40922,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitchDhcpSnoopingSt
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -41510,7 +41018,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitchPorts(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -41609,7 +41116,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitchRouteOffloadRo
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -41706,7 +41212,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerManagedSwitchVlan(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -41805,7 +41310,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerPtpProfile(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -41902,7 +41406,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosDot1PMap(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42001,7 +41504,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosIpDscpMap(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -42098,7 +41600,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosIpDscpMapMap(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42197,7 +41698,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosQosPolicy(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -42294,7 +41794,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosQueuePolicy(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42393,7 +41892,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerQosQueuePolicyCosQueue(para
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -42490,7 +41988,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerSecurityPolicy8021X(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42589,7 +42086,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerSecurityPolicyAdmin(params 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -42686,7 +42182,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerSecurityPolicyLocalAccess(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42785,7 +42280,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerSwitchInterfaceTag(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -42882,7 +42376,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerTrafficPolicy(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -42981,7 +42474,6 @@ func (c *FortiSDKClient) UpdateObjectSwitchControllerVlanPolicy(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43078,7 +42570,6 @@ func (c *FortiSDKClient) UpdateObjectSystemCustomLanguage(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -43177,7 +42668,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDhcpServer(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43274,7 +42764,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDhcpServerExcludeRange(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -43373,7 +42862,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDhcpServerIpRange(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43470,7 +42958,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDhcpServerOptions(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -43569,7 +43056,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDhcpServerReservedAddress(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43666,7 +43152,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDnsDatabase(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -43765,7 +43250,6 @@ func (c *FortiSDKClient) UpdateObjectSystemDnsDatabaseDnsEntry(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43863,7 +43347,6 @@ func (c *FortiSDKClient) UpdateObjectSystemExternalResource(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -43934,7 +43417,6 @@ func (c *FortiSDKClient) UpdateObjectSystemExternalResourceMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -43986,7 +43468,6 @@ func (c *FortiSDKClient) UpdateObjectSystemFortiguard(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44069,7 +43550,6 @@ func (c *FortiSDKClient) UpdateObjectSystemGeoipCountry(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44168,7 +43648,6 @@ func (c *FortiSDKClient) UpdateObjectSystemGeoipOverride(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44265,7 +43744,6 @@ func (c *FortiSDKClient) UpdateObjectSystemGeoipOverrideIpRange(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44364,7 +43842,6 @@ func (c *FortiSDKClient) UpdateObjectSystemGeoipOverrideIp6Range(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44461,7 +43938,6 @@ func (c *FortiSDKClient) UpdateObjectSystemMeta(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44560,7 +44036,6 @@ func (c *FortiSDKClient) UpdateObjectSystemMetaSysMetaFields(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44632,7 +44107,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpu(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44689,7 +44163,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuBackgroundSseScan(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44745,7 +44218,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuDosOptions(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44828,7 +44300,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuDswDtsProfile(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -44927,7 +44398,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuDswQueueDtsProfile(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -44999,7 +44469,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuFpAnomaly(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45055,7 +44524,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuHpe(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45113,7 +44581,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuIcmpErrorRateCtrl(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45169,7 +44636,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuIcmpRateCtrl(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45227,7 +44693,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuIpReassembly(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45284,7 +44749,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuIsfNpQueues(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45340,7 +44804,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueues(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45423,7 +44886,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueuesEthernetType(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45522,7 +44984,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueuesIpProtocol(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45619,7 +45080,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueuesIpService(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45718,7 +45178,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueuesProfile(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45815,7 +45274,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpQueuesScheduler(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -45914,7 +45372,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcam(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -45986,7 +45443,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamData(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46042,7 +45498,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamMask(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46100,7 +45555,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamMirAct(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46156,7 +45610,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamPriAct(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46214,7 +45667,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamSact(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46270,7 +45722,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuNpuTcamTact(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46353,7 +45804,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuPortCpuMap(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46452,7 +45902,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuPortNpuMap(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46524,7 +45973,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuPortPathOption(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46580,7 +46028,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuPriorityProtocol(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46638,7 +46085,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuSseHaScan(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46695,7 +46141,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuSwEhHash(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -46751,7 +46196,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuSwTrHash(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46834,7 +46278,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuTcpTimeoutProfile(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -46933,7 +46376,6 @@ func (c *FortiSDKClient) UpdateObjectSystemNpuUdpTimeoutProfile(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -47030,7 +46472,6 @@ func (c *FortiSDKClient) UpdateObjectSystemObjectTagging(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -47129,7 +46570,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroup(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -47226,7 +46666,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupAdmin(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -47325,7 +46764,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupAlertmail(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -47422,7 +46860,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupAuth(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -47521,7 +46958,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupAutomation(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -47618,7 +47054,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupCustomMessage(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -47717,7 +47152,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupDeviceDetectionPortal(
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -47814,7 +47248,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupFortiguardWf(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -47913,7 +47346,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupFtp(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48010,7 +47442,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupHttp(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -48109,7 +47540,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupIcap(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48206,7 +47636,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupMail(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -48305,7 +47734,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupNacQuar(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48402,7 +47830,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupNntp(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -48501,7 +47928,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupSpam(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48598,7 +48024,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupSslvpn(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -48697,7 +48122,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupTrafficQuota(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48794,7 +48218,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupUtm(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -48893,7 +48316,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgGroupWebproxy(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -48990,7 +48412,6 @@ func (c *FortiSDKClient) UpdateObjectSystemReplacemsgImage(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -49089,7 +48510,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnector(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49187,7 +48607,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorCompartmentList(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49258,7 +48677,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorCompartmentListMove(param
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -49337,7 +48755,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorExternalAccountList(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49408,7 +48825,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorExternalAccountListMove(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -49487,7 +48903,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorExternalIp(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49558,7 +48973,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorExternalIpMove(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -49637,7 +49051,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorForwardingRule(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49708,7 +49121,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorForwardingRuleMove(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -49787,7 +49199,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorGcpProjectList(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -49858,7 +49269,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorGcpProjectListMove(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -49936,7 +49346,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorNic(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -50035,7 +49444,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorNicIp(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -50106,7 +49514,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorNicIpMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50158,7 +49565,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorNicMove(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50237,7 +49643,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorOciRegionList(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -50308,7 +49713,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorOciRegionListMove(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50386,7 +49790,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRoute(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -50485,7 +49888,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRouteTable(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -50556,7 +49958,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRouteTableMove(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50635,7 +50036,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRouteTableRoute(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -50706,7 +50106,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRouteTableRouteMove(param
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50758,7 +50157,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnConnectorRouteMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -50836,7 +50234,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSdnProxy(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -50935,7 +50332,6 @@ func (c *FortiSDKClient) UpdateObjectSystemSmsServer(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -51032,7 +50428,6 @@ func (c *FortiSDKClient) UpdateObjectSystemVirtualWirePair(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51131,7 +50526,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerAgent(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -51228,7 +50622,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerAgentProfile(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51327,7 +50720,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerApplicationPredefine(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -51424,7 +50816,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerProfile(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51523,7 +50914,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerProfileApplication(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -51594,7 +50984,6 @@ func (c *FortiSDKClient) UpdateObjectTelemetryControllerProfileApplicationSla(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51677,7 +51066,6 @@ func (c *FortiSDKClient) UpdateObjectUmsSetting(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51776,7 +51164,6 @@ func (c *FortiSDKClient) UpdateObjectUserAci(params *map[string]interface{}, mke
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -51873,7 +51260,6 @@ func (c *FortiSDKClient) UpdateObjectUserAdgrp(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -51972,7 +51358,6 @@ func (c *FortiSDKClient) UpdateObjectUserAzure(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -52069,7 +51454,6 @@ func (c *FortiSDKClient) UpdateObjectUserAzureRule(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -52168,7 +51552,6 @@ func (c *FortiSDKClient) UpdateObjectUserCertificate(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -52265,7 +51648,6 @@ func (c *FortiSDKClient) UpdateObjectUserClearpass(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -52364,7 +51746,6 @@ func (c *FortiSDKClient) UpdateObjectUserConnector(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -52461,7 +51842,6 @@ func (c *FortiSDKClient) UpdateObjectUserDevice(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -52560,7 +51940,6 @@ func (c *FortiSDKClient) UpdateObjectUserDeviceAccessList(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -52657,7 +52036,6 @@ func (c *FortiSDKClient) UpdateObjectUserDeviceCategory(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -52756,7 +52134,6 @@ func (c *FortiSDKClient) UpdateObjectUserDeviceGroup(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -52853,7 +52230,6 @@ func (c *FortiSDKClient) UpdateObjectUserDomainController(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -52952,7 +52328,6 @@ func (c *FortiSDKClient) UpdateObjectUserDomainControllerExtraServer(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -53049,7 +52424,6 @@ func (c *FortiSDKClient) UpdateObjectUserExchange(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -53148,7 +52522,6 @@ func (c *FortiSDKClient) UpdateObjectUserExternalIdentityProvider(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -53245,7 +52618,6 @@ func (c *FortiSDKClient) UpdateObjectUserFlexvm(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -53344,7 +52716,6 @@ func (c *FortiSDKClient) UpdateObjectUserFortitoken(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -53441,7 +52812,6 @@ func (c *FortiSDKClient) UpdateObjectUserFsso(params *map[string]interface{}, mk
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -53540,7 +52910,6 @@ func (c *FortiSDKClient) UpdateObjectUserFssoPolling(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -53637,7 +53006,6 @@ func (c *FortiSDKClient) UpdateObjectUserFssoPollingAdgrp(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -53736,7 +53104,6 @@ func (c *FortiSDKClient) UpdateObjectUserFssoDynamicMapping(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -53833,7 +53200,6 @@ func (c *FortiSDKClient) UpdateObjectUserGroup(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -53932,7 +53298,6 @@ func (c *FortiSDKClient) UpdateObjectUserGroupDynamicMapping(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -54029,7 +53394,6 @@ func (c *FortiSDKClient) UpdateObjectUserGroupDynamicMappingMatch(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -54128,7 +53492,6 @@ func (c *FortiSDKClient) UpdateObjectUserGroupMatch(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -54225,7 +53588,6 @@ func (c *FortiSDKClient) UpdateObjectUserGuardicore(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -54324,7 +53686,6 @@ func (c *FortiSDKClient) UpdateObjectUserJson(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -54421,7 +53782,6 @@ func (c *FortiSDKClient) UpdateObjectUserKrbKeytab(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -54520,7 +53880,6 @@ func (c *FortiSDKClient) UpdateObjectUserLdap(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -54617,7 +53976,6 @@ func (c *FortiSDKClient) UpdateObjectUserLdapDynamicMapping(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -54716,7 +54074,6 @@ func (c *FortiSDKClient) UpdateObjectUserLocal(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -54813,7 +54170,6 @@ func (c *FortiSDKClient) UpdateObjectUserLocalDynamicMapping(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -54912,7 +54268,6 @@ func (c *FortiSDKClient) UpdateObjectUserNsx(params *map[string]interface{}, mke
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55009,7 +54364,6 @@ func (c *FortiSDKClient) UpdateObjectUserNsxService(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -55108,7 +54462,6 @@ func (c *FortiSDKClient) UpdateObjectUserOidc(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55205,7 +54558,6 @@ func (c *FortiSDKClient) UpdateObjectUserPasswordPolicy(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -55304,7 +54656,6 @@ func (c *FortiSDKClient) UpdateObjectUserPeer(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55401,7 +54752,6 @@ func (c *FortiSDKClient) UpdateObjectUserPeergrp(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -55500,7 +54850,6 @@ func (c *FortiSDKClient) UpdateObjectUserPop3(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55597,7 +54946,6 @@ func (c *FortiSDKClient) UpdateObjectUserPxgrid(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -55696,7 +55044,6 @@ func (c *FortiSDKClient) UpdateObjectUserRadius(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55793,7 +55140,6 @@ func (c *FortiSDKClient) UpdateObjectUserRadiusAccountingServer(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -55892,7 +55238,6 @@ func (c *FortiSDKClient) UpdateObjectUserRadiusDynamicMapping(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -55989,7 +55334,6 @@ func (c *FortiSDKClient) UpdateObjectUserRadiusDynamicMappingAccountingServer(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -56088,7 +55432,6 @@ func (c *FortiSDKClient) UpdateObjectUserSaml(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -56185,7 +55528,6 @@ func (c *FortiSDKClient) UpdateObjectUserSamlDynamicMapping(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -56284,7 +55626,6 @@ func (c *FortiSDKClient) UpdateObjectUserScim(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -56381,7 +55722,6 @@ func (c *FortiSDKClient) UpdateObjectUserSecurityExemptList(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -56480,7 +55820,6 @@ func (c *FortiSDKClient) UpdateObjectUserSecurityExemptListRule(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -56577,7 +55916,6 @@ func (c *FortiSDKClient) UpdateObjectUserTacacs(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -56676,7 +56014,6 @@ func (c *FortiSDKClient) UpdateObjectUserTacacsDynamicMapping(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -56773,7 +56110,6 @@ func (c *FortiSDKClient) UpdateObjectUserVcenter(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -56872,7 +56208,6 @@ func (c *FortiSDKClient) UpdateObjectUserVcenterRule(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -56969,7 +56304,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterKeyword(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -57068,7 +56402,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterKeywordWord(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -57165,7 +56498,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfile(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -57264,7 +56596,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfileFilters(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -57335,7 +56666,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfileFiltersMove(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -57387,7 +56717,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfileFortiguardCategory(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -57471,7 +56800,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfileFortiguardCategoryFilters
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -57542,7 +56870,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterProfileFortiguardCategoryFilters
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -57620,7 +56947,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterYoutubeChannelFilter(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -57719,7 +57045,6 @@ func (c *FortiSDKClient) UpdateObjectVideofilterYoutubeKey(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -57816,7 +57141,6 @@ func (c *FortiSDKClient) UpdateObjectVirtualPatchProfile(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -57915,7 +57239,6 @@ func (c *FortiSDKClient) UpdateObjectVirtualPatchProfileExemption(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58013,7 +57336,6 @@ func (c *FortiSDKClient) UpdateObjectVoipProfile(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58085,7 +57407,6 @@ func (c *FortiSDKClient) UpdateObjectVoipProfileMsrp(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58142,7 +57463,6 @@ func (c *FortiSDKClient) UpdateObjectVoipProfileSccp(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58198,7 +57518,6 @@ func (c *FortiSDKClient) UpdateObjectVoipProfileSip(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -58281,7 +57600,6 @@ func (c *FortiSDKClient) UpdateObjectVpnCertificateCa(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -58380,7 +57698,6 @@ func (c *FortiSDKClient) UpdateObjectVpnCertificateHsmLocal(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58477,7 +57794,6 @@ func (c *FortiSDKClient) UpdateObjectVpnCertificateOcspServer(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -58576,7 +57892,6 @@ func (c *FortiSDKClient) UpdateObjectVpnCertificateRemote(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58673,7 +57988,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecFec(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -58772,7 +58086,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecFecMappings(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58843,7 +58156,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecFecMappingsMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -58922,7 +58234,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecFecMappingsTos(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -58993,7 +58304,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecFecMappingsTosMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -59071,7 +58381,6 @@ func (c *FortiSDKClient) UpdateObjectVpnIpsecManualkey(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -59170,7 +58479,6 @@ func (c *FortiSDKClient) UpdateObjectVpnKmipServer(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -59268,7 +58576,6 @@ func (c *FortiSDKClient) UpdateObjectVpnKmipServerServerList(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -59339,7 +58646,6 @@ func (c *FortiSDKClient) UpdateObjectVpnKmipServerServerListMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -59417,7 +58723,6 @@ func (c *FortiSDKClient) UpdateObjectVpnQkd(params *map[string]interface{}, mkey
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -59516,7 +58821,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebHostCheckSoftware(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -59613,7 +58917,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebHostCheckSoftwareCheckItemList(par
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -59712,7 +59015,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortal(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -59809,7 +59111,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalBookmarkGroup(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -59908,7 +59209,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalBookmarkGroupBookmarks(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -60006,7 +59306,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalBookmarkGroupBookmarksFormDa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -60077,7 +59376,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalBookmarkGroupBookmarksMove(p
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -60129,7 +59427,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalBookmarkGroupMove(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -60181,7 +59478,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalLandingPage(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -60264,7 +59560,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalLandingPageFormData(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -60363,7 +59658,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalMacAddrCheckRule(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -60461,7 +59755,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalSplitDns(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -60532,7 +59825,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebPortalSplitDnsMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -60610,7 +59902,6 @@ func (c *FortiSDKClient) UpdateObjectVpnSslWebRealm(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -60709,7 +60000,6 @@ func (c *FortiSDKClient) UpdateObjectVpnmgrNode(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -60806,7 +60096,6 @@ func (c *FortiSDKClient) UpdateObjectVpnmgrNodeIpRange(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -60905,7 +60194,6 @@ func (c *FortiSDKClient) UpdateObjectVpnmgrNodeIpv4ExcludeRange(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61002,7 +60290,6 @@ func (c *FortiSDKClient) UpdateObjectVpnmgrNodeProtectedSubnet(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61101,7 +60388,6 @@ func (c *FortiSDKClient) UpdateObjectVpnmgrNodeSummaryAddr(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61198,7 +60484,6 @@ func (c *FortiSDKClient) UpdateObjectWafMainClass(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61297,7 +60582,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfile(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61369,7 +60653,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileAddressList(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61426,7 +60709,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraint(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61482,7 +60764,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintContentLength(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61566,7 +60847,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintException(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61638,7 +60918,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintHeaderLength(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61694,7 +60973,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintHostname(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61752,7 +61030,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintLineLength(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61808,7 +61085,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMalformed(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61866,7 +61142,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMaxCookie(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -61922,7 +61197,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMaxHeaderLine(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -61980,7 +61254,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMaxRangeSegment(params 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62036,7 +61309,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMaxUrlParam(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62094,7 +61366,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintMethod(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62150,7 +61421,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintParamLength(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62208,7 +61478,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintUrlParamLength(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62265,7 +61534,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileConstraintVersion(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62321,7 +61589,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileMethod(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62405,7 +61672,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileMethodMethodPolicy(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62476,7 +61742,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileSignature(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62560,7 +61825,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileSignatureCustomSignature(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62631,7 +61895,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileSignatureMainClass(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62714,7 +61977,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileUrlAccess(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -62813,7 +62075,6 @@ func (c *FortiSDKClient) UpdateObjectWafProfileUrlAccessAccessPattern(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -62910,7 +62171,6 @@ func (c *FortiSDKClient) UpdateObjectWafSignature(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63009,7 +62269,6 @@ func (c *FortiSDKClient) UpdateObjectWafSubClass(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63106,7 +62365,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptAuthGroup(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63205,7 +62463,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptPeer(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63303,7 +62560,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfile(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63375,7 +62631,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfileCifs(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63431,7 +62686,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfileFtp(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63489,7 +62743,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfileHttp(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63546,7 +62799,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfileMapi(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63602,7 +62854,6 @@ func (c *FortiSDKClient) UpdateObjectWanoptProfileTcp(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63685,7 +62936,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyExplicitProxy(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63784,7 +63034,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyForwardServer(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -63881,7 +63130,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyForwardServerGroup(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -63980,7 +63228,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyForwardServerGroupServerList(params
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -64077,7 +63324,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyIsolatorServer(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -64176,7 +63422,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyProfile(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -64273,7 +63518,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyProfileHeaders(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -64372,7 +63616,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyRedirectProfile(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -64470,7 +63713,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyRedirectProfileEntries(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -64541,7 +63783,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyRedirectProfileEntriesMove(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -64619,7 +63860,6 @@ func (c *FortiSDKClient) UpdateObjectWebProxyWisp(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -64718,7 +63958,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterCategories(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -64815,7 +64054,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterContent(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -64914,7 +64152,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterContentHeader(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65012,7 +64249,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterContentHeaderEntries(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65083,7 +64319,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterContentHeaderEntriesMove(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -65161,7 +64396,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterContentEntries(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -65260,7 +64494,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterDomainList(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65357,7 +64590,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterDomainListEntries(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -65456,7 +64688,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterFtgdLocalCat(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65553,7 +64784,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterFtgdLocalRating(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -65652,7 +64882,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterFtgdRiskLevel(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65750,7 +64979,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfile(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -65821,7 +65049,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileAntiphish(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -65904,7 +65131,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileAntiphishCustomPatterns(par
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66003,7 +65229,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileAntiphishInspectionEntries(
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66101,7 +65326,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileFileFilterEntries(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66172,7 +65396,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileFtgdWf(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66255,7 +65478,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileFtgdWfFilters(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66354,7 +65576,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileFtgdWfRisk(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66426,7 +65647,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileOverride(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66483,7 +65703,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileUrlExtraction(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66539,7 +65758,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileWeb(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66622,7 +65840,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterProfileYoutubeChannelFilter(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66721,7 +65938,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterUrlList(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -66818,7 +66034,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterUrlListEntries(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -66917,7 +66132,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterUrlfilter(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67015,7 +66229,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterUrlfilterEntries(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67086,7 +66299,6 @@ func (c *FortiSDKClient) UpdateObjectWebfilterUrlfilterEntriesMove(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -67164,7 +66376,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAccessControlList(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -67263,7 +66474,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAccessControlListLayer3Ip
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67334,7 +66544,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAccessControlListLayer3Ip
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -67413,7 +66622,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAccessControlListLayer3Ip
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67484,7 +66692,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAccessControlListLayer3Ip
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -67562,7 +66769,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAddress(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -67661,7 +66867,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerAddrgrp(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67758,7 +66963,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerApcfgProfile(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -67857,7 +67061,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerApcfgProfileCommandList(p
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -67928,7 +67131,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerApcfgProfileCommandListMo
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -68006,7 +67208,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerArrpProfile(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -68105,7 +67306,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerBleProfile(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -68202,7 +67402,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerBonjourProfile(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -68301,7 +67500,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerBonjourProfilePolicyList(
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -68372,7 +67570,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerBonjourProfilePolicyListM
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -68450,7 +67647,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20Anqp3GppCellular
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -68549,7 +67745,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20Anqp3GppCellular
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -68646,7 +67841,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpIpAddressTyp
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -68745,7 +67939,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpNaiRealm(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -68842,7 +68035,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiL
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -68941,7 +68133,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiL
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -69038,7 +68229,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpNaiRealmNaiL
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -69137,7 +68327,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpNetworkAuthT
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -69234,7 +68423,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpRoamingConso
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -69333,7 +68521,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpRoamingConso
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -69430,7 +68617,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpVenueName(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -69529,7 +68715,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpVenueNameVal
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -69626,7 +68811,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpVenueUrl(par
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -69725,7 +68909,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20AnqpVenueUrlValu
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -69822,7 +69005,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpAdviceOfChar
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -69921,7 +69103,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpAdviceOfChar
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70018,7 +69199,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpAdviceOfChar
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -70117,7 +69297,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpConnCapabili
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70214,7 +69393,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOperatorName
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -70313,7 +69491,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOperatorName
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70410,7 +69587,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOsuProvider(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -70509,7 +69685,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOsuProviderN
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70606,7 +69781,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOsuProviderN
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -70705,7 +69879,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOsuProviderF
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70802,7 +69975,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpOsuProviderS
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -70901,7 +70073,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpTermsAndCond
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -70998,7 +70169,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20H2QpWanMetric(pa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -71097,7 +70267,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20HsProfile(params
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -71194,7 +70363,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20Icon(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -71293,7 +70461,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20IconIconList(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -71390,7 +70557,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20QosMap(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -71489,7 +70655,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20QosMapDscpExcept
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -71586,7 +70751,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerHotspot20QosMapDscpRange(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -71685,7 +70849,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerLwProfile(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -71782,7 +70945,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerMpskProfile(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -71881,7 +71043,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerMpskProfileMpskGroup(para
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -71952,7 +71113,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerMpskProfileMpskGroupMove(
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -72031,7 +71191,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerMpskProfileMpskGroupMpskK
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -72102,7 +71261,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerMpskProfileMpskGroupMpskK
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -72180,7 +71338,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerNacProfile(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -72279,7 +71436,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerQosProfile(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -72376,7 +71532,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerSsidPolicy(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -72475,7 +71630,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerSyslogProfile(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -72572,7 +71726,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerUtmProfile(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -72671,7 +71824,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVap(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -72768,7 +71920,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapGroup(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -72867,7 +72018,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapDynamicMapping(params 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -72965,7 +72115,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapMacFilterList(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73036,7 +72185,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapPortalMessageOverrides
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -73120,7 +72268,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapVlanName(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73191,7 +72338,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapVlanNameMove(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -73269,7 +72415,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerVapVlanPool(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -73368,7 +72513,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWagProfile(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73465,7 +72609,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWidsProfile(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -73564,7 +72707,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfile(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73662,7 +72804,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileDenyMacList(par
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73734,7 +72875,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileEslSesDongle(pa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73790,7 +72930,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileLan(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -73848,7 +72987,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileLbs(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -73904,7 +73042,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfilePlatform(params
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -73962,7 +73099,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileRadio1(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -74018,7 +73154,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileRadio2(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74076,7 +73211,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileRadio3(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -74132,7 +73266,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileRadio4(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74215,7 +73348,6 @@ func (c *FortiSDKClient) UpdateObjectWirelessControllerWtpProfileSplitTunnelingA
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74314,7 +73446,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaDestination(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -74411,7 +73542,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaServiceConnector(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74510,7 +73640,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaTrafficForwardProxy(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -74581,7 +73710,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaTrafficForwardProxyQuic(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74664,7 +73792,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaTrafficForwardProxySslCipherSuites(para
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74763,7 +73890,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaTrafficForwardProxySslServerCipherSuite
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -74860,7 +73986,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaTrafficForwardProxyUrlRoute(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -74959,7 +74084,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebPortal(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -75056,7 +74180,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebPortalBookmark(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75155,7 +74278,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebPortalBookmarkBookmarks(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -75226,7 +74348,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebPortalBookmarkBookmarksMove(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -75278,7 +74399,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebPortalBookmarkLlmSecureProxy(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75361,7 +74481,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxy(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75460,7 +74579,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGateway(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -75558,7 +74676,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGateway6(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -75629,7 +74746,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGateway6Quic(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75712,7 +74828,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGateway6Realservers(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75811,7 +74926,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGateway6SslCipherSuites(para
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -75882,7 +74996,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGatewayQuic(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -75965,7 +75078,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGatewayRealservers(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -76064,7 +75176,6 @@ func (c *FortiSDKClient) UpdateObjectZtnaWebProxyApiGatewaySslCipherSuites(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -76162,7 +75273,6 @@ func (c *FortiSDKClient) UpdatePackagesAuthenticationRule(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -76233,7 +75343,6 @@ func (c *FortiSDKClient) UpdatePackagesAuthenticationSetting(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -76316,7 +75425,6 @@ func (c *FortiSDKClient) UpdatePackagesCentralDnat(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -76415,7 +75523,6 @@ func (c *FortiSDKClient) UpdatePackagesCentralDnat6(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -76486,7 +75593,6 @@ func (c *FortiSDKClient) UpdatePackagesCentralDnat6Move(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -76538,7 +75644,6 @@ func (c *FortiSDKClient) UpdatePackagesCentralDnatMove(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -76616,7 +75721,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicy(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -76715,7 +75819,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicy6(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -76813,7 +75916,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicy6Anomaly(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -76884,7 +75986,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicy6Move(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -76963,7 +76064,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicyAnomaly(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -77034,7 +76134,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallDosPolicyMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -77112,7 +76211,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallAcl(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -77211,7 +76309,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallAcl6(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -77282,7 +76379,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallAcl6Move(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -77334,7 +76430,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallAclMove(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -77413,7 +76508,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallCentralSnatMap(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -77484,7 +76578,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallCentralSnatMapMove(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -77563,7 +76656,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallConsolidatedPolicy(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -77634,7 +76726,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallConsolidatedPolicyMove(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -77712,7 +76803,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallHyperscalePolicy(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -77811,7 +76901,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallHyperscalePolicy46(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -77908,7 +76997,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallHyperscalePolicy6(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -78007,7 +77095,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallHyperscalePolicy64(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -78104,7 +77191,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallInterfacePolicy(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -78203,7 +77289,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallInterfacePolicy6(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -78274,7 +77359,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallInterfacePolicy6Move(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -78326,7 +77410,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallInterfacePolicyMove(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -78404,7 +77487,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallLocalInPolicy(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -78503,7 +77585,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallLocalInPolicy6(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -78574,7 +77655,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallLocalInPolicy6Move(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -78626,7 +77706,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallLocalInPolicyMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -78704,7 +77783,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallMulticastPolicy(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -78803,7 +77881,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallMulticastPolicy6(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -78874,7 +77951,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallMulticastPolicy6Move(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -78926,7 +78002,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallMulticastPolicyMove(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79004,7 +78079,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -79103,7 +78177,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy46(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -79174,7 +78247,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy46Move(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79252,7 +78324,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy6(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -79351,7 +78422,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy64(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -79422,7 +78492,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy64Move(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79474,7 +78543,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicy6Move(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79526,7 +78594,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicyFabricPolicy(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -79583,7 +78650,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallPolicyMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79662,7 +78728,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallProxyPolicy(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -79733,7 +78798,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallProxyPolicyMove(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79812,7 +78876,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallResponseShapingPolicy(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -79883,7 +78946,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallResponseShapingPolicyMove(params 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -79962,7 +79024,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallSecurityPolicy(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -80033,7 +79094,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallSecurityPolicyMove(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -80112,7 +79172,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallShapingPolicy(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -80183,7 +79242,6 @@ func (c *FortiSDKClient) UpdatePackagesFirewallShapingPolicyMove(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -80261,7 +79319,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterConsolidatedPolicy(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -80360,7 +79417,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterLocalInPolicy(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -80457,7 +79513,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterLocalInPolicy6(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -80556,7 +79611,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterPolicy(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -80653,7 +79707,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterPolicy6(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -80752,7 +79805,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalFooterShapingPolicy(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -80849,7 +79901,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderConsolidatedPolicy(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -80948,7 +79999,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderLocalInPolicy(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -81045,7 +80095,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderLocalInPolicy6(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -81144,7 +80193,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderPolicy(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -81241,7 +80289,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderPolicy6(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -81340,7 +80387,6 @@ func (c *FortiSDKClient) UpdatePackagesGlobalHeaderShapingPolicy(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -81437,7 +80483,6 @@ func (c *FortiSDKClient) UpdatePackagesPblock(params *map[string]interface{}, mk
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -81536,7 +80581,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallConsolidatedPolicy(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -81633,7 +80677,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallLocalInPolicy(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -81732,7 +80775,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallLocalInPolicy6(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -81803,7 +80845,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallLocalInPolicy6Move(params *
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -81855,7 +80896,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallLocalInPolicyMove(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -81933,7 +80973,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallPolicy(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82032,7 +81071,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallPolicy6(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82103,7 +81141,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallPolicyMove(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -82181,7 +81218,6 @@ func (c *FortiSDKClient) UpdatePackagesPblockFirewallSecurityPolicy(params *map[
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82280,7 +81316,6 @@ func (c *FortiSDKClient) UpdatePackagesPkg(params *map[string]interface{}, mkey 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82378,7 +81413,6 @@ func (c *FortiSDKClient) UpdatePackagesUserNacPolicy(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82449,7 +81483,6 @@ func (c *FortiSDKClient) UpdatePackagesUserNacPolicyMove(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -82528,7 +81561,6 @@ func (c *FortiSDKClient) UpdatePackagesWebProxyPacPolicy(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82600,7 +81632,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleAbort(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82624,7 +81655,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleAssignPackage(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82650,7 +81680,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleInstallDevice(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82674,7 +81703,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleInstallObjectsV2(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82700,7 +81728,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleInstallPackage(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82724,7 +81751,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleInstallPreview(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82750,7 +81776,6 @@ func (c *FortiSDKClient) UpdateSecurityconsolePackageCancelInstall(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82774,7 +81799,6 @@ func (c *FortiSDKClient) UpdateSecurityconsolePackageClone(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82800,7 +81824,6 @@ func (c *FortiSDKClient) UpdateSecurityconsolePackageCommit(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82824,7 +81847,6 @@ func (c *FortiSDKClient) UpdateSecurityconsolePackageMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82850,7 +81872,6 @@ func (c *FortiSDKClient) UpdateSecurityconsolePblockClone(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82874,7 +81895,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleReinstallPackage(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82900,7 +81920,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleSignCertificateTemplate(params *ma
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82924,7 +81943,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleTemplateCliPreview(params *map[str
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -82950,7 +81968,6 @@ func (c *FortiSDKClient) UpdateSecurityconsoleTemplateValidate(params *map[strin
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82975,7 +81992,6 @@ func (c *FortiSDKClient) UpdateSysBackup(params *map[string]interface{}, mkey st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -82999,7 +82015,6 @@ func (c *FortiSDKClient) UpdateSysRestore(params *map[string]interface{}, mkey s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83050,7 +82065,6 @@ func (c *FortiSDKClient) UpdateSystemAdminGroup(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83149,7 +82163,6 @@ func (c *FortiSDKClient) UpdateSystemAdminGroupMember(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -83246,7 +82259,6 @@ func (c *FortiSDKClient) UpdateSystemAdminLdap(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83345,7 +82357,6 @@ func (c *FortiSDKClient) UpdateSystemAdminProfile(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -83442,7 +82453,6 @@ func (c *FortiSDKClient) UpdateSystemAdminProfileDatamaskCustomFields(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83541,7 +82551,6 @@ func (c *FortiSDKClient) UpdateSystemAdminProfileWritePasswdProfiles(params *map
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -83638,7 +82647,6 @@ func (c *FortiSDKClient) UpdateSystemAdminProfileWritePasswdUserList(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83737,7 +82745,6 @@ func (c *FortiSDKClient) UpdateSystemAdminRadius(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -83808,7 +82815,6 @@ func (c *FortiSDKClient) UpdateSystemAdminSetting(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83891,7 +82897,6 @@ func (c *FortiSDKClient) UpdateSystemAdminTacacs(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -83990,7 +82995,6 @@ func (c *FortiSDKClient) UpdateSystemAdminUser(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84087,7 +83091,6 @@ func (c *FortiSDKClient) UpdateSystemAdminUserAdom(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -84186,7 +83189,6 @@ func (c *FortiSDKClient) UpdateSystemAdminUserIpsFilter(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84284,7 +83286,6 @@ func (c *FortiSDKClient) UpdateSystemAdminUserPolicyBlock(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84355,7 +83356,6 @@ func (c *FortiSDKClient) UpdateSystemAlertConsole(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -84439,7 +83439,6 @@ func (c *FortiSDKClient) UpdateSystemAlertEvent(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84511,7 +83510,6 @@ func (c *FortiSDKClient) UpdateSystemAlertemail(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84567,7 +83565,6 @@ func (c *FortiSDKClient) UpdateSystemAutoDelete(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -84625,7 +83622,6 @@ func (c *FortiSDKClient) UpdateSystemAutoDeleteDlpFilesAutoDeletion(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84681,7 +83677,6 @@ func (c *FortiSDKClient) UpdateSystemAutoDeleteLogAutoDeletion(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -84739,7 +83734,6 @@ func (c *FortiSDKClient) UpdateSystemAutoDeleteQuarantineFilesAutoDeletion(param
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84796,7 +83790,6 @@ func (c *FortiSDKClient) UpdateSystemAutoDeleteReportAutoDeletion(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -84852,7 +83845,6 @@ func (c *FortiSDKClient) UpdateSystemBackupAllSettings(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -84935,7 +83927,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateCa(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85034,7 +84025,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateCrl(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85132,7 +84122,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateLocal(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85203,7 +84192,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateOftp(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85286,7 +84274,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateRemote(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85385,7 +84372,6 @@ func (c *FortiSDKClient) UpdateSystemCertificateSsh(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85457,7 +84443,6 @@ func (c *FortiSDKClient) UpdateSystemConnector(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85513,7 +84498,6 @@ func (c *FortiSDKClient) UpdateSystemCsf(params *map[string]interface{}, mkey st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85596,7 +84580,6 @@ func (c *FortiSDKClient) UpdateSystemCsfFabricConnector(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85695,7 +84678,6 @@ func (c *FortiSDKClient) UpdateSystemCsfTrustedList(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85767,7 +84749,6 @@ func (c *FortiSDKClient) UpdateSystemDm(params *map[string]interface{}, mkey str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85823,7 +84804,6 @@ func (c *FortiSDKClient) UpdateSystemDns(params *map[string]interface{}, mkey st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -85881,7 +84861,6 @@ func (c *FortiSDKClient) UpdateSystemDocker(params *map[string]interface{}, mkey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85938,7 +84917,6 @@ func (c *FortiSDKClient) UpdateSystemFips(params *map[string]interface{}, mkey s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -85994,7 +84972,6 @@ func (c *FortiSDKClient) UpdateSystemFmgCluster(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -86078,7 +85055,6 @@ func (c *FortiSDKClient) UpdateSystemFmgClusterPeer(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86150,7 +85126,6 @@ func (c *FortiSDKClient) UpdateSystemFortiviewAutoCache(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86207,7 +85182,6 @@ func (c *FortiSDKClient) UpdateSystemFortiviewSetting(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86263,7 +85237,6 @@ func (c *FortiSDKClient) UpdateSystemGlobal(params *map[string]interface{}, mkey
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -86347,7 +85320,6 @@ func (c *FortiSDKClient) UpdateSystemGlobalSslCipherSuites(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86419,7 +85391,6 @@ func (c *FortiSDKClient) UpdateSystemGuiact(params *map[string]interface{}, mkey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86476,7 +85447,6 @@ func (c *FortiSDKClient) UpdateSystemHa(params *map[string]interface{}, mkey str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86532,7 +85502,6 @@ func (c *FortiSDKClient) UpdateSystemHaScheduledCheck(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -86615,7 +85584,6 @@ func (c *FortiSDKClient) UpdateSystemHaMonitoredIps(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -86714,7 +85682,6 @@ func (c *FortiSDKClient) UpdateSystemHaPeer(params *map[string]interface{}, mkey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86812,7 +85779,6 @@ func (c *FortiSDKClient) UpdateSystemInterface(params *map[string]interface{}, m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -86883,7 +85849,6 @@ func (c *FortiSDKClient) UpdateSystemInterfaceIpv6(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -86966,7 +85931,6 @@ func (c *FortiSDKClient) UpdateSystemInterfaceMember(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87065,7 +86029,6 @@ func (c *FortiSDKClient) UpdateSystemLocalInPolicy(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87163,7 +86126,6 @@ func (c *FortiSDKClient) UpdateSystemLocalInPolicy6(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87235,7 +86197,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogDiskFilter(params *map[string]inter
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87291,7 +86252,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogDiskSetting(params *map[string]inte
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87349,7 +86309,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzer2Filter(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87405,7 +86364,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzer2Setting(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87463,7 +86421,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzer3Filter(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87519,7 +86476,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzer3Setting(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87577,7 +86533,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzerFilter(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87633,7 +86588,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogFortianalyzerSetting(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87691,7 +86645,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogMemoryFilter(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87747,7 +86700,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogMemorySetting(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87805,7 +86757,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSetting(params *map[string]interfac
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87861,7 +86812,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogd2Filter(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -87919,7 +86869,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogd2Setting(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -87975,7 +86924,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogd3Filter(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88033,7 +86981,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogd3Setting(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88090,7 +87037,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogdFilter(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88146,7 +87092,6 @@ func (c *FortiSDKClient) UpdateSystemLocallogSyslogdSetting(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88229,7 +87174,6 @@ func (c *FortiSDKClient) UpdateSystemLogFetchClientProfile(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88328,7 +87272,6 @@ func (c *FortiSDKClient) UpdateSystemLogFetchClientProfileDeviceFilter(params *m
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88400,7 +87343,6 @@ func (c *FortiSDKClient) UpdateSystemLogFetchServerSettings(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88456,7 +87398,6 @@ func (c *FortiSDKClient) UpdateSystemLogAlert(params *map[string]interface{}, mk
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88539,7 +87480,6 @@ func (c *FortiSDKClient) UpdateSystemLogDeviceDisable(params *map[string]interfa
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88638,7 +87578,6 @@ func (c *FortiSDKClient) UpdateSystemLogDeviceSelector(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88710,7 +87649,6 @@ func (c *FortiSDKClient) UpdateSystemLogFosPolicyStats(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88767,7 +87705,6 @@ func (c *FortiSDKClient) UpdateSystemLogInterfaceStats(params *map[string]interf
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88823,7 +87760,6 @@ func (c *FortiSDKClient) UpdateSystemLogIoc(params *map[string]interface{}, mkey
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -88907,7 +87843,6 @@ func (c *FortiSDKClient) UpdateSystemLogMailDomain(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -88978,7 +87913,6 @@ func (c *FortiSDKClient) UpdateSystemLogRatelimit(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89061,7 +87995,6 @@ func (c *FortiSDKClient) UpdateSystemLogRatelimitDevice(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89160,7 +88093,6 @@ func (c *FortiSDKClient) UpdateSystemLogRatelimitRatelimits(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89232,7 +88164,6 @@ func (c *FortiSDKClient) UpdateSystemLogSettings(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89288,7 +88219,6 @@ func (c *FortiSDKClient) UpdateSystemLogSettingsRollingAnalyzer(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89346,7 +88276,6 @@ func (c *FortiSDKClient) UpdateSystemLogSettingsRollingLocal(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89402,7 +88331,6 @@ func (c *FortiSDKClient) UpdateSystemLogSettingsRollingRegular(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89460,7 +88388,6 @@ func (c *FortiSDKClient) UpdateSystemLogTopology(params *map[string]interface{},
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89516,7 +88443,6 @@ func (c *FortiSDKClient) UpdateSystemLogUeba(params *map[string]interface{}, mke
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89599,7 +88525,6 @@ func (c *FortiSDKClient) UpdateSystemMail(params *map[string]interface{}, mkey s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89698,7 +88623,6 @@ func (c *FortiSDKClient) UpdateSystemMetadataAdmins(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89769,7 +88693,6 @@ func (c *FortiSDKClient) UpdateSystemNtp(params *map[string]interface{}, mkey st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -89853,7 +88776,6 @@ func (c *FortiSDKClient) UpdateSystemNtpNtpserver(params *map[string]interface{}
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89925,7 +88847,6 @@ func (c *FortiSDKClient) UpdateSystemPasswordPolicy(params *map[string]interface
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -89981,7 +88902,6 @@ func (c *FortiSDKClient) UpdateSystemReportAutoCache(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90039,7 +88959,6 @@ func (c *FortiSDKClient) UpdateSystemReportEstBrowseTime(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -90095,7 +89014,6 @@ func (c *FortiSDKClient) UpdateSystemReportSetting(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90178,7 +89096,6 @@ func (c *FortiSDKClient) UpdateSystemRoute(params *map[string]interface{}, mkey 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90277,7 +89194,6 @@ func (c *FortiSDKClient) UpdateSystemRoute6(params *map[string]interface{}, mkey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -90348,7 +89264,6 @@ func (c *FortiSDKClient) UpdateSystemSaml(params *map[string]interface{}, mkey s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90431,7 +89346,6 @@ func (c *FortiSDKClient) UpdateSystemSamlFabricIdp(params *map[string]interface{
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90530,7 +89444,6 @@ func (c *FortiSDKClient) UpdateSystemSamlServiceProviders(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -90627,7 +89540,6 @@ func (c *FortiSDKClient) UpdateSystemSniffer(params *map[string]interface{}, mke
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90726,7 +89638,6 @@ func (c *FortiSDKClient) UpdateSystemSnmpCommunity(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -90823,7 +89734,6 @@ func (c *FortiSDKClient) UpdateSystemSnmpCommunityHosts(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -90922,7 +89832,6 @@ func (c *FortiSDKClient) UpdateSystemSnmpCommunityHosts6(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -90993,7 +89902,6 @@ func (c *FortiSDKClient) UpdateSystemSnmpSysinfo(params *map[string]interface{},
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91077,7 +89985,6 @@ func (c *FortiSDKClient) UpdateSystemSnmpUser(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -91148,7 +90055,6 @@ func (c *FortiSDKClient) UpdateSystemSocFabric(params *map[string]interface{}, m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91232,7 +90138,6 @@ func (c *FortiSDKClient) UpdateSystemSocFabricTrustedList(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -91303,7 +90208,6 @@ func (c *FortiSDKClient) UpdateSystemSql(params *map[string]interface{}, mkey st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91386,7 +90290,6 @@ func (c *FortiSDKClient) UpdateSystemSqlCustomIndex(params *map[string]interface
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91485,7 +90388,6 @@ func (c *FortiSDKClient) UpdateSystemSqlCustomSkipidx(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -91582,7 +90484,6 @@ func (c *FortiSDKClient) UpdateSystemSqlTsIndexField(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91681,7 +90582,6 @@ func (c *FortiSDKClient) UpdateSystemSyslog(params *map[string]interface{}, mkey
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -91779,7 +90679,6 @@ func (c *FortiSDKClient) UpdateSystemTemplate(params *map[string]interface{}, mk
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -91850,7 +90749,6 @@ func (c *FortiSDKClient) UpdateSystemWebProxy(params *map[string]interface{}, mk
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -91933,7 +90831,6 @@ func (c *FortiSDKClient) UpdateSystemWorkflowApprovalMatrix(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92032,7 +90929,6 @@ func (c *FortiSDKClient) UpdateSystemWorkflowApprovalMatrixApprover(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92104,7 +91000,6 @@ func (c *FortiSDKClient) UpdateSystempDeviceProfileFortianalyzer(params *map[str
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92160,7 +91055,6 @@ func (c *FortiSDKClient) UpdateSystempDeviceProfileFortiguard(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92218,7 +91112,6 @@ func (c *FortiSDKClient) UpdateSystempLogFortianalyzerCloudSetting(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92275,7 +91168,6 @@ func (c *FortiSDKClient) UpdateSystempLogFortianalyzerSetting(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92331,7 +91223,6 @@ func (c *FortiSDKClient) UpdateSystempLogSyslogdFilter(params *map[string]interf
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92415,7 +91306,6 @@ func (c *FortiSDKClient) UpdateSystempLogSyslogdFilterFreeStyle(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92486,7 +91376,6 @@ func (c *FortiSDKClient) UpdateSystempLogSyslogdSetting(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92569,7 +91458,6 @@ func (c *FortiSDKClient) UpdateSystempLogSyslogdSettingCustomFieldName(params *m
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92668,7 +91556,6 @@ func (c *FortiSDKClient) UpdateSystempLogSyslogdSettingLogTemplates(params *map[
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92739,7 +91626,6 @@ func (c *FortiSDKClient) UpdateSystempSystemCentralManagement(params *map[string
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -92823,7 +91709,6 @@ func (c *FortiSDKClient) UpdateSystempSystemCentralManagementServerList(params *
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92895,7 +91780,6 @@ func (c *FortiSDKClient) UpdateSystempSystemDns(params *map[string]interface{}, 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -92951,7 +91835,6 @@ func (c *FortiSDKClient) UpdateSystempSystemEmailServer(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93009,7 +91892,6 @@ func (c *FortiSDKClient) UpdateSystempSystemGlobal(params *map[string]interface{
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93065,7 +91947,6 @@ func (c *FortiSDKClient) UpdateSystempSystemNtp(params *map[string]interface{}, 
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93149,7 +92030,6 @@ func (c *FortiSDKClient) UpdateSystempSystemNtpNtpserver(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93221,7 +92101,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgAdmin(params *map[string]i
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93277,7 +92156,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgAlertmail(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93335,7 +92213,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgAuth(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93391,7 +92268,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgDeviceDetectionPortal(para
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93449,7 +92325,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgEc(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93505,7 +92380,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgFortiguardWf(params *map[s
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93563,7 +92437,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgFtp(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93619,7 +92492,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgHttp(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93677,7 +92549,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgMail(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93733,7 +92604,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgMms(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93791,7 +92661,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgNacQuar(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93847,7 +92716,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgNntp(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -93905,7 +92773,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgSpam(params *map[string]in
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -93961,7 +92828,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgSslvpn(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94019,7 +92885,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgTrafficQuota(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -94076,7 +92941,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgUtm(params *map[string]int
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -94132,7 +92996,6 @@ func (c *FortiSDKClient) UpdateSystempSystemReplacemsgWebproxy(params *map[strin
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94216,7 +93079,6 @@ func (c *FortiSDKClient) UpdateSystempSystemSnmpCommunityHosts6(params *map[stri
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -94287,7 +93149,6 @@ func (c *FortiSDKClient) UpdateSystempSystemSnmpSysinfo(params *map[string]inter
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94370,7 +93231,6 @@ func (c *FortiSDKClient) UpdateSystempSystemSnmpUser(params *map[string]interfac
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94469,7 +93329,6 @@ func (c *FortiSDKClient) UpdateSystempSystemTemplateInterface(params *map[string
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -94566,7 +93425,6 @@ func (c *FortiSDKClient) UpdateSystempSystemTemplateInterfaceIpRange(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94665,7 +93523,6 @@ func (c *FortiSDKClient) UpdateWanTemplate(params *map[string]interface{}, mkey 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -94736,7 +93593,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwan(params *map[string]interface{}
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94819,7 +93675,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanDuplication(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -94918,7 +93773,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanHealthCheck(params *map[string]
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -95015,7 +93869,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanHealthCheckSla(params *map[stri
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -95114,7 +93967,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanMembers(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -95185,7 +94037,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanMembersMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -95263,7 +94114,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanNeighbor(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -95362,7 +94212,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanService(params *map[string]inte
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -95433,7 +94282,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanServiceMove(params *map[string]
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -95511,7 +94359,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanServiceSla(params *map[string]i
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -95610,7 +94457,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanZone(params *map[string]interfa
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -95681,7 +94527,6 @@ func (c *FortiSDKClient) UpdateWantempSystemSdwanZoneMove(params *map[string]int
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = true
 
 	output, err = createUpdate(requestInput)
@@ -95733,7 +94578,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLink(params *map[string]in
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -95816,7 +94660,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkHealthCheck(params *ma
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -95915,7 +94758,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkHealthCheckSla(params 
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -96012,7 +94854,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkMembers(params *map[st
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
@@ -96111,7 +94952,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkNeighbor(params *map[s
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -96209,7 +95049,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkService(params *map[st
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
 	requestInput.bMove = false
-	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)
 	return
@@ -96306,7 +95145,6 @@ func (c *FortiSDKClient) UpdateWantempSystemVirtualWanLinkServiceSla(params *map
 	requestInput.path = path
 	requestInput.bodyParams = params
 	requestInput.wsParams = wsParams
-	requestInput.bMove = false
 	requestInput.bMove = false
 
 	output, err = createUpdate(requestInput)

@@ -186,4 +186,4 @@ Fortinet also provides a developer community to help administrators and advanced
 
 ## Versioning
 
-The provider can cover FortiManager 6.4 to 7.4 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
+The provider can cover FortiManager >= 6.4 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.

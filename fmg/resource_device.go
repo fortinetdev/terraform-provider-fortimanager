@@ -944,20 +944,8 @@ func refreshDevice(d *schema.ResourceData, o map[string]interface{}) error {
 		return fmt.Errorf("Error reading adm_usr: %v", err)
 	}
 
-	if err = d.Set("authorizationtemplate", o["authorization template"]); err != nil {
-		return fmt.Errorf("Error reading authorizationtemplate: %v", err)
-	}
-
 	if err = d.Set("desc", o["desc"]); err != nil {
 		return fmt.Errorf("Error reading desc: %v", err)
-	}
-
-	if err = d.Set("deviceaction", o["device action"]); err != nil {
-		return fmt.Errorf("Error reading deviceaction: %v", err)
-	}
-
-	if err = d.Set("deviceblueprint", o["device blueprint"]); err != nil {
-		return fmt.Errorf("Error reading deviceblueprint: %v", err)
 	}
 
 	if err = d.Set("fazquota", o["faz.quota"]); err != nil {
@@ -1023,7 +1011,7 @@ func refreshDevice(d *schema.ResourceData, o map[string]interface{}) error {
 	if err = d.Set("checksum", o["checksum"]); err != nil {
 		return fmt.Errorf("Error reading checksum: %v", err)
 	}
-	if err = d.Set("cluster_worker", o["cluster_worker"]); err != nil {
+	if err = d.Set("cluster_worker", flattenStringList(o["cluster_worker"])); err != nil {
 		return fmt.Errorf("Error reading cluster_worker: %v", err)
 	}
 	if err = d.Set("conf_status", o["conf_status"]); err != nil {
